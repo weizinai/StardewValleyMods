@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("AutoBreakGeode")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ee5c52698c40dbb25b2598686e0bdb26dc485f8")]
-[assembly: System.Reflection.AssemblyProductAttribute("AutoBreakGeode")]
-[assembly: System.Reflection.AssemblyTitleAttribute("AutoBreakGeode")]
+[assembly: System.Reflection.AssemblyProductAttribute("Common")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。

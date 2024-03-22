@@ -1,0 +1,9 @@
+﻿{
+    "Name": "ActiveMenuAnywhere",
+    "Author": "weizinai",
+    "Version": "1.0.0",
+    "Description": "This is a test mod.",
+    "UniqueID": "weizinai.ActiveMenuAnywhere",
+    "EntryDll": "ActiveMenuAnywhere.dll",
+    "UpdateKeys": []
+}

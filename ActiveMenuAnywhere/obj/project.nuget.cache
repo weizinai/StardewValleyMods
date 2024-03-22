@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "EEqoLgbXTwXc8ifhfVp+tO6/PYjm6RpNckXo+iheyuAjV1VJwnxAW60nM4YDBJO3SiSoTw6fvEe7E3Ro4jiaPA==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\StardewValleyMods\\ActiveMenuAnywhere\\ActiveMenuAnywhere.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\17760\\.nuget\\packages\\pathoschild.stardew.modbuildconfig\\4.1.1\\pathoschild.stardew.modbuildconfig.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

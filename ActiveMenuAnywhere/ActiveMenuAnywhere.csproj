@@ -10,6 +10,14 @@
       <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="assets\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Framework\ActiveMenu\TVActiveMenu.cs" />
+    </ItemGroup>
+
     <Import Project="..\Common\Common.projitems" Label="Shared" />
 
 </Project>

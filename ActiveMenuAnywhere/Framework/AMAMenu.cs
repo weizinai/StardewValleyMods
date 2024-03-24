@@ -1,13 +1,18 @@
 ﻿using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
+using StardewValley.Objects;
 
 namespace ActiveMenuAnywhere.Framework;
 
 public class AMAMenu : IClickableMenu
 {
+    private readonly IModHelper helper;
+    private readonly Dictionary<MenuTabID, Texture2D> textures;
+
     private const int InnerWidth = 600;
     private const int InnerHeight = 600;
 
@@ -18,9 +23,15 @@ public class AMAMenu : IClickableMenu
     private MenuTabID currentMenuTabID;
     private ClickableComponent title;
     private readonly List<ClickableComponent> tabs = new();
+    private readonly List<ClickableTextureComponent> options = new();
 
-    public AMAMenu(MenuTabID menuTabID)
+    private ActiveMenuManager activeMenuManager;
+
+    public AMAMenu(MenuTabID menuTabID, IModHelper helper, Dictionary<MenuTabID, Texture2D> textures)
     {
+        this.helper = helper;
+        this.textures = textures;
+        activeMenuManager = new ActiveMenuManager(helper);
         Init(menuTabID);
         ResetComponents();
     }
@@ -29,7 +40,16 @@ public class AMAMenu : IClickableMenu
     {
         foreach (var tabLabel in from tab in tabs where tab.containsPoint(x, y) select GetTabID(tab))
         {
-            Game1.activeClickableMenu = new AMAMenu(tabLabel);
+            Game1.activeClickableMenu = new AMAMenu(tabLabel, helper, textures);
+            break;
+        }
+
+        
+        foreach (var option in options.Where(option => option.containsPoint(x, y)))
+        {
+            // Game1.exitActiveMenu();
+            helper.Reflection.GetMethod(new TV(),"checkForAction").Invoke(Game1.player, false);
+            break;
         }
     }
 
@@ -51,6 +71,10 @@ public class AMAMenu : IClickableMenu
             DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
                 tabID == currentMenuTabID ? 0.7f : 1f);
         }
+
+        // Draw options
+        foreach (var option in options)
+            option.draw(spriteBatch);
 
         // Draw Mouse
         drawMouse(spriteBatch);
@@ -106,6 +130,36 @@ public class AMAMenu : IClickableMenu
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
                 "RSV", MenuTabID.RSV.ToString()),
         });
+
+        // Add options
+        options.Clear();
+        switch (currentMenuTabID)
+        {
+            case MenuTabID.Farm:
+                options.AddRange(new[]
+                {
+                    new ClickableTextureComponent(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Farm],
+                        new Rectangle(0, 0, 200, 200), 1f)
+                });
+                break;
+            case MenuTabID.Town:
+                break;
+            case MenuTabID.Mountain:
+                break;
+            case MenuTabID.Forest:
+                break;
+            case MenuTabID.Beach:
+                break;
+            case MenuTabID.GingerIsland:
+                break;
+            case MenuTabID.SVE:
+                break;
+            case MenuTabID.RSV:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private MenuTabID GetTabID(ClickableComponent tab)

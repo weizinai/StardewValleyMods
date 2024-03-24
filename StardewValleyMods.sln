@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBreakGeode", "AutoBreak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveMenuAnywhere", "ActiveMenuAnywhere\ActiveMenuAnywhere.csproj", "{A4C72ECE-3522-42F4-8AE6-EA127925C7E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{98D390DA-4592-4554-8AB4-5A0963AA7A17}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{B2D8A004-2E36-47B7-A8B7-917364A7F3B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,5 @@ Global
 		{A4C72ECE-3522-42F4-8AE6-EA127925C7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4C72ECE-3522-42F4-8AE6-EA127925C7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4C72ECE-3522-42F4-8AE6-EA127925C7E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98D390DA-4592-4554-8AB4-5A0963AA7A17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98D390DA-4592-4554-8AB4-5A0963AA7A17}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98D390DA-4592-4554-8AB4-5A0963AA7A17}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98D390DA-4592-4554-8AB4-5A0963AA7A17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

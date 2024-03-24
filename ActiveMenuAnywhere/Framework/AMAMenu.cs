@@ -1,10 +1,11 @@
-﻿using Common;
+﻿using ActiveMenuAnywhere.Framework.ActiveMenu;
+using ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
+using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
-using StardewValley.Objects;
 
 namespace ActiveMenuAnywhere.Framework;
 
@@ -16,22 +17,19 @@ public class AMAMenu : IClickableMenu
     private const int InnerWidth = 600;
     private const int InnerHeight = 600;
 
-    private (int x, int y) innerDrawPosition =
+    private readonly (int x, int y) innerDrawPosition =
         (x: Game1.uiViewport.Width / 2 - InnerWidth / 2, y: Game1.uiViewport.Height / 2 - InnerHeight / 2);
 
 
     private MenuTabID currentMenuTabID;
     private ClickableComponent title;
     private readonly List<ClickableComponent> tabs = new();
-    private readonly List<ClickableTextureComponent> options = new();
-
-    private ActiveMenuManager activeMenuManager;
+    private readonly List<BaseActiveMenu> options = new();
 
     public AMAMenu(MenuTabID menuTabID, IModHelper helper, Dictionary<MenuTabID, Texture2D> textures)
     {
         this.helper = helper;
         this.textures = textures;
-        activeMenuManager = new ActiveMenuManager(helper);
         Init(menuTabID);
         ResetComponents();
     }
@@ -44,12 +42,10 @@ public class AMAMenu : IClickableMenu
             break;
         }
 
-        
+
         foreach (var option in options.Where(option => option.containsPoint(x, y)))
         {
-            // Game1.exitActiveMenu();
-            helper.Reflection.GetMethod(new TV(),"checkForAction").Invoke(Game1.player, false);
-            break;
+            option.ReceiveLeftClick();
         }
     }
 
@@ -136,11 +132,12 @@ public class AMAMenu : IClickableMenu
         switch (currentMenuTabID)
         {
             case MenuTabID.Farm:
-                options.AddRange(new[]
+                options.AddRange(new BaseActiveMenu[]
                 {
-                    new ClickableTextureComponent(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Farm],
-                        new Rectangle(0, 0, 200, 200), 1f)
+                    new TVActiveMenu(helper, new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Farm], new Rectangle(0, 0, 200, 200)),
+                    new ShippingBinActiveMenu(helper, new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Farm], new Rectangle(200, 0, 200, 200))
                 });
                 break;
             case MenuTabID.Town:

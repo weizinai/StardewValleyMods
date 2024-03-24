@@ -1,0 +1,9 @@
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\bin\Debug\net6.0\ActiveMenuAnywhere.deps.json
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\bin\Debug\net6.0\ActiveMenuAnywhere.dll
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.csproj.AssemblyReference.cache
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.AssemblyInfoInputs.cache
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.AssemblyInfo.cs
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.csproj.CoreCompileInputs.cache
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.sourcelink.json
+C:\Projects\StardewValleyMods\ActiveMenuAnywhere\obj\Debug\net6.0\ActiveMenuAnywhere.dll

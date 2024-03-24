@@ -23,7 +23,7 @@ public static class DrawHelper
     {
         var spriteBatch = Game1.spriteBatch;
         var (innerWidth, innerHeight) = font.MeasureString(text);
-        var border = (x: 1, y: 1);
+        var border = (x: 16, y: 8);
         var outerWidth = (int)innerWidth + border.x * 2;
         var outerHeight = (int)innerHeight + border.y * 2;
         var offsetX = align switch

@@ -1,6 +1,6 @@
 ﻿namespace ActiveMenuAnywhere.Framework;
 
-public enum MenuTab
+public enum MenuTabLabel
 {
     Farm,
     Town,

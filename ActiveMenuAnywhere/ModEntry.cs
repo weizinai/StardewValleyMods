@@ -8,22 +8,22 @@ namespace ActiveMenuAnywhere;
 
 public class ModEntry : Mod
 {
-    private ModConfig _config;
+    private ModConfig config;
 
     public override void Entry(IModHelper helper)
     {
-        _config = helper.ReadConfig<ModConfig>();
+        config = helper.ReadConfig<ModConfig>();
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (_config.MenuKey.JustPressed())
+        if (config.MenuKey.JustPressed())
         {
-            if (Game1.activeClickableMenu is Menu)
+            if (Game1.activeClickableMenu is AMAMenu)
                 Game1.exitActiveMenu();
             else
-                Game1.activeClickableMenu = new Menu();
+                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTab);
         }
     }
 }

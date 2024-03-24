@@ -23,7 +23,7 @@ public class ModEntry : Mod
             if (Game1.activeClickableMenu is AMAMenu)
                 Game1.exitActiveMenu();
             else
-                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabLabel);
+                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabID);
         }
     }
 }

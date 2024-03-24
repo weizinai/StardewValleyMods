@@ -6,5 +6,5 @@ namespace ActiveMenuAnywhere.Framework;
 public class ModConfig
 {
     public KeybindList MenuKey { get; set; } = new(SButton.L);
-    public MenuTabLabel DefaultMeanTabLabel { get; set; } = MenuTabLabel.Town;
+    public MenuTabID DefaultMeanTabID { get; set; } = MenuTabID.Town;
 }

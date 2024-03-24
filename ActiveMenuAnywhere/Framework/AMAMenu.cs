@@ -15,25 +15,21 @@ public class AMAMenu : IClickableMenu
         (x: Game1.uiViewport.Width / 2 - InnerWidth / 2, y: Game1.uiViewport.Height / 2 - InnerHeight / 2);
 
 
-    private MenuTabLabel currentMenuTabLabel;
+    private MenuTabID currentMenuTabID;
     private ClickableComponent title;
     private readonly List<ClickableComponent> tabs = new();
 
-    public AMAMenu(MenuTabLabel menuTabLabel)
+    public AMAMenu(MenuTabID menuTabID)
     {
-        Init(menuTabLabel);
+        Init(menuTabID);
         ResetComponents();
     }
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
-        foreach (var tab in tabs)
+        foreach (var tabLabel in from tab in tabs where tab.containsPoint(x, y) select GetTabID(tab))
         {
-            if (tab.containsPoint(x, y))
-            {
-                var tabLabel = GetTabLabel(tab);
-                Game1.activeClickableMenu = new AMAMenu(tabLabel);
-            }
+            Game1.activeClickableMenu = new AMAMenu(tabLabel);
         }
     }
 
@@ -51,22 +47,23 @@ public class AMAMenu : IClickableMenu
         // Draw tabs
         foreach (var tab in tabs)
         {
-            var tabLabel = GetTabLabel(tab);
-            DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right, tabLabel == currentMenuTabLabel ? 0.7f : 1f);
+            var tabID = GetTabID(tab);
+            DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
+                tabID == currentMenuTabID ? 0.7f : 1f);
         }
-        
+
         // Draw Mouse
         drawMouse(spriteBatch);
     }
 
-    private void Init(MenuTabLabel menuTabLabel)
+    private void Init(MenuTabID menuTabID)
     {
         width = InnerWidth + borderWidth * 2;
         height = InnerHeight + borderWidth * 2;
         xPositionOnScreen = Game1.uiViewport.Width / 2 - width / 2;
         yPositionOnScreen = Game1.uiViewport.Height / 2 - height / 2;
 
-        currentMenuTabLabel = menuTabLabel;
+        currentMenuTabID = menuTabID;
     }
 
     private void ResetComponents()
@@ -86,28 +83,35 @@ public class AMAMenu : IClickableMenu
         tabs.AddRange(new[]
         {
             new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y, tabSize.width - tabOffset.x, tabSize.height),
-                "Farm", MenuTabLabel.Farm.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
-                "Town", MenuTabLabel.Town.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Mountain", MenuTabLabel.Mountain.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Forest", MenuTabLabel.Forest.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Beach", MenuTabLabel.Beach.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "GingerIsland", MenuTabLabel.GingerIsland.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "SVE", MenuTabLabel.SVE.ToString()),
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
-                "RSV", MenuTabLabel.RSV.ToString()),
+                "Farm", MenuTabID.Farm.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
+                "Town", MenuTabID.Town.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "Mountain", MenuTabID.Mountain.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "Forest", MenuTabID.Forest.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "Beach", MenuTabID.Beach.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "GingerIsland", MenuTabID.GingerIsland.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "SVE", MenuTabID.SVE.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
+                "RSV", MenuTabID.RSV.ToString()),
         });
     }
 
-    private MenuTabLabel GetTabLabel(ClickableComponent tab)
+    private MenuTabID GetTabID(ClickableComponent tab)
     {
-        if (!Enum.TryParse(tab.label, out MenuTabLabel tabLabel))
-            throw new InvalidOperationException($"Couldn't parse tab name '{tab.name}'.");
-        return tabLabel;
+        if (!Enum.TryParse(tab.label, out MenuTabID tabID))
+            throw new InvalidOperationException($"Couldn't parse tab name '{tab.label}'.");
+        return tabID;
     }
 }

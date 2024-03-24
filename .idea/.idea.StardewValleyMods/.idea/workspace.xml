@@ -13,22 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Farm/ShippingBinActiveMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Farm/TVActiveMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/BaseActiveMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/BaseActiveMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenuManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.0.0.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.0.0.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Farm/ShippingBinActiveMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Farm/ShippingBinActiveMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +138,7 @@
       <workItem from="1711265540340" duration="5926000" />
       <workItem from="1711274840070" duration="40000" />
       <workItem from="1711277772991" duration="6765000" />
-      <workItem from="1711292877930" duration="1497000" />
+      <workItem from="1711292877930" duration="2175000" />
     </task>
     <servers />
   </component>

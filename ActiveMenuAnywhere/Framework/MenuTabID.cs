@@ -3,10 +3,12 @@
 public enum MenuTabID
 {
     Farm,
-    Town,
+    Town1,
+    Town2,
     Mountain,
     Forest,
     Beach,
+    Desert,
     GingerIsland,
     SVE,
     RSV

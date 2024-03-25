@@ -13,6 +13,9 @@ public class WillyActiveMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        Utility.TryOpenShopMenu("FishShop", "Willy");
+        if (Game1.player.mailReceived.Contains("spring_2_1"))
+            Utility.TryOpenShopMenu("FishShop", "Willy");
+        else
+            Game1.drawObjectDialogue("不好意思，鱼店还未解锁");
     }
 }

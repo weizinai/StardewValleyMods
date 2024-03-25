@@ -1,5 +1,6 @@
 ﻿using ActiveMenuAnywhere.Framework.ActiveMenu;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Beach;
+using ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
 using Common;
@@ -108,7 +109,7 @@ public class AMAMenu : IClickableMenu
                 "Farm", MenuTabID.Farm.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
-                "Town", MenuTabID.Town.ToString()),
+                "Town", MenuTabID.Town1.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
                 "Mountain", MenuTabID.Mountain.ToString()),
@@ -142,7 +143,9 @@ public class AMAMenu : IClickableMenu
                         textures[MenuTabID.Farm], new Rectangle(200, 0, 200, 200))
                 });
                 break;
-            case MenuTabID.Town:
+            case MenuTabID.Town1:
+                break;
+            case MenuTabID.Town2:
                 break;
             case MenuTabID.Mountain:
                 options.AddRange(new BaseActiveMenu[]
@@ -168,12 +171,24 @@ public class AMAMenu : IClickableMenu
                         textures[MenuTabID.Beach], new Rectangle(200, 0, 200, 200)),
                 });
                 break;
+            case MenuTabID.Desert:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                    new SandyActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Desert], new Rectangle(0, 0, 200, 200)),
+                    new DesertTradeActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Desert], new Rectangle(200, 0, 200, 200)),
+                });
+                break;
             case MenuTabID.GingerIsland:
                 break;
             case MenuTabID.SVE:
+                Game1.drawObjectDialogue("不好意思，该功能还未完成");
                 break;
             case MenuTabID.RSV:
+                Game1.drawObjectDialogue("不好意思，该功能还未完成");
                 break;
+
             default:
                 throw new ArgumentOutOfRangeException();
         }

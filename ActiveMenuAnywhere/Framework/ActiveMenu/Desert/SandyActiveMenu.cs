@@ -14,6 +14,9 @@ public class SandyActiveMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        Utility.TryOpenShopMenu("Sandy", "Sandy");
+        if (Game1.player.mailReceived.Contains("ccVault"))
+            Utility.TryOpenShopMenu("Sandy", "Sandy");
+        else
+            Game1.drawObjectDialogue("你还没有修好巴士站");
     }
 }

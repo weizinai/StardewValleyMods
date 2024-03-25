@@ -109,7 +109,10 @@ public class AMAMenu : IClickableMenu
                 "Farm", MenuTabID.Farm.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
-                "Town", MenuTabID.Town1.ToString()),
+                "Town1", MenuTabID.Town1.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "Town2", MenuTabID.Town2.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
                 "Mountain", MenuTabID.Mountain.ToString()),
@@ -119,6 +122,9 @@ public class AMAMenu : IClickableMenu
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
                 "Beach", MenuTabID.Beach.ToString()),
+            new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                "Desert", MenuTabID.Desert.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
                 "GingerIsland", MenuTabID.GingerIsland.ToString()),
@@ -178,6 +184,14 @@ public class AMAMenu : IClickableMenu
                         textures[MenuTabID.Desert], new Rectangle(0, 0, 200, 200)),
                     new DesertTradeActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
                         textures[MenuTabID.Desert], new Rectangle(200, 0, 200, 200)),
+                    new CasinoActiveMenu(new Rectangle(innerDrawPosition.x + 400, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Desert], new Rectangle(400, 0, 200, 200)),
+                    new FarmerFileActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y + 200, 200, 200),
+                        textures[MenuTabID.Desert], new Rectangle(0, 200, 200, 200), helper),
+                    new BuyQiCoinsActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y + 200, 200, 200),
+                        textures[MenuTabID.Desert], new Rectangle(200, 200, 200, 200)),
+                    new ClubSellerActiveMenu(new Rectangle(innerDrawPosition.x + 400, innerDrawPosition.y + 200, 200, 200),
+                        textures[MenuTabID.Desert], new Rectangle(400, 200, 200, 200)),
                 });
                 break;
             case MenuTabID.GingerIsland:

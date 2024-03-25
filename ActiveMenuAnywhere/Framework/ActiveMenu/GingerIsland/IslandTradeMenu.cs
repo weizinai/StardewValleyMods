@@ -16,6 +16,6 @@ public class IslandTradeMenu : BaseActiveMenu
         if (Game1.RequireLocation<IslandNorth>("IslandNorth").traderActivated.Value)
             Utility.TryOpenShopMenu("IslandTrade", null, playOpenSound: true);
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

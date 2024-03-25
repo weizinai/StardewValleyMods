@@ -22,6 +22,6 @@ public class SpecialOrderMenu: BaseActiveMenu
         if (isShowingSpecialOrdersBoard)
             Game1.activeClickableMenu = new SpecialOrdersBoard();
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

@@ -22,6 +22,6 @@ public class RaccoonMenu: BaseActiveMenu
         if (isUnlocked)
             Utility.TryOpenShopMenu("Raccoon", "Raccoon");
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

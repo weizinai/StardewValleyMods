@@ -16,6 +16,6 @@ public class VolcanoShopMenu: BaseActiveMenu
         if (Game1.player.mailReceived.Contains("willyHours") && Game1.player.canUnderstandDwarves)
             Utility.TryOpenShopMenu("VolcanoShop", null, playOpenSound: true);
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

@@ -15,6 +15,6 @@ public class TailoringMenu: BaseActiveMenu
         if (Game1.player.eventsSeen.Contains("992559"))
             Game1.activeClickableMenu = new StardewValley.Menus.TailoringMenu();
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

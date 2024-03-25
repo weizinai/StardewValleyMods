@@ -16,6 +16,6 @@ public class WillyMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("spring_2_1"))
             Utility.TryOpenShopMenu("FishShop", "Willy");
         else
-            Game1.drawObjectDialogue(I18n.Menu_WillyMenu());
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

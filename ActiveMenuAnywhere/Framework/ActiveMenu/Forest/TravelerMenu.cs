@@ -16,6 +16,6 @@ public class TravelerMenu : BaseActiveMenu
         if (isTravelingMerchantDay)
             Utility.TryOpenShopMenu("Traveler", null, true);
         else
-            Game1.drawObjectDialogue("今天旅行商人没有来");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

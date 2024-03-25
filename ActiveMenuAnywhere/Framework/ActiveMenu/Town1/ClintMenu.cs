@@ -40,10 +40,6 @@ public class ClintMenu : BaseActiveMenu
         options.Add(new Response("Leave", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Leave")));
 
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
-
-        /*
-
-        */
     }
     
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)

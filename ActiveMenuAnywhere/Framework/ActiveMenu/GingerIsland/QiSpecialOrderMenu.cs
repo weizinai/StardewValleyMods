@@ -18,6 +18,6 @@ public class QiSpecialOrderMenu: BaseActiveMenu
         if (isQiWalnutRoomDoorUnlocked)
             Game1.activeClickableMenu = new SpecialOrdersBoard("Qi");
         else
-            Game1.drawObjectDialogue("你还没有解锁核桃房");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

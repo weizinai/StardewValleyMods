@@ -12,6 +12,6 @@ public class CommunityCenterMenu: BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        Game1.drawObjectDialogue("该功能还未完成");
+        Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

@@ -15,6 +15,6 @@ public class WizardMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("hasPickedUpMagicInk") || Game1.player.hasMagicInk)
             Game1.currentLocation.ShowConstructOptions("Wizard");
         else
-            Game1.drawObjectDialogue("你现在还不能建筑魔法建筑");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

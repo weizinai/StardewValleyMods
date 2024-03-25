@@ -15,6 +15,6 @@ public class DwarfMenu : BaseActiveMenu
         if (Game1.player.canUnderstandDwarves)
             Utility.TryOpenShopMenu("Dwarf", "Dwarf");
         else
-            Game1.drawObjectDialogue("不好意思，你还不会矮人语");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

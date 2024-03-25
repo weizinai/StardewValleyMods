@@ -11,13 +11,16 @@
     "Tab.SVE": "SVE",
     "Tab.RSV": "RSV",
     // Tip
+    "Tip.Unfinished": "Unfinished",
+    "Tip.Unavailable": "Currently unavailable",
+    /*
     "Tip.FishShop": "Unlocked",
-    "Menu.BobberMenu": "Unlocked",
-    "Menu.WillyMenu": "Unlocked",
-    "Menu.BuyQiCoinsMenu": "Unlocked",
-    "Menu.CasinoMenu": "Unlocked",
-    "Menu.ClubSellerMenu": "Unlocked",
-    "Menu.DesertTradeMenu": "Unlocked",
-    "Menu.FarmerFileMenu":"Unlocked",
-    
+    "Tip.ClubCard":"Unlocked",
+    "Tip.BusStop":"Unlocked",
+    */
+    // BillboardMenu
+    "BillboardMenu.Calendar":"Calendar",
+    "BillboardMenu.DailyQuest":"DailyQuest",
+    // ClintMenu
+    "ClintMenu.Receive":"Receive Tool"
 }

@@ -17,7 +17,7 @@ public class BillboardMenu : BaseActiveMenu
         {
             new("Calendar", "日历"),
             new("DailyQuest", "每日任务"),
-            new("Leave", "离开")
+            new("Leave", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Leave"))
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
     }

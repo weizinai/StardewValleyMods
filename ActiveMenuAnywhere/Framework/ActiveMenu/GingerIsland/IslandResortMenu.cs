@@ -16,6 +16,6 @@ public class IslandResortMenu: BaseActiveMenu
         if (Game1.RequireLocation<IslandSouth>("IslandSouth").resortOpenToday.Value)
             Utility.TryOpenShopMenu("ResortBar", null, true);
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

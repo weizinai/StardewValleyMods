@@ -22,6 +22,6 @@ public class QiCatMenu: BaseActiveMenu
         if (isQiWalnutRoomDoorUnlocked)
             helper.Reflection.GetMethod(new GameLocation(), "ShowQiCat").Invoke();
         else
-            Game1.drawObjectDialogue("你还没有解锁核桃房");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

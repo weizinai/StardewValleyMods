@@ -19,6 +19,6 @@ public class MarlonMenu :BaseActiveMenu
         if (Game1.player.mailReceived.Contains("guildMember"))
             helper.Reflection.GetMethod(new GameLocation(), "adventureShop").Invoke();
         else
-            Game1.drawObjectDialogue("不好意思，你还没有加入冒险家协会");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

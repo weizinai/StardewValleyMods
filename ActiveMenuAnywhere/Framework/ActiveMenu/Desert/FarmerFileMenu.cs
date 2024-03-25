@@ -20,6 +20,6 @@ public class FarmerFileMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
             helper.Reflection.GetMethod(new GameLocation(), "farmerFile").Invoke();
         else
-            Game1.drawObjectDialogue(I18n.Menu_FarmerFileMenu());
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

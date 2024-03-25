@@ -15,6 +15,6 @@ public class BooksellerMenu: BaseActiveMenu
         if (Utility.getDaysOfBooksellerThisSeason().Contains(Game1.dayOfMonth))
             Utility.TryOpenShopMenu("Bookseller", null, playOpenSound: true);
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

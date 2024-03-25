@@ -16,7 +16,7 @@ public class ClubSellerMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
             ClubSeller();
         else
-            Game1.drawObjectDialogue(I18n.Menu_ClubSellerMenu());
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 
     private void ClubSeller()

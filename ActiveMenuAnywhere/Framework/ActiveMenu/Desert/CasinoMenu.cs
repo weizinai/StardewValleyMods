@@ -16,6 +16,6 @@ public class CasinoMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("ccVault")  && Game1.player.hasClubCard)
             Utility.TryOpenShopMenu("Casino", null, true);
         else
-            Game1.drawObjectDialogue(I18n.Menu_CasinoMenu());
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

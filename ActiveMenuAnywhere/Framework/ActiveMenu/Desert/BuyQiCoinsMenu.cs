@@ -17,7 +17,7 @@ public class BuyQiCoinsMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("ccVault")  && Game1.player.hasClubCard)
             BuyQiCoins();
         else
-            Game1.drawObjectDialogue(I18n.Menu_BuyQiCoinsMenu());
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 
     private void BuyQiCoins()

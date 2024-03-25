@@ -18,6 +18,6 @@ public class QiGemShopMenu: BaseActiveMenu
         if (isQiWalnutRoomDoorUnlocked)
             Utility.TryOpenShopMenu("QiGemShop", null, playOpenSound: true);
         else
-            Game1.drawObjectDialogue("你还没有解锁核桃房");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

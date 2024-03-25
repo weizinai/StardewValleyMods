@@ -15,6 +15,6 @@ public class ForgeMenu: BaseActiveMenu
         if (Game1.player.locationsVisited.Contains("Caldera"))
             Game1.activeClickableMenu = new StardewValley.Menus.ForgeMenu();
         else
-            Game1.drawObjectDialogue("未解锁");
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

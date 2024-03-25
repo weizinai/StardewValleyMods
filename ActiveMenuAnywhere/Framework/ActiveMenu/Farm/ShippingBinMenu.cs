@@ -15,6 +15,6 @@ public class ShippingBinMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        Game1.drawObjectDialogue("不好意思，该功能还未完成");
+        Game1.drawObjectDialogue(I18n.Tip_Unfinished());
     }
 }

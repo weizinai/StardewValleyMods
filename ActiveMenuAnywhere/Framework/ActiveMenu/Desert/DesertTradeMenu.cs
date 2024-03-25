@@ -16,6 +16,6 @@ public class DesertTradeMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("ccVault"))
             Utility.TryOpenShopMenu("DesertTrade", null, true);
         else
-            Game1.drawObjectDialogue(I18n.Menu_DesertTradeMenu());
+            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
 }

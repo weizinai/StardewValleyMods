@@ -144,10 +144,8 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.Farm:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new TVActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Farm], new Rectangle(0, 0, 200, 200), helper),
-                    new ShippingBinActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Farm], new Rectangle(200, 0, 200, 200))
+                    new TVActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Farm], GetSourceRectangle(0), helper),
+                    new ShippingBinActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Farm], GetSourceRectangle(1))
                 });
                 break;
             case MenuTabID.Town1:
@@ -157,45 +155,37 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.Mountain:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new RobinActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Mountain], new Rectangle(0, 0, 200, 200)),
-                    new DwarfActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Mountain], new Rectangle(200, 0, 200, 200)),
-                    new MonsterActiveMenu(new Rectangle(innerDrawPosition.x + 400, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Mountain], new Rectangle(400, 0, 200, 200), helper),
-                    new MarlonActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y + 200, 200, 200),
-                        textures[MenuTabID.Mountain], new Rectangle(0, 200, 200, 200), helper),
+                    new RobinActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Mountain], GetSourceRectangle(0)),
+                    new DwarfActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Mountain], GetSourceRectangle(1)),
+                    new MonsterActiveMenu(GetBoundsRectangle(2), textures[MenuTabID.Mountain], GetSourceRectangle(2), helper),
+                    new MarlonActiveMenu(GetBoundsRectangle(3), textures[MenuTabID.Mountain], GetSourceRectangle(3), helper),
                 });
                 break;
             case MenuTabID.Forest:
                 options.AddRange(new BaseActiveMenu[]
                 {
+                    new MarnieActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Forest], GetSourceRectangle(0)),
+                    new TravelerActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Forest], GetSourceRectangle(1)),
+                    new HatMouseActiveMenu(GetBoundsRectangle(2), textures[MenuTabID.Forest], GetSourceRectangle(2)),
+                    new WizardActiveMenu(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3)),
                 });
                 break;
             case MenuTabID.Beach:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new WillyActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Beach], new Rectangle(0, 0, 200, 200)),
-                    new BobberActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Beach], new Rectangle(200, 0, 200, 200)),
+                    new WillyActiveMenu(GetSourceRectangle(0), textures[MenuTabID.Beach], GetBoundsRectangle(0)),
+                    new BobberActiveMenu(GetSourceRectangle(1), textures[MenuTabID.Beach], GetBoundsRectangle(1)),
                 });
                 break;
             case MenuTabID.Desert:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new SandyActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Desert], new Rectangle(0, 0, 200, 200)),
-                    new DesertTradeActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Desert], new Rectangle(200, 0, 200, 200)),
-                    new CasinoActiveMenu(new Rectangle(innerDrawPosition.x + 400, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Desert], new Rectangle(400, 0, 200, 200)),
-                    new FarmerFileActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y + 200, 200, 200),
-                        textures[MenuTabID.Desert], new Rectangle(0, 200, 200, 200), helper),
-                    new BuyQiCoinsActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y + 200, 200, 200),
-                        textures[MenuTabID.Desert], new Rectangle(200, 200, 200, 200)),
-                    new ClubSellerActiveMenu(new Rectangle(innerDrawPosition.x + 400, innerDrawPosition.y + 200, 200, 200),
-                        textures[MenuTabID.Desert], new Rectangle(400, 200, 200, 200)),
+                    new SandyActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Desert], GetSourceRectangle(0)),
+                    new DesertTradeActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Desert], GetSourceRectangle(1)),
+                    new CasinoActiveMenu(GetBoundsRectangle(2), textures[MenuTabID.Desert], GetSourceRectangle(2)),
+                    new FarmerFileActiveMenu(GetBoundsRectangle(3), textures[MenuTabID.Desert], GetSourceRectangle(3), helper),
+                    new BuyQiCoinsActiveMenu(GetBoundsRectangle(4), textures[MenuTabID.Desert], GetSourceRectangle(4)),
+                    new ClubSellerActiveMenu(GetBoundsRectangle(5), textures[MenuTabID.Desert], GetSourceRectangle(5)),
                 });
                 break;
             case MenuTabID.GingerIsland:

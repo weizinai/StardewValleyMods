@@ -16,6 +16,7 @@ public class ModEntry : Mod
     {
         config = helper.ReadConfig<ModConfig>();
         LoadTexture();
+        I18n.Init(helper.Translation);
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 

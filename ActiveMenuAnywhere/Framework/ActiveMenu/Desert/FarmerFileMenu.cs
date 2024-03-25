@@ -5,7 +5,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class FarmerFileMenu: BaseActiveMenu
+public class FarmerFileMenu : BaseActiveMenu
 {
     private readonly IModHelper helper;
 
@@ -17,10 +17,9 @@ public class FarmerFileMenu: BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        if (Game1.player.mailReceived.Contains("ccVault")  && Game1.player.hasClubCard)
+        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
             helper.Reflection.GetMethod(new GameLocation(), "farmerFile").Invoke();
         else
-            Game1.drawObjectDialogue("不好意思，你还不能进入赌场");
-        
+            Game1.drawObjectDialogue(I18n.Menu_FarmerFileMenu());
     }
 }

@@ -5,6 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
+using DyeMenu = ActiveMenuAnywhere.Framework.ActiveMenu.DyeMenu;
+using ForgeMenu = ActiveMenuAnywhere.Framework.ActiveMenu.ForgeMenu;
+using PrizeTicketMenu = ActiveMenuAnywhere.Framework.ActiveMenu.PrizeTicketMenu;
+using TailoringMenu = ActiveMenuAnywhere.Framework.ActiveMenu.TailoringMenu;
 
 namespace ActiveMenuAnywhere.Framework;
 
@@ -47,7 +51,7 @@ public class AMAMenu : IClickableMenu
 
     public override void performHoverAction(int x, int y)
     {
-        foreach (var option in options) option.scale = option.containsPoint(x, y) ? 0.8f : 1f;
+        foreach (var option in options) option.scale = option.containsPoint(x, y) ? 0.9f : 1f;
     }
 
     public override void draw(SpriteBatch spriteBatch)
@@ -98,40 +102,40 @@ public class AMAMenu : IClickableMenu
         var tabOffset = (x: 4, y: 16);
         var tabSize = (width: 100, height: 48);
         var tabPosition = (x: xPositionOnScreen - tabSize.width, y: yPositionOnScreen + tabOffset.y);
-
+        
         var i = 2;
         tabs.Clear();
         tabs.AddRange(new[]
         {
             new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y, tabSize.width - tabOffset.x, tabSize.height),
-                "Farm", MenuTabID.Farm.ToString()),
+                I18n.Tab_Farm(), MenuTabID.Farm.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
-                "Town1", MenuTabID.Town1.ToString()),
+                I18n.Tab_Town1(), MenuTabID.Town1.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Town2", MenuTabID.Town2.ToString()),
+                I18n.Tab_Town2(), MenuTabID.Town2.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Mountain", MenuTabID.Mountain.ToString()),
+                I18n.Tab_Mountain(), MenuTabID.Mountain.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Forest", MenuTabID.Forest.ToString()),
+                I18n.Tab_Forest(), MenuTabID.Forest.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Beach", MenuTabID.Beach.ToString()),
+                I18n.Tab_Beach(), MenuTabID.Beach.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "Desert", MenuTabID.Desert.ToString()),
+                I18n.Tab_Desert(), MenuTabID.Desert.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "GingerIsland", MenuTabID.GingerIsland.ToString()),
+                I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                "SVE", MenuTabID.SVE.ToString()),
+                I18n.Tab_SVE(), MenuTabID.SVE.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
-                "RSV", MenuTabID.RSV.ToString())
+                I18n.Tab_RSV(), MenuTabID.RSV.ToString())
         });
 
         // Add options
@@ -162,7 +166,10 @@ public class AMAMenu : IClickableMenu
                 options.AddRange(new BaseActiveMenu[]
                 {
                     new IceCreamStandMenu(GetBoundsRectangle(0), textures[MenuTabID.Town2], GetSourceRectangle(0)),
-                    new ActiveMenu.PrizeTicketMenu(GetBoundsRectangle(1), textures[MenuTabID.Town2], GetSourceRectangle(1))
+                    new PrizeTicketMenu(GetBoundsRectangle(1), textures[MenuTabID.Town2], GetSourceRectangle(1)),
+                    new BooksellerMenu(GetBoundsRectangle(2), textures[MenuTabID.Town2], GetSourceRectangle(2)),
+                    new DyeMenu(GetBoundsRectangle(3), textures[MenuTabID.Town2], GetSourceRectangle(3)),
+                    new TailoringMenu(GetBoundsRectangle(4), textures[MenuTabID.Town2], GetSourceRectangle(4))
                 });
                 break;
             case MenuTabID.Mountain:
@@ -180,7 +187,8 @@ public class AMAMenu : IClickableMenu
                     new MarnieMenu(GetBoundsRectangle(0), textures[MenuTabID.Forest], GetSourceRectangle(0)),
                     new TravelerMenu(GetBoundsRectangle(1), textures[MenuTabID.Forest], GetSourceRectangle(1)),
                     new HatMouseMenu(GetBoundsRectangle(2), textures[MenuTabID.Forest], GetSourceRectangle(2)),
-                    new WizardMenu(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3))
+                    new WizardMenu(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3)),
+                    new RaccoonMenu(GetBoundsRectangle(4), textures[MenuTabID.Forest], GetSourceRectangle(4), helper),
                 });
                 break;
             case MenuTabID.Beach:
@@ -210,7 +218,7 @@ public class AMAMenu : IClickableMenu
                     new IslandTradeMenu(GetBoundsRectangle(3), textures[MenuTabID.GingerIsland], GetSourceRectangle(3)),
                     new IslandResortMenu(GetBoundsRectangle(4), textures[MenuTabID.GingerIsland], GetSourceRectangle(4)),
                     new VolcanoShopMenu(GetBoundsRectangle(5), textures[MenuTabID.GingerIsland], GetSourceRectangle(5)),
-                    new ActiveMenu.ForgeMenu(GetBoundsRectangle(6), textures[MenuTabID.GingerIsland], GetSourceRectangle(6))
+                    new ForgeMenu(GetBoundsRectangle(6), textures[MenuTabID.GingerIsland], GetSourceRectangle(6))
                 });
                 break;
             case MenuTabID.SVE:

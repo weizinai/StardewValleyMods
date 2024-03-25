@@ -1,0 +1,23 @@
+﻿{
+    // Tab
+    "Tab.Farm": "Farm",
+    "Tab.Town1": "Town1",
+    "Tab.Town2": "Town2",
+    "Tab.Mountain": "Mountain",
+    "Tab.Forest": "Forest",
+    "Tab.Beach": "Beach",
+    "Tab.Desert": "Desert",
+    "Tab.GingerIsland": "GingerIsland",
+    "Tab.SVE": "SVE",
+    "Tab.RSV": "RSV",
+    // Tip
+    "Tip.FishShop": "Unlocked",
+    "Menu.BobberMenu": "Unlocked",
+    "Menu.WillyMenu": "Unlocked",
+    "Menu.BuyQiCoinsMenu": "Unlocked",
+    "Menu.CasinoMenu": "Unlocked",
+    "Menu.ClubSellerMenu": "Unlocked",
+    "Menu.DesertTradeMenu": "Unlocked",
+    "Menu.FarmerFileMenu":"Unlocked",
+    
+}

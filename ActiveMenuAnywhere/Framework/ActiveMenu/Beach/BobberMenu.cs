@@ -17,6 +17,6 @@ public class BobberMenu : BaseActiveMenu
         if (Game1.player.mailReceived.Contains("spring_2_1"))
             Game1.activeClickableMenu = new ChooseFromIconsMenu("bobbers");
         else
-            Game1.drawObjectDialogue("不好意思，鱼店还未解锁");
+            Game1.drawObjectDialogue("");
     }
 }

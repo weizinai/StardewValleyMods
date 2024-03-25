@@ -8,13 +8,13 @@
 
     <ItemGroup>
       <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
+      <PackageReference Include="Pathoschild.Stardew.ModTranslationClassBuilder" Version="2.0.1" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="assets\" />
       <Folder Include="Framework\ActiveMenu\RSV\" />
       <Folder Include="Framework\ActiveMenu\SVE\" />
-      <Folder Include="i18n\" />
     </ItemGroup>
 
     <Import Project="..\Common\Common.projitems" Label="Shared" />

@@ -34,6 +34,7 @@ public class ModEntry : Mod
     {
         textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("assets/Farm.png"));
         textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("assets/Mountain.png"));
+        textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("assets/Beach"));
     }
 
 }

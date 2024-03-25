@@ -1,4 +1,5 @@
 ﻿using ActiveMenuAnywhere.Framework.ActiveMenu;
+using ActiveMenuAnywhere.Framework.ActiveMenu.Beach;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
 using Common;
@@ -135,9 +136,9 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.Farm:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new TVActiveMenu(helper, new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Farm], new Rectangle(0, 0, 200, 200)),
-                    new ShippingBinActiveMenu(helper, new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
+                    new TVActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Farm], new Rectangle(0, 0, 200, 200), helper),
+                    new ShippingBinActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
                         textures[MenuTabID.Farm], new Rectangle(200, 0, 200, 200))
                 });
                 break;
@@ -147,12 +148,25 @@ public class AMAMenu : IClickableMenu
                 options.AddRange(new BaseActiveMenu[]
                 {
                     new RobinActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
-                        textures[MenuTabID.Mountain], new Rectangle(0, 0, 200, 200))
+                        textures[MenuTabID.Mountain], new Rectangle(0, 0, 200, 200)),
+                    new DwarfActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Mountain], new Rectangle(200, 0, 200, 200)),
+                    new MonsterActiveMenu(new Rectangle(innerDrawPosition.x + 400, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Mountain], new Rectangle(400, 0, 200, 200), helper),
+                    new MarlonActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y + 200, 200, 200),
+                        textures[MenuTabID.Mountain], new Rectangle(0, 200, 200, 200), helper),
                 });
                 break;
             case MenuTabID.Forest:
                 break;
             case MenuTabID.Beach:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                    new WillyActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Beach], new Rectangle(0, 0, 200, 200)),
+                    new BobberActiveMenu(new Rectangle(innerDrawPosition.x + 200, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Beach], new Rectangle(200, 0, 200, 200)),
+                });
                 break;
             case MenuTabID.GingerIsland:
                 break;

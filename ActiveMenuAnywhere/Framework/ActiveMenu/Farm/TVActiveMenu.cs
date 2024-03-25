@@ -9,8 +9,8 @@ namespace ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
 public class TVActiveMenu : BaseActiveMenu
 {
     private readonly IModHelper helper;
-    
-    public TVActiveMenu(IModHelper helper, Rectangle bounds, Texture2D texture, Rectangle sourceRect):base(bounds, texture, sourceRect)
+
+    public TVActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
     {
         this.helper = helper;
     }

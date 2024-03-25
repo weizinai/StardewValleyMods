@@ -7,13 +7,10 @@ using StardewValley.Objects;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
 
-public class ShippingBinActiveMenu: BaseActiveMenu
+public class ShippingBinActiveMenu : BaseActiveMenu
 {
-    private IModHelper helper;
-    
-    public ShippingBinActiveMenu(IModHelper helper, Rectangle bounds, Texture2D texture, Rectangle sourceRect):base(bounds, texture, sourceRect)
+    public ShippingBinActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
-        this.helper = helper;
     }
 
     public override void ReceiveLeftClick()

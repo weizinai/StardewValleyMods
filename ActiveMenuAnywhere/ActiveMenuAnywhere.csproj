@@ -12,6 +12,12 @@
 
     <ItemGroup>
       <Folder Include="assets\" />
+      <Folder Include="Framework\ActiveMenu\Desert\" />
+      <Folder Include="Framework\ActiveMenu\Forest\" />
+      <Folder Include="Framework\ActiveMenu\GingerIsland\" />
+      <Folder Include="Framework\ActiveMenu\RSV\" />
+      <Folder Include="Framework\ActiveMenu\SVE\" />
+      <Folder Include="Framework\ActiveMenu\Town\" />
     </ItemGroup>
 
     <Import Project="..\Common\Common.projitems" Label="Shared" />

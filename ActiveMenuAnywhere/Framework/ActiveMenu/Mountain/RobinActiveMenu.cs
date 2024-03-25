@@ -16,26 +16,28 @@ public class RobinActiveMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        // if ((int)Game1.player.daysUntilHouseUpgrade < 0 && !Game1.IsThereABuildingUnderConstruction())
+        if (Game1.player.daysUntilHouseUpgrade.Value < 0 && !Game1.IsThereABuildingUnderConstruction())
         {
-            List<Response> options = new List<Response>();
-            options.Add(new Response("Shop", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Shop")));
+            var options = new List<Response>
+                { new("Shop", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Shop")) };
             if (Game1.IsMasterGame)
             {
-                if ((int)Game1.player.houseUpgradeLevel < 3)
+                // 房屋升级_主玩家
+                if (Game1.player.HouseUpgradeLevel < 3)
                 {
                     options.Add(new Response("Upgrade",
                         Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_UpgradeHouse")));
                 }
-                else if ((Game1.MasterPlayer.mailReceived.Contains("ccIsComplete") ||
-                          Game1.MasterPlayer.mailReceived.Contains("JojaMember") || Game1.MasterPlayer.hasCompletedCommunityCenter()) &&
-                         (int)Game1.RequireLocation<Town>("Town").daysUntilCommunityUpgrade <= 0)
+                // 社区升级
+                else if (CommunityUpgrade())
                 {
+                    // 拖车
                     if (!Game1.MasterPlayer.mailReceived.Contains("pamHouseUpgrade"))
                     {
                         options.Add(new Response("CommunityUpgrade",
                             Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_CommunityUpgrade")));
                     }
+                    // 捷径
                     else if (!Game1.MasterPlayer.mailReceived.Contains("communityUpgradeShortcuts"))
                     {
                         options.Add(new Response("CommunityUpgrade",
@@ -43,13 +45,15 @@ public class RobinActiveMenu : BaseActiveMenu
                     }
                 }
             }
-            else if ((int)Game1.player.houseUpgradeLevel < 3)
+            else if (Game1.player.HouseUpgradeLevel < 3)
             {
+                // 房屋升级
                 options.Add(new Response("Upgrade",
                     Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_UpgradeCabin")));
             }
 
-            if ((int)Game1.player.houseUpgradeLevel >= 2)
+            // 装修房屋
+            if (Game1.player.HouseUpgradeLevel >= 2)
             {
                 if (Game1.IsMasterGame)
                 {
@@ -63,11 +67,27 @@ public class RobinActiveMenu : BaseActiveMenu
                 }
             }
 
+            // 农场建筑
             options.Add(new Response("Construct", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Construct")));
+            // 离开
             options.Add(new Response("Leave", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Leave")));
-            // this.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu"), options.ToArray(),
-            //   "carpenter");
-            Game1.drawObjectQuestionDialogue(Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu"), options.ToArray());
+
+            Game1.currentLocation.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu"),
+                options.ToArray(), "carpenter");
         }
+        else
+        {
+            Utility.TryOpenShopMenu("Carpenter", "Robin");
+        }
+    }
+
+    // 判断是否可以进行社区升级
+    private bool CommunityUpgrade()
+    {
+        var isCommunityCenterCompleted = Game1.MasterPlayer.mailReceived.Contains("ccIsComplete") ||
+                                         Game1.MasterPlayer.hasCompletedCommunityCenter();
+        var isJojaMember = Game1.MasterPlayer.mailReceived.Contains("JojaMember");
+        var isCommunityUpgradeCompleted = Game1.RequireLocation<Town>("Town").daysUntilCommunityUpgrade.Value <= 0;
+        return (isCommunityCenterCompleted || isJojaMember) && isCommunityUpgradeCompleted;
     }
 }

@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class CasinoActiveMenu : BaseActiveMenu
+public class CasinoMenu : BaseActiveMenu
 {
-    public CasinoActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public CasinoMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class BuyQiCoinsActiveMenu : BaseActiveMenu
+public class BuyQiCoinsMenu : BaseActiveMenu
 {
-    public BuyQiCoinsActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public BuyQiCoinsMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

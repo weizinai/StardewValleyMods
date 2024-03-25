@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class DwarfActiveMenu : BaseActiveMenu
+public class DwarfMenu : BaseActiveMenu
 {
-    public DwarfActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public DwarfMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

@@ -1,16 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Locations;
-using StardewValley.Objects;
 
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class RobinActiveMenu : BaseActiveMenu
+public class RobinMenu : BaseActiveMenu
 {
-    public RobinActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public RobinMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 
@@ -87,7 +84,7 @@ public class RobinActiveMenu : BaseActiveMenu
         var isCommunityCenterCompleted = Game1.MasterPlayer.mailReceived.Contains("ccIsComplete") ||
                                          Game1.MasterPlayer.hasCompletedCommunityCenter();
         var isJojaMember = Game1.MasterPlayer.mailReceived.Contains("JojaMember");
-        var isCommunityUpgradeCompleted = Game1.RequireLocation<Town>("Town").daysUntilCommunityUpgrade.Value <= 0;
+        var isCommunityUpgradeCompleted = Game1.RequireLocation<StardewValley.Locations.Town>("Town").daysUntilCommunityUpgrade.Value <= 0;
         return (isCommunityCenterCompleted || isJojaMember) && isCommunityUpgradeCompleted;
     }
 }

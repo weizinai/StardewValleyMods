@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Forest;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class WizardActiveMenu : BaseActiveMenu
+public class WizardMenu : BaseActiveMenu
 {
-    public WizardActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public WizardMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

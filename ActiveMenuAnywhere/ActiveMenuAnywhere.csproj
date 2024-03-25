@@ -12,10 +12,9 @@
 
     <ItemGroup>
       <Folder Include="assets\" />
-      <Folder Include="Framework\ActiveMenu\GingerIsland\" />
       <Folder Include="Framework\ActiveMenu\RSV\" />
       <Folder Include="Framework\ActiveMenu\SVE\" />
-      <Folder Include="Framework\ActiveMenu\Town\" />
+      <Folder Include="i18n\" />
     </ItemGroup>
 
     <Import Project="..\Common\Common.projitems" Label="Shared" />

@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Beach;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class WillyActiveMenu : BaseActiveMenu
+public class WillyMenu : BaseActiveMenu
 {
-    public WillyActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public WillyMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

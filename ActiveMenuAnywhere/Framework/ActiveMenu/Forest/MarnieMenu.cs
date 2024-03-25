@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Forest;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class MarnieActiveMenu : BaseActiveMenu
+public class MarnieMenu : BaseActiveMenu
 {
-    public MarnieActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public MarnieMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

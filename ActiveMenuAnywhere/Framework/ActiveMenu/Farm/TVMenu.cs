@@ -4,13 +4,13 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Objects;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class TVActiveMenu : BaseActiveMenu
+public class TVMenu : BaseActiveMenu
 {
     private readonly IModHelper helper;
 
-    public TVActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
+    public TVMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
     {
         this.helper = helper;
     }

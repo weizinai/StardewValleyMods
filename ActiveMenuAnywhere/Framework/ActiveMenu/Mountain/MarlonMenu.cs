@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class MarlonActiveMenu :BaseActiveMenu
+public class MarlonMenu :BaseActiveMenu
 {
     private IModHelper helper;
     
-    public MarlonActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
+    public MarlonMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
     {
         this.helper = helper;
     }

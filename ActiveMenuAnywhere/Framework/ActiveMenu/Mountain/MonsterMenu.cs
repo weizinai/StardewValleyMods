@@ -5,13 +5,13 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Menus;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class MonsterActiveMenu : BaseActiveMenu
+public class MonsterMenu : BaseActiveMenu
 {
     private IModHelper helper;
 
-    public MonsterActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture,
+    public MonsterMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture,
         sourceRect)
     {
         this.helper = helper;

@@ -1,9 +1,4 @@
 ﻿using ActiveMenuAnywhere.Framework.ActiveMenu;
-using ActiveMenuAnywhere.Framework.ActiveMenu.Beach;
-using ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
-using ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
-using ActiveMenuAnywhere.Framework.ActiveMenu.Forest;
-using ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
 using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,20 +10,20 @@ namespace ActiveMenuAnywhere.Framework;
 
 public class AMAMenu : IClickableMenu
 {
-    private readonly IModHelper helper;
-    private readonly Dictionary<MenuTabID, Texture2D> textures;
-
     private const int InnerWidth = 600;
     private const int InnerHeight = 600;
+    private readonly IModHelper helper;
 
     private readonly (int x, int y) innerDrawPosition =
         (x: Game1.uiViewport.Width / 2 - InnerWidth / 2, y: Game1.uiViewport.Height / 2 - InnerHeight / 2);
 
+    private readonly List<BaseActiveMenu> options = new();
+    private readonly List<ClickableComponent> tabs = new();
+    private readonly Dictionary<MenuTabID, Texture2D> textures;
+
 
     private MenuTabID currentMenuTabID;
     private ClickableComponent title;
-    private readonly List<ClickableComponent> tabs = new();
-    private readonly List<BaseActiveMenu> options = new();
 
     public AMAMenu(MenuTabID menuTabID, IModHelper helper, Dictionary<MenuTabID, Texture2D> textures)
     {
@@ -47,10 +42,12 @@ public class AMAMenu : IClickableMenu
         }
 
 
-        foreach (var option in options.Where(option => option.containsPoint(x, y)))
-        {
-            option.ReceiveLeftClick();
-        }
+        foreach (var option in options.Where(option => option.containsPoint(x, y))) option.ReceiveLeftClick();
+    }
+
+    public override void performHoverAction(int x, int y)
+    {
+        foreach (var option in options) option.scale = option.containsPoint(x, y) ? 0.8f : 1f;
     }
 
     public override void draw(SpriteBatch spriteBatch)
@@ -134,7 +131,7 @@ public class AMAMenu : IClickableMenu
                 "SVE", MenuTabID.SVE.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
-                "RSV", MenuTabID.RSV.ToString()),
+                "RSV", MenuTabID.RSV.ToString())
         });
 
         // Add options
@@ -144,59 +141,82 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.Farm:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new TVActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Farm], GetSourceRectangle(0), helper),
-                    new ShippingBinActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Farm], GetSourceRectangle(1))
+                    new TVMenu(GetBoundsRectangle(0), textures[MenuTabID.Farm], GetSourceRectangle(0), helper),
+                    new ShippingBinMenu(GetBoundsRectangle(1), textures[MenuTabID.Farm], GetSourceRectangle(1))
                 });
                 break;
             case MenuTabID.Town1:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                    new BillboardMenu(GetBoundsRectangle(0), textures[MenuTabID.Town1], GetSourceRectangle(0)),
+                    new SpecialOrderMenu(GetBoundsRectangle(1), textures[MenuTabID.Town1], GetSourceRectangle(1), helper),
+                    new CommunityCenterMenu(GetBoundsRectangle(2), textures[MenuTabID.Town1], GetSourceRectangle(2)),
+                    new PierreMenu(GetBoundsRectangle(3), textures[MenuTabID.Town1], GetSourceRectangle(3)),
+                    new ClintMenu(GetBoundsRectangle(4), textures[MenuTabID.Town1], GetSourceRectangle(4)),
+                    new GusMenu(GetBoundsRectangle(5), textures[MenuTabID.Town1], GetSourceRectangle(5)),
+                    new HarveyMenu(GetBoundsRectangle(6), textures[MenuTabID.Town1], GetSourceRectangle(6)),
+                    new JojaShopMenu(GetBoundsRectangle(7), textures[MenuTabID.Town1], GetSourceRectangle(7))
+                });
                 break;
             case MenuTabID.Town2:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                    new IceCreamStandMenu(GetBoundsRectangle(0), textures[MenuTabID.Town2], GetSourceRectangle(0)),
+                    new ActiveMenu.PrizeTicketMenu(GetBoundsRectangle(1), textures[MenuTabID.Town2], GetSourceRectangle(1))
+                });
                 break;
             case MenuTabID.Mountain:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new RobinActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Mountain], GetSourceRectangle(0)),
-                    new DwarfActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Mountain], GetSourceRectangle(1)),
-                    new MonsterActiveMenu(GetBoundsRectangle(2), textures[MenuTabID.Mountain], GetSourceRectangle(2), helper),
-                    new MarlonActiveMenu(GetBoundsRectangle(3), textures[MenuTabID.Mountain], GetSourceRectangle(3), helper),
+                    new RobinMenu(GetBoundsRectangle(0), textures[MenuTabID.Mountain], GetSourceRectangle(0)),
+                    new DwarfMenu(GetBoundsRectangle(1), textures[MenuTabID.Mountain], GetSourceRectangle(1)),
+                    new MonsterMenu(GetBoundsRectangle(2), textures[MenuTabID.Mountain], GetSourceRectangle(2), helper),
+                    new MarlonMenu(GetBoundsRectangle(3), textures[MenuTabID.Mountain], GetSourceRectangle(3), helper)
                 });
                 break;
             case MenuTabID.Forest:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new MarnieActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Forest], GetSourceRectangle(0)),
-                    new TravelerActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Forest], GetSourceRectangle(1)),
-                    new HatMouseActiveMenu(GetBoundsRectangle(2), textures[MenuTabID.Forest], GetSourceRectangle(2)),
-                    new WizardActiveMenu(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3)),
+                    new MarnieMenu(GetBoundsRectangle(0), textures[MenuTabID.Forest], GetSourceRectangle(0)),
+                    new TravelerMenu(GetBoundsRectangle(1), textures[MenuTabID.Forest], GetSourceRectangle(1)),
+                    new HatMouseMenu(GetBoundsRectangle(2), textures[MenuTabID.Forest], GetSourceRectangle(2)),
+                    new WizardMenu(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3))
                 });
                 break;
             case MenuTabID.Beach:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new WillyActiveMenu(GetSourceRectangle(0), textures[MenuTabID.Beach], GetBoundsRectangle(0)),
-                    new BobberActiveMenu(GetSourceRectangle(1), textures[MenuTabID.Beach], GetBoundsRectangle(1)),
+                    new WillyMenu(GetBoundsRectangle(0), textures[MenuTabID.Beach], GetSourceRectangle(0)),
+                    new BobberMenu(GetBoundsRectangle(1), textures[MenuTabID.Beach], GetSourceRectangle(1))
                 });
                 break;
             case MenuTabID.Desert:
                 options.AddRange(new BaseActiveMenu[]
                 {
-                    new SandyActiveMenu(GetBoundsRectangle(0), textures[MenuTabID.Desert], GetSourceRectangle(0)),
-                    new DesertTradeActiveMenu(GetBoundsRectangle(1), textures[MenuTabID.Desert], GetSourceRectangle(1)),
-                    new CasinoActiveMenu(GetBoundsRectangle(2), textures[MenuTabID.Desert], GetSourceRectangle(2)),
-                    new FarmerFileActiveMenu(GetBoundsRectangle(3), textures[MenuTabID.Desert], GetSourceRectangle(3), helper),
-                    new BuyQiCoinsActiveMenu(GetBoundsRectangle(4), textures[MenuTabID.Desert], GetSourceRectangle(4)),
-                    new ClubSellerActiveMenu(GetBoundsRectangle(5), textures[MenuTabID.Desert], GetSourceRectangle(5)),
+                    new SandyMenu(GetBoundsRectangle(0), textures[MenuTabID.Desert], GetSourceRectangle(0)),
+                    new DesertTradeMenu(GetBoundsRectangle(1), textures[MenuTabID.Desert], GetSourceRectangle(1)),
+                    new CasinoMenu(GetBoundsRectangle(2), textures[MenuTabID.Desert], GetSourceRectangle(2)),
+                    new FarmerFileMenu(GetBoundsRectangle(3), textures[MenuTabID.Desert], GetSourceRectangle(3), helper),
+                    new BuyQiCoinsMenu(GetBoundsRectangle(4), textures[MenuTabID.Desert], GetSourceRectangle(4)),
+                    new ClubSellerMenu(GetBoundsRectangle(5), textures[MenuTabID.Desert], GetSourceRectangle(5))
                 });
                 break;
             case MenuTabID.GingerIsland:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                    new QiSpecialOrderMenu(GetBoundsRectangle(0), textures[MenuTabID.GingerIsland], GetSourceRectangle(0)),
+                    new QiGemShopMenu(GetBoundsRectangle(1), textures[MenuTabID.GingerIsland], GetSourceRectangle(1)),
+                    new QiCatMenu(GetBoundsRectangle(2), textures[MenuTabID.GingerIsland], GetSourceRectangle(2), helper),
+                    new IslandTradeMenu(GetBoundsRectangle(3), textures[MenuTabID.GingerIsland], GetSourceRectangle(3)),
+                    new IslandResortMenu(GetBoundsRectangle(4), textures[MenuTabID.GingerIsland], GetSourceRectangle(4)),
+                    new VolcanoShopMenu(GetBoundsRectangle(5), textures[MenuTabID.GingerIsland], GetSourceRectangle(5)),
+                    new ActiveMenu.ForgeMenu(GetBoundsRectangle(6), textures[MenuTabID.GingerIsland], GetSourceRectangle(6))
+                });
                 break;
             case MenuTabID.SVE:
-                Game1.drawObjectDialogue("不好意思，该功能还未完成");
                 break;
             case MenuTabID.RSV:
-                Game1.drawObjectDialogue("不好意思，该功能还未完成");
                 break;
-
             default:
                 throw new ArgumentOutOfRangeException();
         }

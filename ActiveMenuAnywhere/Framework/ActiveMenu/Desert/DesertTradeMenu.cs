@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class DesertTradeActiveMenu : BaseActiveMenu
+public class DesertTradeMenu : BaseActiveMenu
 {
-    public DesertTradeActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public DesertTradeMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

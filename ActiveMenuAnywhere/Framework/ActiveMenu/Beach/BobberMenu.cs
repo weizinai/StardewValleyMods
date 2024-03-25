@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Beach;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class BobberActiveMenu : BaseActiveMenu
+public class BobberMenu : BaseActiveMenu
 {
-    public BobberActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public BobberMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

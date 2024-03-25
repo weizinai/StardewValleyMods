@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class ClubSellerActiveMenu : BaseActiveMenu
+public class ClubSellerMenu : BaseActiveMenu
 {
-    public ClubSellerActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public ClubSellerMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

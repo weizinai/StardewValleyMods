@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Forest;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class TravelerActiveMenu : BaseActiveMenu
+public class TravelerMenu : BaseActiveMenu
 {
-    public TravelerActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public TravelerMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

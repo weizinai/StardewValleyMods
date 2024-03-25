@@ -5,11 +5,11 @@ using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Objects;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class ShippingBinActiveMenu : BaseActiveMenu
+public class ShippingBinMenu : BaseActiveMenu
 {
-    public ShippingBinActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public ShippingBinMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

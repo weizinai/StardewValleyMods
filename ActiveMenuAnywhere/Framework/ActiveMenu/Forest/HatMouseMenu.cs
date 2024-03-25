@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Forest;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class HatMouseActiveMenu: BaseActiveMenu
+public class HatMouseMenu: BaseActiveMenu
 {
-    public HatMouseActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
+    public HatMouseMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
 

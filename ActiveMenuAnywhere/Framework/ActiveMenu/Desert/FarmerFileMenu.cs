@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
+namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class FarmerFileActiveMenu: BaseActiveMenu
+public class FarmerFileMenu: BaseActiveMenu
 {
     private readonly IModHelper helper;
 
-    public FarmerFileActiveMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
+    public FarmerFileMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
     {
         this.helper = helper;
     }

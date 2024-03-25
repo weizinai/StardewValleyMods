@@ -2,6 +2,7 @@
 using ActiveMenuAnywhere.Framework.ActiveMenu.Beach;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Desert;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
+using ActiveMenuAnywhere.Framework.ActiveMenu.Forest;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
 using Common;
 using Microsoft.Xna.Framework;
@@ -167,6 +168,9 @@ public class AMAMenu : IClickableMenu
                 });
                 break;
             case MenuTabID.Forest:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                });
                 break;
             case MenuTabID.Beach:
                 options.AddRange(new BaseActiveMenu[]
@@ -213,5 +217,19 @@ public class AMAMenu : IClickableMenu
         if (!Enum.TryParse(tab.label, out MenuTabID tabID))
             throw new InvalidOperationException($"Couldn't parse tab name '{tab.label}'.");
         return tabID;
+    }
+
+    private Rectangle GetBoundsRectangle(int index)
+    {
+        var i = index % 3;
+        var j = index / 3;
+        return new Rectangle(innerDrawPosition.x + i * 200, innerDrawPosition.y + j * 200, 200, 200);
+    }
+
+    private Rectangle GetSourceRectangle(int index)
+    {
+        var i = index % 3;
+        var j = index / 3;
+        return new Rectangle(i * 200, j * 200, 200, 200);
     }
 }

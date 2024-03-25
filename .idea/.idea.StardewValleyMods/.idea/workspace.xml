@@ -13,15 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/BuyQiCoinsActiveMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/CasinoActiveMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/ClubSellerActiveMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/FarmerFileActiveMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Forest/MarnieActiveMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/DesertTradeActiveMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/DesertTradeActiveMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/SandyActiveMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/SandyActiveMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/assets/Desert.png" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/assets/Desert.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/ModEntry.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.0.0.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.0.0.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
@@ -160,7 +156,7 @@
       <workItem from="1711345439552" duration="17000" />
       <workItem from="1711345579225" duration="5838000" />
       <workItem from="1711351549438" duration="1528000" />
-      <workItem from="1711354610034" duration="5790000" />
+      <workItem from="1711354610034" duration="6823000" />
     </task>
     <servers />
   </component>

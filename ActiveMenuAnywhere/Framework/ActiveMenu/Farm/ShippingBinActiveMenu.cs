@@ -18,6 +18,6 @@ public class ShippingBinActiveMenu: BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        helper.Reflection.GetMethod(new ShippingBin(), "leftClicked").Invoke(new Vector2(1,1), Game1.player);
+        Game1.drawObjectDialogue("不好意思，该功能还未完成");
     }
 }

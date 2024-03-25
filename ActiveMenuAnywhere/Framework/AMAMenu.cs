@@ -1,5 +1,6 @@
 ﻿using ActiveMenuAnywhere.Framework.ActiveMenu;
 using ActiveMenuAnywhere.Framework.ActiveMenu.Farm;
+using ActiveMenuAnywhere.Framework.ActiveMenu.Mountain;
 using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,9 +37,9 @@ public class AMAMenu : IClickableMenu
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
-        foreach (var tabLabel in from tab in tabs where tab.containsPoint(x, y) select GetTabID(tab))
+        foreach (var tabID in from tab in tabs where tab.containsPoint(x, y) select GetTabID(tab))
         {
-            Game1.activeClickableMenu = new AMAMenu(tabLabel, helper, textures);
+            Game1.activeClickableMenu = new AMAMenu(tabID, helper, textures);
             break;
         }
 
@@ -143,6 +144,11 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.Town:
                 break;
             case MenuTabID.Mountain:
+                options.AddRange(new BaseActiveMenu[]
+                {
+                    new RobinActiveMenu(new Rectangle(innerDrawPosition.x, innerDrawPosition.y, 200, 200),
+                        textures[MenuTabID.Mountain], new Rectangle(0, 0, 200, 200))
+                });
                 break;
             case MenuTabID.Forest:
                 break;

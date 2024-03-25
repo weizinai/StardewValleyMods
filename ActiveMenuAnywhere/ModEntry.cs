@@ -10,12 +10,12 @@ namespace ActiveMenuAnywhere;
 public class ModEntry : Mod
 {
     private ModConfig config = new();
-    private Dictionary<MenuTabID, Texture2D> textures = new();
+    private readonly Dictionary<MenuTabID, Texture2D> textures = new();
 
     public override void Entry(IModHelper helper)
     {
         config = helper.ReadConfig<ModConfig>();
-        textures.Add(MenuTabID.Farm, helper.ModContent.Load<Texture2D>("assets/Farm.png"));
+        LoadTexture();
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
@@ -29,4 +29,11 @@ public class ModEntry : Mod
                 Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabID, Helper, textures);
         }
     }
+
+    private void LoadTexture()
+    {
+        textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("assets/Farm.png"));
+        textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("assets/Mountain.png"));
+    }
+
 }

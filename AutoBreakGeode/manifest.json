@@ -5,5 +5,7 @@
     "Description": "Allows you to automatically break geode.",
     "UniqueID": "weizinai.AutoBreakGeode",
     "EntryDll": "AutoBreakGeode.dll",
-    "UpdateKeys": [ "Nexus:20685" ]
+    "UpdateKeys": [
+        "Nexus:20685"
+    ]
 }

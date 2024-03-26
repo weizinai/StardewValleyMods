@@ -1,9 +1,11 @@
 ﻿{
-    "Name": "ActiveMenuAnywhere",
+    "Name": "Active Menu Anywhere",
     "Author": "weizinai",
     "Version": "1.0.0",
-    "Description": "This is a test mod.",
+    "Description": "Active menu anywhere.",
     "UniqueID": "weizinai.ActiveMenuAnywhere",
     "EntryDll": "ActiveMenuAnywhere.dll",
-    "UpdateKeys": []
+    "UpdateKeys": [
+        "Nexus:21093"
+    ]
 }

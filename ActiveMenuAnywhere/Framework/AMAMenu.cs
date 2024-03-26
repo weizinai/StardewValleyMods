@@ -27,7 +27,7 @@ public class AMAMenu : IClickableMenu
 
 
     private MenuTabID currentMenuTabID;
-    private ClickableComponent title;
+    private ClickableComponent? title;
 
     public AMAMenu(MenuTabID menuTabID, IModHelper helper, Dictionary<MenuTabID, Texture2D> textures)
     {
@@ -63,7 +63,8 @@ public class AMAMenu : IClickableMenu
         drawTextureBox(spriteBatch, xPositionOnScreen, yPositionOnScreen, width, height, Color.White);
 
         // Draw title
-        DrawHelper.DrawTitle(title.bounds.X, title.bounds.Y, title.name, Align.Center);
+        if (title != null)
+            DrawHelper.DrawTitle(title.bounds.X, title.bounds.Y, title.name, Align.Center);
 
         // Draw tabs
         foreach (var tab in tabs)
@@ -129,14 +130,16 @@ public class AMAMenu : IClickableMenu
                 I18n.Tab_Desert(), MenuTabID.Desert.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_SVE(), MenuTabID.SVE.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_RSV(), MenuTabID.RSV.ToString())
+                I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString())
         });
+        if (helper.ModRegistry.Get("FlashShifter.SVECode") != null)
+            tabs.Add(new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
+                I18n.Tab_SVE(), MenuTabID.SVE.ToString()));
+        if (helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
+            tabs.Add(new ClickableComponent(
+                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
+                I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
 
         // Add options
         options.Clear();
@@ -146,7 +149,7 @@ public class AMAMenu : IClickableMenu
                 options.AddRange(new BaseActiveMenu[]
                 {
                     new TVMenu(GetBoundsRectangle(0), textures[MenuTabID.Farm], GetSourceRectangle(0), helper),
-                    new ShippingBinMenu(GetBoundsRectangle(1), textures[MenuTabID.Farm], GetSourceRectangle(1))
+                    new ShippingBinMenu(GetBoundsRectangle(1), textures[MenuTabID.Farm], GetSourceRectangle(1), helper)
                 });
                 break;
             case MenuTabID.Town1:
@@ -169,7 +172,10 @@ public class AMAMenu : IClickableMenu
                     new PrizeTicketMenu(GetBoundsRectangle(1), textures[MenuTabID.Town2], GetSourceRectangle(1)),
                     new BooksellerMenu(GetBoundsRectangle(2), textures[MenuTabID.Town2], GetSourceRectangle(2)),
                     new DyeMenu(GetBoundsRectangle(3), textures[MenuTabID.Town2], GetSourceRectangle(3)),
-                    new TailoringMenu(GetBoundsRectangle(4), textures[MenuTabID.Town2], GetSourceRectangle(4))
+                    new TailoringMenu(GetBoundsRectangle(4), textures[MenuTabID.Town2], GetSourceRectangle(4)),
+                    new AbandonedJojaMartMenu(GetBoundsRectangle(5), textures[MenuTabID.Town2], GetSourceRectangle(5)),
+                    new KrobusMenu(GetBoundsRectangle(6), textures[MenuTabID.Town2], GetSourceRectangle(6)),
+                    new StatueMenu(GetBoundsRectangle(7), textures[MenuTabID.Town2], GetSourceRectangle(7))
                 });
                 break;
             case MenuTabID.Mountain:

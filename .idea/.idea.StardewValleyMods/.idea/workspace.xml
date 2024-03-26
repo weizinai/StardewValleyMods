@@ -13,42 +13,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj.DotSettings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/AbandonedJojaMartMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/KrobusMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/StatueMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Common/IGenericModConfigMenuApi.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/BaseActiveMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/BaseActiveMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/BuyQiCoinsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/BuyQiCoinsMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/CasinoMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/CasinoMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/ClubSellerMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/ClubSellerMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/SandyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Desert/SandyMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Farm/ShippingBinMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Farm/ShippingBinMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Forest/HatMouseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Forest/HatMouseMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/ForgeMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/ForgeMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/IslandResortMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/IslandResortMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/IslandTradeMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/IslandTradeMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/QiCatMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/QiCatMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/QiGemShopMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/QiGemShopMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/QiSpecialOrderMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/QiSpecialOrderMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/VolcanoShopMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/GingerIsland/VolcanoShopMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Mountain/MarlonMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Mountain/MarlonMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Mountain/MonsterMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Mountain/MonsterMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/BillboardMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/BillboardMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/ClintMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/ClintMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/CommunityCenterMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/CommunityCenterMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/GusMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/GusMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/HarveyMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/HarveyMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/JojaShopMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/JojaShopMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/PierreMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/PierreMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/SpecialOrderMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town1/SpecialOrderMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/BooksellerMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/BooksellerMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/DyeMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/DyeMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/IceCreamStandMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/IceCreamStandMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/PrizeTicketMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/PrizeTicketMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/TailoringMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/ActiveMenu/Town2/TailoringMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/assets/Town2.png" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/assets/Town2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.0.0.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.0.0.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/i18n/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/i18n/default.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/i18n/zh.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/ModEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/DrawHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Common/DrawHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/Common.projitems" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Common.projitems" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +74,13 @@
     <bower-package value="" />
     <bower.json value="" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -106,7 +105,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Inspections-IDEA&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -198,6 +197,10 @@
       <workItem from="1711389788404" duration="238000" />
       <workItem from="1711390041877" duration="1346000" />
       <workItem from="1711429475626" duration="1354000" />
+      <workItem from="1711430875669" duration="295000" />
+      <workItem from="1711431284590" duration="1876000" />
+      <workItem from="1711434902144" duration="7294000" />
+      <workItem from="1711442537023" duration="4850000" />
     </task>
     <servers />
   </component>

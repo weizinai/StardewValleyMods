@@ -1,4 +1,5 @@
 ﻿using ActiveMenuAnywhere.Framework;
+using Common;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -16,7 +17,56 @@ public class ModEntry : Mod
         config = helper.ReadConfig<ModConfig>();
         LoadTexture();
         I18n.Init(helper.Translation);
+        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
+
+        configMenu?.Register(
+            ModManifest,
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
+        );
+
+        configMenu?.AddKeybindList(
+            ModManifest,
+            () => config.MenuKey,
+            value => { config.MenuKey = value; },
+            I18n.Config_MenuKeyName
+        );
+
+        configMenu?.AddTextOption(
+            ModManifest,
+            () => config.DefaultMeanTabID.ToString(),
+            value =>
+            {
+                if (!Enum.TryParse(value, out MenuTabID tabID))
+                    throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
+                config.DefaultMeanTabID = tabID;
+            },
+            I18n.Config_DefaultMenuTabID,
+            null,
+            new[] { "Farm", "Town1", "Town2", "Mountain", "Forest", "Beach", "Desert", "GingerIsland" },
+            value =>
+            {
+                var formatValue = value switch
+                {
+                    "Farm" => I18n.Tab_Farm(),
+                    "Town1" => I18n.Tab_Town1(),
+                    "Town2" => I18n.Tab_Town2(),
+                    "Mountain" => I18n.Tab_Mountain(),
+                    "Forest" => I18n.Tab_Forest(),
+                    "Beach" => I18n.Tab_Beach(),
+                    "Desert" => I18n.Tab_Desert(),
+                    "GingerIsland" => I18n.Tab_GingerIsland(),
+                    _ => ""
+                };
+                return formatValue;
+            }
+        );
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

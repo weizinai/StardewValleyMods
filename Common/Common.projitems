@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IGenericModConfigMenuApi.cs" />
   </ItemGroup>
 </Project>

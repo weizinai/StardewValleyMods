@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Buildings;
-using StardewValley.Objects;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 

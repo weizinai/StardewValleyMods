@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class HatMouseMenu: BaseActiveMenu
+public class HatMouseMenu : BaseActiveMenu
 {
     public HatMouseMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {

@@ -3,21 +3,20 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere;
 
 public class ModEntry : Mod
 {
-    private ModConfig config = new();
     private readonly Dictionary<MenuTabID, Texture2D> textures = new();
+    private ModConfig config = new();
 
     public override void Entry(IModHelper helper)
     {
         config = helper.ReadConfig<ModConfig>();
         LoadTexture();
         I18n.Init(helper.Translation);
-        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

@@ -5,10 +5,10 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class MarlonMenu :BaseActiveMenu
+public class MarlonMenu : BaseActiveMenu
 {
-    private IModHelper helper;
-    
+    private readonly IModHelper helper;
+
     public MarlonMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
     {
         this.helper = helper;

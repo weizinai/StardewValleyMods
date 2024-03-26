@@ -14,11 +14,11 @@ public static class DrawHelper
         spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.4f);
     }
 
-    public static void DrawTitle(int x, int y, string text,Align align)
+    public static void DrawTitle(int x, int y, string text, Align align)
     {
-        DrawTab(x,y, Game1.dialogueFont, text, align);
+        DrawTab(x, y, Game1.dialogueFont, text, align);
     }
-    
+
     public static void DrawTab(int x, int y, SpriteFont font, string text, Align align, float alpha = 1)
     {
         var spriteBatch = Game1.spriteBatch;

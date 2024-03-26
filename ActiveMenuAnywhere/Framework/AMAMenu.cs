@@ -102,7 +102,7 @@ public class AMAMenu : IClickableMenu
         var tabOffset = (x: 4, y: 16);
         var tabSize = (width: 100, height: 48);
         var tabPosition = (x: xPositionOnScreen - tabSize.width, y: yPositionOnScreen + tabOffset.y);
-        
+
         var i = 2;
         tabs.Clear();
         tabs.AddRange(new[]
@@ -188,7 +188,7 @@ public class AMAMenu : IClickableMenu
                     new TravelerMenu(GetBoundsRectangle(1), textures[MenuTabID.Forest], GetSourceRectangle(1)),
                     new HatMouseMenu(GetBoundsRectangle(2), textures[MenuTabID.Forest], GetSourceRectangle(2)),
                     new WizardMenu(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3)),
-                    new RaccoonMenu(GetBoundsRectangle(4), textures[MenuTabID.Forest], GetSourceRectangle(4), helper),
+                    new RaccoonMenu(GetBoundsRectangle(4), textures[MenuTabID.Forest], GetSourceRectangle(4), helper)
                 });
                 break;
             case MenuTabID.Beach:

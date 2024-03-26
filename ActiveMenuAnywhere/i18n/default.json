@@ -23,5 +23,5 @@
     "BillboardMenu.DailyQuest":"DailyQuest",
     // ClintMenu
     "ClintMenu.Receive":"Receive Tool",
-    "ClintMenu.Unfinished": "Tool is unfinished",
+    "ClintMenu.Unfinished": "Tool is unfinished"
 }

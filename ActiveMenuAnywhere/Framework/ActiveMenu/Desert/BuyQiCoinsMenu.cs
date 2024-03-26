@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
@@ -14,7 +13,7 @@ public class BuyQiCoinsMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        if (Game1.player.mailReceived.Contains("ccVault")  && Game1.player.hasClubCard)
+        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
             BuyQiCoins();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
@@ -23,7 +22,7 @@ public class BuyQiCoinsMenu : BaseActiveMenu
     private void BuyQiCoins()
     {
         var location = Game1.currentLocation;
-        location.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Club_Buy100Coins"), 
+        location.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Club_Buy100Coins"),
             location.createYesNoResponses(), "BuyQiCoins");
     }
 }

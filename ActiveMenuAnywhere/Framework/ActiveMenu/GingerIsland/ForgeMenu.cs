@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class ForgeMenu: BaseActiveMenu
+public class ForgeMenu : BaseActiveMenu
 {
     public ForgeMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
@@ -12,7 +12,7 @@ public class ForgeMenu: BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        if (Game1.player.locationsVisited.Contains("Caldera"))
+        if (Game1.player.mailReceived.Contains("willyHours"))
             Game1.activeClickableMenu = new StardewValley.Menus.ForgeMenu();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());

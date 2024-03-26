@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
-using StardewValley.TokenizableStrings;
 using StardewValley.Tools;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
@@ -15,16 +14,16 @@ public class ClintMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        var options = new List<Response>()
+        var options = new List<Response>
         {
             // 商店
-            new("Shop", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Shop")),
+            new("Shop", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Shop"))
         };
 
         // 工具升级
         options.Add(Game1.player.toolBeingUpgraded.Value == null
             ? new Response("Upgrade", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Upgrade"))
-            : new Response("Receive", "取回工具"));
+            : new Response("Receive", I18n.ClintMenu_Receive()));
 
         // 砸开晶球
         var hasGeode = Game1.player.Items.Any(item1 => Utility.IsGeode(item1));
@@ -36,7 +35,7 @@ public class ClintMenu : BaseActiveMenu
 
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
     }
-    
+
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)
     {
         switch (whichAnswer)
@@ -48,7 +47,7 @@ public class ClintMenu : BaseActiveMenu
                 Utility.TryOpenShopMenu("ClintUpgrade", "Clint");
                 break;
             case "Receive":
-                if (Game1.player.toolBeingUpgraded.Value != null && 
+                if (Game1.player.toolBeingUpgraded.Value != null &&
                     Game1.player.daysLeftForToolUpgrade.Value <= 0)
                 {
                     if (Game1.player.freeSpotsInInventory() > 0 || Game1.player.toolBeingUpgraded.Value is GenericTool)
@@ -58,17 +57,16 @@ public class ClintMenu : BaseActiveMenu
                         Game1.player.hasReceivedToolUpgradeMessageYet = false;
                         Game1.player.holdUpItemThenMessage(tool);
                         if (tool is GenericTool)
-                        {
                             tool.actionWhenClaimed();
-                        }
                         else
-                        {
                             Game1.player.addItemToInventoryBool(tool);
-                        }
                     }
                 }
                 else
+                {
                     Game1.drawObjectDialogue(I18n.ClintMenu_Unfinished());
+                }
+
                 break;
             case "Process":
                 Game1.activeClickableMenu = new GeodeMenu();

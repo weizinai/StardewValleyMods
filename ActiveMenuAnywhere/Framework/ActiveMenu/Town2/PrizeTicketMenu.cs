@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class PrizeTicketMenu: BaseActiveMenu
+public class PrizeTicketMenu : BaseActiveMenu
 {
     public PrizeTicketMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {

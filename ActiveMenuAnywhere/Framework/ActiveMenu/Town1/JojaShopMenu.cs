@@ -12,6 +12,6 @@ public class JojaShopMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        Utility.TryOpenShopMenu("Joja", null, playOpenSound: true);
+        Utility.TryOpenShopMenu("Joja", null, true);
     }
 }

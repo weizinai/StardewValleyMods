@@ -3,13 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
-using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
 public class MonsterMenu : BaseActiveMenu
 {
-    private IModHelper helper;
+    private readonly IModHelper helper;
 
     public MonsterMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture,
         sourceRect)

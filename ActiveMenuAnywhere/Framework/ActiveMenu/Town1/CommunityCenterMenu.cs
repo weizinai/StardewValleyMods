@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class CommunityCenterMenu: BaseActiveMenu
+public class CommunityCenterMenu : BaseActiveMenu
 {
     public CommunityCenterMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {

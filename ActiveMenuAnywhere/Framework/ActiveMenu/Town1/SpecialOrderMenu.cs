@@ -7,11 +7,12 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class SpecialOrderMenu: BaseActiveMenu
+public class SpecialOrderMenu : BaseActiveMenu
 {
-    private IModHelper helper;
-    
-    public SpecialOrderMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect)
+    private readonly IModHelper helper;
+
+    public SpecialOrderMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture,
+        sourceRect)
     {
         this.helper = helper;
     }

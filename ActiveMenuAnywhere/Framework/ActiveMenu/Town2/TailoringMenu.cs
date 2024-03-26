@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class TailoringMenu: BaseActiveMenu
+public class TailoringMenu : BaseActiveMenu
 {
     public TailoringMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {

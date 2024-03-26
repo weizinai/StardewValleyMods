@@ -5,12 +5,12 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class IslandResortMenu: BaseActiveMenu
+public class IslandResortMenu : BaseActiveMenu
 {
     public IslandResortMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
     }
-    
+
     public override void ReceiveLeftClick()
     {
         if (Game1.RequireLocation<IslandSouth>("IslandSouth").resortOpenToday.Value)

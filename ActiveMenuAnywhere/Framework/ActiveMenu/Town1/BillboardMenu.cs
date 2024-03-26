@@ -13,10 +13,10 @@ public class BillboardMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        var options = new List<Response>()
+        var options = new List<Response>
         {
-            new("Calendar", "日历"),
-            new("DailyQuest", "每日任务"),
+            new("Calendar", I18n.BillboardMenu_Calendar()),
+            new("DailyQuest", I18n.BillboardMenu_DailyQuest()),
             new("Leave", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Leave"))
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
@@ -27,7 +27,7 @@ public class BillboardMenu : BaseActiveMenu
         switch (whichAnswer)
         {
             case "Calendar":
-                Game1.activeClickableMenu=new Billboard();
+                Game1.activeClickableMenu = new Billboard();
                 break;
             case "DailyQuest":
                 Game1.activeClickableMenu = new Billboard(true);

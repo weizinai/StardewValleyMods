@@ -13,7 +13,7 @@ public class CasinoMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        if (Game1.player.mailReceived.Contains("ccVault")  && Game1.player.hasClubCard)
+        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
             Utility.TryOpenShopMenu("Casino", null, true);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());

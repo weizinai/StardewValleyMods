@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class BooksellerMenu: BaseActiveMenu
+public class BooksellerMenu : BaseActiveMenu
 {
     public BooksellerMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
@@ -13,7 +13,7 @@ public class BooksellerMenu: BaseActiveMenu
     public override void ReceiveLeftClick()
     {
         if (Utility.getDaysOfBooksellerThisSeason().Contains(Game1.dayOfMonth))
-            Utility.TryOpenShopMenu("Bookseller", null, playOpenSound: true);
+            Utility.TryOpenShopMenu("Bookseller", null, true);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

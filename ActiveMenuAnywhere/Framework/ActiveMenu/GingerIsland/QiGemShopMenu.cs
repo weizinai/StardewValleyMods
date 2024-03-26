@@ -2,11 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Locations;
-using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class QiGemShopMenu: BaseActiveMenu
+public class QiGemShopMenu : BaseActiveMenu
 {
     public QiGemShopMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
@@ -14,9 +13,9 @@ public class QiGemShopMenu: BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out var actualFoundWalnutsCount);
+        var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
         if (isQiWalnutRoomDoorUnlocked)
-            Utility.TryOpenShopMenu("QiGemShop", null, playOpenSound: true);
+            Utility.TryOpenShopMenu("QiGemShop", null, true);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

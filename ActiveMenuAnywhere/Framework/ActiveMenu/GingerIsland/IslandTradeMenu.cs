@@ -14,7 +14,7 @@ public class IslandTradeMenu : BaseActiveMenu
     public override void ReceiveLeftClick()
     {
         if (Game1.RequireLocation<IslandNorth>("IslandNorth").traderActivated.Value)
-            Utility.TryOpenShopMenu("IslandTrade", null, playOpenSound: true);
+            Utility.TryOpenShopMenu("IslandTrade", null, true);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

@@ -6,7 +6,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
-public class QiSpecialOrderMenu: BaseActiveMenu
+public class QiSpecialOrderMenu : BaseActiveMenu
 {
     public QiSpecialOrderMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect)
     {
@@ -14,7 +14,7 @@ public class QiSpecialOrderMenu: BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out var actualFoundWalnutsCount);
+        var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
         if (isQiWalnutRoomDoorUnlocked)
             Game1.activeClickableMenu = new SpecialOrdersBoard("Qi");
         else

@@ -19,9 +19,9 @@
     "Tip.BusStop":"Unlocked",
     */
     // BillboardMenu
-    "BillboardMenu.Calendar":"日历",
-    "BillboardMenu.DailyQuest":"每日任务",
+    "BillboardMenu.Calendar": "日历",
+    "BillboardMenu.DailyQuest": "每日任务",
     // ClintMenu
-    "ClintMenu.Receive":"取回工具",
-    "ClintMenu.Unfinished": "工具还未升级完成",
+    "ClintMenu.Receive": "取回工具",
+    "ClintMenu.Unfinished": "工具还未升级完成"
 }

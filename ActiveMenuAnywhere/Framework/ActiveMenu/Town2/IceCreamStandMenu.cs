@@ -12,6 +12,6 @@ public class IceCreamStandMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        Utility.TryOpenShopMenu("IceCreamStand", null, playOpenSound: true);
+        Utility.TryOpenShopMenu("IceCreamStand", null, true);
     }
 }

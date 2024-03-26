@@ -21,11 +21,12 @@ public class ClubSellerMenu : BaseActiveMenu
 
     private void ClubSeller()
     {
-        var location = Game1.currentLocation;
-        location.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Club_ClubSeller"), new Response[2]
+        var options = new List<Response>
         {
-            new Response("I'll", Game1.content.LoadString("Strings\\Locations:Club_ClubSeller_Yes")),
-            new Response("No", Game1.content.LoadString("Strings\\Locations:Club_ClubSeller_No"))
-        }, "ClubSeller");
+            new("I'll", Game1.content.LoadString("Strings\\Locations:Club_ClubSeller_Yes")),
+            new("No", Game1.content.LoadString("Strings\\Locations:Club_ClubSeller_No"))
+        };
+        Game1.currentLocation.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Club_ClubSeller"),
+            options.ToArray(), "ClubSeller");
     }
 }

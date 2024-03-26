@@ -14,8 +14,8 @@ public class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         _config = helper.ReadConfig<ModConfig>();
-        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

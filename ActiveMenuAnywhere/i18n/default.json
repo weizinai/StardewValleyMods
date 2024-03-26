@@ -22,5 +22,6 @@
     "BillboardMenu.Calendar":"Calendar",
     "BillboardMenu.DailyQuest":"DailyQuest",
     // ClintMenu
-    "ClintMenu.Receive":"Receive Tool"
+    "ClintMenu.Receive":"Receive Tool",
+    "ClintMenu.Unfinished": "Tool is unfinished",
 }

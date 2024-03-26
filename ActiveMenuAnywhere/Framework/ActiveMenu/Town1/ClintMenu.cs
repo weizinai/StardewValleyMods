@@ -21,15 +21,10 @@ public class ClintMenu : BaseActiveMenu
             new("Shop", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Shop")),
         };
 
-        if (Game1.player.toolBeingUpgraded.Value == null)
-        {
-            // 工具升级
-            options.Add(new Response("Upgrade", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Upgrade")));
-        }
-        else
-        {
-            options.Add((new Response("Receive", "取回工具")));
-        }
+        // 工具升级
+        options.Add(Game1.player.toolBeingUpgraded.Value == null
+            ? new Response("Upgrade", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Upgrade"))
+            : new Response("Receive", "取回工具"));
 
         // 砸开晶球
         var hasGeode = Game1.player.Items.Any(item1 => Utility.IsGeode(item1));
@@ -73,7 +68,7 @@ public class ClintMenu : BaseActiveMenu
                     }
                 }
                 else
-                    Game1.drawObjectDialogue("工具还未升级完成");
+                    Game1.drawObjectDialogue(I18n.ClintMenu_Unfinished());
                 break;
             case "Process":
                 Game1.activeClickableMenu = new GeodeMenu();

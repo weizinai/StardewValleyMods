@@ -12,8 +12,8 @@ public class TravelerMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        var isTravelingMerchantDay = Game1.RequireLocation<StardewValley.Locations.Forest>("Forest").travelingMerchantDay;
-        if (isTravelingMerchantDay)
+        var shouldTravelingMerchantVisitToday = Game1.dayOfMonth % 7 % 5 == 0;
+        if (shouldTravelingMerchantVisitToday)
             Utility.TryOpenShopMenu("Traveler", null, true);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());

@@ -13,7 +13,7 @@ public class JojaShopMenu : BaseActiveMenu
 
     public override void ReceiveLeftClick()
     {
-        if (Game1.RequireLocation<AbandonedJojaMart>("AbandonedJojaMart") == null)
+        if (!Game1.MasterPlayer.hasCompletedCommunityCenter())
             Utility.TryOpenShopMenu("Joja", null, true);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());

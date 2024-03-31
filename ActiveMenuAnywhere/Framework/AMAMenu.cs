@@ -39,19 +39,17 @@ public class AMAMenu : IClickableMenu
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
-        foreach (var tabID in from tab in tabs where tab.containsPoint(x, y) select GetTabID(tab))
-        {
-            Game1.activeClickableMenu = new AMAMenu(tabID, helper, textures);
-            break;
-        }
+        // tab
+        var tab = tabs.FirstOrDefault(tab => tab.containsPoint(x, y));
+        if (tab != null) Game1.activeClickableMenu = new AMAMenu(GetTabID(tab), helper, textures);
 
-
-        foreach (var option in options.Where(option => option.containsPoint(x, y))) option.ReceiveLeftClick();
+        // option
+        options.FirstOrDefault(option => option.containsPoint(x, y))?.ReceiveLeftClick();
     }
 
     public override void performHoverAction(int x, int y)
     {
-        foreach (var option in options) option.scale = option.containsPoint(x, y) ? 0.9f : 1f;
+        options.ForEach(option => option.scale = option.containsPoint(x, y) ? 0.9f : 1f);
     }
 
     public override void draw(SpriteBatch spriteBatch)
@@ -67,16 +65,11 @@ public class AMAMenu : IClickableMenu
             DrawHelper.DrawTitle(title.bounds.X, title.bounds.Y, title.name, Align.Center);
 
         // Draw tabs
-        foreach (var tab in tabs)
-        {
-            var tabID = GetTabID(tab);
-            DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
-                tabID == currentMenuTabID ? 0.7f : 1f);
-        }
+        tabs.ForEach(tab => DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
+            GetTabID(tab) == currentMenuTabID ? 0.7f : 1f));
 
         // Draw options
-        foreach (var option in options)
-            option.draw(spriteBatch);
+        options.ForEach(option => option.draw(spriteBatch));
 
         // Draw Mouse
         drawMouse(spriteBatch);
@@ -100,6 +93,35 @@ public class AMAMenu : IClickableMenu
             "ActiveMenuAnywhere");
 
         // Add tabs
+        AddTab();
+
+        // Add options
+        AddOption();
+    }
+
+    private MenuTabID GetTabID(ClickableComponent tab)
+    {
+        if (!Enum.TryParse(tab.label, out MenuTabID tabID))
+            throw new InvalidOperationException($"Couldn't parse tab name '{tab.label}'.");
+        return tabID;
+    }
+
+    private Rectangle GetBoundsRectangle(int index)
+    {
+        var i = index % 3;
+        var j = index / 3;
+        return new Rectangle(innerDrawPosition.x + i * 200, innerDrawPosition.y + j * 200, 200, 200);
+    }
+
+    private Rectangle GetSourceRectangle(int index)
+    {
+        var i = index % 3;
+        var j = index / 3;
+        return new Rectangle(i * 200, j * 200, 200, 200);
+    }
+
+    private void AddTab()
+    {
         var tabOffset = (x: 4, y: 16);
         var tabSize = (width: 100, height: 48);
         var tabPosition = (x: xPositionOnScreen - tabSize.width, y: yPositionOnScreen + tabOffset.y);
@@ -140,8 +162,10 @@ public class AMAMenu : IClickableMenu
             tabs.Add(new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
                 I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
+    }
 
-        // Add options
+    private void AddOption()
+    {
         options.Clear();
         switch (currentMenuTabID)
         {
@@ -156,7 +180,7 @@ public class AMAMenu : IClickableMenu
                 options.AddRange(new BaseActiveMenu[]
                 {
                     new BillboardMenu(GetBoundsRectangle(0), textures[MenuTabID.Town1], GetSourceRectangle(0)),
-                    new SpecialOrderMenu(GetBoundsRectangle(1), textures[MenuTabID.Town1], GetSourceRectangle(1), helper),
+                    new SpecialOrderMenu(GetBoundsRectangle(1), textures[MenuTabID.Town1], GetSourceRectangle(1)),
                     new CommunityCenterMenu(GetBoundsRectangle(2), textures[MenuTabID.Town1], GetSourceRectangle(2)),
                     new PierreMenu(GetBoundsRectangle(3), textures[MenuTabID.Town1], GetSourceRectangle(3)),
                     new ClintMenu(GetBoundsRectangle(4), textures[MenuTabID.Town1], GetSourceRectangle(4)),
@@ -184,7 +208,7 @@ public class AMAMenu : IClickableMenu
                     new RobinMenu(GetBoundsRectangle(0), textures[MenuTabID.Mountain], GetSourceRectangle(0)),
                     new DwarfMenu(GetBoundsRectangle(1), textures[MenuTabID.Mountain], GetSourceRectangle(1)),
                     new MonsterMenu(GetBoundsRectangle(2), textures[MenuTabID.Mountain], GetSourceRectangle(2), helper),
-                    new MarlonMenu(GetBoundsRectangle(3), textures[MenuTabID.Mountain], GetSourceRectangle(3), helper)
+                    new MarlonMenu(GetBoundsRectangle(3), textures[MenuTabID.Mountain], GetSourceRectangle(3))
                 });
                 break;
             case MenuTabID.Forest:
@@ -234,26 +258,5 @@ public class AMAMenu : IClickableMenu
             default:
                 throw new ArgumentOutOfRangeException();
         }
-    }
-
-    private MenuTabID GetTabID(ClickableComponent tab)
-    {
-        if (!Enum.TryParse(tab.label, out MenuTabID tabID))
-            throw new InvalidOperationException($"Couldn't parse tab name '{tab.label}'.");
-        return tabID;
-    }
-
-    private Rectangle GetBoundsRectangle(int index)
-    {
-        var i = index % 3;
-        var j = index / 3;
-        return new Rectangle(innerDrawPosition.x + i * 200, innerDrawPosition.y + j * 200, 200, 200);
-    }
-
-    private Rectangle GetSourceRectangle(int index)
-    {
-        var i = index % 3;
-        var j = index / 3;
-        return new Rectangle(i * 200, j * 200, 200, 200);
     }
 }

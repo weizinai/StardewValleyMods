@@ -9,18 +9,14 @@ namespace ActiveMenuAnywhere.Framework.ActiveMenu;
 
 public class SpecialOrderMenu : BaseActiveMenu
 {
-    private readonly IModHelper helper;
-
-    public SpecialOrderMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture,
+    public SpecialOrderMenu(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture,
         sourceRect)
     {
-        this.helper = helper;
     }
 
     public override void ReceiveLeftClick()
     {
-        var isShowingSpecialOrdersBoard = helper.Reflection.GetField<bool>(new Town(), "isShowingSpecialOrdersBoard").GetValue();
-        if (isShowingSpecialOrdersBoard)
+        if (Game1.MasterPlayer.eventsSeen.Contains("15389722"))
             Game1.activeClickableMenu = new SpecialOrdersBoard();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());

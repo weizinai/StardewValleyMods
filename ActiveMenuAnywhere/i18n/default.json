@@ -56,18 +56,15 @@
     // Tip
     "Tip.Unfinished": "Unfinished",
     "Tip.Unavailable": "Currently unavailable",
-    /*
-    "Tip.FishShop": "Unlocked",
-    "Tip.ClubCard":"Unlocked",
-    "Tip.BusStop":"Unlocked",
-    */
     // BillboardMenu
-    "BillboardMenu.Calendar": "Calendar",
-    "BillboardMenu.DailyQuest": "DailyQuest",
+    "BillboardOption.Calendar": "Calendar",
+    "BillboardOption.DailyQuest": "DailyQuest",
     // ClintMenu
-    "ClintMenu.Receive": "Receive Tool",
-    "ClintMenu.Unfinished": "Tool is unfinished",
+    "ClintOption.Receive": "Receive Tool",
+    "ClintOption.Unfinished": "Tool is unfinished",
+    // MarnieOption
+    "MarnieOption.Bug": "The shop is normal, but buying animals will cause the player to teleport, please use it if you have a CJB cheat menu.",
     // Config
     "Config.MenuKey_Name": "Menu Key",
-    "Config.DefaultMenuTabID": "Default Menu Tab"
+    "Config.DefaultMenuTabID": "Default Menu Tab",
 }

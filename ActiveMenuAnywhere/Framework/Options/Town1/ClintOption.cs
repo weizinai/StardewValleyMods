@@ -23,7 +23,7 @@ public class ClintOption : BaseOption
         // 工具升级
         options.Add(Game1.player.toolBeingUpgraded.Value == null
             ? new Response("Upgrade", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Upgrade"))
-            : new Response("Receive", I18n.ClintMenu_Receive()));
+            : new Response("Receive", I18n.ClintOption_Receive()));
 
         // 砸开晶球
         var hasGeode = Game1.player.Items.Any(item1 => Utility.IsGeode(item1));
@@ -64,7 +64,7 @@ public class ClintOption : BaseOption
                 }
                 else
                 {
-                    Game1.drawObjectDialogue(I18n.ClintMenu_Unfinished());
+                    Game1.drawObjectDialogue(I18n.ClintOption_Unfinished());
                 }
 
                 break;

@@ -15,8 +15,8 @@ public class BillboardOption : BaseOption
     {
         var options = new List<Response>
         {
-            new("Calendar", I18n.BillboardMenu_Calendar()),
-            new("DailyQuest", I18n.BillboardMenu_DailyQuest()),
+            new("Calendar", I18n.BillboardOption_Calendar()),
+            new("DailyQuest", I18n.BillboardOption_DailyQuest()),
             new("Leave", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Leave"))
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);

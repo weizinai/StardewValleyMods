@@ -14,10 +14,11 @@ public class MarnieOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
+        Game1.drawObjectDialogue(I18n.MarnieOption_Bug());
         var options = new List<Response>
         {
             new("Supplies", Game1.content.LoadString("Strings\\Locations:AnimalShop_Marnie_Supplies")),
-            // new("Purchase", Game1.content.LoadString("Strings\\Locations:AnimalShop_Marnie_Animals")),
+            new("Purchase", Game1.content.LoadString("Strings\\Locations:AnimalShop_Marnie_Animals")),
             new("Leave", Game1.content.LoadString("Strings\\Locations:AnimalShop_Marnie_Leave"))
         };
         if (Game1.player.mailReceived.Contains("MarniePetAdoption") || Game1.player.mailReceived.Contains("MarniePetRejectedAdoption"))

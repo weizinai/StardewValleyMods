@@ -13,8 +13,8 @@
 
     <ItemGroup>
       <Folder Include="assets\" />
-      <Folder Include="Framework\ActiveMenu\RSV\" />
-      <Folder Include="Framework\ActiveMenu\SVE\" />
+      <Folder Include="Framework\Options\RSV\" />
+      <Folder Include="Framework\Options\SVE\" />
     </ItemGroup>
 
     <Import Project="..\Common\Common.projitems" Label="Shared" />

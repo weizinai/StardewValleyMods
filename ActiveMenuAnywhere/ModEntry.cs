@@ -7,9 +7,10 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public class ModEntry : Mod
 {
-    private readonly Dictionary<MenuTabID, Texture2D> textures = new();
+    public static readonly Dictionary<MenuTabID, Texture2D> Textures = new();
     private ModConfig config = new();
 
     public override void Entry(IModHelper helper)
@@ -76,19 +77,19 @@ public class ModEntry : Mod
             if (Game1.activeClickableMenu is AMAMenu)
                 Game1.exitActiveMenu();
             else if (Context.IsPlayerFree)
-                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabID, Helper, textures);
+                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabID, Helper);
         }
     }
 
     private void LoadTexture()
     {
-        textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("assets/Farm.png"));
-        textures.Add(MenuTabID.Town1, Helper.ModContent.Load<Texture2D>("assets/Town1.png"));
-        textures.Add(MenuTabID.Town2, Helper.ModContent.Load<Texture2D>("assets/Town2.png"));
-        textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("assets/Mountain.png"));
-        textures.Add(MenuTabID.Forest, Helper.ModContent.Load<Texture2D>("assets/Forest.png"));
-        textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("assets/Beach.png"));
-        textures.Add(MenuTabID.Desert, Helper.ModContent.Load<Texture2D>("assets/Desert"));
-        textures.Add(MenuTabID.GingerIsland, Helper.ModContent.Load<Texture2D>("assets/GingerIsland.png"));
+        Textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("assets/Farm.png"));
+        Textures.Add(MenuTabID.Town1, Helper.ModContent.Load<Texture2D>("assets/Town1.png"));
+        Textures.Add(MenuTabID.Town2, Helper.ModContent.Load<Texture2D>("assets/Town2.png"));
+        Textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("assets/Mountain.png"));
+        Textures.Add(MenuTabID.Forest, Helper.ModContent.Load<Texture2D>("assets/Forest.png"));
+        Textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("assets/Beach.png"));
+        Textures.Add(MenuTabID.Desert, Helper.ModContent.Load<Texture2D>("assets/Desert"));
+        Textures.Add(MenuTabID.GingerIsland, Helper.ModContent.Load<Texture2D>("assets/GingerIsland.png"));
     }
 }

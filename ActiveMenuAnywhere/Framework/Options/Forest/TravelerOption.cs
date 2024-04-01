@@ -6,7 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class TravelerOption : BaseOption
 {
-    public TravelerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Traveler())
+    public TravelerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
+        I18n.Option_Traveler())
     {
     }
 

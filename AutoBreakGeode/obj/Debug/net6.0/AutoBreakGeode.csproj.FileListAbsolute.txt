@@ -1,0 +1,9 @@
+C:\Projects\StardewValleyMods\AutoBreakGeode\bin\Debug\net6.0\AutoBreakGeode.deps.json
+C:\Projects\StardewValleyMods\AutoBreakGeode\bin\Debug\net6.0\AutoBreakGeode.dll
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.csproj.AssemblyReference.cache
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.AssemblyInfoInputs.cache
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.AssemblyInfo.cs
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.csproj.CoreCompileInputs.cache
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.sourcelink.json
+C:\Projects\StardewValleyMods\AutoBreakGeode\obj\Debug\net6.0\AutoBreakGeode.dll

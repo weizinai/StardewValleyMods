@@ -6,7 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class WillyOption : BaseOption
 {
-    public WillyOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Willy())
+    public WillyOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+        base(bounds, texture, sourceRect, I18n.Option_Willy())
     {
     }
 

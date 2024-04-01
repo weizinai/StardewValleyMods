@@ -6,7 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class BuyQiCoinsOption : BaseOption
 {
-    public BuyQiCoinsOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_BuyQiCoins())
+    public BuyQiCoinsOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+        base(bounds, texture, sourceRect,I18n.Option_BuyQiCoins())
     {
     }
 

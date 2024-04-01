@@ -6,7 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class CasinoOption : BaseOption
 {
-    public CasinoOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_Casino())
+    public CasinoOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+        base(bounds, texture, sourceRect,I18n.Option_Casino())
     {
     }
 

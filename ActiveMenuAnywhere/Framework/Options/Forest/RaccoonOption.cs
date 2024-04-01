@@ -7,11 +7,12 @@ using StardewValley.Characters;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class RaccoonOption: BaseOption
+public class RaccoonOption : BaseOption
 {
     private readonly IModHelper helper;
-    
-    public RaccoonOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect, I18n.Option_Raccoon())
+
+    public RaccoonOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,
+        I18n.Option_Raccoon())
     {
         this.helper = helper;
     }

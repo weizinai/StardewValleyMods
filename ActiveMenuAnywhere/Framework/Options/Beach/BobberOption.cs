@@ -7,7 +7,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class BobberOption : BaseOption
 {
-    public BobberOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Bobber())
+    public BobberOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+        base(bounds, texture, sourceRect, I18n.Option_Bobber())
     {
     }
 

@@ -6,7 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class DesertTradeOption : BaseOption
 {
-    public DesertTradeOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_DesertTrade())
+    public DesertTradeOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+        base(bounds, texture, sourceRect, I18n.Option_DesertTrade())
     {
     }
 

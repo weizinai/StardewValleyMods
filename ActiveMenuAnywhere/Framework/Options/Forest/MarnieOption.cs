@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
-using StardewValley.Buildings;
-using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
@@ -14,7 +12,6 @@ public class MarnieOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
-        Game1.drawObjectDialogue(I18n.MarnieOption_Bug());
         var options = new List<Response>
         {
             new("Supplies", Game1.content.LoadString("Strings\\Locations:AnimalShop_Marnie_Supplies")),
@@ -23,7 +20,8 @@ public class MarnieOption : BaseOption
         };
         if (Game1.player.mailReceived.Contains("MarniePetAdoption") || Game1.player.mailReceived.Contains("MarniePetRejectedAdoption"))
             options.Insert(2, new Response("Adopt", Game1.content.LoadString("Strings\\1_6_Strings:AdoptPets")));
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
+        Game1.currentLocation.createQuestionDialogue(I18n.MarnieOption_Bug(), options.ToArray(), AfterDialogueBehavior);
+        // Game1.addHUDMessage(new HUDMessage(I18n.MarnieOption_Bug(), 0));
     }
 
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)

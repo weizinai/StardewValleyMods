@@ -228,7 +228,7 @@ public class AMAMenu : IClickableMenu
                     new SandyOption(GetBoundsRectangle(0), textures[MenuTabID.Desert], GetSourceRectangle(0)),
                     new DesertTradeOption(GetBoundsRectangle(1), textures[MenuTabID.Desert], GetSourceRectangle(1)),
                     new CasinoOption(GetBoundsRectangle(2), textures[MenuTabID.Desert], GetSourceRectangle(2)),
-                    new FarmerFileOption(GetBoundsRectangle(3), textures[MenuTabID.Desert], GetSourceRectangle(3), helper),
+                    new FarmerFileOption(GetBoundsRectangle(3), textures[MenuTabID.Desert], GetSourceRectangle(3)),
                     new BuyQiCoinsOption(GetBoundsRectangle(4), textures[MenuTabID.Desert], GetSourceRectangle(4)),
                     new ClubSellerOption(GetBoundsRectangle(5), textures[MenuTabID.Desert], GetSourceRectangle(5))
                 });

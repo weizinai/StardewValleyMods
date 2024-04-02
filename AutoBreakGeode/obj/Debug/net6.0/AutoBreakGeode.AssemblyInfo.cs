@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoBreakGeode")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10d34f0f0d6347075328daf0df86af11cf07a1e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e04b2bdeabbd85a17c3dd13f0c1750b3d279f435")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoBreakGeode")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoBreakGeode")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

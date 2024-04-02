@@ -6,7 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class SandyOption : BaseOption
 {
-    public SandyOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_Sandy())
+    public SandyOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
+        base(bounds, texture, sourceRect, I18n.Option_Sandy())
     {
     }
 

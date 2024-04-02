@@ -1,4 +1,7 @@
 ﻿{
+    // Config
+    "Config.MenuKey_Name": "菜单快捷键",
+    "Config.DefaultMenuTabID": "默认菜单标签",
     // Tab
     "Tab.Farm": "农场",
     "Tab.Town1": "鹈鹕镇1",
@@ -39,13 +42,13 @@
     "Option.Pierre": "皮埃尔",
     "Option.PrizeTicket": "抽奖机",
     "Option.QiCat": "Qi猫",
-    "Option.QiGemShop": "Qi宝石商店",
+    "Option.QiGemShop": "Qi钻商店",
     "Option.QiSpecialOrder": "Qi特别订单",
     "Option.Raccoon": "小碗熊",
     "Option.Robin": "罗宾",
     "Option.Sandy": "桑迪",
     "Option.ShippingBin": "出货箱",
-    "Option.SpecialOrder": "特别任务",
+    "Option.SpecialOrder": "特别订单",
     "Option.Statue": "怪异雕像",
     "Option.Tailoring": "裁缝",
     "Option.Traveler": "旅游商人",
@@ -53,6 +56,23 @@
     "Option.VolcanoShop": "火山商店",
     "Option.Willy": "威利",
     "Option.Wizard": "魔法建筑",
+    /*
+    "Option.Category":"目录",
+    "Option.FurnitureCatalogue":"家具目录",
+    "Option.JojaCatalogue":"Joja家具目录",
+    "Option.JunimoCatalogue":"祝尼魔目录",
+    "Option.RetroCatalogue":"复古目录",
+    "Option.TrashCatalogue":"垃圾目录",
+    "Option.WizardCatalogue":"法师目录",
+    */
+    // RSVOptions
+    "Option.RSVQuestBoard": "RSV每日任务",
+    "Option.RSVSpecialOrder": "RSV特别订单",
+    "Option.Lorenzo": "Lorenzo",
+    "Option.Jeric": "Jeric",
+    "Option.Kimpoi": "Kimpoi",
+    "Option.Pika": "Pika",
+    "Option.Lola": "Lola",
     // Tip
     "Tip.Unfinished": "功能还未完成，请等待模组更新",
     "Tip.Unavailable": "目前还不能访问",
@@ -64,7 +84,12 @@
     "ClintOption.Unfinished": "工具还未升级完成",
     // MarnieOption
     "MarnieOption.Bug": "商店是正常的，但购买动物会导致玩家瞬移，请在有CJB作弊菜单的情况下使用它。",
-    // Config
-    "Config.MenuKey_Name": "菜单快捷键",
-    "Config.DefaultMenuTabID": "默认菜单标签"
+    // RaccoonOption
+    "RaccoonOption.RaccoonBundle": "小碗熊收集包",
+    "RaccoonOption.RaccoonShop": "小碗熊商店",
+    "RaccoonOption.Leave": "离开",
+    // RSVPikaOption
+    "PikaOption.Shop": "食物商店",
+    "PikaOption.RecipeShop": "食谱商店",
+    "PikaOption.Leave": "离开"
 }

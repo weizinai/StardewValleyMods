@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class MarlonOption : BaseOption
 {
-    public MarlonOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_Marlon())
+    public MarlonOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Marlon())
     {
     }
 
@@ -23,7 +22,7 @@ public class MarlonOption : BaseOption
     {
         if (Game1.player.itemsLostLastDeath.Count > 0)
         {
-            var options = new List<Response>()
+            var options = new List<Response>
             {
                 new("Shop", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Shop")),
                 new("Recovery", Game1.content.LoadString("Strings\\Locations:AdventureGuild_ItemRecovery")),
@@ -33,6 +32,8 @@ public class MarlonOption : BaseOption
                 options.ToArray(), "adventureGuild");
         }
         else
+        {
             Utility.TryOpenShopMenu("AdventureShop", "Marlon");
+        }
     }
 }

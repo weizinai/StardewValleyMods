@@ -7,7 +7,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class BillboardOption : BaseOption
 {
-    public BillboardOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Billboard())
+    public BillboardOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
+        I18n.Option_Billboard())
     {
     }
 
@@ -34,6 +35,7 @@ public class BillboardOption : BaseOption
                 break;
             case "Leave":
                 Game1.exitActiveMenu();
+                Game1.player.forceCanMove();
                 break;
         }
     }

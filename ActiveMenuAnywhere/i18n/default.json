@@ -1,4 +1,7 @@
 ﻿{
+    // Config
+    "Config.MenuKey_Name": "Menu Key",
+    "Config.DefaultMenuTabID": "Default Menu Tab",
     // Tab
     "Tab.Farm": "Farm",
     "Tab.Town1": "Town1",
@@ -53,18 +56,40 @@
     "Option.VolcanoShop": "Volcano Shop",
     "Option.Willy": "Willy",
     "Option.Wizard": "Wizard",
+    /*
+    "Option.Category":"Category",
+    "Option.FurnitureCatalogue":"Furniture Catalogue",
+    "Option.JojaCatalogue":"Joja Catalogue",
+    "Option.JunimoCatalogue":"Junimo Catalogue",
+    "Option.RetroCatalogue":"Retro Catalogue",
+    "Option.TrashCatalogue":"Trash Catalogue",
+    "Option.WizardCatalogue":"Wizard Catalogue",
+    */
+    // RSVOptions
+    "Option.RSVQuestBoard": "RSV Quest Board",
+    "Option.RSVSpecialOrder": "RSV Special Order",
+    "Option.Lorenzo": "Lorenzo",
+    "Option.Jeric": "Jeric",
+    "Option.Kimpoi": "Kimpoi",
+    "Option.Pika": "Pika",
+    "Option.Lola": "Lola",
     // Tip
     "Tip.Unfinished": "Unfinished",
     "Tip.Unavailable": "Currently unavailable",
-    // BillboardMenu
+    // BillboardOption
     "BillboardOption.Calendar": "Calendar",
     "BillboardOption.DailyQuest": "DailyQuest",
-    // ClintMenu
+    // ClintOption
     "ClintOption.Receive": "Receive Tool",
     "ClintOption.Unfinished": "Tool is unfinished",
     // MarnieOption
     "MarnieOption.Bug": "The shop is normal, but buying animals will cause the player to teleport, please use it if you have a CJB cheat menu.",
-    // Config
-    "Config.MenuKey_Name": "Menu Key",
-    "Config.DefaultMenuTabID": "Default Menu Tab",
+    // RaccoonOption
+    "RaccoonOption.RaccoonBundle": "Raccoon Bundle",
+    "RaccoonOption.RaccoonShop": "Raccoon Shop",
+    "RaccoonOption.Leave": "Leave",
+    // RSVPikaOption
+    "PikaOption.Shop": "Shop",
+    "PikaOption.RecipeShop": "Recipe Shop",
+    "PikaOption.Leave": "Leave"
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
+using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
@@ -13,7 +14,7 @@ public class ForgeOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Game1.player.mailReceived.Contains("willyHours"))
-            Game1.activeClickableMenu = new StardewValley.Menus.ForgeMenu();
+            Game1.activeClickableMenu = new ForgeMenu();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

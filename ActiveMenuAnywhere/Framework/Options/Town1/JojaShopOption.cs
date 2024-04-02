@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
-using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class JojaShopOption : BaseOption
 {
-    public JojaShopOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_JojaShop())
+    public JojaShopOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
+        I18n.Option_JojaShop())
     {
     }
 

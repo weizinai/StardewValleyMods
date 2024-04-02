@@ -8,7 +8,7 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class ClintOption : BaseOption
 {
-    public ClintOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_Clint())
+    public ClintOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Clint())
     {
     }
 
@@ -73,6 +73,7 @@ public class ClintOption : BaseOption
                 break;
             case "Leave":
                 Game1.exitActiveMenu();
+                Game1.player.forceCanMove();
                 break;
         }
     }

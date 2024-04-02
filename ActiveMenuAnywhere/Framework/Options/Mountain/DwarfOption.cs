@@ -6,7 +6,7 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class DwarfOption : BaseOption
 {
-    public DwarfOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_Dwarf())
+    public DwarfOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Dwarf())
     {
     }
 

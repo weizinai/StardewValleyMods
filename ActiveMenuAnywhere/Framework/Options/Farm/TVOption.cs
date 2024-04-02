@@ -10,7 +10,8 @@ public class TVOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public TVOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,I18n.Option_TV())
+    public TVOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,
+        I18n.Option_TV())
     {
         this.helper = helper;
     }

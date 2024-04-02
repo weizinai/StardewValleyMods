@@ -91,5 +91,6 @@ public class ModEntry : Mod
         Textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("assets/Beach.png"));
         Textures.Add(MenuTabID.Desert, Helper.ModContent.Load<Texture2D>("assets/Desert"));
         Textures.Add(MenuTabID.GingerIsland, Helper.ModContent.Load<Texture2D>("assets/GingerIsland.png"));
+        Textures.Add(MenuTabID.RSV, Helper.ModContent.Load<Texture2D>("assets/RSV.png"));
     }
 }

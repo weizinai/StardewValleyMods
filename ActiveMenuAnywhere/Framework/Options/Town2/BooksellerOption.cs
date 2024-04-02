@@ -6,7 +6,7 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class BooksellerOption : BaseOption
 {
-    public BooksellerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+    public BooksellerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
         base(bounds, texture, sourceRect, I18n.Option_Bookseller())
     {
     }

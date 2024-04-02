@@ -1,15 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Locations;
 using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class SpecialOrderOption : BaseOption
 {
-    public SpecialOrderOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+    public SpecialOrderOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
         base(bounds, texture, sourceRect, I18n.Option_SpecialOrder())
     {
     }

@@ -23,6 +23,6 @@ public abstract class BaseOption : ClickableTextureComponent
         var x = bounds.X + bounds.Width / 2;
         var y = bounds.Y + bounds.Height / 3 * 2;
         var width = Game1.smallFont.MeasureString(name).X;
-        DrawHelper.DrawTab(x,y,Game1.smallFont,name,Align.Center);
+        DrawHelper.DrawTab(x, y, Game1.smallFont, name, Align.Center);
     }
 }

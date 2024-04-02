@@ -10,8 +10,8 @@ public class MonsterOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public MonsterOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : 
-        base(bounds, texture, sourceRect,I18n.Option_Monster())
+    public MonsterOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) :
+        base(bounds, texture, sourceRect, I18n.Option_Monster())
     {
         this.helper = helper;
     }

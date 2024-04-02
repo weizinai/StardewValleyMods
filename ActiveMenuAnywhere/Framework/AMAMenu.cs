@@ -1,4 +1,5 @@
 ﻿using ActiveMenuAnywhere.Framework.Options;
+using ActiveMenuAnywhere.Framework.Options.RSV;
 using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -248,6 +249,16 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.SVE:
                 break;
             case MenuTabID.RSV:
+                options.AddRange(new BaseOption[]
+                {
+                    new RSVQuestBoardOption(GetBoundsRectangle(0), textures[MenuTabID.RSV], GetSourceRectangle(0), helper),
+                    new RSVSpecialOrderOption(GetBoundsRectangle(1), textures[MenuTabID.RSV], GetSourceRectangle(1), helper),
+                    new LorenzoOption(GetBoundsRectangle(2), textures[MenuTabID.RSV], GetSourceRectangle(2)),
+                    new JericOption(GetBoundsRectangle(3), textures[MenuTabID.RSV], GetSourceRectangle(3)),
+                    new KimpoiOption(GetBoundsRectangle(4), textures[MenuTabID.RSV], GetSourceRectangle(4)),
+                    new PikaOption(GetBoundsRectangle(5), textures[MenuTabID.RSV], GetSourceRectangle(5)),
+                    new LolaOption(GetBoundsRectangle(6), textures[MenuTabID.RSV], GetSourceRectangle(6))
+                });
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -6,7 +6,7 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class ClubSellerOption : BaseOption
 {
-    public ClubSellerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+    public ClubSellerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
         base(bounds, texture, sourceRect, I18n.Option_ClubSeller())
     {
     }

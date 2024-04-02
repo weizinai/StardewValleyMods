@@ -7,7 +7,7 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class AbandonedJojaMartOption : BaseOption
 {
-    public AbandonedJojaMartOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : 
+    public AbandonedJojaMartOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
         base(bounds, texture, sourceRect, I18n.Option_AbandonedJojaMart())
     {
     }
@@ -20,6 +20,8 @@ public class AbandonedJojaMartOption : BaseOption
             abandonedJojaMart.checkBundle();
         }
         else
+        {
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        }
     }
 }

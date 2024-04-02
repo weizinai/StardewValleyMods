@@ -7,7 +7,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class IslandResortOption : BaseOption
 {
-    public IslandResortOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_IslandResort())
+    public IslandResortOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
+        I18n.Option_IslandResort())
     {
     }
 

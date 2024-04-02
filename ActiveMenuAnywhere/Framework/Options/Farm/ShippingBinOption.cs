@@ -12,7 +12,8 @@ public class ShippingBinOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public ShippingBinOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,I18n.Option_ShippingBin())
+    public ShippingBinOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture,
+        sourceRect, I18n.Option_ShippingBin())
     {
         this.helper = helper;
     }
@@ -27,8 +28,6 @@ public class ShippingBinOption : BaseOption
         itemGrabMenu.setDestroyItemOnClick(true);
         itemGrabMenu.initializeShippingBin();
         Game1.activeClickableMenu = itemGrabMenu;
-        if (Game1.player.IsLocalPlayer) Game1.playSound("shweip");
-        if (Game1.player.FacingDirection == 1) Game1.player.Halt();
         Game1.player.showCarrying();
     }
 

@@ -10,7 +10,8 @@ public class CommunityCenterOption : BaseOption
     private readonly List<string> keys;
     private readonly List<string> texts;
 
-    public CommunityCenterOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_CommunityCenter())
+    public CommunityCenterOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
+        I18n.Option_CommunityCenter())
     {
         keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
         texts = new List<string>
@@ -48,7 +49,10 @@ public class CommunityCenterOption : BaseOption
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)
     {
         if (whichAnswer == "Leave")
+        {
             Game1.exitActiveMenu();
+            Game1.player.forceCanMove();
+        }
         else
         {
             var communityCenter = Game1.RequireLocation<CommunityCenter>("CommunityCenter");

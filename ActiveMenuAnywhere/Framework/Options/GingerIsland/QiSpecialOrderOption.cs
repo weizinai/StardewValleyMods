@@ -8,7 +8,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class QiSpecialOrderOption : BaseOption
 {
-    public QiSpecialOrderOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_QiSpecialOrder())
+    public QiSpecialOrderOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
+        I18n.Option_QiSpecialOrder())
     {
     }
 

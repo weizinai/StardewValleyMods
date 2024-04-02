@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
-
+using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class RobinOption : BaseOption
 {
-    public RobinOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,I18n.Option_Robin())
+    public RobinOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Robin())
     {
     }
 
@@ -30,16 +30,12 @@ public class RobinOption : BaseOption
                 {
                     // 拖车
                     if (!Game1.MasterPlayer.mailReceived.Contains("pamHouseUpgrade"))
-                    {
                         options.Add(new Response("CommunityUpgrade",
                             Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_CommunityUpgrade")));
-                    }
                     // 捷径
                     else if (!Game1.MasterPlayer.mailReceived.Contains("communityUpgradeShortcuts"))
-                    {
                         options.Add(new Response("CommunityUpgrade",
                             Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_CommunityUpgrade")));
-                    }
                 }
             }
             else if (Game1.player.HouseUpgradeLevel < 3)
@@ -53,15 +49,11 @@ public class RobinOption : BaseOption
             if (Game1.player.HouseUpgradeLevel >= 2)
             {
                 if (Game1.IsMasterGame)
-                {
                     options.Add(new Response("Renovate",
                         Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_RenovateHouse")));
-                }
                 else
-                {
                     options.Add(new Response("Renovate",
                         Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_RenovateCabin")));
-                }
             }
 
             // 农场建筑
@@ -84,7 +76,7 @@ public class RobinOption : BaseOption
         var isCommunityCenterCompleted = Game1.MasterPlayer.mailReceived.Contains("ccIsComplete") ||
                                          Game1.MasterPlayer.hasCompletedCommunityCenter();
         var isJojaMember = Game1.MasterPlayer.mailReceived.Contains("JojaMember");
-        var isCommunityUpgradeCompleted = Game1.RequireLocation<StardewValley.Locations.Town>("Town").daysUntilCommunityUpgrade.Value <= 0;
+        var isCommunityUpgradeCompleted = Game1.RequireLocation<Town>("Town").daysUntilCommunityUpgrade.Value <= 0;
         return (isCommunityCenterCompleted || isJojaMember) && isCommunityUpgradeCompleted;
     }
 }

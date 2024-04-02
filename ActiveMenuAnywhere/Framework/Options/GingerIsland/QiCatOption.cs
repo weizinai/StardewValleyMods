@@ -10,7 +10,8 @@ public class QiCatOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public QiCatOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,I18n.Option_QiCat())
+    public QiCatOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,
+        I18n.Option_QiCat())
     {
         this.helper = helper;
     }

@@ -6,8 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class HatMouseOption : BaseOption
 {
-    public HatMouseOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
-        I18n.Option_HatMouse())
+    public HatMouseOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
+        base(bounds, texture, sourceRect, I18n.Option_HatMouse())
     {
     }
 

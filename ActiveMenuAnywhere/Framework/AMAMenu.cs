@@ -292,11 +292,18 @@ public class AMAMenu : IClickableMenu
                 {
                     new RSVQuestBoardOption(GetSourceRectangle(0), helper),
                     new RSVSpecialOrderOption(GetSourceRectangle(1), helper),
-                    new LorenzoOption(GetSourceRectangle(2)),
-                    new JericOption(GetSourceRectangle(3)),
-                    new KimpoiOption(GetSourceRectangle(4)),
-                    new PikaOption(GetSourceRectangle(5)),
-                    new LolaOption(GetSourceRectangle(6))
+                    new IanOption(GetSourceRectangle(2),helper),
+                    new PaulaOption(GetSourceRectangle(3), helper),
+                    new LorenzoOption(GetSourceRectangle(4)),
+                    new JericOption(GetSourceRectangle(5)),
+                    new KimpoiOption(GetSourceRectangle(6)),
+                    new PikaOption(GetSourceRectangle(7)),
+                    new LolaOption(GetSourceRectangle(8)),
+                    new NinjaBoardOption(GetSourceRectangle(10), helper),
+                    new JoiOption(GetSourceRectangle(11)),
+                    new MysticFalls1Option(GetSourceRectangle(12)),
+                    new MysticFalls2Option(GetSourceRectangle(13)),
+                    new MysticFalls3Option(GetSourceRectangle(14)),
                 });
                 break;
             default:

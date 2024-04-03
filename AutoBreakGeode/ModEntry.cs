@@ -24,13 +24,13 @@ public class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
-        
+
         configMenu?.Register(
             ModManifest,
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
         );
-        
+
         configMenu?.AddKeybindList(
             ModManifest,
             () => config.AutoBreakGeodeKey,

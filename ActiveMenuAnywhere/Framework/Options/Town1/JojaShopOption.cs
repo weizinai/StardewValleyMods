@@ -14,7 +14,7 @@ public class JojaShopOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (!Game1.MasterPlayer.hasCompletedCommunityCenter())
-            Utility.TryOpenShopMenu("Joja", null, true);
+            Utility.TryOpenShopMenu("Joja", "Claire");
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

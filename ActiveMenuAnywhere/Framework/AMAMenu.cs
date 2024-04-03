@@ -82,7 +82,7 @@ public class AMAMenu : IClickableMenu
     private void ResetComponents()
     {
         // Add title
-        const int titleOffsetY = -60;
+        const int titleOffsetY = -64;
         title = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2, yPositionOnScreen + titleOffsetY, 0, 0),
             "ActiveMenuAnywhere");
 

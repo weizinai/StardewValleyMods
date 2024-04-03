@@ -256,7 +256,10 @@ public class AMAMenu : IClickableMenu
                 options.AddRange(new BaseOption[]
                 {
                     new WillyOption(GetSourceRectangle(0)),
-                    new BobberOption(GetSourceRectangle(1))
+                    new BobberOption(GetSourceRectangle(1)),
+                    new NightMarketTraveler(GetSourceRectangle(2)),
+                    new DecorationBoatOption(GetSourceRectangle(3)),
+                    new MagicBoatOption(GetSourceRectangle(4))
                 });
                 break;
             case MenuTabID.Desert:

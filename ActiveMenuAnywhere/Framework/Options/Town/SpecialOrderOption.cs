@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 
@@ -7,8 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class SpecialOrderOption : BaseOption
 {
-    public SpecialOrderOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_SpecialOrder())
+    public SpecialOrderOption(Rectangle sourceRect) :
+        base(I18n.Option_SpecialOrder(), sourceRect)
     {
     }
 

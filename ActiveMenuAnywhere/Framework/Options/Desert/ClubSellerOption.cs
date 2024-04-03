@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class ClubSellerOption : BaseOption
 {
-    public ClubSellerOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_ClubSeller())
+    public ClubSellerOption(Rectangle sourceRect) :
+        base(I18n.Option_ClubSeller(), sourceRect)
     {
     }
 

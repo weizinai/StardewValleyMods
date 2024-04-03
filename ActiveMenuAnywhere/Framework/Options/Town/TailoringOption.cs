@@ -1,20 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class DyeOption : BaseOption
+public class TailoringOption : BaseOption
 {
-    public DyeOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Dye())
+    public TailoringOption(Rectangle sourceRect) :
+        base(I18n.Option_Tailoring(), sourceRect)
     {
     }
 
     public override void ReceiveLeftClick()
     {
         if (Game1.player.eventsSeen.Contains("992559"))
-            Game1.activeClickableMenu = new DyeMenu();
+            Game1.activeClickableMenu = new TailoringMenu();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

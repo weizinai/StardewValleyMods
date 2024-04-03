@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class WizardOption : BaseOption
 {
-    public WizardOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Wizard())
+    public WizardOption(Rectangle sourceRect) :
+        base(I18n.Option_Wizard(), sourceRect)
     {
     }
 

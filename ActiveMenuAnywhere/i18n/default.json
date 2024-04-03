@@ -4,8 +4,7 @@
     "Config.DefaultMenuTabID": "Default Menu Tab",
     // Tab
     "Tab.Farm": "Farm",
-    "Tab.Town1": "Town1",
-    "Tab.Town2": "Town2",
+    "Tab.Town": "Town1",
     "Tab.Mountain": "Mountain",
     "Tab.Forest": "Forest",
     "Tab.Beach": "Beach",
@@ -76,6 +75,8 @@
     // Tip
     "Tip.Unfinished": "Unfinished",
     "Tip.Unavailable": "Currently unavailable",
+    // BaseOption
+    "BaseOption.Leave": "Leave",
     // BillboardOption
     "BillboardOption.Calendar": "Calendar",
     "BillboardOption.DailyQuest": "DailyQuest",
@@ -84,12 +85,13 @@
     "ClintOption.Unfinished": "Tool is unfinished",
     // MarnieOption
     "MarnieOption.Bug": "The shop is normal, but buying animals will cause the player to teleport, please use it if you have a CJB cheat menu.",
+    // PierreOption
+    "PierreOption.SeedShop":"Seed Shop",
+    "PierreOption.BuyBackpack":"Buy Backpack",
     // RaccoonOption
     "RaccoonOption.RaccoonBundle": "Raccoon Bundle",
     "RaccoonOption.RaccoonShop": "Raccoon Shop",
-    "RaccoonOption.Leave": "Leave",
     // RSVPikaOption
     "PikaOption.Shop": "Shop",
     "PikaOption.RecipeShop": "Recipe Shop",
-    "PikaOption.Leave": "Leave"
 }

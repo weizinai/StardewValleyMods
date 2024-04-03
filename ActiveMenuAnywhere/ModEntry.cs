@@ -50,14 +50,13 @@ public class ModEntry : Mod
             },
             I18n.Config_DefaultMenuTabID,
             null,
-            new[] { "Farm", "Town1", "Town2", "Mountain", "Forest", "Beach", "Desert", "GingerIsland" },
+            new[] { "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland" },
             value =>
             {
                 var formatValue = value switch
                 {
                     "Farm" => I18n.Tab_Farm(),
-                    "Town1" => I18n.Tab_Town1(),
-                    "Town2" => I18n.Tab_Town2(),
+                    "Town" => I18n.Tab_Town(),
                     "Mountain" => I18n.Tab_Mountain(),
                     "Forest" => I18n.Tab_Forest(),
                     "Beach" => I18n.Tab_Beach(),
@@ -84,8 +83,7 @@ public class ModEntry : Mod
     private void LoadTexture()
     {
         Textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("assets/Farm.png"));
-        Textures.Add(MenuTabID.Town1, Helper.ModContent.Load<Texture2D>("assets/Town1.png"));
-        Textures.Add(MenuTabID.Town2, Helper.ModContent.Load<Texture2D>("assets/Town2.png"));
+        Textures.Add(MenuTabID.Town, Helper.ModContent.Load<Texture2D>("assets/Town.png"));
         Textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("assets/Mountain.png"));
         Textures.Add(MenuTabID.Forest, Helper.ModContent.Load<Texture2D>("assets/Forest.png"));
         Textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("assets/Beach.png"));

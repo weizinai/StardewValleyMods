@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class VolcanoShopOption : BaseOption
 {
-    public VolcanoShopOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
-        I18n.Option_VolcanoShop())
+    public VolcanoShopOption(Rectangle sourceRect) :
+        base(I18n.Option_VolcanoShop(), sourceRect)
     {
     }
 

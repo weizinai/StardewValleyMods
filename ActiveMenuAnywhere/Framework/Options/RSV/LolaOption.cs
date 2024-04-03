@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options.RSV;
 
 public class LolaOption : BaseOption
 {
-    public LolaOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_Lola())
+    public LolaOption(Rectangle sourceRect) :
+        base(I18n.Option_Lola(), sourceRect)
     {
     }
 

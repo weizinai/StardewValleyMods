@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Tools;
@@ -8,7 +7,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class ClintOption : BaseOption
 {
-    public ClintOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect, I18n.Option_Clint())
+    public ClintOption(Rectangle sourceRect) :
+        base(I18n.Option_Clint(), sourceRect)
     {
     }
 

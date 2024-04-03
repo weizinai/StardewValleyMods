@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class SandyOption : BaseOption
 {
-    public SandyOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_Sandy())
+    public SandyOption(Rectangle sourceRect) :
+        base(I18n.Option_Sandy(), sourceRect)
     {
     }
 

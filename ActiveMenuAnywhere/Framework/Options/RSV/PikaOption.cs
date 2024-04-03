@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options.RSV;
 
 public class PikaOption : BaseOption
 {
-    public PikaOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_Pika())
+    public PikaOption(Rectangle sourceRect) :
+        base(I18n.Option_Pika(), sourceRect)
     {
     }
 
@@ -17,7 +16,7 @@ public class PikaOption : BaseOption
         {
             new("Shop", I18n.PikaOption_Shop()),
             new("RecipeShop", I18n.PikaOption_RecipeShop()),
-            new("Leave", I18n.PikaOption_Leave())
+            new("Leave", I18n.BaseOption_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
     }

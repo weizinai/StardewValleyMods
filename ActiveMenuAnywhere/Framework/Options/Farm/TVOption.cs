@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Objects;
@@ -10,8 +9,8 @@ public class TVOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public TVOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,
-        I18n.Option_TV())
+    public TVOption(Rectangle sourceRect, IModHelper helper) :
+        base(I18n.Option_TV(), sourceRect)
     {
         this.helper = helper;
     }

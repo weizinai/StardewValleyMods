@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Common;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 
@@ -11,8 +10,8 @@ public class RSVSpecialOrderOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public RSVSpecialOrderOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) :
-        base(bounds, texture, sourceRect, I18n.Option_RSVSpecialOrder())
+    public RSVSpecialOrderOption(Rectangle sourceRect, IModHelper helper) :
+        base(I18n.Option_RSVSpecialOrder(), sourceRect)
     {
         this.helper = helper;
     }

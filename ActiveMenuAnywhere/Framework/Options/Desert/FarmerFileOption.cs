@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class FarmerFileOption : BaseOption
 {
-    public FarmerFileOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_FarmerFile())
+    public FarmerFileOption(Rectangle sourceRect) :
+        base(I18n.Option_FarmerFile(), sourceRect)
     {
     }
 

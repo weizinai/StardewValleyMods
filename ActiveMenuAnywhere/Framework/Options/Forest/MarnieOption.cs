@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
 public class MarnieOption : BaseOption
 {
-    public MarnieOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) :
-        base(bounds, texture, sourceRect, I18n.Option_Marnie())
+    public MarnieOption(Rectangle sourceRect) :
+        base(I18n.Option_Marnie(), sourceRect)
     {
     }
 

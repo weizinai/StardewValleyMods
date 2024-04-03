@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Characters;
@@ -11,8 +10,8 @@ public class RaccoonOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public RaccoonOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) :
-        base(bounds, texture, sourceRect, I18n.Option_Raccoon())
+    public RaccoonOption(Rectangle sourceRect, IModHelper helper) :
+        base(I18n.Option_Raccoon(), sourceRect)
     {
         this.helper = helper;
     }

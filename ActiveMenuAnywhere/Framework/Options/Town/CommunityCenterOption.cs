@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Locations;
 
@@ -10,8 +9,8 @@ public class CommunityCenterOption : BaseOption
     private readonly List<string> keys;
     private readonly List<string> texts;
 
-    public CommunityCenterOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
-        I18n.Option_CommunityCenter())
+    public CommunityCenterOption(Rectangle sourceRect) :
+        base(I18n.Option_CommunityCenter(), sourceRect)
     {
         keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
         texts = new List<string>
@@ -41,7 +40,7 @@ public class CommunityCenterOption : BaseOption
             if (communityCenter.shouldNoteAppearInArea(i))
                 options.Add(new Response(keys[i], texts[i]));
 
-        options.Add(new Response("Leave", Game1.content.LoadString("Strings\\Locations:AnimalShop_Marnie_Leave")));
+        options.Add(new Response("Leave", I18n.BaseOption_Leave()));
 
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
     }

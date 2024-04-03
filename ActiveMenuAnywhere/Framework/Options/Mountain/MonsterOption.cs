@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
@@ -10,8 +9,8 @@ public class MonsterOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public MonsterOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) :
-        base(bounds, texture, sourceRect, I18n.Option_Monster())
+    public MonsterOption(Rectangle sourceRect, IModHelper helper) :
+        base(I18n.Option_Monster(), sourceRect)
     {
         this.helper = helper;
     }

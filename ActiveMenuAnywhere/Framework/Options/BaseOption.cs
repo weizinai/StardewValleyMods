@@ -1,28 +1,19 @@
-﻿using Common;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using StardewValley;
-using StardewValley.Menus;
+﻿using Microsoft.Xna.Framework;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public abstract class BaseOption : ClickableTextureComponent
+public abstract class BaseOption
 {
-    protected BaseOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, string name) : base(bounds, texture, sourceRect, 1f)
+    protected BaseOption(string name, Rectangle sourceRect)
     {
-        this.name = name;
+        Name = name;
+        SourceRect = sourceRect;
     }
+
+    public Rectangle SourceRect { get; }
+    public string Name { get; }
 
     public virtual void ReceiveLeftClick()
     {
-    }
-
-    public override void draw(SpriteBatch spriteBatch)
-    {
-        base.draw(spriteBatch);
-        var x = bounds.X + bounds.Width / 2;
-        var y = bounds.Y + bounds.Height / 3 * 2;
-        var width = Game1.smallFont.MeasureString(name).X;
-        DrawHelper.DrawTab(x, y, Game1.smallFont, name, Align.Center);
     }
 }

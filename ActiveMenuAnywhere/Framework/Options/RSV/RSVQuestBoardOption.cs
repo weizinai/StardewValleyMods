@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Common;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 
@@ -11,8 +10,8 @@ public class RSVQuestBoardOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public RSVQuestBoardOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) :
-        base(bounds, texture, sourceRect, I18n.Option_RSVQuestBoard())
+    public RSVQuestBoardOption(Rectangle sourceRect, IModHelper helper) :
+        base(I18n.Option_RSVQuestBoard(), sourceRect)
     {
         this.helper = helper;
     }

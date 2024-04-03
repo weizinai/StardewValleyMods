@@ -13,37 +13,62 @@ public class AMAMenu : IClickableMenu
 {
     private const int InnerWidth = 600;
     private const int InnerHeight = 600;
+
+    private const int OptionsPerPage = 9;
     private readonly IModHelper helper;
 
     private readonly (int x, int y) innerDrawPosition =
         (x: Game1.uiViewport.Width / 2 - InnerWidth / 2, y: Game1.uiViewport.Height / 2 - InnerHeight / 2);
 
     private readonly List<BaseOption> options = new();
+    private readonly List<float> optionScales = new(OptionsPerPage) { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f };
+    private readonly List<ClickableComponent> optionSlots = new();
     private readonly List<ClickableComponent> tabs = new();
 
     private MenuTabID currentMenuTabID;
-    private ClickableComponent? title;
+
+    private int currentPage;
+    private ClickableTextureComponent downArrow;
+    private ClickableComponent title;
+    private ClickableTextureComponent upArrow;
 
     public AMAMenu(MenuTabID menuTabID, IModHelper helper)
     {
         this.helper = helper;
         Init(menuTabID);
         ResetComponents();
+        SetOptions();
     }
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
+        // arrow
+        if (upArrow.containsPoint(x, y) && currentPage > 0) currentPage--;
+        if (downArrow.containsPoint(x, y) && options.Count - (currentPage + 1) * OptionsPerPage > 0) currentPage++;
+
         // tab
         var tab = tabs.FirstOrDefault(tab => tab.containsPoint(x, y));
         if (tab != null) Game1.activeClickableMenu = new AMAMenu(GetTabID(tab), helper);
 
         // option
-        options.FirstOrDefault(option => option.containsPoint(x, y))?.ReceiveLeftClick();
+        for (var i = 0; i < OptionsPerPage; i++)
+        {
+            var optionsIndex = i + currentPage * OptionsPerPage;
+            if (optionSlots[i].containsPoint(x, y) && optionsIndex < options.Count)
+            {
+                options[optionsIndex].ReceiveLeftClick();
+                break;
+            }
+        }
     }
 
     public override void performHoverAction(int x, int y)
     {
-        options.ForEach(option => option.scale = option.containsPoint(x, y) ? 0.9f : 1f);
+        for (var i = 0; i < OptionsPerPage; i++)
+            if (optionSlots[i].containsPoint(x, y) && i + currentPage * OptionsPerPage < options.Count)
+                optionScales[i] = 0.9f;
+            else
+                optionScales[i] = 1f;
     }
 
     public override void draw(SpriteBatch spriteBatch)
@@ -55,15 +80,18 @@ public class AMAMenu : IClickableMenu
         drawTextureBox(spriteBatch, xPositionOnScreen, yPositionOnScreen, width, height, Color.White);
 
         // Draw title
-        if (title != null)
-            DrawHelper.DrawTitle(title.bounds.X, title.bounds.Y, title.name, Align.Center);
+        DrawHelper.DrawTitle(title.bounds.X, title.bounds.Y, title.name, Align.Center);
+
+        // Draw arrows
+        upArrow.draw(spriteBatch);
+        downArrow.draw(spriteBatch);
 
         // Draw tabs
         tabs.ForEach(tab => DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
             GetTabID(tab) == currentMenuTabID ? 0.7f : 1f));
 
         // Draw options
-        options.ForEach(option => option.draw(spriteBatch));
+        DrawOption();
 
         // Draw Mouse
         drawMouse(spriteBatch);
@@ -86,11 +114,14 @@ public class AMAMenu : IClickableMenu
         title = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2, yPositionOnScreen + titleOffsetY, 0, 0),
             "ActiveMenuAnywhere");
 
-        // Add tabs
-        AddTab();
+        // Add arrows
+        AddArrows();
 
-        // Add options
-        AddOption();
+        // Add tabs
+        AddTabs();
+
+        // Add optionSlots
+        AddOptionSlots();
     }
 
     private MenuTabID GetTabID(ClickableComponent tab)
@@ -114,7 +145,20 @@ public class AMAMenu : IClickableMenu
         return new Rectangle(i * 200, j * 200, 200, 200);
     }
 
-    private void AddTab()
+    private void AddArrows()
+    {
+        const float scale = 4f;
+        var offset = (x: 8, y: (int)(12 * scale / 2));
+        upArrow = new ClickableTextureComponent(
+            new Rectangle(xPositionOnScreen + width + offset.x, yPositionOnScreen - offset.y, (int)(11 * scale), (int)(12 * scale)),
+            Game1.mouseCursors, new Rectangle(421, 459, 11, 12), scale);
+        downArrow = new ClickableTextureComponent(
+            new Rectangle(xPositionOnScreen + width + offset.x, yPositionOnScreen + height - offset.y, (int)(11 * scale),
+                (int)(12 * scale)),
+            Game1.mouseCursors, new Rectangle(421, 472, 11, 12), scale);
+    }
+
+    private void AddTabs()
     {
         var tabOffset = (x: 4, y: 16);
         var tabSize = (width: 100, height: 48);
@@ -122,16 +166,14 @@ public class AMAMenu : IClickableMenu
 
         var i = 2;
         tabs.Clear();
+
         tabs.AddRange(new[]
         {
             new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y, tabSize.width - tabOffset.x, tabSize.height),
                 I18n.Tab_Farm(), MenuTabID.Farm.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Town1(), MenuTabID.Town1.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Town2(), MenuTabID.Town2.ToString()),
+                I18n.Tab_Town(), MenuTabID.Town.ToString()),
             new ClickableComponent(
                 new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
                 I18n.Tab_Mountain(), MenuTabID.Mountain.ToString()),
@@ -158,92 +200,86 @@ public class AMAMenu : IClickableMenu
                 I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
     }
 
-    private void AddOption()
+    private void SetOptions()
     {
-        var textures = ModEntry.Textures;
         options.Clear();
         switch (currentMenuTabID)
         {
             case MenuTabID.Farm:
                 options.AddRange(new BaseOption[]
                 {
-                    new TVOption(GetBoundsRectangle(0), textures[MenuTabID.Farm], GetSourceRectangle(0), helper),
-                    new ShippingBinOption(GetBoundsRectangle(1), textures[MenuTabID.Farm], GetSourceRectangle(1), helper)
+                    new TVOption(GetSourceRectangle(0), helper),
+                    new ShippingBinOption(GetSourceRectangle(1), helper)
                 });
                 break;
-            case MenuTabID.Town1:
+            case MenuTabID.Town:
                 options.AddRange(new BaseOption[]
                 {
-                    new BillboardOption(GetBoundsRectangle(0), textures[MenuTabID.Town1], GetSourceRectangle(0)),
-                    new SpecialOrderOption(GetBoundsRectangle(1), textures[MenuTabID.Town1], GetSourceRectangle(1)),
-                    new CommunityCenterOption(GetBoundsRectangle(2), textures[MenuTabID.Town1], GetSourceRectangle(2)),
-                    new PierreOption(GetBoundsRectangle(3), textures[MenuTabID.Town1], GetSourceRectangle(3)),
-                    new ClintOption(GetBoundsRectangle(4), textures[MenuTabID.Town1], GetSourceRectangle(4)),
-                    new GusOption(GetBoundsRectangle(5), textures[MenuTabID.Town1], GetSourceRectangle(5)),
-                    new HarveyOption(GetBoundsRectangle(6), textures[MenuTabID.Town1], GetSourceRectangle(6)),
-                    new JojaShopOption(GetBoundsRectangle(7), textures[MenuTabID.Town1], GetSourceRectangle(7))
-                });
-                break;
-            case MenuTabID.Town2:
-                options.AddRange(new BaseOption[]
-                {
-                    new IceCreamStandOption(GetBoundsRectangle(0), textures[MenuTabID.Town2], GetSourceRectangle(0)),
-                    new PrizeTicketOption(GetBoundsRectangle(1), textures[MenuTabID.Town2], GetSourceRectangle(1)),
-                    new BooksellerOption(GetBoundsRectangle(2), textures[MenuTabID.Town2], GetSourceRectangle(2)),
-                    new DyeOption(GetBoundsRectangle(3), textures[MenuTabID.Town2], GetSourceRectangle(3)),
-                    new TailoringOption(GetBoundsRectangle(4), textures[MenuTabID.Town2], GetSourceRectangle(4)),
-                    new AbandonedJojaMartOption(GetBoundsRectangle(5), textures[MenuTabID.Town2], GetSourceRectangle(5)),
-                    new KrobusOption(GetBoundsRectangle(6), textures[MenuTabID.Town2], GetSourceRectangle(6)),
-                    new StatueOption(GetBoundsRectangle(7), textures[MenuTabID.Town2], GetSourceRectangle(7))
+                    new BillboardOption(GetSourceRectangle(0)),
+                    new SpecialOrderOption(GetSourceRectangle(1)),
+                    new CommunityCenterOption(GetSourceRectangle(2)),
+                    new PierreOption(GetSourceRectangle(3)),
+                    new ClintOption(GetSourceRectangle(4)),
+                    new GusOption(GetSourceRectangle(5)),
+                    new JojaShopOption(GetSourceRectangle(6)),
+                    new PrizeTicketOption(GetSourceRectangle(7)),
+                    new BooksellerOption(GetSourceRectangle(8)),
+                    new KrobusOption(GetSourceRectangle(9)),
+                    new StatueOption(GetSourceRectangle(10)),
+                    new HarveyOption(GetSourceRectangle(11)),
+                    new TailoringOption(GetSourceRectangle(12)),
+                    new DyeOption(GetSourceRectangle(13)),
+                    new IceCreamStandOption(GetSourceRectangle(14)),
+                    new AbandonedJojaMartOption(GetSourceRectangle(15))
                 });
                 break;
             case MenuTabID.Mountain:
                 options.AddRange(new BaseOption[]
                 {
-                    new RobinOption(GetBoundsRectangle(0), textures[MenuTabID.Mountain], GetSourceRectangle(0)),
-                    new DwarfOption(GetBoundsRectangle(1), textures[MenuTabID.Mountain], GetSourceRectangle(1)),
-                    new MonsterOption(GetBoundsRectangle(2), textures[MenuTabID.Mountain], GetSourceRectangle(2), helper),
-                    new MarlonOption(GetBoundsRectangle(3), textures[MenuTabID.Mountain], GetSourceRectangle(3))
+                    new RobinOption(GetSourceRectangle(0)),
+                    new DwarfOption(GetSourceRectangle(1)),
+                    new MonsterOption(GetSourceRectangle(2), helper),
+                    new MarlonOption(GetSourceRectangle(3))
                 });
                 break;
             case MenuTabID.Forest:
                 options.AddRange(new BaseOption[]
                 {
-                    new MarnieOption(GetBoundsRectangle(0), textures[MenuTabID.Forest], GetSourceRectangle(0)),
-                    new TravelerOption(GetBoundsRectangle(1), textures[MenuTabID.Forest], GetSourceRectangle(1)),
-                    new HatMouseOption(GetBoundsRectangle(2), textures[MenuTabID.Forest], GetSourceRectangle(2)),
-                    new WizardOption(GetBoundsRectangle(3), textures[MenuTabID.Forest], GetSourceRectangle(3)),
-                    new RaccoonOption(GetBoundsRectangle(4), textures[MenuTabID.Forest], GetSourceRectangle(4), helper)
+                    new MarnieOption(GetSourceRectangle(0)),
+                    new TravelerOption(GetSourceRectangle(1)),
+                    new HatMouseOption(GetSourceRectangle(2)),
+                    new WizardOption(GetSourceRectangle(3)),
+                    new RaccoonOption(GetSourceRectangle(4), helper)
                 });
                 break;
             case MenuTabID.Beach:
                 options.AddRange(new BaseOption[]
                 {
-                    new WillyOption(GetBoundsRectangle(0), textures[MenuTabID.Beach], GetSourceRectangle(0)),
-                    new BobberOption(GetBoundsRectangle(1), textures[MenuTabID.Beach], GetSourceRectangle(1))
+                    new WillyOption(GetSourceRectangle(0)),
+                    new BobberOption(GetSourceRectangle(1))
                 });
                 break;
             case MenuTabID.Desert:
                 options.AddRange(new BaseOption[]
                 {
-                    new SandyOption(GetBoundsRectangle(0), textures[MenuTabID.Desert], GetSourceRectangle(0)),
-                    new DesertTradeOption(GetBoundsRectangle(1), textures[MenuTabID.Desert], GetSourceRectangle(1)),
-                    new CasinoOption(GetBoundsRectangle(2), textures[MenuTabID.Desert], GetSourceRectangle(2)),
-                    new FarmerFileOption(GetBoundsRectangle(3), textures[MenuTabID.Desert], GetSourceRectangle(3)),
-                    new BuyQiCoinsOption(GetBoundsRectangle(4), textures[MenuTabID.Desert], GetSourceRectangle(4)),
-                    new ClubSellerOption(GetBoundsRectangle(5), textures[MenuTabID.Desert], GetSourceRectangle(5))
+                    new SandyOption(GetSourceRectangle(0)),
+                    new DesertTradeOption(GetSourceRectangle(1)),
+                    new CasinoOption(GetSourceRectangle(2)),
+                    new FarmerFileOption(GetSourceRectangle(3)),
+                    new BuyQiCoinsOption(GetSourceRectangle(4)),
+                    new ClubSellerOption(GetSourceRectangle(5))
                 });
                 break;
             case MenuTabID.GingerIsland:
                 options.AddRange(new BaseOption[]
                 {
-                    new QiSpecialOrderOption(GetBoundsRectangle(0), textures[MenuTabID.GingerIsland], GetSourceRectangle(0)),
-                    new QiGemShopOption(GetBoundsRectangle(1), textures[MenuTabID.GingerIsland], GetSourceRectangle(1)),
-                    new QiCatOption(GetBoundsRectangle(2), textures[MenuTabID.GingerIsland], GetSourceRectangle(2), helper),
-                    new IslandTradeOption(GetBoundsRectangle(3), textures[MenuTabID.GingerIsland], GetSourceRectangle(3)),
-                    new IslandResortOption(GetBoundsRectangle(4), textures[MenuTabID.GingerIsland], GetSourceRectangle(4)),
-                    new VolcanoShopOption(GetBoundsRectangle(5), textures[MenuTabID.GingerIsland], GetSourceRectangle(5)),
-                    new ForgeOption(GetBoundsRectangle(6), textures[MenuTabID.GingerIsland], GetSourceRectangle(6))
+                    new QiSpecialOrderOption(GetSourceRectangle(0)),
+                    new QiGemShopOption(GetSourceRectangle(1)),
+                    new QiCatOption(GetSourceRectangle(2), helper),
+                    new IslandTradeOption(GetSourceRectangle(3)),
+                    new IslandResortOption(GetSourceRectangle(4)),
+                    new VolcanoShopOption(GetSourceRectangle(5)),
+                    new ForgeOption(GetSourceRectangle(6))
                 });
                 break;
             case MenuTabID.SVE:
@@ -251,17 +287,45 @@ public class AMAMenu : IClickableMenu
             case MenuTabID.RSV:
                 options.AddRange(new BaseOption[]
                 {
-                    new RSVQuestBoardOption(GetBoundsRectangle(0), textures[MenuTabID.RSV], GetSourceRectangle(0), helper),
-                    new RSVSpecialOrderOption(GetBoundsRectangle(1), textures[MenuTabID.RSV], GetSourceRectangle(1), helper),
-                    new LorenzoOption(GetBoundsRectangle(2), textures[MenuTabID.RSV], GetSourceRectangle(2)),
-                    new JericOption(GetBoundsRectangle(3), textures[MenuTabID.RSV], GetSourceRectangle(3)),
-                    new KimpoiOption(GetBoundsRectangle(4), textures[MenuTabID.RSV], GetSourceRectangle(4)),
-                    new PikaOption(GetBoundsRectangle(5), textures[MenuTabID.RSV], GetSourceRectangle(5)),
-                    new LolaOption(GetBoundsRectangle(6), textures[MenuTabID.RSV], GetSourceRectangle(6))
+                    new RSVQuestBoardOption(GetSourceRectangle(0), helper),
+                    new RSVSpecialOrderOption(GetSourceRectangle(1), helper),
+                    new LorenzoOption(GetSourceRectangle(2)),
+                    new JericOption(GetSourceRectangle(3)),
+                    new KimpoiOption(GetSourceRectangle(4)),
+                    new PikaOption(GetSourceRectangle(5)),
+                    new LolaOption(GetSourceRectangle(6))
                 });
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
+        }
+    }
+
+    private void AddOptionSlots()
+    {
+        for (var i = 0; i < OptionsPerPage; i++) optionSlots.Add(new ClickableComponent(GetBoundsRectangle(i), ""));
+    }
+
+    private void DrawOption()
+    {
+        var spriteBatch = Game1.spriteBatch;
+        for (var i = 0; i < OptionsPerPage; i++)
+        {
+            var optionsIndex = i + currentPage * OptionsPerPage;
+            // 选项槽的位置和大小
+            var bounds = optionSlots[i].bounds;
+            // 根据缩放调整纹理绘制的位置和大小
+            var size = (width: (int)(bounds.Width * optionScales[i]), height: (int)(bounds.Height * optionScales[i]));
+            var position = (x: bounds.X + (bounds.Width - size.width) / 2, y: bounds.Y + (bounds.Height - size.height) / 2);
+            // 如果选项绘制完成,则停止绘制
+            if (optionsIndex >= options.Count) break;
+            // 绘制纹理
+            drawTextureBox(spriteBatch, ModEntry.Textures[currentMenuTabID], options[optionsIndex].SourceRect,
+                position.x, position.y, size.width, size.height, Color.White);
+            // 绘制标签
+            var x = bounds.X + bounds.Width / 2;
+            var y = bounds.Y + bounds.Height / 3 * 2;
+            DrawHelper.DrawTab(x, y, Game1.smallFont, options[optionsIndex].Name, Align.Center);
         }
     }
 }

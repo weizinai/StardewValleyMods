@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 
@@ -7,8 +6,8 @@ namespace ActiveMenuAnywhere.Framework.Options;
 
 public class BillboardOption : BaseOption
 {
-    public BillboardOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect) : base(bounds, texture, sourceRect,
-        I18n.Option_Billboard())
+    public BillboardOption(Rectangle sourceRect) :
+        base(I18n.Option_Billboard(), sourceRect)
     {
     }
 
@@ -18,7 +17,7 @@ public class BillboardOption : BaseOption
         {
             new("Calendar", I18n.BillboardOption_Calendar()),
             new("DailyQuest", I18n.BillboardOption_DailyQuest()),
-            new("Leave", Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Leave"))
+            new("Leave", I18n.BaseOption_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
     }

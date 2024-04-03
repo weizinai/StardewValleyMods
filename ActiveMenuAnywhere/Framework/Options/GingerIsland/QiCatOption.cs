@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
@@ -10,8 +9,8 @@ public class QiCatOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public QiCatOption(Rectangle bounds, Texture2D texture, Rectangle sourceRect, IModHelper helper) : base(bounds, texture, sourceRect,
-        I18n.Option_QiCat())
+    public QiCatOption(Rectangle sourceRect, IModHelper helper) :
+        base(I18n.Option_QiCat(), sourceRect)
     {
         this.helper = helper;
     }

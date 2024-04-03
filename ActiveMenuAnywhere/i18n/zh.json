@@ -4,8 +4,7 @@
     "Config.DefaultMenuTabID": "默认菜单标签",
     // Tab
     "Tab.Farm": "农场",
-    "Tab.Town1": "鹈鹕镇1",
-    "Tab.Town2": "鹈鹕镇2",
+    "Tab.Town": "鹈鹕镇",
     "Tab.Mountain": "深山",
     "Tab.Forest": "煤炭森林",
     "Tab.Beach": "沙滩",
@@ -76,6 +75,8 @@
     // Tip
     "Tip.Unfinished": "功能还未完成，请等待模组更新",
     "Tip.Unavailable": "目前还不能访问",
+    // BaseOption
+    "BaseOption.Leave": "（离开）",
     // BillboardMenu
     "BillboardOption.Calendar": "日历",
     "BillboardOption.DailyQuest": "每日任务",
@@ -84,12 +85,13 @@
     "ClintOption.Unfinished": "工具还未升级完成",
     // MarnieOption
     "MarnieOption.Bug": "商店是正常的，但购买动物会导致玩家瞬移，请在有CJB作弊菜单的情况下使用它。",
+    // PierreOption
+    "PierreOption.SeedShop":"种子商店",
+    "PierreOption.BuyBackpack":"购买背包",
     // RaccoonOption
     "RaccoonOption.RaccoonBundle": "小碗熊收集包",
     "RaccoonOption.RaccoonShop": "小碗熊商店",
-    "RaccoonOption.Leave": "离开",
     // RSVPikaOption
     "PikaOption.Shop": "食物商店",
     "PikaOption.RecipeShop": "食谱商店",
-    "PikaOption.Leave": "离开"
 }

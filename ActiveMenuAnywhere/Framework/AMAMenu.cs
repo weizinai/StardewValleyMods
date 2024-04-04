@@ -1,5 +1,6 @@
 ﻿using ActiveMenuAnywhere.Framework.Options;
 using ActiveMenuAnywhere.Framework.Options.RSV;
+using ActiveMenuAnywhere.Framework.Options.SVE;
 using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -286,6 +287,10 @@ public class AMAMenu : IClickableMenu
                 });
                 break;
             case MenuTabID.SVE:
+                options.AddRange(new BaseOption[]
+                {
+                    new SophiaOption(GetSourceRectangle(0))
+                });
                 break;
             case MenuTabID.RSV:
                 options.AddRange(new BaseOption[]

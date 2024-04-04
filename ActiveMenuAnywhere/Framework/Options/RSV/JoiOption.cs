@@ -5,7 +5,7 @@ namespace ActiveMenuAnywhere.Framework.Options.RSV;
 
 public class JoiOption : BaseOption
 {
-    public JoiOption(Rectangle sourceRect) : base("Joi", sourceRect)
+    public JoiOption(Rectangle sourceRect) : base(I18n.Option_Joi(), sourceRect)
     {
     }
 

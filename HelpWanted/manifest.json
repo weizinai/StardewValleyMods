@@ -1,0 +1,11 @@
+﻿{
+    "Name": "Help Wanted",
+    "Author": "aedenthorn",
+    "Version": "0.8.2",
+    "Description": "Help Wanted.",
+    "UniqueID": "aedenthorn.HelpWanted",
+    "EntryDll": "HelpWanted.dll",
+    "UpdateKeys": [
+        "Nexus:14640"
+    ]
+}

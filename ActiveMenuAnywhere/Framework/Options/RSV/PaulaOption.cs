@@ -9,7 +9,7 @@ public class PaulaOption : BaseOption
 {
     private readonly IModHelper helper;
     
-    public PaulaOption(Rectangle sourceRect, IModHelper helper) : base("Paula", sourceRect)
+    public PaulaOption(Rectangle sourceRect, IModHelper helper) : base(I18n.Option_Paula(), sourceRect)
     {
         this.helper = helper;
     }

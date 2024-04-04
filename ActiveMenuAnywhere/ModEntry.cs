@@ -82,14 +82,14 @@ public class ModEntry : Mod
 
     private void LoadTexture()
     {
-        Textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("assets/Farm.png"));
-        Textures.Add(MenuTabID.Town, Helper.ModContent.Load<Texture2D>("assets/Town.png"));
-        Textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("assets/Mountain.png"));
-        Textures.Add(MenuTabID.Forest, Helper.ModContent.Load<Texture2D>("assets/Forest.png"));
-        Textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("assets/Beach.png"));
-        Textures.Add(MenuTabID.Desert, Helper.ModContent.Load<Texture2D>("assets/Desert"));
-        Textures.Add(MenuTabID.GingerIsland, Helper.ModContent.Load<Texture2D>("assets/GingerIsland.png"));
-        Textures.Add(MenuTabID.RSV, Helper.ModContent.Load<Texture2D>("assets/RSV.png"));
-        Textures.Add(MenuTabID.SVE, Helper.ModContent.Load<Texture2D>("assets/SVE.png"));
+        Textures.Add(MenuTabID.Farm, Helper.ModContent.Load<Texture2D>("Assets/Farm.png"));
+        Textures.Add(MenuTabID.Town, Helper.ModContent.Load<Texture2D>("Assets/Town.png"));
+        Textures.Add(MenuTabID.Mountain, Helper.ModContent.Load<Texture2D>("Assets/Mountain.png"));
+        Textures.Add(MenuTabID.Forest, Helper.ModContent.Load<Texture2D>("Assets/Forest.png"));
+        Textures.Add(MenuTabID.Beach, Helper.ModContent.Load<Texture2D>("Assets/Beach.png"));
+        Textures.Add(MenuTabID.Desert, Helper.ModContent.Load<Texture2D>("Assets/Desert"));
+        Textures.Add(MenuTabID.GingerIsland, Helper.ModContent.Load<Texture2D>("Assets/GingerIsland.png"));
+        Textures.Add(MenuTabID.RSV, Helper.ModContent.Load<Texture2D>("Assets/RSV.png"));
+        Textures.Add(MenuTabID.SVE, Helper.ModContent.Load<Texture2D>("Assets/SVE.png"));
     }
 }

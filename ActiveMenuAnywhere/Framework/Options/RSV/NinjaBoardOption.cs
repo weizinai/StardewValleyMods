@@ -11,7 +11,7 @@ public class NinjaBoardOption : BaseOption
     private readonly IModHelper helper;
 
     public NinjaBoardOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_RSVQuestBoard(), sourceRect)
+        base(I18n.Option_NinjaBoard(), sourceRect)
     {
         this.helper = helper;
     }

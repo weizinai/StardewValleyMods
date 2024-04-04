@@ -5,7 +5,7 @@ namespace ActiveMenuAnywhere.Framework.Options.RSV;
 
 public class MysticFalls1Option : BaseOption
 {
-    public MysticFalls1Option(Rectangle sourceRect) : base("MysticFalls1", sourceRect)
+    public MysticFalls1Option(Rectangle sourceRect) : base(I18n.Option_MysticFall1(), sourceRect)
     {
     }
 

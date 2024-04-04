@@ -12,8 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="assets\"/>
-        <Folder Include="Framework\Options\SVE\"/>
+        <Folder Include="Assets\" />
     </ItemGroup>
 
     <ItemGroup>

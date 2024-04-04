@@ -9,7 +9,7 @@ public class IanOption : BaseOption
 {
     private readonly IModHelper helper;
     
-    public IanOption(Rectangle sourceRect, IModHelper helper) : base("Ian", sourceRect)
+    public IanOption(Rectangle sourceRect, IModHelper helper) : base(I18n.Option_Ian(), sourceRect)
     {
         this.helper = helper;
     }

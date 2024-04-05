@@ -1,5 +1,4 @@
 ﻿using Common;
-using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -33,13 +32,13 @@ public sealed class OrdersBillboard : Billboard
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites\\Billboard");
         QuestBillboard = null;
-        if (ModEntry.questList.Count > 0)
+        if (ModEntry.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典
             QuestOptions.Clear();
             QuestDataDictionary.Clear();
             // 遍历所有的任务数据,创建任务选项
-            var questList = ModEntry.questList;
+            var questList = ModEntry.QuestList;
             for (var i = 0; i < questList.Count; i++)
             {
                 var size = new Point((int)(questList[i].PadTextureSource.Width * ModEntry.Config.NoteScale),
@@ -59,10 +58,10 @@ public sealed class OrdersBillboard : Billboard
                 QuestDataDictionary[OptionIndex - i] = questList[i];
             }
 
-            ModEntry.questList.Clear();
+            ModEntry.QuestList.Clear();
         }
 
-        exitFunction = delegate()
+        exitFunction = delegate
         {
             if (QuestBillboard is not null)
                 Game1.activeClickableMenu = new OrdersBillboard();
@@ -182,12 +181,13 @@ public sealed class OrdersBillboard : Billboard
             QuestBillboard.draw(spriteBatch);
             return;
         }
-        
+
         // 绘制阴影
         DrawHelper.DrawShadow();
-        
+
         // 绘制面板纹理
-        spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White, 0f,
+        spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White,
+            0f,
             Vector2.Zero, 4f, SpriteEffects.None, 1f);
 
         // 如果没有任务选项,则绘制"没有任务"的文本
@@ -198,11 +198,13 @@ public sealed class OrdersBillboard : Billboard
         }
         else
         {
+            // 遍历所有的任务选项,绘制任务选项
             foreach (var option in QuestOptions)
             {
                 option.draw(spriteBatch, QuestDataDictionary[option.myID].PadColor, 1);
                 spriteBatch.Draw(QuestDataDictionary[option.myID].PinTexture, option.bounds, QuestDataDictionary[option.myID].IconSource,
                     QuestDataDictionary[option.myID].PinColor);
+                // 如果任务有图标,则绘制任务图标
                 if (QuestDataDictionary[option.myID].Icon is not null)
                 {
                     spriteBatch.Draw(QuestDataDictionary[option.myID].Icon,
@@ -215,18 +217,19 @@ public sealed class OrdersBillboard : Billboard
             }
         }
 
+        // 绘制右上角的关闭按钮
         if (upperRightCloseButton != null && shouldDrawCloseButton())
         {
             upperRightCloseButton.draw(spriteBatch);
         }
 
-        if (hoverText?.Length > 0)
+        // 如果有悬浮文本,则绘制悬浮文本
+        if (hoverText.Length > 0)
         {
             drawHoverText(spriteBatch, hoverText, Game1.smallFont, 0, 0, -1, (hoverTitle.Length > 0) ? hoverTitle : null);
         }
-        
+
         // 绘制鼠标
-        // Game1.mouseCursorTransparency = 1f;
         drawMouse(spriteBatch);
     }
 

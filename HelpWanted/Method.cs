@@ -5,6 +5,7 @@ using Netcode;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Quests;
+using SObject = StardewValley.Object;
 
 namespace HelpWanted;
 
@@ -103,7 +104,7 @@ internal partial class ModEntry
             (byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax));
     }
 
-    public static Quest MakeQuest(QuestInfo quest)
+    public static Quest CreateQuest(QuestInfo quest)
     {
         switch (quest.QuestType)
         {
@@ -226,92 +227,99 @@ internal partial class ModEntry
         }
     }
 
-    private static void AddQuest(Quest quest, QuestType questType, Texture2D icon, Rectangle iconRect, Point iconOffset)
+    private static void AddQuest(Quest quest, QuestType questType, Texture2D icon)
     {
         var npcName = SHelper.Reflection.GetField<NetString>(quest, "target").GetValue().Value;
         var padTexture = GetPadTexture(npcName, questType.ToString());
         var pinTexture = GetPinTexture(npcName, questType.ToString());
-        questList.Add(new QuestData(padTexture, pinTexture, icon, iconRect, iconOffset));
+        QuestList.Add(new QuestData(padTexture, pinTexture, icon));
     }
 
-    /*private static int GetRandomItem(int result, List<int> possibleItems)
+    private static string GetRandomItem(string result, List<string> possibleItems)
     {
-        List<int> items = GetRandomItemList(possibleItems);
-
+        var items = GetRandomItemList(possibleItems);
+        
         if (items is null)
-            return result;
+            return ItemRegistry.QualifyItemId(result);
         if (items.Contains(result) && !Config.IgnoreVanillaItemSelection)
-            return result;
-        for (int i = items.Count - 1; i >= 0; i--)
+            return ItemRegistry.QualifyItemId(result);;
+        
+        for (var i = items.Count - 1; i >= 0; i--)
         {
-            if (!Game1.objectInformation.ContainsKey(items[i]))
+            if (!Game1.objectData.ContainsKey(items[i]))
                 items.RemoveAt(i);
         }
 
         if (!items.Any())
             return result;
-        var ii = items[random.Next(items.Count)];
-        if (!Game1.objectInformation.ContainsKey(ii))
+        
+        var ii = items[Random.Next(items.Count)];
+        if (!Game1.objectData.ContainsKey(ii))
             return result;
         //SMonitor.Log($"our random: {ii}");
         //SMonitor.Log($"found our random: {ii}");
         return ii;
     }
 
-    private static List<int> GetRandomItemList(List<int> possibleItems)
+    private static List<string>? GetRandomItemList(List<string> possibleItems)
     {
-        if (!Config.ModEnabled || Config is { MustLikeItem: false, MustLoveItem: false } || Game1.questOfTheDay is not ItemDeliveryQuest)
+        // 如果模组未启用,或者必须为喜爱物品和必须为喜欢物品均为false,或者今日任务不是物品交付任务,则返回null
+        if (!Config.ModEnabled || Config is { MustLikeItem: false, MustLoveItem: false } ||
+            Game1.questOfTheDay is not ItemDeliveryQuest itemDeliveryQuest)
             return null;
-        string name = (Game1.questOfTheDay as ItemDeliveryQuest)?.target?.Value;
-        if (name is null || !Game1.NPCGiftTastes.TryGetValue(name, out string data))
-            return null;
-        var listString = Game1.NPCGiftTastes["Universal_Love"];
+
+        // 获取普遍喜爱物品和普遍喜欢物品
+        var itemString = Game1.NPCGiftTastes["Universal_Love"];
         if (!Config.MustLoveItem)
         {
-            listString += " " + Game1.NPCGiftTastes["Universal_Like"];
+            itemString += " " + Game1.NPCGiftTastes["Universal_Like"];
         }
 
+        // 获取任务目标NPC的喜爱物品和喜欢物品
+        var npcName = itemDeliveryQuest.target.Value;
+        if (npcName is null || !Game1.NPCGiftTastes.TryGetValue(npcName, out var data))
+            return null;
         var split = data.Split('/');
-        if (split.Length < 4)
+        if (split.Length < 4) return null;
+        itemString += " " + split[1] + (Config.MustLoveItem ? "" : " " + split[3]);
+        if (string.IsNullOrEmpty(itemString))
             return null;
-        listString += " " + split[1] + (Config.MustLoveItem ? "" : " " + split[3]);
-        if (string.IsNullOrEmpty(listString))
-            return null;
-        split = listString.Split(' ');
-        List<int> items = new List<int>();
-        foreach (var str in split)
+        var items = new List<string>(itemString.Split(' '));
+        
+        // 遍历所有物品,移除不符合条件的物品
+        foreach (var item in items)
         {
-            if (!int.TryParse(str, out int i) || !Game1.objectInformation.ContainsKey(i))
+            var sObject = new SObject(item, 1);
+            if (!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory)
+            {
+                items.Remove(item);
                 continue;
-            SObject obj = new SObject(i, 1);
-            if (!Config.AllowArtisanGoods && obj is not null && obj.Category == SObject.artisanGoodsCategory)
-                continue;
-            if (Config.MaxPrice > 0 && obj is not null && obj.Price > Config.MaxPrice)
-                continue;
-            items.Add(i);
+            }
+
+            if (Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice)
+            {
+                items.Remove(item);
+            }
         }
 
-        if (!items.Any() || (!Config.IgnoreVanillaItemSelection && possibleItems?.Any() != true))
+        if (!items.Any() || (!Config.IgnoreVanillaItemSelection && possibleItems.Any() != true))
             return null;
+
         if (Config.IgnoreVanillaItemSelection)
         {
             return items;
         }
 
-        for (int i = possibleItems.Count - 1; i >= 0; i--)
+        foreach (var item in possibleItems)
         {
-            int idx = possibleItems[i];
-            if (!items.Contains(idx))
+            if (!items.Contains(item))
             {
-                if (idx >= 0)
+                var sObject = new SObject(item, 1);
+                if (!items.Contains(sObject.Category.ToString()) ||
+                    (!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) ||
+                    (Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice))
                 {
-                    SObject obj = new SObject(idx, 1);
-                    if (obj is null || !items.Contains(obj.Category) ||
-                        (!Config.AllowArtisanGoods && obj.Category == SObject.artisanGoodsCategory) ||
-                        (Config.MaxPrice > 0 && obj.Price > Config.MaxPrice))
-                    {
-                        possibleItems.RemoveAt(i);
-                    }
+                    possibleItems.Remove(item);
                 }
             }
         }
@@ -320,9 +328,16 @@ internal partial class ModEntry
         {
             return possibleItems;
         }
-        else
-        {
-            return items;
-        }
-    }*/
+
+        return items;
+    }
+    
+    private static List<string> GetPossibleCrops(List<string> oldList)
+    {
+        if (!Config.ModEnabled)
+            return oldList;
+        List<string> newList = GetRandomItemList(oldList);
+        //SMonitor.Log($"possible crops: {newList?.Count}");
+        return (newList is null || !newList.Any()) ? oldList : newList;
+    }
 }

@@ -28,22 +28,22 @@ public class QuestData : IQuestData
         IconColor = data.iconColor ?? new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
         IconScale = data.iconScale;
         IconOffset = data.iconOffset ?? new Point(config.PortraitOffsetX, config.PortraitOffsetY);
-        Quest = ModEntry.MakeQuest(data.Quest);
+        Quest = ModEntry.CreateQuest(data.Quest);
     }
 
-    public QuestData(Texture2D padTexture, Texture2D pinTexture, Texture2D icon, Rectangle iconSource, Point iconOffset)
+    public QuestData(Texture2D padTexture, Texture2D pinTexture, Texture2D icon)
     {
         var config = ModEntry.Config;
-        PadTexture = padTexture;
+        PadTexture = padTexture;    
         PadTextureSource = new Rectangle(0, 0, 64, 64);
         PadColor = ModEntry.GetRandomColor();
         PinTexture = pinTexture;
         PinTextureSource = new Rectangle(0, 0, 64, 64);
         PinColor = ModEntry.GetRandomColor();
         Icon = icon;
-        IconSource = iconSource;
+        IconSource = new Rectangle(0,0,64,64);
         IconColor = new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
-        IconOffset = iconOffset;
+        IconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
         Quest = Game1.questOfTheDay;
         IconScale = config.PortraitScale;
     }

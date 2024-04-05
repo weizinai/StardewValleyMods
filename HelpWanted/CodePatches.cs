@@ -5,9 +5,8 @@ using HelpWanted.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
-using StardewValley.Monsters;
 using StardewValley.Quests;
-using SObject = StardewValley.Object;
+
 // ReSharper disable InconsistentNaming
 
 namespace HelpWanted;
@@ -18,141 +17,22 @@ internal partial class ModEntry
     {
         var harmony = new Harmony("aedenthorn.HelpWanted");
         harmony.Patch(
-            AccessTools.Method(typeof(Game1), "CanAcceptDailyQuest"),
-            new HarmonyMethod(typeof(Game1_CanAcceptDailyQuest_Patch), "Prefix")
-        );
-        harmony.Patch(
-            AccessTools.Method(typeof(DescriptionElement), "loadDescriptionElement"),
-            new HarmonyMethod(typeof(DescriptionElement_loadDescriptionElement_Patch), "Prefix")
-        );
-        harmony.Patch(
             AccessTools.Method(typeof(Billboard), nameof(Billboard.draw), new[] { typeof(SpriteBatch) }),
             new HarmonyMethod(typeof(Billboard_draw_Patch), "Prefix")
         );
-        /*
         harmony.Patch(
-            AccessTools.Method(typeof(Billboard_receiveLeftClick_Patch), "receiveLeftClick"),
+            AccessTools.Method(typeof(Billboard), "receiveLeftClick"),
             postfix: new HarmonyMethod(typeof(Billboard_receiveLeftClick_Patch), "Postfix")
         );
-        */
-    }
-
-    public class Game1_CanAcceptDailyQuest_Patch
-    {
-        public static bool Prefix(ref bool __result)
-        {
-            // 如果模组未启用，则执行原逻辑
-            if (!Config.ModEnabled)
-                return true;
-            // 如果模组启用
-            try
-            {
-                __result = Game1.questOfTheDay != null && !Game1.player.acceptedDailyQuest.Value &&
-                           !string.IsNullOrEmpty(Game1.questOfTheDay.questDescription);
-                return false;
-            }
-            catch
-            {
-                return true;
-            }
-        }
-    }
-
-    public class DescriptionElement_loadDescriptionElement_Patch
-    {
-        public static bool Prefix(DescriptionElement __instance, ref string __result)
-        {
-            // 如果模组未启用，则执行原逻辑
-            if (!Config.ModEnabled)
-                return true;
-            // 如果模组启用
-            try
-            {
-                var temp = new DescriptionElement(__instance.translationKey, __instance.substitutions);
-                for (var i = 0; i < temp.substitutions.Count; i++)
-                    switch (temp.substitutions[i])
-                    {
-                        case DescriptionElement descriptionElement1:
-                            temp.substitutions[i] = descriptionElement1.loadDescriptionElement();
-                            break;
-                        case SObject sObject:
-                            temp.substitutions[i] = ItemRegistry.GetDataOrErrorItem(sObject.QualifiedItemId).DisplayName;
-                            break;
-                        case Monster monster:
-                            DescriptionElement descriptionElement2;
-                            if (monster.Name == "Frost Jelly")
-                            {
-                                descriptionElement2 = new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13772",
-                                    Array.Empty<object>());
-                                temp.substitutions[i] = descriptionElement2.loadDescriptionElement();
-                            }
-                            else
-                            {
-                                descriptionElement2 = new DescriptionElement("Data\\Monsters:" + monster.Name);
-                                temp.substitutions[i] = LocalizedContentManager.CurrentLanguageCode ==
-                                                        LocalizedContentManager.LanguageCode.en
-                                    ? descriptionElement2.loadDescriptionElement().Split('/').Last() + "s"
-                                    : descriptionElement2.loadDescriptionElement().Split('/').Last();
-                            }
-
-                            temp.substitutions[i] = descriptionElement2.loadDescriptionElement().Split('/').Last();
-                            break;
-                        case NPC npc:
-                            temp.substitutions[i] = NPC.GetDisplayName(npc.Name);
-                            break;
-                    }
-
-                /*
-                for (var i = 0; i < temp.substitutions.Count; i++)
-                {
-                    if (temp.substitutions[i] is DescriptionElement)
-                    {
-                        var d = temp.substitutions[i] as DescriptionElement;
-                        temp.substitutions[i] = d.loadDescriptionElement();
-                    }
-
-                    if (temp.substitutions[i] is SObject)
-                        temp.substitutions[i] = ItemRegistry.GetDataOrErrorItem((temp.substitutions[i] as SObject).QualifiedItemId)
-                            .DisplayName;
-                    // string objectInformation;
-                    // Game1.objectData.TryGetValue((temp.substitutions[i] as Object).ParentSheetIndex, out objectInformation);
-                    // temp.substitutions[i] = objectInformation.Split('/', StringSplitOptions.None)[4];
-                    if (temp.substitutions[i] is Monster)
-                    {
-                        DescriptionElement d2;
-                        if ((temp.substitutions[i] as Monster).Name.Equals("Frost Jelly"))
-                        {
-                            d2 = new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13772");
-                            temp.substitutions[i] = d2.loadDescriptionElement();
-                        }
-                        else
-                        {
-                            d2 = new DescriptionElement("Data\\Monsters:" + (temp.substitutions[i] as Monster).Name);
-                            temp.substitutions[i] =
-                                LocalizedContentManager.CurrentLanguageCode == LocalizedContentManager.LanguageCode.en
-                                    ? d2.loadDescriptionElement().Split('/').Last() + "s"
-                                    : d2.loadDescriptionElement().Split('/').Last();
-                        }
-
-                        temp.substitutions[i] = d2.loadDescriptionElement().Split('/').Last();
-                    }
-
-                    if (temp.substitutions[i] is NPC)
-                    {
-                        var d3 = new DescriptionElement("Data\\NPCDispositions:" + (temp.substitutions[i] as NPC).Name);
-                        temp.substitutions[i] = d3.loadDescriptionElement().Split('/').Last();
-                    }
-                }
-                */
-
-                return true;
-            }
-            catch
-            {
-                __result = string.Empty;
-                return false;
-            }
-        }
+        harmony.Patch(AccessTools.Method(typeof(Utility), "getRandomItemFromSeason",
+                new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) }),
+            prefix: new HarmonyMethod(typeof(Utility_getRandomItemFromSeason_Patch), "Prefix"),
+            transpiler: new HarmonyMethod(typeof(Utility_getRandomItemFromSeason_Patch), "Transpiler")
+        );
+        harmony.Patch(
+            AccessTools.Method(typeof(ItemDeliveryQuest), "loadQuestInfo"),
+            transpiler: new HarmonyMethod(typeof(ItemDeliveryQuest_loadQuestInfo_Patch), "Transpiler")
+        );
     }
 
     public class Billboard_draw_Patch
@@ -175,10 +55,11 @@ internal partial class ModEntry
             __instance.acceptQuestButton.visible = true;
             if (__instance.acceptQuestButton.containsPoint(x, y))
             {
+                Game1.questOfTheDay.daysLeft.Value = Config.ModEnabled ? Config.QuestDays : 2;
                 Game1.player.acceptedDailyQuest.Set(false);
                 Game1.netWorldState.Value.SetQuestOfTheDay(null);
                 OrdersBillboard.QuestDataDictionary.Remove(OrdersBillboard.ShowingQuest);
-                OrdersBillboard.QuestOptions.RemoveAll(c => c.myID == OrdersBillboard.ShowingQuest);
+                OrdersBillboard.QuestOptions.RemoveAll(option => option.myID == OrdersBillboard.ShowingQuest);
                 OrdersBillboard.QuestBillboard = null;
             }
             else if (__instance.upperRightCloseButton.containsPoint(x, y))
@@ -186,34 +67,17 @@ internal partial class ModEntry
                 OrdersBillboard.QuestBillboard = null;
             }
         }
-
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-        {
-            SMonitor.Log($"Transpiling Billboard.receiveLeftClick");
-
-            var codes = new List<CodeInstruction>(instructions);
-            for (int i = 0; i < codes.Count; i++)
-            {
-                if (i < codes.Count - 1 && codes[i].opcode == OpCodes.Ldfld && codes[i + 1].opcode == OpCodes.Ldc_I4_2 &&
-                    (FieldInfo)codes[i].operand == AccessTools.Field(typeof(Quest), nameof(Quest.daysLeft)))
-                {
-                    SMonitor.Log($"replacing days left with method");
-                    codes.Insert(i + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(GetQuestDays))));
-                    break;
-                }
-            }
-
-            return codes.AsEnumerable();
-        }
     }
 
-    public static int GetQuestDays(int days)
-    {
-        return !Config.ModEnabled ? days : Config.QuestDays;
-    }
-    /*
     public class Utility_getRandomItemFromSeason_Patch
     {
+        public static void Prefix(ref int randomSeedAddition)
+        {
+            if (!Config.ModEnabled || !GettingQuestDetails)
+                return;
+            randomSeedAddition += Random.Next();
+        }
+
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             SMonitor.Log($"Transpiling Utility.getRandomItemFromSeason");
@@ -224,13 +88,45 @@ internal partial class ModEntry
 
             return codes.AsEnumerable();
         }
-        public static void Prefix(ref int randomSeedAddition)
-        {
-            if (!Config.ModEnabled || !gettingQuestDetails)
-                return;
-            randomSeedAddition += Random.Next();
+    }
 
+
+    public class ItemDeliveryQuest_loadQuestInfo_Patch
+    {
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            SMonitor.Log($"Transpiling ItemDeliveryQuest.loadQuestInfo");
+
+            var codes = new List<CodeInstruction>(instructions);
+
+            bool start = false;
+            bool found1 = false;
+            bool found2 = false;
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (start && !found1 && codes[i].opcode == OpCodes.Ldc_R8)
+                {
+                    codes[i].operand = -0.1;
+                    found1 = true;
+                }
+                else if (!start && codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking")
+                {
+                    start = true;
+                }
+                else if (!found2 && codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand ==
+                         AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
+                {
+                    codes.Insert(i + 1,
+                        new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
+                    i++;
+                    found2 = true;
+                }
+
+                if (found1 && found2)
+                    break;
+            }
+
+            return codes.AsEnumerable();
         }
     }
-    */
 }

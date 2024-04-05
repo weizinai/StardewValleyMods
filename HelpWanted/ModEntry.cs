@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
 using HelpWanted.Framework;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -15,16 +13,16 @@ internal partial class ModEntry : Mod
     public static IMonitor SMonitor;
 
     public static ModConfig Config = new();
-    private const string DictionaryPath = "aedenthorn.HelpWanted/dictionary";
-    private const string PadTexturePath = "aedenthorn.HelpWanted/pin";
-    private const string PinTexturePath = "aedenthorn.HelpWanted/pad";
+    private const string DictionaryPath = "aedenthorn.HelpWanted/Dictionary";
+    private const string PadTexturePath = "aedenthorn.HelpWanted/Pin";
+    private const string PinTexturePath = "aedenthorn.HelpWanted/Pad";
 
     private static readonly Random Random = new();
-    public static List<IQuestData> questList = new();
+    public static readonly List<IQuestData> QuestList = new();
     /// <summary>其他模组添加的求助任务</summary>
-    private List<IQuestData> modQuestList = new();
+    private readonly List<IQuestData> modQuestList = new();
     
-    public static bool gettingQuestDetails;
+    public static bool GettingQuestDetails;
 
     public override void Entry(IModHelper helper)
     {
@@ -78,76 +76,76 @@ internal partial class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        questList.Clear();
+        QuestList.Clear();
         var npcs = new List<string>();
         // 如果今天没有求助任务，则刷新求助任务
         if (Game1.questOfTheDay is null) RefreshQuestOfTheDay();
-
-        Rectangle iconRect = new Rectangle(0, 0, 64, 64);
-        Point iconOffset = new Point(Config.PortraitOffsetX, Config.PortraitOffsetY);
-        int tries = 0;
-        for (int i = 0; i < Config.MaxQuests; i++)
+        
+        var tries = 0;
+        for (var i = 0; i < Config.MaxQuests; i++)
         {
             if (modQuestList.Any())
             {
-                questList.Add(modQuestList[0]);
+                QuestList.Add(modQuestList[0]);
                 modQuestList.RemoveAt(0);
                 continue;
             }
 
             try
             {
-                AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
-                gettingQuestDetails = true;
-                Game1.questOfTheDay.reloadDescription();
-                Game1.questOfTheDay.reloadObjective();
-                gettingQuestDetails = false;
-                NPC? npc = null;
-                var questType = QuestType.ItemDelivery;
-                switch (Game1.questOfTheDay)
+                if (Game1.questOfTheDay != null)
                 {
-                    case ItemDeliveryQuest itemDeliveryQuest:
-                        npc = Game1.getCharacterFromName(itemDeliveryQuest.target.Value);
-                        break;
-                    case ResourceCollectionQuest resourceCollectionQuest:
-                        npc = Game1.getCharacterFromName(resourceCollectionQuest.target.Value);
-                        questType = QuestType.ResourceCollection;
-                        break;
-                    case SlayMonsterQuest slayMonsterQuest:
-                        npc = Game1.getCharacterFromName(slayMonsterQuest.target.Value);
-                        questType = QuestType.SlayMonster;
-                        break;
-                    case FishingQuest fishingQuest:
-                        npc = Game1.getCharacterFromName(fishingQuest.target.Value);
-                        questType = QuestType.Fishing;
-                        break;
-                }
-
-                if (npc is not null)
-                {
-                    if ((Config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
-                        (Config.AvoidMaxHearts && !Game1.IsMultiplayer && Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >=
-                            Utility.GetMaximumHeartsForCharacter(npc) * 250)
-                       )
+                    AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
+                    GettingQuestDetails = true;
+                    Game1.questOfTheDay.reloadDescription();
+                    Game1.questOfTheDay.reloadObjective();
+                    GettingQuestDetails = false;
+                    NPC? npc = null;
+                    var questType = QuestType.ItemDelivery;
+                    switch (Game1.questOfTheDay)
                     {
-                        tries++;
-                        if (tries > 100)
-                        {
-                            tries = 0;
-                        }
-                        else
-                        {
-                            i--;
-                        }
-
-                        RefreshQuestOfTheDay();
-                        continue;
+                        case ItemDeliveryQuest itemDeliveryQuest:
+                            npc = Game1.getCharacterFromName(itemDeliveryQuest.target.Value);
+                            break;
+                        case ResourceCollectionQuest resourceCollectionQuest:
+                            npc = Game1.getCharacterFromName(resourceCollectionQuest.target.Value);
+                            questType = QuestType.ResourceCollection;
+                            break;
+                        case SlayMonsterQuest slayMonsterQuest:
+                            npc = Game1.getCharacterFromName(slayMonsterQuest.target.Value);
+                            questType = QuestType.SlayMonster;
+                            break;
+                        case FishingQuest fishingQuest:
+                            npc = Game1.getCharacterFromName(fishingQuest.target.Value);
+                            questType = QuestType.Fishing;
+                            break;
                     }
 
-                    tries = 0;
-                    npcs.Add(npc.Name);
-                    Texture2D icon = npc.Portrait;
-                    AddQuest(Game1.questOfTheDay, questType, icon, iconRect, iconOffset);
+                    if (npc is not null)
+                    {
+                        if ((Config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
+                            (Config.AvoidMaxHearts && !Game1.IsMultiplayer &&
+                             Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
+                        {
+                            tries++;
+                            if (tries > 100)
+                            {
+                                tries = 0;
+                            }
+                            else
+                            {
+                                i--;
+                            }
+
+                            RefreshQuestOfTheDay();
+                            continue;
+                        }
+
+                        tries = 0;
+                        npcs.Add(npc.Name);
+                        var icon = npc.Portrait;
+                        AddQuest(Game1.questOfTheDay, questType, icon);
+                    }
                 }
             }
             catch (Exception ex)

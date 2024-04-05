@@ -1,5 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Netcode;
+// ReSharper disable UnassignedField.Global
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
 
 namespace HelpWanted.Framework;
 
@@ -11,24 +14,24 @@ public enum QuestType
     Fishing
 }
 
-public abstract class QuestJsonData
+public class QuestJsonData
 {
-    public readonly string? PadTexturePath = null;
+    public string? PadTexturePath = null;
     public Rectangle PinTextureSource = new(0, 0, 64, 64);
     public Color? PadColor = null;
     public Rectangle PadTextureSource = new(0, 0, 64, 64);
-    public readonly string? PinTexturePath = null;
+    public string? PinTexturePath = null;
     public Color? PinColor = null;
-    public readonly string? IconPath = null;
+    public string? IconPath = null;
     public Rectangle IconSource = new(0, 0, 64, 64);
     public Color? IconColor = null;
-    public readonly float IconScale = 1;
+    public float IconScale = 1;
     public Point? IconOffset = null;
-    public readonly QuestInfo Quest;
-    public readonly float PercentChance = 100;
+    public QuestInfo QuestInfo;
+    public float PercentChance = 100;
 }
 
-public abstract class QuestInfo
+public class QuestInfo
 {
     public QuestType QuestType;
 

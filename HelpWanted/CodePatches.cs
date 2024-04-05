@@ -73,7 +73,7 @@ internal partial class ModEntry
     {
         public static void Prefix(ref int randomSeedAddition)
         {
-            if (!Config.ModEnabled || !GettingQuestDetails)
+            if (!Config.ModEnabled || !gettingQuestDetails)
                 return;
             randomSeedAddition += Random.Next();
         }

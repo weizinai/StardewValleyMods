@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HelpWanted.Framework.Integration;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Quests;
@@ -12,26 +13,26 @@ public class QuestData : IQuestData
         var config = ModEntry.Config;
         var helper = ModEntry.SHelper;
         PinTexture = string.IsNullOrEmpty(data.PinTexturePath)
-            ? ModEntry.GetPinTexture(data.Quest.Target, data.Quest.QuestType.ToString())
+            ? ModEntry.GetPinTexture(data.QuestInfo.Target, data.QuestInfo.QuestType.ToString())
             : helper.GameContent.Load<Texture2D>(data.PinTexturePath);
         PadTextureSource = data.PadTextureSource;
         PinColor = data.PinColor ?? ModEntry.GetRandomColor();
         PadTexture = string.IsNullOrEmpty(data.PadTexturePath)
-            ? ModEntry.GetPadTexture(data.Quest.Target, data.Quest.QuestType.ToString())
+            ? ModEntry.GetPadTexture(data.QuestInfo.Target, data.QuestInfo.QuestType.ToString())
             : helper.GameContent.Load<Texture2D>(data.PadTexturePath);
         PinTextureSource = data.PinTextureSource;
         PadColor = data.PadColor ?? ModEntry.GetRandomColor();
         Icon = string.IsNullOrEmpty(data.IconPath)
-            ? Game1.getCharacterFromName(data.Quest.Target).Portrait
+            ? Game1.getCharacterFromName(data.QuestInfo.Target).Portrait
             : ModEntry.SHelper.GameContent.Load<Texture2D>(data.IconPath);
         IconSource = data.IconSource;
         IconColor = data.IconColor ?? new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
         IconScale = data.IconScale;
         IconOffset = data.IconOffset ?? new Point(config.PortraitOffsetX, config.PortraitOffsetY);
-        Quest = ModEntry.CreateQuest(data.Quest);
+        Quest = ModEntry.CreateQuest(data.QuestInfo);
     }
 
-    public QuestData(Texture2D padTexture, Texture2D pinTexture, Texture2D icon)
+    public QuestData(Texture2D padTexture, Texture2D pinTexture, Texture2D icon, Rectangle iconSource, Point iconOffset)
     {
         var config = ModEntry.Config;
         PadTexture = padTexture;    
@@ -41,10 +42,10 @@ public class QuestData : IQuestData
         PinTextureSource = new Rectangle(0, 0, 64, 64);
         PinColor = ModEntry.GetRandomColor();
         Icon = icon;
-        IconSource = new Rectangle(0,0,64,64);
+        IconSource = iconSource;
         IconColor = new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
         IconScale = config.PortraitScale;
-        IconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
+        IconOffset = iconOffset;
         Quest = Game1.questOfTheDay;
     }
 
@@ -54,7 +55,7 @@ public class QuestData : IQuestData
     public Texture2D PinTexture { get; set; }
     public Rectangle PinTextureSource { get; set; }
     public Color PinColor { get; set; }
-    public Texture2D? Icon { get; set; }
+    public Texture2D Icon { get; set; }
     public Rectangle IconSource { get; set; }
     public Color IconColor { get; set; }
     public float IconScale { get; set; }

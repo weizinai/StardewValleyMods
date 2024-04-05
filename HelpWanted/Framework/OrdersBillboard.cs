@@ -1,4 +1,5 @@
 ﻿using Common;
+using HelpWanted.Framework.Integration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -206,15 +207,12 @@ public sealed class OrdersBillboard : Billboard
                 spriteBatch.Draw(QuestDataDictionary[option.myID].PinTexture, option.bounds, QuestDataDictionary[option.myID].IconSource,
                     QuestDataDictionary[option.myID].PinColor);
                 // 如果任务有图标,则绘制任务图标
-                if (QuestDataDictionary[option.myID].Icon is not null)
-                {
-                    spriteBatch.Draw(QuestDataDictionary[option.myID].Icon,
-                        new Vector2(option.bounds.X + QuestDataDictionary[option.myID].IconOffset.X,
-                            option.bounds.Y + QuestDataDictionary[option.myID].IconOffset.Y),
-                        QuestDataDictionary[option.myID].IconSource, QuestDataDictionary[option.myID].IconColor, 0, Vector2.Zero,
-                        QuestDataDictionary[option.myID].IconScale,
-                        SpriteEffects.FlipHorizontally, 1);
-                }
+                spriteBatch.Draw(QuestDataDictionary[option.myID].Icon,
+                    new Vector2(option.bounds.X + QuestDataDictionary[option.myID].IconOffset.X,
+                        option.bounds.Y + QuestDataDictionary[option.myID].IconOffset.Y),
+                    QuestDataDictionary[option.myID].IconSource, QuestDataDictionary[option.myID].IconColor, 0, Vector2.Zero,
+                    QuestDataDictionary[option.myID].IconScale,
+                    SpriteEffects.FlipHorizontally, 1);
             }
         }
 

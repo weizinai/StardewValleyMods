@@ -14,6 +14,7 @@ public class ModConfig
     public bool IgnoreVanillaItemRestriction { get; set; } = true;
     /// <summary>是否每个村民一个任务</summary>
     public bool OneQuestPerVillager { get; set; } = true;
+    /// <summary>是否好感度满后不再生成任务</summary>
     public bool AvoidMaxHearts { get; set; } = true;
     /// <summary>任务物品的最大价格.若为-1,则不限制.</summary>
     public int MaxPrice { get; set; } = -1;
@@ -21,11 +22,17 @@ public class ModConfig
     public int QuestDays { get; set; } = 2;
     /// <summary>任务最大数量</summary>
     public int MaxQuests { get; set; } = 10;
+    /// <summary>便签缩放</summary>
     public float NoteScale { get; set; } = 2;
-    public float PortraitScale { get; set; } = 1f;
+    /// <summary>便签水平方向重叠率</summary>
     public float XOverlapBoundary { get; set; } = 0.5f;
+    /// <summary>便签垂直方向重叠率</summary>
     public float YOverlapBoundary { get; set; } = 0.25f;
+    /// <summary>便签肖像缩放</summary>
+    public float PortraitScale { get; set; } = 1f;
+    /// <summary>便签肖像水平偏移</summary>
     public int PortraitOffsetX { get; set; } = 32;
+    /// <summary>便签肖像垂直偏移</summary>
     public int PortraitOffsetY { get; set; } = 64;
     /// <summary>随机颜色通道最小值</summary>
     public int RandomColorMin { get; set; } = 150;

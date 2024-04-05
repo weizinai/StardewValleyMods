@@ -246,12 +246,12 @@ internal partial class ModEntry
     }
 
     /// <summary>添加任务到任务列表中,适用于原版的任务或者由C#添加的任务</summary>
-    private static void AddQuest(Quest quest, QuestType questType, Texture2D icon)
+    public static void AddQuest(Quest quest, QuestType questType, Texture2D icon, Rectangle iconSource, Point iconOffset)
     {
         var npcName = SHelper.Reflection.GetField<NetString>(quest, "target").GetValue().Value;
         var padTexture = GetPadTexture(npcName, questType.ToString());
         var pinTexture = GetPinTexture(npcName, questType.ToString());
-        QuestList.Add(new QuestData(padTexture, pinTexture, icon));
+        QuestList.Add(new QuestData(padTexture, pinTexture, icon, iconSource, iconOffset));
     }
 
     /// <summary>获取随机物品</summary>

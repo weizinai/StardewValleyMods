@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework;
+namespace HelpWanted.Framework.Integration;
 
 public interface IQuestData
 {
@@ -12,7 +12,7 @@ public interface IQuestData
     public Texture2D PinTexture { get; set; }
     public Rectangle PinTextureSource { get; set; }
     public Color PinColor { get; set; }
-    public Texture2D? Icon { get; set; }
+    public Texture2D Icon { get; set; }
     public Rectangle IconSource { get; set; }
     public Color IconColor { get; set; }
     public float IconScale { get; set; }

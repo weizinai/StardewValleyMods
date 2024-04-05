@@ -26,7 +26,7 @@ internal partial class ModEntry
         );
         harmony.Patch(AccessTools.Method(typeof(Utility), "getRandomItemFromSeason",
                 new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) }),
-            prefix: new HarmonyMethod(typeof(Utility_getRandomItemFromSeason_Patch), "Prefix"),
+            new HarmonyMethod(typeof(Utility_getRandomItemFromSeason_Patch), "Prefix"),
             transpiler: new HarmonyMethod(typeof(Utility_getRandomItemFromSeason_Patch), "Transpiler")
         );
         harmony.Patch(
@@ -80,7 +80,7 @@ internal partial class ModEntry
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            SMonitor.Log($"Transpiling Utility.getRandomItemFromSeason");
+            SMonitor.Log("Transpiling Utility.getRandomItemFromSeason");
 
             var codes = new List<CodeInstruction>(instructions);
             codes.Insert(codes.Count - 1, new CodeInstruction(OpCodes.Ldloc_1));
@@ -94,14 +94,14 @@ internal partial class ModEntry
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            SMonitor.Log($"Transpiling ItemDeliveryQuest.loadQuestInfo");
+            SMonitor.Log("Transpiling ItemDeliveryQuest.loadQuestInfo");
 
             var codes = new List<CodeInstruction>(instructions);
 
-            bool start = false;
-            bool found1 = false;
-            bool found2 = false;
-            for (int i = 0; i < codes.Count; i++)
+            var start = false;
+            var found1 = false;
+            var found2 = false;
+            for (var i = 0; i < codes.Count; i++)
             {
                 switch (start)
                 {
@@ -118,7 +118,7 @@ internal partial class ModEntry
                             AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
                         {
                             codes.Insert(i + 1,
-                                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
+                                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(GetPossibleCrops))));
                             i++;
                             found2 = true;
                         }

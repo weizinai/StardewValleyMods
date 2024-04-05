@@ -2,17 +2,24 @@
 
 public class ModConfig
 {
-    /// <summary>模组是否启用</summary>
+    /// <summary>是否启用模组</summary>
     public bool ModEnabled { get; set; } = true;
+    /// <summary>是否必须为村民喜欢的礼物</summary>
     public bool MustLikeItem { get; set; } = true;
+    /// <summary>是否必须为村民喜爱的礼物</summary>
     public bool MustLoveItem { get; set; } = false;
+    /// <summary>是否允许任务物品为工匠物品</summary>
     public bool AllowArtisanGoods { get; set; } = true;
-    public bool IgnoreVanillaItemSelection { get; set; } = true;
+    /// <summary>是否忽略原版任务物品限制</summary>
+    public bool IgnoreVanillaItemRestriction { get; set; } = true;
     /// <summary>是否每个村民一个任务</summary>
     public bool OneQuestPerVillager { get; set; } = true;
     public bool AvoidMaxHearts { get; set; } = true;
+    /// <summary>任务物品的最大价格.若为-1,则不限制.</summary>
     public int MaxPrice { get; set; } = -1;
+    /// <summary>任务时间</summary>
     public int QuestDays { get; set; } = 2;
+    /// <summary>任务最大数量</summary>
     public int MaxQuests { get; set; } = 10;
     public float NoteScale { get; set; } = 2;
     public float PortraitScale { get; set; } = 1f;

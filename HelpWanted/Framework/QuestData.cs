@@ -11,23 +11,23 @@ public class QuestData : IQuestData
     {
         var config = ModEntry.Config;
         var helper = ModEntry.SHelper;
-        PinTextureSource = data.PinTextureSource;
-        PadTextureSource = data.PadTextureSource;
-        PinTexture = string.IsNullOrEmpty(data.pinTexturePath)
+        PinTexture = string.IsNullOrEmpty(data.PinTexturePath)
             ? ModEntry.GetPinTexture(data.Quest.Target, data.Quest.QuestType.ToString())
-            : helper.GameContent.Load<Texture2D>(data.pinTexturePath);
-        PadTexture = string.IsNullOrEmpty(data.padTexturePath)
+            : helper.GameContent.Load<Texture2D>(data.PinTexturePath);
+        PadTextureSource = data.PadTextureSource;
+        PinColor = data.PinColor ?? ModEntry.GetRandomColor();
+        PadTexture = string.IsNullOrEmpty(data.PadTexturePath)
             ? ModEntry.GetPadTexture(data.Quest.Target, data.Quest.QuestType.ToString())
-            : helper.GameContent.Load<Texture2D>(data.padTexturePath);
-        PinColor = data.pinColor ?? ModEntry.GetRandomColor();
-        PadColor = data.padColor ?? ModEntry.GetRandomColor();
-        Icon = string.IsNullOrEmpty(data.iconPath)
+            : helper.GameContent.Load<Texture2D>(data.PadTexturePath);
+        PinTextureSource = data.PinTextureSource;
+        PadColor = data.PadColor ?? ModEntry.GetRandomColor();
+        Icon = string.IsNullOrEmpty(data.IconPath)
             ? Game1.getCharacterFromName(data.Quest.Target).Portrait
-            : ModEntry.SHelper.GameContent.Load<Texture2D>(data.iconPath);
-        IconSource = data.iconSource;
-        IconColor = data.iconColor ?? new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
-        IconScale = data.iconScale;
-        IconOffset = data.iconOffset ?? new Point(config.PortraitOffsetX, config.PortraitOffsetY);
+            : ModEntry.SHelper.GameContent.Load<Texture2D>(data.IconPath);
+        IconSource = data.IconSource;
+        IconColor = data.IconColor ?? new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
+        IconScale = data.IconScale;
+        IconOffset = data.IconOffset ?? new Point(config.PortraitOffsetX, config.PortraitOffsetY);
         Quest = ModEntry.CreateQuest(data.Quest);
     }
 
@@ -43,9 +43,9 @@ public class QuestData : IQuestData
         Icon = icon;
         IconSource = new Rectangle(0,0,64,64);
         IconColor = new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
+        IconScale = config.PortraitScale;
         IconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
         Quest = Game1.questOfTheDay;
-        IconScale = config.PortraitScale;
     }
 
     public Texture2D PadTexture { get; set; }
@@ -55,8 +55,8 @@ public class QuestData : IQuestData
     public Rectangle PinTextureSource { get; set; }
     public Color PinColor { get; set; }
     public Texture2D? Icon { get; set; }
-    public Color IconColor { get; set; }
     public Rectangle IconSource { get; set; }
+    public Color IconColor { get; set; }
     public float IconScale { get; set; }
     public Point IconOffset { get; set; }
     public Quest Quest { get; set; }

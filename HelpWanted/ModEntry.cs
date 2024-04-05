@@ -3,6 +3,7 @@ using HelpWanted.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Extensions;
 using StardewValley.Quests;
 
 namespace HelpWanted;
@@ -19,22 +20,23 @@ internal partial class ModEntry : Mod
 
     private static readonly Random Random = new();
     public static readonly List<IQuestData> QuestList = new();
+
     /// <summary>其他模组添加的求助任务</summary>
     private readonly List<IQuestData> modQuestList = new();
-    
+
     public static bool GettingQuestDetails;
 
     public override void Entry(IModHelper helper)
     {
         I18n.Init(helper.Translation);
-        
+
         SHelper = helper;
         SMonitor = Monitor;
         Config = helper.ReadConfig<ModConfig>();
 
         helper.Events.Content.AssetRequested += OnAssetRequested;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
-        
+
         HarmonyPatch();
     }
 
@@ -58,17 +60,9 @@ internal partial class ModEntry : Mod
         foreach (var kvp in dictionary)
         {
             var data = kvp.Value;
-            if (Game1.random.Next(100) >= data.percentChance)
+            if (Game1.random.Next(100) >= data.PercentChance)
                 continue;
-            try
-            {
-                modQuestList.Add(new QuestData(data));
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                throw;
-            }
+            modQuestList.Add(new QuestData(data));
         }
 
         SHelper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
@@ -80,7 +74,7 @@ internal partial class ModEntry : Mod
         var npcs = new List<string>();
         // 如果今天没有求助任务，则刷新求助任务
         if (Game1.questOfTheDay is null) RefreshQuestOfTheDay();
-        
+
         var tries = 0;
         for (var i = 0; i < Config.MaxQuests; i++)
         {
@@ -159,5 +153,4 @@ internal partial class ModEntry : Mod
         modQuestList.Clear();
         SHelper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
-
 }

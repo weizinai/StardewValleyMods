@@ -9,7 +9,7 @@ namespace HelpWanted.Framework;
 
 public sealed class OrdersBillboard : Billboard
 {
-    public static readonly List<ClickableTextureComponent> QuestOptions = new();
+    public static readonly List<ClickableTextureComponent> QuestNotes = new();
     public static readonly Dictionary<int, IQuestData> QuestDataDictionary = new();
     private static Rectangle boardRect = new(78 * 4, 58 * 4, 184 * 4, 96 * 4);
     private const int OptionIndex = -4200;
@@ -35,7 +35,7 @@ public sealed class OrdersBillboard : Billboard
         if (ModEntry.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典
-            QuestOptions.Clear();
+            QuestNotes.Clear();
             QuestDataDictionary.Clear();
             // 遍历所有的任务数据,创建任务选项
             var questList = ModEntry.QuestList;
@@ -45,7 +45,7 @@ public sealed class OrdersBillboard : Billboard
                     (int)(questList[i].PadTextureSource.Height * ModEntry.Config.NoteScale));
                 var bounds = GetFreeBounds(size.X, size.Y);
                 if (bounds is null) break;
-                QuestOptions.Add(new ClickableTextureComponent(bounds.Value,
+                QuestNotes.Add(new ClickableTextureComponent(bounds.Value,
                     questList[i].PadTexture, questList[i].PadTextureSource, ModEntry.Config.NoteScale)
                 {
                     // 设置该选项的ID
@@ -84,7 +84,7 @@ public sealed class OrdersBillboard : Billboard
         hoverTitle = "";
         hoverText = "";
         // 遍历所有的任务选项,判断鼠标是否悬停在某个任务选项上,如果是,则设置悬浮标题和悬浮文本,结束循环
-        foreach (var option in QuestOptions.Where(option => option.containsPoint(x, y)))
+        foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
         {
             hoverTitle = QuestDataDictionary[option.myID].Quest.questTitle;
             hoverText = QuestDataDictionary[option.myID].Quest.currentObjective;
@@ -99,7 +99,7 @@ public sealed class OrdersBillboard : Billboard
         if (QuestBillboard is null)
         {
             // 遍历所有的任务选项,判断鼠标是否点击在某个任务选项上
-            foreach (var option in QuestOptions.Where(option => option.containsPoint(x, y)))
+            foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
                 if (QuestDataDictionary[option.myID].Acceptable)
                 {
@@ -173,6 +173,7 @@ public sealed class OrdersBillboard : Billboard
         }
     }
 
+    /// <summary>绘制多任务面板</summary>
     public override void draw(SpriteBatch spriteBatch)
     {
         // 如果有正在展示的任务面板,则调用任务面板的绘制方法
@@ -191,7 +192,7 @@ public sealed class OrdersBillboard : Billboard
             Vector2.Zero, 4f, SpriteEffects.None, 1f);
 
         // 如果没有任务选项,则绘制"没有任务"的文本
-        if (!QuestOptions.Any())
+        if (!QuestNotes.Any())
         {
             spriteBatch.DrawString(Game1.dialogueFont, Game1.content.LoadString("Strings\\UI:Billboard_NothingPosted"),
                 new Vector2(xPositionOnScreen + 384, yPositionOnScreen + 320), Game1.textColor);
@@ -199,7 +200,7 @@ public sealed class OrdersBillboard : Billboard
         else
         {
             // 遍历所有的任务选项,绘制任务选项
-            foreach (var option in QuestOptions)
+            foreach (var option in QuestNotes)
             {
                 option.draw(spriteBatch, QuestDataDictionary[option.myID].PadColor, 1);
                 spriteBatch.Draw(QuestDataDictionary[option.myID].PinTexture, option.bounds, QuestDataDictionary[option.myID].IconSource,
@@ -251,7 +252,7 @@ public sealed class OrdersBillboard : Billboard
             var rectangle = new Rectangle(xPositionOnScreen + Game1.random.Next(boardRect.X, boardRect.Right - width1),
                 yPositionOnScreen + Game1.random.Next(boardRect.Y, boardRect.Bottom - height1), width1, height1);
             // 遍历所有的可点击组件,计算是否有碰撞发生
-            var collision = QuestOptions.Any(cc =>
+            var collision = QuestNotes.Any(cc =>
                 Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * ModEntry.Config.XOverlapBoundary ||
                 Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * ModEntry.Config.YOverlapBoundary);
             // 如果碰撞发生,则尝试次数减1,否则返回矩形区域

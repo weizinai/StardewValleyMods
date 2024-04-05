@@ -14,30 +14,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.0.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/CodePatches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/CodePatches.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/ModConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/ModConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/OrdersBillboard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/OrdersBillboard.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/QuestData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/QuestData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/QuestJsonData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/QuestJsonData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/Method.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Method.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 0.8.2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 0.8.2.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +48,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Common/DrawHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/b08fa5c66dbf4037b77c6576d7aed0955c1c00/2c/ae4f1bec/020000FD.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/b08fa5c66dbf4037b77c6576d7aed0955c1c00/ac/f6287032/02000170.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/b08fa5c66dbf4037b77c6576d7aed0955c1c00/d9/f35a8553/020002DD.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/b08fa5c66dbf4037b77c6576d7aed0955c1c00/d9/f35a8553/020002DDHigh.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/b08fa5c66dbf4037b77c6576d7aed0955c1c00/d9/f35a8553/020002DDLow.cs" root0="SKIP_HIGHLIGHTING" />
@@ -107,6 +99,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e5e78fa274c7446b8f47ef04302cf1925c1400/e4/d4804fb5/IClickableMenu.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f2d7a56375724be49d12d4d94d02e9bfa24ea0/03/6ba6e6d9/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f2d7a56375724be49d12d4d94d02e9bfa24ea0/0f/11f0b7d5/IEquatable`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f2d7a56375724be49d12d4d94d02e9bfa24ea0/aa/13d57900/ArgumentOutOfRangeException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f2d7a56375724be49d12d4d94d02e9bfa24ea0/b1/2e44f337/HashSet`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f2d7a56375724be49d12d4d94d02e9bfa24ea0/eb/ede97d77/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fbd310e47c0745ed997e518f59e7b089f1400/00/595f422a/IModRegistry.cs" root0="SKIP_HIGHLIGHTING" />
@@ -136,31 +129,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET 项目.ActiveMenuAnywhere.executor": "Run",
-    ".NET 项目.AutoBreakGeode.executor": "Run",
-    ".NET 项目.HelpWanted.executor": "Run",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET 项目.ActiveMenuAnywhere.executor&quot;: &quot;Run&quot;,
+    &quot;.NET 项目.AutoBreakGeode.executor&quot;: &quot;Run&quot;,
+    &quot;.NET 项目.HelpWanted.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\17760\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\17760\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\17760\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\17760\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\17760\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\17760\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET 项目.HelpWanted">
     <configuration name="ActiveMenuAnywhere" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -302,6 +295,7 @@
       <workItem from="1712232632162" duration="35000" />
       <workItem from="1712232897239" duration="201000" />
       <workItem from="1712237844543" duration="9724000" />
+      <workItem from="1712285004636" duration="16324000" />
     </task>
     <servers />
   </component>

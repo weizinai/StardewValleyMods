@@ -11,54 +11,42 @@ public enum QuestType
     Fishing
 }
 
-public class QuestJsonData
+public abstract class QuestJsonData
 {
-    public Rectangle PinTextureSource = new Rectangle(0, 0, 64, 64);
-    public Rectangle PadTextureSource = new Rectangle(0, 0, 64, 64);
-    public string pinTexturePath;
-    public string padTexturePath;
-    public Color? pinColor;
-    public Color? padColor;
-    public string iconPath;
-    public Rectangle iconSource = new Rectangle(0, 0, 64, 64);
-    public Color? iconColor;
-    public float iconScale = 1;
-    public Point? iconOffset;
-    public QuestInfo Quest;
-    public float percentChance = 100;
+    public readonly string? PadTexturePath = null;
+    public Rectangle PinTextureSource = new(0, 0, 64, 64);
+    public Color? PadColor = null;
+    public Rectangle PadTextureSource = new(0, 0, 64, 64);
+    public readonly string? PinTexturePath = null;
+    public Color? PinColor = null;
+    public readonly string? IconPath = null;
+    public Rectangle IconSource = new(0, 0, 64, 64);
+    public Color? IconColor = null;
+    public readonly float IconScale = 1;
+    public Point? IconOffset = null;
+    public readonly QuestInfo Quest;
+    public readonly float PercentChance = 100;
 }
 
-public class QuestInfo
+public abstract class QuestInfo
 {
-    public QuestType QuestType { get; set; }
+    public QuestType QuestType;
 
     /// <summary>The qualified item ID that must be collected.</summary>
-    public string ItemId { get; set; }
+    public string ItemId;
 
     /// <summary>The number of items.</summary>
-    public int Number { get; set; }
+    public int Number;
 
-    public string QuestTitle { get; set; }
-    public string QuestDescription { get; set; }
+    public string QuestTitle;
+    public string QuestDescription;
 
     /// <summary>The internal name for the NPC who gave the quest.</summary>
-    public string Target { get; set; }
+    public string Target;
 
     /// <summary>The translated NPC dialogue shown when the quest is completed.</summary>
-    public string TargetMessage { get; set; }
+    public string TargetMessage;
 
-    public string CurrentObjective { get; set; }
+    public string CurrentObjective;
 
-    public QuestInfo(QuestType questType, NetString itemId, NetInt number, string questTitle, string questDescription, 
-        NetString target, NetString targetMessage, string currentObjective)
-    {
-        QuestType = questType;
-        ItemId = itemId.Value;
-        Number = number.Value;
-        QuestTitle = questTitle;
-        QuestDescription = questDescription;
-        Target = target.Value;
-        TargetMessage = targetMessage.Value;
-        CurrentObjective = currentObjective;
-    }
 }

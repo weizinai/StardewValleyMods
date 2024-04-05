@@ -11,92 +11,109 @@ namespace HelpWanted;
 
 internal partial class ModEntry
 {
+    /// <summary>获取自定义Pin纹理,如果没有则返回默认纹理</summary>
     public static Texture2D GetPinTexture(string target, string questType)
     {
+        // 获取特定NPC和特定任务类型的任务的自定义Pin纹理
         var texture = GetTexture(PinTexturePath + "/" + target + "/" + questType);
         if (texture != null)
         {
             return texture;
         }
 
+        // 获取特定NPC的任务的自定义Pin纹理
         texture = GetTexture(PinTexturePath + "/" + target);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 获取特定任务类型的任务的自定义Pin纹理
         texture = GetTexture(PinTexturePath + "/" + questType);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 获取自定义Pin纹理
         texture = GetTexture(PinTexturePath);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 如果没有自定义纹理,则返回默认Pin纹理
         return SHelper.ModContent.Load<Texture2D>("Assets/Pin.png");
     }
 
+    /// <summary>获取自定义Pad纹理,如果没有则返回默认纹理</summary>
     public static Texture2D GetPadTexture(string target, string questType)
     {
+        // 获取特定NPC和特定任务类型的任务的自定义Pad纹理
         var texture = GetTexture(PadTexturePath + "/" + target + "/" + questType);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 获取特定NPC的任务的自定义Pad纹理
         texture = GetTexture(PadTexturePath + "/" + target);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 获取特定任务类型的任务的自定义Pad纹理
         texture = GetTexture(PadTexturePath + "/" + questType);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 获取自定义Pad纹理
         texture = GetTexture(PadTexturePath);
         if (texture is not null)
         {
             return texture;
         }
 
+        // 如果没有自定义纹理,则返回默认Pad纹理
         return SHelper.ModContent.Load<Texture2D>("Assets/Pad.png");
     }
 
+    /// <summary>获取自定义纹理</summary>
     private static Texture2D? GetTexture(string path)
     {
-        var list = new List<Texture2D>();
+        // 获取特定NPC或特定任务类型的任务的不同自定义纹理,如果纹理存在,则随机返回一个
+        var textures = new List<Texture2D>();
         try
         {
             for (var i = 1;; i++)
-                list.Add(SHelper.GameContent.Load<Texture2D>(path + "/" + i));
+                textures.Add(SHelper.GameContent.Load<Texture2D>(path + "/" + i));
         }
         catch
         {
+            // ignored
         }
-
-        if (list.Any())
+        if (textures.Any())
         {
-            return list[Game1.random.Next(list.Count)];
+            return textures[Game1.random.Next(textures.Count)];
         }
 
+        // 获取特定NPC或特定任务类型的任务的自定义纹理
         try
         {
             return SHelper.GameContent.Load<Texture2D>(path);
         }
         catch
         {
+            // ignored
         }
 
         return null;
     }
 
+    /// <summary>获取随机颜色</summary>
     public static Color GetRandomColor()
     {
         return new Color((byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax),
@@ -104,95 +121,96 @@ internal partial class ModEntry
             (byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax));
     }
 
-    public static Quest CreateQuest(QuestInfo quest)
+    /// <summary>根据任务信息创建任务,用于由CP加载的自定义任务</summary>
+    public static Quest CreateQuest(QuestInfo questInfo)
     {
-        switch (quest.QuestType)
+        switch (questInfo.QuestType)
         {
             case QuestType.ResourceCollection:
-                var q = new ResourceCollectionQuest
+                var quest1 = new ResourceCollectionQuest
                 {
-                    questTitle = quest.QuestTitle,
-                    questDescription = quest.QuestDescription,
+                    questTitle = questInfo.QuestTitle,
+                    questDescription = questInfo.QuestDescription,
                     ItemId =
                     {
-                        Value = quest.ItemId
+                        Value = questInfo.ItemId
                     },
                     number =
                     {
-                        Value = quest.Number
+                        Value = questInfo.Number
                     },
                     target =
                     {
-                        Value = quest.Target
+                        Value = questInfo.Target
                     },
                     targetMessage =
                     {
-                        Value = quest.TargetMessage
+                        Value = questInfo.TargetMessage
                     },
-                    currentObjective = quest.CurrentObjective
+                    currentObjective = questInfo.CurrentObjective
                 };
-                return q;
+                return quest1;
             case QuestType.Fishing:
-                var q2 = new FishingQuest
+                var quest2 = new FishingQuest
                 {
-                    questTitle = quest.QuestTitle,
-                    questDescription = quest.QuestDescription,
+                    questTitle = questInfo.QuestTitle,
+                    questDescription = questInfo.QuestDescription,
                     ItemId =
                     {
-                        Value = quest.ItemId
+                        Value = questInfo.ItemId
                     },
                     numberToFish =
                     {
-                        Value = quest.Number
+                        Value = questInfo.Number
                     },
                     target =
                     {
-                        Value = quest.Target
+                        Value = questInfo.Target
                     },
-                    targetMessage = quest.TargetMessage,
-                    currentObjective = quest.CurrentObjective
+                    targetMessage = questInfo.TargetMessage,
+                    currentObjective = questInfo.CurrentObjective
                 };
-                return q2;
+                return quest2;
             case QuestType.ItemDelivery:
-                var q3 = new ItemDeliveryQuest
+                var quest3 = new ItemDeliveryQuest
                 {
                     ItemId =
                     {
-                        Value = quest.ItemId
+                        Value = questInfo.ItemId
                     },
-                    questTitle = quest.QuestTitle,
-                    questDescription = quest.QuestDescription,
+                    questTitle = questInfo.QuestTitle,
+                    questDescription = questInfo.QuestDescription,
                     target =
                     {
-                        Value = quest.Target
+                        Value = questInfo.Target
                     },
-                    targetMessage = quest.TargetMessage,
-                    currentObjective = quest.CurrentObjective
+                    targetMessage = questInfo.TargetMessage,
+                    currentObjective = questInfo.CurrentObjective
                 };
-                return q3;
+                return quest3;
             case QuestType.SlayMonster:
-                var q4 = new SlayMonsterQuest
+                var quest4 = new SlayMonsterQuest
                 {
-                    questTitle = quest.QuestTitle,
-                    questDescription = quest.QuestDescription,
+                    questTitle = questInfo.QuestTitle,
+                    questDescription = questInfo.QuestDescription,
                     monsterName =
                     {
-                        Value = quest.ItemId
+                        Value = questInfo.ItemId
                     },
                     numberToKill =
                     {
-                        Value = quest.Number
+                        Value = questInfo.Number
                     },
                     target =
                     {
-                        Value = quest.Target
+                        Value = questInfo.Target
                     },
-                    targetMessage = quest.TargetMessage,
-                    currentObjective = quest.CurrentObjective
+                    targetMessage = questInfo.TargetMessage,
+                    currentObjective = questInfo.CurrentObjective
                 };
-                return q4;
+                return quest4;
             default:
-                return null;
+                throw new ArgumentOutOfRangeException(nameof(questInfo), "Invalid quest type");
         }
     }
 
@@ -227,6 +245,7 @@ internal partial class ModEntry
         }
     }
 
+    /// <summary>添加任务到任务列表中,适用于原版的任务或者由C#添加的任务</summary>
     private static void AddQuest(Quest quest, QuestType questType, Texture2D icon)
     {
         var npcName = SHelper.Reflection.GetField<NetString>(quest, "target").GetValue().Value;
@@ -235,32 +254,23 @@ internal partial class ModEntry
         QuestList.Add(new QuestData(padTexture, pinTexture, icon));
     }
 
+    /// <summary>获取随机物品</summary>
     private static string GetRandomItem(string result, List<string> possibleItems)
     {
+        // 获取允许的任务物品列表
         var items = GetRandomItemList(possibleItems);
-        
-        if (items is null)
-            return ItemRegistry.QualifyItemId(result);
-        if (items.Contains(result) && !Config.IgnoreVanillaItemSelection)
-            return ItemRegistry.QualifyItemId(result);;
-        
-        for (var i = items.Count - 1; i >= 0; i--)
-        {
-            if (!Game1.objectData.ContainsKey(items[i]))
-                items.RemoveAt(i);
-        }
 
-        if (!items.Any())
+        // 如果物品列表为空或者物品列表包含原随机结果,则返回原随机结果
+        if (items is null || items.Contains(result))
             return result;
-        
-        var ii = items[Random.Next(items.Count)];
-        if (!Game1.objectData.ContainsKey(ii))
-            return result;
-        //SMonitor.Log($"our random: {ii}");
-        //SMonitor.Log($"found our random: {ii}");
-        return ii;
+
+        // 遍历物品列表,去掉其中不符合条件的物品
+        items = items.Where(item => Game1.objectData.ContainsKey(item)).ToList();
+        // 如果物品列表为空,则返回原随机结果,否则返回随机物品
+        return !items.Any() ? result : items[Random.Next(items.Count)];
     }
 
+    /// <summary>获取随机物品列表</summary>
     private static List<string>? GetRandomItemList(List<string> possibleItems)
     {
         // 如果模组未启用,或者必须为喜爱物品和必须为喜欢物品均为false,或者今日任务不是物品交付任务,则返回null
@@ -282,62 +292,57 @@ internal partial class ModEntry
         var split = data.Split('/');
         if (split.Length < 4) return null;
         itemString += " " + split[1] + (Config.MustLoveItem ? "" : " " + split[3]);
+
+        // 如果物品字符串为空,则返回null
         if (string.IsNullOrEmpty(itemString))
             return null;
-        var items = new List<string>(itemString.Split(' '));
-        
+
         // 遍历所有物品,移除不符合条件的物品
-        foreach (var item in items)
-        {
-            var sObject = new SObject(item, 1);
-            if (!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory)
-            {
-                items.Remove(item);
-                continue;
-            }
-
-            if (Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice)
-            {
-                items.Remove(item);
-            }
-        }
-
-        if (!items.Any() || (!Config.IgnoreVanillaItemSelection && possibleItems.Any() != true))
-            return null;
-
-        if (Config.IgnoreVanillaItemSelection)
-        {
-            return items;
-        }
-
-        foreach (var item in possibleItems)
-        {
-            if (!items.Contains(item))
+        var items = new List<string>(itemString.Split(' '));
+        items = items.Where(item =>
             {
                 var sObject = new SObject(item, 1);
-                if (!items.Contains(sObject.Category.ToString()) ||
-                    (!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) ||
-                    (Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice))
-                {
-                    possibleItems.Remove(item);
-                }
+                return !(!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
+                       !(Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice);
             }
-        }
+        ).ToList();
 
-        if (possibleItems.Any())
+        // 如果物品列表为空,则返回null
+        if (!items.Any()) return null;
+
+        // 如果物品列表不为空,则根据是否忽略原版物品限制执行不同操作
+        switch (Config.IgnoreVanillaItemRestriction)
         {
-            return possibleItems;
+            // 如果忽略原版物品限制,则返回该物品列表
+            case true:
+                return items;
+            // 如果不忽略原版物品限制,且可能的物品列表不为空,则对该列表进行筛选        
+            case false when possibleItems.Any():
+                possibleItems = possibleItems.Where(item =>
+                {
+                    var sObject = new SObject(item, 1);
+                    return items.Contains(item) &&
+                           items.Contains(sObject.Category.ToString()) &&
+                           !(!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
+                           !(Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice);
+                }).ToList();
+                if (possibleItems.Any())
+                {
+                    return possibleItems;
+                }
+
+                break;
         }
 
-        return items;
+        return null;
     }
-    
+
     private static List<string> GetPossibleCrops(List<string> oldList)
     {
         if (!Config.ModEnabled)
             return oldList;
-        List<string> newList = GetRandomItemList(oldList);
+        var newList = GetRandomItemList(oldList);
         //SMonitor.Log($"possible crops: {newList?.Count}");
-        return (newList is null || !newList.Any()) ? oldList : newList;
+        return newList is null || !newList.Any() ? oldList : newList;
     }
 }

@@ -59,7 +59,7 @@ internal partial class ModEntry
                 Game1.player.acceptedDailyQuest.Set(false);
                 Game1.netWorldState.Value.SetQuestOfTheDay(null);
                 OrdersBillboard.QuestDataDictionary.Remove(OrdersBillboard.ShowingQuest);
-                OrdersBillboard.QuestOptions.RemoveAll(option => option.myID == OrdersBillboard.ShowingQuest);
+                OrdersBillboard.QuestNotes.RemoveAll(option => option.myID == OrdersBillboard.ShowingQuest);
                 OrdersBillboard.QuestBillboard = null;
             }
             else if (__instance.upperRightCloseButton.containsPoint(x, y))
@@ -90,7 +90,6 @@ internal partial class ModEntry
         }
     }
 
-
     public class ItemDeliveryQuest_loadQuestInfo_Patch
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -104,22 +103,28 @@ internal partial class ModEntry
             bool found2 = false;
             for (int i = 0; i < codes.Count; i++)
             {
-                if (start && !found1 && codes[i].opcode == OpCodes.Ldc_R8)
+                switch (start)
                 {
-                    codes[i].operand = -0.1;
-                    found1 = true;
-                }
-                else if (!start && codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking")
-                {
-                    start = true;
-                }
-                else if (!found2 && codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand ==
-                         AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
-                {
-                    codes.Insert(i + 1,
-                        new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
-                    i++;
-                    found2 = true;
+                    case true when !found1 && codes[i].opcode == OpCodes.Ldc_R8:
+                        codes[i].operand = -0.1;
+                        found1 = true;
+                        break;
+                    case false when codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking":
+                        start = true;
+                        break;
+                    default:
+                    {
+                        if (!found2 && codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand ==
+                            AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
+                        {
+                            codes.Insert(i + 1,
+                                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
+                            i++;
+                            found2 = true;
+                        }
+
+                        break;
+                    }
                 }
 
                 if (found1 && found2)

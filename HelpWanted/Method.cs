@@ -124,10 +124,11 @@ internal partial class ModEntry
     /// <summary>根据任务信息创建任务,用于由CP加载的自定义任务</summary>
     public static Quest CreateQuest(QuestInfo questInfo)
     {
+        Quest quest;
         switch (questInfo.QuestType)
         {
             case QuestType.ResourceCollection:
-                var quest1 = new ResourceCollectionQuest
+                quest = new ResourceCollectionQuest()
                 {
                     questTitle = questInfo.QuestTitle,
                     questDescription = questInfo.QuestDescription,
@@ -147,11 +148,11 @@ internal partial class ModEntry
                     {
                         Value = questInfo.TargetMessage
                     },
-                    currentObjective = questInfo.CurrentObjective
+                    currentObjective = questInfo.CurrentObjective,
                 };
-                return quest1;
+                break;
             case QuestType.Fishing:
-                var quest2 = new FishingQuest
+                quest = new FishingQuest
                 {
                     questTitle = questInfo.QuestTitle,
                     questDescription = questInfo.QuestDescription,
@@ -170,26 +171,22 @@ internal partial class ModEntry
                     targetMessage = questInfo.TargetMessage,
                     currentObjective = questInfo.CurrentObjective
                 };
-                return quest2;
+                break;
             case QuestType.ItemDelivery:
-                var quest3 = new ItemDeliveryQuest
+                quest = new ItemDeliveryQuest(questInfo.Target, questInfo.ItemId)
                 {
-                    ItemId =
+                    // questTitle = questInfo.QuestTitle,
+                    // questDescription = questInfo.QuestDescription,
+                    number =
                     {
-                        Value = questInfo.ItemId
+                        Value = questInfo.Number > 1 ? questInfo.Number : 1
                     },
-                    questTitle = questInfo.QuestTitle,
-                    questDescription = questInfo.QuestDescription,
-                    target =
-                    {
-                        Value = questInfo.Target
-                    },
+                    currentObjective = questInfo.CurrentObjective,
                     targetMessage = questInfo.TargetMessage,
-                    currentObjective = questInfo.CurrentObjective
                 };
-                return quest3;
+                break;
             case QuestType.SlayMonster:
-                var quest4 = new SlayMonsterQuest
+                quest = new SlayMonsterQuest
                 {
                     questTitle = questInfo.QuestTitle,
                     questDescription = questInfo.QuestDescription,
@@ -208,17 +205,20 @@ internal partial class ModEntry
                     targetMessage = questInfo.TargetMessage,
                     currentObjective = questInfo.CurrentObjective
                 };
-                return quest4;
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(questInfo), "Invalid quest type");
         }
+        quest.reloadDescription();
+        quest.reloadObjective();
+        return quest;
     }
 
     /// <summary>刷新每日任务</summary>
     private static void RefreshQuestOfTheDay()
     {
         // 玩家在矿井中达到的最大层数大于0并且游戏天数大于5天.则可以接到杀怪任务
-        var mine = (MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U);
+        var mine = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
         // 总权重
         var totalWeight = Config.ResourceCollectionWeight + (mine ? Config.SlayMonstersWeight : 0) + Config.FishingWeight +
                           Config.ItemDeliveryWeight;

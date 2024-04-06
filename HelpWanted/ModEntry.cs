@@ -70,6 +70,7 @@ internal partial class ModEntry : Mod
         foreach (var kvp in dictionary)
         {
             var data = kvp.Value;
+            Monitor.Log($"{data.QuestInfo.QuestTitle} {data.QuestInfo.QuestDescription}", LogLevel.Debug);
             if (Game1.random.Next(100) <= data.PercentChance)
                 ModQuestList.Add(new QuestData(data));
         }

@@ -1,5 +1,5 @@
 ﻿using Common;
-using HelpWanted.Framework.Integration;
+using HelpWanted.Framework.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;

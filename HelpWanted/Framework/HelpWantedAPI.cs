@@ -1,4 +1,4 @@
-﻿using HelpWanted.Framework.Integration;
+﻿using HelpWanted.Framework.Interface;
 using StardewValley.Quests;
 
 namespace HelpWanted.Framework;

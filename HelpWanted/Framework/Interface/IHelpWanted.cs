@@ -1,4 +1,4 @@
-﻿namespace HelpWanted.Framework.Integration;
+﻿namespace HelpWanted.Framework.Interface;
 
 public interface IHelpWanted
 {

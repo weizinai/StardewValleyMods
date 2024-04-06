@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework.Integration;
+namespace HelpWanted.Framework.Interface;
 
 public interface IQuestData
 {

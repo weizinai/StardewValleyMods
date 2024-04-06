@@ -1,7 +1,7 @@
 ﻿using Common;
 using HarmonyLib;
 using HelpWanted.Framework;
-using HelpWanted.Framework.Integration;
+using HelpWanted.Framework.Interface;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;

@@ -175,8 +175,8 @@ internal partial class ModEntry
             case QuestType.ItemDelivery:
                 quest = new ItemDeliveryQuest(questInfo.Target, questInfo.ItemId)
                 {
-                    // questTitle = questInfo.QuestTitle,
-                    // questDescription = questInfo.QuestDescription,
+                    questTitle = questInfo.QuestTitle,
+                    questDescription = questInfo.QuestDescription,
                     number =
                     {
                         Value = questInfo.Number > 1 ? questInfo.Number : 1
@@ -184,6 +184,7 @@ internal partial class ModEntry
                     currentObjective = questInfo.CurrentObjective,
                     targetMessage = questInfo.TargetMessage,
                 };
+                quest.moneyReward.Value = quest.GetMoneyReward();
                 break;
             case QuestType.SlayMonster:
                 quest = new SlayMonsterQuest
@@ -209,8 +210,6 @@ internal partial class ModEntry
             default:
                 throw new ArgumentOutOfRangeException(nameof(questInfo), "Invalid quest type");
         }
-        quest.reloadDescription();
-        quest.reloadObjective();
         return quest;
     }
 

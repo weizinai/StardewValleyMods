@@ -1,7 +1,6 @@
 ﻿using Common;
 using HarmonyLib;
 using HelpWanted.Framework;
-using HelpWanted.Framework.Interface;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -18,15 +17,11 @@ internal partial class ModEntry : Mod
     public static IMonitor SMonitor;
 
     public static ModConfig Config = new();
-    private const string DictionaryPath = "aedenthorn.HelpWanted/Dictionary";
     private const string PadTexturePath = "aedenthorn.HelpWanted/Pin";
     private const string PinTexturePath = "aedenthorn.HelpWanted/Pad";
 
     private static readonly Random Random = new();
-    public static List<IQuestData> QuestList = new();
-
-    /// <summary>其他模组添加的求助任务</summary>
-    public static readonly List<IQuestData> ModQuestList = new();
+    public static readonly List<QuestData> QuestList = new();
 
     private static bool gettingQuestDetails;
 
@@ -37,45 +32,16 @@ internal partial class ModEntry : Mod
         SHelper = helper;
         SMonitor = Monitor;
         Config = helper.ReadConfig<ModConfig>();
-
-        helper.Events.Content.AssetRequested += OnAssetRequested;
+        
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
 
         HarmonyPatch();
     }
 
-    public override object GetApi()
-    {
-        return new HelpWantedAPI();
-    }
-
-    private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
-    {
-        // 模组未启用
-        if (!Config.ModEnabled)
-            return;
-
-        if (e.NameWithoutLocale.IsEquivalentTo(DictionaryPath))
-            e.LoadFrom(() => new Dictionary<string, QuestJsonData>(), AssetLoadPriority.Exclusive);
-    }
-
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        // 模组未启用或者今天是节日
-        if (!Config.ModEnabled || Utility.isFestivalDay(Game1.dayOfMonth, Game1.season))
-            return;
-        // 将其他模组添加的求助任务加载到 modQuestList 中
-        var dictionary = Helper.GameContent.Load<Dictionary<string, QuestJsonData>>(DictionaryPath);
-        foreach (var kvp in dictionary)
-        {
-            var data = kvp.Value;
-            Monitor.Log($"{data.QuestInfo.QuestTitle} {data.QuestInfo.QuestDescription}", LogLevel.Debug);
-            if (Game1.random.Next(100) <= data.PercentChance)
-                ModQuestList.Add(new QuestData(data));
-        }
-
-        SHelper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
+        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -88,13 +54,6 @@ internal partial class ModEntry : Mod
         var tries = 0;
         for (var i = 0; i < Config.MaxQuests; i++)
         {
-            if (ModQuestList.Any())
-            {
-                QuestList.Add(ModQuestList[0]);
-                ModQuestList.RemoveAt(0);
-                continue;
-            }
-
             try
             {
                 AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
@@ -158,9 +117,7 @@ internal partial class ModEntry : Mod
 
             RefreshQuestOfTheDay();
         }
-
-        ModQuestList.Clear();
-        SHelper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
+        Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

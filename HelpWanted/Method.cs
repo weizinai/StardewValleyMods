@@ -121,98 +121,6 @@ internal partial class ModEntry
             (byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax));
     }
 
-    /// <summary>根据任务信息创建任务,用于由CP加载的自定义任务</summary>
-    public static Quest CreateQuest(QuestInfo questInfo)
-    {
-        Quest quest;
-        switch (questInfo.QuestType)
-        {
-            case QuestType.ResourceCollection:
-                quest = new ResourceCollectionQuest()
-                {
-                    questTitle = questInfo.QuestTitle,
-                    questDescription = questInfo.QuestDescription,
-                    ItemId =
-                    {
-                        Value = questInfo.ItemId
-                    },
-                    number =
-                    {
-                        Value = questInfo.Number
-                    },
-                    target =
-                    {
-                        Value = questInfo.Target
-                    },
-                    targetMessage =
-                    {
-                        Value = questInfo.TargetMessage
-                    },
-                    currentObjective = questInfo.CurrentObjective,
-                };
-                break;
-            case QuestType.Fishing:
-                quest = new FishingQuest
-                {
-                    questTitle = questInfo.QuestTitle,
-                    questDescription = questInfo.QuestDescription,
-                    ItemId =
-                    {
-                        Value = questInfo.ItemId
-                    },
-                    numberToFish =
-                    {
-                        Value = questInfo.Number
-                    },
-                    target =
-                    {
-                        Value = questInfo.Target
-                    },
-                    targetMessage = questInfo.TargetMessage,
-                    currentObjective = questInfo.CurrentObjective
-                };
-                break;
-            case QuestType.ItemDelivery:
-                quest = new ItemDeliveryQuest(questInfo.Target, questInfo.ItemId)
-                {
-                    questTitle = questInfo.QuestTitle,
-                    questDescription = questInfo.QuestDescription,
-                    number =
-                    {
-                        Value = questInfo.Number > 1 ? questInfo.Number : 1
-                    },
-                    currentObjective = questInfo.CurrentObjective,
-                    targetMessage = questInfo.TargetMessage,
-                };
-                quest.moneyReward.Value = quest.GetMoneyReward();
-                break;
-            case QuestType.SlayMonster:
-                quest = new SlayMonsterQuest
-                {
-                    questTitle = questInfo.QuestTitle,
-                    questDescription = questInfo.QuestDescription,
-                    monsterName =
-                    {
-                        Value = questInfo.ItemId
-                    },
-                    numberToKill =
-                    {
-                        Value = questInfo.Number
-                    },
-                    target =
-                    {
-                        Value = questInfo.Target
-                    },
-                    targetMessage = questInfo.TargetMessage,
-                    currentObjective = questInfo.CurrentObjective
-                };
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(questInfo), "Invalid quest type");
-        }
-        return quest;
-    }
-
     /// <summary>刷新每日任务</summary>
     private static void RefreshQuestOfTheDay()
     {
@@ -316,7 +224,7 @@ internal partial class ModEntry
             case true:
                 return items;
             // 如果不忽略原版物品限制,且可能的物品列表不为空,则对该列表进行筛选        
-            case false when possibleItems.Any():
+            case false when possibleItems?.Any() != null:
                 possibleItems = possibleItems.Where(item =>
                 {
                     var sObject = new SObject(item, 1);

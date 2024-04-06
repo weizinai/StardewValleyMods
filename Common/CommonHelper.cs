@@ -1,4 +1,5 @@
 ﻿using StardewModdingAPI;
+using StardewValley;
 
 namespace Common;
 

@@ -1,5 +1,4 @@
 ﻿using Common;
-using HelpWanted.Framework.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -11,7 +10,7 @@ namespace HelpWanted.Framework;
 public sealed class OrdersBillboard : Billboard
 {
     public static readonly List<ClickableTextureComponent> QuestNotes = new();
-    public static readonly Dictionary<int, IQuestData> QuestDataDictionary = new();
+    public static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
     private static Rectangle boardRect = new(78 * 4, 58 * 4, 184 * 4, 96 * 4);
     private const int OptionIndex = -4200;
 

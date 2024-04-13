@@ -56,7 +56,7 @@ public class AutoHoe : Automate
             if (obj?.QualifiedItemId == "(O)590")
             {
                 if (StopAutomate(player, config.StopAutoTillDirtStamina, ref hasAddMessage)) break;
-                hoe.DoFunction(location, (int)(tile.X * Game1.tileSize), (int)(tile.Y * Game1.tileSize), 1, player);
+                UseToolOnTile(location, player, hoe, tile);
             }
         }
     }

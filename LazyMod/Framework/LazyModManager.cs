@@ -5,20 +5,30 @@ namespace LazyMod.Framework;
 
 public class LazyModManager
 {
-    private ModConfig config;
+    private readonly ModConfig config;
     private readonly List<Automate> automations = new();
 
     public LazyModManager(ModConfig config)
     {
         this.config = config;
-        automations.Add(new AutoHoe(config));
-        automations.Add(new AutoWateringCan(config));
-        automations.Add(new AutoHand(config));
+        InitAutomates();
+    }
+
+    public void OnDayStarted()
+    {
+        if (config.AutoOpenAnimalDoor)
+            AutoOpenGate.AutoOpenAnimalDoor();
     }
 
     public void Update()
     {
         UpdateAutomation();
+    }
+    
+    public void OnDayEnded()
+    {
+        if (config.AutoOpenAnimalDoor)
+            AutoOpenGate.AutoCloseAnimalDoor();
     }
 
     private void UpdateAutomation()
@@ -32,5 +42,19 @@ public class LazyModManager
         {
             automate.AutoDoFunction(location, player, tool, item);
         }
+    }
+    
+    private void InitAutomates()
+    {
+        automations.AddRange(new Automate[]
+        {
+            new AutoHoe(config),
+            new AutoWateringCan(config),
+            new AutoHand(config),
+            new AutoScythe(config),
+            new AutoMailPail(config),
+            new AutoShears(config),
+            new AutoOpenGate(config)
+        });
     }
 }

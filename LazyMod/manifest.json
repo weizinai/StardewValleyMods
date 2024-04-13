@@ -1,0 +1,11 @@
+﻿{
+    "Name": "Lazy Mod",
+    "Author": "weizinai",
+    "Version": "1.0.0",
+    "Description": "Lazy Mod",
+    "UniqueID": "weizinai.LazyMod",
+    "EntryDll": "LazyMod.dll",
+    //    "UpdateKeys": [
+    //        "Nexus:21766"
+    //    ]
+}

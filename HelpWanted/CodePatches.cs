@@ -41,7 +41,7 @@ internal partial class ModEntry
         {
             if (!Config.ModEnabled || !___dailyQuestBoard || Game1.activeClickableMenu.GetType() != typeof(Billboard))
                 return true;
-            Game1.activeClickableMenu = new OrdersBillboard();
+            Game1.activeClickableMenu = new HWQuestBoard();
             return false;
         }
     }
@@ -50,7 +50,7 @@ internal partial class ModEntry
     {
         public static void Postfix(Billboard __instance, bool ___dailyQuestBoard, int x, int y)
         {
-            if (!Config.ModEnabled || !___dailyQuestBoard || Game1.activeClickableMenu is not OrdersBillboard)
+            if (!Config.ModEnabled || !___dailyQuestBoard || Game1.activeClickableMenu is not HWQuestBoard)
                 return;
             __instance.acceptQuestButton.visible = true;
             if (__instance.acceptQuestButton.containsPoint(x, y))
@@ -58,13 +58,13 @@ internal partial class ModEntry
                 Game1.questOfTheDay.daysLeft.Value = Config.ModEnabled ? Config.QuestDays : 2;
                 Game1.player.acceptedDailyQuest.Set(false);
                 Game1.netWorldState.Value.SetQuestOfTheDay(null);
-                OrdersBillboard.QuestDataDictionary.Remove(OrdersBillboard.ShowingQuest);
-                OrdersBillboard.QuestNotes.RemoveAll(option => option.myID == OrdersBillboard.ShowingQuest);
-                OrdersBillboard.QuestBillboard = null;
+                HWQuestBoard.QuestDataDictionary.Remove(HWQuestBoard.ShowingQuestID);
+                HWQuestBoard.QuestNotes.RemoveAll(option => option.myID == HWQuestBoard.ShowingQuestID);
+                HWQuestBoard.ShowingQuest = null;
             }
             else if (__instance.upperRightCloseButton.containsPoint(x, y))
             {
-                OrdersBillboard.QuestBillboard = null;
+                HWQuestBoard.ShowingQuest = null;
             }
         }
     }

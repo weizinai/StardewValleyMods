@@ -1,0 +1,30 @@
+﻿{
+    // Config
+    // 耕种
+    "Config.FarmingPage.Name":"耕种",
+    "Config.AutoTillDirt.Name": "自动耕地",
+    "Config.AutoTillDirtRange.Name": "自动耕地范围",
+    "Config.StopAutoTillDirtStamina.Name":"停止自动耕地体力",
+    "Config.AutoWaterDirt.Name":"自动浇水",
+    "Config.AutoWaterDirtRange.Name":"自动浇水范围",
+    "Config.StopAutoWaterDirtStamina.Name":"停止自动浇水体力",
+    "Config.AutoRefillWateringCan.Name":"自动补充水壶",
+    "Config.AutoRefillWateringCanRange.Name":"自动补充水壶范围",
+    "Config.StopAutoRefillWateringCanRange.Name":"停止自动补充水壶体力",
+    "Config.FindWateringCanFromInventory.Name":"从背包中寻找水壶",
+    "Config.AutoSeed.Name":"自动播种",
+    "Config.AutoSeedRange.Name":"自动播种范围",
+    "Config.AutoFertilize.Name": "自动施肥",
+    "Config.AutoFertilizeRange.Name":"自动施肥范围",
+    "Config.AutoHarvestCrop.Name":"自动收获作物",
+    "Config.AutoHarvestCropRange.Name":"自动收获作物范围",
+    "Config.AutoHarvestFlower.Name":"自动收获花",
+    // 其他
+    "Config.OtherPage.Name":"其他",
+    "Config.AutoDigArtifactSpots.Name":"自动挖掘远古斑点",
+    "Config.AutoDigArtifactSpotsRange.Name":"自动挖掘远古斑点范围",
+    "Config.StopAutoDigArtifactSpotsStamina.Name":"停止自动挖掘远古斑点体力",
+    "Config.FindHoeFromInventory.Name":"从背包中寻找锄头",
+    // Message
+    "Message_Stamina":"没有体力了",
+}

@@ -7,7 +7,7 @@ using StardewValley.Menus;
 
 namespace HelpWanted.Framework;
 
-public sealed class OrdersBillboard : Billboard
+public sealed class HWQuestBoard : Billboard
 {
     public static readonly List<ClickableTextureComponent> QuestNotes = new();
     public static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
@@ -18,20 +18,20 @@ public sealed class OrdersBillboard : Billboard
     private readonly Texture2D billboardTexture;
 
     /// <summary>正在展示的任务的ID</summary>
-    public static int ShowingQuest;
+    public static int ShowingQuestID;
 
-    /// <summary>正在展示的任务的任务面板</summary>
-    public static Billboard? QuestBillboard;
+    /// <summary>正在展示的任务</summary>
+    public static Billboard? ShowingQuest;
 
     // 悬浮标题和悬浮文本
     private string hoverTitle = "";
     private string hoverText = "";
 
-    public OrdersBillboard() : base(true)
+    public HWQuestBoard() : base(true)
     {
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites\\Billboard");
-        QuestBillboard = null;
+        ShowingQuest = null;
         if (ModEntry.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典
@@ -41,7 +41,8 @@ public sealed class OrdersBillboard : Billboard
             var questList = ModEntry.QuestList;
             for (var i = 0; i < questList.Count; i++)
             {
-                var size = new Point((int)(questList[i].PadTextureSource.Width * ModEntry.Config.NoteScale),
+                var size = new Point(
+                    (int)(questList[i].PadTextureSource.Width * ModEntry.Config.NoteScale),
                     (int)(questList[i].PadTextureSource.Height * ModEntry.Config.NoteScale));
                 var bounds = GetFreeBounds(size.X, size.Y);
                 if (bounds is null) break;
@@ -55,7 +56,7 @@ public sealed class OrdersBillboard : Billboard
                     // 如果该选项是最右侧的选项,则右邻居ID为-1,否则为当前选项ID-1
                     rightNeighborID = i < questList.Count - 1 ? OptionIndex - i - 1 : -1
                 });
-                QuestDataDictionary[OptionIndex - i] = questList[i];
+                QuestDataDictionary[QuestNotes[i].myID] = questList[i];
             }
 
             ModEntry.QuestList.Clear();
@@ -63,8 +64,8 @@ public sealed class OrdersBillboard : Billboard
 
         exitFunction = delegate
         {
-            if (QuestBillboard is not null)
-                Game1.activeClickableMenu = new OrdersBillboard();
+            if (ShowingQuest is not null)
+                Game1.activeClickableMenu = new HWQuestBoard();
         };
         // 获得所有的可点击组件
         populateClickableComponentList();
@@ -74,9 +75,9 @@ public sealed class OrdersBillboard : Billboard
     public override void performHoverAction(int x, int y)
     {
         // 如果目前正在展示任务,则调用任务面板的悬停事件处理方法
-        if (QuestBillboard is not null)
+        if (ShowingQuest is not null)
         {
-            QuestBillboard.performHoverAction(x, y);
+            ShowingQuest.performHoverAction(x, y);
             return;
         }
 
@@ -96,7 +97,7 @@ public sealed class OrdersBillboard : Billboard
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
         // 如果当前没有展示任务面板,则处理OrderBillboard的鼠标左键点击事件
-        if (QuestBillboard is null)
+        if (ShowingQuest is null)
         {
             // 遍历所有的任务选项,判断鼠标是否点击在某个任务选项上
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
@@ -104,8 +105,8 @@ public sealed class OrdersBillboard : Billboard
                 if (QuestDataDictionary[option.myID].Acceptable)
                 {
                     Game1.netWorldState.Value.SetQuestOfTheDay(QuestDataDictionary[option.myID].Quest);
-                    ShowingQuest = option.myID;
-                    QuestBillboard = new Billboard(true);
+                    ShowingQuestID = option.myID;
+                    ShowingQuest = new Billboard(true);
                 }
 
                 return;
@@ -120,48 +121,45 @@ public sealed class OrdersBillboard : Billboard
         }
         else
         {
-            QuestBillboard.receiveLeftClick(x, y, playSound);
+            ShowingQuest.receiveLeftClick(x, y, playSound);
         }
     }
 
     public override bool readyToClose()
     {
-        if (QuestBillboard is not null)
-        {
-            QuestBillboard = null;
-            return false;
-        }
+        if (ShowingQuest is null) return true;
+        ShowingQuest = null;
+        return false;
 
-        return true;
     }
 
     public override void applyMovementKey(int direction)
     {
-        if (QuestBillboard is null)
+        if (ShowingQuest is null)
         {
             base.applyMovementKey(direction);
         }
         else
         {
-            QuestBillboard.applyMovementKey(direction);
+            ShowingQuest.applyMovementKey(direction);
         }
     }
 
     public override void automaticSnapBehavior(int direction, int oldRegion, int oldID)
     {
-        if (QuestBillboard is null)
+        if (ShowingQuest is null)
         {
             base.automaticSnapBehavior(direction, oldRegion, oldID);
         }
         else
         {
-            QuestBillboard.automaticSnapBehavior(direction, oldRegion, oldID);
+            ShowingQuest.automaticSnapBehavior(direction, oldRegion, oldID);
         }
     }
 
     public override void snapToDefaultClickableComponent()
     {
-        if (QuestBillboard is null)
+        if (ShowingQuest is null)
         {
             base.snapToDefaultClickableComponent();
             currentlySnappedComponent = getComponentWithID(OptionIndex);
@@ -169,7 +167,7 @@ public sealed class OrdersBillboard : Billboard
         }
         else
         {
-            QuestBillboard.snapToDefaultClickableComponent();
+            ShowingQuest.snapToDefaultClickableComponent();
         }
     }
 
@@ -177,19 +175,21 @@ public sealed class OrdersBillboard : Billboard
     public override void draw(SpriteBatch spriteBatch)
     {
         // 如果有正在展示的任务面板,则调用任务面板的绘制方法
-        if (QuestBillboard is not null)
+        if (ShowingQuest is not null)
         {
-            QuestBillboard.draw(spriteBatch);
+            ShowingQuest.draw(spriteBatch);
             return;
         }
 
         // 绘制阴影
-        DrawHelper.DrawShadow();
+        if (!Game1.options.showClearBackgrounds)
+        {
+            spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
+        }
 
         // 绘制面板纹理
         spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White,
-            0f,
-            Vector2.Zero, 4f, SpriteEffects.None, 1f);
+            0f, Vector2.Zero, 4f, SpriteEffects.None, 1f);
 
         // 如果没有任务选项,则绘制"没有任务"的文本
         if (!QuestNotes.Any())
@@ -202,17 +202,31 @@ public sealed class OrdersBillboard : Billboard
             // 遍历所有的任务选项,绘制任务选项
             foreach (var option in QuestNotes)
             {
-                option.draw(spriteBatch, QuestDataDictionary[option.myID].PadColor, 1);
-                spriteBatch.Draw(QuestDataDictionary[option.myID].PinTexture, option.bounds, QuestDataDictionary[option.myID].IconSource,
-                    QuestDataDictionary[option.myID].PinColor);
-                // 如果任务有图标,则绘制任务图标
-                spriteBatch.Draw(QuestDataDictionary[option.myID].Icon,
-                    new Vector2(option.bounds.X + QuestDataDictionary[option.myID].IconOffset.X,
-                        option.bounds.Y + QuestDataDictionary[option.myID].IconOffset.Y),
-                    QuestDataDictionary[option.myID].IconSource, QuestDataDictionary[option.myID].IconColor, 0, Vector2.Zero,
-                    QuestDataDictionary[option.myID].IconScale,
-                    SpriteEffects.FlipHorizontally, 1);
+                var questData = QuestDataDictionary[option.myID];
+                // 绘制 Pad
+                option.draw(spriteBatch, questData.PadColor, 1);
+                // 绘制 Pin
+                spriteBatch.Draw(questData.PinTexture, option.bounds, questData.IconSource, questData.PinColor);
+                // 绘制 Icon
+                spriteBatch.Draw(questData.Icon,
+                    new Vector2(option.bounds.X + questData.IconOffset.X, option.bounds.Y + questData.IconOffset.Y),
+                    questData.IconSource, questData.IconColor, 0, Vector2.Zero, questData.IconScale, SpriteEffects.FlipHorizontally, 1);
             }
+        }
+
+        // 绘制星星
+        var drawAllStars = Game1.stats.Get("BillboardQuestsDone") % 3 == 0 && Game1.questOfTheDay != null &&
+                           Game1.questOfTheDay.completed.Value;
+        for (var i = 0; i < (drawAllStars ? 3 : Game1.stats.Get("BillboardQuestsDone") % 3); i++)
+        {
+            spriteBatch.Draw(billboardTexture, Position + new Vector2(18 + 12 * i, 36f) * 4f, new Rectangle(140, 397, 10, 11), Color.White,
+                0f, Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
+        }
+        
+        if (Game1.player.hasCompletedCommunityCenter())
+        {
+            spriteBatch.Draw(billboardTexture, Position + new Vector2(290f, 59f) * 4f, new Rectangle(0, 427, 39, 54), Color.White, 0f,
+                Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
         }
 
         // 绘制右上角的关闭按钮

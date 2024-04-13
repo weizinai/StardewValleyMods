@@ -1,7 +1,6 @@
 ﻿using Common;
 using HarmonyLib;
 using HelpWanted.Framework;
-using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -13,12 +12,11 @@ namespace HelpWanted;
 
 internal partial class ModEntry : Mod
 {
-    public static IModHelper SHelper;
     public static IMonitor SMonitor;
 
     public static ModConfig Config = new();
-    private const string PadTexturePath = "aedenthorn.HelpWanted/Pin";
-    private const string PinTexturePath = "aedenthorn.HelpWanted/Pad";
+    private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
+    private const string PinTexturePath = "aedenthorn.HelpWanted/Pin";
 
     private static readonly Random Random = new();
     public static readonly List<QuestData> QuestList = new();
@@ -29,10 +27,9 @@ internal partial class ModEntry : Mod
     {
         I18n.Init(helper.Translation);
 
-        SHelper = helper;
         SMonitor = Monitor;
         Config = helper.ReadConfig<ModConfig>();
-        
+
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
 
@@ -54,7 +51,7 @@ internal partial class ModEntry : Mod
         var tries = 0;
         for (var i = 0; i < Config.MaxQuests; i++)
         {
-            try
+            if (Game1.questOfTheDay != null)
             {
                 AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
                 gettingQuestDetails = true;
@@ -105,18 +102,12 @@ internal partial class ModEntry : Mod
                     tries = 0;
                     npcs.Add(npc.Name);
                     var icon = npc.Portrait;
-                    var iconSource = new Rectangle(0, 0, 64, 64);
-                    var iconOffset = new Point(Config.PortraitOffsetX, Config.PortraitOffsetY);
-                    AddQuest(Game1.questOfTheDay, questType, icon, iconSource, iconOffset);
+                    AddQuest(Game1.questOfTheDay, questType, icon);
                 }
             }
-            catch (Exception ex)
-            {
-                Monitor.Log($"Error loading quest:\n\n {ex}", LogLevel.Warn);
-            }
-
             RefreshQuestOfTheDay();
         }
+
         Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
 
@@ -141,6 +132,15 @@ internal partial class ModEntry : Mod
             value => Config.ModEnabled = value,
             I18n.Config_ModEnabled_Name,
             I18n.Config_ModEnabled_Tooltip
+        );
+        
+        // 添加QuestFirstDay配置选项
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => Config.QuestFirstDay,
+            value => Config.QuestFirstDay = value,
+            I18n.Config_QuestFirstDay_Name,
+            I18n.Config_QuestFirstDay_Tooltip
         );
 
         // 添加MustLikeItem配置选项

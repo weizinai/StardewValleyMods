@@ -12,7 +12,7 @@ namespace HelpWanted;
 internal partial class ModEntry
 {
     /// <summary>获取自定义Pin纹理,如果没有则返回默认纹理</summary>
-    public static Texture2D GetPinTexture(string target, string questType)
+    private Texture2D GetPinTexture(string target, string questType)
     {
         // 获取特定NPC和特定任务类型的任务的自定义Pin纹理
         var texture = GetTexture(PinTexturePath + "/" + target + "/" + questType);
@@ -43,11 +43,11 @@ internal partial class ModEntry
         }
 
         // 如果没有自定义纹理,则返回默认Pin纹理
-        return SHelper.ModContent.Load<Texture2D>("Assets/Pin.png");
+        return Helper.ModContent.Load<Texture2D>("Assets/Pin.png");
     }
 
     /// <summary>获取自定义Pad纹理,如果没有则返回默认纹理</summary>
-    public static Texture2D GetPadTexture(string target, string questType)
+    private Texture2D GetPadTexture(string target, string questType)
     {
         // 获取特定NPC和特定任务类型的任务的自定义Pad纹理
         var texture = GetTexture(PadTexturePath + "/" + target + "/" + questType);
@@ -78,18 +78,18 @@ internal partial class ModEntry
         }
 
         // 如果没有自定义纹理,则返回默认Pad纹理
-        return SHelper.ModContent.Load<Texture2D>("Assets/Pad.png");
+        return Helper.ModContent.Load<Texture2D>("Assets/Pad.png");
     }
 
     /// <summary>获取自定义纹理</summary>
-    private static Texture2D? GetTexture(string path)
+    private Texture2D? GetTexture(string path)
     {
         // 获取特定NPC或特定任务类型的任务的不同自定义纹理,如果纹理存在,则随机返回一个
         var textures = new List<Texture2D>();
         try
         {
             for (var i = 1;; i++)
-                textures.Add(SHelper.GameContent.Load<Texture2D>(path + "/" + i));
+                textures.Add(Helper.GameContent.Load<Texture2D>(path + "/" + i));
         }
         catch
         {
@@ -103,7 +103,7 @@ internal partial class ModEntry
         // 获取特定NPC或特定任务类型的任务的自定义纹理
         try
         {
-            return SHelper.GameContent.Load<Texture2D>(path);
+            return Helper.GameContent.Load<Texture2D>(path);
         }
         catch
         {
@@ -124,10 +124,17 @@ internal partial class ModEntry
     /// <summary>刷新每日任务</summary>
     private static void RefreshQuestOfTheDay()
     {
+        // 如果是游戏的第1天,则不生成每日任务
+        if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay)
+        {
+            Game1.netWorldState.Value.SetQuestOfTheDay(null);
+            return;
+        }
+        
         // 玩家在矿井中达到的最大层数大于0并且游戏天数大于5天.则可以接到杀怪任务
-        var mine = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
+        var slayMonsterQuest = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
         // 总权重
-        var totalWeight = Config.ResourceCollectionWeight + (mine ? Config.SlayMonstersWeight : 0) + Config.FishingWeight +
+        var totalWeight = Config.ResourceCollectionWeight + (slayMonsterQuest ? Config.SlayMonstersWeight : 0) + Config.FishingWeight +
                           Config.ItemDeliveryWeight;
         // 生成一个0-1之间的随机双浮点数
         var randomDouble = Random.NextDouble();
@@ -136,7 +143,7 @@ internal partial class ModEntry
         var questTypes = new List<(double weight, Func<Quest> createQuest)>
         {
             (Config.ResourceCollectionWeight, () => new ResourceCollectionQuest()),
-            (mine ? Config.SlayMonstersWeight : 0, () => new SlayMonsterQuest()),
+            (slayMonsterQuest ? Config.SlayMonstersWeight : 0, () => new SlayMonsterQuest()),
             (Config.FishingWeight, () => new FishingQuest()),
             (Config.ItemDeliveryWeight, () => new ItemDeliveryQuest())
         };
@@ -153,16 +160,16 @@ internal partial class ModEntry
     }
 
     /// <summary>添加任务到任务列表中,适用于原版的任务或者由C#添加的任务</summary>
-    public static void AddQuest(Quest quest, QuestType questType, Texture2D icon, Rectangle iconSource, Point iconOffset)
+    private void AddQuest(Quest quest, QuestType questType, Texture2D icon)
     {
-        var npcName = SHelper.Reflection.GetField<NetString>(quest, "target").GetValue().Value;
+        var npcName = Helper.Reflection.GetField<NetString>(quest, "target").GetValue().Value;
         var padTexture = GetPadTexture(npcName, questType.ToString());
         var pinTexture = GetPinTexture(npcName, questType.ToString());
-        QuestList.Add(new QuestData(padTexture, pinTexture, icon, iconSource, iconOffset));
+        QuestList.Add(new QuestData(padTexture, pinTexture, icon));
     }
 
     /// <summary>获取随机物品</summary>
-    private static string GetRandomItem(string result, List<string> possibleItems)
+    private static string GetRandomItem(string result, List<string>? possibleItems)
     {
         // 获取允许的任务物品列表
         var items = GetRandomItemList(possibleItems);
@@ -178,7 +185,7 @@ internal partial class ModEntry
     }
 
     /// <summary>获取随机物品列表</summary>
-    private static List<string>? GetRandomItemList(List<string> possibleItems)
+    private static List<string>? GetRandomItemList(List<string>? possibleItems)
     {
         // 如果模组未启用,或者必须为喜爱物品和必须为喜欢物品均为false,或者今日任务不是物品交付任务,则返回null
         if (!Config.ModEnabled || Config is { MustLikeItem: false, MustLoveItem: false } ||

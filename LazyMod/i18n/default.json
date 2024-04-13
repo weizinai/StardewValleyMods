@@ -1,0 +1,31 @@
+﻿{
+    // Config
+    // Farming
+    "Config.FarmingPage.Name":"Farming",
+    "Config.AutoTillDirt.Name": "Auto Till Dirt",
+    "Config.AutoTillDirtRange.Name": "Auto Till Dirt Range",
+    "Config.StopAutoTillDirtStamina.Name":"Stop Auto Till Dirt Stamina",
+    "Config.AutoWaterDirt.Name":"Auto Water Dirt",
+    "Config.AutoWaterDirtRange.Name":"Auto Water Dirt Range",
+    "Config.StopAutoWaterDirtStamina.Name":"Stop Auto Water Dirt Stamina",
+    "Config.AutoRefillWateringCan.Name":"Auto Refill Watering Can",
+    "Config.AutoRefillWateringCanRange.Name":"Auto Refill Watering Can Range",
+    "Config.StopAutoRefillWateringCanRange.Name":"Stop Auto Refill Watering Can Stamina",
+    "Config.FindWateringCanFromInventory.Name":"Find Watering Can From Inventory",
+    "Config.AutoSeed.Name":"Auto Seed",
+    "Config.AutoSeedRange.Name":"Auto Seed Range",
+    "Config.AutoFertilize.Name": "Auto Fertilize",
+    "Config.AutoFertilizeRange.Name":"Auto Fertilize Range",
+    "Config.AutoHarvestCrop.Name":"Auto Harvest Crop",
+    "Config.AutoHarvestCropRange.Name":"Auto Harvest Crop Range",
+    "Config.AutoHarvestFlower.Name":"Auto Harvest Flower",
+    // Other
+    "Config.OtherPage.Name":"Other",
+    "Config.AutoDigArtifactSpots.Name":"Auto Dig Artifact Spots",
+    "Config.AutoDigArtifactSpotsRange.Name":"Auto Dig Artifact Spots Range",
+    "Config.StopAutoDigArtifactSpotsStamina.Name":"Stop Auto Dig Artifact Spots Stamina",
+    "Config.FindHoeFromInventory.Name":"Find Hoe From Inventory",
+    
+    // Message
+    "Message_Stamina":"",
+}

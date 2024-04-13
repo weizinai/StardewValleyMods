@@ -4,6 +4,8 @@ public class ModConfig
 {
     /// <summary>是否启用模组</summary>
     public bool ModEnabled { get; set; } = true;
+    
+    public bool QuestFirstDay { get; set; } = false;
     /// <summary>是否必须为村民喜欢的礼物</summary>
     public bool MustLikeItem { get; set; } = true;
     /// <summary>是否必须为村民喜爱的礼物</summary>

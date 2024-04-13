@@ -7,7 +7,7 @@ namespace HelpWanted.Framework;
 
 public class QuestData
 {
-    public QuestData(Texture2D padTexture, Texture2D pinTexture, Texture2D icon, Rectangle iconSource, Point iconOffset)
+    public QuestData(Texture2D padTexture, Texture2D pinTexture, Texture2D icon)
     {
         var config = ModEntry.Config;
         PadTexture = padTexture;    
@@ -17,10 +17,10 @@ public class QuestData
         PinTextureSource = new Rectangle(0, 0, 64, 64);
         PinColor = ModEntry.GetRandomColor();
         Icon = icon;
-        IconSource = iconSource;
+        IconSource = new Rectangle(0,0,64,64);
         IconColor = new Color(config.PortraitTintR, config.PortraitTintG, config.PortraitTintB, config.PortraitTintA);
         IconScale = config.PortraitScale;
-        IconOffset = iconOffset;
+        IconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
         Quest = Game1.questOfTheDay;
     }
 

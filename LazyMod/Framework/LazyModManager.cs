@@ -17,7 +17,7 @@ public class LazyModManager
     public void OnDayStarted()
     {
         if (config.AutoOpenAnimalDoor)
-            AutoOpenGate.AutoOpenAnimalDoor();
+            AutoAnimal.AutoOpenAnimalDoor();
     }
 
     public void Update()
@@ -28,7 +28,7 @@ public class LazyModManager
     public void OnDayEnded()
     {
         if (config.AutoOpenAnimalDoor)
-            AutoOpenGate.AutoCloseAnimalDoor();
+            AutoAnimal.AutoCloseAnimalDoor();
     }
 
     private void UpdateAutomation()
@@ -48,13 +48,10 @@ public class LazyModManager
     {
         automations.AddRange(new Automate[]
         {
-            new AutoHoe(config),
-            new AutoWateringCan(config),
-            new AutoHand(config),
-            new AutoScythe(config),
-            new AutoMailPail(config),
-            new AutoShears(config),
-            new AutoOpenGate(config)
+            new AutoFarming(config),
+            new AutoAnimal(config),
+            new AutoMining(config),
+            new AutoOther(config),
         });
     }
 }

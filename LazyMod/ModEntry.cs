@@ -22,13 +22,13 @@ public class ModEntry : Mod
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         helper.Events.GameLoop.DayEnding += OnDayEnded;
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         lazyModManager?.OnDayStarted();
     }
 
@@ -39,7 +39,6 @@ public class ModEntry : Mod
 
     private void OnDayEnded(object? sender, DayEndingEventArgs e)
     {
-        Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
         lazyModManager?.OnDayEnded();
     }
 
@@ -47,8 +46,7 @@ public class ModEntry : Mod
     {
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
 
-        if (configMenu is null)
-            return;
+        if (configMenu is null) return;
 
         configMenu.Register(
             ModManifest,
@@ -66,6 +64,12 @@ public class ModEntry : Mod
             ModManifest,
             "Animal",
             I18n.Config_AnimalPage_Name
+        );
+
+        configMenu.AddPageLink(
+            ModManifest,
+            "Mining",
+            I18n.Config_MiningPage_Name
         );
 
         configMenu.AddPageLink(
@@ -403,6 +407,74 @@ public class ModEntry : Mod
             null,
             1,
             3
+        );
+
+        #endregion
+
+        #region 采矿
+        
+        configMenu.AddPage(
+            ModManifest,
+            "Mining",
+            I18n.Config_MiningPage_Name
+        );
+
+        // 自动收集煤炭
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoCollectCoal_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoCollectCoal,
+            value => config.AutoCollectCoal = value,
+            I18n.Config_AutoCollectCoal_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoCollectCoalRange,
+            value => config.AutoCollectCoalRange = value,
+            I18n.Config_AutoCollectCoalRange_Name
+        );
+        // 自动破坏容器
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoBreakContainer_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoBreakContainer,
+            value => config.AutoBreakContainer = value,
+            I18n.Config_AutoBreakContainer_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoBreakContainerRange,
+            value => config.AutoBreakContainerRange = value,
+            I18n.Config_AutoBreakContainerRange_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindWeaponFromInventory,
+            value => config.FindWeaponFromInventory = value,
+            I18n.Config_FindWeaponFromInventory_Name
+        );
+        // 自动收集奖励
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoCollectReward_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoCollectReward,
+            value => config.AutoCollectReward = value,
+            I18n.Config_AutoCollectReward_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoCollectRewardRange,
+            value => config.AutoCollectRewardRange = value,
+            I18n.Config_AutoCollectRewardRange_Name
         );
 
         #endregion

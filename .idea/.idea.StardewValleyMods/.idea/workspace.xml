@@ -15,9 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoMailPail.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOpenGate.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoShears.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoMining.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOther.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
@@ -26,8 +26,15 @@
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoHand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoHand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoScythe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoScythe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoAxe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoAnimal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoHand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoHoe.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoMailPail.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOpenGate.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoPickaxe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFarming.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoScythe.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoShears.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoWateringCan.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/LazyModManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/LazyModManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/ModConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/ModConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/ModEntry.cs" afterDir="false" />
@@ -37,7 +44,6 @@
       <change beforePath="$PROJECT_DIR$/LazyMod/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/i18n/zh.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.sourcelink.json" afterDir="false" />
@@ -108,15 +114,17 @@
     ".NET 项目.HelpWanted.executor": "Run",
     ".NET 项目.LazyMod.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -313,7 +321,8 @@
       <workItem from="1712924696678" duration="6826000" />
       <workItem from="1712936933155" duration="7530000" />
       <workItem from="1712976185267" duration="19114000" />
-      <workItem from="1713003275599" duration="2967000" />
+      <workItem from="1713003275599" duration="7010000" />
+      <workItem from="1713015288924" duration="3317000" />
     </task>
     <servers />
   </component>

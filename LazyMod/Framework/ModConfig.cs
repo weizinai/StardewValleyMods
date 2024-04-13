@@ -60,6 +60,17 @@ public class ModConfig
     
     #endregion;
 
+    // 自动收集煤炭
+    public bool AutoCollectCoal { get; set; } = true;
+    public int AutoCollectCoalRange { get; set; } = 1;
+    // 自动破坏容器
+    public bool AutoBreakContainer { get; set; } = true;
+    public int AutoBreakContainerRange { get; set; } = 1;
+    public bool FindWeaponFromInventory { get; set; } = true;
+    // 自动收集奖励
+    public bool AutoCollectReward { get; set; } = true;
+    public int AutoCollectRewardRange { get; set; } = 1;
+    
     // 其他
     // 自动挖掘远古斑点
     public bool AutoDigArtifactSpots { get; set; } = true;

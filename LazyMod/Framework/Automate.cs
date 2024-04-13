@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Tools;
+using xTile.Dimensions;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace LazyMod.Framework;
 
 public abstract class Automate
 {
-    public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
+    public abstract void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item);
 
     protected IEnumerable<Vector2> GetTileGrid(Vector2 origin, int range)
     {
@@ -59,20 +61,26 @@ public abstract class Automate
 
     protected FarmAnimal? GetBestHarvestableFarmAnimal(GameLocation location, Tool tool, Vector2 tile)
     {
-        var tilePixelPosition = GetTilePixelPosition(tile, false);
-        var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool,
-            new Rectangle((int)tilePixelPosition.X, (int)tilePixelPosition.Y, Game1.tileSize, Game1.tileSize));
+        var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool, GetTileBoundingBox(tile));
         if (animal?.currentProduce.Value is null || animal.isBaby() || !animal.CanGetProduceWithTool(tool))
             return null;
 
         return animal;
     }
 
-    /// <summary>
-    ///     获取瓦片中心的像素坐标
-    /// </summary>
-    protected Vector2 GetTilePixelPosition(Vector2 tile, bool center = true)
+    private Vector2 GetTilePixelPosition(Vector2 tile, bool center = true)
     {
         return tile * Game1.tileSize + (center ? new Vector2(Game1.tileSize / 2f) : Vector2.Zero);
+    }
+
+    protected Rectangle GetTileBoundingBox(Vector2 tile)
+    {
+        var tilePixelPosition = GetTilePixelPosition(tile, false);
+        return new Rectangle((int)tilePixelPosition.X, (int)tilePixelPosition.Y, Game1.tileSize, Game1.tileSize);
+    }
+
+    protected void CheckTileAction(GameLocation location, Farmer player, Vector2 tile)
+    {
+        location.checkAction(new Location((int)tile.X, (int)tile.Y), Game1.viewport, player);
     }
 }

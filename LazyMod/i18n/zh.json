@@ -39,6 +39,15 @@
     "Config.AutoOpenFenceGateRange.Name":"自动打开栅栏门范围",
     "Config.AutoPetPet.Name":"自动抚摸宠物",
     "Config.AutoPetPetRange.Name":"自动抚摸宠物范围",
+    // 采矿
+    "Config.MiningPage.Name": "采矿",
+    "Config.AutoCollectCoal.Name": "自动收集煤炭",
+    "Config.AutoCollectCoalRange.Name": "自动收集煤炭范围",
+    "Config.AutoBreakContainer.Name": "自动打破容器",
+    "Config.AutoBreakContainerRange.Name": "自动打破容器范围",
+    "Config.FindWeaponFromInventory.Name": "从背包中寻找武器",
+    "Config.AutoCollectReward.Name": "自动收集奖励",
+    "Config.AutoCollectRewardRange.Name": "自动收集奖励范围",
     // 其他
     "Config.OtherPage.Name":"其他",
     "Config.AutoDigArtifactSpots.Name":"自动挖掘远古斑点",

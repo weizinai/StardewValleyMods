@@ -8,6 +8,10 @@ public class ModConfig
     public bool AutoTillDirt { get; set; } = true;
     public int AutoTillDirtRange { get; set; } = 1;
     public float StopAutoTillDirtStamina { get; set; } = 3;
+    // 自动清理耕地
+    public bool AutoClearTilledDirt { get; set; } = true;
+    public int AutoClearTilledDirtRange { get; set; } = 1;
+    public float StopAutoClearTilledDirtStamina { get; set; } = 3;
     // 自动浇水
     public bool AutoWaterDirt { get; set; } = true;
     public int AutoWaterDirtRange { get; set; } = 1;
@@ -30,9 +34,8 @@ public class ModConfig
     public bool AutoShakeFruitTree { get; set; } = true;
     public int AutoShakeFruitTreeRange { get; set; } = 1;
     // 自动清理枯萎作物
-    public bool AutoCleanDeadCrop { get; set; } = true;
-    public int AutoCleanDeadCropRange { get; set; } = 1;
-    public bool FindScytheFromInventory { get; set; } = true;
+    public bool AutoClearDeadCrop { get; set; } = true;
+    public int AutoClearDeadCropRange { get; set; } = 1;
 
     #endregion
 
@@ -60,6 +63,8 @@ public class ModConfig
     
     #endregion;
 
+    #region 采矿
+
     // 自动收集煤炭
     public bool AutoCollectCoal { get; set; } = true;
     public int AutoCollectCoalRange { get; set; } = 1;
@@ -67,11 +72,43 @@ public class ModConfig
     public bool AutoBreakContainer { get; set; } = true;
     public int AutoBreakContainerRange { get; set; } = 1;
     public bool FindWeaponFromInventory { get; set; } = true;
-    // 自动收集奖励
-    public bool AutoCollectReward { get; set; } = true;
-    public int AutoCollectRewardRange { get; set; } = 1;
+    // 自动打开宝藏
+    public bool AutoOpenTreasure { get; set; } = true;
+    public int AutoOpenTreasureRange { get; set; } = 1;
+    // 自动清理水晶
+    public bool AutoClearCrystal { get; set; } = true;
+    public int AutoClearCrystalRange { get; set; } = 1;
+    // 显示梯子信息
+    public bool ShowLadderInfo { get; set; } = true;
+    // 显示竖井信息
+    public bool ShowShaftInfo { get; set; } = true;
+    // 显示怪物信息
+    public bool ShowMonsterInfo { get; set; } = true;
+    // 显示矿物信息
+    public bool ShowMineralInfo { get; set; } = true;
+
+    #endregion
+    
+    // 自动觅食
+    public bool AutoForage { get; set; } = true;
+    public int AutoForageRange { get; set; } = 1;
+    // 自动摇树
+    public bool AutoShakeTree { get; set; } = true;
+    // 自动收获苔藓
+    public bool AutoHarvestMoss { get; set; } = true;
+    public int AutoHarvestMossRange { get; set; } = 1;
+    public bool FindScytheFromInventory { get; set; } = true;
+    // 自动清理树枝
+    public bool AutoClearTwig { get; set; } = true;
+    public int AutoClearTwigRange { get; set; } = 1;
+    public float StopAutoClearTwigStamina { get; set; } = 3;
+    // 自动清理树种
+    public bool AutoClearTreeSeed { get; set; } = true;
+    public int AutoClearTreeSeedRange { get; set; } = 1;
+    public float StopAutoClearTreeSeedStamina { get; set; } = 3;
     
     // 其他
+    public int AutoShakeTreeRange { get; set; } = 1;
     // 自动挖掘远古斑点
     public bool AutoDigArtifactSpots { get; set; } = true;
     public int AutoDigArtifactSpotsRange { get; set; } = 1;

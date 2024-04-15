@@ -4,10 +4,12 @@ using StardewValley.Tools;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace LazyMod.Framework;
+namespace LazyMod.Framework.Automation;
 
 public abstract class Automate
 {
+    protected readonly Lazy<MeleeWeapon> FakeScythe = new(() => new MeleeWeapon("47"));
+
     public abstract void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item);
 
     protected IEnumerable<Vector2> GetTileGrid(Vector2 origin, int range)
@@ -59,14 +61,6 @@ public abstract class Automate
         if (item.Stack <= 0) player.removeItemFromInventory(item);
     }
 
-    protected FarmAnimal? GetBestHarvestableFarmAnimal(GameLocation location, Tool tool, Vector2 tile)
-    {
-        var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool, GetTileBoundingBox(tile));
-        if (animal?.currentProduce.Value is null || animal.isBaby() || !animal.CanGetProduceWithTool(tool))
-            return null;
-
-        return animal;
-    }
 
     private Vector2 GetTilePixelPosition(Vector2 tile, bool center = true)
     {

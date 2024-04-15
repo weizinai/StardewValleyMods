@@ -3,23 +3,22 @@ using StardewValley;
 
 namespace LazyMod.Framework;
 
-public class LazyModManager
+public class AutomationManger
 {
     private readonly ModConfig config;
     private readonly List<Automate> automations = new();
 
-    public LazyModManager(ModConfig config)
+    public AutomationManger(ModConfig config)
     {
         this.config = config;
         InitAutomates();
     }
-
+    
     public void OnDayStarted()
     {
-        if (config.AutoOpenAnimalDoor)
-            AutoAnimal.AutoOpenAnimalDoor();
+        if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(true);
     }
-
+    
     public void Update()
     {
         UpdateAutomation();
@@ -27,8 +26,7 @@ public class LazyModManager
     
     public void OnDayEnded()
     {
-        if (config.AutoOpenAnimalDoor)
-            AutoAnimal.AutoCloseAnimalDoor();
+        if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(false);
     }
 
     private void UpdateAutomation()
@@ -51,6 +49,7 @@ public class LazyModManager
             new AutoFarming(config),
             new AutoAnimal(config),
             new AutoMining(config),
+            new AutoForaging(config),
             new AutoOther(config),
         });
     }

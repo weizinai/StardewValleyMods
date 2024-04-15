@@ -17,7 +17,7 @@ public class AutoAnimal : Automate
     public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
     {
         if (location is null) return;
-        
+
         // 自动抚摸动物
         if (config.AutoPetAnimal) AutoPetAnimal(location, player);
         // 自动挤奶
@@ -29,7 +29,7 @@ public class AutoAnimal : Automate
         // 自动抚摸宠物
         if (config.AutoPetPet) AutoPetPet(location, player);
     }
-    
+
     // 自动抚摸动物
     private void AutoPetAnimal(GameLocation location, Farmer player)
     {
@@ -46,13 +46,13 @@ public class AutoAnimal : Automate
             }
         }
     }
-    
+
     // 自动挤奶
     private void AutoMilkAnimal(GameLocation location, Farmer player)
     {
         var milkPail = FindToolFromInventory<MilkPail>();
         if (milkPail is null) return;
-        
+
         var origin = player.Tile;
         var grid = GetTileGrid(origin, config.AutoMilkAnimalRange);
         foreach (var tile in grid)
@@ -63,14 +63,14 @@ public class AutoAnimal : Automate
             UseToolOnTile(location, player, milkPail, tile);
         }
     }
-    
+
     // 自动剪毛
     private void AutoShearsAnimal(GameLocation location, Farmer player)
     {
         var shears = FindToolFromInventory<Shears>();
         if (shears is null)
             return;
-        
+
         var origin = player.Tile;
         var grid = GetTileGrid(origin, config.AutoShearsAnimalRange);
         foreach (var tile in grid)
@@ -82,11 +82,11 @@ public class AutoAnimal : Automate
             UseToolOnTile(location, player, shears, tile);
         }
     }
-    
-    // 自动打开动物们
-    public static void AutoOpenAnimalDoor()
+
+    // 自动打开动物门
+    public static void AutoToggleAnimalDoor(bool isOpen)
     {
-        if (Game1.isRaining || Game1.isSnowing || Game1.IsWinter)
+        if (isOpen && (Game1.isRaining || Game1.isSnowing || Game1.IsWinter))
             return;
 
         var buildableLocations = GetBuildableLocation().ToList();
@@ -96,30 +96,12 @@ public class AutoAnimal : Automate
             {
                 if (building.animalDoor is null)
                     break;
-                if (!building.animalDoorOpen.Value)
+                if (building.animalDoorOpen.Value != isOpen)
                     building.ToggleAnimalDoor(Game1.player);
             }
         }
     }
-    public static void AutoCloseAnimalDoor()
-    {
-        var buildableLocations = GetBuildableLocation().ToList();
-        foreach (var location in buildableLocations)
-        {
-            foreach (var building in location.buildings)
-            {
-                if (building.animalDoor is null)
-                    break;
-                if (building.animalDoorOpen.Value)
-                    building.ToggleAnimalDoor(Game1.player);
-            }
-        }
-    }
-    private static IEnumerable<GameLocation> GetBuildableLocation()
-    {
-        return Game1.locations.Where(location => location.IsBuildableLocation());
-    }
-    
+
     // 自动打开栅栏门
     private void AutoOpenFenceGate(GameLocation location, Farmer player)
     {
@@ -142,13 +124,10 @@ public class AutoAnimal : Automate
             }
         }
     }
-    
-    private int GetDistance(Vector2 origin, Vector2 tile)
-    {
-        return Math.Max(Math.Abs((int)(origin.X - tile.X)), Math.Abs((int)(origin.Y - tile.Y)));
-    }
-    
+
+
     // 自动抚摸宠物
+
     private void AutoPetPet(GameLocation location, Farmer player)
     {
         var origin = player.Tile;
@@ -159,10 +138,29 @@ public class AutoAnimal : Automate
         {
             foreach (var tile in grid)
             {
-                if (pet.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) && 
+                if (pet.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
                     (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays))
                     pet.checkAction(player, location);
             }
         }
+    }
+
+    private FarmAnimal? GetBestHarvestableFarmAnimal(GameLocation location, Tool tool, Vector2 tile)
+    {
+        var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool, GetTileBoundingBox(tile));
+        if (animal?.currentProduce.Value is null || animal.isBaby() || !animal.CanGetProduceWithTool(tool))
+            return null;
+
+        return animal;
+    }
+
+    private static IEnumerable<GameLocation> GetBuildableLocation()
+    {
+        return Game1.locations.Where(location => location.IsBuildableLocation());
+    }
+
+    private int GetDistance(Vector2 origin, Vector2 tile)
+    {
+        return Math.Max(Math.Abs((int)(origin.X - tile.X)), Math.Abs((int)(origin.Y - tile.Y)));
     }
 }

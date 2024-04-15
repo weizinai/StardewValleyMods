@@ -1,4 +1,5 @@
 ﻿using StardewValley;
+using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
 
 namespace LazyMod.Framework.Automation;
@@ -16,13 +17,10 @@ public class AutoOther : Automate
     {
         if (location is null) return;
         
-
-        if (config.AutoDigArtifactSpots && (tool is Hoe || config.FindHoeFromInventory))
-            AutoDigArtifactSpots(location, player);
+        // 自动挖掘远古斑点
+        if (config.AutoDigArtifactSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigArtifactSpots(location, player);
     }
-
-
-
+    
     // 自动挖掘远古斑点
     private void AutoDigArtifactSpots(GameLocation location, Farmer player)
     {

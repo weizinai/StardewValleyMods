@@ -13,4 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGenericModConfigMenuAPI.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)UI\" />
+  </ItemGroup>
 </Project>

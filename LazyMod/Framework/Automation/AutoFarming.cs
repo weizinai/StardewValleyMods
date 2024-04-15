@@ -9,19 +9,20 @@ namespace LazyMod.Framework.Automation;
 public class AutoFarming : Automate
 {
     private readonly ModConfig config;
-    
+
     public AutoFarming(ModConfig config)
     {
         this.config = config;
-        
     }
-    
+
     public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
     {
         if (location is null) return;
-        
+
         // 自动耕地
         if (config.AutoTillDirt && tool is Hoe) AutoTillDirt(location, player, tool);
+        // 自动清理耕地
+        if (config.AutoClearTilledDirt && tool is Pickaxe) AutoClearTilledDirt(location, player, tool);
         // 自动浇水
         if (config.AutoWaterDirt && tool is WateringCan wateringCan) AutoWaterDirt(location, player, wateringCan);
         // 自动填充水壶
@@ -35,9 +36,9 @@ public class AutoFarming : Automate
         // 自动摇晃果树
         if (config.AutoShakeFruitTree) AutoShakeFruitTree(location, player);
         // 自动清理枯萎作物
-        if (config.AutoCleanDeadCrop && (tool is MeleeWeapon scythe && scythe.isScythe() || config.FindScytheFromInventory)) AutoCleanDeadCrop(location, player);
+        if (config.AutoClearDeadCrop) AutoClearDeadCrop(location, player);
     }
-    
+
     // 自动耕地
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
@@ -57,7 +58,24 @@ public class AutoFarming : Automate
             UseToolOnTile(location, player, tool, tile);
         }
     }
-    
+
+    // 自动清理耕地
+    private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
+    {
+        var hasAddMessage = true;
+        var origin = player.Tile;
+        var grid = GetTileGrid(origin, config.AutoClearTilledDirtRange).ToList();
+        foreach (var tile in grid)
+        {
+            location.terrainFeatures.TryGetValue(tile, out var tileFeature);
+            if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
+            {
+                if (StopAutomate(player, config.StopAutoClearTilledDirtStamina, ref hasAddMessage)) break;
+                UseToolOnTile(location, player, tool, tile);
+            }
+        }
+    }
+
     // 自动浇水
     private void AutoWaterDirt(GameLocation location, Farmer player, WateringCan wateringCan)
     {
@@ -84,7 +102,7 @@ public class AutoFarming : Automate
             }
         }
     }
-    
+
     // 自动填充水壶
     private void AutoRefillWateringCan(GameLocation location, Farmer player)
     {
@@ -100,7 +118,7 @@ public class AutoFarming : Automate
             break;
         }
     }
-    
+
     // 自动播种
     private void AutoSeed(GameLocation location, Farmer player, Item item)
     {
@@ -159,7 +177,7 @@ public class AutoFarming : Automate
             {
                 var crop = hoeDirt.crop;
                 // 自动收获花逻辑
-                if (!config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value).Category == SObject.flowersCategory)
+                if (!config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory)
                     continue;
                 if (crop.harvest((int)tile.X, (int)tile.Y, hoeDirt))
                 {
@@ -168,6 +186,9 @@ public class AutoFarming : Automate
                     if (location is IslandLocation && Game1.random.NextDouble() < 0.05)
                         player.team.RequestLimitedNutDrops("IslandFarming", location, (int)tile.X * 64, (int)tile.Y * 64, 5);
                 }
+
+                if (crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt))
+                    hoeDirt.destroyCrop(true);
             }
         }
     }
@@ -184,14 +205,10 @@ public class AutoFarming : Automate
                 fruitTree.performUseAction(tile);
         }
     }
-    
-    // 自动清理枯萎作物
-    private void AutoCleanDeadCrop(GameLocation location, Farmer player)
-    {
-        var scythe = FindToolFromInventory<MeleeWeapon>(true);
-        if (scythe is null || !scythe.isScythe())
-            return;
 
+    // 自动清理枯萎作物
+    private void AutoClearDeadCrop(GameLocation location, Farmer player)
+    {
         var origin = player.Tile;
         var grid = GetTileGrid(origin, config.AutoHarvestCropRange);
         foreach (var tile in grid)
@@ -200,7 +217,8 @@ public class AutoFarming : Automate
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 var crop = hoeDirt.crop;
-                if (crop.dead.Value) hoeDirt.destroyCrop(true);
+                if (crop.dead.Value)
+                    hoeDirt.performToolAction(FakeScythe.Value, 0, tile);
             }
         }
     }

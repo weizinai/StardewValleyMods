@@ -88,12 +88,15 @@ public class ModConfig
     public bool ShowMineralInfo { get; set; } = true;
 
     #endregion
-    
+
+    #region 觅食
+
     // 自动觅食
     public bool AutoForage { get; set; } = true;
     public int AutoForageRange { get; set; } = 1;
     // 自动摇树
     public bool AutoShakeTree { get; set; } = true;
+    public int AutoShakeTreeRange { get; set; } = 1;
     // 自动收获苔藓
     public bool AutoHarvestMoss { get; set; } = true;
     public int AutoHarvestMossRange { get; set; } = 1;
@@ -102,16 +105,32 @@ public class ModConfig
     public bool AutoClearTwig { get; set; } = true;
     public int AutoClearTwigRange { get; set; } = 1;
     public float StopAutoClearTwigStamina { get; set; } = 3;
+    public bool FindAxeFromInventory { get; set; } = true;
     // 自动清理树种
     public bool AutoClearTreeSeed { get; set; } = true;
     public int AutoClearTreeSeedRange { get; set; } = 1;
     public float StopAutoClearTreeSeedStamina { get; set; } = 3;
+
+    #endregion
     
-    // 其他
-    public int AutoShakeTreeRange { get; set; } = 1;
+    // 自动清理石头
+    public bool AutoClearStone { get; set; } = true;
+    public int AutoClearStoneRange { get; set; } = 1;
+    public float StopAutoClearStoneStamina { get; set; } = 3;
+    public bool FindPickaxeFromInventory { get; set; } = true;
+    // 自动清理杂草
+    public bool AutoClearWeeds { get; set; } = true;
+    public int AutoClearWeedsRange { get; set; } = 1;
+    public bool FindToolFromInventory { get; set; } = true;
     // 自动挖掘远古斑点
     public bool AutoDigArtifactSpots { get; set; } = true;
     public int AutoDigArtifactSpotsRange { get; set; } = 1;
     public float StopAutoDigArtifactSpotsStamina { get; set; } = 3;
     public bool FindHoeFromInventory { get; set; } = true;
+    // 自动收获机器
+    public bool AutoHarvestMachine { get; set; } = true;
+    public int AutoHarvestMachineRange { get; set; } = 1;
+    // 自动触发机器
+    public bool AutoTriggerMachine { get; set; } = true;
+    public int AutoTriggerMachineRange { get; set; } = 1;
 }

@@ -15,35 +15,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoForaging.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/AutomationManger.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Hud/LadderHud.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Hud/MineralHud.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Hud/MiningHud.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Hud/MonsterHud.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Hud/ShaftHud.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Info/MiningInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/InfoManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFishing.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFood.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/Common.projitems" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Common.projitems" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/Automate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoAnimal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoAnimal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFarming.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFarming.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoMining.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoMining.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoForaging.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoForaging.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOther.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOther.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/LazyModManager.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/ModConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/ModConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/ModEntry.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.0.zip" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.0.zip" afterDir="false" />
@@ -55,8 +37,6 @@
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +70,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Common/DrawHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a4c965ca8e9a4ef2b78a1d13ee3988ce16a00/b8/bd39a147/MachineData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a4c965ca8e9a4ef2b78a1d13ee3988ce16a00/ed/7e4ceddb/BuildingData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b08fa5c66dbf4037b77c6576d7aed0955c1c00/2d/625e7dd2/Farmer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b08fa5c66dbf4037b77c6576d7aed0955c1c00/5f/f1c29e45/Monster.cs" root0="SKIP_HIGHLIGHTING" />
@@ -345,7 +326,8 @@
       <workItem from="1713086513657" duration="5148000" />
       <workItem from="1713102507854" duration="8900000" />
       <workItem from="1713151208077" duration="10949000" />
-      <workItem from="1713174635842" duration="2055000" />
+      <workItem from="1713174635842" duration="5093000" />
+      <workItem from="1713191922423" duration="4333000" />
     </task>
     <servers />
   </component>

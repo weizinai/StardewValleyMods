@@ -7,8 +7,6 @@ namespace LazyMod;
 
 public class ModEntry : Mod
 {
-    public static IMonitor SMonitor;
-
     private ModConfig config = new();
     private AutomationManger? automationManger;
     private InfoManager? infoManager;
@@ -22,7 +20,6 @@ public class ModEntry : Mod
         I18n.Init(helper.Translation);
         automationManger = new AutomationManger(config);
         infoManager = new InfoManager(config);
-        SMonitor = Monitor;
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
@@ -470,7 +467,10 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoCollectCoalRange,
             value => config.AutoCollectCoalRange = value,
-            I18n.Config_AutoCollectCoalRange_Name
+            I18n.Config_AutoCollectCoalRange_Name,
+            null,
+            1,
+            3
         );
         // 自动破坏容器
         configMenu.AddSectionTitle(
@@ -487,7 +487,10 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoBreakContainerRange,
             value => config.AutoBreakContainerRange = value,
-            I18n.Config_AutoBreakContainerRange_Name
+            I18n.Config_AutoBreakContainerRange_Name,
+            null,
+            1,
+            3
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -510,7 +513,10 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoOpenTreasureRange,
             value => config.AutoOpenTreasureRange = value,
-            I18n.Config_AutoOpenTreasureRange_Name
+            I18n.Config_AutoOpenTreasureRange_Name,
+            null,
+            1,
+            3
         );
         // 自动清理水晶
         configMenu.AddSectionTitle(
@@ -527,7 +533,10 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoClearCrystalRange,
             value => config.AutoClearCrystalRange = value,
-            I18n.Config_AutoClearCrystalRange_Name
+            I18n.Config_AutoClearCrystalRange_Name,
+            null,
+            1,
+            3
         );
         // 显示矿井信息
         configMenu.AddSectionTitle(
@@ -565,11 +574,13 @@ public class ModEntry : Mod
 
         #endregion
 
+        #region 觅食
+
         configMenu.AddPage(
             ModManifest,
             "Foraging",
             I18n.Config_ForagingPage_Name
-            );
+        );
         // 自动觅食
         configMenu.AddSectionTitle(
             ModManifest,
@@ -610,13 +621,151 @@ public class ModEntry : Mod
             1,
             3
         );
-        
+        // 自动收获苔藓
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoHarvestMoss_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoHarvestMoss,
+            value => config.AutoHarvestMoss = value,
+            I18n.Config_AutoHarvestMoss_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoHarvestMossRange,
+            value => config.AutoHarvestMossRange = value,
+            I18n.Config_AutoHarvestMossRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindScytheFromInventory,
+            value => config.FindScytheFromInventory = value,
+            I18n.Config_FindScytheFromInventory_Name
+        );
+        // 自动清理树枝
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoClearTwig_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoClearTwig,
+            value => config.AutoClearTwig = value,
+            I18n.Config_AutoClearTwig_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoClearTwigRange,
+            value => config.AutoClearTwigRange = value,
+            I18n.Config_AutoClearTwigRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopAutoClearTwigStamina,
+            value => config.StopAutoClearTwigStamina = value,
+            I18n.Config_StopAutoClearTwigStamina_Name
+        );
+        // 自动清理树种
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoClearTreeSeed_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoClearTreeSeed,
+            value => config.AutoClearTreeSeed = value,
+            I18n.Config_AutoClearTreeSeed_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoClearTreeSeedRange,
+            value => config.AutoClearTreeSeedRange = value,
+            I18n.Config_AutoClearTreeSeedRange_Name,
+            null,
+            0,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopAutoClearTreeSeedStamina,
+            value => config.StopAutoClearTreeSeedStamina = value,
+            I18n.Config_StopAutoClearTreeSeedStamina_Name
+        );
+
+        #endregion
+
         #region 其他
 
         configMenu.AddPage(
             ModManifest,
             "Other",
             I18n.Config_OtherPage_Name
+        );
+        // 自动清理石头
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoClearStone_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoClearStone,
+            value => config.AutoClearStone = value,
+            I18n.Config_AutoClearStone_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoClearStoneRange,
+            value => config.AutoClearStoneRange = value,
+            I18n.Config_AutoClearStoneRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopAutoClearStoneStamina,
+            value => config.StopAutoClearStoneStamina = value,
+            I18n.Config_StopAutoClearStoneStamina_Name
+            );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindPickaxeFromInventory,
+            value => config.FindPickaxeFromInventory = value,
+            I18n.Config_FindPickaxeFromInventory_Name
+        );
+        // 自动清理杂草
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoClearWeeds_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoClearWeeds,
+            value => config.AutoClearWeeds = value,
+            I18n.Config_AutoClearWeeds_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoClearWeedsRange,
+            value => config.AutoClearWeedsRange = value,
+            I18n.Config_AutoClearWeedsRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindToolFromInventory,
+            value => config.FindToolFromInventory = value,
+            I18n.Config_FindToolFromInventory_Name
         );
         // 自动挖掘远古斑点
         configMenu.AddSectionTitle(
@@ -648,6 +797,46 @@ public class ModEntry : Mod
             () => config.FindHoeFromInventory,
             value => config.FindHoeFromInventory = value,
             I18n.Config_FindHoeFromInventory_Name
+        );
+        // 自动收获机器
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoHarvestMachine_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoHarvestMachine,
+            value => config.AutoHarvestMachine = value,
+            I18n.Config_AutoHarvestMachine_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoHarvestMachineRange,
+            value => config.AutoHarvestMachineRange = value,
+            I18n.Config_AutoHarvestMachineRange_Name,
+            null,
+            1,
+            3
+        );
+        // 自动触发机器
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoTriggerMachine_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoTriggerMachine,
+            value => config.AutoTriggerMachine = value,
+            I18n.Config_AutoTriggerMachine_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoTriggerMachineRange,
+            value => config.AutoTriggerMachineRange = value,
+            I18n.Config_AutoTriggerMachineRange_Name,
+            null,
+            1,
+            3
         );
 
         #endregion

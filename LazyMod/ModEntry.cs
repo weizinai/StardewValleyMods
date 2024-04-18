@@ -41,6 +41,8 @@ public class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
+        if (!Context.IsPlayerFree) return;
+        
         automationManger?.Update();
     }
 
@@ -83,6 +85,12 @@ public class ModEntry : Mod
             ModManifest,
             "Foraging",
             I18n.Config_ForagingPage_Name
+        );
+        
+        configMenu.AddPageLink(
+            ModManifest,
+            "Food",
+            I18n.Config_FoodPage_Name
         );
 
         configMenu.AddPageLink(
@@ -702,6 +710,92 @@ public class ModEntry : Mod
 
         #endregion
 
+        #region 食物
+
+        configMenu.AddPage(
+            ModManifest,
+            "Food",
+            I18n.Config_FoodPage_Name
+        );
+        // 自动吃食物-体力
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoEatFoodForStamina_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoEatFoodForStamina,
+            value => config.AutoEatFoodForStamina = value,
+            I18n.Config_AutoEatFoodForStamina_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoEatFoodStaminaRate,
+            value => config.AutoEatFoodStaminaRate = value,
+            I18n.Config_AutoEatFoodStaminaRate_Name,
+            null,
+            0.05f,
+            0.95f,
+            0.05f
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.IntelligentFoodSelectionForStamina,
+            value => config.IntelligentFoodSelectionForStamina = value,
+            I18n.Config_IntelligentFoodSelectionForStamina_Name
+        );
+        // 自动吃食物-生命值
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoEatFoodForHealth_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoEatFoodForHealth,
+            value => config.AutoEatFoodForHealth = value,
+            I18n.Config_AutoEatFoodForHealth_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            ()=> config.AutoEatFoodHealthRate,
+            value => config.AutoEatFoodHealthRate = value,
+            I18n.Config_AutoEatFoodHealthRate_Name,
+            null,
+            0.05f,
+            0.95f,
+            0.05f
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.IntelligentFoodSelectionForHealth,
+            value => config.IntelligentFoodSelectionForHealth = value,
+            I18n.Config_IntelligentFoodSelectionForHealth_Name
+        );
+        // 自动吃食物-Buff
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoEatFoodForBuff_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoEatFoodForBuff,
+            value => config.AutoEatFoodForBuff = value,
+            I18n.Config_AutoEatFoodForBuff_Name
+        );
+        // 自动喝饮料-Buff
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoDrinkForBuff_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoDrinkForBuff,
+            value => config.AutoDrinkForBuff = value,
+            I18n.Config_AutoDrinkForBuff_Name
+        );
+
+        #endregion
+        
         #region 其他
 
         configMenu.AddPage(
@@ -734,7 +828,7 @@ public class ModEntry : Mod
             () => config.StopAutoClearStoneStamina,
             value => config.StopAutoClearStoneStamina = value,
             I18n.Config_StopAutoClearStoneStamina_Name
-            );
+        );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.FindPickaxeFromInventory,
@@ -837,6 +931,39 @@ public class ModEntry : Mod
             null,
             1,
             3
+        );
+        // 自动翻垃圾桶
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoGarbageCan_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoGarbageCan,
+            value => config.AutoGarbageCan = value,
+            I18n.Config_AutoGarbageCan_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoGarbageCanRange,
+            value => config.AutoGarbageCanRange = value,
+            I18n.Config_AutoGarbageCanRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.StopAutoGarbageCanNearVillager,
+            value => config.StopAutoGarbageCanNearVillager = value,
+            I18n.Config_StopAutoGarbageCanNearVillager_Name
+        );
+        // 自动学习食谱
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoStudyRecipe,
+            value => config.AutoStudyRecipe = value,
+            I18n.Config_AutoStudyRecipe_Name
         );
 
         #endregion

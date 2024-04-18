@@ -73,6 +73,16 @@
     "Config.AutoClearTreeSeed.Name":"Auto Clear Tree Seed",
     "Config.AutoClearTreeSeedRange.Name":"Auto Clear Tree Seed Range",
     "Config.StopAutoClearTreeSeedStamina.Name":"Stop Auto Clear Tree Seed Stamina",
+    // Food
+    "Config.FoodPage.Name": "Food",
+    "Config.AutoEatFoodForStamina.Name": "Auto Eat Food For Stamina",
+    "Config.AutoEatFoodStaminaRate.Name": "Auto Eat Food Stamina Rate",
+    "Config.IntelligentFoodSelectionForStamina.Name": "Intelligent Food Selection For Stamina",
+    "Config.AutoEatFoodForHealth.Name": "Auto Eat Food For Health",
+    "Config.AutoEatFoodHealthRate.Name": "Auto Eat Food Health Rate",
+    "Config.IntelligentFoodSelectionForHealth.Name": "Intelligent Food Selection For Health",
+    "Config.AutoEatFoodForBuff.Name": "Auto Eat Food For Buff",
+    "Config.AutoDrinkForBuff.Name": "Auto Drink For Buff",
     // Other
     "Config.OtherPage.Name": "Other",
     "Config.AutoClearStone.Name": "Auto Clear Stone",
@@ -90,6 +100,10 @@
     "Config.AutoHarvestMachineRange.Name": "Auto Harvest Machine Range",
     "Config.AutoTriggerMachine.Name": "Auto Trigger Machine",
     "Config.AutoTriggerMachineRange.Name": "Auto Trigger Machine Range",
+    "Config.AutoGarbageCan.Name":"Auto Garbage Can",
+    "Config.AutoGarbageCanRange.Name":"Auto Garbage Can Range",
+    "Config.StopAutoGarbageCanNearVillager.Name":"Stop Auto Garbage Can Near Villager",
+    "Config.AutoStudyRecipe.Name":"Auto Study Recipe",
     // Message
     "Message_Stamina": ""
 }

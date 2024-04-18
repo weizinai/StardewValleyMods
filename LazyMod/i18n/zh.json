@@ -73,6 +73,16 @@
     "Config.AutoClearTreeSeed.Name":"自动清理树种",
     "Config.AutoClearTreeSeedRange.Name":"自动清理树种范围",
     "Config.StopAutoClearTreeSeedStamina.Name":"停止自动清理树种体力",
+    // 食物
+    "Config.FoodPage.Name": "食物",
+    "Config.AutoEatFoodForStamina.Name": "自动吃食物-体力",
+    "Config.AutoEatFoodStaminaRate.Name": "自动吃食物体力比例",
+    "Config.IntelligentFoodSelectionForStamina.Name": "智能食物选择",
+    "Config.AutoEatFoodForHealth.Name": "自动吃食物-生命值",
+    "Config.AutoEatFoodHealthRate.Name": "自动吃食物生命值比例",
+    "Config.IntelligentFoodSelectionForHealth.Name": "智能食物选择",
+    "Config.AutoEatFoodForBuff.Name": "自动吃食物-Buff",
+    "Config.AutoDrinkForBuff.Name": "自动喝饮料-Buff",
     // 其他
     "Config.OtherPage.Name":"其他",
     "Config.AutoClearStone.Name": "自动清理石头",
@@ -90,6 +100,10 @@
     "Config.AutoHarvestMachineRange.Name": "自动收获机器范围",
     "Config.AutoTriggerMachine.Name": "自动触发机器",
     "Config.AutoTriggerMachineRange.Name": "自动触发机器范围",
+    "Config.AutoGarbageCan.Name":"自动翻垃圾桶",
+    "Config.AutoGarbageCanRange.Name":"自动翻垃圾桶范围",
+    "Config.StopAutoGarbageCanNearVillager.Name":"附近有村民停止自动翻垃圾桶",
+    "Config.AutoStudyRecipe.Name":"自动学习食谱",
     // Message
     "Message_Stamina":"没有体力了",
 }

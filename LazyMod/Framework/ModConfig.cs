@@ -113,6 +113,21 @@ public class ModConfig
 
     #endregion
     
+    // 自动吃食物_体力
+    public bool AutoEatFoodForStamina { get; set; } = true;
+    public float AutoEatFoodStaminaRate { get; set; } = 0.1f;
+    public bool IntelligentFoodSelectionForStamina { get; set; } = true;
+
+    // 自动吃食物_生命值
+    public bool AutoEatFoodForHealth { get; set; } = true;
+    public float AutoEatFoodHealthRate { get; set; } = 0.1f;
+    public bool IntelligentFoodSelectionForHealth { get; set; } = true;
+    // 自动吃食物_Buff
+    public bool AutoEatFoodForBuff { get; set; } = true;
+    public bool AutoDrinkForBuff { get; set; } = true;
+
+    #region 其他
+
     // 自动清理石头
     public bool AutoClearStone { get; set; } = true;
     public int AutoClearStoneRange { get; set; } = 1;
@@ -133,4 +148,12 @@ public class ModConfig
     // 自动触发机器
     public bool AutoTriggerMachine { get; set; } = true;
     public int AutoTriggerMachineRange { get; set; } = 1;
+    // 自动翻垃圾桶
+    public bool AutoGarbageCan { get; set; } = true;
+    public int AutoGarbageCanRange { get; set; } = 1;
+    public bool StopAutoGarbageCanNearVillager { get; set; } = true;
+    // 自动学习食谱
+    public bool AutoStudyRecipe { get; set; } = true;
+
+    #endregion
 }

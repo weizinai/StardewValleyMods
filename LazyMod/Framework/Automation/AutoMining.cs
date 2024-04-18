@@ -35,7 +35,7 @@ public class AutoMining : Automate
         var grid = GetTileGrid(origin, config.AutoCollectCoalRange);
         foreach (var tile in grid)
         {
-            if (location.getTileIndexAt(new Location((int)tile.X, (int)tile.Y), "Buildings") == 194)
+            if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
                 CheckTileAction(location, player, tile);
         }
     }

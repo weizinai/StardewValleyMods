@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpWanted", "HelpWanted\He
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyMod", "LazyMod\LazyMod.csproj", "{15AF734C-1C6D-49AF-A165-52600DD55E7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{0A7D712B-0123-4C7E-BA15-9738A05247E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,5 +34,9 @@ Global
 		{15AF734C-1C6D-49AF-A165-52600DD55E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15AF734C-1C6D-49AF-A165-52600DD55E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15AF734C-1C6D-49AF-A165-52600DD55E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7D712B-0123-4C7E-BA15-9738A05247E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7D712B-0123-4C7E-BA15-9738A05247E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7D712B-0123-4C7E-BA15-9738A05247E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7D712B-0123-4C7E-BA15-9738A05247E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

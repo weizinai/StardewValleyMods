@@ -36,7 +36,6 @@ public class QuestData
     public float IconScale { get; set; }
     public Point IconOffset { get; set; }
     public Quest Quest { get; set; }
-    public bool Acceptable { get; set; } = true;
 }
 
 public enum QuestType

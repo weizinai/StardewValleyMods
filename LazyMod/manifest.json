@@ -2,10 +2,10 @@
     "Name": "Lazy Mod",
     "Author": "weizinai",
     "Version": "1.0.0",
-    "Description": "Lazy Mod",
+    "Description": "A mod help you do many things.",
     "UniqueID": "weizinai.LazyMod",
     "EntryDll": "LazyMod.dll",
-    //    "UpdateKeys": [
-    //        "Nexus:21766"
-    //    ]
+    "UpdateKeys": [
+        "Nexus:22826"
+    ]
 }

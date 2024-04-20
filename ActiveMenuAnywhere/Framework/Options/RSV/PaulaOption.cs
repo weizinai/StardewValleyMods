@@ -3,7 +3,7 @@ using Common;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 
-namespace ActiveMenuAnywhere.Framework.Options.RSV;
+namespace ActiveMenuAnywhere.Framework.Options;
 
 public class PaulaOption : BaseOption
 {

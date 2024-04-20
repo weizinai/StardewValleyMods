@@ -2,58 +2,58 @@
 
 public class ModConfig
 {
-    /// <summary>是否启用模组</summary>
+    // 是否启用模组
     public bool ModEnabled { get; set; } = true;
     
     public bool QuestFirstDay { get; set; } = false;
-    /// <summary>是否必须为村民喜欢的礼物</summary>
+    // 是否必须为村民喜欢的礼物
     public bool MustLikeItem { get; set; } = true;
-    /// <summary>是否必须为村民喜爱的礼物</summary>
+    // 是否必须为村民喜爱的礼物
     public bool MustLoveItem { get; set; } = false;
-    /// <summary>是否允许任务物品为工匠物品</summary>
+    // 是否允许任务物品为工匠物品
     public bool AllowArtisanGoods { get; set; } = true;
-    /// <summary>是否忽略原版任务物品限制</summary>
+    // 是否忽略原版任务物品限制
     public bool IgnoreVanillaItemRestriction { get; set; } = true;
-    /// <summary>是否每个村民一个任务</summary>
+    // 是否每个村民一个任务
     public bool OneQuestPerVillager { get; set; } = true;
-    /// <summary>是否好感度满后不再生成任务</summary>
+    // 是否好感度满后不再生成任务
     public bool AvoidMaxHearts { get; set; } = true;
-    /// <summary>任务物品的最大价格.若为-1,则不限制.</summary>
+    // 任务物品的最大价格.若为-1,则不限制.
     public int MaxPrice { get; set; } = -1;
-    /// <summary>任务时间</summary>
+    // 任务时间
     public int QuestDays { get; set; } = 2;
-    /// <summary>任务最大数量</summary>
+    // 任务最大数量
     public int MaxQuests { get; set; } = 10;
-    /// <summary>便签缩放</summary>
+    // 便签缩放
     public float NoteScale { get; set; } = 2;
-    /// <summary>便签水平方向重叠率</summary>
+    // 便签水平方向重叠率
     public float XOverlapBoundary { get; set; } = 0.5f;
-    /// <summary>便签垂直方向重叠率</summary>
+    // 便签垂直方向重叠率
     public float YOverlapBoundary { get; set; } = 0.25f;
-    /// <summary>便签肖像缩放</summary>
+    // 便签肖像缩放
     public float PortraitScale { get; set; } = 1f;
-    /// <summary>便签肖像水平偏移</summary>
+    // 便签肖像水平偏移
     public int PortraitOffsetX { get; set; } = 32;
-    /// <summary>便签肖像垂直偏移</summary>
+    // 便签肖像垂直偏移
     public int PortraitOffsetY { get; set; } = 64;
-    /// <summary>随机颜色通道最小值</summary>
+    // 随机颜色通道最小值
     public int RandomColorMin { get; set; } = 150;
-    /// <summary>随机颜色通道最大值</summary>
+    // 随机颜色通道最大值
     public int RandomColorMax { get; set; } = 255;
-    /// <summary>人物肖像色调红色通道</summary>
+    // 人物肖像色调红色通道
     public int PortraitTintR { get; set; } = 150;
-    /// <summary>人物肖像色调绿色通道</summary>
+    // 人物肖像色调绿色通道
     public int PortraitTintG { get; set; } = 150;
-    /// <summary>人物肖像色调蓝色通道</summary>
+    // 人物肖像色调蓝色通道
     public int PortraitTintB { get; set; } = 150;
-    /// <summary>人物肖像色调透明度</summary>
+    // 人物肖像色调透明度
     public int PortraitTintA { get; set; } = 150;
-    /// <summary>采集任务权重</summary>
+    // 采集任务权重
     public float ResourceCollectionWeight { get; set; } = 0.08f;
-    /// <summary>杀怪任务权重</summary>
+    // 杀怪任务权重
     public float SlayMonstersWeight { get; set; } = 0.1f;
-    /// <summary>钓鱼任务权重</summary>
+    // 钓鱼任务权重
     public float FishingWeight { get; set; } = 0.07f;
-    /// <summary>交易任务权重</summary>
+    // 交易任务权重
     public float ItemDeliveryWeight { get; set; } = 0.4f;
 }

@@ -1,5 +1,4 @@
-﻿using Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
@@ -102,13 +101,9 @@ public sealed class HWQuestBoard : Billboard
             // 遍历所有的任务选项,判断鼠标是否点击在某个任务选项上
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
-                if (QuestDataDictionary[option.myID].Acceptable)
-                {
-                    Game1.netWorldState.Value.SetQuestOfTheDay(QuestDataDictionary[option.myID].Quest);
-                    ShowingQuestID = option.myID;
-                    ShowingQuest = new Billboard(true);
-                }
-
+                Game1.netWorldState.Value.SetQuestOfTheDay(QuestDataDictionary[option.myID].Quest);
+                ShowingQuestID = option.myID;
+                ShowingQuest = new Billboard(true);
                 return;
             }
 
@@ -130,7 +125,6 @@ public sealed class HWQuestBoard : Billboard
         if (ShowingQuest is null) return true;
         ShowingQuest = null;
         return false;
-
     }
 
     public override void applyMovementKey(int direction)
@@ -222,7 +216,7 @@ public sealed class HWQuestBoard : Billboard
             spriteBatch.Draw(billboardTexture, Position + new Vector2(18 + 12 * i, 36f) * 4f, new Rectangle(140, 397, 10, 11), Color.White,
                 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
         }
-        
+
         if (Game1.player.hasCompletedCommunityCenter())
         {
             spriteBatch.Draw(billboardTexture, Position + new Vector2(290f, 59f) * 4f, new Rectangle(0, 427, 39, 54), Color.White, 0f,

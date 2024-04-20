@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.Options.RSV;
+namespace ActiveMenuAnywhere.Framework.Options;
 
 public class RSVQuestBoardOption : BaseOption
 {

@@ -42,7 +42,7 @@ public class ModEntry : Mod
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!Context.IsPlayerFree) return;
-        
+
         automationManger?.Update();
     }
 
@@ -86,7 +86,7 @@ public class ModEntry : Mod
             "Foraging",
             I18n.Config_ForagingPage_Name
         );
-        
+
         configMenu.AddPageLink(
             ModManifest,
             "Food",
@@ -681,6 +681,12 @@ public class ModEntry : Mod
             value => config.StopAutoClearTwigStamina = value,
             I18n.Config_StopAutoClearTwigStamina_Name
         );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindAxeFromInventory,
+            value => config.FindAxeFromInventory = value,
+            I18n.Config_FindAxeFromInventory_Name
+        );
         // 自动清理树种
         configMenu.AddSectionTitle(
             ModManifest,
@@ -757,7 +763,7 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            ()=> config.AutoEatFoodHealthRate,
+            () => config.AutoEatFoodHealthRate,
             value => config.AutoEatFoodHealthRate = value,
             I18n.Config_AutoEatFoodHealthRate_Name,
             null,
@@ -795,7 +801,7 @@ public class ModEntry : Mod
         );
 
         #endregion
-        
+
         #region 其他
 
         configMenu.AddPage(
@@ -959,12 +965,12 @@ public class ModEntry : Mod
             I18n.Config_StopAutoGarbageCanNearVillager_Name
         );
         // 自动学习食谱
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.AutoStudyRecipe,
-            value => config.AutoStudyRecipe = value,
-            I18n.Config_AutoStudyRecipe_Name
-        );
+        // configMenu.AddBoolOption(
+        //     ModManifest,
+        //     () => config.AutoStudyRecipe,
+        //     value => config.AutoStudyRecipe = value,
+        //     I18n.Config_AutoStudyRecipe_Name
+        // );
 
         #endregion
     }

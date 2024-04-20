@@ -10,63 +10,20 @@ namespace ActiveMenuAnywhere;
 // ReSharper disable once ClassNeverInstantiated.Global
 public class ModEntry : Mod
 {
+    public static IMonitor SMonitor;
     public static readonly Dictionary<MenuTabID, Texture2D> Textures = new();
     private ModConfig config = new();
 
     public override void Entry(IModHelper helper)
     {
+        // 初始化
         config = helper.ReadConfig<ModConfig>();
+        SMonitor = Monitor;
         LoadTexture();
         I18n.Init(helper.Translation);
+        // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
-
-        configMenu?.Register(
-            ModManifest,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
-        );
-
-        configMenu?.AddKeybindList(
-            ModManifest,
-            () => config.MenuKey,
-            value => { config.MenuKey = value; },
-            I18n.Config_MenuKeyName
-        );
-
-        configMenu?.AddTextOption(
-            ModManifest,
-            () => config.DefaultMeanTabID.ToString(),
-            value =>
-            {
-                if (!Enum.TryParse(value, out MenuTabID tabID))
-                    throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
-                config.DefaultMeanTabID = tabID;
-            },
-            I18n.Config_DefaultMenuTabID,
-            null,
-            new[] { "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland" },
-            value =>
-            {
-                var formatValue = value switch
-                {
-                    "Farm" => I18n.Tab_Farm(),
-                    "Town" => I18n.Tab_Town(),
-                    "Mountain" => I18n.Tab_Mountain(),
-                    "Forest" => I18n.Tab_Forest(),
-                    "Beach" => I18n.Tab_Beach(),
-                    "Desert" => I18n.Tab_Desert(),
-                    "GingerIsland" => I18n.Tab_GingerIsland(),
-                    _ => ""
-                };
-                return formatValue;
-            }
-        );
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
@@ -91,5 +48,55 @@ public class ModEntry : Mod
         Textures.Add(MenuTabID.GingerIsland, Helper.ModContent.Load<Texture2D>("Assets/GingerIsland.png"));
         Textures.Add(MenuTabID.RSV, Helper.ModContent.Load<Texture2D>("Assets/RSV.png"));
         Textures.Add(MenuTabID.SVE, Helper.ModContent.Load<Texture2D>("Assets/SVE.png"));
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
+        
+        if (configMenu is null) return;
+
+        configMenu.Register(
+            ModManifest,
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
+        );
+
+        configMenu.AddKeybindList(
+            ModManifest,
+            () => config.MenuKey,
+            value => config.MenuKey = value,
+            I18n.Config_MenuKeyName
+        );
+
+        configMenu.AddTextOption(
+            ModManifest,
+            () => config.DefaultMeanTabID.ToString(),
+            value =>
+            {
+                if (!Enum.TryParse(value, out MenuTabID tabID)) throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
+                config.DefaultMeanTabID = tabID;
+            },
+            I18n.Config_DefaultMenuTabID,
+            null,
+            new[] { "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland", "RSV", "SVE" },
+            value =>
+            {
+                var formatValue = value switch
+                {
+                    "Farm" => I18n.Tab_Farm(),
+                    "Town" => I18n.Tab_Town(),
+                    "Mountain" => I18n.Tab_Mountain(),
+                    "Forest" => I18n.Tab_Forest(),
+                    "Beach" => I18n.Tab_Beach(),
+                    "Desert" => I18n.Tab_Desert(),
+                    "GingerIsland" => I18n.Tab_GingerIsland(),
+                    "RSV" => I18n.Tab_RSV(),
+                    "SVE" => I18n.Tab_SVE(),
+                    _ => ""
+                };
+                return formatValue;
+            }
+        );
     }
 }

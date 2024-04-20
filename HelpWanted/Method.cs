@@ -169,7 +169,7 @@ internal partial class ModEntry
     }
 
     /// <summary>获取随机物品</summary>
-    private static string GetRandomItem(string result, List<string>? possibleItems)
+    public static string GetRandomItem(string result, List<string>? possibleItems)
     {
         // 获取允许的任务物品列表
         var items = GetRandomItemList(possibleItems);
@@ -251,7 +251,7 @@ internal partial class ModEntry
         return null;
     }
 
-    private static List<string> GetPossibleCrops(List<string> oldList)
+    public static List<string> GetPossibleCrops(List<string> oldList)
     {
         if (!Config.ModEnabled)
             return oldList;

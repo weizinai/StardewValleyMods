@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.Options.RSV;
+namespace ActiveMenuAnywhere.Framework.Options;
 
 public class RSVSpecialOrderOption : BaseOption
 {
@@ -20,10 +20,8 @@ public class RSVSpecialOrderOption : BaseOption
     {
         if (Game1.MasterPlayer.eventsSeen.Contains("75160207"))
         {
-            var targetDllPath = CommonHelper.GetDllPath(helper, "RidgesideVillage.dll");
-            var assembly = Assembly.LoadFrom(targetDllPath);
-            var questController = assembly.GetType("RidgesideVillage.Questing.QuestController");
-            object[] parameters = { Game1.currentLocation, new[] { "RSVTownSO" }, Game1.player, new Point() };
+            var questController = RSVIntegration.GetType("RidgesideVillage.Questing.QuestController");
+            object[] parameters = { Game1.currentLocation, new[] { "RSVTownSO" }, Game1.player, Point.Zero };
             questController?.GetMethod("OpenSOBoard", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, parameters);
         }
         else

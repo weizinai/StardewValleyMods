@@ -1,6 +1,4 @@
 ﻿using ActiveMenuAnywhere.Framework.Options;
-using ActiveMenuAnywhere.Framework.Options.RSV;
-using ActiveMenuAnywhere.Framework.Options.SVE;
 using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,7 +30,7 @@ public class AMAMenu : IClickableMenu
     private ClickableTextureComponent downArrow;
     private ClickableComponent title;
     private ClickableTextureComponent upArrow;
-
+    
     public AMAMenu(MenuTabID menuTabID, IModHelper helper)
     {
         this.helper = helper;
@@ -146,6 +144,15 @@ public class AMAMenu : IClickableMenu
         return new Rectangle(i * 200, j * 200, 200, 200);
     }
 
+    private Rectangle GetTabRectangle(int index)
+    {
+        var tabOffset = (x: 4, y: 16);
+        var tabSize = (width: 100, height: 48);
+        var tabPosition = (x: xPositionOnScreen - tabSize.width, y: yPositionOnScreen + tabOffset.y);
+        
+        return new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * index, tabSize.width - tabOffset.x, tabSize.height);
+    }
+
     private void AddArrows()
     {
         const float scale = 4f;
@@ -165,40 +172,22 @@ public class AMAMenu : IClickableMenu
         var tabSize = (width: 100, height: 48);
         var tabPosition = (x: xPositionOnScreen - tabSize.width, y: yPositionOnScreen + tabOffset.y);
 
-        var i = 2;
+        var i = 0;
         tabs.Clear();
-
         tabs.AddRange(new[]
         {
-            new ClickableComponent(new Rectangle(tabPosition.x, tabPosition.y, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Farm(), MenuTabID.Farm.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Town(), MenuTabID.Town.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Mountain(), MenuTabID.Mountain.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Forest(), MenuTabID.Forest.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Beach(), MenuTabID.Beach.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_Desert(), MenuTabID.Desert.ToString()),
-            new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString())
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_Farm(), MenuTabID.Farm.ToString()),
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_Town(), MenuTabID.Town.ToString()),
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_Mountain(), MenuTabID.Mountain.ToString()),
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_Forest(), MenuTabID.Forest.ToString()),
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_Beach(), MenuTabID.Beach.ToString()),
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_Desert(), MenuTabID.Desert.ToString()),
+            new ClickableComponent(GetTabRectangle(i++), I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString())
         });
         if (helper.ModRegistry.Get("FlashShifter.SVECode") != null)
-            tabs.Add(new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i++, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_SVE(), MenuTabID.SVE.ToString()));
+            tabs.Add(new ClickableComponent(GetTabRectangle(i++), I18n.Tab_SVE(), MenuTabID.SVE.ToString()));
         if (helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
-            tabs.Add(new ClickableComponent(
-                new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * i, tabSize.width - tabOffset.x, tabSize.height),
-                I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
+            tabs.Add(new ClickableComponent(GetTabRectangle(i), I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
     }
 
     private void SetOptions()

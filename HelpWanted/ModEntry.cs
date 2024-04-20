@@ -1,9 +1,12 @@
 ﻿using Common;
 using HarmonyLib;
 using HelpWanted.Framework;
+using HelpWanted.Framework.Patches;
+using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Menus;
 using StardewValley.Quests;
 
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
@@ -21,7 +24,7 @@ internal partial class ModEntry : Mod
     private static readonly Random Random = new();
     public static readonly List<QuestData> QuestList = new();
 
-    private static bool gettingQuestDetails;
+    public static bool GettingQuestDetails;
 
     public override void Entry(IModHelper helper)
     {
@@ -40,7 +43,7 @@ internal partial class ModEntry : Mod
     {
         Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
-
+    
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         QuestList.Clear();
@@ -54,10 +57,10 @@ internal partial class ModEntry : Mod
             if (Game1.questOfTheDay != null)
             {
                 AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
-                gettingQuestDetails = true;
+                GettingQuestDetails = true;
                 Game1.questOfTheDay.reloadDescription();
                 Game1.questOfTheDay.reloadObjective();
-                gettingQuestDetails = false;
+                GettingQuestDetails = false;
                 NPC? npc = null;
                 var questType = QuestType.ItemDelivery;
                 switch (Game1.questOfTheDay)
@@ -109,6 +112,27 @@ internal partial class ModEntry : Mod
         }
 
         Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
+    }
+    
+    private void HarmonyPatch()
+    {
+        var harmony = new Harmony("aedenthorn.HelpWanted");
+        harmony.Patch(
+            AccessTools.Method(typeof(Billboard), nameof(Billboard.draw), new[] { typeof(SpriteBatch) }),
+            new HarmonyMethod(typeof(BillboardPatch), nameof(BillboardPatch.DrawPrefix))
+        );
+        harmony.Patch(
+            AccessTools.Method(typeof(Billboard), nameof(Billboard.receiveLeftClick)),
+            postfix: new HarmonyMethod(typeof(BillboardPatch), nameof(BillboardPatch.ReceiveLeftClickPostfix))
+        );
+        harmony.Patch(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) }),
+            new HarmonyMethod(typeof(UtilityPatch), nameof(UtilityPatch.GetRandomItemFromSeasonPrefix)),
+            transpiler: new HarmonyMethod(typeof(UtilityPatch), nameof(UtilityPatch.GetRandomItemFromSeasonTranspiler))
+        );
+        harmony.Patch(
+            AccessTools.Method(typeof(ItemDeliveryQuest), "loadQuestInfo"),
+            transpiler: new HarmonyMethod(typeof(ItemDeliveryQuestPatch), nameof(ItemDeliveryQuestPatch.LoadQuestInfoTranspiler))
+        );
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

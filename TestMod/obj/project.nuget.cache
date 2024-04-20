@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NUzBO910HSYGaMk4hJN+NX+p2ZV7OO49cX22kHI62S9kXb0fNWx5ZR8QGSqBxP/CO3Dy3E92KsE/77IW2sL0mg==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\StardewValleyMods\\TestMod\\TestMod.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\17760\\.nuget\\packages\\pathoschild.stardew.modbuildconfig\\4.1.1\\pathoschild.stardew.modbuildconfig.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

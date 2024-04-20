@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.Options.SVE;
+namespace ActiveMenuAnywhere.Framework.Options;
 
 public class SophiaOption : BaseOption
 {

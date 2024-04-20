@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
 
-namespace ActiveMenuAnywhere.Framework.Options.RSV;
+namespace ActiveMenuAnywhere.Framework.Options;
 
 public class JericOption : BaseOption
 {

@@ -86,7 +86,7 @@ public class AutoAnimal : Automate
     // 自动打开动物门
     public static void AutoToggleAnimalDoor(bool isOpen)
     {
-        if (isOpen && (Game1.isRaining || Game1.isSnowing || Game1.IsWinter))
+        if (isOpen && (Game1.isRaining || Game1.IsWinter))
             return;
 
         var buildableLocations = GetBuildableLocation().ToList();
@@ -94,10 +94,12 @@ public class AutoAnimal : Automate
         {
             foreach (var building in location.buildings)
             {
-                if (building.animalDoor is null)
-                    break;
-                if (building.animalDoorOpen.Value != isOpen)
-                    building.ToggleAnimalDoor(Game1.player);
+                // 如果该建筑没有动物门，或者动物门已经是目标状态，则跳过
+                if (building.animalDoor is null || building.animalDoorOpen.Value == isOpen) continue;
+                // 遍历所有的动物,将不在家的动物传送回家
+                foreach (var animal in location.Animals.Values.Where(animal => !animal.IsHome && animal.home == building)) animal.warpHome();
+                // 切换动物门状态
+                building.ToggleAnimalDoor(Game1.player);
             }
         }
     }
@@ -125,9 +127,7 @@ public class AutoAnimal : Automate
         }
     }
 
-
     // 自动抚摸宠物
-
     private void AutoPetPet(GameLocation location, Farmer player)
     {
         var origin = player.Tile;

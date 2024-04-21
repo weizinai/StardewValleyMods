@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
-using StardewValley.Locations;
 using StardewValley.Quests;
 using SObject = StardewValley.Object;
 
@@ -207,7 +206,6 @@ internal partial class ModEntry
         if (!Config.ModEnabled)
             return oldList;
         var newList = GetRandomItemList(oldList);
-        //SMonitor.Log($"possible crops: {newList?.Count}");
         return newList is null || !newList.Any() ? oldList : newList;
     }
 }

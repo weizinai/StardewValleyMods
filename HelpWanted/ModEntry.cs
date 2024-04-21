@@ -28,6 +28,7 @@ internal partial class ModEntry : Mod
     {
         // 初始化
         Config = helper.ReadConfig<ModConfig>();
+        if (!Config.ModEnabled) return;
         SMonitor = Monitor;
         SHelper = helper;
         questManager = new QuestManager(Config, Monitor);
@@ -43,9 +44,9 @@ internal partial class ModEntry : Mod
     {
         if (!Context.IsMainPlayer) return;
         if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay) return;
-        if (Utility.isFestivalDay() && !Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) && !Config.QuestFestival) return;
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !Config.QuestFestival) return;
         // if (Random.NextDouble() >= Config.DailyQuestChance) return;
-        
+
         Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
 
@@ -70,23 +71,20 @@ internal partial class ModEntry : Mod
             transpiler: new HarmonyMethod(typeof(UtilityPatch), nameof(UtilityPatch.GetRandomItemFromSeasonTranspiler))
         );
         harmony.Patch(
-            AccessTools.Method(typeof(ItemDeliveryQuest), "loadQuestInfo"),
+            AccessTools.Method(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.loadQuestInfo)),
             transpiler: new HarmonyMethod(typeof(ItemDeliveryQuestPatch), nameof(ItemDeliveryQuestPatch.LoadQuestInfoTranspiler))
         );
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        // 获取GMCM提供的API
-        var configMenu = SHelper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
-        if (configMenu is null)
-            return;
+        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
+        if (configMenu is null) return;
 
-        // 注册配置菜单
         configMenu.Register(
             ModManifest,
-            () => Config = SHelper.ReadConfig<ModConfig>(),
-            () => SHelper.WriteConfig(Config)
+            () => Config = new ModConfig(),
+            () => Helper.WriteConfig(Config)
         );
 
         // 添加ModEnable配置选项
@@ -94,8 +92,7 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => Config.ModEnabled,
             value => Config.ModEnabled = value,
-            I18n.Config_ModEnabled_Name,
-            I18n.Config_ModEnabled_Tooltip
+            I18n.Config_ModEnabled_Name
         );
 
         // 添加QuestFirstDay配置选项
@@ -197,132 +194,6 @@ internal partial class ModEntry : Mod
             I18n.Config_MaxQuests_Tooltip
         );
 
-        // 添加NoteScale配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.NoteScale,
-            value => Config.NoteScale = value,
-            I18n.Config_NoteScale_Name,
-            I18n.Config_NoteScale_Tooltip
-        );
-
-        // 添加XOverlapBoundary配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.XOverlapBoundary,
-            value => Config.XOverlapBoundary = value,
-            I18n.Config_XOverlapBoundary_Name,
-            I18n.Config_XOverlapBoundary_Tooltip,
-            0,
-            1,
-            0.05f
-        );
-
-        // 添加YOverlapBoundary配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.YOverlapBoundary,
-            value => Config.YOverlapBoundary = value,
-            I18n.Config_YOverlapBoundary_Name,
-            I18n.Config_YOverlapBoundary_Tooltip,
-            0,
-            1,
-            0.05f
-        );
-
-        // 添加RandomColorMin配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.RandomColorMin,
-            value => Config.RandomColorMin = value,
-            I18n.Config_RandomColorMin_Name,
-            I18n.Config_RandomColorMin_Tooltip,
-            0,
-            255
-        );
-
-        // 添加RandomColorMax配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.RandomColorMax,
-            value => Config.RandomColorMax = value,
-            I18n.Config_RandomColorMax_Name,
-            I18n.Config_RandomColorMax_Tooltip,
-            0,
-            255
-        );
-
-        // 添加PortraitScale配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitScale,
-            value => Config.PortraitScale = value,
-            I18n.Config_PortraitScale_Name,
-            I18n.Config_PortraitScale_Tooltip
-        );
-
-        // 添加PortraitOffsetX配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitOffsetX,
-            value => Config.PortraitOffsetX = value,
-            I18n.Config_PortraitOffsetX_Name,
-            I18n.Config_PortraitOffsetX_Tooltip
-        );
-
-        // 添加PortraitOffsetY配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitOffsetY,
-            value => Config.PortraitOffsetY = value,
-            I18n.Config_PortraitOffsetY_Name,
-            I18n.Config_PortraitOffsetY_Tooltip
-        );
-
-        // 添加PortraitTintR配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitTintR,
-            value => Config.PortraitTintR = value,
-            I18n.Config_PortraitTintR_Name,
-            I18n.Config_PortraitTintR_Tooltip,
-            0,
-            255
-        );
-
-        // 添加PortraitTintG配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitTintG,
-            value => Config.PortraitTintG = value,
-            I18n.Config_PortraitTintG_Name,
-            I18n.Config_PortraitTintG_Tooltip,
-            0,
-            255
-        );
-
-        // 添加PortraitTintB配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitTintB,
-            value => Config.PortraitTintB = value,
-            I18n.Config_PortraitTintB_Name,
-            I18n.Config_PortraitTintB_Tooltip,
-            0,
-            255
-        );
-
-        // 添加PortraitTintA配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.PortraitTintA,
-            value => Config.PortraitTintA = value,
-            I18n.Config_PortraitTintA_Name,
-            I18n.Config_PortraitTintA_Tooltip,
-            0,
-            255
-        );
-
         // 添加ResourceCollectionWeight配置选项
         configMenu.AddNumberOption(
             ModManifest,
@@ -358,5 +229,136 @@ internal partial class ModEntry : Mod
             I18n.Config_ItemDeliveryWeight_Name,
             I18n.Config_ItemDeliveryWeight_Tooltip
         );
+
+        configMenu.AddPageLink(
+            ModManifest,
+            "Appearance",
+            I18n.Config_AppearancePage_Name
+        );
+
+        #region 外观
+
+        configMenu.AddPage(
+            ModManifest,
+            "Appearance",
+            I18n.Config_AppearancePage_Name
+        );
+        // 便签外观标题
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_NoteAppearanceTitle_Name
+        );
+        // 便签缩放
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.NoteScale,
+            value => Config.NoteScale = value,
+            I18n.Config_NoteScale_Name,
+            I18n.Config_NoteScale_Tooltip
+        );
+        // 便签重叠率
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.XOverlapBoundary,
+            value => Config.XOverlapBoundary = value,
+            I18n.Config_XOverlapBoundary_Name,
+            I18n.Config_XOverlapBoundary_Tooltip,
+            0,
+            1,
+            0.05f
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.YOverlapBoundary,
+            value => Config.YOverlapBoundary = value,
+            I18n.Config_YOverlapBoundary_Name,
+            I18n.Config_YOverlapBoundary_Tooltip,
+            0,
+            1,
+            0.05f
+        );
+        // 随机颜色
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.RandomColorMin,
+            value => Config.RandomColorMin = value,
+            I18n.Config_RandomColorMin_Name,
+            null,
+            0,
+            255
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.RandomColorMax,
+            value => Config.RandomColorMax = value,
+            I18n.Config_RandomColorMax_Name,
+            null,
+            0,
+            255
+        );
+        // 肖像外观标题
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_PortraitAppearanceTitle_Name
+        );
+        // 肖像缩放
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitScale,
+            value => Config.PortraitScale = value,
+            I18n.Config_PortraitScale_Name
+        );
+        // 肖像偏移
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitOffsetX,
+            value => Config.PortraitOffsetX = value,
+            I18n.Config_PortraitOffsetX_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitOffsetY,
+            value => Config.PortraitOffsetY = value,
+            I18n.Config_PortraitOffsetY_Name
+        );
+        // 肖像颜色
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitTintR,
+            value => Config.PortraitTintR = value,
+            I18n.Config_PortraitTintR_Name,
+            null,
+            0,
+            255
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitTintG,
+            value => Config.PortraitTintG = value,
+            I18n.Config_PortraitTintG_Name,
+            null,
+            0,
+            255
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitTintB,
+            value => Config.PortraitTintB = value,
+            I18n.Config_PortraitTintB_Name,
+            null,
+            0,
+            255
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.PortraitTintA,
+            value => Config.PortraitTintA = value,
+            I18n.Config_PortraitTintA_Name,
+            null,
+            0,
+            255
+        );
+
+        #endregion
     }
 }

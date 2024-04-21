@@ -19,7 +19,7 @@ public class ItemDeliveryQuestPatch
             switch (start)
             {
                 case true when !found1 && codes[i].opcode == OpCodes.Ldc_R8:
-                    codes[i].operand = -0.1;
+                    // codes[i].operand = -0.1;
                     found1 = true;
                     break;
                 case false when codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking":

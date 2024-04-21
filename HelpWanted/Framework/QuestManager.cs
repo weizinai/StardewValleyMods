@@ -10,13 +10,11 @@ public class QuestManager
 {
     private readonly ModConfig config;
     private readonly IMonitor monitor;
-    private readonly Random random;
 
     public QuestManager(ModConfig config, IMonitor monitor)
     {
         this.config = config;
         this.monitor = monitor;
-        random = new Random();
     }
     
     public void InitQuestList(List<QuestData> questList)
@@ -88,8 +86,7 @@ public class QuestManager
             return;
         }
         quest.dailyQuest.Set(true);
-        // 为什么要修改随机数?
-        AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = random;
+        AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
         Game1.netWorldState.Value.SetQuestOfTheDay(quest);
@@ -97,7 +94,7 @@ public class QuestManager
 
     private Quest? GetQuestOfTheDay()
     {
-        var randomDouble = random.NextDouble();
+        var randomDouble = Game1.random.NextDouble();
         var slayMonsterQuest = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
         var questTypes = new List<(float weight, Func<Quest> createQuest)>
         {

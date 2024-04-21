@@ -24,8 +24,6 @@ internal partial class ModEntry : Mod
     private static readonly Random Random = new();
     public static readonly List<QuestData> QuestList = new();
 
-    public static bool GettingQuestDetails;
-
     public override void Entry(IModHelper helper)
     {
         I18n.Init(helper.Translation);
@@ -41,11 +39,11 @@ internal partial class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-    }
-    
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
-    {
+        if (!Context.IsMainPlayer) return;
+        if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay) return;
+        if (Utility.isFestivalDay() && Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) && !Config.QuestFestival) return;
+        if (Random.NextDouble() >= Config.DailyQuestChance) return;
+        
         QuestList.Clear();
         var npcs = new List<string>();
         // 如果今天没有求助任务，则刷新求助任务
@@ -57,10 +55,8 @@ internal partial class ModEntry : Mod
             if (Game1.questOfTheDay != null)
             {
                 AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
-                GettingQuestDetails = true;
                 Game1.questOfTheDay.reloadDescription();
                 Game1.questOfTheDay.reloadObjective();
-                GettingQuestDetails = false;
                 NPC? npc = null;
                 var questType = QuestType.ItemDelivery;
                 switch (Game1.questOfTheDay)
@@ -104,16 +100,16 @@ internal partial class ModEntry : Mod
 
                     tries = 0;
                     npcs.Add(npc.Name);
-                    var icon = npc.Portrait;
-                    AddQuest(Game1.questOfTheDay, questType, icon);
+                    var padTexture = GetPadTexture(npc.Name, questType.ToString());
+                    var pinTexture = GetPinTexture(npc.Name, questType.ToString());
+                    QuestList.Add(new QuestData(padTexture, pinTexture, npc));
                 }
             }
+
             RefreshQuestOfTheDay();
         }
-
-        Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
-    
+
     private void HarmonyPatch()
     {
         var harmony = new Harmony("aedenthorn.HelpWanted");
@@ -125,8 +121,7 @@ internal partial class ModEntry : Mod
             AccessTools.Method(typeof(Billboard), nameof(Billboard.receiveLeftClick)),
             postfix: new HarmonyMethod(typeof(BillboardPatch), nameof(BillboardPatch.ReceiveLeftClickPostfix))
         );
-        harmony.Patch(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) }),
-            new HarmonyMethod(typeof(UtilityPatch), nameof(UtilityPatch.GetRandomItemFromSeasonPrefix)),
+        harmony.Patch(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(bool), typeof(Random) }),
             transpiler: new HarmonyMethod(typeof(UtilityPatch), nameof(UtilityPatch.GetRandomItemFromSeasonTranspiler))
         );
         harmony.Patch(

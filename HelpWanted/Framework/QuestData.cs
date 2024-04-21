@@ -36,8 +36,6 @@ public class QuestData
     public float IconScale { get; set; }
     public Point IconOffset { get; set; }
     public Quest Quest { get; set; }
-    
-    
 }
 
 public enum QuestType
@@ -45,5 +43,6 @@ public enum QuestType
     ItemDelivery,
     ResourceCollection,
     SlayMonster,
-    Fishing
+    Fishing,
+    Unknown
 }

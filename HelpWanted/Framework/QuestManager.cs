@@ -19,44 +19,20 @@ public class QuestManager
     
     public void InitQuestList(List<QuestData> questList)
     {
-        // 清空任务列表
         questList.Clear();
-        // 如果今天没有每日任务,则刷新每日任务
         if (Game1.questOfTheDay is null) RefreshQuestOfTheDay();
-    
         // 尝试次数
         var tries = 0;
         // 已有任务NPC列表
-        var npcs = new List<string>();
+        var npcs = new HashSet<string>();
         for (var i = 0; i < config.MaxQuests; i++)
         {
             if (Game1.questOfTheDay is null) break;
-            NPC? npc = null;
-            var questType = QuestType.ItemDelivery;
-            switch (Game1.questOfTheDay)
-            {
-                case ItemDeliveryQuest itemDeliveryQuest:
-                    npc = Game1.getCharacterFromName(itemDeliveryQuest.target.Value);
-                    break;
-                case ResourceCollectionQuest resourceCollectionQuest:
-                    npc = Game1.getCharacterFromName(resourceCollectionQuest.target.Value);
-                    questType = QuestType.ResourceCollection;
-                    break;
-                case SlayMonsterQuest slayMonsterQuest:
-                    npc = Game1.getCharacterFromName(slayMonsterQuest.target.Value);
-                    questType = QuestType.SlayMonster;
-                    break;
-                case FishingQuest fishingQuest:
-                    npc = Game1.getCharacterFromName(fishingQuest.target.Value);
-                    questType = QuestType.Fishing;
-                    break;
-            }
-    
+            var npc = GetNpcFromQuest(Game1.questOfTheDay);
             if (npc is not null)
             {
                 if ((config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
-                    (config.AvoidMaxHearts && !Game1.IsMultiplayer &&
-                     Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
+                    (config.AvoidMaxHearts && Game1.MasterPlayer.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
                 {
                     tries++;
                     if (tries > 100)
@@ -70,11 +46,34 @@ public class QuestManager
     
                 tries = 0;
                 npcs.Add(npc.Name);
-                questList.Add(new QuestData(questType, npc));
+                questList.Add(new QuestData(GetQuestType(Game1.questOfTheDay), npc));
             }
-    
             RefreshQuestOfTheDay();
         }
+    }
+    
+    private NPC? GetNpcFromQuest(Quest quest)
+    {
+        return quest switch
+        {
+            ItemDeliveryQuest itemDeliveryQuest => Game1.getCharacterFromName(itemDeliveryQuest.target.Value),
+            ResourceCollectionQuest resourceCollectionQuest => Game1.getCharacterFromName(resourceCollectionQuest.target.Value),
+            SlayMonsterQuest slayMonsterQuest => Game1.getCharacterFromName(slayMonsterQuest.target.Value),
+            FishingQuest fishingQuest => Game1.getCharacterFromName(fishingQuest.target.Value),
+            _ => null
+        };
+    }
+    
+    private QuestType GetQuestType(Quest quest)
+    {
+        return quest switch
+        {
+            ItemDeliveryQuest => QuestType.ItemDelivery,
+            ResourceCollectionQuest => QuestType.ResourceCollection,
+            SlayMonsterQuest => QuestType.SlayMonster,
+            FishingQuest => QuestType.Fishing,
+            _ => QuestType.Unknown
+        };
     }
 
     private void RefreshQuestOfTheDay()

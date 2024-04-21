@@ -18,14 +18,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/ModConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/ModConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/Patches/BillboardPatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/Patches/BillboardPatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/Method.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Method.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/QuestData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/QuestData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/QuestManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/i18n/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/i18n/default.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" afterDir="false" />
@@ -375,7 +371,7 @@
       <workItem from="1713581150151" duration="16990000" />
       <workItem from="1713620921282" duration="5907000" />
       <workItem from="1713666883914" duration="12606000" />
-      <workItem from="1713683629622" duration="12409000" />
+      <workItem from="1713683629622" duration="14058000" />
     </task>
     <servers />
   </component>

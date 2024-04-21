@@ -13,7 +13,7 @@ public class HarmonyPatcher
         {
             try
             {
-                patcher.Patch(harmony, mod.Monitor);
+                patcher.Patch(harmony);
             }
             catch (Exception ex)
             {

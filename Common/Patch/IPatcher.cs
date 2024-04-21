@@ -5,5 +5,5 @@ namespace Common.Patch;
 
 public interface IPatcher
 {
-    public void Patch(Harmony harmony, IMonitor monitor);
+    public void Patch(Harmony harmony);
 }

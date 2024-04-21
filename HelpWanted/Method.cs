@@ -27,13 +27,13 @@ internal partial class ModEntry
     private static List<string>? GetRandomItemList(List<string>? possibleItems)
     {
         // 如果模组未启用,或者必须为喜爱物品和必须为喜欢物品均为false,或者今日任务不是物品交付任务,则返回null
-        if (Config is { MustLikeItem: false, MustLoveItem: false } ||
+        if (config is { MustLikeItem: false, MustLoveItem: false } ||
             Game1.questOfTheDay is not ItemDeliveryQuest itemDeliveryQuest)
             return null;
 
         // 获取普遍喜爱物品和普遍喜欢物品
         var itemString = Game1.NPCGiftTastes["Universal_Love"];
-        if (!Config.MustLoveItem)
+        if (!config.MustLoveItem)
         {
             itemString += " " + Game1.NPCGiftTastes["Universal_Like"];
         }
@@ -44,7 +44,7 @@ internal partial class ModEntry
             return null;
         var split = data.Split('/');
         if (split.Length < 4) return null;
-        itemString += " " + split[1] + (Config.MustLoveItem ? "" : " " + split[3]);
+        itemString += " " + split[1] + (config.MustLoveItem ? "" : " " + split[3]);
 
         // 如果物品字符串为空,则返回null
         if (string.IsNullOrEmpty(itemString))
@@ -55,8 +55,8 @@ internal partial class ModEntry
         items = items.Where(item =>
             {
                 var sObject = new SObject(item, 1);
-                return !(!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
-                       !(Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice);
+                return !(!config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
+                       !(config.MaxPrice > 0 && sObject.Price > config.MaxPrice);
             }
         ).ToList();
 
@@ -64,7 +64,7 @@ internal partial class ModEntry
         if (!items.Any()) return null;
 
         // 如果物品列表不为空,则根据是否忽略原版物品限制执行不同操作
-        switch (Config.IgnoreVanillaItemRestriction)
+        switch (config.IgnoreVanillaItemRestriction)
         {
             // 如果忽略原版物品限制,则返回该物品列表
             case true:
@@ -76,8 +76,8 @@ internal partial class ModEntry
                     var sObject = new SObject(item, 1);
                     return items.Contains(item) &&
                            items.Contains(sObject.Category.ToString()) &&
-                           !(!Config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
-                           !(Config.MaxPrice > 0 && sObject.Price > Config.MaxPrice);
+                           !(!config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
+                           !(config.MaxPrice > 0 && sObject.Price > config.MaxPrice);
                 }).ToList();
                 if (possibleItems.Any())
                 {

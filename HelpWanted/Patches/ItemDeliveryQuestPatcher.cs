@@ -1,13 +1,36 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
+using Common.Patch;
 using HarmonyLib;
+using HelpWanted.Framework;
 using StardewValley;
+using StardewValley.Quests;
 
-namespace HelpWanted.Framework.Patches;
+namespace HelpWanted.Patches;
 
-public class ItemDeliveryQuestPatch
+public class ItemDeliveryQuestPatcher : BasePatcher
 {
-    public static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
+    private static ModConfig config = null!;
+
+    public ItemDeliveryQuestPatcher(ModConfig config)
+    {
+        ItemDeliveryQuestPatcher.config = config;
+    }
+
+    public override void Patch(Harmony harmony)
+    {
+        harmony.Patch(
+            RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.loadQuestInfo)),
+            transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
+        );
+        
+        harmony.Patch(
+            RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
+            postfix: GetHarmonyMethod(nameof(GetGoldRewardPerItemPostfix))
+        );
+    }
+    
+    private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
 
@@ -46,9 +69,8 @@ public class ItemDeliveryQuestPatch
         return codes.AsEnumerable();
     }
     
-    public static void GetGoldRewardPerItemPostfix(ref int __result)
+    private static void GetGoldRewardPerItemPostfix(ref int __result)
     {
-        var config = ModEntry.Config;
         __result = (int)(__result * config.ItemDeliveryRewardModifier);
     }
 }

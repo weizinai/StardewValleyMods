@@ -8,6 +8,8 @@ namespace HelpWanted.Framework;
 
 public sealed class HWQuestBoard : Billboard
 {
+    private readonly ModConfig config;
+    
     public static readonly List<ClickableTextureComponent> QuestNotes = new();
     public static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
     private static Rectangle boardRect = new(78 * 4, 58 * 4, 184 * 4, 96 * 4);
@@ -26,8 +28,10 @@ public sealed class HWQuestBoard : Billboard
     private string hoverTitle = "";
     private string hoverText = "";
 
-    public HWQuestBoard() : base(true)
+    public HWQuestBoard(ModConfig config) : base(true)
     {
+        this.config = config;
+        
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites\\Billboard");
         ShowingQuest = null;
@@ -41,12 +45,12 @@ public sealed class HWQuestBoard : Billboard
             for (var i = 0; i < questList.Count; i++)
             {
                 var size = new Point(
-                    (int)(questList[i].PadTextureSource.Width * ModEntry.Config.NoteScale),
-                    (int)(questList[i].PadTextureSource.Height * ModEntry.Config.NoteScale));
+                    (int)(questList[i].PadTextureSource.Width * config.NoteScale),
+                    (int)(questList[i].PadTextureSource.Height * config.NoteScale));
                 var bounds = GetFreeBounds(size.X, size.Y);
                 if (bounds is null) break;
                 QuestNotes.Add(new ClickableTextureComponent(bounds.Value,
-                    questList[i].PadTexture, questList[i].PadTextureSource, ModEntry.Config.NoteScale)
+                    questList[i].PadTexture, questList[i].PadTextureSource, config.NoteScale)
                 {
                     // 设置该选项的ID
                     myID = OptionIndex - i,
@@ -64,7 +68,7 @@ public sealed class HWQuestBoard : Billboard
         exitFunction = delegate
         {
             if (ShowingQuest is not null)
-                Game1.activeClickableMenu = new HWQuestBoard();
+                Game1.activeClickableMenu = new HWQuestBoard(config);
         };
         // 获得所有的可点击组件
         populateClickableComponentList();
@@ -257,8 +261,8 @@ public sealed class HWQuestBoard : Billboard
                 yPositionOnScreen + Game1.random.Next(boardRect.Y, boardRect.Bottom - height1), width1, height1);
             // 遍历所有的可点击组件,计算是否有碰撞发生
             var collision = QuestNotes.Any(cc =>
-                Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * ModEntry.Config.XOverlapBoundary ||
-                Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * ModEntry.Config.YOverlapBoundary);
+                Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * config.XOverlapBoundary ||
+                Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * config.YOverlapBoundary);
             // 如果碰撞发生,则尝试次数减1,否则返回矩形区域
             if (collision)
                 tries--;

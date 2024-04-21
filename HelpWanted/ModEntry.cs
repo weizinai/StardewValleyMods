@@ -1,46 +1,43 @@
-﻿using System.Runtime.CompilerServices;
-using Common;
-using HarmonyLib;
+﻿using Common;
+using Common.Patch;
 using HelpWanted.Framework;
-using HelpWanted.Framework.Patches;
-using Microsoft.Xna.Framework.Graphics;
+using HelpWanted.Patches;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Menus;
-using StardewValley.Quests;
 
 namespace HelpWanted;
 
 internal partial class ModEntry : Mod
 {
-    public static IMonitor SMonitor;
-    private QuestManager questManager;
+    public static IMonitor SMonitor = null!;
+    private QuestManager questManager = null!;
 
-    public static ModConfig Config = new();
+    private static ModConfig config = new();
 
     public static readonly List<QuestData> QuestList = new();
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        Config = helper.ReadConfig<ModConfig>();
+        config = helper.ReadConfig<ModConfig>();
         SMonitor = Monitor;
-        questManager = new QuestManager(Config, Monitor, new AppearanceManager(helper, Config));
+        questManager = new QuestManager(config, Monitor, new AppearanceManager(helper, config));
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
-        HarmonyPatch();
+        HarmonyPatcher.Patch(this, new BillboardPatcher(config),new UtilityPatcher(), new ItemDeliveryQuestPatcher(config), 
+            new SlayMonsterQuestPatcher(config));
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
         if (!Context.IsMainPlayer) return;
-        if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay) return;
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !Config.QuestFestival) return;
-        if (Game1.random.NextDouble() >= Config.DailyQuestChance) return;
+        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay) return;
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival) return;
+        if (Game1.random.NextDouble() >= config.DailyQuestChance) return;
 
         Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
@@ -51,34 +48,6 @@ internal partial class ModEntry : Mod
         Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
 
-    private void HarmonyPatch()
-    {
-        var harmony = new Harmony("aedenthorn.HelpWanted");
-        harmony.Patch(
-            AccessTools.Method(typeof(Billboard), nameof(Billboard.draw), new[] { typeof(SpriteBatch) }),
-            new HarmonyMethod(typeof(BillboardPatch), nameof(BillboardPatch.DrawPrefix))
-        );
-        harmony.Patch(
-            AccessTools.Method(typeof(Billboard), nameof(Billboard.receiveLeftClick)),
-            postfix: new HarmonyMethod(typeof(BillboardPatch), nameof(BillboardPatch.ReceiveLeftClickPostfix))
-        );
-        harmony.Patch(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(bool), typeof(Random) }),
-            transpiler: new HarmonyMethod(typeof(UtilityPatch), nameof(UtilityPatch.GetRandomItemFromSeasonTranspiler))
-        );
-        harmony.Patch(
-            AccessTools.Method(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.loadQuestInfo)),
-            transpiler: new HarmonyMethod(typeof(ItemDeliveryQuestPatch), nameof(ItemDeliveryQuestPatch.LoadQuestInfoTranspiler))
-        );
-        harmony.Patch(
-            AccessTools.Method(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
-            postfix: new HarmonyMethod(typeof(ItemDeliveryQuestPatch), nameof(ItemDeliveryQuestPatch.GetGoldRewardPerItemPostfix))
-        );
-        harmony.Patch(
-            AccessTools.Method(typeof(SlayMonsterQuest), nameof(SlayMonsterQuest.loadQuestInfo)),
-            transpiler: new HarmonyMethod(typeof(SlayMonsterQuestPatch), nameof(SlayMonsterQuestPatch.LoadQuestInfoTranspiler))
-        );
-    }
-
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
@@ -86,8 +55,8 @@ internal partial class ModEntry : Mod
 
         configMenu.Register(
             ModManifest,
-            () => Config = new ModConfig(),
-            () => Helper.WriteConfig(Config)
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
         );
 
         // 一般设置
@@ -97,49 +66,49 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.QuestFirstDay,
-            value => Config.QuestFirstDay = value,
+            () => config.QuestFirstDay,
+            value => config.QuestFirstDay = value,
             I18n.Config_QuestFirstDay_Name,
             I18n.Config_QuestFirstDay_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.QuestFestival,
-            value => Config.QuestFestival = value,
+            () => config.QuestFestival,
+            value => config.QuestFestival = value,
             I18n.Config_QuestFestival_Name,
             I18n.Config_QuestFestival_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.DailyQuestChance,
-            value => Config.DailyQuestChance = value,
+            () => config.DailyQuestChance,
+            value => config.DailyQuestChance = value,
             I18n.Config_DailyQuestChance_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.OneQuestPerVillager,
-            value => Config.OneQuestPerVillager = value,
+            () => config.OneQuestPerVillager,
+            value => config.OneQuestPerVillager = value,
             I18n.Config_OneQuestPerVillager_Name,
             I18n.Config_OneQuestPerVillager_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.ExcludeMaxHeartsNPC,
-            value => Config.ExcludeMaxHeartsNPC = value,
+            () => config.ExcludeMaxHeartsNPC,
+            value => config.ExcludeMaxHeartsNPC = value,
             I18n.Config_ExcludeMaxHeartsNPC_Name,
             I18n.Config_ExcludeMaxHeartsNPC_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.QuestDays,
-            value => Config.QuestDays = value,
+            () => config.QuestDays,
+            value => config.QuestDays = value,
             I18n.Config_QuestDays_Name,
             I18n.Config_QuestDays_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.MaxQuests,
-            value => Config.MaxQuests = value,
+            () => config.MaxQuests,
+            value => config.MaxQuests = value,
             I18n.Config_MaxQuests_Name,
             I18n.Config_MaxQuests_Tooltip
         );
@@ -150,49 +119,49 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.ItemDeliveryWeight,
-            value => Config.ItemDeliveryWeight = value,
+            () => config.ItemDeliveryWeight,
+            value => config.ItemDeliveryWeight = value,
             I18n.Config_ItemDeliveryWeight_Name,
             I18n.Config_ItemDeliveryWeight_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.ItemDeliveryRewardModifier,
-            value => Config.ItemDeliveryRewardModifier = value,
+            () => config.ItemDeliveryRewardModifier,
+            value => config.ItemDeliveryRewardModifier = value,
             I18n.Config_ItemDeliveryRewardModifier_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.MustLikeItem,
-            value => Config.MustLikeItem = value,
+            () => config.MustLikeItem,
+            value => config.MustLikeItem = value,
             I18n.Config_MustLikeItem_Name,
             I18n.Config_MustLikeItem_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.MustLoveItem,
-            value => Config.MustLoveItem = value,
+            () => config.MustLoveItem,
+            value => config.MustLoveItem = value,
             I18n.Config_MustLoveItem_Name,
             I18n.Config_MustLoveItem_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.AllowArtisanGoods,
-            value => Config.AllowArtisanGoods = value,
+            () => config.AllowArtisanGoods,
+            value => config.AllowArtisanGoods = value,
             I18n.Config_AllowArtisanGoods_Name,
             I18n.Config_AllowArtisanGoods_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.MaxPrice,
-            value => Config.MaxPrice = value,
+            () => config.MaxPrice,
+            value => config.MaxPrice = value,
             I18n.Config_MaxPrice_Name,
             I18n.Config_MaxPrice_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.IgnoreVanillaItemRestriction,
-            value => Config.IgnoreVanillaItemRestriction = value,
+            () => config.IgnoreVanillaItemRestriction,
+            value => config.IgnoreVanillaItemRestriction = value,
             I18n.Config_IgnoreVanillaItemRestriction_Name,
             I18n.Config_IgnoreVanillaItemRestriction_Tooltip
         );
@@ -203,15 +172,15 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.ResourceCollectionWeight,
-            value => Config.ResourceCollectionWeight = value,
+            () => config.ResourceCollectionWeight,
+            value => config.ResourceCollectionWeight = value,
             I18n.Config_ResourceCollectionWeight_Name,
             I18n.Config_ResourceCollectionWeight_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.ResourceCollectionRewardModifier,
-            value => Config.ResourceCollectionRewardModifier = value,
+            () => config.ResourceCollectionRewardModifier,
+            value => config.ResourceCollectionRewardModifier = value,
             I18n.Config_ResourceCollectionRewardModifier_Name
         );
         // 钓鱼任务
@@ -221,15 +190,15 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.FishingWeight,
-            value => Config.FishingWeight = value,
+            () => config.FishingWeight,
+            value => config.FishingWeight = value,
             I18n.Config_FishingWeight_Name,
             I18n.Config_FishingWeight_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.FishingRewardModifier,
-            value => Config.FishingRewardModifier = value,
+            () => config.FishingRewardModifier,
+            value => config.FishingRewardModifier = value,
             I18n.Config_FishingRewardModifier_Name
         );
         // 杀怪任务
@@ -239,15 +208,15 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.SlayMonstersWeight,
-            value => Config.SlayMonstersWeight = value,
+            () => config.SlayMonstersWeight,
+            value => config.SlayMonstersWeight = value,
             I18n.Config_SlayMonstersWeight_Name,
             I18n.Config_SlayMonstersWeight_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.SlayMonstersRewardModifier,
-            value => Config.SlayMonstersRewardModifier = value,
+            () => config.SlayMonstersRewardModifier,
+            value => config.SlayMonstersRewardModifier = value,
             I18n.Config_SlayMonstersRewardModifier_Name
         );
         // 外观
@@ -272,16 +241,16 @@ internal partial class ModEntry : Mod
         // 便签缩放
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.NoteScale,
-            value => Config.NoteScale = value,
+            () => config.NoteScale,
+            value => config.NoteScale = value,
             I18n.Config_NoteScale_Name,
             I18n.Config_NoteScale_Tooltip
         );
         // 便签重叠率
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.XOverlapBoundary,
-            value => Config.XOverlapBoundary = value,
+            () => config.XOverlapBoundary,
+            value => config.XOverlapBoundary = value,
             I18n.Config_XOverlapBoundary_Name,
             I18n.Config_XOverlapBoundary_Tooltip,
             0,
@@ -290,8 +259,8 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.YOverlapBoundary,
-            value => Config.YOverlapBoundary = value,
+            () => config.YOverlapBoundary,
+            value => config.YOverlapBoundary = value,
             I18n.Config_YOverlapBoundary_Name,
             I18n.Config_YOverlapBoundary_Tooltip,
             0,
@@ -301,8 +270,8 @@ internal partial class ModEntry : Mod
         // 随机颜色
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.RandomColorMin,
-            value => Config.RandomColorMin = value,
+            () => config.RandomColorMin,
+            value => config.RandomColorMin = value,
             I18n.Config_RandomColorMin_Name,
             null,
             0,
@@ -310,8 +279,8 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.RandomColorMax,
-            value => Config.RandomColorMax = value,
+            () => config.RandomColorMax,
+            value => config.RandomColorMax = value,
             I18n.Config_RandomColorMax_Name,
             null,
             0,
@@ -325,28 +294,28 @@ internal partial class ModEntry : Mod
         // 肖像缩放
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitScale,
-            value => Config.PortraitScale = value,
+            () => config.PortraitScale,
+            value => config.PortraitScale = value,
             I18n.Config_PortraitScale_Name
         );
         // 肖像偏移
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitOffsetX,
-            value => Config.PortraitOffsetX = value,
+            () => config.PortraitOffsetX,
+            value => config.PortraitOffsetX = value,
             I18n.Config_PortraitOffsetX_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitOffsetY,
-            value => Config.PortraitOffsetY = value,
+            () => config.PortraitOffsetY,
+            value => config.PortraitOffsetY = value,
             I18n.Config_PortraitOffsetY_Name
         );
         // 肖像颜色
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitTintR,
-            value => Config.PortraitTintR = value,
+            () => config.PortraitTintR,
+            value => config.PortraitTintR = value,
             I18n.Config_PortraitTintR_Name,
             null,
             0,
@@ -354,8 +323,8 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitTintG,
-            value => Config.PortraitTintG = value,
+            () => config.PortraitTintG,
+            value => config.PortraitTintG = value,
             I18n.Config_PortraitTintG_Name,
             null,
             0,
@@ -363,8 +332,8 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitTintB,
-            value => Config.PortraitTintB = value,
+            () => config.PortraitTintB,
+            value => config.PortraitTintB = value,
             I18n.Config_PortraitTintB_Name,
             null,
             0,
@@ -372,8 +341,8 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.PortraitTintA,
-            value => Config.PortraitTintA = value,
+            () => config.PortraitTintA,
+            value => config.PortraitTintA = value,
             I18n.Config_PortraitTintA_Name,
             null,
             0,

@@ -17,26 +17,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Common/Patch/BasePatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/Patch/IPatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/BillboardPatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/ItemDeliveryQuestPatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/SlayMonsterQuestPatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/UtilityPatcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/ActiveMenuAnywhere.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/AutoBreakGeode.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/AutoBreakGeode.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/Common.projitems" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Common.projitems" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/Patch/BasePatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Patch/BasePatcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/Patch/HarmonyPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Patch/HarmonyPatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/Patch/IPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Patch/IPatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/Patches/BillboardPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/Patches/ItemDeliveryQuestPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/Patches/SlayMonsterQuestPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/Patches/UtilityPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Method.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Method.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Patches/BillboardPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Patches/BillboardPatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestMod/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/rider.project.model.nuget.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +86,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Common/DrawHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Common/Patch/HarmonyPatcher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Common/Patch/HarmonyPatcher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/0b/f68744c2/LocalizedContentManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/98/db5b24fb/Billboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/fa/982054c4/Tool.cs" root0="SKIP_HIGHLIGHTING" />
@@ -387,7 +403,8 @@
       <workItem from="1713620921282" duration="5907000" />
       <workItem from="1713666883914" duration="12606000" />
       <workItem from="1713683629622" duration="18455000" />
-      <workItem from="1713712167659" duration="1649000" />
+      <workItem from="1713712167659" duration="2836000" />
+      <workItem from="1713715095967" duration="494000" />
     </task>
     <servers />
   </component>

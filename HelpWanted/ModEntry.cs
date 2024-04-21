@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using System.Runtime.CompilerServices;
+using Common;
 using HarmonyLib;
 using HelpWanted.Framework;
 using HelpWanted.Framework.Patches;
@@ -18,11 +19,7 @@ internal partial class ModEntry : Mod
 
     public static ModConfig Config = new();
 
-    private static readonly Random Random = new();
     public static readonly List<QuestData> QuestList = new();
-    
-    private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
-    private const string PinTexturePath = "aedenthorn.HelpWanted/Pin";
 
     public override void Entry(IModHelper helper)
     {
@@ -43,7 +40,7 @@ internal partial class ModEntry : Mod
         if (!Context.IsMainPlayer) return;
         if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay) return;
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !Config.QuestFestival) return;
-        if (Random.NextDouble() >= Config.DailyQuestChance) return;
+        if (Game1.random.NextDouble() >= Config.DailyQuestChance) return;
 
         Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
@@ -71,6 +68,14 @@ internal partial class ModEntry : Mod
         harmony.Patch(
             AccessTools.Method(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.loadQuestInfo)),
             transpiler: new HarmonyMethod(typeof(ItemDeliveryQuestPatch), nameof(ItemDeliveryQuestPatch.LoadQuestInfoTranspiler))
+        );
+        harmony.Patch(
+            AccessTools.Method(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
+            postfix: new HarmonyMethod(typeof(ItemDeliveryQuestPatch), nameof(ItemDeliveryQuestPatch.GetGoldRewardPerItemPostfix))
+        );
+        harmony.Patch(
+            AccessTools.Method(typeof(SlayMonsterQuest), nameof(SlayMonsterQuest.loadQuestInfo)),
+            transpiler: new HarmonyMethod(typeof(SlayMonsterQuestPatch), nameof(SlayMonsterQuestPatch.LoadQuestInfoTranspiler))
         );
     }
 
@@ -150,6 +155,12 @@ internal partial class ModEntry : Mod
             I18n.Config_ItemDeliveryWeight_Name,
             I18n.Config_ItemDeliveryWeight_Tooltip
         );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.ItemDeliveryRewardModifier,
+            value => Config.ItemDeliveryRewardModifier = value,
+            I18n.Config_ItemDeliveryRewardModifier_Name
+        );
         configMenu.AddBoolOption(
             ModManifest,
             () => Config.MustLikeItem,
@@ -197,6 +208,12 @@ internal partial class ModEntry : Mod
             I18n.Config_ResourceCollectionWeight_Name,
             I18n.Config_ResourceCollectionWeight_Tooltip
         );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.ResourceCollectionRewardModifier,
+            value => Config.ResourceCollectionRewardModifier = value,
+            I18n.Config_ResourceCollectionRewardModifier_Name
+        );
         // 钓鱼任务
         configMenu.AddSectionTitle(
             ModManifest,
@@ -209,6 +226,12 @@ internal partial class ModEntry : Mod
             I18n.Config_FishingWeight_Name,
             I18n.Config_FishingWeight_Tooltip
         );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.FishingRewardModifier,
+            value => Config.FishingRewardModifier = value,
+            I18n.Config_FishingRewardModifier_Name
+        );
         // 杀怪任务
         configMenu.AddSectionTitle(
             ModManifest,
@@ -220,6 +243,12 @@ internal partial class ModEntry : Mod
             value => Config.SlayMonstersWeight = value,
             I18n.Config_SlayMonstersWeight_Name,
             I18n.Config_SlayMonstersWeight_Tooltip
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.SlayMonstersRewardModifier,
+            value => Config.SlayMonstersRewardModifier = value,
+            I18n.Config_SlayMonstersRewardModifier_Name
         );
         // 外观
         configMenu.AddPageLink(

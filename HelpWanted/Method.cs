@@ -1,4 +1,5 @@
 ﻿using StardewValley;
+using StardewValley.Extensions;
 using StardewValley.Quests;
 using SObject = StardewValley.Object;
 
@@ -19,7 +20,7 @@ internal partial class ModEntry
         // 遍历物品列表,去掉其中不符合条件的物品
         items = items.Where(item => Game1.objectData.ContainsKey(item)).ToList();
         // 如果物品列表为空,则返回原随机结果,否则返回随机物品
-        return !items.Any() ? result : items[Random.Next(items.Count)];
+        return !items.Any() ? result : Game1.random.ChooseFrom(items);
     }
 
     /// <summary>获取随机物品列表</summary>

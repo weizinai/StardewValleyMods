@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
@@ -10,11 +11,13 @@ public class QuestManager
 {
     private readonly ModConfig config;
     private readonly IMonitor monitor;
+    private readonly AppearanceManager appearanceManager;
 
-    public QuestManager(ModConfig config, IMonitor monitor)
+    public QuestManager(ModConfig config, IMonitor monitor, AppearanceManager appearanceManager)
     {
         this.config = config;
         this.monitor = monitor;
+        this.appearanceManager = appearanceManager;
     }
     
     public void InitQuestList(List<QuestData> questList)
@@ -32,7 +35,7 @@ public class QuestManager
             if (npc is not null)
             {
                 if ((config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
-                    (config.AvoidMaxHearts && Game1.MasterPlayer.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
+                    (config.ExcludeMaxHeartsNPC && Game1.MasterPlayer.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
                 {
                     tries++;
                     if (tries > 100)
@@ -46,7 +49,7 @@ public class QuestManager
     
                 tries = 0;
                 npcs.Add(npc.Name);
-                questList.Add(new QuestData(GetQuestType(Game1.questOfTheDay), npc));
+                AddQuest(questList, npc);
             }
             RefreshQuestOfTheDay();
         }
@@ -74,6 +77,25 @@ public class QuestManager
             FishingQuest => QuestType.Fishing,
             _ => QuestType.Unknown
         };
+    }
+
+    private void AddQuest(List<QuestData> questList, NPC npc)
+    {
+        var questType = GetQuestType(Game1.questOfTheDay);
+        var padTexture = appearanceManager.GetPadTexture(npc.Name, questType.ToString());
+        var padTextureSource = new Rectangle(0, 0, 64, 64);
+        var padColor = appearanceManager.GetRandomColor();
+        var pinTexture = appearanceManager.GetPinTexture(npc.Name, questType.ToString());
+        var pinTextureSource = new Rectangle(0, 0, 64, 64);
+        var pinColor = appearanceManager.GetRandomColor();
+        var icon = npc.Portrait;
+        var iconColor = new Color(config.PortraitTintR, config.PortraitTintB, config.PortraitTintB, config.PortraitTintA);
+        var iconSource = new Rectangle(0, 0, 64, 64);
+        var iconScale = config.PortraitScale;
+        var iconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
+        var quest = Game1.questOfTheDay;
+        var questData = new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor, icon, iconSource, iconColor, iconScale, iconOffset, quest);
+        questList.Add(questData);
     }
 
     private void RefreshQuestOfTheDay()
@@ -111,4 +133,13 @@ public class QuestManager
         }
         return null;
     }
+}
+
+public enum QuestType
+{
+    ItemDelivery,
+    ResourceCollection,
+    SlayMonster,
+    Fishing,
+    Unknown
 }

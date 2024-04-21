@@ -14,23 +14,22 @@ namespace HelpWanted;
 internal partial class ModEntry : Mod
 {
     public static IMonitor SMonitor;
-    public static IModHelper SHelper;
     private QuestManager questManager;
 
     public static ModConfig Config = new();
-    private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
-    private const string PinTexturePath = "aedenthorn.HelpWanted/Pin";
 
     private static readonly Random Random = new();
     public static readonly List<QuestData> QuestList = new();
+    
+    private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
+    private const string PinTexturePath = "aedenthorn.HelpWanted/Pin";
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         Config = helper.ReadConfig<ModConfig>();
         SMonitor = Monitor;
-        SHelper = helper;
-        questManager = new QuestManager(Config, Monitor);
+        questManager = new QuestManager(Config, Monitor, new AppearanceManager(helper, Config));
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
@@ -120,10 +119,10 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => Config.AvoidMaxHearts,
-            value => Config.AvoidMaxHearts = value,
-            I18n.Config_AvoidMaxHearts_Name,
-            I18n.Config_AvoidMaxHearts_Tooltip
+            () => Config.ExcludeMaxHeartsNPC,
+            value => Config.ExcludeMaxHeartsNPC = value,
+            I18n.Config_ExcludeMaxHeartsNPC_Name,
+            I18n.Config_ExcludeMaxHeartsNPC_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,

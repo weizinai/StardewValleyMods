@@ -200,7 +200,7 @@ public sealed class HWQuestBoard : Billboard
                 // 绘制 Pad
                 option.draw(spriteBatch, questData.PadColor, 1);
                 // 绘制 Pin
-                spriteBatch.Draw(questData.PinTexture, option.bounds, questData.IconSource, questData.PinColor);
+                spriteBatch.Draw(questData.PinTexture, option.bounds, questData.PinTextureSource, questData.PinColor);
                 // 绘制 Icon
                 spriteBatch.Draw(questData.Icon,
                     new Vector2(option.bounds.X + questData.IconOffset.X, option.bounds.Y + questData.IconOffset.Y),

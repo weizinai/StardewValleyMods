@@ -17,13 +17,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Framework/AppearanceManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/ModConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/ModConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/QuestData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/QuestData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/QuestManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Method.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Method.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/i18n/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/i18n/default.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" afterDir="false" />
     </list>
@@ -59,7 +68,10 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Common/DrawHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/0b/f68744c2/LocalizedContentManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/98/db5b24fb/Billboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/fa/982054c4/Tool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/255150e0f2de405dbb2b2025954bccbf1b3000/a4/3900d839/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/40ee992fb4eb4e8babe84bbd9f5f7ec2a24ea0/58/6b189779/OpCodes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a4c965ca8e9a4ef2b78a1d13ee3988ce16a00/b8/bd39a147/MachineData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a4c965ca8e9a4ef2b78a1d13ee3988ce16a00/ed/7e4ceddb/BuildingData.cs" root0="SKIP_HIGHLIGHTING" />
@@ -371,7 +383,7 @@
       <workItem from="1713581150151" duration="16990000" />
       <workItem from="1713620921282" duration="5907000" />
       <workItem from="1713666883914" duration="12606000" />
-      <workItem from="1713683629622" duration="14058000" />
+      <workItem from="1713683629622" duration="18455000" />
     </task>
     <servers />
   </component>

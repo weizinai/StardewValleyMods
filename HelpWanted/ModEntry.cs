@@ -15,7 +15,7 @@ namespace HelpWanted;
 
 internal partial class ModEntry : Mod
 {
-    public static IMonitor SMonitor;
+    public static IMonitor SMonitor { get; set; }
 
     public static ModConfig Config = new();
     private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
@@ -26,11 +26,11 @@ internal partial class ModEntry : Mod
 
     public override void Entry(IModHelper helper)
     {
-        I18n.Init(helper.Translation);
-
-        SMonitor = Monitor;
+        // 初始化
         Config = helper.ReadConfig<ModConfig>();
-
+        SMonitor = Monitor;
+        I18n.Init(helper.Translation);
+        // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
 

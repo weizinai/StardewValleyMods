@@ -18,9 +18,7 @@ public class RSVQuestBoardOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
-        var targetDllPath = CommonHelper.GetDllPath(helper, "RidgesideVillage.dll");
-        var assembly = Assembly.LoadFrom(targetDllPath);
-        var questController = assembly.GetType("RidgesideVillage.Questing.QuestController");
+        var questController = RSVIntegration.GetType("RidgesideVillage.Questing.QuestController");
         object[] parameters = { Game1.currentLocation, new[] { "VillageQuestBoard" }, Game1.player, new Point() };
         questController?.GetMethod("OpenQuestBoard", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, parameters);
     }

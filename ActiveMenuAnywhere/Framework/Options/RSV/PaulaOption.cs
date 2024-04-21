@@ -16,9 +16,7 @@ public class PaulaOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
-        var targetDllPath = CommonHelper.GetDllPath(helper, "RidgesideVillage.dll");
-        var assembly = Assembly.LoadFrom(targetDllPath);
-        var lanHouse = assembly.GetType("RidgesideVillage.PaulaClinic");
+        var lanHouse = RSVIntegration.GetType("RidgesideVillage.PaulaClinic");
         lanHouse?.GetMethod("ClinicChoices", BindingFlags.NonPublic|BindingFlags.Static)?.Invoke(null, null);
     }
 }

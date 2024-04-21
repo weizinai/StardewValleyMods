@@ -17,26 +17,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.1.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoAnimal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoAnimal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFood.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoFood.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/AMAMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/IanOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/IanOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/NinjaBoardOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/NinjaBoardOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/PaulaOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/PaulaOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/RSVQuestBoardOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/Framework/Options/RSV/RSVQuestBoardOption.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/Common.projitems" beforeDir="false" afterPath="$PROJECT_DIR$/Common/Common.projitems" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/CommonHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/DrawHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Common/DrawHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoForaging.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoForaging.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOther.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/AutoOther.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Info/MiningInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Info/MiningInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/Framework/Automation/Automate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/Automation/Automate.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/Framework/ModConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/Framework/ModConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/LazyMod.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/LazyMod.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/ModEntry.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.0.zip" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.0.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.1.zip" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.1.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/i18n/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/i18n/default.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/i18n/zh.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LazyMod/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfoInputs.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,7 +396,8 @@
       <workItem from="1713574009146" duration="4966000" />
       <workItem from="1713581150151" duration="16990000" />
       <workItem from="1713620921282" duration="5907000" />
-      <workItem from="1713666883914" duration="8353000" />
+      <workItem from="1713666883914" duration="12606000" />
+      <workItem from="1713683629622" duration="4811000" />
     </task>
     <servers />
   </component>

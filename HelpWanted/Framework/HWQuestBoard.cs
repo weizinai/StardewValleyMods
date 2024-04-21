@@ -209,8 +209,7 @@ public sealed class HWQuestBoard : Billboard
         }
 
         // 绘制星星
-        var drawAllStars = Game1.stats.Get("BillboardQuestsDone") % 3 == 0 && Game1.questOfTheDay != null &&
-                           Game1.questOfTheDay.completed.Value;
+        var drawAllStars = Game1.stats.Get("BillboardQuestsDone") % 3 == 0 && Game1.questOfTheDay != null && Game1.questOfTheDay.completed.Value;
         for (var i = 0; i < (drawAllStars ? 3 : Game1.stats.Get("BillboardQuestsDone") % 3); i++)
         {
             spriteBatch.Draw(billboardTexture, Position + new Vector2(18 + 12 * i, 36f) * 4f, new Rectangle(140, 397, 10, 11), Color.White,

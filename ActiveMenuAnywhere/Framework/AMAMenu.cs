@@ -293,7 +293,7 @@ public class AMAMenu : IClickableMenu
                     new KimpoiOption(GetSourceRectangle(6)),
                     new PikaOption(GetSourceRectangle(7)),
                     new LolaOption(GetSourceRectangle(8)),
-                    new NinjaBoardOption(GetSourceRectangle(10), helper),
+                    new NinjaBoardOption(GetSourceRectangle(10)),
                     new JoiOption(GetSourceRectangle(11)),
                     new MysticFalls1Option(GetSourceRectangle(12)),
                     new MysticFalls2Option(GetSourceRectangle(13)),

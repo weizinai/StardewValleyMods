@@ -83,6 +83,9 @@
     "Config.AutoHarvestMossRange.Name":"Auto Harvest Moss Range",
     "Config.FindScytheFromInventory.Name":"Find Scythe From Inventory",
     "Config.FindScytheFromInventory.Tooltip":"When this option is enabled, only a scythe (melee weapon) is required in the backpack for the feature to work.", // 1.0.1 Add
+    "Config.AutoUseVinegarOnTree.Name":"Auto Use Vinegar On Tree", // 1.0.1 Add
+    "Config.AutoUseVinegarOnTree.Tooltip":"This feature only works when you hold the vinegar.", // 1.0.1 Add
+    "Config.AutoUseVinegarOnTreeRange.Name":"Auto Use Vinegar On Tree Range", // 1.0.1 Add
     "Config.AutoClearTwig.Name":"Auto Clear Twig",
     "Config.AutoClearTwig.Tooltip":"This feature only works when you hold the axe.", // 1.0.1 Add
     "Config.AutoClearTwigRange.Name":"Auto Clear Twig Range",

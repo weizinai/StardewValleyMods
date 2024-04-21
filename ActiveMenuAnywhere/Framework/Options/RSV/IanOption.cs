@@ -16,9 +16,7 @@ public class IanOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
-        var targetDllPath = CommonHelper.GetDllPath(helper, "RidgesideVillage.dll");
-        var assembly = Assembly.LoadFrom(targetDllPath);
-        var lanHouse = assembly.GetType("RidgesideVillage.IanShop");
+        var lanHouse = RSVIntegration.GetType("RidgesideVillage.IanShop");
         lanHouse?.GetMethod("IanCounterMenu", BindingFlags.NonPublic|BindingFlags.Static)?.Invoke(null, null);
     }
 }

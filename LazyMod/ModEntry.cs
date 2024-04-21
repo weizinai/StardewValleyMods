@@ -672,6 +672,27 @@ public class ModEntry : Mod
             I18n.Config_FindScytheFromInventory_Name,
             I18n.Config_FindScytheFromInventory_Tooltip
         );
+        // 自动在树上浇醋
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoUseVinegarOnTree_Name,
+            I18n.Config_AutoUseVinegarOnTree_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoUseVinegarOnTree,
+            value => config.AutoUseVinegarOnTree = value,
+            I18n.Config_AutoUseVinegarOnTree_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoUseVinegarOnTreeRange,
+            value => config.AutoUseVinegarOnTreeRange = value,
+            I18n.Config_AutoUseVinegarOnTreeRange_Name,
+            null,
+            1,
+            3
+        );
         // 自动清理树枝
         configMenu.AddSectionTitle(
             ModManifest,

@@ -101,6 +101,9 @@ public class ModConfig
     public bool AutoHarvestMoss { get; set; } = true;
     public int AutoHarvestMossRange { get; set; } = 1;
     public bool FindScytheFromInventory { get; set; } = true;
+    // 自动在树上浇醋
+    public bool AutoUseVinegarOnTree { get; set; }
+    public int AutoUseVinegarOnTreeRange { get; set; } = 1;
     // 自动清理树枝
     public bool AutoClearTwig { get; set; }
     public int AutoClearTwigRange { get; set; } = 1;

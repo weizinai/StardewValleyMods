@@ -83,6 +83,9 @@
     "Config.AutoHarvestMossRange.Name":"自动收获苔藓范围",
     "Config.FindScytheFromInventory.Name":"从背包中寻找镰刀",
     "Config.FindScytheFromInventory.Tooltip":"当该选项启用时,只需要背包中有镰刀(近战武器),该功能就会生效.",
+    "Config.AutoUseVinegarOnTree.Name":"自动在树上浇醋", // 1.0.1 Add
+    "Config.AutoUseVinegarOnTree.Tooltip":"当你手持醋时,该功能才有效果.", // 1.0.1 Add
+    "Config.AutoUseVinegarOnTreeRange.Name":"自动在树上浇醋范围", // 1.0.1 Add
     "Config.AutoClearTwig.Name":"自动清理树枝",
     "Config.AutoClearTwig.Tooltip":"当你手持斧头时,该功能才有效果.",
     "Config.AutoClearTwigRange.Name":"自动清理树枝范围",

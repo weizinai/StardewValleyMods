@@ -4,12 +4,12 @@ public class ModConfig
 {
     // 是否启用模组
     public bool ModEnabled { get; set; } = true;
-    public bool QuestFirstDay { get; set; } = false;
-    public bool QuestFestival { get; set; } = false;
+    public bool QuestFirstDay { get; set; }
+    public bool QuestFestival { get; set; }
     // 是否必须为村民喜欢的礼物
     public bool MustLikeItem { get; set; } = true;
     // 是否必须为村民喜爱的礼物
-    public bool MustLoveItem { get; set; } = false;
+    public bool MustLoveItem { get; set; }
     // 是否允许任务物品为工匠物品
     public bool AllowArtisanGoods { get; set; } = true;
     // 是否忽略原版任务物品限制

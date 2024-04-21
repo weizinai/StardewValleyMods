@@ -3,6 +3,8 @@
     "Config.ModEnabled.Tooltip": "是否启用该模组的功能",
     "Config.QuestFirstDay.Name": "第一天任务",
     "Config.QuestFirstDay.Tooltip": "在游戏的第一天是否生成任务.(原版默认不生成)",
+    "Config.QuestFestival.Name": "节日任务",
+    "Config.QuestFestival.Tooltip": "是否在节日生成任务.(原版默认不生成)",
     "Config.MustLikeItem.Name": "必须喜欢物品",
     "Config.MustLikeItem.Tooltip": "交易任务的物品是否必须是NPC喜欢的物品",
     "Config.MustLoveItem.Name": "必须喜爱物品",

@@ -7,13 +7,13 @@ namespace HelpWanted.Framework;
 
 public class QuestData
 {
-    public QuestData(Texture2D padTexture, Texture2D pinTexture, NPC npc)
+    public QuestData(QuestType questType, NPC npc)
     {
         var config = ModEntry.Config;
-        PadTexture = padTexture;
+        PadTexture = ModEntry.GetPadTexture(npc.Name, questType.ToString());;
         PadTextureSource = new Rectangle(0, 0, 64, 64);
         PadColor = ModEntry.GetRandomColor();
-        PinTexture = pinTexture;
+        PinTexture = ModEntry.GetPinTexture(npc.Name, questType.ToString());
         PinTextureSource = new Rectangle(0, 0, 64, 64);
         PinColor = ModEntry.GetRandomColor();
         Icon = npc.Portrait;
@@ -36,6 +36,8 @@ public class QuestData
     public float IconScale { get; set; }
     public Point IconOffset { get; set; }
     public Quest Quest { get; set; }
+    
+    
 }
 
 public enum QuestType

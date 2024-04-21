@@ -3,6 +3,8 @@
     "Config.ModEnabled.Tooltip": "Whether or not to enable the mod's features.",
     "Config.QuestFirstDay.Name": "Quest First Day",
     "Config.QuestFirstDay.Tooltip": "The first day of the quest",
+    "Config.QuestFestival.Name": "Quest Festival",
+    "Config.QuestFestival.Tooltip": "Whether or not to generate quests on festival days",
     "Config.MustLikeItem.Name": "Must Like Item",
     "Config.MustLikeItem.Tooltip": "Whether the item for the item delivery quest must be an item that the NPC likes.",
     "Config.MustLoveItem.Name": "Must Love Item",

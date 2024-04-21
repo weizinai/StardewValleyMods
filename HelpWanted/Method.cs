@@ -1,7 +1,5 @@
-﻿using HelpWanted.Framework;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Netcode;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Quests;
@@ -12,7 +10,7 @@ namespace HelpWanted;
 internal partial class ModEntry
 {
     /// <summary>获取自定义Pin纹理,如果没有则返回默认纹理</summary>
-    private Texture2D GetPinTexture(string target, string questType)
+    public static Texture2D GetPinTexture(string target, string questType)
     {
         // 获取特定NPC和特定任务类型的任务的自定义Pin纹理
         var texture = GetTexture(PinTexturePath + "/" + target + "/" + questType);
@@ -43,11 +41,11 @@ internal partial class ModEntry
         }
 
         // 如果没有自定义纹理,则返回默认Pin纹理
-        return Helper.ModContent.Load<Texture2D>("Assets/Pin.png");
+        return SHelper.ModContent.Load<Texture2D>("Assets/Pin.png");
     }
 
     /// <summary>获取自定义Pad纹理,如果没有则返回默认纹理</summary>
-    private Texture2D GetPadTexture(string target, string questType)
+    public static Texture2D GetPadTexture(string target, string questType)
     {
         // 获取特定NPC和特定任务类型的任务的自定义Pad纹理
         var texture = GetTexture(PadTexturePath + "/" + target + "/" + questType);
@@ -78,18 +76,18 @@ internal partial class ModEntry
         }
 
         // 如果没有自定义纹理,则返回默认Pad纹理
-        return Helper.ModContent.Load<Texture2D>("Assets/Pad.png");
+        return SHelper.ModContent.Load<Texture2D>("Assets/Pad.png");
     }
 
     /// <summary>获取自定义纹理</summary>
-    private Texture2D? GetTexture(string path)
+    private static Texture2D? GetTexture(string path)
     {
         // 获取特定NPC或特定任务类型的任务的不同自定义纹理,如果纹理存在,则随机返回一个
         var textures = new List<Texture2D>();
         try
         {
             for (var i = 1;; i++)
-                textures.Add(Helper.GameContent.Load<Texture2D>(path + "/" + i));
+                textures.Add(SHelper.GameContent.Load<Texture2D>(path + "/" + i));
         }
         catch
         {
@@ -103,7 +101,7 @@ internal partial class ModEntry
         // 获取特定NPC或特定任务类型的任务的自定义纹理
         try
         {
-            return Helper.GameContent.Load<Texture2D>(path);
+            return SHelper.GameContent.Load<Texture2D>(path);
         }
         catch
         {
@@ -119,44 +117,6 @@ internal partial class ModEntry
         return new Color((byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax),
             (byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax),
             (byte)Random.Next(Config.RandomColorMin, Config.RandomColorMax));
-    }
-
-    /// <summary>刷新每日任务</summary>
-    private static void RefreshQuestOfTheDay()
-    {
-        // 如果是游戏的第1天,则不生成每日任务
-        if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay)
-        {
-            Game1.netWorldState.Value.SetQuestOfTheDay(null);
-            return;
-        }
-        
-        // 玩家在矿井中达到的最大层数大于0并且游戏天数大于5天.则可以接到杀怪任务
-        var slayMonsterQuest = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
-        // 总权重
-        var totalWeight = Config.ResourceCollectionWeight + (slayMonsterQuest ? Config.SlayMonstersWeight : 0) + Config.FishingWeight +
-                          Config.ItemDeliveryWeight;
-        // 生成一个0-1之间的随机双浮点数
-        var randomDouble = Random.NextDouble();
-        double currentWeight = 0;
-
-        var questTypes = new List<(double weight, Func<Quest> createQuest)>
-        {
-            (Config.ResourceCollectionWeight, () => new ResourceCollectionQuest()),
-            (slayMonsterQuest ? Config.SlayMonstersWeight : 0, () => new SlayMonsterQuest()),
-            (Config.FishingWeight, () => new FishingQuest()),
-            (Config.ItemDeliveryWeight, () => new ItemDeliveryQuest())
-        };
-
-        foreach (var (weight, createQuest) in questTypes)
-        {
-            currentWeight += weight;
-            if (randomDouble < currentWeight / totalWeight)
-            {
-                Game1.netWorldState.Value.SetQuestOfTheDay(createQuest());
-                return;
-            }
-        }
     }
 
     /// <summary>获取随机物品</summary>

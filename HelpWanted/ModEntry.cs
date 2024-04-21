@@ -9,13 +9,13 @@ using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Quests;
 
-#pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
-
 namespace HelpWanted;
 
 internal partial class ModEntry : Mod
 {
-    public static IMonitor SMonitor { get; set; }
+    public static IMonitor SMonitor;
+    public static IModHelper SHelper;
+    private QuestManager questManager;
 
     public static ModConfig Config = new();
     private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
@@ -29,11 +29,13 @@ internal partial class ModEntry : Mod
         // 初始化
         Config = helper.ReadConfig<ModConfig>();
         SMonitor = Monitor;
+        SHelper = helper;
+        questManager = new QuestManager(Config, Monitor);
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
-
+        // 注册Harmony补丁
         HarmonyPatch();
     }
 
@@ -41,73 +43,16 @@ internal partial class ModEntry : Mod
     {
         if (!Context.IsMainPlayer) return;
         if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay) return;
-        if (Utility.isFestivalDay() && Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) && !Config.QuestFestival) return;
-        if (Random.NextDouble() >= Config.DailyQuestChance) return;
+        if (Utility.isFestivalDay() && !Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season) && !Config.QuestFestival) return;
+        // if (Random.NextDouble() >= Config.DailyQuestChance) return;
         
-        QuestList.Clear();
-        var npcs = new List<string>();
-        // 如果今天没有求助任务，则刷新求助任务
-        if (Game1.questOfTheDay is null) RefreshQuestOfTheDay();
+        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
+    }
 
-        var tries = 0;
-        for (var i = 0; i < Config.MaxQuests; i++)
-        {
-            if (Game1.questOfTheDay != null)
-            {
-                AccessTools.FieldRefAccess<Quest, Random>(Game1.questOfTheDay, "random") = Random;
-                Game1.questOfTheDay.reloadDescription();
-                Game1.questOfTheDay.reloadObjective();
-                NPC? npc = null;
-                var questType = QuestType.ItemDelivery;
-                switch (Game1.questOfTheDay)
-                {
-                    case ItemDeliveryQuest itemDeliveryQuest:
-                        npc = Game1.getCharacterFromName(itemDeliveryQuest.target.Value);
-                        break;
-                    case ResourceCollectionQuest resourceCollectionQuest:
-                        npc = Game1.getCharacterFromName(resourceCollectionQuest.target.Value);
-                        questType = QuestType.ResourceCollection;
-                        break;
-                    case SlayMonsterQuest slayMonsterQuest:
-                        npc = Game1.getCharacterFromName(slayMonsterQuest.target.Value);
-                        questType = QuestType.SlayMonster;
-                        break;
-                    case FishingQuest fishingQuest:
-                        npc = Game1.getCharacterFromName(fishingQuest.target.Value);
-                        questType = QuestType.Fishing;
-                        break;
-                }
-
-                if (npc is not null)
-                {
-                    if ((Config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
-                        (Config.AvoidMaxHearts && !Game1.IsMultiplayer &&
-                         Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
-                    {
-                        tries++;
-                        if (tries > 100)
-                        {
-                            tries = 0;
-                        }
-                        else
-                        {
-                            i--;
-                        }
-
-                        RefreshQuestOfTheDay();
-                        continue;
-                    }
-
-                    tries = 0;
-                    npcs.Add(npc.Name);
-                    var padTexture = GetPadTexture(npc.Name, questType.ToString());
-                    var pinTexture = GetPinTexture(npc.Name, questType.ToString());
-                    QuestList.Add(new QuestData(padTexture, pinTexture, npc));
-                }
-            }
-
-            RefreshQuestOfTheDay();
-        }
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    {
+        questManager.InitQuestList(QuestList);
+        Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
 
     private void HarmonyPatch()
@@ -133,15 +78,15 @@ internal partial class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         // 获取GMCM提供的API
-        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
+        var configMenu = SHelper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
         if (configMenu is null)
             return;
 
         // 注册配置菜单
         configMenu.Register(
             ModManifest,
-            () => Config = Helper.ReadConfig<ModConfig>(),
-            () => Helper.WriteConfig(Config)
+            () => Config = SHelper.ReadConfig<ModConfig>(),
+            () => SHelper.WriteConfig(Config)
         );
 
         // 添加ModEnable配置选项
@@ -152,7 +97,7 @@ internal partial class ModEntry : Mod
             I18n.Config_ModEnabled_Name,
             I18n.Config_ModEnabled_Tooltip
         );
-        
+
         // 添加QuestFirstDay配置选项
         configMenu.AddBoolOption(
             ModManifest,
@@ -160,6 +105,15 @@ internal partial class ModEntry : Mod
             value => Config.QuestFirstDay = value,
             I18n.Config_QuestFirstDay_Name,
             I18n.Config_QuestFirstDay_Tooltip
+        );
+
+        // 添加QuestFestival配置选项
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => Config.QuestFestival,
+            value => Config.QuestFestival = value,
+            I18n.Config_QuestFestival_Name,
+            I18n.Config_QuestFestival_Tooltip
         );
 
         // 添加MustLikeItem配置选项

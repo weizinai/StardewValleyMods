@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ActiveMenuAnywhere")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+973a85da33553653577376d7ff006331ace2d3af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b0bce4ec3881201a0f3c9b9c59e5377a517b16b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ActiveMenuAnywhere")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ActiveMenuAnywhere")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

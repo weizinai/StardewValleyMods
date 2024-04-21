@@ -45,4 +45,10 @@ public class ItemDeliveryQuestPatch
 
         return codes.AsEnumerable();
     }
+    
+    public static void GetGoldRewardPerItemPostfix(ref int __result)
+    {
+        var config = ModEntry.Config;
+        __result = (int)(__result * config.ItemDeliveryRewardModifier);
+    }
 }

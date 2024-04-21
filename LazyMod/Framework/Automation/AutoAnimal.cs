@@ -37,14 +37,7 @@ public class AutoAnimal : Automate
         var grid = GetTileGrid(origin, config.AutoPetAnimalRange).ToList();
 
         var animals = location.animals.Values;
-        foreach (var animal in animals)
-        {
-            foreach (var tile in grid)
-            {
-                if (animal.GetCursorPetBoundingBox().Intersects(GetTileBoundingBox(tile)) && !animal.wasPet.Value)
-                    animal.pet(player);
-            }
-        }
+        foreach (var animal in from animal in animals from tile in grid.Where(tile => CanPetAnimal(tile, animal)) select animal) animal.pet(player);
     }
 
     // 自动挤奶
@@ -58,8 +51,8 @@ public class AutoAnimal : Automate
         foreach (var tile in grid)
         {
             var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
-            if (animal is null)
-                break;
+            if (animal is null) break;
+            milkPail.animal = animal;
             UseToolOnTile(location, player, milkPail, tile);
         }
     }
@@ -76,8 +69,7 @@ public class AutoAnimal : Automate
         foreach (var tile in grid)
         {
             var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
-            if (animal is null)
-                break;
+            if (animal is null) break;
             shears.animal = animal;
             UseToolOnTile(location, player, shears, tile);
         }
@@ -152,6 +144,11 @@ public class AutoAnimal : Automate
             return null;
 
         return animal;
+    }
+
+    private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)
+    {
+        return animal.GetCursorPetBoundingBox().Intersects(GetTileBoundingBox(tile)) && !animal.wasPet.Value && (animal.isMoving() || Game1.timeOfDay < 1900);
     }
 
     private static IEnumerable<GameLocation> GetBuildableLocation()

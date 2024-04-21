@@ -22,7 +22,7 @@ public class MiningInfo
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        if (Game1.currentLocation is not MineShaft) return;
+        if (Game1.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         var i = 0;
         foreach (var miningHud in miningHuds.Where(miningHud => miningHud.IsShowing()))

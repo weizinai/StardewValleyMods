@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Characters;
+using StardewValley.Locations;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
@@ -18,7 +19,7 @@ public class AutoOther : Automate
     public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
     {
         if (location is null) return;
-        
+
         // 自动清理石头
         if (config.AutoClearStone && (tool is Pickaxe || config.FindPickaxeFromInventory)) AutoClearStone(location, player);
         // 自动清理杂草
@@ -32,33 +33,49 @@ public class AutoOther : Automate
         // 自动翻垃圾桶
         if (config.AutoGarbageCan) AutoGarbageCan(location, player);
     }
-    
+
     // 自动清理石头
     private void AutoClearStone(GameLocation location, Farmer player)
     {
+        if (location is MineShaft or VolcanoDungeon) return;
+
         var pickaxe = FindToolFromInventory<Pickaxe>();
         if (pickaxe is null) return;
-        
+
         var hasAddMessage = true;
         var origin = player.Tile;
         var grid = GetTileGrid(origin, config.AutoClearStoneRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId is "(O)450" or "(O)343")
+            switch (config.OnlyClearStoneOnFarm)
             {
-                if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) break;
-                UseToolOnTile(location, player, pickaxe, tile);
+                case true:
+                    if (obj?.QualifiedItemId is "(O)450" or "(O)343")
+                    {
+                        if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) break;
+                        UseToolOnTile(location, player, pickaxe, tile);
+                    }
+
+                    break;
+                case false:
+                    if (obj.IsBreakableStone())
+                    {
+                        if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) break;
+                        UseToolOnTile(location, player, pickaxe, tile);
+                    }
+
+                    break;
             }
         }
     }
-    
+
     // 自动清理杂草
     private void AutoClearWeeds(GameLocation location, Farmer player)
     {
         var scythe = FindToolFromInventory<MeleeWeapon>(true);
         if (scythe is null) return;
-        
+
         var origin = player.Tile;
         var grid = GetTileGrid(origin, config.AutoClearWeedsRange);
         foreach (var tile in grid)
@@ -71,7 +88,7 @@ public class AutoOther : Automate
             }
         }
     }
-    
+
     // 自动挖掘远古斑点
     private void AutoDigArtifactSpots(GameLocation location, Farmer player)
     {
@@ -85,11 +102,9 @@ public class AutoOther : Automate
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId == "(O)590")
-            {
-                if (StopAutomate(player, config.StopAutoTillDirtStamina, ref hasAddMessage)) break;
-                UseToolOnTile(location, player, hoe, tile);
-            }
+            if (obj?.QualifiedItemId is not ("(O)590" or "(O)SeedSpot")) continue;
+            if (StopAutomate(player, config.StopAutoTillDirtStamina, ref hasAddMessage)) break;
+            UseToolOnTile(location, player, hoe, tile);
         }
     }
 
@@ -105,7 +120,7 @@ public class AutoOther : Automate
                 obj.checkForAction(player);
         }
     }
-    
+
     // 自动触发机器
     private void AutoTriggerMachine(GameLocation location, Farmer player, Item item)
     {
@@ -120,12 +135,12 @@ public class AutoOther : Automate
             obj?.PlaceInMachine(machineData, item, false, player);
         }
     }
-    
+
     // 自动翻垃圾桶
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
         var origin = player.Tile;
-        if (CheckNPCNearTile(location, origin) && config.StopAutoGarbageCanNearVillager) return; 
+        if (CheckNPCNearTile(location, origin) && config.StopAutoGarbageCanNearVillager) return;
         var grid = GetTileGrid(origin, config.AutoCollectCoalRange);
         foreach (var tile in grid)
         {
@@ -133,11 +148,10 @@ public class AutoOther : Automate
                 CheckTileAction(location, player, tile);
         }
     }
-    
+
     // 自动学习食谱
     private void AutoStudyRecipe(GameLocation location, Farmer player)
     {
-        
     }
 
     /// <summary>

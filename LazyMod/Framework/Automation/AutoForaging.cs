@@ -84,7 +84,7 @@ public class AutoForaging : Automate
 
         var hasAddMessage = true;
         var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoClearTreeSeedRange);
+        var grid = GetTileGrid(origin, config.AutoClearTwigRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);

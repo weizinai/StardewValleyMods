@@ -28,7 +28,7 @@ public class ModConfig
     public int AutoFertilizeRange { get; set; }
     // 自动收获作物
     public bool AutoHarvestCrop { get; set; } = true;
-    public int AutoHarvestCropRange { get; set; }
+    public int AutoHarvestCropRange { get; set; } = 1;
     public bool AutoHarvestFlower { get; set; }
     // 自动摇晃果树
     public bool AutoShakeFruitTree { get; set; }
@@ -112,7 +112,9 @@ public class ModConfig
     public float StopAutoClearTreeSeedStamina { get; set; } = 3;
 
     #endregion
-    
+
+    #region 食物
+
     // 自动吃食物_体力
     public bool AutoEatFoodForStamina { get; set; }
     public float AutoEatFoodStaminaRate { get; set; } = 0.1f;
@@ -126,6 +128,8 @@ public class ModConfig
     public bool AutoEatFoodForBuff { get; set; }
     public bool AutoDrinkForBuff { get; set; }
 
+    #endregion
+
     #region 其他
 
     // 自动清理石头
@@ -133,6 +137,8 @@ public class ModConfig
     public int AutoClearStoneRange { get; set; } = 1;
     public float StopAutoClearStoneStamina { get; set; } = 3;
     public bool FindPickaxeFromInventory { get; set; } = true;
+
+    public bool OnlyClearStoneOnFarm { get; set; } = true;
     // 自动清理杂草
     public bool AutoClearWeeds { get; set; }
     public int AutoClearWeedsRange { get; set; } = 1;

@@ -21,13 +21,18 @@ public class AutoFood : Automate
         FindFoodFromInventory(player);
         if (!foodData.Any()) return;
 
+        // 自动吃食物-体力
         if (config.AutoEatFoodForStamina) AutoEatFoodForStamina(player);
+        // 自动吃食物-生命值
         if (config.AutoEatFoodForHealth) AutoEatFoodForHealth(player);
+        // 自动吃食物-Buff
         if (config.AutoEatFoodForBuff) AutoEatFoodForBuff(player);
+        // 自动喝饮料-Buff
         if (config.AutoDrinkForBuff) AutoDrinkFoodForBuff(player);
         
     }
 
+    // 自动吃食物-体力
     private void AutoEatFoodForStamina(Farmer player)
     {
         if (player.Stamina > player.MaxStamina * config.AutoEatFoodStaminaRate) return;
@@ -42,6 +47,7 @@ public class AutoFood : Automate
         EatFirstFood(player, food);
     }
 
+    // 自动吃食物-生命值
     private void AutoEatFoodForHealth(Farmer player)
     {
         if (player.health > player.maxHealth * config.AutoEatFoodHealthRate) return;
@@ -56,6 +62,7 @@ public class AutoFood : Automate
         EatFirstFood(player, food);
     }
 
+    // 自动吃食物-Buff
     private void AutoEatFoodForBuff(Farmer player)
     {
         var buffs = player.buffs.AppliedBuffs.Values.ToList();
@@ -67,6 +74,8 @@ public class AutoFood : Automate
         EatFirstFood(player, foodList.First());
     }
     
+    
+    // 自动喝饮料-Buff
     private void AutoDrinkFoodForBuff(Farmer player)
     {
         var buffs = player.buffs.AppliedBuffs.Values.ToList();

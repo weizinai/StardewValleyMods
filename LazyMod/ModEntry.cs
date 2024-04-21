@@ -109,7 +109,8 @@ public class ModEntry : Mod
         // 自动耕地
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoTillDirt_Name
+            I18n.Config_AutoTillDirt_Name,
+            I18n.Config_AutoTillDirt_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -135,7 +136,8 @@ public class ModEntry : Mod
         // 自动清理耕地
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearTilledDirt_Name
+            I18n.Config_AutoClearTilledDirt_Name,
+            I18n.Config_AutoClearTilledDirt_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -161,7 +163,8 @@ public class ModEntry : Mod
         // 自动浇水
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoWaterDirt_Name
+            I18n.Config_AutoWaterDirt_Name,
+            I18n.Config_AutoWaterDirt_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -187,7 +190,8 @@ public class ModEntry : Mod
         // 自动补充水壶
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoRefillWateringCan_Name
+            I18n.Config_AutoRefillWateringCan_Name,
+            I18n.Config_AutoRefillWateringCan_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -208,12 +212,14 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindWateringCanFromInventory,
             value => config.FindWateringCanFromInventory = value,
-            I18n.Config_FindWateringCanFromInventory_Name
+            I18n.Config_FindWateringCanFromInventory_Name,
+            I18n.Config_FindWateringCanFromInventory_Tooltip
         );
         // 自动播种
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoSeed_Name
+            I18n.Config_AutoSeed_Name,
+            I18n.Config_AutoSeed_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -233,7 +239,8 @@ public class ModEntry : Mod
         // 自动施肥
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoFertilize_Name
+            I18n.Config_AutoFertilize_Name,
+            I18n.Config_AutoFertilize_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -349,7 +356,8 @@ public class ModEntry : Mod
         // 自动挤奶
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoMilkAnimal_Name
+            I18n.Config_AutoMilkAnimal_Name,
+            I18n.Config_AutoMilkAnimal_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -370,12 +378,14 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindMilkPailFromInventory,
             value => config.FindMilkPailFromInventory = value,
-            I18n.Config_FindMilkPailFromInventory_Name
+            I18n.Config_FindMilkPailFromInventory_Name,
+            I18n.Config_FindMilkPailFromInventory_Tooltip
         );
         // 自动剪毛
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoShearsAnimal_Name
+            I18n.Config_AutoShearsAnimal_Name,
+            I18n.Config_AutoShearsAnimal_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -396,7 +406,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindShearsFromInventory,
             value => config.FindShearsFromInventory = value,
-            I18n.Config_FindShearsFromInventory_Name
+            I18n.Config_FindShearsFromInventory_Name,
+            I18n.Config_FindShearsFromInventory_Tooltip
         );
         // 自动打开动物门
         configMenu.AddSectionTitle(
@@ -407,7 +418,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoOpenAnimalDoor,
             value => config.AutoOpenAnimalDoor = value,
-            I18n.Config_AutoOpenAnimalDoor_Name
+            I18n.Config_AutoOpenAnimalDoor_Name,
+            I18n.Config_AutoOpenAnimalDoor_Tooltip
         );
         // 自动打开栅栏门
         configMenu.AddSectionTitle(
@@ -463,7 +475,8 @@ public class ModEntry : Mod
         // 自动收集煤炭
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoCollectCoal_Name
+            I18n.Config_AutoCollectCoal_Name,
+            I18n.Config_AutoCollectCoal_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -483,7 +496,8 @@ public class ModEntry : Mod
         // 自动破坏容器
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoBreakContainer_Name
+            I18n.Config_AutoBreakContainer_Name,
+            I18n.Config_AutoBreakContainer_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -504,7 +518,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindWeaponFromInventory,
             value => config.FindWeaponFromInventory = value,
-            I18n.Config_FindWeaponFromInventory_Name
+            I18n.Config_FindWeaponFromInventory_Name,
+            I18n.Config_FindWeaponFromInventory_Tooltip
         );
         // 自动打开宝箱
         configMenu.AddSectionTitle(
@@ -632,7 +647,8 @@ public class ModEntry : Mod
         // 自动收获苔藓
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoHarvestMoss_Name
+            I18n.Config_AutoHarvestMoss_Name,
+            I18n.Config_AutoHarvestMoss_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -653,12 +669,14 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindScytheFromInventory,
             value => config.FindScytheFromInventory = value,
-            I18n.Config_FindScytheFromInventory_Name
+            I18n.Config_FindScytheFromInventory_Name,
+            I18n.Config_FindScytheFromInventory_Tooltip
         );
         // 自动清理树枝
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearTwig_Name
+            I18n.Config_AutoClearTwig_Name,
+            I18n.Config_AutoClearTwig_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -685,12 +703,14 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindAxeFromInventory,
             value => config.FindAxeFromInventory = value,
-            I18n.Config_FindAxeFromInventory_Name
+            I18n.Config_FindAxeFromInventory_Name,
+            I18n.Config_FindAxeFromInventory_Tooltip
         );
         // 自动清理树种
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearTreeSeed_Name
+            I18n.Config_AutoClearTreeSeed_Name,
+            I18n.Config_AutoClearTreeSeed_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -748,7 +768,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.IntelligentFoodSelectionForStamina,
             value => config.IntelligentFoodSelectionForStamina = value,
-            I18n.Config_IntelligentFoodSelectionForStamina_Name
+            I18n.Config_IntelligentFoodSelectionForStamina_Name,
+            I18n.Config_IntelligentFoodSelectionForStamina_Tooltip
         );
         // 自动吃食物-生命值
         configMenu.AddSectionTitle(
@@ -775,7 +796,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.IntelligentFoodSelectionForHealth,
             value => config.IntelligentFoodSelectionForHealth = value,
-            I18n.Config_IntelligentFoodSelectionForHealth_Name
+            I18n.Config_IntelligentFoodSelectionForHealth_Name,
+            I18n.Config_IntelligentFoodSelectionForHealth_Tooltip
         );
         // 自动吃食物-Buff
         configMenu.AddSectionTitle(
@@ -786,7 +808,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoEatFoodForBuff,
             value => config.AutoEatFoodForBuff = value,
-            I18n.Config_AutoEatFoodForBuff_Name
+            I18n.Config_AutoEatFoodForBuff_Name,
+            I18n.Config_AutoEatFoodForBuff_Tooltip
         );
         // 自动喝饮料-Buff
         configMenu.AddSectionTitle(
@@ -797,7 +820,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.AutoDrinkForBuff,
             value => config.AutoDrinkForBuff = value,
-            I18n.Config_AutoDrinkForBuff_Name
+            I18n.Config_AutoDrinkForBuff_Name,
+            I18n.Config_AutoDrinkForBuff_Tooltip
         );
 
         #endregion
@@ -812,7 +836,8 @@ public class ModEntry : Mod
         // 自动清理石头
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearStone_Name
+            I18n.Config_AutoClearStone_Name,
+            I18n.Config_AutoClearStone_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -839,12 +864,21 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindPickaxeFromInventory,
             value => config.FindPickaxeFromInventory = value,
-            I18n.Config_FindPickaxeFromInventory_Name
+            I18n.Config_FindPickaxeFromInventory_Name,
+            I18n.Config_FindPickaxeFromInventory_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.OnlyClearStoneOnFarm,
+            value => config.OnlyClearStoneOnFarm = value,
+            I18n.Config_OnlyClearStoneFromFarm_Name,
+            I18n.Config_OnlyClearStoneFromFarm_Tooltip
         );
         // 自动清理杂草
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearWeeds_Name
+            I18n.Config_AutoClearWeeds_Name,
+            I18n.Config_AutoClearWeeds_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -865,12 +899,14 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindToolFromInventory,
             value => config.FindToolFromInventory = value,
-            I18n.Config_FindToolFromInventory_Name
+            I18n.Config_FindToolFromInventory_Name,
+            I18n.Config_FindToolFromInventory_Tooltip
         );
         // 自动挖掘远古斑点
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoDigArtifactSpots_Name
+            I18n.Config_AutoDigArtifactSpots_Name,
+            I18n.Config_AutoDigArtifactSpots_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -896,7 +932,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.FindHoeFromInventory,
             value => config.FindHoeFromInventory = value,
-            I18n.Config_FindHoeFromInventory_Name
+            I18n.Config_FindHoeFromInventory_Name,
+            I18n.Config_FindHoeFromInventory_Tooltip
         );
         // 自动收获机器
         configMenu.AddSectionTitle(

@@ -12,7 +12,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration\IGenericModConfigMenuAPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration\RSVIntegration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patch\BasePatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patch\HarmonyPatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Patch\IPatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ModDll\" />

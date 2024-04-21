@@ -4,8 +4,8 @@ public class ModConfig
 {
     // 是否启用模组
     public bool ModEnabled { get; set; } = true;
-    
     public bool QuestFirstDay { get; set; } = false;
+    public bool QuestFestival { get; set; } = false;
     // 是否必须为村民喜欢的礼物
     public bool MustLikeItem { get; set; } = true;
     // 是否必须为村民喜爱的礼物
@@ -56,4 +56,6 @@ public class ModConfig
     public float FishingWeight { get; set; } = 0.07f;
     // 交易任务权重
     public float ItemDeliveryWeight { get; set; } = 0.4f;
+    // 每日任务概率
+    public float DailyQuestChance { get; set; } = 0.9f; 
 }

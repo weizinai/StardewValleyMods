@@ -1,20 +1,10 @@
 ﻿using System.Reflection.Emit;
 using HarmonyLib;
-using StardewValley;
 
 namespace HelpWanted.Framework.Patches;
 
 public class UtilityPatch
 {
-    public static void GetRandomItemFromSeasonPrefix(ref int randomSeedAddition)
-    {
-        var config = ModEntry.Config;
-        
-        if (!config.ModEnabled || !ModEntry.GettingQuestDetails)
-            return;
-        randomSeedAddition += Game1.random.Next();
-    }
-
     public static IEnumerable<CodeInstruction> GetRandomItemFromSeasonTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);

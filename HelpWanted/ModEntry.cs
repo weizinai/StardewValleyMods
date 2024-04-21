@@ -28,7 +28,6 @@ internal partial class ModEntry : Mod
     {
         // 初始化
         Config = helper.ReadConfig<ModConfig>();
-        if (!Config.ModEnabled) return;
         SMonitor = Monitor;
         SHelper = helper;
         questManager = new QuestManager(Config, Monitor);
@@ -45,7 +44,7 @@ internal partial class ModEntry : Mod
         if (!Context.IsMainPlayer) return;
         if (Game1.stats.DaysPlayed <= 1 && !Config.QuestFirstDay) return;
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !Config.QuestFestival) return;
-        // if (Random.NextDouble() >= Config.DailyQuestChance) return;
+        if (Random.NextDouble() >= Config.DailyQuestChance) return;
 
         Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
@@ -87,15 +86,11 @@ internal partial class ModEntry : Mod
             () => Helper.WriteConfig(Config)
         );
 
-        // 添加ModEnable配置选项
-        configMenu.AddBoolOption(
+        // 一般设置
+        configMenu.AddSectionTitle(
             ModManifest,
-            () => Config.ModEnabled,
-            value => Config.ModEnabled = value,
-            I18n.Config_ModEnabled_Name
+            I18n.Config_GeneralSettingsTitle_Name
         );
-
-        // 添加QuestFirstDay配置选项
         configMenu.AddBoolOption(
             ModManifest,
             () => Config.QuestFirstDay,
@@ -103,8 +98,6 @@ internal partial class ModEntry : Mod
             I18n.Config_QuestFirstDay_Name,
             I18n.Config_QuestFirstDay_Tooltip
         );
-
-        // 添加QuestFestival配置选项
         configMenu.AddBoolOption(
             ModManifest,
             () => Config.QuestFestival,
@@ -112,44 +105,12 @@ internal partial class ModEntry : Mod
             I18n.Config_QuestFestival_Name,
             I18n.Config_QuestFestival_Tooltip
         );
-
-        // 添加MustLikeItem配置选项
-        configMenu.AddBoolOption(
+        configMenu.AddNumberOption(
             ModManifest,
-            () => Config.MustLikeItem,
-            value => Config.MustLikeItem = value,
-            I18n.Config_MustLikeItem_Name,
-            I18n.Config_MustLikeItem_Tooltip
+            () => Config.DailyQuestChance,
+            value => Config.DailyQuestChance = value,
+            I18n.Config_DailyQuestChance_Name
         );
-
-        // 添加MustLoveItem配置选项
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => Config.MustLoveItem,
-            value => Config.MustLoveItem = value,
-            I18n.Config_MustLoveItem_Name,
-            I18n.Config_MustLoveItem_Tooltip
-        );
-
-        // 添加AllowArtisanGoods配置选项
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => Config.AllowArtisanGoods,
-            value => Config.AllowArtisanGoods = value,
-            I18n.Config_AllowArtisanGoods_Name,
-            I18n.Config_AllowArtisanGoods_Tooltip
-        );
-
-        // 添加IgnoreVanillaItemRestriction配置选项
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => Config.IgnoreVanillaItemRestriction,
-            value => Config.IgnoreVanillaItemRestriction = value,
-            I18n.Config_IgnoreVanillaItemRestriction_Name,
-            I18n.Config_IgnoreVanillaItemRestriction_Tooltip
-        );
-
-        // 添加OneQuestPerVillager配置选项
         configMenu.AddBoolOption(
             ModManifest,
             () => Config.OneQuestPerVillager,
@@ -157,8 +118,6 @@ internal partial class ModEntry : Mod
             I18n.Config_OneQuestPerVillager_Name,
             I18n.Config_OneQuestPerVillager_Tooltip
         );
-
-        // 添加AvoidMaxHearts配置选项
         configMenu.AddBoolOption(
             ModManifest,
             () => Config.AvoidMaxHearts,
@@ -166,17 +125,6 @@ internal partial class ModEntry : Mod
             I18n.Config_AvoidMaxHearts_Name,
             I18n.Config_AvoidMaxHearts_Tooltip
         );
-
-        // 添加MaxPrice配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.MaxPrice,
-            value => Config.MaxPrice = value,
-            I18n.Config_MaxPrice_Name,
-            I18n.Config_MaxPrice_Tooltip
-        );
-
-        // 添加QuestDays配置选项
         configMenu.AddNumberOption(
             ModManifest,
             () => Config.QuestDays,
@@ -184,8 +132,6 @@ internal partial class ModEntry : Mod
             I18n.Config_QuestDays_Name,
             I18n.Config_QuestDays_Tooltip
         );
-
-        // 添加MaxQuests配置选项
         configMenu.AddNumberOption(
             ModManifest,
             () => Config.MaxQuests,
@@ -193,35 +139,11 @@ internal partial class ModEntry : Mod
             I18n.Config_MaxQuests_Name,
             I18n.Config_MaxQuests_Tooltip
         );
-
-        // 添加ResourceCollectionWeight配置选项
-        configMenu.AddNumberOption(
+        // 交易任务
+        configMenu.AddSectionTitle(
             ModManifest,
-            () => Config.ResourceCollectionWeight,
-            value => Config.ResourceCollectionWeight = value,
-            I18n.Config_ResourceCollectionWeight_Name,
-            I18n.Config_ResourceCollectionWeight_Tooltip
+            I18n.Config_ItemDeliveryTitle_Name
         );
-
-        // 添加SlayMonstersWeight配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.SlayMonstersWeight,
-            value => Config.SlayMonstersWeight = value,
-            I18n.Config_SlayMonstersWeight_Name,
-            I18n.Config_SlayMonstersWeight_Tooltip
-        );
-
-        // 添加FishingWeight配置选项
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => Config.FishingWeight,
-            value => Config.FishingWeight = value,
-            I18n.Config_FishingWeight_Name,
-            I18n.Config_FishingWeight_Tooltip
-        );
-
-        // 添加ItemDeliveryWeight配置选项
         configMenu.AddNumberOption(
             ModManifest,
             () => Config.ItemDeliveryWeight,
@@ -229,7 +151,78 @@ internal partial class ModEntry : Mod
             I18n.Config_ItemDeliveryWeight_Name,
             I18n.Config_ItemDeliveryWeight_Tooltip
         );
-
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => Config.MustLikeItem,
+            value => Config.MustLikeItem = value,
+            I18n.Config_MustLikeItem_Name,
+            I18n.Config_MustLikeItem_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => Config.MustLoveItem,
+            value => Config.MustLoveItem = value,
+            I18n.Config_MustLoveItem_Name,
+            I18n.Config_MustLoveItem_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => Config.AllowArtisanGoods,
+            value => Config.AllowArtisanGoods = value,
+            I18n.Config_AllowArtisanGoods_Name,
+            I18n.Config_AllowArtisanGoods_Tooltip
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.MaxPrice,
+            value => Config.MaxPrice = value,
+            I18n.Config_MaxPrice_Name,
+            I18n.Config_MaxPrice_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => Config.IgnoreVanillaItemRestriction,
+            value => Config.IgnoreVanillaItemRestriction = value,
+            I18n.Config_IgnoreVanillaItemRestriction_Name,
+            I18n.Config_IgnoreVanillaItemRestriction_Tooltip
+        );
+        // 采集任务
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_ResourceCollectionTitle_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.ResourceCollectionWeight,
+            value => Config.ResourceCollectionWeight = value,
+            I18n.Config_ResourceCollectionWeight_Name,
+            I18n.Config_ResourceCollectionWeight_Tooltip
+        );
+        // 钓鱼任务
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_FishingTitle_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.FishingWeight,
+            value => Config.FishingWeight = value,
+            I18n.Config_FishingWeight_Name,
+            I18n.Config_FishingWeight_Tooltip
+        );
+        // 杀怪任务
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_SlayMonstersTitle_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => Config.SlayMonstersWeight,
+            value => Config.SlayMonstersWeight = value,
+            I18n.Config_SlayMonstersWeight_Name,
+            I18n.Config_SlayMonstersWeight_Tooltip
+        );
+        // 外观
         configMenu.AddPageLink(
             ModManifest,
             "Appearance",

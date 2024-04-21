@@ -138,7 +138,7 @@ internal partial class ModEntry
     private static List<string>? GetRandomItemList(List<string>? possibleItems)
     {
         // 如果模组未启用,或者必须为喜爱物品和必须为喜欢物品均为false,或者今日任务不是物品交付任务,则返回null
-        if (!Config.ModEnabled || Config is { MustLikeItem: false, MustLoveItem: false } ||
+        if (Config is { MustLikeItem: false, MustLoveItem: false } ||
             Game1.questOfTheDay is not ItemDeliveryQuest itemDeliveryQuest)
             return null;
 
@@ -203,8 +203,6 @@ internal partial class ModEntry
 
     public static List<string> GetPossibleCrops(List<string> oldList)
     {
-        if (!Config.ModEnabled)
-            return oldList;
         var newList = GetRandomItemList(oldList);
         return newList is null || !newList.Any() ? oldList : newList;
     }

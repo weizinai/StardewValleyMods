@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
+using StardewValley.Buffs;
 using StardewValley.Characters;
 using StardewValley.Locations;
 using StardewValley.Tools;
@@ -9,6 +10,7 @@ namespace LazyMod.Framework.Automation;
 
 public class AutoOther : Automate
 {
+    private const string UniqueBuffId = "weizinai.LazyMod";
     private readonly ModConfig config;
 
     public AutoOther(ModConfig config)
@@ -20,6 +22,7 @@ public class AutoOther : Automate
     {
         if (location is null) return;
 
+        MagneticRadiusIncrease(player);
         // 自动清理石头
         if (config.AutoClearStone && (tool is Pickaxe || config.FindPickaxeFromInventory)) AutoClearStone(location, player);
         // 自动清理杂草
@@ -32,6 +35,29 @@ public class AutoOther : Automate
         if (config.AutoTriggerMachine && item is not null) AutoTriggerMachine(location, player, item);
         // 自动翻垃圾桶
         if (config.AutoGarbageCan) AutoGarbageCan(location, player);
+    }
+
+    private void MagneticRadiusIncrease(Farmer player)
+    {
+        if (config.MagneticRadiusIncrease == 0)
+        {
+            player.buffs.Remove(UniqueBuffId);
+            return;
+        }
+
+        player.buffs.AppliedBuffs.TryGetValue(UniqueBuffId, out var buff);
+        if (buff is null || buff.millisecondsDuration <= 5000 || Math.Abs(buff.effects.MagneticRadius.Value - config.MagneticRadiusIncrease) > 0.1f)
+        {
+            buff = new Buff(
+                id: UniqueBuffId,
+                source: "Lazy Mod",
+                duration: 60000,
+                effects: new BuffEffects
+                {
+                    MagneticRadius = { Value = config.MagneticRadiusIncrease }
+                });
+            player.applyBuff(buff);
+        }
     }
 
     // 自动清理石头
@@ -59,7 +85,7 @@ public class AutoOther : Automate
 
                     break;
                 case false:
-                    if (obj.IsBreakableStone())
+                    if (obj is not null && obj.IsBreakableStone())
                     {
                         if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) break;
                         UseToolOnTile(location, player, pickaxe, tile);
@@ -81,7 +107,7 @@ public class AutoOther : Automate
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is not null && obj.IsWeeds())
+            if (obj is not null && obj.IsWeeds() && obj.QualifiedItemId is not ("(O)319" or "(O)320" or "(O)321"))
             {
                 obj.performToolAction(scythe);
                 location.removeObject(tile, false);
@@ -147,11 +173,6 @@ public class AutoOther : Automate
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
                 CheckTileAction(location, player, tile);
         }
-    }
-
-    // 自动学习食谱
-    private void AutoStudyRecipe(GameLocation location, Farmer player)
-    {
     }
 
     /// <summary>

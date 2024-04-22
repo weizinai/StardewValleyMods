@@ -1,7 +1,6 @@
 ﻿using StardewValley;
 using StardewValley.Objects;
 using StardewValley.Tools;
-using xTile.Dimensions;
 
 namespace LazyMod.Framework.Automation;
 
@@ -80,7 +79,10 @@ public class AutoMining : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is "(O)319" or "(O)320" or "(O)321")
+            {
                 obj.performToolAction(FakeScythe.Value);
+                location.removeObject(tile, false);
+            }
         }
     }
 }

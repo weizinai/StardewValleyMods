@@ -1,5 +1,6 @@
 ﻿using Common;
 using LazyMod.Framework;
+using LazyMod.Framework.Automation;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
@@ -53,6 +54,8 @@ public class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
+        var buffMaintainAllowValues = new[]
+            { "Combat", "Farming", "Fishing", "Mining", "Luck", "Foraging", "MaxStamina", "MagneticRadius", "Speed", "Defense", "Attack", "None" };
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
 
         if (configMenu is null) return;
@@ -374,6 +377,12 @@ public class ModEntry : Mod
             1,
             3
         );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopAutoMilkAnimalStamina,
+            value => config.StopAutoMilkAnimalStamina = value,
+            I18n.Config_StopAutoMilkAnimalStamina_Name
+        );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.FindMilkPailFromInventory,
@@ -401,6 +410,12 @@ public class ModEntry : Mod
             null,
             1,
             3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopAutoShearsAnimalStamina,
+            value => config.StopAutoShearsAnimalStamina = value,
+            I18n.Config_StopAutoShearsAnimalStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -820,29 +835,65 @@ public class ModEntry : Mod
             I18n.Config_IntelligentFoodSelectionForHealth_Name,
             I18n.Config_IntelligentFoodSelectionForHealth_Tooltip
         );
-        // 自动吃食物-Buff
+        // 自动吃增益食物
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoEatFoodForBuff_Name
+            I18n.Config_AutoEatBuffFood_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoEatFoodForBuff,
-            value => config.AutoEatFoodForBuff = value,
-            I18n.Config_AutoEatFoodForBuff_Name,
-            I18n.Config_AutoEatFoodForBuff_Tooltip
+            () => config.AutoEatBuffFood,
+            value => config.AutoEatBuffFood = value,
+            I18n.Config_AutoEatBuffFood_Name,
+            I18n.Config_AutoEatBuffFood_Tooltip
         );
-        // 自动喝饮料-Buff
+        configMenu.AddTextOption(
+            ModManifest,
+            () => config.FoodBuffMaintain1.ToString(),
+            value => config.FoodBuffMaintain1 = AutoFood.GetBuffType(value),
+            I18n.Config_FoodBuffMaintain1_Name,
+            null,
+            buffMaintainAllowValues,
+            GetStringFromBuffType
+        );
+        configMenu.AddTextOption(
+            ModManifest,
+            () => config.FoodBuffMaintain2.ToString(),
+            value => config.FoodBuffMaintain2 = AutoFood.GetBuffType(value),
+            I18n.Config_FoodBuffMaintain2_Name,
+            null,
+            buffMaintainAllowValues,
+            GetStringFromBuffType
+        );
+        // 自动喝增益饮料
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoDrinkForBuff_Name
+            I18n.Config_AutoDrinkBuffDrink_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoDrinkForBuff,
-            value => config.AutoDrinkForBuff = value,
-            I18n.Config_AutoDrinkForBuff_Name,
-            I18n.Config_AutoDrinkForBuff_Tooltip
+            () => config.AutoDrinkBuffDrink,
+            value => config.AutoDrinkBuffDrink = value,
+            I18n.Config_AutoDrinkBuffDrink_Name,
+            I18n.Config_AutoDrinkBuffDrink_Tooltip
+        );
+        configMenu.AddTextOption(
+            ModManifest,
+            () => config.DrinkBuffMaintain1.ToString(),
+            value => config.DrinkBuffMaintain1 = AutoFood.GetBuffType(value),
+            I18n.Config_DrinkBuffMaintain1_Name,
+            null,
+            buffMaintainAllowValues,
+            GetStringFromBuffType
+        );
+        configMenu.AddTextOption(
+            ModManifest,
+            () => config.DrinkBuffMaintain2.ToString(),
+            value => config.DrinkBuffMaintain2 = AutoFood.GetBuffType(value),
+            I18n.Config_DrinkBuffMaintain1_Name,
+            null,
+            buffMaintainAllowValues,
+            GetStringFromBuffType
         );
 
         #endregion
@@ -853,6 +904,20 @@ public class ModEntry : Mod
             ModManifest,
             "Other",
             I18n.Config_OtherPage_Name
+        );
+        // 磁力范围增加
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_MagneticRadiusIncrease_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.MagneticRadiusIncrease,
+            value => config.MagneticRadiusIncrease = value,
+            I18n.Config_MagneticRadiusIncrease_Name,
+            null,
+            0,
+            256
         );
         // 自动清理石头
         configMenu.AddSectionTitle(
@@ -1031,5 +1096,24 @@ public class ModEntry : Mod
         // );
 
         #endregion
+    }
+
+    private string GetStringFromBuffType(string value)
+    {
+        return value switch
+        {
+            "Combat" => I18n.BuffType_Combat_Name(),
+            "Farming" => I18n.BuffType_Farming_Name(),
+            "Fishing" => I18n.BuffType_Fishing_Name(),
+            "Mining" => I18n.BuffType_Mining_Name(),
+            "Luck" => I18n.BuffType_Luck_Name(),
+            "Foraging" => I18n.BuffType_Foraging_Name(),
+            "MaxStamina" => I18n.BuffType_MaxStamina_Name(),
+            "MagneticRadius" => I18n.BuffType_MagneticRadius_Name(),
+            "Speed" => I18n.BuffType_Speed_Name(),
+            "Defense" => I18n.BuffType_Defense_Name(),
+            "Attack" => I18n.BuffType_Attack_Name(),
+            _ => I18n.BuffType_None_Name()
+        };
     }
 }

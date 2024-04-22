@@ -1,5 +1,5 @@
 ﻿{
-    // Config
+    // 配置选项
     // 耕种
     "Config.FarmingPage.Name":"耕种",
     "Config.AutoTillDirt.Name": "自动耕地",
@@ -40,11 +40,13 @@
     "Config.AutoMilkAnimal.Name":"自动挤奶",
     "Config.AutoMilkAnimal.Tooltip":"当你手持挤奶桶时,该功能才有效果.",
     "Config.AutoMilkAnimalRange.Name":"自动挤奶范围",
+    "Config.StopAutoMilkAnimalStamina.Name":"停止自动挤奶体力",
     "Config.FindMilkPailFromInventory.Name":"从背包中寻找挤奶桶",
     "Config.FindMilkPailFromInventory.Tooltip":"当该选项启用时,只需要背包中有挤奶桶,该功能就会生效.",
     "Config.AutoShearsAnimal.Name":"自动剪毛",
     "Config.AutoShearsAnimal.Tooltip":"当你手持剪刀时,该功能才有效果.",
     "Config.AutoShearsAnimalRange.Name":"自动剪毛范围",
+    "Config.StopAutoShearsAnimalStamina.Name":"停止自动剪毛体力",
     "Config.FindShearsFromInventory.Name":"从背包中寻找剪刀",
     "Config.FindShearsFromInventory.Tooltip":"当该选项启用时,只需要背包中有剪刀,该功能就会生效.",
     "Config.AutoOpenAnimalDoor.Name":"自动打开动物门",
@@ -83,9 +85,9 @@
     "Config.AutoHarvestMossRange.Name":"自动收获苔藓范围",
     "Config.FindScytheFromInventory.Name":"从背包中寻找镰刀",
     "Config.FindScytheFromInventory.Tooltip":"当该选项启用时,只需要背包中有镰刀(近战武器),该功能就会生效.",
-    "Config.AutoUseVinegarOnTree.Name":"自动在树上浇醋", // 1.0.1 Add
-    "Config.AutoUseVinegarOnTree.Tooltip":"当你手持醋时,该功能才有效果.", // 1.0.1 Add
-    "Config.AutoUseVinegarOnTreeRange.Name":"自动在树上浇醋范围", // 1.0.1 Add
+    "Config.AutoUseVinegarOnTree.Name":"自动在树上浇醋",
+    "Config.AutoUseVinegarOnTree.Tooltip":"当你手持醋时,该功能才有效果.",
+    "Config.AutoUseVinegarOnTreeRange.Name":"自动在树上浇醋范围",
     "Config.AutoClearTwig.Name":"自动清理树枝",
     "Config.AutoClearTwig.Tooltip":"当你手持斧头时,该功能才有效果.",
     "Config.AutoClearTwigRange.Name":"自动清理树枝范围",
@@ -106,12 +108,19 @@
     "Config.AutoEatFoodHealthRate.Name": "自动吃食物生命值比例",
     "Config.IntelligentFoodSelectionForHealth.Name": "智能食物选择",
     "Config.IntelligentFoodSelectionForHealth.Tooltip": "当该选项启用时,会自动选择背包中性价比最高的食物.",
-    "Config.AutoEatFoodForBuff.Name": "自动吃食物-Buff",
-    "Config.AutoEatFoodForBuff.Tooltip": "当该选项启用时,若玩家没有来自食物的Buff,则会自动吃掉背包中带速度Buff的食物.(例如香辣鳗鱼)",
-    "Config.AutoDrinkForBuff.Name": "自动喝饮料-Buff",
-    "Config.AutoDrinkForBuff.Tooltip": "当该选项启用时,若玩家没有来自饮料的Buff,则会自动喝掉背包中带速度Buff的饮料.(例如咖啡)",
+    "Config.AutoEatBuffFood.Name": "自动吃增益食物",
+    "Config.AutoEatBuffFood.Tooltip": "当该选项启用时,若玩家没有来自食物的增益,则会根据你要维持的增益,自动吃掉背包中带增益的食物.(例如香辣鳗鱼)",
+    "Config.FoodBuffMaintain1.Name": "维持的食物增益1",
+    "Config.FoodBuffMaintain2.Name": "维持的食物增益2",
+    "Config.FoodBuffMaintain.Tooltip": "你想要维持的食物增益.当两项都设置为非无时,会优先寻找背包中同时具有两种增益的食物.若没有,则会接着寻找具有增益1的食物.若还是没有,则会寻找具有增益2的食物.当只有一项为None时,就会寻找具有另一项增益的食物.(例如当你背包中同时有香辣鳗鱼和蟹黄糕时,若两个选项分别设置为速度和运气,则会优先选择香辣鳗鱼.当一个选项设置为速度,另一个选项设置为无时,则会选择背包中更前面的物品.)",
+    "Config.AutoDrinkBuffDrink.Name": "自动喝增益饮料",
+    "Config.AutoDrinkBuffDrink.Tooltip": "当该选项启用时,若玩家没有来自饮料的增益,则会根据你要维持的增益,自动喝掉背包中带增益的饮料.(例如咖啡)",
+    "Config.DrinkBuffMaintain1.Name": "维持的饮料增益1",
+    "Config.DrinkBuffMaintain2.Name": "维持的赢料增益2",
+    "Config.DrinkBuffMaintain.ToolTip": "你想要维持的饮料增益.当两项都设置为非无时,会优先寻找背包中同时具有两种增益的饮料.若没有,则会接着寻找具有增益1的饮料.若还是没有,则会寻找具有增益2的饮料.当只有一项为无时,就会寻找具有另一项增益的饮料.",
     // 其他
     "Config.OtherPage.Name":"其他",
+    "Config.MagneticRadiusIncrease.Name": "磁力范围增加",
     "Config.AutoClearStone.Name": "自动清理石头",
     "Config.AutoClearStone.Tooltip": "当你手持稿子时,该功能才有效果.",
     "Config.AutoClearStoneRange.Name": "自动清理石头范围",
@@ -138,7 +147,19 @@
     "Config.AutoGarbageCan.Name":"自动翻垃圾桶",
     "Config.AutoGarbageCanRange.Name":"自动翻垃圾桶范围",
     "Config.StopAutoGarbageCanNearVillager.Name":"附近有村民停止自动翻垃圾桶",
-    "Config.AutoStudyRecipe.Name":"自动学习食谱",
-    // Message
+    // 增益类型
+    "BuffType.Combat.Name": "战斗",
+    "BuffType.Farming.Name": "耕种",
+    "BuffType.Fishing.Name": "钓鱼",
+    "BuffType.Mining.Name": "采矿",
+    "BuffType.Luck.Name": "运气",
+    "BuffType.Foraging.Name": "觅食",
+    "BuffType.MaxStamina.Name": "最大能量",
+    "BuffType.MagneticRadius.Name": "磁性",
+    "BuffType.Speed.Name": "速度",
+    "BuffType.Defense.Name": "防御",
+    "BuffType.Attack.Name": "攻击",
+    "BuffType.None.Name": "无",
+    // 消息
     "Message_Stamina":"没有体力了",
 }

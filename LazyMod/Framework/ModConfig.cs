@@ -1,4 +1,6 @@
-﻿namespace LazyMod.Framework;
+﻿using LazyMod.Framework.Automation;
+
+namespace LazyMod.Framework;
 
 public class ModConfig
 {
@@ -47,10 +49,12 @@ public class ModConfig
     // 自动挤奶
     public bool AutoMilkAnimal { get; set; } = true;
     public int AutoMilkAnimalRange { get; set; } = 1;
+    public float StopAutoMilkAnimalStamina { get; set; } = 3;
     public bool FindMilkPailFromInventory { get; set; } = true;
     // 自动剪毛
     public bool AutoShearsAnimal { get; set; } = true;
     public int AutoShearsAnimalRange { get; set; } = 1;
+    public float StopAutoShearsAnimalStamina { get; set; } = 3;
     public bool FindShearsFromInventory { get; set; } = true;
     // 自动打开动物门
     public bool AutoOpenAnimalDoor { get; set; } = true;
@@ -127,13 +131,22 @@ public class ModConfig
     public bool AutoEatFoodForHealth { get; set; }
     public float AutoEatFoodHealthRate { get; set; } = 0.1f;
     public bool IntelligentFoodSelectionForHealth { get; set; } = true;
-    // 自动吃食物_Buff
-    public bool AutoEatFoodForBuff { get; set; }
-    public bool AutoDrinkForBuff { get; set; }
+    // 自动吃增益食物
+    public bool AutoEatBuffFood { get; set; }
+    public BuffType FoodBuffMaintain1 { get; set; } = BuffType.Speed;
+    public BuffType FoodBuffMaintain2 { get; set; } = BuffType.None;
+    
+    // 自动喝增益饮料
+    public bool AutoDrinkBuffDrink { get; set; }
+    public BuffType DrinkBuffMaintain1 { get; set; } = BuffType.Speed;
+    public BuffType DrinkBuffMaintain2 { get; set; } = BuffType.None;
 
     #endregion
 
     #region 其他
+    
+    // 磁力半径增加
+    public int MagneticRadiusIncrease { get; set; } = 64;
 
     // 自动清理石头
     public bool AutoClearStone { get; set; }
@@ -161,8 +174,6 @@ public class ModConfig
     public bool AutoGarbageCan { get; set; }
     public int AutoGarbageCanRange { get; set; } = 1;
     public bool StopAutoGarbageCanNearVillager { get; set; } = true;
-    // 自动学习食谱
-    public bool AutoStudyRecipe { get; set; } = true;
 
     #endregion
 }

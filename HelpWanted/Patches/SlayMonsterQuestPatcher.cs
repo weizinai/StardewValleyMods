@@ -9,6 +9,7 @@ namespace HelpWanted.Patches;
 public class SlayMonsterQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
+    private static bool hasLoadQuestInfo;
 
     public SlayMonsterQuestPatcher(ModConfig config)
     {
@@ -19,13 +20,26 @@ public class SlayMonsterQuestPatcher : BasePatcher
     {
         harmony.Patch(
             RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)),
+            prefix: GetHarmonyMethod(nameof(LoadQuestInfoPrefix)),
             postfix: GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
         );
     }
-
-    private static void LoadQuestInfoPostfix(FishingQuest __instance, NetInt ___reward, ref NetDescriptionElementList ___parts)
+    
+    private static bool LoadQuestInfoPrefix(SlayMonsterQuest __instance)
     {
-        if (__instance.target.Value is not null && __instance.ItemId.Value is not null) return;
+        if (__instance.target.Value is not null && __instance.monster is not null)
+        {
+            hasLoadQuestInfo = false;
+            return false;
+        }
+
+        hasLoadQuestInfo = true;
+        return true;
+    }
+
+    private static void LoadQuestInfoPostfix(NetInt ___reward, ref NetDescriptionElementList ___parts)
+    {
+        if (hasLoadQuestInfo) return;
         
         ___reward.Value = (int)(___reward.Value * config.SlayMonstersRewardModifier);
         ___parts[^1].substitutions = new List<object> { ___reward.Value };

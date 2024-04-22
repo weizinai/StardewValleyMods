@@ -5,7 +5,7 @@ namespace Common.Patch;
 
 public class HarmonyPatcher
 {
-    public static Harmony Patch(Mod mod, params IPatcher[] patchers)
+    public static void Patch(Mod mod, params IPatcher[] patchers)
     {
         var harmony = new Harmony(mod.ModManifest.UniqueID);
 
@@ -20,7 +20,5 @@ public class HarmonyPatcher
                 mod.Monitor.Log($"Failed to apply '{patcher.GetType().FullName}' patcher; some features may not work correctly. Technical details:\n{ex}", LogLevel.Error);
             }
         }
-
-        return harmony;
     }
 }

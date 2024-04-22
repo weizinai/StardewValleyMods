@@ -33,6 +33,7 @@
     "Config.AutoShakeFruitTreeRange.Name": "Auto Shake Fruit Tree Range",
     "Config.AutoClearDeadCrop.Name": "Auto Clear Dead Crop",
     "Config.AutoClearDeadCropRange.Name": "Auto Clear Dead Crop Range",
+    
     // Animal
     "Config.AnimalPage.Name": "Animal",
     "Config.AutoPetAnimal.Name": "Auto Pet Animal",
@@ -55,6 +56,7 @@
     "Config.AutoOpenFenceGateRange.Name": "Auto Open Fence Gate Range",
     "Config.AutoPetPet.Name": "Auto Pet Pet",
     "Config.AutoPetPetRange.Name": "Auto Pet Pet Range",
+    
     // Mining
     "Config.MiningPage.Name": "Mining",
     "Config.AutoCollectCoal.Name": "Auto Collect Coal",
@@ -74,6 +76,7 @@
     "Config.ShowShaftInfo.Name": "Show Shaft Info",
     "Config.ShowMonsterInfo.Name": "Show Monster Info",
     "Config.ShowMineralInfo.Name":"Show Mineral Info",
+    
     // Foraging
     "Config.ForagingPage.Name": "Foraging",
     "Config.AutoForage.Name":"Auto Forage",
@@ -98,6 +101,7 @@
     "Config.AutoClearTreeSeed.Tooltip":"This feature only works when you hold the axe.", // 1.0.1 Add
     "Config.AutoClearTreeSeedRange.Name":"Auto Clear Tree Seed Range",
     "Config.StopAutoClearTreeSeedStamina.Name":"Stop Auto Clear Tree Seed Stamina",
+    
     // Food
     "Config.FoodPage.Name": "Food",
     "Config.AutoEatFoodForStamina.Name": "Auto Eat Food For Stamina",
@@ -118,6 +122,7 @@
     "Config.DrinkBuffMaintain1.Name": "Drink Buff Maintain 1", // 1.0.2 Add
     "Config.DrinkBuffMaintain2.Name": "Drink Buff Maintain 2", // 1.0.2 Add
     "Config.DrinkBuffMaintain.ToolTip": "The drink buff that you want to maintain.When both are set to non-None, it will prioritize finding drink with both buffs in the inventory, and if not, it will look for drink with buff 1, if it still doesn't, it will look for drink with buff 2, and when only one item is None, it will look for drink with another buff.", // 1.0.2 Add
+    
     // Other
     "Config.OtherPage.Name": "Other",
     "Config.MagneticRadiusIncrease.Name": "Magnetic Radius Increase", // 1.0.2 Add
@@ -147,6 +152,7 @@
     "Config.AutoGarbageCan.Name":"Auto Garbage Can",
     "Config.AutoGarbageCanRange.Name":"Auto Garbage Can Range",
     "Config.StopAutoGarbageCanNearVillager.Name":"Stop Auto Garbage Can Near Villager",
+    
     // Buff Type
     "BuffType.Combat.Name": "Combat", // 1.0.2 Add
     "BuffType.Farming.Name": "Farming", // 1.0.2 Add
@@ -160,6 +166,7 @@
     "BuffType.Defense.Name": "Defense", // 1.0.2 Add
     "BuffType.Attack.Name": "Attack", // 1.0.2 Add
     "BuffType.None.Name": "None", // 1.0.2 Add
+    
     // Message
     "Message_Stamina": "You don't have the stamina anymore."
 }

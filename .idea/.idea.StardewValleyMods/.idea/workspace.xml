@@ -17,7 +17,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/FishingQuestPatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/ResourceCollectionQuestPatcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Patches/ItemDeliveryQuestPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Patches/ItemDeliveryQuestPatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Patches/SlayMonsterQuestPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Patches/SlayMonsterQuestPatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod 1.0.2.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod.dll" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/bin/Debug/net6.0/LazyMod.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" afterDir="false" />
@@ -59,13 +73,19 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Common/DrawHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Common/Patch/HarmonyPatcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/08532ae5e2464b269a83fc46e65e777c5cae00/54/7f69af13/02000177.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/0b/f68744c2/LocalizedContentManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/33/6b3ba121/NetInt.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/3b/17763f4a/NetFieldBase`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/4f/046e0296/BuffEffects.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/98/db5b24fb/Billboard.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/b2/4ce6e83b/SlayMonsterQuest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/c4/4a6b719c/Buff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/f2/b1f0e943/NetField`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/08532ae5e2464b269a83fc46e65e777c5cae00/fa/982054c4/Tool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/255150e0f2de405dbb2b2025954bccbf1b3000/a4/3900d839/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/40ee992fb4eb4e8babe84bbd9f5f7ec2a24ea0/58/6b189779/OpCodes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/40ee992fb4eb4e8babe84bbd9f5f7ec2a24ea0/84/c0df1beb/OpCode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a4c965ca8e9a4ef2b78a1d13ee3988ce16a00/b8/bd39a147/MachineData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a4c965ca8e9a4ef2b78a1d13ee3988ce16a00/ed/7e4ceddb/BuildingData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b08fa5c66dbf4037b77c6576d7aed0955c1c00/2d/625e7dd2/Farmer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -131,7 +151,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET 项目.LazyMod">
+  <component name="RunManager" selected=".NET 项目.HelpWanted">
     <configuration name="ActiveMenuAnywhere" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -382,6 +402,7 @@
       <workItem from="1713715669889" duration="345000" />
       <workItem from="1713744344365" duration="9008000" />
       <workItem from="1713765953946" duration="3200000" />
+      <workItem from="1713772751852" duration="9601000" />
     </task>
     <servers />
   </component>

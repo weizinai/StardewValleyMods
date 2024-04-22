@@ -29,7 +29,7 @@ internal partial class ModEntry : Mod
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
         HarmonyPatcher.Patch(this, new BillboardPatcher(config),new UtilityPatcher(), new ItemDeliveryQuestPatcher(config), 
-            new SlayMonsterQuestPatcher(config));
+            new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config));
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)

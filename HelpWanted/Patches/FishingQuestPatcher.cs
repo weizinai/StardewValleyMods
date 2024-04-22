@@ -6,19 +6,19 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Patches;
 
-public class SlayMonsterQuestPatcher : BasePatcher
+public class FishingQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
-    public SlayMonsterQuestPatcher(ModConfig config)
+    public FishingQuestPatcher(ModConfig config)
     {
-        SlayMonsterQuestPatcher.config = config;
+        FishingQuestPatcher.config = config;
     }
 
     public override void Patch(Harmony harmony)
     {
         harmony.Patch(
-            RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)),
+            RequireMethod<FishingQuest>(nameof(FishingQuest.loadQuestInfo)),
             postfix: GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
         );
     }
@@ -27,8 +27,8 @@ public class SlayMonsterQuestPatcher : BasePatcher
     {
         if (__instance.target.Value is not null && __instance.ItemId.Value is not null) return;
         
-        ___reward.Value = (int)(___reward.Value * config.SlayMonstersRewardModifier);
-        ___parts[^1].substitutions = new List<object> { ___reward.Value };
+        ___reward.Value = (int)(___reward.Value * config.FishingRewardModifier);
+        ___parts[^2].substitutions = new List<object> { ___reward.Value };
+        if (__instance.target.Value is "Willy") ___parts[^3].substitutions[0] = ___reward.Value;
     }
-    
 }

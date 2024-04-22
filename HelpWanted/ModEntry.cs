@@ -28,7 +28,7 @@ internal partial class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new BillboardPatcher(config),new UtilityPatcher(), new ItemDeliveryQuestPatcher(config), 
+        HarmonyPatcher.Patch(this, new BillboardPatcher(config), new UtilityPatcher(), new ItemDeliveryQuestPatcher(config),
             new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config));
     }
 
@@ -103,7 +103,9 @@ internal partial class ModEntry : Mod
             () => config.QuestDays,
             value => config.QuestDays = value,
             I18n.Config_QuestDays_Name,
-            I18n.Config_QuestDays_Tooltip
+            I18n.Config_QuestDays_Tooltip,
+            1,
+            10
         );
         configMenu.AddNumberOption(
             ModManifest,
@@ -128,7 +130,11 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.ItemDeliveryRewardModifier,
             value => config.ItemDeliveryRewardModifier = value,
-            I18n.Config_ItemDeliveryRewardModifier_Name
+            I18n.Config_ItemDeliveryRewardModifier_Name,
+            null,
+            0.25f,
+            5f,
+            0.25f
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -181,7 +187,11 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.ResourceCollectionRewardModifier,
             value => config.ResourceCollectionRewardModifier = value,
-            I18n.Config_ResourceCollectionRewardModifier_Name
+            I18n.Config_ResourceCollectionRewardModifier_Name,
+            null,
+            0.25f,
+            5f,
+            0.25f
         );
         // 钓鱼任务
         configMenu.AddSectionTitle(
@@ -199,7 +209,11 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.FishingRewardModifier,
             value => config.FishingRewardModifier = value,
-            I18n.Config_FishingRewardModifier_Name
+            I18n.Config_FishingRewardModifier_Name,
+            null,
+            0.25f,
+            5f,
+            0.25f
         );
         // 杀怪任务
         configMenu.AddSectionTitle(
@@ -217,7 +231,11 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.SlayMonstersRewardModifier,
             value => config.SlayMonstersRewardModifier = value,
-            I18n.Config_SlayMonstersRewardModifier_Name
+            I18n.Config_SlayMonstersRewardModifier_Name,
+            null,
+            0.25f,
+            5f,
+            0.25f
         );
         // 外观
         configMenu.AddPageLink(

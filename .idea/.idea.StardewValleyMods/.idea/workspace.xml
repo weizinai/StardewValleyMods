@@ -9,6 +9,7 @@
     <projectFile>Common/Common.csproj</projectFile>
     <projectFile>HelpWanted/HelpWanted.csproj</projectFile>
     <projectFile>LazyMod/LazyMod.csproj</projectFile>
+    <projectFile>RidgesideVillage/RidgesideVillage.csproj</projectFile>
     <projectFile>TestMod/TestMod.csproj</projectFile>
     <projectFile>WuWoTranslationChange/WuWoTranslationChange.csproj</projectFile>
   </component>
@@ -17,17 +18,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ae2d4b1-e023-4f4c-997f-574aee96e1dc" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HelpWanted/Patches/RSVQuestBoardPatcher.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.StardewValleyMods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/Patches/FishingQuestPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Patches/FishingQuestPatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/Patches/ResourceCollectionQuestPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Patches/ResourceCollectionQuestPatcher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/Patches/SlayMonsterQuestPatcher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Patches/SlayMonsterQuestPatcher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.4.0.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere 1.4.0.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/bin/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/Debug/net6.0/ActiveMenuAnywhere.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/ActiveMenuAnywhere/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AutoBreakGeode/obj/Debug/net6.0/AutoBreakGeode.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Framework/HWQuestBoard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/Method.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/Method.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/ModEntry.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted 1.0.4.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/bin/Debug/net6.0/HelpWanted.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/i18n/zh.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/HelpWanted/obj/Debug/net6.0/HelpWanted.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/LazyMod/obj/Debug/net6.0/LazyMod.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestMod/obj/Debug/net6.0/TestMod.AssemblyInfoInputs.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +160,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET 项目.HelpWanted">
+  <component name="RunManager" selected=".NET 项目.ActiveMenuAnywhere">
     <configuration name="ActiveMenuAnywhere" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -222,6 +242,24 @@
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/LazyMod/LazyMod.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="Console" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="RidgesideVillage" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/RidgesideVillage/RidgesideVillage.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
@@ -391,7 +429,9 @@
       <workItem from="1713715669889" duration="345000" />
       <workItem from="1713744344365" duration="9008000" />
       <workItem from="1713765953946" duration="3200000" />
-      <workItem from="1713772751852" duration="10390000" />
+      <workItem from="1713772751852" duration="11666000" />
+      <workItem from="1713788277813" duration="2254000" />
+      <workItem from="1713790933300" duration="1439000" />
     </task>
     <servers />
   </component>

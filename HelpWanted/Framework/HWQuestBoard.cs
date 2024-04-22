@@ -15,7 +15,7 @@ public sealed class HWQuestBoard : Billboard
     private static Rectangle boardRect = new(78 * 4, 58 * 4, 184 * 4, 96 * 4);
     private const int OptionIndex = -4200;
 
-    /// <summary>面板纹理</summary>
+    // 面板纹理
     private readonly Texture2D billboardTexture;
 
     /// <summary>正在展示的任务的ID</summary>
@@ -33,7 +33,7 @@ public sealed class HWQuestBoard : Billboard
         this.config = config;
         
         // 设置面板纹理
-        billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites\\Billboard");
+        billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
         ShowingQuest = null;
         if (ModEntry.QuestList.Count > 0)
         {

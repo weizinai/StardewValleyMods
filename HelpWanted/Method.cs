@@ -56,7 +56,8 @@ internal partial class ModEntry
             {
                 var sObject = new SObject(item, 1);
                 return !(!config.AllowArtisanGoods && sObject.Category == SObject.artisanGoodsCategory) &&
-                       !(config.MaxPrice > 0 && sObject.Price > config.MaxPrice);
+                       !(config.MaxPrice > 0 && sObject.Price > config.MaxPrice) &&
+                       !(int.TryParse(item, out var value) && value < 0);
             }
         ).ToList();
 

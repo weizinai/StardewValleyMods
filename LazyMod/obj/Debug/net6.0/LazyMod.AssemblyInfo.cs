@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LazyMod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fca6561632302115a3c5df5f69f87c7ef704913")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+211073792bb7ccbce318d7f1f4221ee1aeac9e1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LazyMod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LazyMod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

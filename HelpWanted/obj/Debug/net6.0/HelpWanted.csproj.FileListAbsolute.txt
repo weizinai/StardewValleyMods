@@ -1,9 +1,0 @@
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.csproj.AssemblyReference.cache
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.GeneratedMSBuildEditorConfig.editorconfig
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.AssemblyInfoInputs.cache
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.AssemblyInfo.cs
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.csproj.CoreCompileInputs.cache
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.sourcelink.json
-C:\Projects\StardewValleyMods\HelpWanted\bin\Debug\net6.0\HelpWanted.deps.json
-C:\Projects\StardewValleyMods\HelpWanted\bin\Debug\net6.0\HelpWanted.dll
-C:\Projects\StardewValleyMods\HelpWanted\obj\Debug\net6.0\HelpWanted.dll

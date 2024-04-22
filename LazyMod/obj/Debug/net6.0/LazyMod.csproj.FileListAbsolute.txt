@@ -1,9 +1,0 @@
-C:\Projects\StardewValleyMods\LazyMod\bin\Debug\net6.0\LazyMod.deps.json
-C:\Projects\StardewValleyMods\LazyMod\bin\Debug\net6.0\LazyMod.dll
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.csproj.AssemblyReference.cache
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.GeneratedMSBuildEditorConfig.editorconfig
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.AssemblyInfoInputs.cache
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.AssemblyInfo.cs
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.csproj.CoreCompileInputs.cache
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.sourcelink.json
-C:\Projects\StardewValleyMods\LazyMod\obj\Debug\net6.0\LazyMod.dll

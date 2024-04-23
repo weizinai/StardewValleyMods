@@ -88,15 +88,13 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.OneQuestPerVillager,
             value => config.OneQuestPerVillager = value,
-            I18n.Config_OneQuestPerVillager_Name,
-            I18n.Config_OneQuestPerVillager_Tooltip
+            I18n.Config_OneQuestPerVillager_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ExcludeMaxHeartsNPC,
             value => config.ExcludeMaxHeartsNPC = value,
-            I18n.Config_ExcludeMaxHeartsNPC_Name,
-            I18n.Config_ExcludeMaxHeartsNPC_Tooltip
+            I18n.Config_ExcludeMaxHeartsNPC_Name
         );
         configMenu.AddNumberOption(
             ModManifest,

@@ -44,7 +44,7 @@
     "Config.FishingRewardMultiplier.Name": "钓鱼任务奖励倍数",
     
     // 杀怪任务
-    "Config.SlayMonstersTitle.Name": "杀怪任务",
+    "Config.SlayMonstersPage.Name": "杀怪任务",
     "Config.SlayMonstersWeight.Name": "杀怪任务权重",
     "Config.SlayMonstersWeight.Tooltip": "杀怪任务的权重.该权重是相对于其他几种任务来说的.杀怪任务要到达过矿井且在游戏中天数大于6天",
     "Config.SlayMonstersRewardMultiplier.Name": "杀怪任务奖励倍数",

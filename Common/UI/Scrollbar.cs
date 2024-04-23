@@ -26,7 +26,7 @@ public class Scrollbar : Element
     public int TopRow { get; private set; }
     public int MaxTopRow => Math.Max(0, Rows - FrameSize);
 
-    public float ScrollPercent => (MaxTopRow > 0) ? TopRow / (float)MaxTopRow : 0f;
+    public float ScrollPercent => MaxTopRow > 0 ? TopRow / (float)MaxTopRow : 0f;
 
     /// <inheritdoc />
     public override int Width => 24;

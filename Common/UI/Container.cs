@@ -4,21 +4,14 @@ namespace Common.UI;
 
 public abstract class Container : Element
 {
-    /*********
-     ** Fields
-     *********/
-    private readonly IList<Element> ChildrenImpl = new List<Element>();
+    private readonly IList<Element> childrenImpl = new List<Element>();
 
-    /// <summary>Whether to update the <see cref="Children"/> when <see cref="Update"/> is called.</summary>
+    /// <summary>Whether to update <see cref="Children"/> when <see cref="Update"/> is called.</summary>
     protected bool UpdateChildren { get; set; } = true;
+    
+    private Element? renderLast;
 
-
-    /*********
-     ** Accessors
-     *********/
-    private Element renderLast = null;
-
-    public Element RenderLast
+    public Element? RenderLast
     {
         get => renderLast;
         set
@@ -26,31 +19,17 @@ public abstract class Container : Element
             renderLast = value;
             if (Parent is not null)
             {
-                if (value is null)
-                {
-                    if (Parent.RenderLast == this)
-                    {
-                        Parent.RenderLast = null;
-                    }
-                }
-                else
-                {
-                    Parent.RenderLast = this;
-                }
+                if (value is null) Parent.RenderLast = Parent.RenderLast == this ? null : this;
             }
         }
     }
 
-    public Element[] Children => ChildrenImpl.ToArray();
-
-
-    /*********
-     ** Public methods
-     *********/
+    public Element[] Children => childrenImpl.ToArray();
+    
     public void AddChild(Element element)
     {
         element.Parent?.RemoveChild(element);
-        ChildrenImpl.Add(element);
+        childrenImpl.Add(element);
         element.Parent = this;
     }
 
@@ -58,28 +37,26 @@ public abstract class Container : Element
     {
         if (element.Parent != this)
             throw new ArgumentException("Element must be a child of this container.");
-        ChildrenImpl.Remove(element);
+        childrenImpl.Remove(element);
         element.Parent = null;
     }
-
-    /// <inheritdoc />
+    
     public override void Update(bool isOffScreen = false)
     {
         base.Update(isOffScreen);
         if (UpdateChildren)
         {
-            foreach (var element in ChildrenImpl)
+            foreach (var element in childrenImpl)
                 element.Update(isOffScreen);
         }
     }
-
-    /// <inheritdoc />
+    
     public override void Draw(SpriteBatch b)
     {
         if (IsHidden())
             return;
 
-        foreach (var child in ChildrenImpl)
+        foreach (var child in childrenImpl)
         {
             if (child == RenderLast)
                 continue;

@@ -4,19 +4,11 @@ namespace Common.UI;
 
 public class RootElement : Container
 {
-    /*********
-     ** Accessors
-     *********/
     public bool Obscured { get; set; } = false;
 
     public override int Width => Game1.viewport.Width;
     public override int Height => Game1.viewport.Height;
-
-
-    /*********
-     ** Public methods
-     *********/
-    /// <inheritdoc />
+    
     public override void Update(bool isOffScreen = false)
     {
         base.Update(isOffScreen || Obscured);
@@ -30,9 +22,8 @@ public class RootElement : Container
             Dropdown.SinceDropdownWasActive--;
         }
     }
-
-    /// <inheritdoc />
-    internal override RootElement GetRootImpl()
+    
+    public override RootElement GetRootImpl()
     {
         return this;
     }

@@ -1,4 +1,3 @@
-using Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,12 +8,9 @@ namespace Common.UI;
 
 public abstract class Element
 {
-    /*********
-     ** Accessors
-     *********/
-    public object UserData { get; set; }
+    public object? UserData { get; set; }
 
-    public Container Parent { get; internal set; }
+    public Container? Parent { get; internal set; }
     public Vector2 LocalPosition { get; set; }
 
     public Vector2 Position
@@ -32,19 +28,16 @@ public abstract class Element
     public Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
 
     public bool Hover { get; private set; }
-    public virtual string HoveredSound => null;
+    public virtual string? HoveredSound => null;
 
     public bool ClickGestured { get; private set; }
     public bool Clicked => Hover && ClickGestured;
-    public virtual string ClickedSound => null;
+    public virtual string? ClickedSound => null;
 
-    /// <summary>Whether to disable the element so it's invisible and can't be interacted with.</summary>
-    public Func<bool> ForceHide;
+    /// <summary>Whether to disable the element, so it's invisible and can't be interacted with.</summary>
+    public Func<bool>? ForceHide;
 
-
-    /*********
-     ** Public methods
-     *********/
+    
     /// <summary>Update the element for the current game tick.</summary>
     /// <param name="isOffScreen">Whether the element is currently off-screen.</param>
     public virtual void Update(bool isOffScreen = false)
@@ -76,9 +69,9 @@ public abstract class Element
             Game1.playSound(HoveredSound);
         Hover = newHover;
 
-        ClickGestured = (Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Released);
+        ClickGestured = Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Released;
         ClickGestured = ClickGestured ||
-                             (Game1.options.gamepadControls && (Game1.input.GetGamePadState().IsButtonDown(Buttons.A) && !Game1.oldPadState.IsButtonDown(Buttons.A)));
+                             (Game1.options.gamepadControls && Game1.input.GetGamePadState().IsButtonDown(Buttons.A) && !Game1.oldPadState.IsButtonDown(Buttons.A));
         if (ClickGestured && (Dropdown.SinceDropdownWasActive > 0 || Dropdown.ActiveDropdown != null))
         {
             ClickGestured = false;
@@ -95,7 +88,7 @@ public abstract class Element
         return GetRootImpl();
     }
 
-    internal virtual RootElement GetRootImpl()
+    public virtual RootElement GetRootImpl()
     {
         if (Parent == null)
             throw new Exception("Element must have a parent.");

@@ -36,8 +36,8 @@ namespace Common.UI
                 Callback.Invoke( this );
 
 
-            bool SecondaryClickGestured = (Game1.input.GetMouseState().RightButton == ButtonState.Pressed && Game1.oldMouseState.RightButton == ButtonState.Released);
-            SecondaryClickGestured = SecondaryClickGestured || (Game1.options.gamepadControls && (Game1.input.GetGamePadState().IsButtonDown(Buttons.B) && !Game1.oldPadState.IsButtonDown(Buttons.B)));
+            bool SecondaryClickGestured = Game1.input.GetMouseState().RightButton == ButtonState.Pressed && Game1.oldMouseState.RightButton == ButtonState.Released;
+            SecondaryClickGestured = SecondaryClickGestured || (Game1.options.gamepadControls && Game1.input.GetGamePadState().IsButtonDown(Buttons.B) && !Game1.oldPadState.IsButtonDown(Buttons.B));
             if (Hover && SecondaryClickGestured && SecondaryCallback != null)
                 SecondaryCallback.Invoke(this);
         }

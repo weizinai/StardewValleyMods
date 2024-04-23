@@ -26,7 +26,7 @@ public class Image : Element, ISingleTexture
     public override int Height => (int)GetActualSize().Y;
 
     /// <inheritdoc />
-    public override string HoveredSound => (Callback != null) ? "shiny4" : null;
+    public override string HoveredSound => Callback != null ? "shiny4" : null;
 
     public Color DrawColor { get; set; } = Color.White;
 

@@ -40,7 +40,7 @@ public class Dropdown : Element, ISingleTexture
 
     public Action<Element> Callback;
 
-    public static Dropdown ActiveDropdown;
+    public static Dropdown? ActiveDropdown;
     public static int SinceDropdownWasActive = 0;
 
     /// <inheritdoc />
@@ -125,7 +125,7 @@ public class Dropdown : Element, ISingleTexture
     public void ReceiveScrollWheelAction(int direction)
     {
         if (Dropped)
-            ActivePosition = Math.Min(Math.Max(ActivePosition - (direction / 120), 0), Choices.Length - MaxValuesAtOnce);
+            ActivePosition = Math.Min(Math.Max(ActivePosition - direction / 120, 0), Choices.Length - MaxValuesAtOnce);
         else
             ActiveDropdown = null;
     }

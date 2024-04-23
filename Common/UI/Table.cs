@@ -7,9 +7,6 @@ namespace Common.UI;
 
 public class Table : Container
 {
-    /*********
-     ** Fields
-     *********/
     private readonly List<Element[]> rows = new();
 
     private Vector2 sizeImpl;
@@ -18,17 +15,13 @@ public class Table : Container
     private int rowHeightImpl;
     private bool fixedRowHeight;
     private int contentHeight;
-
-
-    /*********
-     ** Accessors
-     *********/
+    
     public Vector2 Size
     {
         get => sizeImpl;
         set
         {
-            sizeImpl = new Vector2(value.X, (int)value.Y / RowHeight * RowHeight);
+            sizeImpl = new Vector2(value.X, (int)(value.Y / RowHeight) * RowHeight);
             UpdateScrollbar();
         }
     }
@@ -219,7 +212,7 @@ public class Table : Container
         }
 
         // resume previous sprite batch
-        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
+        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
     }
 
     private int PxToRow(int px)

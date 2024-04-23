@@ -32,7 +32,7 @@ public class Label : Element
     public override int Height => (int)Measure().Y;
 
     /// <inheritdoc />
-    public override string HoveredSound => (Callback != null) ? "shiny4" : null;
+    public override string HoveredSound => Callback != null ? "shiny4" : null;
 
 
     /*********

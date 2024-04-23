@@ -69,8 +69,4 @@
     "Config.PortraitTintG.Name": "肖像色调 G",
     "Config.PortraitTintB.Name": "肖像色调 B",
     "Config.PortraitTintA.Name": "肖像色调 A",
-
-    // String
-    "String.SlayMonstersQuest.BigSlime": "骷髅矿井中的大史莱姆",
-    "String.SlayMonstersQuest.IridiumCrab": "一种入侵类的蟹生活在骷髅矿井中，威胁到本地的野生动物！这些蟹会伪装成石头。如果有人能杀掉 {0} 只入侵蟹的话，我会给他奖励的。——德米特里厄斯",
 }

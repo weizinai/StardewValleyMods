@@ -174,9 +174,7 @@ public class SlayMonsterQuestPatcher : BasePatcher
                         ? new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13725")
                         : __instance.monsterName.Value.Equals("Sludge")
                             ? new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13727")
-                            : __instance.monsterName.Value.Equals("Big Slime")
-                                ? I18n.String_SlayMonstersQuest_BigSlime()
-                                : new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13728")));
+                            : new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13728")));
                 __instance.target.Value = "Lewis";
                 __instance.dialogueparts.Clear();
                 __instance.dialogueparts.Add("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13730");
@@ -200,9 +198,7 @@ public class SlayMonsterQuestPatcher : BasePatcher
             case "Lava Crab":
             case "Iridium Crab":
                 __instance.parts.Clear();
-                __instance.parts.Add(new DescriptionElement(__instance.monsterName.Value.Equals("Iridium Crab")
-                    ? I18n.String_SlayMonstersQuest_IridiumCrab()
-                    : "Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13747", __instance.numberToKill.Value));
+                __instance.parts.Add(new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13747", __instance.numberToKill.Value));
                 __instance.target.Value = "Demetrius";
                 __instance.dialogueparts.Clear();
                 __instance.dialogueparts.Add(new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13750", __instance.monster.Value));

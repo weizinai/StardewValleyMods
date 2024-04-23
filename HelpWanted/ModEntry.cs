@@ -221,9 +221,24 @@ internal partial class ModEntry : Mod
             0.25f
         );
         // 杀怪任务
-        configMenu.AddSectionTitle(
+        configMenu.AddPageLink(
             ModManifest,
-            I18n.Config_SlayMonstersTitle_Name
+            "SlayMonsters",
+            I18n.Config_SlayMonstersPage_Name
+        );
+        // 外观
+        configMenu.AddPageLink(
+            ModManifest,
+            "Appearance",
+            I18n.Config_AppearancePage_Name
+        );
+
+        #region 杀怪任务
+
+        configMenu.AddPage(
+            ModManifest,
+            "SlayMonsters",
+            I18n.Config_SlayMonstersPage_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
@@ -248,12 +263,8 @@ internal partial class ModEntry : Mod
             value => config.MoreSlayMonsterQuest = value,
             I18n.Config_MoreSlayMonsterQuests_Name
         );
-        // 外观
-        configMenu.AddPageLink(
-            ModManifest,
-            "Appearance",
-            I18n.Config_AppearancePage_Name
-        );
+
+        #endregion
 
         #region 外观
 

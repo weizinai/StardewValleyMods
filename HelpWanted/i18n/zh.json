@@ -48,6 +48,7 @@
     "Config.SlayMonstersWeight.Name": "杀怪任务权重",
     "Config.SlayMonstersWeight.Tooltip": "杀怪任务的权重.该权重是相对于其他几种任务来说的.杀怪任务要到达过矿井且在游戏中天数大于6天",
     "Config.SlayMonstersRewardMultiplier.Name": "杀怪任务奖励倍数",
+    "Config.MoreSlayMonsterQuests.Name": "更多杀怪任务",
     
     // 外观
     "Config.AppearancePage.Name": "外观",
@@ -67,4 +68,8 @@
     "Config.PortraitTintG.Name": "肖像色调 G",
     "Config.PortraitTintB.Name": "肖像色调 B",
     "Config.PortraitTintA.Name": "肖像色调 A",
+
+    // String
+    "String.SlayMonstersQuest.BigSlime": "骷髅矿井中的大史莱姆",
+    "String.SlayMonstersQuest.IridiumCrab": "一种入侵类的蟹生活在骷髅矿井中，威胁到本地的野生动物！这些蟹会伪装成石头。如果有人能杀掉 {0} 只入侵蟹的话，我会给他奖励的。——德米特里厄斯",
 }

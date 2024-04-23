@@ -28,6 +28,7 @@ public class ModConfig
     // 杀怪任务
     public float SlayMonstersWeight { get; set; } = 0.1f;
     public float SlayMonstersRewardMultiplier { get; set; } = 1f;
+    public bool MoreSlayMonsterQuest { get; set; } = true;
 
     #region 外观
 

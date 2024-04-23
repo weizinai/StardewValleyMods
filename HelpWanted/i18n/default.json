@@ -48,6 +48,7 @@
     "Config.SlayMonstersWeight.Name": "Slay Monsters Weight",
     "Config.SlayMonstersWeight.Tooltip": "The weight of the slay monsters quest.Monster slaying quests must have reached the mines and have more than 6 days in the game",
     "Config.SlayMonstersRewardMultiplier.Name": "Slay Monsters Reward Multiplier",
+    "Config.MoreSlayMonsterQuests.Name": "More Slay Monster Quests",
 
     // Appearance
     "Config.AppearancePage.Name": "Appearance",
@@ -67,5 +68,9 @@
     "Config.PortraitTintR.Name": "Portrait Tint R",
     "Config.PortraitTintG.Name": "Portrait Tint G",
     "Config.PortraitTintB.Name": "Portrait Tint B",
-    "Config.PortraitTintA.Name": "Portrait Tint A"
+    "Config.PortraitTintA.Name": "Portrait Tint A",
+    
+    // String
+    "String.SlayMonstersQuest.BigSlime": "Big Slime in the skull cavern",
+    "String.SlayMonstersQuest.IridiumCrab": "An invasive crab species is living in the skull cavern, threatening the native wildlife! These creatures are known for disguising themselves as stones. I'll pay someone to slay {0} of them.  -Demetrius",
 }

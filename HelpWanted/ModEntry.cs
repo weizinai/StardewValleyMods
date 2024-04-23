@@ -242,6 +242,12 @@ internal partial class ModEntry : Mod
             5f,
             0.25f
         );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.MoreSlayMonsterQuest,
+            value => config.MoreSlayMonsterQuest = value,
+            I18n.Config_MoreSlayMonsterQuests_Name
+        );
         // 外观
         configMenu.AddPageLink(
             ModManifest,

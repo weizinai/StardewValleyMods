@@ -41,7 +41,7 @@ public class SlayMonsterQuestPatcher : BasePatcher
     {
         if (hasLoadQuestInfo) return;
         
-        ___reward.Value = (int)(___reward.Value * config.SlayMonstersRewardModifier);
+        ___reward.Value = (int)(___reward.Value * config.SlayMonstersRewardMultiplier);
         ___parts[^1].substitutions = new List<object> { ___reward.Value };
     }
     

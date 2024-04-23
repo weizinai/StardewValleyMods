@@ -126,9 +126,9 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.ItemDeliveryRewardModifier,
-            value => config.ItemDeliveryRewardModifier = value,
-            I18n.Config_ItemDeliveryRewardModifier_Name,
+            () => config.ItemDeliveryRewardMultiplier,
+            value => config.ItemDeliveryRewardMultiplier = value,
+            I18n.Config_ItemDeliveryRewardMultiplier_Name,
             null,
             0.25f,
             5f,
@@ -183,9 +183,9 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.ResourceCollectionRewardModifier,
-            value => config.ResourceCollectionRewardModifier = value,
-            I18n.Config_ResourceCollectionRewardModifier_Name,
+            () => config.ResourceCollectionRewardMultiplier,
+            value => config.ResourceCollectionRewardMultiplier = value,
+            I18n.Config_ResourceCollectionRewardMultiplier_Name,
             null,
             0.25f,
             5f,
@@ -205,9 +205,9 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.FishingRewardModifier,
-            value => config.FishingRewardModifier = value,
-            I18n.Config_FishingRewardModifier_Name,
+            () => config.FishingRewardMultiplier,
+            value => config.FishingRewardMultiplier = value,
+            I18n.Config_FishingRewardMultiplier_Name,
             null,
             0.25f,
             5f,
@@ -227,9 +227,9 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.SlayMonstersRewardModifier,
-            value => config.SlayMonstersRewardModifier = value,
-            I18n.Config_SlayMonstersRewardModifier_Name,
+            () => config.SlayMonstersRewardMultiplier,
+            value => config.SlayMonstersRewardMultiplier = value,
+            I18n.Config_SlayMonstersRewardMultiplier_Name,
             null,
             0.25f,
             5f,

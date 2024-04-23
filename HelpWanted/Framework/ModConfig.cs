@@ -12,7 +12,7 @@ public class ModConfig
     public int MaxQuests { get; set; } = 10;
     // 交易任务
     public float ItemDeliveryWeight { get; set; } = 0.4f;
-    public float ItemDeliveryRewardModifier { get; set; } = 1f;
+    public float ItemDeliveryRewardMultiplier { get; set; } = 1f;
     public bool MustLikeItem { get; set; } = true;
     public bool MustLoveItem { get; set; }
     public bool AllowArtisanGoods { get; set; } = true;
@@ -20,13 +20,13 @@ public class ModConfig
     public bool IgnoreVanillaItemRestriction { get; set; } = true;
     // 采集任务
     public float ResourceCollectionWeight { get; set; } = 0.08f;
-    public float ResourceCollectionRewardModifier { get; set; } = 1f;
+    public float ResourceCollectionRewardMultiplier { get; set; } = 1f;
     // 钓鱼任务
     public float FishingWeight { get; set; } = 0.07f;
-    public float FishingRewardModifier { get; set; } = 1f;
+    public float FishingRewardMultiplier { get; set; } = 1f;
     // 杀怪任务
     public float SlayMonstersWeight { get; set; } = 0.1f;
-    public float SlayMonstersRewardModifier { get; set; } = 1f;
+    public float SlayMonstersRewardMultiplier { get; set; } = 1f;
 
     #region 外观
 

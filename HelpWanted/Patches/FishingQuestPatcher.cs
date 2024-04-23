@@ -41,7 +41,7 @@ public class FishingQuestPatcher : BasePatcher
     {
         if (hasLoadQuestInfo) return;
         
-        ___reward.Value = (int)(___reward.Value * config.FishingRewardModifier);
+        ___reward.Value = (int)(___reward.Value * config.FishingRewardMultiplier);
         ___parts[^2].substitutions = new List<object> { ___reward.Value };
         if (___target.Value is "Willy") ___parts[^3].substitutions[0] = ___reward.Value;
     }

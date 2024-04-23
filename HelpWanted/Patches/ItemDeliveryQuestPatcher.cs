@@ -71,6 +71,6 @@ public class ItemDeliveryQuestPatcher : BasePatcher
     
     private static void GetGoldRewardPerItemPostfix(ref int __result)
     {
-        __result = (int)(__result * config.ItemDeliveryRewardModifier);
+        __result = (int)(__result * config.ItemDeliveryRewardMultiplier);
     }
 }

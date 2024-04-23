@@ -40,7 +40,7 @@ public class ResourceCollectionQuestPatcher : BasePatcher
     private static void LoadQuestInfoPostfix(ref NetInt ___reward, ref NetDescriptionElementList ___parts)
     {
         if (hasLoadQuestInfo) return;
-        ___reward.Value = (int)(___reward.Value * config.ResourceCollectionRewardModifier);
+        ___reward.Value = (int)(___reward.Value * config.ResourceCollectionRewardMultiplier);
         ___parts[^2].substitutions = new List<object> { ___reward.Value };
     }
 }

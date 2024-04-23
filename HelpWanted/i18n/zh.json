@@ -17,7 +17,7 @@
     "Config.ItemDeliveryTitle.Name": "交易任务",
     "Config.ItemDeliveryWeight.Name": "交易任务权重",
     "Config.ItemDeliveryWeight.Tooltip": "交易任务的权重.该权重是相对于其他几种任务来说的.",
-    "Config.ItemDeliveryRewardModifier.Name": "交易任务奖励倍数",
+    "Config.ItemDeliveryRewardMultiplier.Name": "交易任务奖励倍数",
     "Config.MustLikeItem.Name": "必须喜欢物品",
     "Config.MustLikeItem.Tooltip": "交易任务的物品是否必须是NPC喜欢的物品",
     "Config.MustLoveItem.Name": "必须喜爱物品",
@@ -33,19 +33,19 @@
     "Config.ResourceCollectionTitle.Name": "采集任务",
     "Config.ResourceCollectionWeight.Name": "采集任务权重",
     "Config.ResourceCollectionWeight.Tooltip": "采集任务的权重.该权重是相对于其他几种任务来说的.",
-    "Config.ResourceCollectionRewardModifier.Name": "采集任务奖励倍数",
+    "Config.ResourceCollectionRewardMultiplier.Name": "采集任务奖励倍数",
     
     // 钓鱼任务
     "Config.FishingTitle.Name": "钓鱼任务",
     "Config.FishingWeight.Name": "钓鱼任务权重",
     "Config.FishingWeight.Tooltip": "钓鱼任务的权重.该权重是相对于其他几种任务来说的.",
-    "Config.FishingRewardModifier.Name": "钓鱼任务奖励倍数",
+    "Config.FishingRewardMultiplier.Name": "钓鱼任务奖励倍数",
     
     // 杀怪任务
     "Config.SlayMonstersTitle.Name": "杀怪任务",
     "Config.SlayMonstersWeight.Name": "杀怪任务权重",
     "Config.SlayMonstersWeight.Tooltip": "杀怪任务的权重.该权重是相对于其他几种任务来说的.杀怪任务要到达过矿井且在游戏中天数大于6天",
-    "Config.SlayMonstersRewardModifier.Name": "杀怪任务奖励倍数",
+    "Config.SlayMonstersRewardMultiplier.Name": "杀怪任务奖励倍数",
     
     // 外观
     "Config.AppearancePage.Name": "外观",

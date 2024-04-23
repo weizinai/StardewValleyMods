@@ -96,6 +96,13 @@ internal partial class ModEntry : Mod
             value => config.ExcludeMaxHeartsNPC = value,
             I18n.Config_ExcludeMaxHeartsNPC_Name
         );
+        configMenu.AddTextOption(
+            ModManifest,
+            () => string.Join(", ", config.ExcludeNPCList),
+            value => config.ExcludeNPCList = value.Split(',').Select(s => s.Trim()).ToList(),
+            I18n.Config_ExcludeNPCList_Name,
+            I18n.Config_ExcludeNPCList_Tooltip
+        );
         configMenu.AddNumberOption(
             ModManifest,
             () => config.QuestDays,

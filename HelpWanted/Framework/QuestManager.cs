@@ -35,7 +35,8 @@ public class QuestManager
             if (npc is not null)
             {
                 if ((config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
-                    (config.ExcludeMaxHeartsNPC && Game1.MasterPlayer.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250))
+                    (config.ExcludeMaxHeartsNPC && Game1.MasterPlayer.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250) ||
+                    config.ExcludeNPCList.Contains(npc.Name))
                 {
                     tries++;
                     if (tries > 100)

@@ -8,6 +8,7 @@ public class ModConfig
     public float DailyQuestChance { get; set; } = 0.9f;
     public bool OneQuestPerVillager { get; set; } = true;
     public bool ExcludeMaxHeartsNPC { get; set; } = true;
+    public List<string> ExcludeNPCList { get; set; } = new();
     public int QuestDays { get; set; } = 2;
     public int MaxQuests { get; set; } = 10;
     // 交易任务

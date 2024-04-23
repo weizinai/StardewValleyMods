@@ -8,6 +8,8 @@
     "Config.DailyQuestChance.Name": "每日任务概率",
     "Config.OneQuestPerVillager.Name": "每个村民一个任务",
     "Config.ExcludeMaxHeartsNPC.Name": "排除满心NPC",
+    "Config.ExcludeNPCList.Name": "NPC排除列表",
+    "Config.ExcludeNPCList.Tooltip": "排除的NPC列表.每个NPC的名字之间用逗号分隔.(例如: \"刘易斯, 玛妮\")",
     "Config.QuestDays.Name": "任务天数",
     "Config.QuestDays.Tooltip": "完成任务的限制时间",
     "Config.MaxQuests.Name": "最大任务数量",

@@ -8,6 +8,8 @@
     "Config.DailyQuestChance.Name": "Daily Quest Chance",
     "Config.OneQuestPerVillager.Name": "One Quest Per Villager",
     "Config.ExcludeMaxHeartsNPC.Name": "Exclude Max Hearts NPC",
+    "Config.ExcludeNPCList.Name": "Exclude NPC List",
+    "Config.ExcludeNPCList.Tooltip": "List of excluded NPCs.Each NPC name is separated by a comma.(e.g.\"Lewis, Marnie\")",
     "Config.QuestDays.Name": "Quest Days",
     "Config.QuestDays.Tooltip": "The time limit to complete the quest",
     "Config.MaxQuests.Name": "Max Quests",

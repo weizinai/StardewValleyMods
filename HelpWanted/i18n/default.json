@@ -49,6 +49,7 @@
     "Config.SlayMonstersWeight.Tooltip": "The weight of the slay monsters quest.Monster slaying quests must have reached the mines and have more than 6 days in the game",
     "Config.SlayMonstersRewardMultiplier.Name": "Slay Monsters Reward Multiplier",
     "Config.MoreSlayMonsterQuests.Name": "More Slay Monster Quests",
+    "Config.MoreSlayMonsterQuests.Tooltip": "When this option is enabled, more monsters will be the target of the slay monster quest.",
 
     // Appearance
     "Config.AppearancePage.Name": "Appearance",

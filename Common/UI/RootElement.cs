@@ -19,7 +19,7 @@ public class RootElement : Container
     /// <inheritdoc />
     public override void Update(bool isOffScreen = false)
     {
-        base.Update(isOffScreen || this.Obscured);
+        base.Update(isOffScreen || Obscured);
         if (Dropdown.ActiveDropdown?.GetRoot() != this)
         {
             Dropdown.ActiveDropdown = null;

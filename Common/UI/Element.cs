@@ -21,21 +21,21 @@ public abstract class Element
     {
         get
         {
-            if (this.Parent != null)
-                return this.Parent.Position + this.LocalPosition;
-            return this.LocalPosition;
+            if (Parent != null)
+                return Parent.Position + LocalPosition;
+            return LocalPosition;
         }
     }
 
     public abstract int Width { get; }
     public abstract int Height { get; }
-    public Rectangle Bounds => new((int)this.Position.X, (int)this.Position.Y, this.Width, this.Height);
+    public Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
 
     public bool Hover { get; private set; }
     public virtual string HoveredSound => null;
 
     public bool ClickGestured { get; private set; }
-    public bool Clicked => this.Hover && this.ClickGestured;
+    public bool Clicked => Hover && ClickGestured;
     public virtual string ClickedSound => null;
 
     /// <summary>Whether to disable the element so it's invisible and can't be interacted with.</summary>
@@ -49,12 +49,12 @@ public abstract class Element
     /// <param name="isOffScreen">Whether the element is currently off-screen.</param>
     public virtual void Update(bool isOffScreen = false)
     {
-        bool hidden = this.IsHidden(isOffScreen);
+        bool hidden = IsHidden(isOffScreen);
 
         if (hidden)
         {
-            this.Hover = false;
-            this.ClickGestured = false;
+            Hover = false;
+            ClickGestured = false;
             return;
         }
 
@@ -71,41 +71,41 @@ public abstract class Element
             mouseY = Game1.getOldMouseY();
         }
 
-        bool newHover = !hidden && !this.GetRoot().Obscured && this.Bounds.Contains(mouseX, mouseY);
-        if (newHover && !this.Hover && this.HoveredSound != null)
-            Game1.playSound(this.HoveredSound);
-        this.Hover = newHover;
+        bool newHover = !hidden && !GetRoot().Obscured && Bounds.Contains(mouseX, mouseY);
+        if (newHover && !Hover && HoveredSound != null)
+            Game1.playSound(HoveredSound);
+        Hover = newHover;
 
-        this.ClickGestured = (Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Released);
-        this.ClickGestured = this.ClickGestured ||
+        ClickGestured = (Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Released);
+        ClickGestured = ClickGestured ||
                              (Game1.options.gamepadControls && (Game1.input.GetGamePadState().IsButtonDown(Buttons.A) && !Game1.oldPadState.IsButtonDown(Buttons.A)));
-        if (this.ClickGestured && (Dropdown.SinceDropdownWasActive > 0 || Dropdown.ActiveDropdown != null))
+        if (ClickGestured && (Dropdown.SinceDropdownWasActive > 0 || Dropdown.ActiveDropdown != null))
         {
-            this.ClickGestured = false;
+            ClickGestured = false;
         }
 
-        if (this.Clicked && this.ClickedSound != null)
-            Game1.playSound(this.ClickedSound);
+        if (Clicked && ClickedSound != null)
+            Game1.playSound(ClickedSound);
     }
 
     public abstract void Draw(SpriteBatch b);
 
     public RootElement GetRoot()
     {
-        return this.GetRootImpl();
+        return GetRootImpl();
     }
 
     internal virtual RootElement GetRootImpl()
     {
-        if (this.Parent == null)
+        if (Parent == null)
             throw new Exception("Element must have a parent.");
-        return this.Parent.GetRoot();
+        return Parent.GetRoot();
     }
 
     /// <summary>Get whether the element is hidden based on <see cref="ForceHide"/> or its position relative to the screen.</summary>
     /// <param name="isOffScreen">Whether the element is currently off-screen.</param>
     public bool IsHidden(bool isOffScreen = false)
     {
-        return isOffScreen || this.ForceHide?.Invoke() == true;
+        return isOffScreen || ForceHide?.Invoke() == true;
     }
 }

@@ -20,13 +20,13 @@ public class Image : Element, ISingleTexture
     public Action<Element> Callback { get; set; }
 
     /// <inheritdoc />
-    public override int Width => (int)this.GetActualSize().X;
+    public override int Width => (int)GetActualSize().X;
 
     /// <inheritdoc />
-    public override int Height => (int)this.GetActualSize().Y;
+    public override int Height => (int)GetActualSize().Y;
 
     /// <inheritdoc />
-    public override string HoveredSound => (this.Callback != null) ? "shiny4" : null;
+    public override string HoveredSound => (Callback != null) ? "shiny4" : null;
 
     public Color DrawColor { get; set; } = Color.White;
 
@@ -38,17 +38,17 @@ public class Image : Element, ISingleTexture
     {
         base.Update(isOffScreen);
 
-        if (this.Clicked)
-            this.Callback?.Invoke(this);
+        if (Clicked)
+            Callback?.Invoke(this);
     }
 
     /// <inheritdoc />
     public override void Draw(SpriteBatch b)
     {
-        if (this.IsHidden())
+        if (IsHidden())
             return;
 
-        b.Draw(this.Texture, this.Position, this.TexturePixelArea, DrawColor, 0, Vector2.Zero, this.Scale, SpriteEffects.None, 1);
+        b.Draw(Texture, Position, TexturePixelArea, DrawColor, 0, Vector2.Zero, Scale, SpriteEffects.None, 1);
     }
 
 
@@ -57,9 +57,9 @@ public class Image : Element, ISingleTexture
      *********/
     private Vector2 GetActualSize()
     {
-        if (this.TexturePixelArea.HasValue)
-            return new Vector2(this.TexturePixelArea.Value.Width, this.TexturePixelArea.Value.Height) * this.Scale;
+        if (TexturePixelArea.HasValue)
+            return new Vector2(TexturePixelArea.Value.Width, TexturePixelArea.Value.Height) * Scale;
         else
-            return new Vector2(this.Texture.Width, this.Texture.Height) * this.Scale;
+            return new Vector2(Texture.Width, Texture.Height) * Scale;
     }
 }

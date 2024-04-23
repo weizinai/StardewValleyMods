@@ -23,7 +23,7 @@ public class Slider : Element
     public Action<Element> Callback { get; set; }
 
     /// <inheritdoc />
-    public override int Width => this.RequestWidth;
+    public override int Width => RequestWidth;
 
     /// <inheritdoc />
     public override int Height => 24;
@@ -56,50 +56,50 @@ internal class Slider<T> : Slider
     {
         base.Update(isOffScreen);
 
-        if (this.Clicked)
-            this.Dragging = true;
+        if (Clicked)
+            Dragging = true;
         if (Constants.TargetPlatform != GamePlatform.Android)
         {
             if (Mouse.GetState().LeftButton == ButtonState.Released && Game1.input.GetGamePadState().Buttons.A == ButtonState.Released)
-                this.Dragging = false;
+                Dragging = false;
         }
         else
         {
             if (Game1.input.GetMouseState().LeftButton == ButtonState.Released && Game1.input.GetGamePadState().Buttons.A == ButtonState.Released)
-                this.Dragging = false;
+                Dragging = false;
         }
 
 
-        if (this.Dragging)
+        if (Dragging)
         {
-            float perc = (Game1.getOldMouseX() - this.Position.X) / this.Width;
-            this.Value = CommonHelper.Adjust(this.Value, this.Interval);
-            this.Value = this.Value switch
+            float perc = (Game1.getOldMouseX() - Position.X) / Width;
+            Value = CommonHelper.Adjust(Value, Interval);
+            Value = Value switch
             {
-                int => CommonHelper.Clamp<T>(this.Minimum, (T)(object)(int)(perc * ((int)(object)this.Maximum - (int)(object)this.Minimum) + (int)(object)this.Minimum), this.Maximum),
-                float => CommonHelper.Clamp<T>(this.Minimum, (T)(object)(perc * ((float)(object)this.Maximum - (float)(object)this.Minimum) + (float)(object)this.Minimum), this.Maximum),
-                _ => this.Value
+                int => CommonHelper.Clamp<T>(Minimum, (T)(object)(int)(perc * ((int)(object)Maximum - (int)(object)Minimum) + (int)(object)Minimum), Maximum),
+                float => CommonHelper.Clamp<T>(Minimum, (T)(object)(perc * ((float)(object)Maximum - (float)(object)Minimum) + (float)(object)Minimum), Maximum),
+                _ => Value
             };
 
-            this.Callback?.Invoke(this);
+            Callback?.Invoke(this);
         }
     }
 
     /// <inheritdoc />
     public override void Draw(SpriteBatch b)
     {
-        if (this.IsHidden())
+        if (IsHidden())
             return;
 
-        float perc = this.Value switch
+        float perc = Value switch
         {
-            int => ((int)(object)this.Value - (int)(object)this.Minimum) / (float)((int)(object)this.Maximum - (int)(object)this.Minimum),
-            float => ((float)(object)this.Value - (float)(object)this.Minimum) / ((float)(object)this.Maximum - (float)(object)this.Minimum),
+            int => ((int)(object)Value - (int)(object)Minimum) / (float)((int)(object)Maximum - (int)(object)Minimum),
+            float => ((float)(object)Value - (float)(object)Minimum) / ((float)(object)Maximum - (float)(object)Minimum),
             _ => 0
         };
 
-        Rectangle back = new Rectangle((int)this.Position.X, (int)this.Position.Y, this.Width, this.Height);
-        Rectangle front = new Rectangle((int)(this.Position.X + perc * (this.Width - 40)), (int)this.Position.Y, 40, this.Height);
+        Rectangle back = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+        Rectangle front = new Rectangle((int)(Position.X + perc * (Width - 40)), (int)Position.Y, 40, Height);
 
         IClickableMenu.drawTextureBox(b, Game1.mouseCursors, new Rectangle(403, 383, 6, 6), back.X, back.Y, back.Width, back.Height, Color.White, Game1.pixelZoom, false);
         b.Draw(Game1.mouseCursors, new Vector2(front.X, front.Y), new Rectangle(420, 441, 10, 6), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.9f);

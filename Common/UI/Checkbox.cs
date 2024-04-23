@@ -19,10 +19,10 @@ public class Checkbox : Element, ISingleTexture
     public bool Checked { get; set; } = true;
 
     /// <inheritdoc />
-    public override int Width => this.CheckedTextureRect.Width * 4;
+    public override int Width => CheckedTextureRect.Width * 4;
 
     /// <inheritdoc />
-    public override int Height => this.CheckedTextureRect.Height * 4;
+    public override int Height => CheckedTextureRect.Height * 4;
 
     /// <inheritdoc />
     public override string ClickedSound => "drumkit6";
@@ -33,9 +33,9 @@ public class Checkbox : Element, ISingleTexture
      *********/
     public Checkbox()
     {
-        this.Texture = Game1.mouseCursors;
-        this.CheckedTextureRect = OptionsCheckbox.sourceRectChecked;
-        this.UncheckedTextureRect = OptionsCheckbox.sourceRectUnchecked;
+        Texture = Game1.mouseCursors;
+        CheckedTextureRect = OptionsCheckbox.sourceRectChecked;
+        UncheckedTextureRect = OptionsCheckbox.sourceRectUnchecked;
     }
 
     /// <inheritdoc />
@@ -43,20 +43,20 @@ public class Checkbox : Element, ISingleTexture
     {
         base.Update(isOffScreen);
 
-        if (this.Clicked && this.Callback != null)
+        if (Clicked && Callback != null)
         {
-            this.Checked = !this.Checked;
-            this.Callback.Invoke(this);
+            Checked = !Checked;
+            Callback.Invoke(this);
         }
     }
 
     /// <inheritdoc />
     public override void Draw(SpriteBatch b)
     {
-        if (this.IsHidden())
+        if (IsHidden())
             return;
 
-        b.Draw(this.Texture, this.Position, this.Checked ? this.CheckedTextureRect : this.UncheckedTextureRect, Color.White, 0, Vector2.Zero, 4, SpriteEffects.None, 0);
+        b.Draw(Texture, Position, Checked ? CheckedTextureRect : UncheckedTextureRect, Color.White, 0, Vector2.Zero, 4, SpriteEffects.None, 0);
         Game1.activeClickableMenu?.drawMouse(b);
     }
 }

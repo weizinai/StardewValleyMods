@@ -22,14 +22,14 @@ public class Textbox : Element, IKeyboardSubscriber
 
     public bool Selected
     {
-        get => this.SelectedImpl;
+        get => SelectedImpl;
         set
         {
-            if (this.SelectedImpl == value)
+            if (SelectedImpl == value)
                 return;
 
-            this.SelectedImpl = value;
-            if (this.SelectedImpl)
+            SelectedImpl = value;
+            if (SelectedImpl)
                 Game1.keyboardDispatcher.Subscriber = this;
             else
             {
@@ -53,8 +53,8 @@ public class Textbox : Element, IKeyboardSubscriber
      *********/
     public Textbox()
     {
-        this.Tex = Game1.content.Load<Texture2D>("LooseSprites\\textBox");
-        this.Font = Game1.smallFont;
+        Tex = Game1.content.Load<Texture2D>("LooseSprites\\textBox");
+        Font = Game1.smallFont;
     }
 
     /// <inheritdoc />
@@ -62,35 +62,35 @@ public class Textbox : Element, IKeyboardSubscriber
     {
         base.Update(isOffScreen);
 
-        if (this.ClickGestured && this.Callback != null)
+        if (ClickGestured && Callback != null)
         {
-            this.Selected = this.Hover;
+            Selected = Hover;
         }
     }
 
     /// <inheritdoc />
     public override void Draw(SpriteBatch b)
     {
-        if (this.IsHidden())
+        if (IsHidden())
             return;
 
-        b.Draw(this.Tex, this.Position, Color.White);
+        b.Draw(Tex, Position, Color.White);
 
         // Copied from game code - caret
-        string text = this.String;
+        string text = String;
         Vector2 vector2;
-        for (vector2 = this.Font.MeasureString(text); vector2.X > 192f; vector2 = this.Font.MeasureString(text))
+        for (vector2 = Font.MeasureString(text); vector2.X > 192f; vector2 = Font.MeasureString(text))
             text = text.Substring(1);
-        if (DateTime.UtcNow.Millisecond % 1000 >= 500 && this.Selected)
-            b.Draw(Game1.staminaRect, new Rectangle((int)this.Position.X + 16 + (int)vector2.X + 2, (int)this.Position.Y + 8, 4, 32), Game1.textColor);
+        if (DateTime.UtcNow.Millisecond % 1000 >= 500 && Selected)
+            b.Draw(Game1.staminaRect, new Rectangle((int)Position.X + 16 + (int)vector2.X + 2, (int)Position.Y + 8, 4, 32), Game1.textColor);
 
-        b.DrawString(this.Font, text, this.Position + new Vector2(16, 12), Game1.textColor);
+        b.DrawString(Font, text, Position + new Vector2(16, 12), Game1.textColor);
     }
 
     /// <inheritdoc />
     public void RecieveTextInput(char inputChar)
     {
-        this.ReceiveInput(inputChar.ToString());
+        ReceiveInput(inputChar.ToString());
 
         // Copied from game code
         switch (inputChar)
@@ -121,17 +121,17 @@ public class Textbox : Element, IKeyboardSubscriber
     /// <inheritdoc />
     public void RecieveTextInput(string text)
     {
-        this.ReceiveInput(text);
+        ReceiveInput(text);
     }
 
     /// <inheritdoc />
     public void RecieveCommandInput(char command)
     {
-        if (command == '\b' && this.String.Length > 0)
+        if (command == '\b' && String.Length > 0)
         {
             Game1.playSound("tinyWhip");
-            this.String = this.String.Substring(0, this.String.Length - 1);
-            this.Callback?.Invoke(this);
+            String = String.Substring(0, String.Length - 1);
+            Callback?.Invoke(this);
         }
     }
 
@@ -146,7 +146,7 @@ public class Textbox : Element, IKeyboardSubscriber
      *********/
     protected virtual void ReceiveInput(string str)
     {
-        this.String += str;
-        this.Callback?.Invoke(this);
+        String += str;
+        Callback?.Invoke(this);
     }
 }

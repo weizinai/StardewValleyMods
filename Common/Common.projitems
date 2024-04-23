@@ -9,12 +9,31 @@
     <Import_RootNamespace>Common</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CommonHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration\IGenericModConfigMenuAPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration\RSVIntegration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patch\BasePatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patch\HarmonyPatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patch\IPatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Checkbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Container.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Dropdown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\FloatBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Intbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ISingleTexture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ItemSlot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ItemWithBorder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Label.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\RootElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Scrollbar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Slider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\StaticContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Table.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Textbox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ModDll\" />

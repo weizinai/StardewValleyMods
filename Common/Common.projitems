@@ -34,9 +34,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\StaticContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Table.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Textbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\ImageWithBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ModDll\" />
-    <Folder Include="$(MSBuildThisFileDirectory)UI\" />
   </ItemGroup>
 </Project>

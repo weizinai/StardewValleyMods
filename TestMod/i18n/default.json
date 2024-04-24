@@ -3,9 +3,4 @@
     "Config.MineShaftMap.ToolTip":"该选项需要重启游戏才能生效.",
     "Config.VolcanoDungeonMap.Name":"火山地图",
     "Config.VolcanoDungeonMap.ToolTip":"该选项可及时生效.",
-    "Config.ShowMineShaftInfo.Name": "显示矿井信息",
-    "Config.ShowLadderInfo.Name": "显示梯子信息",
-    "Config.ShowShaftInfo.Name": "显示竖井信息",
-    "Config.ShowMonsterInfo.Name": "显示怪物信息",
-    "Config.ShowMineralInfo.Name": "显示矿物信息",
 }

@@ -16,7 +16,7 @@ public abstract class Container : Element
         }
     }
 
-    public void RemoveChild(Element element)
+    private void RemoveChild(Element element)
     {
         if (element.Parent != this) throw new ArgumentException("Element must be a child of this container.");
         Children.Remove(element);

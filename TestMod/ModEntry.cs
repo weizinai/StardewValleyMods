@@ -15,10 +15,11 @@ public class ModEntry : Mod
     {
         // 初始化
         config = helper.ReadConfig<ModConfig>();
+        I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this,new MineShaftPatcher(config), new VolcanoDungeonPatcher(config));
+        HarmonyPatcher.Patch(this, new MineShaftPatcher(config), new VolcanoDungeonPatcher(config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -37,8 +38,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.MineShaftMap,
             value => config.MineShaftMap = value,
-            () => "矿井新地图",
-            null,
+            I18n.Config_MineShaftMap_Name,
+            I18n.Config_MineShaftMap_ToolTip,
             40,
             60
         );
@@ -47,8 +48,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.VolcanoDungeonMap,
             value => config.VolcanoDungeonMap = value,
-            () => "火山新地图",
-            null,
+            I18n.Config_VolcanoDungeonMap_Name,
+            I18n.Config_VolcanoDungeonMap_ToolTip,
             38,
             57
         );

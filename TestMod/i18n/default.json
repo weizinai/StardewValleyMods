@@ -1,3 +1,6 @@
 {
-
+    "Config.MineShaftMap.Name":"矿井地图",
+    "Config.MineShaftMap.ToolTip":"该选项需要重启游戏才能生效.",
+    "Config.VolcanoDungeonMap.Name":"火山地图",
+    "Config.VolcanoDungeonMap.ToolTip":"该选项可及时生效.",
 }

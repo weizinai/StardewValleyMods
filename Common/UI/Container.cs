@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Common.UI;
@@ -7,25 +6,23 @@ public abstract class Container : Element
 {
     public List<Element> Children = new();
 
-    public Container(params Element[] children)
+    public void AddChild(params Element[] elements)
     {
-        foreach (var element in children) AddChild(element);
+        foreach (var element in elements)
+        {
+            element.Parent?.RemoveChild(element);
+            Children.Add(element);
+            element.Parent = this;
+        }
     }
 
-    public void AddChild(Element element)
-    {
-        element.Parent?.RemoveChild(element);
-        Children.Add(element);
-        element.Parent = this;
-    }
-    
     public void RemoveChild(Element element)
     {
         if (element.Parent != this) throw new ArgumentException("Element must be a child of this container.");
         Children.Remove(element);
         element.Parent = null;
     }
-    
+
     public override void Update()
     {
         base.Update();

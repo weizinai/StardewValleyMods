@@ -14,6 +14,7 @@ public abstract class Element
     public Container? Parent;
 
     public bool Hover;
+    public Action<SpriteBatch>? OnHover;
 
     public Func<bool>? CheckHidden = null;
 
@@ -31,6 +32,12 @@ public abstract class Element
     }
 
     public abstract void Draw(SpriteBatch spriteBatch);
+
+    public void PerformHoverAction(SpriteBatch spriteBatch)
+    {
+        if (IsHidden()) return;
+        OnHover?.Invoke(spriteBatch);
+    }
 
     public bool IsHidden()
     {

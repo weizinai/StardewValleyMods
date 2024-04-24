@@ -38,6 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\Element.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\ImageWithBackground.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\RootElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ModDll\" />

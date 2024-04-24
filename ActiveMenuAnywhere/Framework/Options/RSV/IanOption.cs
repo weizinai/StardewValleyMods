@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Common;
+using Common.Integration;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 

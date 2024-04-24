@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Common;
+namespace Common.Integration;
 
 public class RSVIntegration
 {

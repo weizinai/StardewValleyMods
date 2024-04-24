@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.Integration;
 using Common.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;

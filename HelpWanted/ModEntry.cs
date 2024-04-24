@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.Integration;
 using Common.Patch;
 using HelpWanted.Framework;
 using HelpWanted.Patches;

@@ -1,5 +1,5 @@
 ﻿using ActiveMenuAnywhere.Framework;
-using Common;
+using Common.Integration;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;

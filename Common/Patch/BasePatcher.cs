@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using HarmonyLib;
-using StardewModdingAPI;
 
 namespace Common.Patch;
 

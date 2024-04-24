@@ -1,7 +1,7 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace Common;
+namespace Common.Integration;
 
 public interface IGenericModConfigMenuAPI
 {

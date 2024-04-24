@@ -1,6 +1,5 @@
 ﻿using LazyMod.Framework.Info;
 using Microsoft.Xna.Framework.Graphics;
-using StardewValley;
 
 namespace LazyMod.Framework;
 

@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.Integration;
 using LazyMod.Framework;
 using LazyMod.Framework.Automation;
 using StardewModdingAPI;

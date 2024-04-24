@@ -6,7 +6,8 @@ namespace Common.UI;
 
 public abstract class Element
 {
-    public abstract Vector2 Position { get; set; }
+    public abstract Vector2 LocalPosition { get; set; }
+    public Vector2 Position => LocalPosition + (Parent?.Position ?? Vector2.Zero);
     public abstract int Width { get; }
     public abstract int Height { get; }
     private Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
@@ -14,7 +15,7 @@ public abstract class Element
     public Container? Parent;
 
     public bool Hover;
-    public Action<SpriteBatch>? OnHover;
+    public Action<SpriteBatch>? OnHover = null;
 
     public Func<bool>? CheckHidden = null;
 

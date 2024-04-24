@@ -7,30 +7,40 @@ namespace Common.UI;
 public class Image : Element
 {
     private readonly Texture2D texture;
-    public Rectangle DestinationRectangle;
+
+    public Rectangle LocalDestinationRectangle;
+
+    public Rectangle DestinationRectangle
+    {
+        get
+        {
+            var location = LocalDestinationRectangle.Location.ToVector2() + (Parent?.Position ?? Vector2.Zero);
+            return new Rectangle(location.ToPoint(), LocalDestinationRectangle.Size);
+        }
+    }
     private readonly Rectangle sourceRectangle;
     private readonly Color color;
 
-    public override Vector2 Position
+    public override Vector2 LocalPosition
     {
-        get => DestinationRectangle.Location.ToVector2();
-        set => DestinationRectangle.Location = value.ToPoint();
+        get => LocalDestinationRectangle.Location.ToVector2();
+        set => LocalDestinationRectangle.Location = value.ToPoint();
     }
 
-    public override int Width => DestinationRectangle.Width;
-    public override int Height => DestinationRectangle.Height;
+    public override int Width => LocalDestinationRectangle.Width;
+    public override int Height => LocalDestinationRectangle.Height;
 
     private readonly bool isBackground;
 
-    public Image(Texture2D texture, Rectangle destinationRectangle, Rectangle sourceRectangle, bool isBackground = false) :
-        this(texture, destinationRectangle, sourceRectangle, Color.White, isBackground)
+    public Image(Texture2D texture, Rectangle localDestinationRectangle, Rectangle sourceRectangle, bool isBackground = false) :
+        this(texture, localDestinationRectangle, sourceRectangle, Color.White, isBackground)
     {
     }
 
-    public Image(Texture2D texture, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, bool isBackground = false)
+    public Image(Texture2D texture, Rectangle localDestinationRectangle, Rectangle sourceRectangle, Color color, bool isBackground = false)
     {
         this.texture = texture;
-        DestinationRectangle = destinationRectangle;
+        LocalDestinationRectangle = localDestinationRectangle;
         this.sourceRectangle = sourceRectangle;
         this.color = color;
         this.isBackground = isBackground;

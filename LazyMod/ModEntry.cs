@@ -1,6 +1,7 @@
 ﻿using Common.Integration;
 using LazyMod.Framework;
 using LazyMod.Framework.Automation;
+using LazyMod.Framework.Hud;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
@@ -9,8 +10,8 @@ namespace LazyMod;
 public class ModEntry : Mod
 {
     private ModConfig config = new();
-    private AutomationManger? automationManger;
-    private InfoManager? infoManager;
+    private AutomationManger automationManger = null!;
+    private MiningHud miningHud = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -20,7 +21,7 @@ public class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         automationManger = new AutomationManger(config);
-        infoManager = new InfoManager(config);
+        miningHud = new MiningHud(config);
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
@@ -32,24 +33,26 @@ public class ModEntry : Mod
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
-        infoManager?.Draw(e.SpriteBatch);
+        // infoManager?.Draw(e.SpriteBatch);
+        miningHud.Draw(e.SpriteBatch);
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        automationManger?.OnDayStarted();
+        automationManger.OnDayStarted();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!Context.IsPlayerFree) return;
 
-        automationManger?.Update();
+        automationManger.Update();
+        miningHud.Update();
     }
 
     private void OnDayEnded(object? sender, DayEndingEventArgs e)
     {
-        automationManger?.OnDayEnded();
+        automationManger.OnDayEnded();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

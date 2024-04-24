@@ -2,6 +2,6 @@
 
 public class ModConfig
 {
-    public int MapNumberToLoad { get; set; } = 40;
-    public int LayoutIndex { get; set; } = 46;
+    public int MineShaftMap { get; set; } = 40;
+    public int VolcanoDungeonMap { get; set; } = 46;
 }

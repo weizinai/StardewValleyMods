@@ -1,31 +1,24 @@
 ﻿using Common;
-using HarmonyLib;
+using Common.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley.Locations;
 using TestMod.Framework;
+using TestMod.Patches;
 
 namespace TestMod;
 
 public class ModEntry : Mod
 {
-    public static ModConfig Config = new();
+    private ModConfig config = null!;
 
     public override void Entry(IModHelper helper)
     {
-        Config = helper.ReadConfig<ModConfig>();
-
+        // 初始化
+        config = helper.ReadConfig<ModConfig>();
+        // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-
-        var harmony = new Harmony("weizinai.TestMod");
-        harmony.Patch(
-            AccessTools.Method(typeof(MineShaft), nameof(MineShaft.loadLevel), new[] { typeof(int) }),
-            transpiler: new HarmonyMethod(typeof(MineShaftPatch), nameof(MineShaftPatch.LoadLevelTranspiler))
-        );
-        harmony.Patch(
-            AccessTools.Method(typeof(VolcanoDungeon), nameof(VolcanoDungeon.GenerateLevel), new[] { typeof(bool) }),
-            prefix: new HarmonyMethod(typeof(VolcanoDungeonPatch), nameof(VolcanoDungeonPatch.GenerateLevelPrefix))
-        );
+        // 注册Harmony补丁
+        HarmonyPatcher.Patch(this,new MineShaftPatcher(config), new VolcanoDungeonPatcher(config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -36,14 +29,14 @@ public class ModEntry : Mod
 
         configMenu.Register(
             ModManifest,
-            () => Config = new ModConfig(),
-            () => Helper.WriteConfig(Config)
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
         );
 
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.MapNumberToLoad,
-            value => Config.MapNumberToLoad = value,
+            () => config.MineShaftMap,
+            value => config.MineShaftMap = value,
             () => "矿井新地图",
             null,
             40,
@@ -52,8 +45,8 @@ public class ModEntry : Mod
 
         configMenu.AddNumberOption(
             ModManifest,
-            () => Config.LayoutIndex,
-            value => Config.LayoutIndex = value,
+            () => config.VolcanoDungeonMap,
+            value => config.VolcanoDungeonMap = value,
             () => "火山新地图",
             null,
             38,

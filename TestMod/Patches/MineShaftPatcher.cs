@@ -1,13 +1,28 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Reflection.Emit;
+using Common.Patch;
 using HarmonyLib;
 using StardewValley;
+using StardewValley.Locations;
+using TestMod.Framework;
 
-namespace TestMod.Framework;
+namespace TestMod.Patches;
 
-public class MineShaftPatch
+public class MineShaftPatcher : BasePatcher
 {
-    public static IEnumerable<CodeInstruction> LoadLevelTranspiler(IEnumerable<CodeInstruction> instructions)
+    private static ModConfig config = null!;
+
+    public MineShaftPatcher(ModConfig config)
+    {
+        MineShaftPatcher.config = config;
+    }
+
+    public override void Patch(Harmony harmony)
+    {
+        harmony.Patch(RequireMethod<MineShaft>(nameof(MineShaft.loadLevel)), transpiler: GetHarmonyMethod(nameof(LoadLevelTranspiler)));
+    }
+    
+    private static IEnumerable<CodeInstruction> LoadLevelTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
 
@@ -34,7 +49,7 @@ public class MineShaftPatch
             {
                 if (codes[i].opcode == OpCodes.Stloc_1)
                 {
-                    codes.Insert(i - 3, new CodeInstruction(OpCodes.Ldc_I4, ModEntry.Config.MapNumberToLoad));
+                    codes.Insert(i - 3, new CodeInstruction(OpCodes.Ldc_I4, config.MineShaftMap));
                     codes.Insert(i - 2, new CodeInstruction(OpCodes.Stloc_0));
                     break;
                 }

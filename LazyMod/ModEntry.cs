@@ -33,7 +33,6 @@ public class ModEntry : Mod
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
-        // infoManager?.Draw(e.SpriteBatch);
         miningHud.Draw(e.SpriteBatch);
     }
 

@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public abstract class Container : Element
 {

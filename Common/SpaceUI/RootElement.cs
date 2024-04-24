@@ -1,6 +1,6 @@
 using StardewValley;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class RootElement : Container
 {

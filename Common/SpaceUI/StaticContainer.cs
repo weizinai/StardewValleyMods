@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Menus;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class StaticContainer : Container
 {

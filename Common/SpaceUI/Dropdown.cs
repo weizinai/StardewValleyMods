@@ -5,7 +5,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class Dropdown : Element, ISingleTexture
 {

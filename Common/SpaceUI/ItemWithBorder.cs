@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace Common.UI
+namespace Common.SpaceUI
 {
     public class ItemWithBorder : Element
     {

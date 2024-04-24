@@ -16,26 +16,27 @@
     <Compile Include="$(MSBuildThisFileDirectory)Patch\BasePatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patch\HarmonyPatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Patch\IPatcher.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Checkbox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Container.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Dropdown.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Element.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\FloatBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Intbox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\ISingleTexture.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\ItemSlot.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\ItemWithBorder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Label.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\RootElement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Scrollbar.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Slider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\StaticContainer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Table.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Textbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Checkbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Container.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Dropdown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\FloatBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Intbox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\ISingleTexture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\ItemSlot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\ItemWithBorder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Label.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\RootElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Scrollbar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Slider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\StaticContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Table.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Textbox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ModDll\" />
+    <Folder Include="$(MSBuildThisFileDirectory)UI\" />
   </ItemGroup>
 </Project>

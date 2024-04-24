@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StardewValley;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class Textbox : Element, IKeyboardSubscriber
 {

@@ -1,17 +1,17 @@
-namespace Common.UI;
+namespace Common.SpaceUI;
 
-public class Intbox : Textbox
+public class Floatbox : Textbox
 {
     /*********
      ** Accessors
      *********/
-    public int Value
+    public float Value
     {
-        get => int.TryParse(String, out int value) ? value : 0;
+        get => float.TryParse(String, out float value) ? value : 0f;
         set => String = value.ToString();
     }
 
-    public bool IsValid => int.TryParse(String, out _);
+    public bool IsValid => float.TryParse(String, out _);
 
 
     /*********
@@ -20,17 +20,19 @@ public class Intbox : Textbox
     /// <inheritdoc />
     protected override void ReceiveInput(string str)
     {
+        bool hasDot = String.Contains('.');
         bool valid = true;
         for (int i = 0; i < str.Length; ++i)
         {
             char c = str[i];
-            if (!char.IsDigit(c) && !(c == '-' && String == "" && i == 0))
+            if (!char.IsDigit(c) && !(c == '.' && !hasDot) && !(c == '-' && String == "" && i == 0))
             {
                 valid = false;
                 break;
             }
+            if (c == '.')
+                hasDot = true;
         }
-
         if (!valid)
             return;
 

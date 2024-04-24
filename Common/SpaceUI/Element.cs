@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using StardewModdingAPI;
 using StardewValley;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public abstract class Element
 {

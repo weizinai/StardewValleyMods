@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class Button : Element, ISingleTexture
 {

@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class Image : Element, ISingleTexture
 {

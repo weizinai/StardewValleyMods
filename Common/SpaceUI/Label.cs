@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class Label : Element
 {

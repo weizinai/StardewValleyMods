@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace Common.UI;
+namespace Common.SpaceUI;
 
 public class ItemSlot : ItemWithBorder
 {

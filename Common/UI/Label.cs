@@ -23,7 +23,7 @@ public class Label : Element
 
     public string String { get; set; }
 
-    public Action<Element> Callback { get; set; }
+    public Action<Element>? Callback { get; set; }
 
     /// <inheritdoc />
     public override int Width => (int)Measure().X;
@@ -32,7 +32,7 @@ public class Label : Element
     public override int Height => (int)Measure().Y;
 
     /// <inheritdoc />
-    public override string HoveredSound => Callback != null ? "shiny4" : null;
+    public override string? HoveredSound => Callback != null ? "shiny4" : null;
 
 
     /*********
@@ -80,7 +80,7 @@ public class Label : Element
     /// <param name="bold">Whether the font is bold.</param>
     /// <param name="scale">The scale to apply to the size.</param>
     /// <param name="font">The font to measure. Defaults to <see cref="Game1.dialogueFont"/> if <c>null</c>.</param>
-    public static Vector2 MeasureString(string text, bool bold = false, float scale = 1f, SpriteFont font = null)
+    public static Vector2 MeasureString(string text, bool bold = false, float scale = 1f, SpriteFont? font = null)
     {
         if (bold)
             return new Vector2(SpriteText.getWidthOfString(text) * scale, SpriteText.getHeightOfString(text) * scale);

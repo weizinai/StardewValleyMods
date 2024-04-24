@@ -7,7 +7,7 @@ namespace Common.UI;
 
 public class ItemSlot : ItemWithBorder
 {
-    public Item Item { get; set; }
+    public Item? Item { get; set; }
 
     public override void Draw( SpriteBatch b )
     {

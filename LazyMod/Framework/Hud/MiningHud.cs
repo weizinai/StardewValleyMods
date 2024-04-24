@@ -85,8 +85,7 @@ public class MiningHud
         if (Game1.player.currentLocation is not MineShaft) return;
 
         var i = 0;
-        foreach (var element in hud.Children.Where(element => !element.IsHidden())) 
-            (element as ImageWithBackground)!.LocalDestinationRectangle = GetDestinationRectangle(i++);
+        foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetDestinationRectangle(i++).Location.ToVector2();
 
         hud.Update();
     }

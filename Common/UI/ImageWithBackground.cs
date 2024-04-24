@@ -7,28 +7,22 @@ namespace Common.UI;
 public class ImageWithBackground : Container
 {
     private const int ContentPadding = 16;
-    // private readonly Image background;
-    // private readonly Image content;
 
-    public Rectangle LocalDestinationRectangle;
+    private Rectangle localDestinationRectangle;
 
     private Rectangle DestinationRectangle
     {
         get
         {
-            var location = LocalDestinationRectangle.Location.ToVector2() + (Parent?.Position ?? Vector2.Zero);
-            return new Rectangle(location.ToPoint(), LocalDestinationRectangle.Size);
+            var location = localDestinationRectangle.Location.ToVector2() + (Parent?.Position ?? Vector2.Zero);
+            return new Rectangle(location.ToPoint(), localDestinationRectangle.Size);
         }
     }
 
     public override Vector2 LocalPosition
     {
-        get => LocalDestinationRectangle.Location.ToVector2();
-        set
-        {
-            LocalDestinationRectangle.Location = value.ToPoint();
-            (Children[1] as Image)!.LocalDestinationRectangle = GetContentRectangle();
-        }
+        get => localDestinationRectangle.Location.ToVector2();
+        set => localDestinationRectangle.Location = value.ToPoint();
     }
 
     public override int Width => DestinationRectangle.Width;
@@ -43,14 +37,14 @@ public class ImageWithBackground : Container
     private ImageWithBackground(Texture2D background, Rectangle backgroundRectangle, Color backgroundColor,
         Texture2D content, Rectangle contentRectangle, Color contentColor, Rectangle localDestinationRectangle)
     {
-        LocalDestinationRectangle = localDestinationRectangle;
-        AddChild(new Image(background, Rectangle.Empty, backgroundRectangle, backgroundColor, true),
+        this.localDestinationRectangle = localDestinationRectangle;
+        AddChild(new Image(background, new Rectangle(0,0,64,64), backgroundRectangle, backgroundColor, true),
             new Image(content, GetContentRectangle(), contentRectangle, contentColor));
     }
 
     private Rectangle GetContentRectangle()
     {
         return new Rectangle(ContentPadding, ContentPadding, 
-            LocalDestinationRectangle.Width - ContentPadding * 2, LocalDestinationRectangle.Height - ContentPadding * 2);
+            localDestinationRectangle.Width - ContentPadding * 2, localDestinationRectangle.Height - ContentPadding * 2);
     }
 }

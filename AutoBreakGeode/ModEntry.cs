@@ -10,12 +10,16 @@ namespace AutoBreakGeode;
 public class ModEntry : Mod
 {
     private bool autoBreakGeode;
+    private bool hasFastAnimation;
     private ModConfig config = new();
 
     public override void Entry(IModHelper helper)
     {
-        I18n.Init(helper.Translation);
+        // 初始化
+        hasFastAnimation = helper.ModRegistry.IsLoaded("Pathoschild.FastAnimations");
         config = helper.ReadConfig<ModConfig>();
+        I18n.Init(helper.Translation);
+        // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
@@ -25,24 +29,33 @@ public class ModEntry : Mod
     {
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
 
-        configMenu?.Register(
+        if (configMenu is null) return;
+
+        configMenu.Register(
             ModManifest,
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
         );
-
-        configMenu?.AddKeybindList(
+        configMenu.AddKeybindList(
             ModManifest,
             () => config.AutoBreakGeodeKey,
             value => { config.AutoBreakGeodeKey = value; },
-            I18n.Config_AutoBreakGeodeKey
+            I18n.Config_AutoBreakGeodeKey_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.BreakGeodeSpeed,
+            value => config.BreakGeodeSpeed = value,
+            I18n.Config_BreakGeodeSpeed_Name,
+            null,
+            1,
+            20
         );
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (config.AutoBreakGeodeKey.JustPressed())
-            autoBreakGeode = autoBreakGeode == false;
+        if (config.AutoBreakGeodeKey.JustPressed()) autoBreakGeode = autoBreakGeode == false;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -51,11 +64,18 @@ public class ModEntry : Mod
         {
             if (Utility.IsGeode(geodeMenu.heldItem))
             {
-                var x = geodeMenu.geodeSpot.bounds.Center.X;
-                var y = geodeMenu.geodeSpot.bounds.Center.Y;
-                geodeMenu.receiveLeftClick(x, y);
-                if (Game1.player.freeSpotsInInventory() == 1)
-                    autoBreakGeode = false;
+                if (geodeMenu.geodeAnimationTimer <= 0)
+                {
+                    var x = geodeMenu.geodeSpot.bounds.Center.X;
+                    var y = geodeMenu.geodeSpot.bounds.Center.Y;
+                    geodeMenu.receiveLeftClick(x, y);
+                }
+                else
+                {
+                    if (!hasFastAnimation) for (var i = 0; i < config.BreakGeodeSpeed - 1; i++) geodeMenu.update(Game1.currentGameTime);
+                }
+
+                if (Game1.player.freeSpotsInInventory() == 1) autoBreakGeode = false;
             }
             else
             {

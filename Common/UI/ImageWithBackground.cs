@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Common.UI;
 
-public class ImageWithBackground : Element
+public class ImageWithBackground : Container
 {
     private const int ContentPadding = 16;
     private readonly Image background;
@@ -28,14 +28,8 @@ public class ImageWithBackground : Element
     {
         this.background = background;
         content = new Image(texture, GetContentRectangle(), sourceRectangle, color);
-    }
-
-    public override void Draw(SpriteBatch spriteBatch)
-    {
-        if (IsHidden()) return;
-        
-        background.Draw(spriteBatch);
-        content.Draw(spriteBatch);
+        AddChild(background);
+        AddChild(content);
     }
 
     private Rectangle GetContentRectangle()

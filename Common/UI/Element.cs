@@ -10,6 +10,8 @@ public abstract class Element
     public abstract int Width { get; }
     public abstract int Height { get; }
     private Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
+    
+    public Container? Parent;
 
     public bool Hover;
 

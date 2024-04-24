@@ -82,7 +82,7 @@ public class MiningHud
 
     public void Update()
     {
-        if (Game1.player.currentLocation is not MineShaft) return;
+        if (Game1.player.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         var i = 0;
         foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetDestinationRectangle(i++).Location.ToVector2();
@@ -92,7 +92,7 @@ public class MiningHud
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        if (Game1.player.currentLocation is not MineShaft) return;
+        if (Game1.player.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         hud.Draw(spriteBatch);
 
@@ -108,14 +108,12 @@ public class MiningHud
     private bool GetBuildingLayerInfo(int targetIndex)
     {
         var location = Game1.currentLocation;
-        if (location is not MineShaft mineShaft) return false;
-
-        var buildingLayer = mineShaft.Map.GetLayer("Buildings");
+        var buildingLayer = location.Map.GetLayer("Buildings");
         for (var i = 0; i < buildingLayer.LayerWidth; i++)
         {
             for (var j = 0; j < buildingLayer.LayerHeight; j++)
             {
-                var index = mineShaft.getTileIndexAt(i, j, "Buildings");
+                var index = location.getTileIndexAt(i, j, "Buildings");
                 if (index == targetIndex) return true;
             }
         }
@@ -126,9 +124,7 @@ public class MiningHud
     private List<Monster> GetMonsters()
     {
         var location = Game1.currentLocation;
-        if (location is not MineShaft mineShaft) return new List<Monster>();
-
-        var monsters = mineShaft.characters.OfType<Monster>().ToList();
+        var monsters = location.characters.OfType<Monster>().ToList();
         return monsters;
     }
 
@@ -157,8 +153,7 @@ public class MiningHud
     private List<SObject> GetMinerals()
     {
         var location = Game1.currentLocation;
-        if (location is not MineShaft mineShaft) return new List<SObject>();
-        var minerals = mineShaft.Objects.Values.ToList();
+        var minerals = location.Objects.Values.ToList();
         return minerals;
     }
 

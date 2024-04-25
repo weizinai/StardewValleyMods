@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoBreakGeode", "AutoBreak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveMenuAnywhere", "ActiveMenuAnywhere\ActiveMenuAnywhere.csproj", "{A4C72ECE-3522-42F4-8AE6-EA127925C7E4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{B2D8A004-2E36-47B7-A8B7-917364A7F3B4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpWanted", "HelpWanted\HelpWanted.csproj", "{F0004274-C0F5-4822-BCD7-64C6BE2263C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyMod", "LazyMod\LazyMod.csproj", "{15AF734C-1C6D-49AF-A165-52600DD55E7E}"
@@ -13,6 +11,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{0A7D712B-0123-4C7E-BA15-9738A05247E4}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common.Patch", "Common.Patch\Common.Patch.shproj", "{D083D44E-25FA-48D4-B64F-B033461EAF28}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{56D39247-83B2-4ABF-8873-1E51B84F6472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

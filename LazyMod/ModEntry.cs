@@ -1,4 +1,4 @@
-﻿using Common.Integration;
+﻿using Common.Integrations;
 using LazyMod.Framework;
 using LazyMod.Framework.Automation;
 using LazyMod.Framework.Hud;

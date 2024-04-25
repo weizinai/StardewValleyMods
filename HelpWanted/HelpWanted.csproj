@@ -20,8 +20,8 @@
       <AdditionalFiles Remove="i18n\default.json" />
     </ItemGroup>
 
-    <Import Project="..\Common\Common.projitems" Label="Shared" />
-
     <Import Project="..\Common.Patch\Common.Patch.projitems" Label="Shared" />
+
+    <Import Project="..\Common\Common.projitems" Label="Shared" />
 
 </Project>

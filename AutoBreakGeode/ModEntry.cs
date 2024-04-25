@@ -1,5 +1,5 @@
 ﻿using AutoBreakGeode.Framework;
-using Common.Integration;
+using Common.Integrations;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;

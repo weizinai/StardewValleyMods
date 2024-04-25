@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace Common.UI;
 
-public class ImageWithBackground : Container
+public class ImageButton : Container
 {
     private const int ContentPadding = 16;
 
@@ -28,13 +28,13 @@ public class ImageWithBackground : Container
     public override int Width => DestinationRectangle.Width;
     public override int Height => DestinationRectangle.Height;
 
-    public ImageWithBackground(Texture2D content, Rectangle contentRectangle, Rectangle localDestinationRectangle) :
+    public ImageButton(Texture2D content, Rectangle contentRectangle, Rectangle localDestinationRectangle) :
         this(Game1.temporaryContent.Load<Texture2D>("Maps/MenuTiles"), new Rectangle(0, 256, 64, 64), Color.White,
             content, contentRectangle, Color.White, localDestinationRectangle)
     {
     }
 
-    private ImageWithBackground(Texture2D background, Rectangle backgroundRectangle, Color backgroundColor,
+    private ImageButton(Texture2D background, Rectangle backgroundRectangle, Color backgroundColor,
         Texture2D content, Rectangle contentRectangle, Color contentColor, Rectangle localDestinationRectangle)
     {
         this.localDestinationRectangle = localDestinationRectangle;

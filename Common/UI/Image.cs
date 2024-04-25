@@ -8,14 +8,14 @@ public class Image : Element
 {
     private readonly Texture2D texture;
 
-    public Rectangle LocalDestinationRectangle;
+    private Rectangle localDestinationRectangle;
 
-    public Rectangle DestinationRectangle
+    private Rectangle DestinationRectangle
     {
         get
         {
-            var location = LocalDestinationRectangle.Location.ToVector2() + (Parent?.Position ?? Vector2.Zero);
-            return new Rectangle(location.ToPoint(), LocalDestinationRectangle.Size);
+            var location = localDestinationRectangle.Location.ToVector2() + (Parent?.Position ?? Vector2.Zero);
+            return new Rectangle(location.ToPoint(), localDestinationRectangle.Size);
         }
     }
     private readonly Rectangle sourceRectangle;
@@ -23,12 +23,12 @@ public class Image : Element
 
     public override Vector2 LocalPosition
     {
-        get => LocalDestinationRectangle.Location.ToVector2();
-        set => LocalDestinationRectangle.Location = value.ToPoint();
+        get => localDestinationRectangle.Location.ToVector2();
+        set => localDestinationRectangle.Location = value.ToPoint();
     }
 
-    public override int Width => LocalDestinationRectangle.Width;
-    public override int Height => LocalDestinationRectangle.Height;
+    public override int Width => localDestinationRectangle.Width;
+    public override int Height => localDestinationRectangle.Height;
 
     private readonly bool isBackground;
 
@@ -40,7 +40,7 @@ public class Image : Element
     public Image(Texture2D texture, Rectangle localDestinationRectangle, Rectangle sourceRectangle, Color color, bool isBackground = false)
     {
         this.texture = texture;
-        LocalDestinationRectangle = localDestinationRectangle;
+        this.localDestinationRectangle = localDestinationRectangle;
         this.sourceRectangle = sourceRectangle;
         this.color = color;
         this.isBackground = isBackground;

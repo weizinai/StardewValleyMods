@@ -24,17 +24,17 @@ public class MiningHud
         hud = new RootElement();
 
         var ladderHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
-            new Rectangle(208, 160, 16, 16), GetDestinationRectangle(0))
+            new Rectangle(208, 160, 16, 16), GetPosition(0), 4f)
         {
             CheckHidden = () => !(config.ShowLadderInfo && GetBuildingLayerInfo(173))
         };
         var shaftHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
-            new Rectangle(224, 160, 16, 16), GetDestinationRectangle(1))
+            new Rectangle(224, 160, 16, 16), GetPosition(1), 4f)
         {
             CheckHidden = () => !(config.ShowShaftInfo && GetBuildingLayerInfo(174))
         };
         var monsterHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Characters/Monsters/Green Slime"), 
-            new Rectangle(2, 268, 12, 10), GetDestinationRectangle(2))
+            new Rectangle(2, 268, 12, 10), GetPosition(2), 4f)
         {
             CheckHidden = () => !(config.ShowMonsterInfo && GetMonsters().Any()),
             OnHover = spriteBatch =>
@@ -55,7 +55,7 @@ public class MiningHud
             }
         };
         var mineralHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("TileSheets/tools"), 
-            new Rectangle(193, 128, 15, 15), GetDestinationRectangle(3))
+            new Rectangle(193, 128, 15, 15), GetPosition(3))
         {
             CheckHidden = () => !(config.ShowMineralInfo && GetMinerals().Any()),
             OnHover = spriteBatch =>
@@ -80,7 +80,7 @@ public class MiningHud
         if (Game1.player.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         var i = 0;
-        foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetDestinationRectangle(i++).Location.ToVector2();
+        foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetPosition(i++);
 
         hud.Update();
         hud.ReceiveLeftClick();
@@ -94,9 +94,9 @@ public class MiningHud
         hud.PerformHoverAction(spriteBatch);
     }
 
-    private Rectangle GetDestinationRectangle(int index)
+    private Vector2 GetPosition(int index)
     {
-        return new Rectangle(0, 88 + 72 * index, 64, 64);
+        return new Vector2(0, 88 + 72 * index);
     }
 
     private bool GetBuildingLayerInfo(int targetIndex)

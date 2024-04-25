@@ -6,7 +6,6 @@ namespace Common.UI;
 
 public sealed class Text : Element
 {
-    public override Vector2 LocalPosition { get; set; }
     protected override int Width => (int)GetTextSize().X;
     protected override int Height => (int)GetTextSize().Y;
 

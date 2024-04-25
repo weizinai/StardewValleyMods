@@ -1,59 +1,36 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewValley.Menus;
 
 namespace Common.UI;
 
 public class Image : Element
 {
     private readonly Texture2D texture;
-
-    private Rectangle localDestinationRectangle;
-
-    private Rectangle DestinationRectangle
-    {
-        get
-        {
-            var location = localDestinationRectangle.Location.ToVector2() + (Parent?.Position ?? Vector2.Zero);
-            return new Rectangle(location.ToPoint(), localDestinationRectangle.Size);
-        }
-    }
     private readonly Rectangle sourceRectangle;
     private readonly Color color;
+    private readonly float scale;
 
-    public override Vector2 LocalPosition
-    {
-        get => localDestinationRectangle.Location.ToVector2();
-        set => localDestinationRectangle.Location = value.ToPoint();
-    }
+    protected override int Width => (int)GetImageSize().X;
+    protected override int Height => (int)GetImageSize().Y;
 
-    protected override int Width => localDestinationRectangle.Width;
-    protected override int Height => localDestinationRectangle.Height;
-
-    private readonly bool isBackground;
-
-    public Image(Texture2D texture, Rectangle localDestinationRectangle, Rectangle sourceRectangle, bool isBackground = false) :
-        this(texture, localDestinationRectangle, sourceRectangle, Color.White, isBackground)
-    {
-    }
-
-    public Image(Texture2D texture, Rectangle localDestinationRectangle, Rectangle sourceRectangle, Color color, bool isBackground = false)
+    public Image(Texture2D texture, Vector2 localPosition, Rectangle sourceRectangle, Color? color = null, float scale = 1f)
     {
         this.texture = texture;
-        this.localDestinationRectangle = localDestinationRectangle;
+        LocalPosition = localPosition;
         this.sourceRectangle = sourceRectangle;
-        this.color = color;
-        this.isBackground = isBackground;
+        this.color = color ?? Color.White;
+        this.scale = scale;
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
+        
+        spriteBatch.Draw(texture, Position, sourceRectangle, color, 0, Vector2.Zero, scale, SpriteEffects.None, -1);
+    }
 
-        if (isBackground)
-            IClickableMenu.drawTextureBox(spriteBatch, texture, sourceRectangle, DestinationRectangle.X, DestinationRectangle.Y, 
-                DestinationRectangle.Width, DestinationRectangle.Height, color, 1f, false);
-        else
-            spriteBatch.Draw(texture, DestinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, 0);
+    private Vector2 GetImageSize()
+    {
+        return new Vector2(sourceRectangle.Width, sourceRectangle.Height) * scale;
     }
 }

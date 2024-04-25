@@ -605,6 +605,13 @@ public class ModEntry : Mod
             value => config.ShowMonsterInfo = value,
             I18n.Config_ShowMonsterInfo_Name
         );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ShowMonsterKillInfo,
+            value => config.ShowMonsterKillInfo = value,
+            I18n.Config_ShowMonsterKillInfo_Name,
+            I18n.Config_ShowMonsterKillInfo_Tooltip
+        );
         // 显示矿物信息
         configMenu.AddBoolOption(
             ModManifest,

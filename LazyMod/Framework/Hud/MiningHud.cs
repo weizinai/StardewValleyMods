@@ -51,7 +51,6 @@ public class MiningHud
             OffHover = () => hasGetMonsterInfo = false,
             OnLeftClick = () =>
             {
-                Game1.addHUDMessage(new HUDMessage("Monster Kill List", 1));
                 helper.Reflection.GetMethod(new AdventureGuild(), nameof(AdventureGuild.showMonsterKillList)).Invoke();
             }
         };

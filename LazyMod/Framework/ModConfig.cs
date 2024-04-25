@@ -88,6 +88,7 @@ public class ModConfig
     public bool ShowShaftInfo { get; set; } = true;
     // 显示怪物信息
     public bool ShowMonsterInfo { get; set; } = true;
+    public bool ShowMonsterKillInfo { get; set; } = true;
     // 显示矿物信息
     public bool ShowMineralInfo { get; set; } = true;
 

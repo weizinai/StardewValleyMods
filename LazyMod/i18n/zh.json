@@ -75,6 +75,8 @@
     "Config.ShowLadderInfo.Name": "显示梯子信息",
     "Config.ShowShaftInfo.Name": "显示竖井信息",
     "Config.ShowMonsterInfo.Name": "显示怪物信息",
+    "Config.ShowMonsterKillInfo.Name":"显示杀怪目标",
+    "Config.ShowMonsterKillInfo.Tooltip":"当该选项启用时,鼠标左键点击怪物信息图标会打开杀怪目标清单.",
     "Config.ShowMineralInfo.Name": "显示矿物信息",
 
     // 觅食

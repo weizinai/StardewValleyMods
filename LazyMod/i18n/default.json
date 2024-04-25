@@ -75,6 +75,8 @@
     "Config.ShowLadderInfo.Name": "Show Ladder Info",
     "Config.ShowShaftInfo.Name": "Show Shaft Info",
     "Config.ShowMonsterInfo.Name": "Show Monster Info",
+    "Config.ShowMonsterKillInfo.Name":"Show Monster Kill Info",
+    "Config.ShowMonsterKillInfo.Tooltip":"When this option is enabled, left-clicking on the monster info icon will open the list of monster kill targets.", // 1.0.3 Add
     "Config.ShowMineralInfo.Name":"Show Mineral Info",
     
     // Foraging

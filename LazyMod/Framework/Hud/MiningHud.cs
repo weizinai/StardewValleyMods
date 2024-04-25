@@ -38,12 +38,6 @@ public class MiningHud
             CheckHidden = () => !(config.ShowMonsterInfo && GetMonsters().Any()),
             OnHover = spriteBatch =>
             {
-                if (!hud.Children[2].Hover)
-                {
-                    hasGetMonsterInfo = false;
-                    return;
-                }
-
                 if (!hasGetMonsterInfo)
                 {
                     GetMonsterInfo();
@@ -52,7 +46,8 @@ public class MiningHud
 
                 var monsterInfoString = GetStringFromDictionary(monsterInfo);
                 IClickableMenu.drawHoverText(spriteBatch, monsterInfoString, Game1.smallFont);
-            }
+            },
+            OffHover = () => hasGetMonsterInfo = false
         };
         var mineralHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("TileSheets/tools"), 
             new Rectangle(193, 128, 15, 15), GetDestinationRectangle(3))
@@ -60,12 +55,6 @@ public class MiningHud
             CheckHidden = () => !(config.ShowMineralInfo && GetMinerals().Any()),
             OnHover = spriteBatch =>
             {
-                if (!hud.Children[3].Hover)
-                {
-                    hasGetMineralInfo = false;
-                    return;
-                }
-
                 if (!hasGetMineralInfo)
                 {
                     GetMineralInfo();
@@ -74,7 +63,8 @@ public class MiningHud
 
                 var mineralInfoString = GetStringFromDictionary(mineralInfo);
                 IClickableMenu.drawHoverText(spriteBatch, mineralInfoString, Game1.smallFont);
-            }
+            },
+            OffHover = () => hasGetMineralInfo = false
         };
 
         hud.AddChild(ladderHud, shaftHud, monsterHud, mineralHud);

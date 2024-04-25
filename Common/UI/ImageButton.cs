@@ -46,7 +46,10 @@ public class ImageButton : Container
     public override void PerformHoverAction(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
-        OnHover?.Invoke(spriteBatch);
+        if (Hover)
+            OnHover?.Invoke(spriteBatch);
+        else
+            OffHover?.Invoke();
     }
 
     private Rectangle GetContentRectangle()

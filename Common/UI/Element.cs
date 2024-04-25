@@ -15,12 +15,12 @@ public abstract class Element
     
     public Container? Parent;
 
-    private bool hover;
+    protected bool Hover;
     public Action<SpriteBatch>? OnHover;
     public Action? OffHover;
 
     private bool leftClickGesture;
-    private bool LeftClick => hover && leftClickGesture;
+    private bool LeftClick => Hover && leftClickGesture;
     public Action? OnLeftClick;
 
     public Func<bool>? CheckHidden;
@@ -30,13 +30,13 @@ public abstract class Element
         var isHidden = IsHidden();
         if (isHidden)
         {
-            hover = false;
+            Hover = false;
             leftClickGesture = false;
             return;
         }
         
         var mousePosition = Game1.getMousePosition();
-        hover = Bounds.Contains(mousePosition);
+        Hover = Bounds.Contains(mousePosition);
         leftClickGesture = Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Pressed;
     }
 
@@ -45,7 +45,7 @@ public abstract class Element
     public virtual void PerformHoverAction(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
-        if (hover)
+        if (Hover)
             OnHover?.Invoke(spriteBatch);
         else
             OffHover?.Invoke();

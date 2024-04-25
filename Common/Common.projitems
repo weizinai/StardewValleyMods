@@ -13,9 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration\IGenericModConfigMenuAPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration\RSVIntegration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Patch\BasePatcher.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Patch\HarmonyPatcher.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Patch\IPatcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Checkbox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SpaceUI\Container.cs" />

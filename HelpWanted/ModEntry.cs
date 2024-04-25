@@ -283,8 +283,7 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.NoteScale,
             value => config.NoteScale = value,
-            I18n.Config_NoteScale_Name,
-            I18n.Config_NoteScale_Tooltip
+            I18n.Config_NoteScale_Name
         );
         // 便签重叠率
         configMenu.AddNumberOption(

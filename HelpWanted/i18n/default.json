@@ -55,7 +55,6 @@
     "Config.AppearancePage.Name": "Appearance",
     "Config.NoteAppearanceTitle.Name": "Note Appearance",
     "Config.NoteScale.Name": "Note Scale",
-    "Config.NoteScale.Tooltip": "Scaling of quest notes",
     "Config.XOverlapBoundary.Name": "X Overlap Boundary",
     "Config.XOverlapBoundary.Tooltip": "Horizontal overlap rate of quest notes.If you set it to 1, you can't overlap at all, if you set it to 0.5, you can overlap half, and if you set it to 0, you can overlap completely.",
     "Config.YOverlapBoundary.Name": "Y Overlap Boundary",

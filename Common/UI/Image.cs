@@ -27,8 +27,8 @@ public class Image : Element
         set => localDestinationRectangle.Location = value.ToPoint();
     }
 
-    public override int Width => localDestinationRectangle.Width;
-    public override int Height => localDestinationRectangle.Height;
+    protected override int Width => localDestinationRectangle.Width;
+    protected override int Height => localDestinationRectangle.Height;
 
     private readonly bool isBackground;
 

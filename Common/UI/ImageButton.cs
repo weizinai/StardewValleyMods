@@ -25,8 +25,8 @@ public class ImageButton : Container
         set => localDestinationRectangle.Location = value.ToPoint();
     }
 
-    public override int Width => DestinationRectangle.Width;
-    public override int Height => DestinationRectangle.Height;
+    protected override int Width => DestinationRectangle.Width;
+    protected override int Height => DestinationRectangle.Height;
 
     public ImageButton(Texture2D content, Rectangle contentRectangle, Rectangle localDestinationRectangle) :
         this(Game1.temporaryContent.Load<Texture2D>("Maps/MenuTiles"), new Rectangle(0, 256, 64, 64), Color.White,
@@ -41,15 +41,6 @@ public class ImageButton : Container
         this.localDestinationRectangle = localDestinationRectangle;
         AddChild(new Image(background, new Rectangle(0,0,64,64), backgroundRectangle, backgroundColor, true),
             new Image(content, GetContentRectangle(), contentRectangle, contentColor));
-    }
-
-    public override void PerformHoverAction(SpriteBatch spriteBatch)
-    {
-        if (IsHidden()) return;
-        if (Hover)
-            OnHover?.Invoke(spriteBatch);
-        else
-            OffHover?.Invoke();
     }
 
     private Rectangle GetContentRectangle()

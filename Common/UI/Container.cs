@@ -5,7 +5,7 @@ namespace Common.UI;
 public abstract class Container : Element
 {
     protected bool UpdateChildren = true;
-    public List<Element> Children = new();
+    public readonly List<Element> Children = new();
 
     public void AddChild(params Element[] elements)
     {

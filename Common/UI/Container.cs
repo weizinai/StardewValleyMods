@@ -42,4 +42,11 @@ public abstract class Container : Element
         base.PerformHoverAction(spriteBatch);
         if (UpdateChildren) foreach (var element in Children) element.PerformHoverAction(spriteBatch);
     }
+
+    public override void ReceiveLeftClick()
+    {
+        if (IsHidden()) return;
+        base.ReceiveLeftClick();
+        if (UpdateChildren) foreach (var element in Children) element.ReceiveLeftClick();
+    }
 }

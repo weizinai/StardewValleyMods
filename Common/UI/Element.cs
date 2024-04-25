@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using StardewValley;
 
 namespace Common.UI;
@@ -18,6 +19,10 @@ public abstract class Element
     public Action<SpriteBatch>? OnHover;
     public Action? OffHover;
 
+    private bool leftClickGesture;
+    private bool LeftClick => hover && leftClickGesture;
+    public Action? OnLeftClick;
+
     public Func<bool>? CheckHidden;
 
     public virtual void Update()
@@ -26,11 +31,13 @@ public abstract class Element
         if (isHidden)
         {
             hover = false;
+            leftClickGesture = false;
             return;
         }
         
         var mousePosition = Game1.getMousePosition();
         hover = Bounds.Contains(mousePosition);
+        leftClickGesture = Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Pressed;
     }
 
     public abstract void Draw(SpriteBatch spriteBatch);
@@ -42,6 +49,12 @@ public abstract class Element
             OnHover?.Invoke(spriteBatch);
         else
             OffHover?.Invoke();
+    }
+
+    public virtual void ReceiveLeftClick()
+    {
+        if (IsHidden()) return;
+        if (LeftClick) OnLeftClick?.Invoke();
     }
 
     public bool IsHidden()

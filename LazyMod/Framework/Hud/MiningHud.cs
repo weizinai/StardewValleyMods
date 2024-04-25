@@ -2,6 +2,7 @@ using System.Text;
 using Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Menus;
@@ -18,7 +19,7 @@ public class MiningHud
     private bool hasGetMonsterInfo;
     private readonly Dictionary<string, int> monsterInfo = new();
 
-    public MiningHud(ModConfig config)
+    public MiningHud(IModHelper helper,ModConfig config)
     {
         hud = new RootElement();
 
@@ -47,7 +48,12 @@ public class MiningHud
                 var monsterInfoString = GetStringFromDictionary(monsterInfo);
                 IClickableMenu.drawHoverText(spriteBatch, monsterInfoString, Game1.smallFont);
             },
-            OffHover = () => hasGetMonsterInfo = false
+            OffHover = () => hasGetMonsterInfo = false,
+            OnLeftClick = () =>
+            {
+                Game1.addHUDMessage(new HUDMessage("Monster Kill List", 1));
+                helper.Reflection.GetMethod(new AdventureGuild(), nameof(AdventureGuild.showMonsterKillList)).Invoke();
+            }
         };
         var mineralHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("TileSheets/tools"), 
             new Rectangle(193, 128, 15, 15), GetDestinationRectangle(3))
@@ -78,6 +84,7 @@ public class MiningHud
         foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetDestinationRectangle(i++).Location.ToVector2();
 
         hud.Update();
+        hud.ReceiveLeftClick();
     }
 
     public void Draw(SpriteBatch spriteBatch)

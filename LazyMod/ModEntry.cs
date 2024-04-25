@@ -4,6 +4,7 @@ using LazyMod.Framework.Automation;
 using LazyMod.Framework.Hud;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 
 namespace LazyMod;
 
@@ -21,7 +22,7 @@ public class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         automationManger = new AutomationManger(config);
-        miningHud = new MiningHud(config);
+        miningHud = new MiningHud(helper, config);
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;

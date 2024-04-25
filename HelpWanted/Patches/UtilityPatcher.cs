@@ -7,12 +7,20 @@ namespace HelpWanted.Patches;
 
 public class UtilityPatcher : BasePatcher
 {
+    
     public override void Patch(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<Utility>(nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(bool), typeof(Random) }),
+            prefix: GetHarmonyMethod(nameof(GetRandomItemFromSeasonPrefix)),
             transpiler: GetHarmonyMethod(nameof(GetRandomItemFromSeasonTranspiler))
         );
+    }
+
+    private static bool GetRandomItemFromSeasonPrefix(ref Random random)
+    {
+        random = Game1.random;
+        return true;
     }
 
     private static IEnumerable<CodeInstruction> GetRandomItemFromSeasonTranspiler(IEnumerable<CodeInstruction> instructions)

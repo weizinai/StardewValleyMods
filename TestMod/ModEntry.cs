@@ -10,14 +10,18 @@ namespace TestMod;
 public class ModEntry : Mod
 {
     private ModConfig config = null!;
+    private TestUI ui = null!;
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         config = helper.ReadConfig<ModConfig>();
+        ui = new TestUI();
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.UpdateTicked += (_, _) => ui.Update();
+        helper.Events.Display.RenderedHud += (_, e) => ui.Draw(e.SpriteBatch);
         // 注册Harmony补丁
         HarmonyPatcher.Patch(this, new MineShaftPatcher(config), new VolcanoDungeonPatcher(config));
     }

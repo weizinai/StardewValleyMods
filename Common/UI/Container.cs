@@ -4,6 +4,7 @@ namespace Common.UI;
 
 public abstract class Container : Element
 {
+    protected bool UpdateChildren = true;
     public List<Element> Children = new();
 
     public void AddChild(params Element[] elements)
@@ -26,12 +27,18 @@ public abstract class Container : Element
     public override void Update()
     {
         base.Update();
-        foreach (var element in Children) element.Update();
+        if (UpdateChildren) foreach (var element in Children) element.Update();
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
         foreach (var element in Children) element.Draw(spriteBatch);
+    }
+    
+    public override void PerformHoverAction(SpriteBatch spriteBatch)
+    {
+        if (IsHidden()) return;
+        foreach (var element in Children) element.PerformHoverAction(spriteBatch);
     }
 }

@@ -37,9 +37,16 @@ public class ImageButton : Container
     private ImageButton(Texture2D background, Rectangle backgroundRectangle, Color backgroundColor,
         Texture2D content, Rectangle contentRectangle, Color contentColor, Rectangle localDestinationRectangle)
     {
+        UpdateChildren = false;
         this.localDestinationRectangle = localDestinationRectangle;
         AddChild(new Image(background, new Rectangle(0,0,64,64), backgroundRectangle, backgroundColor, true),
             new Image(content, GetContentRectangle(), contentRectangle, contentColor));
+    }
+
+    public override void PerformHoverAction(SpriteBatch spriteBatch)
+    {
+        if (IsHidden()) return;
+        OnHover?.Invoke(spriteBatch);
     }
 
     private Rectangle GetContentRectangle()

@@ -95,9 +95,7 @@ public class MiningHud
         if (Game1.player.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         hud.Draw(spriteBatch);
-
-        hud.Children[2].PerformHoverAction(spriteBatch);
-        hud.Children[3].PerformHoverAction(spriteBatch);
+        hud.PerformHoverAction(spriteBatch);
     }
 
     private Rectangle GetDestinationRectangle(int index)

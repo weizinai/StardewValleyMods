@@ -34,7 +34,7 @@ public abstract class Element
 
     public abstract void Draw(SpriteBatch spriteBatch);
 
-    public void PerformHoverAction(SpriteBatch spriteBatch)
+    public virtual void PerformHoverAction(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
         OnHover?.Invoke(spriteBatch);

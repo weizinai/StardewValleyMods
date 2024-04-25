@@ -4,7 +4,6 @@ using LazyMod.Framework.Automation;
 using LazyMod.Framework.Hud;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
 
 namespace LazyMod;
 

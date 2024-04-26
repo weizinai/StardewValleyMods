@@ -23,17 +23,17 @@ public class MiningHud
     {
         hud = new RootElement();
 
-        var ladderHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
+        var ladderHud = new CombineImage(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
             new Rectangle(208, 160, 16, 16), GetPosition(0))
         {
             CheckHidden = () => !(config.ShowLadderInfo && GetBuildingLayerInfo(173))
         };
-        var shaftHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
+        var shaftHud = new CombineImage(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
             new Rectangle(224, 160, 16, 16), GetPosition(1))
         {
             CheckHidden = () => !(config.ShowShaftInfo && GetBuildingLayerInfo(174))
         };
-        var monsterHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Characters/Monsters/Green Slime"), 
+        var monsterHud = new CombineImage(Game1.temporaryContent.Load<Texture2D>("Characters/Monsters/Green Slime"), 
             new Rectangle(2, 268, 12, 10), GetPosition(2))
         {
             CheckHidden = () => !(config.ShowMonsterInfo && GetMonsters().Any()),
@@ -54,7 +54,7 @@ public class MiningHud
                 helper.Reflection.GetMethod(new AdventureGuild(), nameof(AdventureGuild.showMonsterKillList)).Invoke();
             }
         };
-        var mineralHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("TileSheets/tools"), 
+        var mineralHud = new CombineImage(Game1.temporaryContent.Load<Texture2D>("TileSheets/tools"), 
             new Rectangle(193, 128, 15, 15), GetPosition(3))
         {
             CheckHidden = () => !(config.ShowMineralInfo && GetMinerals().Any()),

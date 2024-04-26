@@ -18,7 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\Container.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Element.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\ImageButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\CombineImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\RootElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Text.cs" />
   </ItemGroup>

@@ -5,7 +5,7 @@ using StardewValley.Menus;
 
 namespace Common.UI;
 
-public class ImageButton : Element
+public class CombineImage : Element
 {
     private const int ContentPadding = 16;
     private readonly Texture2D background;
@@ -16,13 +16,13 @@ public class ImageButton : Element
     private readonly Color contentColor;
     private readonly float scale;
 
-    public ImageButton(Texture2D content, Rectangle contentSourceRectangle, Vector2 localPosition, float scale = 1f) :
+    public CombineImage(Texture2D content, Rectangle contentSourceRectangle, Vector2 localPosition, float scale = 1f) :
         this(Game1.menuTexture, new Rectangle(0, 256, 60, 60), Color.White,
             content, contentSourceRectangle, Color.White, localPosition, scale)
     {
     }
 
-    private ImageButton(Texture2D background, Rectangle backgroundSourceRectangle, Color backgroundColor,
+    private CombineImage(Texture2D background, Rectangle backgroundSourceRectangle, Color backgroundColor,
         Texture2D content, Rectangle contentSourceRectangle, Color contentColor, Vector2 localPosition, float scale = 1f)
     {
         this.background = background;

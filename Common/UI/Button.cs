@@ -42,9 +42,8 @@ public class Button : Element
     public override void Draw(SpriteBatch spriteBatch)
     {
         IClickableMenu.drawTextureBox(spriteBatch, texture, sourceRectangle, (int)Position.X, (int)Position.Y, Width, Height, TextureColor, 1f, false);
-        Utility.drawTextWithShadow(spriteBatch, text, font, Position + new Vector2(ContentPadding, ContentPadding), textColor, scale);
-        // spriteBatch.DrawString(font, text, Position + new Vector2(ContentPadding, ContentPadding), textColor, 
-        //     0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+        spriteBatch.DrawString(font, text, Position + new Vector2(ContentPadding, ContentPadding), textColor, 
+            0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
     }
 
     private Vector2 GetTextSize()

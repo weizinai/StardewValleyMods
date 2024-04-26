@@ -37,10 +37,8 @@ public class MiningHud
             new Rectangle(2, 268, 12, 10), GetPosition(2))
         {
             CheckHidden = () => !(config.ShowMonsterInfo && GetMonsters().Any()),
-            OnHover = _ =>
+            OnHover = (_, spriteBatch) =>
             {
-                var spriteBatch = Game1.spriteBatch;
-                
                 if (!hasGetMonsterInfo)
                 {
                     GetMonsterInfo();
@@ -60,10 +58,8 @@ public class MiningHud
             new Rectangle(193, 128, 15, 15), GetPosition(3))
         {
             CheckHidden = () => !(config.ShowMineralInfo && GetMinerals().Any()),
-            OnHover = _ =>
+            OnHover = (_,spriteBatch) =>
             {
-                var spriteBatch = Game1.spriteBatch;
-                
                 if (!hasGetMineralInfo)
                 {
                     GetMineralInfo();
@@ -87,7 +83,6 @@ public class MiningHud
         foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetPosition(i++);
 
         hud.Update();
-        hud.PerformHoverAction();
         hud.ReceiveLeftClick();
     }
 
@@ -96,6 +91,7 @@ public class MiningHud
         if (Game1.player.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         hud.Draw(spriteBatch);
+        hud.PerformHoverAction(spriteBatch);
     }
 
     private Vector2 GetPosition(int index)

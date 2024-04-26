@@ -16,7 +16,7 @@ public abstract class Element
     public Container? Parent;
 
     private bool hover;
-    public Action<Element>? OnHover;
+    public Action<Element, SpriteBatch>? OnHover;
     public Action<Element>? OffHover;
 
     private bool leftClickGesture;
@@ -42,11 +42,11 @@ public abstract class Element
 
     public abstract void Draw(SpriteBatch spriteBatch);
 
-    public virtual void PerformHoverAction()
+    public virtual void PerformHoverAction(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
         if (hover)
-            OnHover?.Invoke(this);
+            OnHover?.Invoke(this, spriteBatch);
         else
             OffHover?.Invoke(this);
     }

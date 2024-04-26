@@ -24,17 +24,17 @@ public class MiningHud
         hud = new RootElement();
 
         var ladderHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
-            new Rectangle(208, 160, 16, 16), GetPosition(0), 4f)
+            new Rectangle(208, 160, 16, 16), GetPosition(0))
         {
             CheckHidden = () => !(config.ShowLadderInfo && GetBuildingLayerInfo(173))
         };
         var shaftHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Maps/Mines/mine_desert"), 
-            new Rectangle(224, 160, 16, 16), GetPosition(1), 4f)
+            new Rectangle(224, 160, 16, 16), GetPosition(1))
         {
             CheckHidden = () => !(config.ShowShaftInfo && GetBuildingLayerInfo(174))
         };
         var monsterHud = new ImageButton(Game1.temporaryContent.Load<Texture2D>("Characters/Monsters/Green Slime"), 
-            new Rectangle(2, 268, 12, 10), GetPosition(2), 4f)
+            new Rectangle(2, 268, 12, 10), GetPosition(2))
         {
             CheckHidden = () => !(config.ShowMonsterInfo && GetMonsters().Any()),
             OnHover = spriteBatch =>

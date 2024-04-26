@@ -16,7 +16,6 @@ public class ModEntry : Mod
     {
         // 初始化
         config = helper.ReadConfig<ModConfig>();
-        ui = new TestUI();
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
@@ -28,6 +27,7 @@ public class ModEntry : Mod
     
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
+        ui = new TestUI();
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
 
         if (configMenu is null) return;

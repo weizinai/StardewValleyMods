@@ -17,7 +17,7 @@ public class ImageButton : Element
     private readonly float scale;
 
     public ImageButton(Texture2D content, Rectangle contentSourceRectangle, Vector2 localPosition, float scale = 1f) :
-        this(Game1.temporaryContent.Load<Texture2D>("Maps/MenuTiles"), new Rectangle(0, 256, 60, 60), Color.White,
+        this(Game1.menuTexture, new Rectangle(0, 256, 60, 60), Color.White,
             content, contentSourceRectangle, Color.White, localPosition, scale)
     {
     }

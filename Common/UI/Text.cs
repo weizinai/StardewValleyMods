@@ -16,7 +16,8 @@ public sealed class Text : Element
 
     public Text(string text, Vector2 localPosition, SpriteFont? font = null, Color? color = null, float scale = 1f)
     {
-        this.font = font ?? Game1.temporaryContent.Load<SpriteFont>("Fonts/SpriteFont1");
+        // this.font = font ?? Game1.temporaryContent.Load<SpriteFont>("Fonts/SpriteFont1");
+        this.font = font ?? Game1.dialogueFont;
         this.text = text;
         LocalPosition = localPosition;
         this.color = color ?? Game1.textColor;

@@ -21,7 +21,6 @@ public class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         automationManger = new AutomationManger(config);
-        miningHud = new MiningHud(helper, config);
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
@@ -56,6 +55,8 @@ public class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
+        miningHud = new MiningHud(Helper, config);
+        
         var buffMaintainAllowValues = new[]
             { "Combat", "Farming", "Fishing", "Mining", "Luck", "Foraging", "MaxStamina", "MagneticRadius", "Speed", "Defense", "Attack", "None" };
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
@@ -1107,7 +1108,7 @@ public class ModEntry : Mod
         #endregion
     }
 
-    private string GetStringFromBuffType(string value)
+    private static string GetStringFromBuffType(string value)
     {
         return value switch
         {

@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\IGenericModConfigMenuAPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\RSVIntegration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Container.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Element.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Image.cs" />

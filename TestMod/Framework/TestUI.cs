@@ -11,7 +11,12 @@ public class TestUI
     public TestUI()
     {
         var text = new Text("Hello, world!", new Vector2(100, 100));
-        ui.AddChild(text);
+        var button = new Button(I18n.UI_Button_Name(), new Vector2(200, 200))
+        {
+            OnHover = element => (element as Button)!.TextureColor = Color.White * 0.5f,
+            OffHover = element => (element as Button)!.TextureColor = Color.White
+        };
+        ui.AddChild(text, button);
     }
     
     public void Draw(SpriteBatch spriteBatch)
@@ -22,5 +27,6 @@ public class TestUI
     public void Update()
     {
         ui.Update();
+        ui.PerformHoverAction();
     }
 }

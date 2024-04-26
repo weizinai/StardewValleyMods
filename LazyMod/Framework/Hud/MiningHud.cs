@@ -37,8 +37,10 @@ public class MiningHud
             new Rectangle(2, 268, 12, 10), GetPosition(2))
         {
             CheckHidden = () => !(config.ShowMonsterInfo && GetMonsters().Any()),
-            OnHover = spriteBatch =>
+            OnHover = _ =>
             {
+                var spriteBatch = Game1.spriteBatch;
+                
                 if (!hasGetMonsterInfo)
                 {
                     GetMonsterInfo();
@@ -48,7 +50,7 @@ public class MiningHud
                 var monsterInfoString = GetStringFromDictionary(monsterInfo);
                 IClickableMenu.drawHoverText(spriteBatch, monsterInfoString, Game1.smallFont);
             },
-            OffHover = () => hasGetMonsterInfo = false,
+            OffHover = _ => hasGetMonsterInfo = false,
             OnLeftClick = () =>
             {
                 helper.Reflection.GetMethod(new AdventureGuild(), nameof(AdventureGuild.showMonsterKillList)).Invoke();
@@ -58,8 +60,10 @@ public class MiningHud
             new Rectangle(193, 128, 15, 15), GetPosition(3))
         {
             CheckHidden = () => !(config.ShowMineralInfo && GetMinerals().Any()),
-            OnHover = spriteBatch =>
+            OnHover = _ =>
             {
+                var spriteBatch = Game1.spriteBatch;
+                
                 if (!hasGetMineralInfo)
                 {
                     GetMineralInfo();
@@ -69,7 +73,7 @@ public class MiningHud
                 var mineralInfoString = GetStringFromDictionary(mineralInfo);
                 IClickableMenu.drawHoverText(spriteBatch, mineralInfoString, Game1.smallFont);
             },
-            OffHover = () => hasGetMineralInfo = false
+            OffHover = _ => hasGetMineralInfo = false
         };
 
         hud.AddChild(ladderHud, shaftHud, monsterHud, mineralHud);
@@ -83,6 +87,7 @@ public class MiningHud
         foreach (var element in hud.Children.Where(element => !element.IsHidden())) element.LocalPosition = GetPosition(i++);
 
         hud.Update();
+        hud.PerformHoverAction();
         hud.ReceiveLeftClick();
     }
 
@@ -91,7 +96,6 @@ public class MiningHud
         if (Game1.player.currentLocation is not MineShaft or VolcanoDungeon) return;
 
         hud.Draw(spriteBatch);
-        hud.PerformHoverAction(spriteBatch);
     }
 
     private Vector2 GetPosition(int index)

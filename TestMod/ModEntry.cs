@@ -10,7 +10,7 @@ namespace TestMod;
 public class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private TestUI ui = null!;
+    private TestUI? ui;
 
     public override void Entry(IModHelper helper)
     {
@@ -19,15 +19,15 @@ public class ModEntry : Mod
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.UpdateTicked += (_, _) => ui.Update();
-        helper.Events.Display.RenderedHud += (_, e) => ui.Draw(e.SpriteBatch);
+        helper.Events.GameLoop.SaveLoaded += (_, _) => { ui ??= new TestUI(); };
+        helper.Events.GameLoop.UpdateTicked += (_, _) => ui?.Update();
+        helper.Events.Display.RenderedHud += (_, e) => ui?.Draw(e.SpriteBatch);
         // 注册Harmony补丁
         HarmonyPatcher.Patch(this, new MineShaftPatcher(config), new VolcanoDungeonPatcher(config));
     }
     
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        ui = new TestUI();
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
 
         if (configMenu is null) return;

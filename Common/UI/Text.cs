@@ -28,6 +28,7 @@ public sealed class Text : Element
     {
         if (IsHidden()) return;
         
+        
         spriteBatch.DrawString(font, text, Position, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
     }
 

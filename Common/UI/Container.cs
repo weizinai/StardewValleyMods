@@ -35,10 +35,10 @@ public abstract class Container : Element
         foreach (var element in Children) element.Draw(spriteBatch);
     }
     
-    public override void PerformHoverAction(SpriteBatch spriteBatch)
+    public override void PerformHoverAction()
     {
         if (IsHidden()) return;
-        foreach (var element in Children) element.PerformHoverAction(spriteBatch);
+        foreach (var element in Children) element.PerformHoverAction();
     }
 
     public override void ReceiveLeftClick()

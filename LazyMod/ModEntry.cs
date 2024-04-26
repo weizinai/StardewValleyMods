@@ -4,6 +4,8 @@ using LazyMod.Framework.Automation;
 using LazyMod.Framework.Hud;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
+using StardewValley.Locations;
 
 namespace LazyMod;
 
@@ -56,7 +58,7 @@ public class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         miningHud = new MiningHud(Helper, config);
-        
+
         var buffMaintainAllowValues = new[]
             { "Combat", "Farming", "Fishing", "Mining", "Luck", "Foraging", "MaxStamina", "MagneticRadius", "Speed", "Defense", "Attack", "None" };
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");

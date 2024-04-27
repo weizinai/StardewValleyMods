@@ -7,23 +7,22 @@ namespace Common.UI;
 
 public abstract class Element
 {
+    public Func<bool>? CheckHidden;
+
+    private bool hover;
+
+    private bool leftClickGesture;
+    public Action<Element>? OffHover;
+    public Action<Element, SpriteBatch>? OnHover;
+    public Action? OnLeftClick;
+
+    public Container? Parent;
     public Vector2 LocalPosition { get; set; }
     protected Vector2 Position => LocalPosition + (Parent?.Position ?? Vector2.Zero);
     public abstract int Width { get; }
     protected abstract int Height { get; }
     private Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
-    
-    public Container? Parent;
-
-    private bool hover;
-    public Action<Element, SpriteBatch>? OnHover;
-    public Action<Element>? OffHover;
-
-    private bool leftClickGesture;
     private bool LeftClick => hover && leftClickGesture;
-    public Action? OnLeftClick;
-
-    public Func<bool>? CheckHidden;
 
     public virtual void Update()
     {
@@ -34,11 +33,11 @@ public abstract class Element
             leftClickGesture = false;
             return;
         }
-        
+
         var mousePosition = Game1.getMousePosition();
         hover = Bounds.Contains(mousePosition);
         leftClickGesture = Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Pressed;
-        
+
         // if (LeftClick) OnLeftClick?.Invoke();
     }
 

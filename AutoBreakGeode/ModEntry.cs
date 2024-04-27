@@ -12,8 +12,8 @@ namespace AutoBreakGeode;
 public class ModEntry : Mod
 {
     public static bool AutoBreakGeode;
-    private bool hasFastAnimation;
     private ModConfig config = new();
+    private bool hasFastAnimation;
 
     public override void Entry(IModHelper helper)
     {
@@ -48,7 +48,9 @@ public class ModEntry : Mod
                 }
                 else
                 {
-                    if (!hasFastAnimation) for (var i = 0; i < config.BreakGeodeSpeed - 1; i++) geodeMenu.update(Game1.currentGameTime);
+                    if (!hasFastAnimation)
+                        for (var i = 0; i < config.BreakGeodeSpeed - 1; i++)
+                            geodeMenu.update(Game1.currentGameTime);
                 }
 
                 if (Game1.player.freeSpotsInInventory() == 1) AutoBreakGeode = false;
@@ -75,7 +77,7 @@ public class ModEntry : Mod
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
         );
-        
+
         configMenu.AddKeybindList(
             ModManifest,
             () => config.AutoBreakGeodeKey,

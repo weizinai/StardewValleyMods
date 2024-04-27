@@ -14,7 +14,7 @@ public class GeodeMenuPatcher : BasePatcher
 {
     private static RootElement? ui;
     private static ModConfig config = null!;
-    
+
     public GeodeMenuPatcher(ModConfig config)
     {
         GeodeMenuPatcher.config = config;
@@ -39,7 +39,7 @@ public class GeodeMenuPatcher : BasePatcher
     private static void GeodeMenuPostfix(ClickableComponent ___geodeSpot)
     {
         if (!config.DrawBeginButton) return;
-        
+
         ui = new RootElement();
         var button = new Button(I18n.UI_BeginButton_Name(), Vector2.Zero)
         {
@@ -56,7 +56,7 @@ public class GeodeMenuPatcher : BasePatcher
     private static void UpdatePostfix()
     {
         if (ui is null) return;
-        
+
         ui.Update();
         ui.ReceiveLeftClick();
     }
@@ -78,7 +78,7 @@ public class GeodeMenuPatcher : BasePatcher
     private static void DrawButton(SpriteBatch spriteBatch)
     {
         if (ui is null) return;
-        
+
         ui.Draw(spriteBatch);
         ui.PerformHoverAction(spriteBatch);
     }

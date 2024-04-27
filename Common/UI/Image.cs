@@ -5,13 +5,10 @@ namespace Common.UI;
 
 public class Image : Element
 {
-    private readonly Texture2D texture;
-    private readonly Rectangle sourceRectangle;
     private readonly Color color;
     private readonly float scale;
-
-    public override int Width => (int)GetImageSize().X;
-    protected override int Height => (int)GetImageSize().Y;
+    private readonly Rectangle sourceRectangle;
+    private readonly Texture2D texture;
 
     public Image(Texture2D texture, Vector2 localPosition, Rectangle sourceRectangle, Color? color = null, float scale = 1f)
     {
@@ -22,10 +19,13 @@ public class Image : Element
         this.scale = scale;
     }
 
+    public override int Width => (int)GetImageSize().X;
+    protected override int Height => (int)GetImageSize().Y;
+
     public override void Draw(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
-        
+
         spriteBatch.Draw(texture, Position, sourceRectangle, color, 0, Vector2.Zero, scale, SpriteEffects.None, -1);
     }
 

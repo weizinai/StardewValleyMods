@@ -9,11 +9,11 @@ public class CombineImage : Element
 {
     private const int ContentPadding = 16;
     private readonly Texture2D background;
-    private readonly Rectangle backgroundSourceRectangle;
     private readonly Color backgroundColor;
+    private readonly Rectangle backgroundSourceRectangle;
     private readonly Texture2D content;
-    private readonly Rectangle contentSourceRectangle;
     private readonly Color contentColor;
+    private readonly Rectangle contentSourceRectangle;
     private readonly float scale;
 
     public CombineImage(Texture2D content, Rectangle contentSourceRectangle, Vector2 localPosition, float scale = 1f) :

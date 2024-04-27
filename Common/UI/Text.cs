@@ -6,13 +6,11 @@ namespace Common.UI;
 
 public sealed class Text : Element
 {
-    public override int Width => (int)GetTextSize().X;
-    protected override int Height => (int)GetTextSize().Y;
+    private readonly Color color;
 
     private readonly SpriteFont font;
-    private readonly string text;
-    private readonly Color color;
     private readonly float scale;
+    private readonly string text;
 
     public Text(string text, Vector2 localPosition, SpriteFont? font = null, Color? color = null, float scale = 1f)
     {
@@ -24,11 +22,14 @@ public sealed class Text : Element
         this.scale = scale;
     }
 
+    public override int Width => (int)GetTextSize().X;
+    protected override int Height => (int)GetTextSize().Y;
+
     public override void Draw(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;
-        
-        
+
+
         spriteBatch.DrawString(font, text, Position, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
     }
 

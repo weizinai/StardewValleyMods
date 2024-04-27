@@ -34,7 +34,7 @@ public abstract class Container : Element
         if (IsHidden()) return;
         foreach (var element in Children) element.Draw(spriteBatch);
     }
-    
+
     public override void PerformHoverAction(SpriteBatch spriteBatch)
     {
         if (IsHidden()) return;

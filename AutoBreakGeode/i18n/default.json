@@ -1,4 +1,5 @@
 ﻿{
     "Config.AutoBreakGeodeKey.Name": "Auto Break Geode Key",
-    "Config.BreakGeodeSpeed.Name": "Break Geode Speed"
+    "Config.BreakGeodeSpeed.Name": "Break Geode Speed",
+    "UI.BeginButton.Name": "Begin"
 }

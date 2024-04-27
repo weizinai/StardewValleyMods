@@ -1,5 +1,7 @@
 ﻿using AutoBreakGeode.Framework;
+using AutoBreakGeode.Patches;
 using Common.Integrations;
+using Common.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -9,7 +11,7 @@ namespace AutoBreakGeode;
 
 public class ModEntry : Mod
 {
-    private bool autoBreakGeode;
+    public static bool AutoBreakGeode;
     private bool hasFastAnimation;
     private ModConfig config = new();
 
@@ -23,6 +25,43 @@ public class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        // 注册Harmony补丁
+        HarmonyPatcher.Patch(this, new GeodeMenuPatcher());
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (config.AutoBreakGeodeKey.JustPressed()) AutoBreakGeode = !AutoBreakGeode;
+    }
+
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    {
+        if (Game1.activeClickableMenu is GeodeMenu geodeMenu && AutoBreakGeode)
+        {
+            if (Utility.IsGeode(geodeMenu.heldItem))
+            {
+                if (geodeMenu.geodeAnimationTimer <= 0)
+                {
+                    var x = geodeMenu.geodeSpot.bounds.Center.X;
+                    var y = geodeMenu.geodeSpot.bounds.Center.Y;
+                    geodeMenu.receiveLeftClick(x, y);
+                }
+                else
+                {
+                    if (!hasFastAnimation) for (var i = 0; i < config.BreakGeodeSpeed - 1; i++) geodeMenu.update(Game1.currentGameTime);
+                }
+
+                if (Game1.player.freeSpotsInInventory() == 1) AutoBreakGeode = false;
+            }
+            else
+            {
+                AutoBreakGeode = false;
+            }
+        }
+        else
+        {
+            AutoBreakGeode = false;
+        }
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -51,40 +90,5 @@ public class ModEntry : Mod
             1,
             20
         );
-    }
-
-    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
-    {
-        if (config.AutoBreakGeodeKey.JustPressed()) autoBreakGeode = autoBreakGeode == false;
-    }
-
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
-    {
-        if (Game1.activeClickableMenu is GeodeMenu geodeMenu && autoBreakGeode)
-        {
-            if (Utility.IsGeode(geodeMenu.heldItem))
-            {
-                if (geodeMenu.geodeAnimationTimer <= 0)
-                {
-                    var x = geodeMenu.geodeSpot.bounds.Center.X;
-                    var y = geodeMenu.geodeSpot.bounds.Center.Y;
-                    geodeMenu.receiveLeftClick(x, y);
-                }
-                else
-                {
-                    if (!hasFastAnimation) for (var i = 0; i < config.BreakGeodeSpeed - 1; i++) geodeMenu.update(Game1.currentGameTime);
-                }
-
-                if (Game1.player.freeSpotsInInventory() == 1) autoBreakGeode = false;
-            }
-            else
-            {
-                autoBreakGeode = false;
-            }
-        }
-        else
-        {
-            autoBreakGeode = false;
-        }
     }
 }

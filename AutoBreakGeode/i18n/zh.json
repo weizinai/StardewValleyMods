@@ -1,4 +1,5 @@
 ﻿{
     "Config.AutoBreakGeodeKey.Name": "自动砸晶球快捷键",
-    "Config.BreakGeodeSpeed.Name": "砸晶球速度"
+    "Config.BreakGeodeSpeed.Name": "砸晶球速度",
+    "UI.BeginButton.Name": "开始"
 }

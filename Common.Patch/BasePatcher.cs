@@ -12,6 +12,11 @@ public abstract class BasePatcher : IPatcher
         return AccessTools.Method(typeof(T), name, parameters);
     }
     
+    protected ConstructorInfo RequireConstructor<T>(Type[]? parameters = null)
+    {
+        return AccessTools.Constructor(typeof(T), parameters);
+    }
+    
     protected HarmonyMethod GetHarmonyMethod(string name)
     {
         return new HarmonyMethod(AccessTools.Method(GetType(), name));

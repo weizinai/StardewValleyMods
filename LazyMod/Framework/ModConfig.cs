@@ -19,7 +19,7 @@ public class ModConfig
     public int AutoWaterDirtRange { get; set; }
     public float StopAutoWaterDirtStamina { get; set; } = 3;
     // 自动补充水壶
-    public bool AutoRefillWateringCan { get; set; } = true;
+    public bool AutoRefillWateringCan { get; set; }
     public int AutoRefillWateringCanRange { get; set; } = 1;
     public bool FindWateringCanFromInventory { get; set; } = true;
     // 自动播种
@@ -29,7 +29,7 @@ public class ModConfig
     public bool AutoFertilize { get; set; }
     public int AutoFertilizeRange { get; set; }
     // 自动收获作物
-    public bool AutoHarvestCrop { get; set; } = true;
+    public bool AutoHarvestCrop { get; set; }
     public int AutoHarvestCropRange { get; set; } = 1;
     public bool AutoHarvestFlower { get; set; }
     // 自动摇晃果树
@@ -44,25 +44,25 @@ public class ModConfig
     #region 动物
     
     // 自动抚摸动物
-    public bool AutoPetAnimal { get; set; } = true;
+    public bool AutoPetAnimal { get; set; }
     public int AutoPetAnimalRange { get; set; } = 1;
     // 自动挤奶
-    public bool AutoMilkAnimal { get; set; } = true;
+    public bool AutoMilkAnimal { get; set; }
     public int AutoMilkAnimalRange { get; set; } = 1;
     public float StopAutoMilkAnimalStamina { get; set; } = 3;
     public bool FindMilkPailFromInventory { get; set; } = true;
     // 自动剪毛
-    public bool AutoShearsAnimal { get; set; } = true;
+    public bool AutoShearsAnimal { get; set; }
     public int AutoShearsAnimalRange { get; set; } = 1;
     public float StopAutoShearsAnimalStamina { get; set; } = 3;
     public bool FindShearsFromInventory { get; set; } = true;
     // 自动打开动物门
-    public bool AutoOpenAnimalDoor { get; set; } = true;
+    public bool AutoOpenAnimalDoor { get; set; }
     // 自动打开栅栏门
-    public bool AutoOpenFenceGate { get; set; } = true;
+    public bool AutoOpenFenceGate { get; set; }
     public int AutoOpenFenceGateRange { get; set; } = 1;    
     // 自动抚摸宠物
-    public bool AutoPetPet { get; set; } = true;
+    public bool AutoPetPet { get; set; }
     public int AutoPetPetRange { get; set; } = 1;
     
     #endregion;
@@ -84,7 +84,7 @@ public class ModConfig
     public bool ClearGeodeStone { get; set; } = true;
     
     // 自动收集煤炭
-    public bool AutoCollectCoal { get; set; } = true;
+    public bool AutoCollectCoal { get; set; }
     public int AutoCollectCoalRange { get; set; } = 1;
     // 自动破坏容器
     public bool AutoBreakContainer { get; set; }
@@ -111,13 +111,13 @@ public class ModConfig
     #region 觅食
 
     // 自动觅食
-    public bool AutoForage { get; set; } = true;
+    public bool AutoForage { get; set; }
     public int AutoForageRange { get; set; }
     // 自动摇树
     public bool AutoShakeTree { get; set; }
     public int AutoShakeTreeRange { get; set; } = 1;
     // 自动收获苔藓
-    public bool AutoHarvestMoss { get; set; } = true;
+    public bool AutoHarvestMoss { get; set; }
     public int AutoHarvestMossRange { get; set; } = 1;
     public bool FindScytheFromInventory { get; set; } = true;
     // 自动在树上浇醋

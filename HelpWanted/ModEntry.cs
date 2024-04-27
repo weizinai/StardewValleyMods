@@ -82,7 +82,11 @@ internal partial class ModEntry : Mod
             ModManifest,
             () => config.DailyQuestChance,
             value => config.DailyQuestChance = value,
-            I18n.Config_DailyQuestChance_Name
+            I18n.Config_DailyQuestChance_Name,
+            null,
+            0f,
+            1f,
+            0.05f
         );
         configMenu.AddBoolOption(
             ModManifest,

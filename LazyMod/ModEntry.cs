@@ -491,7 +491,47 @@ public class ModEntry : Mod
             "Mining",
             I18n.Config_MiningPage_Name
         );
-
+        // 自动清理石头
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoClearStone_Name,
+            I18n.Config_AutoClearStone_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoClearStone,
+            value => config.AutoClearStone = value,
+            I18n.Config_AutoClearStone_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoClearStoneRange,
+            value => config.AutoClearStoneRange = value,
+            I18n.Config_AutoClearStoneRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopAutoClearStoneStamina,
+            value => config.StopAutoClearStoneStamina = value,
+            I18n.Config_StopAutoClearStoneStamina_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindPickaxeFromInventory,
+            value => config.FindPickaxeFromInventory = value,
+            I18n.Config_FindPickaxeFromInventory_Name,
+            I18n.Config_FindPickaxeFromInventory_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.OnlyClearStoneOnFarm,
+            value => config.OnlyClearStoneOnFarm = value,
+            I18n.Config_OnlyClearStoneFromFarm_Name,
+            I18n.Config_OnlyClearStoneFromFarm_Tooltip
+        );
         // 自动收集煤炭
         configMenu.AddSectionTitle(
             ModManifest,
@@ -930,47 +970,6 @@ public class ModEntry : Mod
             null,
             0,
             256
-        );
-        // 自动清理石头
-        configMenu.AddSectionTitle(
-            ModManifest,
-            I18n.Config_AutoClearStone_Name,
-            I18n.Config_AutoClearStone_Tooltip
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.AutoClearStone,
-            value => config.AutoClearStone = value,
-            I18n.Config_AutoClearStone_Name
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.AutoClearStoneRange,
-            value => config.AutoClearStoneRange = value,
-            I18n.Config_AutoClearStoneRange_Name,
-            null,
-            1,
-            3
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.StopAutoClearStoneStamina,
-            value => config.StopAutoClearStoneStamina = value,
-            I18n.Config_StopAutoClearStoneStamina_Name
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.FindPickaxeFromInventory,
-            value => config.FindPickaxeFromInventory = value,
-            I18n.Config_FindPickaxeFromInventory_Name,
-            I18n.Config_FindPickaxeFromInventory_Tooltip
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.OnlyClearStoneOnFarm,
-            value => config.OnlyClearStoneOnFarm = value,
-            I18n.Config_OnlyClearStoneFromFarm_Name,
-            I18n.Config_OnlyClearStoneFromFarm_Tooltip
         );
         // 自动清理杂草
         configMenu.AddSectionTitle(

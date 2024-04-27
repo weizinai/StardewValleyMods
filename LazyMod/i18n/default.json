@@ -59,6 +59,14 @@
     
     // Mining
     "Config.MiningPage.Name": "Mining",
+    "Config.AutoClearStone.Name": "Auto Clear Stone",
+    "Config.AutoClearStone.Tooltip": "This feature only works when you hold the pickaxe.", // 1.0.1 Add
+    "Config.AutoClearStoneRange.Name": "Auto Clear Stone Range",
+    "Config.StopAutoClearStoneStamina.Name": "Stop Auto Clear Stone Stamina",
+    "Config.FindPickaxeFromInventory.Name": "Find Pickaxe From Inventory",
+    "Config.FindPickaxeFromInventory.Tooltip": "When this option is enabled, only a pickaxe is required in the backpack for the feature to work.", // 1.0.1 Add
+    "Config.OnlyClearStoneFromFarm.Name": "Only Clear Stone From Farm", // 1.0.1 Add
+    "Config.OnlyClearStoneFromFarm.Tooltip": "When this option is enabled, only stone types that spawn on farms will be cleared.When this option is disabled, all types of stone (including ores) will be cleared.Regardless of whether this option is enabled or not, it will not work in mine shaft and volcano dungeon.", // 1.0.1 Add
     "Config.AutoCollectCoal.Name": "Auto Collect Coal",
     "Config.AutoCollectCoal.Tooltip": "When this option is enabled, coal from backpack and mine cart will be automatically collected for you.", // 1.0.1 Add
     "Config.AutoCollectCoalRange.Name": "Auto Collect Coal Range",
@@ -128,14 +136,6 @@
     // Other
     "Config.OtherPage.Name": "Other",
     "Config.MagneticRadiusIncrease.Name": "Magnetic Radius Increase", // 1.0.2 Add
-    "Config.AutoClearStone.Name": "Auto Clear Stone",
-    "Config.AutoClearStone.Tooltip": "This feature only works when you hold the pickaxe.", // 1.0.1 Add
-    "Config.AutoClearStoneRange.Name": "Auto Clear Stone Range",
-    "Config.StopAutoClearStoneStamina.Name": "Stop Auto Clear Stone Stamina",
-    "Config.FindPickaxeFromInventory.Name": "Find Pickaxe From Inventory",
-    "Config.FindPickaxeFromInventory.Tooltip": "When this option is enabled, only a pickaxe is required in the backpack for the feature to work.", // 1.0.1 Add
-    "Config.OnlyClearStoneFromFarm.Name": "Only Clear Stone From Farm", // 1.0.1 Add
-    "Config.OnlyClearStoneFromFarm.Tooltip": "When this option is enabled, only stone types that spawn on farms will be cleared.When this option is disabled, all types of stone (including ores) will be cleared.Regardless of whether this option is enabled or not, it will not work in mine shaft and volcano dungeon.", // 1.0.1 Add
     "Config.AutoClearWeeds.Name": "Auto Clear Weeds",
     "Config.AutoClearWeeds.Tooltip": "This feature only works when you hold the scythe(melee weapon).", // 1.0.1 Add
     "Config.AutoClearWeedsRange.Name": "Auto Clear Weeds Range",

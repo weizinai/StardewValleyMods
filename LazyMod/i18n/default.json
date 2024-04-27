@@ -65,8 +65,19 @@
     "Config.StopAutoClearStoneStamina.Name": "Stop Auto Clear Stone Stamina",
     "Config.FindPickaxeFromInventory.Name": "Find Pickaxe From Inventory",
     "Config.FindPickaxeFromInventory.Tooltip": "When this option is enabled, only a pickaxe is required in the backpack for the feature to work.", // 1.0.1 Add
-    "Config.OnlyClearStoneFromFarm.Name": "Only Clear Stone From Farm", // 1.0.1 Add
-    "Config.OnlyClearStoneFromFarm.Tooltip": "When this option is enabled, only stone types that spawn on farms will be cleared.When this option is disabled, all types of stone (including ores) will be cleared.Regardless of whether this option is enabled or not, it will not work in mine shaft and volcano dungeon.", // 1.0.1 Add
+    "Config.ClearStoneOnMineShaft.Name": "Clear Stone On Mine Shaft", // 1.0.3 Add
+    "Config.ClearStoneOnMineShaft.Tooltip": "When this option is enabled, it will take effect even if the player is in the mine shaft.", // 1.0.3 Add
+    "Config.ClearStoneOnVolcano.Name" : "Clear Stone On Volcano", // 1.0.3 Add
+    "Config.ClearStoneOnVolcano.Tooltip": "When this option is enabled, it will take effect even if the player is in the volcano.", // 1.0.3 Add
+    "Config.ClearFarmStone.Name": "Clear Farm Stone", // 1.0.3 Add
+    "Config.ClearFarmStone.Tooltip": "When this option is enabled, the feature cleans up both types of normal stone that will spawn on the farm.", // 1.0.3 Add
+    "Config.ClearOtherStone.Name": "Clear Other Stone", // 1.0.3 Add
+    "Config.ClearOtherStone.Tooltip": "When this option is enabled, this feature will clean up other normal stones.", // 1.0.3 Add
+    "Config.ClearIslandStone.Name": "Clear Island Stone", // 1.0.3 Add
+    "Config.ClearIslandStone.Tooltip": "When this option is enabled, the feature cleans up the stones spawn on Ginger Island.(Mussel Stone,Fossil Stone,Clay Stone)", // 1.0.3 Add
+    "Config.ClearOreStone.Name": "Clear Ore Stone", // 1.0.3 Add
+    "Config.ClearGemStone.Name" :"Clear Gem Stone", // 1.0.3 Add
+    "Config.ClearGeodeStone.Name":"Clear Geode Stone", // 1.0.3 Add
     "Config.AutoCollectCoal.Name": "Auto Collect Coal",
     "Config.AutoCollectCoal.Tooltip": "When this option is enabled, coal from backpack and mine cart will be automatically collected for you.", // 1.0.1 Add
     "Config.AutoCollectCoalRange.Name": "Auto Collect Coal Range",

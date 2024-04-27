@@ -527,10 +527,56 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.OnlyClearStoneOnFarm,
-            value => config.OnlyClearStoneOnFarm = value,
-            I18n.Config_OnlyClearStoneFromFarm_Name,
-            I18n.Config_OnlyClearStoneFromFarm_Tooltip
+            () => config.ClearStoneOnMineShaft,
+            value => config.ClearStoneOnMineShaft = value,
+            I18n.Config_ClearStoneOnMineShaft_Name,
+            I18n.Config_ClearStoneOnMineShaft_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearStoneOnVolcano,
+            value => config.ClearStoneOnVolcano = value,
+            I18n.Config_ClearStoneOnVolcano_Name,
+            I18n.Config_ClearStoneOnVolcano_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearFarmStone,
+            value => config.ClearFarmStone = value,
+            I18n.Config_ClearFarmStone_Name,
+            I18n.Config_ClearFarmStone_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearOtherStone,
+            value => config.ClearOtherStone = value,
+            I18n.Config_ClearOtherStone_Name,
+            I18n.Config_ClearOtherStone_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearIslandStone,
+            value => config.ClearIslandStone = value,
+            I18n.Config_ClearIslandStone_Name,
+            I18n.Config_ClearIslandStone_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearOreStone,
+            value => config.ClearOreStone = value,
+            I18n.Config_ClearOreStone_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearGemStone,
+            value => config.ClearGemStone = value,
+            I18n.Config_ClearGemStone_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearGeodeStone,
+            value => config.ClearGeodeStone = value,
+            I18n.Config_ClearGeodeStone_Name
         );
         // 自动收集煤炭
         configMenu.AddSectionTitle(

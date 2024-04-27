@@ -68,7 +68,21 @@ public class ModConfig
     #endregion;
 
     #region 采矿
-
+    
+    // 自动清理石头
+    public bool AutoClearStone { get; set; }
+    public int AutoClearStoneRange { get; set; } = 1;
+    public float StopAutoClearStoneStamina { get; set; } = 3;
+    public bool FindPickaxeFromInventory { get; set; } = true;
+    public bool ClearStoneOnMineShaft { get; set; }
+    public bool ClearStoneOnVolcano { get; set; }
+    public bool ClearFarmStone { get; set; } = true;
+    public bool ClearOtherStone { get; set; } = true;
+    public bool ClearIslandStone { get; set; } = true;
+    public bool ClearOreStone { get; set; } = true;
+    public bool ClearGemStone { get; set; } = true;
+    public bool ClearGeodeStone { get; set; } = true;
+    
     // 自动收集煤炭
     public bool AutoCollectCoal { get; set; } = true;
     public int AutoCollectCoalRange { get; set; } = 1;
@@ -148,14 +162,6 @@ public class ModConfig
     
     // 磁力半径增加
     public int MagneticRadiusIncrease { get; set; } = 64;
-
-    // 自动清理石头
-    public bool AutoClearStone { get; set; }
-    public int AutoClearStoneRange { get; set; } = 1;
-    public float StopAutoClearStoneStamina { get; set; } = 3;
-    public bool FindPickaxeFromInventory { get; set; } = true;
-
-    public bool OnlyClearStoneOnFarm { get; set; } = true;
     // 自动清理杂草
     public bool AutoClearWeeds { get; set; }
     public int AutoClearWeedsRange { get; set; } = 1;

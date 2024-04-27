@@ -14,6 +14,7 @@ public class ModConfig
     // 交易任务
     public float ItemDeliveryWeight { get; set; } = 0.4f;
     public float ItemDeliveryRewardMultiplier { get; set; } = 1f;
+    public int ItemDeliveryFriendshipGain { get; set; } = 150;
     public bool MustLikeItem { get; set; } = true;
     public bool MustLoveItem { get; set; }
     public bool AllowArtisanGoods { get; set; } = true;

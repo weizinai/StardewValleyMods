@@ -23,11 +23,27 @@ public class ItemDeliveryQuestPatcher : BasePatcher
             RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.loadQuestInfo)),
             transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
-        
         harmony.Patch(
             RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
             postfix: GetHarmonyMethod(nameof(GetGoldRewardPerItemPostfix))
         );
+        harmony.Patch(
+            RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.checkIfComplete)),
+            transpiler: GetHarmonyMethod(nameof(CheckIfCompleteTranspiler))
+        );
+    }
+    
+    private static IEnumerable<CodeInstruction> CheckIfCompleteTranspiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var codes = new List<CodeInstruction>(instructions);
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4 && (int)code.operand == 150);
+        codes[index].operand = config.ItemDeliveryFriendshipGain;
+        return codes.AsEnumerable();
+    }
+    
+    private static void GetGoldRewardPerItemPostfix(ref int __result)
+    {
+        __result = (int)(__result * config.ItemDeliveryRewardMultiplier);
     }
     
     private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
@@ -67,10 +83,5 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         }
 
         return codes.AsEnumerable();
-    }
-    
-    private static void GetGoldRewardPerItemPostfix(ref int __result)
-    {
-        __result = (int)(__result * config.ItemDeliveryRewardMultiplier);
     }
 }

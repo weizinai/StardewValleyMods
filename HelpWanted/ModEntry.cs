@@ -174,6 +174,13 @@ internal partial class ModEntry : Mod
             5f,
             0.25f
         );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.ItemDeliveryFriendshipGain,
+            value => config.ItemDeliveryFriendshipGain = value,
+            I18n.Config_ItemDeliveryFriendshipGain_Name,
+            I18n.Config_ItemDeliveryFriendshipGain_Tooltip
+        );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.MustLikeItem,

@@ -20,6 +20,8 @@
     "Config.ItemDeliveryWeight.Name": "交易任务权重",
     "Config.ItemDeliveryWeight.Tooltip": "交易任务的权重.该权重是相对于其他几种任务来说的.",
     "Config.ItemDeliveryRewardMultiplier.Name": "交易任务奖励倍数",
+    "Config.ItemDeliveryFriendshipGain.Name":"交易任务友谊奖励",
+    "Config.ItemDeliveryFriendshipGain.Tooltip":"该选项的值需要重启游戏才能生效.",
     "Config.MustLikeItem.Name": "必须喜欢物品",
     "Config.MustLikeItem.Tooltip": "交易任务的物品是否必须是NPC喜欢的物品",
     "Config.MustLoveItem.Name": "必须喜爱物品",

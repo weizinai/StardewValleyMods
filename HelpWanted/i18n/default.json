@@ -20,6 +20,8 @@
     "Config.ItemDeliveryWeight.Name": "Item Delivery Weight",
     "Config.ItemDeliveryWeight.Tooltip": "The weight of the item delivery quest.",
     "Config.ItemDeliveryRewardMultiplier.Name": "Item Delivery Reward Multiplier",
+    "Config.ItemDeliveryFriendshipGain.Name":"Item Delivery Friendship Gain",
+    "Config.ItemDeliveryFriendshipGain.Tooltip":"The value of this option requires a game restart for it to take effect.",
     "Config.MustLikeItem.Name": "Must Like Item",
     "Config.MustLikeItem.Tooltip": "Whether the item for the item delivery quest must be an item that the NPC likes.",
     "Config.MustLoveItem.Name": "Must Love Item",

@@ -22,6 +22,7 @@ public class AutoOther : Automate
     {
         if (location is null) return;
 
+        // 增加磁力范围
         MagneticRadiusIncrease(player);
         // 自动清理石头
         if (config.AutoClearStone && (tool is Pickaxe || config.FindPickaxeFromInventory)) AutoClearStone(location, player);
@@ -37,6 +38,7 @@ public class AutoOther : Automate
         if (config.AutoGarbageCan) AutoGarbageCan(location, player);
     }
 
+    // 增加磁力范围
     private void MagneticRadiusIncrease(Farmer player)
     {
         if (config.MagneticRadiusIncrease == 0)

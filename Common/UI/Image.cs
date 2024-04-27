@@ -10,7 +10,7 @@ public class Image : Element
     private readonly Color color;
     private readonly float scale;
 
-    protected override int Width => (int)GetImageSize().X;
+    public override int Width => (int)GetImageSize().X;
     protected override int Height => (int)GetImageSize().Y;
 
     public Image(Texture2D texture, Vector2 localPosition, Rectangle sourceRectangle, Color? color = null, float scale = 1f)

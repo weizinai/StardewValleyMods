@@ -9,7 +9,7 @@ public abstract class Element
 {
     public Vector2 LocalPosition { get; set; }
     protected Vector2 Position => LocalPosition + (Parent?.Position ?? Vector2.Zero);
-    protected abstract int Width { get; }
+    public abstract int Width { get; }
     protected abstract int Height { get; }
     private Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
     

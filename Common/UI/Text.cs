@@ -6,7 +6,7 @@ namespace Common.UI;
 
 public sealed class Text : Element
 {
-    protected override int Width => (int)GetTextSize().X;
+    public override int Width => (int)GetTextSize().X;
     protected override int Height => (int)GetTextSize().Y;
 
     private readonly SpriteFont font;

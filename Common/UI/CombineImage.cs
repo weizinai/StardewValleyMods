@@ -35,7 +35,7 @@ public class CombineImage : Element
         this.scale = scale;
     }
 
-    protected override int Width => (int)GetImageSize().X;
+    public override int Width => (int)GetImageSize().X;
     protected override int Height => (int)GetImageSize().Y;
 
 

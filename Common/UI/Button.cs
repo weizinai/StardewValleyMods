@@ -16,8 +16,8 @@ public class Button : Element
     private readonly SpriteFont font;
     private readonly Color textColor;
     private readonly float scale;
-    
-    protected override int Width => (int)GetTextSize().X + ContentPadding * 2;
+
+    public override int Width => (int)GetTextSize().X + ContentPadding * 2;
     protected override int Height => (int)GetTextSize().Y + ContentPadding * 2;
     
     public Button(string text, Vector2 localPosition, float scale = 1f) :

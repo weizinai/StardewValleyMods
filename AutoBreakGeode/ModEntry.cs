@@ -75,11 +75,19 @@ public class ModEntry : Mod
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
         );
+        
         configMenu.AddKeybindList(
             ModManifest,
             () => config.AutoBreakGeodeKey,
             value => { config.AutoBreakGeodeKey = value; },
             I18n.Config_AutoBreakGeodeKey_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.DrawBeginButton,
+            value => config.DrawBeginButton = value,
+            I18n.Config_DrawBeginButton_Name,
+            I18n.Config_DrawBeginButton_Tooltip
         );
         configMenu.AddNumberOption(
             ModManifest,

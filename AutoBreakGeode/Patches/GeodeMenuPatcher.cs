@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Reflection.Emit;
 using Common.Patch;
 using Common.UI;
 using HarmonyLib;
@@ -23,22 +25,22 @@ public class GeodeMenuPatcher : BasePatcher
         );
         harmony.Patch(
             RequireMethod<GeodeMenu>(nameof(GeodeMenu.draw), new[] { typeof(SpriteBatch) }),
-            postfix: GetHarmonyMethod(nameof(DrawPostfix))
+            transpiler: GetHarmonyMethod(nameof(DrawTranspiler))
         );
     }
 
-    private static void GeodeMenuPostfix(ClickableComponent ___geodeSpot, InventoryMenu ___inventory)
+    private static void GeodeMenuPostfix(ClickableComponent ___geodeSpot)
     {
         ui = new RootElement();
-        var button = new Button(I18n.UI_BeginButton_Name(), new Vector2(1296, 700))
+        var button = new Button(I18n.UI_BeginButton_Name(), Vector2.Zero)
         {
             OnHover = (element, _) => (element as Button)!.TextureColor = Color.White * 0.7f,
             OffHover = element => (element as Button)!.TextureColor = Color.White,
             OnLeftClick = () => ModEntry.AutoBreakGeode = !ModEntry.AutoBreakGeode
         };
-        var x = ___geodeSpot.bounds.X + ___geodeSpot.bounds.Width + (___inventory.width - ___geodeSpot.bounds.Width) / 2 - button.Width / 2;
-        var y = ___geodeSpot.bounds.Y + ___geodeSpot.bounds.Height * 0.75f;
-        button.LocalPosition = new Vector2(x, (int)y);
+        var x = ___geodeSpot.bounds.X;
+        var y = ___geodeSpot.bounds.Y;
+        button.LocalPosition = new Vector2(x, y);
         ui.AddChild(button);
     }
 
@@ -48,9 +50,23 @@ public class GeodeMenuPatcher : BasePatcher
         ui.ReceiveLeftClick();
     }
 
-    private static void DrawPostfix(SpriteBatch b)
+    private static IEnumerable<CodeInstruction> DrawTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        ui.Draw(b);
-        ui.PerformHoverAction(b);
+        var codes = instructions.ToList();
+        var parameters = new[]
+        {
+            typeof(Texture2D), typeof(Vector2), typeof(Rectangle), typeof(Color), typeof(float), typeof(Vector2), typeof(float), typeof(SpriteEffects), typeof(float)
+        };
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt &&
+                                            (MethodInfo)code.operand == AccessTools.Method(typeof(SpriteBatch), nameof(SpriteBatch.Draw), parameters));
+        codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
+        codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GeodeMenuPatcher), nameof(DrawButton))));
+        return codes.AsEnumerable();
+    }
+
+    private static void DrawButton(SpriteBatch spriteBatch)
+    {
+        ui.Draw(spriteBatch);
+        ui.PerformHoverAction(spriteBatch);
     }
 }

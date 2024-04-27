@@ -37,12 +37,12 @@ public class FishingQuestPatcher : BasePatcher
         return true;
     }
 
-    private static void LoadQuestInfoPostfix(NetInt ___reward, ref NetDescriptionElementList ___parts, NetString ___target)
+    private static void LoadQuestInfoPostfix(NetInt ___reward, ref NetDescriptionElementList ___parts)
     {
         if (hasLoadQuestInfo) return;
         
         ___reward.Value = (int)(___reward.Value * config.FishingRewardMultiplier);
-        ___parts[^2].substitutions = new List<object> { ___reward.Value };
-        if (___target.Value is "Willy") ___parts[^3].substitutions[0] = ___reward.Value;
+        var keySet = new HashSet<string>() { "Strings\\StringsFromCSFiles:FishingQuest.cs.13248", "Strings\\StringsFromCSFiles:FishingQuest.cs.13274" };
+        foreach (var part in ___parts.Where(part => keySet.Contains(part.translationKey))) part.substitutions[0] = ___reward.Value;
     }
 }

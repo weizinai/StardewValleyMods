@@ -16,7 +16,7 @@
     "Config.MaxQuests.Tooltip": "每日的最大任务数量.受限于任务板能放下的便签数量",
     
     // 交易任务
-    "Config.ItemDeliveryTitle.Name": "交易任务",
+    "Config.ItemDeliveryPage.Name": "交易任务",
     "Config.ItemDeliveryWeight.Name": "交易任务权重",
     "Config.ItemDeliveryWeight.Tooltip": "交易任务的权重.该权重是相对于其他几种任务来说的.",
     "Config.ItemDeliveryRewardMultiplier.Name": "交易任务奖励倍数",
@@ -32,13 +32,13 @@
     "Config.IgnoreVanillaItemRestriction.Tooltip": "该选项要在上面三项选项之一启用时才有作用.原版交易任务的物品会在一个随机列表中产出.如果启用该功能,则交易物品的任务可以不是该随机列表中的物品,会从满足上面三个选项的物品中选择.如果禁用该功能,则交易物品会在原版随机列表中,选出满足上面三个选项的物品.",
     
     // 采集任务
-    "Config.ResourceCollectionTitle.Name": "采集任务",
+    "Config.ResourceCollectionPage.Name": "采集任务",
     "Config.ResourceCollectionWeight.Name": "采集任务权重",
     "Config.ResourceCollectionWeight.Tooltip": "采集任务的权重.该权重是相对于其他几种任务来说的.",
     "Config.ResourceCollectionRewardMultiplier.Name": "采集任务奖励倍数",
     
     // 钓鱼任务
-    "Config.FishingTitle.Name": "钓鱼任务",
+    "Config.FishingPage.Name": "钓鱼任务",
     "Config.FishingWeight.Name": "钓鱼任务权重",
     "Config.FishingWeight.Tooltip": "钓鱼任务的权重.该权重是相对于其他几种任务来说的.",
     "Config.FishingRewardMultiplier.Name": "钓鱼任务奖励倍数",

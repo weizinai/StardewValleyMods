@@ -120,9 +120,42 @@ internal partial class ModEntry : Mod
             I18n.Config_MaxQuests_Tooltip
         );
         // 交易任务
-        configMenu.AddSectionTitle(
+        configMenu.AddPageLink(
             ModManifest,
-            I18n.Config_ItemDeliveryTitle_Name
+            "ItemDeliveryQuest",
+            I18n.Config_ItemDeliveryPage_Name
+        );
+        // 采集任务
+        configMenu.AddPageLink(
+            ModManifest,
+            "ResourceCollectionQuest",
+            I18n.Config_ResourceCollectionPage_Name
+        );
+        // 钓鱼任务
+        configMenu.AddPageLink(
+            ModManifest,
+            "FishingQuest",
+            I18n.Config_FishingPage_Name
+        );
+        // 杀怪任务
+        configMenu.AddPageLink(
+            ModManifest,
+            "SlayMonstersQuest",
+            I18n.Config_SlayMonstersPage_Name
+        );
+        // 外观
+        configMenu.AddPageLink(
+            ModManifest,
+            "Appearance",
+            I18n.Config_AppearancePage_Name
+        );
+
+        #region 交易任务
+
+        configMenu.AddPage(
+            ModManifest,
+            "ItemDeliveryQuest",
+            I18n.Config_ItemDeliveryPage_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
@@ -176,10 +209,15 @@ internal partial class ModEntry : Mod
             I18n.Config_IgnoreVanillaItemRestriction_Name,
             I18n.Config_IgnoreVanillaItemRestriction_Tooltip
         );
-        // 采集任务
-        configMenu.AddSectionTitle(
+
+        #endregion
+
+        #region 采集任务
+
+        configMenu.AddPage(
             ModManifest,
-            I18n.Config_ResourceCollectionTitle_Name
+            "ResourceCollectionQuest",
+            I18n.Config_ResourceCollectionPage_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
@@ -198,10 +236,15 @@ internal partial class ModEntry : Mod
             5f,
             0.25f
         );
-        // 钓鱼任务
-        configMenu.AddSectionTitle(
+
+        #endregion
+
+        #region 钓鱼任务
+
+        configMenu.AddPage(
             ModManifest,
-            I18n.Config_FishingTitle_Name
+            "FishingQuest",
+            I18n.Config_FishingPage_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
@@ -220,24 +263,14 @@ internal partial class ModEntry : Mod
             5f,
             0.25f
         );
-        // 杀怪任务
-        configMenu.AddPageLink(
-            ModManifest,
-            "SlayMonsters",
-            I18n.Config_SlayMonstersPage_Name
-        );
-        // 外观
-        configMenu.AddPageLink(
-            ModManifest,
-            "Appearance",
-            I18n.Config_AppearancePage_Name
-        );
+
+        #endregion
 
         #region 杀怪任务
 
         configMenu.AddPage(
             ModManifest,
-            "SlayMonsters",
+            "SlayMonstersQuest",
             I18n.Config_SlayMonstersPage_Name
         );
         configMenu.AddNumberOption(

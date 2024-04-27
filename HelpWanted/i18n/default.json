@@ -16,7 +16,7 @@
     "Config.MaxQuests.Tooltip": "The maximum number of quest per day is limited by the number of sticky notes that can be placed on the billboard",
 
     // Item Delivery
-    "Config.ItemDeliveryTitle.Name": "Item Delivery",
+    "Config.ItemDeliveryPage.Name": "Item Delivery Quest",
     "Config.ItemDeliveryWeight.Name": "Item Delivery Weight",
     "Config.ItemDeliveryWeight.Tooltip": "The weight of the item delivery quest.",
     "Config.ItemDeliveryRewardMultiplier.Name": "Item Delivery Reward Multiplier",
@@ -32,19 +32,19 @@
     "Config.IgnoreVanillaItemRestriction.Tooltip": "This option only works if one of the above three options is enabled.Vanilla item delivery quest items will be produced in a random list.If this feature is enabled, the item can not be an item in the random list, and will be selected from the items that meet the above three options.If this feature is disabled, the item will be selected from the vanilla random list of items that meet the above three options.",
 
     // Resource Collection
-    "Config.ResourceCollectionTitle.Name": "Resource Collection",
+    "Config.ResourceCollectionPage.Name": "Resource Collection Quest",
     "Config.ResourceCollectionWeight.Name": "Resource Collection Weight",
     "Config.ResourceCollectionWeight.Tooltip": "The weight of the resource collection quest.",
     "Config.ResourceCollectionRewardMultiplier.Name": "Resource Collection Reward Multiplier",
 
     // Fishing Weight
-    "Config.FishingTitle.Name": "Fishing",
+    "Config.FishingPage.Name": "Fishing Quest",
     "Config.FishingWeight.Name": "Fishing Weight",
     "Config.FishingWeight.Tooltip": "The weight of the fishing quest.",
     "Config.FishingRewardMultiplier.Name": "Fishing Reward Multiplier",
 
     // Slay Monsters
-    "Config.SlayMonstersPage.Name": "Slay Monsters",
+    "Config.SlayMonstersPage.Name": "Slay Monsters Quest",
     "Config.SlayMonstersWeight.Name": "Slay Monsters Weight",
     "Config.SlayMonstersWeight.Tooltip": "The weight of the slay monsters quest.Monster slaying quests must have reached the mines and have more than 6 days in the game",
     "Config.SlayMonstersRewardMultiplier.Name": "Slay Monsters Reward Multiplier",

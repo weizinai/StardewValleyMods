@@ -42,7 +42,7 @@ public class FishingQuestPatcher : BasePatcher
         if (hasLoadQuestInfo) return;
         
         ___reward.Value = (int)(___reward.Value * config.FishingRewardMultiplier);
-        var keySet = new HashSet<string>() { "Strings\\StringsFromCSFiles:FishingQuest.cs.13248", "Strings\\StringsFromCSFiles:FishingQuest.cs.13274" };
+        var keySet = new HashSet<string> { "Strings\\StringsFromCSFiles:FishingQuest.cs.13248", "Strings\\StringsFromCSFiles:FishingQuest.cs.13274" };
         foreach (var part in ___parts.Where(part => keySet.Contains(part.translationKey))) part.substitutions[0] = ___reward.Value;
     }
 }

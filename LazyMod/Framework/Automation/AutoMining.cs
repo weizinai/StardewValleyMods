@@ -1,4 +1,5 @@
 ﻿using StardewValley;
+using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.Tools;
 
@@ -17,6 +18,8 @@ public class AutoMining : Automate
     {
         if (location is null) return;
         
+        // 自动清理石头
+        if (config.AutoClearStone && (tool is Pickaxe || config.FindPickaxeFromInventory)) AutoClearStone(location, player);
         // 自动收集煤炭
         if (config.AutoCollectCoal) AutoCollectCoal(location, player);
         // 自动破坏容器
@@ -25,6 +28,42 @@ public class AutoMining : Automate
         if (config.AutoOpenTreasure) AutoOpenTreasure(location, player);
         // 自动清理水晶
         if (config.AutoClearCrystal) AutoClearCrystal(location, player);
+    }
+    
+    // 自动清理石头
+    private void AutoClearStone(GameLocation location, Farmer player)
+    {
+        if (location is MineShaft or VolcanoDungeon) return;
+
+        var pickaxe = FindToolFromInventory<Pickaxe>();
+        if (pickaxe is null) return;
+
+        var hasAddMessage = true;
+        var origin = player.Tile;
+        var grid = GetTileGrid(origin, config.AutoClearStoneRange);
+        foreach (var tile in grid)
+        {
+            location.objects.TryGetValue(tile, out var obj);
+            switch (config.OnlyClearStoneOnFarm)
+            {
+                case true:
+                    if (obj?.QualifiedItemId is "(O)450" or "(O)343")
+                    {
+                        if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) break;
+                        UseToolOnTile(location, player, pickaxe, tile);
+                    }
+
+                    break;
+                case false:
+                    if (obj is not null && obj.IsBreakableStone())
+                    {
+                        if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) break;
+                        UseToolOnTile(location, player, pickaxe, tile);
+                    }
+
+                    break;
+            }
+        }
     }
 
     // 自动收集煤炭

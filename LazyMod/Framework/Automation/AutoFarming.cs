@@ -19,6 +19,7 @@ public class AutoFarming : Automate
     {
         if (location is null) return;
 
+        TileCache.Clear();
         // 自动耕地
         if (config.AutoTillDirt && tool is Hoe) AutoTillDirt(location, player, tool);
         // 自动清理耕地
@@ -37,6 +38,7 @@ public class AutoFarming : Automate
         if (config.AutoShakeFruitTree) AutoShakeFruitTree(location, player);
         // 自动清理枯萎作物
         if (config.AutoClearDeadCrop) AutoClearDeadCrop(location, player);
+        TileCache.Clear();
     }
 
     // 自动耕地

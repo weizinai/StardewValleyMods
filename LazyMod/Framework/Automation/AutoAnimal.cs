@@ -18,6 +18,7 @@ public class AutoAnimal : Automate
     {
         if (location is null) return;
 
+        TileCache.Clear();
         // 自动抚摸动物
         if (config.AutoPetAnimal) AutoPetAnimal(location, player);
         // 自动挤奶
@@ -28,6 +29,7 @@ public class AutoAnimal : Automate
         if (config.AutoOpenFenceGate) AutoOpenFenceGate(location, player);
         // 自动抚摸宠物
         if (config.AutoPetPet) AutoPetPet(location, player);
+        TileCache.Clear();
     }
 
     // 自动抚摸动物

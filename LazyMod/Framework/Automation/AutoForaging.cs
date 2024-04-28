@@ -20,6 +20,7 @@ public class AutoForaging : Automate
     {
         if (location is null) return;
 
+        TileCache.Clear();
         // 自动觅食
         if (config.AutoForage) AutoForage(location, player);
         // 自动摇树
@@ -34,6 +35,7 @@ public class AutoForaging : Automate
         if (config.AutoClearTwig && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
         // 自动清理树种
         if (config.AutoClearTreeSeed && tool is Axe) AutoClearTreeSeed(location, player, tool);
+        TileCache.Clear();
     }
 
     // 自动觅食

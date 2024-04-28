@@ -21,9 +21,10 @@ public class AutoOther : Automate
     public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
     {
         if (location is null) return;
-
+        
         // 增加磁力范围
         MagneticRadiusIncrease(player);
+        TileCache.Clear();
         // 自动清理杂草
         if (config.AutoClearWeeds && (tool is MeleeWeapon || config.FindToolFromInventory)) AutoClearWeeds(location, player);
         // 自动挖掘远古斑点
@@ -34,6 +35,7 @@ public class AutoOther : Automate
         if (config.AutoTriggerMachine && item is not null) AutoTriggerMachine(location, player, item);
         // 自动翻垃圾桶
         if (config.AutoGarbageCan) AutoGarbageCan(location, player);
+        TileCache.Clear();
     }
 
     // 增加磁力范围

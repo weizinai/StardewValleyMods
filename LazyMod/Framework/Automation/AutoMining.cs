@@ -18,6 +18,7 @@ public class AutoMining : Automate
     {
         if (location is null) return;
 
+        TileCache.Clear();
         // 自动清理石头
         if (config.AutoClearStone && (tool is Pickaxe || config.FindPickaxeFromInventory)) AutoClearStone(location, player);
         // 自动收集煤炭
@@ -28,6 +29,7 @@ public class AutoMining : Automate
         if (config.AutoOpenTreasure) AutoOpenTreasure(location, player);
         // 自动清理水晶
         if (config.AutoClearCrystal) AutoClearCrystal(location, player);
+        TileCache.Clear();
     }
 
     // 自动清理石头

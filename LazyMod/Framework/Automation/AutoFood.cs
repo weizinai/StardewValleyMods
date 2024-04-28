@@ -22,6 +22,7 @@ public class AutoFood : Automate
         FindFoodFromInventory(player);
         if (!foodData.Any()) return;
 
+        TileCache.Clear();
         // 自动吃食物-体力
         if (config.AutoEatFoodForStamina) AutoEatFoodForStamina(player);
         // 自动吃食物-生命值
@@ -30,7 +31,7 @@ public class AutoFood : Automate
         if (config.AutoEatBuffFood) AutoEatBuffFood(player);
         // 自动喝饮料-Buff
         if (config.AutoDrinkBuffDrink) AutoDrinkBuffDrink(player);
-        
+        TileCache.Clear();
     }
 
     // 自动吃食物-体力

@@ -18,7 +18,7 @@ public abstract class Automate
     {
         if (TileCache.TryGetValue(range, out var cache))
             return cache;
-        
+
         var origin = player.Tile;
         var grid = new List<Vector2>();
         for (var x = -range; x <= range; x++)
@@ -87,13 +87,15 @@ public abstract class Automate
         location.checkAction(new Location((int)tile.X, (int)tile.Y), Game1.viewport, player);
     }
 
-    protected void HarvestMachine(Farmer player,SObject? machine)
+    protected void HarvestMachine(Farmer player, SObject? machine)
     {
         if (machine is null) return;
-        
+
         var heldObject = machine.heldObject.Value;
-        if (player.freeSpotsInInventory() == 0 && !player.Items.Contains(heldObject)) return;
         if (machine.readyForHarvest.Value && heldObject is not null)
+        {
+            if (player.freeSpotsInInventory() == 0 && !player.Items.ContainsId(heldObject.ItemId)) return;
             machine.checkForAction(player);
+        }
     }
 }

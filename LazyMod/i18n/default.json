@@ -134,6 +134,8 @@
     "Config.AutoAddBaitForCarbPot.Name": "Auto Add Bait For Carb Pot",
     "Config.AutoAddBaitForCarbPot.Tooltip": "This feature only works when you hold the bait.",
     "Config.AutoAddBaitForCarbPotRange.Name": "Auto Add Bait For Carb Pot Range",
+    "Config.AutoHarvestCarbPot.Name": "Auto Harvest Carb Pot",
+    "Config.AutoHarvestCarbPotRange.Name": "Auto Harvest Carb Pot Range",
 
     // Food
     "Config.FoodPage.Name": "Food",

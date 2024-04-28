@@ -943,6 +943,26 @@ public class ModEntry : Mod
             1,
             3
         );
+        // 自动收获蟹笼
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoHarvestCarbPot_Name
+            );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoHarvestCarbPot,
+            value => config.AutoHarvestCarbPot = value,
+            I18n.Config_AutoHarvestCarbPot_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoHarvestCarbPotRange,
+            value => config.AutoHarvestCarbPotRange = value,
+            I18n.Config_AutoHarvestCarbPotRange_Name,
+            null,
+            1,
+            3
+        );
 
         #endregion
 

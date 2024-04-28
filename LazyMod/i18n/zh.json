@@ -134,7 +134,9 @@
     "Config.AutoAddBaitForCarbPot.Name": "自动添加蟹笼鱼饵",
     "Config.AutoAddBaitForCarbPot.Tooltip": "当你手持鱼饵时,该功能才有效果.",
     "Config.AutoAddBaitForCarbPotRange.Name": "自动添加鱼饵范围",
-
+    "Config.AutoHarvestCarbPot.Name": "自动收获蟹笼",
+    "Config.AutoHarvestCarbPotRange.Name": "自动收获蟹笼范围",
+    
     // 食物
     "Config.FoodPage.Name": "食物",
     "Config.AutoEatFoodForStamina.Name": "自动吃食物-体力",

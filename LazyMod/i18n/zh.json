@@ -65,19 +65,19 @@
     "Config.StopAutoClearStoneStamina.Name": "停止自动清理石头体力",
     "Config.FindPickaxeFromInventory.Name": "从背包中寻找稿子",
     "Config.FindPickaxeFromInventory.Tooltip": "当该选项启用时,只需要背包中有稿子,该功能就会生效.",
-    "Config.ClearStoneOnMineShaft.Name": "在矿井中清理石头", // 1.0.3 Add
-    "Config.ClearStoneOnMineShaft.Tooltip": "当该选项启用时,即使玩家在矿井中,该功能也会生效.", // 1.0.3 Add
-    "Config.ClearStoneOnVolcano.Name" : "在火山中清理石头", // 1.0.3 Add
-    "Config.ClearStoneOnVolcano.Tooltip": "当该选项启用时,即使玩家在火山中,该功能也会生效.", // 1.0.3 Add
-    "Config.ClearFarmStone.Name": "清理农场石头", // 1.0.3 Add
-    "Config.ClearFarmStone.Tooltip": "当该选项启用时,该功能会清理会在农场上生成的两种类型的普通石头.", // 1.0.3 Add
-    "Config.ClearOtherStone.Name": "清理其他石头", // 1.0.3 Add
-    "Config.ClearOtherStone.Tooltip": "当该选项启用时,该功能会清理其他的普通石头.", // 1.0.3 Add
-    "Config.ClearIslandStone.Name": "清理姜岛石头", // 1.0.3 Add
-    "Config.ClearIslandStone.Tooltip": "当该选项启用时,该功能会清理在姜岛上生成的石头.(蚌矿,化石矿,粘土矿)", // 1.0.3 Add
-    "Config.ClearOreStone.Name": "清理矿物石头", // 1.0.3 Add
-    "Config.ClearGemStone.Name" :"清理宝石石头", // 1.0.3 Add
-    "Config.ClearGeodeStone.Name":"清理晶球石头", // 1.0.3 Add
+    "Config.ClearStoneOnMineShaft.Name": "在矿井中清理石头",
+    "Config.ClearStoneOnMineShaft.Tooltip": "当该选项启用时,即使玩家在矿井中,该功能也会生效.",
+    "Config.ClearStoneOnVolcano.Name" : "在火山中清理石头",
+    "Config.ClearStoneOnVolcano.Tooltip": "当该选项启用时,即使玩家在火山中,该功能也会生效.",
+    "Config.ClearFarmStone.Name": "清理农场石头",
+    "Config.ClearFarmStone.Tooltip": "当该选项启用时,该功能会清理会在农场上生成的两种类型的普通石头.",
+    "Config.ClearOtherStone.Name": "清理其他石头",
+    "Config.ClearOtherStone.Tooltip": "当该选项启用时,该功能会清理其他的普通石头.",
+    "Config.ClearIslandStone.Name": "清理姜岛石头",
+    "Config.ClearIslandStone.Tooltip": "当该选项启用时,该功能会清理在姜岛上生成的石头.(蚌矿,化石矿,粘土矿)",
+    "Config.ClearOreStone.Name": "清理矿物石头",
+    "Config.ClearGemStone.Name" :"清理宝石石头",
+    "Config.ClearGeodeStone.Name":"清理晶球石头",
     "Config.AutoCollectCoal.Name": "自动收集煤炭",
     "Config.AutoCollectCoal.Tooltip": "当该选项启用时,会自动为你收集背包和矿车中的煤炭.",
     "Config.AutoCollectCoalRange.Name": "自动收集煤炭范围",

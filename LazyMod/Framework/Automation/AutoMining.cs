@@ -41,22 +41,26 @@ public class AutoMining : Automate
 
         var stoneTypes = new Dictionary<HashSet<string>, bool>
         {
-            { new HashSet<string> { "343", "450" }, config.ClearFarmStone },
-            {
-                new HashSet<string> { "32", "34", "36", "38", "40", "42", "48", "50", "52", "54", "56", "58", "668", "670", "760", "762", "845", "846", "847" },
-                config.ClearOtherStone
-            },
-            { new HashSet<string> { "25", "816", "817", "818" }, config.ClearIslandStone },
+            { new HashSet<string> { "(O)343", "(O)450" }, config.ClearFarmStone },
             {
                 new HashSet<string>
                 {
-                    "95", "290", "751", "764", "765", "843", "844", "849", "850", "BasicCoalNode0", "BasicCoalNode1", "VolcanoCoalNode0", "VolcanoCoalNode1",
-                    "VolcanoGoldNode"
+                    "(O)32", "(O)34", "(O)36", "(O)38", "(O)40", "(O)42", "(O)48", "(O)50", "(O)52", "(O)54", "(O)56", "(O)58", "(O)668", "(O)670", "(O)760", "(O)762",
+                    "(O)845", "(O)846", "(O)847"
+                },
+                config.ClearOtherStone
+            },
+            { new HashSet<string> { "(O)25", "(O)816", "(O)817", "(O)818" }, config.ClearIslandStone },
+            {
+                new HashSet<string>
+                {
+                    "(O)95", "(O)290", "(O)751", "(O)764", "(O)765", "(O)843", "(O)844", "(O)849", "(O)850", "(O)BasicCoalNode0", "(O)BasicCoalNode1",
+                    "(O)VolcanoCoalNode0", "(O)VolcanoCoalNode1", "(O)VolcanoGoldNode"
                 },
                 config.ClearOreStone
             },
-            { new HashSet<string> { "2", "4", "6", "8", "10", "12", "14", "44", "46" }, config.ClearGemStone },
-            { new HashSet<string> { "75", "76", "77", "819" }, config.ClearGeodeStone }
+            { new HashSet<string> { "(O)2", "(O)4", "(O)6", "(O)8", "(O)10", "(O)12", "(O)14", "(O)44", "(O)46" }, config.ClearGemStone },
+            { new HashSet<string> { "(O)75", "(O)76", "(O)77", "(O)819" }, config.ClearGeodeStone }
         };
 
         var hasAddMessage = true;
@@ -69,7 +73,7 @@ public class AutoMining : Automate
 
             foreach (var stoneType in stoneTypes)
             {
-                if (stoneType.Value && stoneType.Key.Contains(obj.ItemId))
+                if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
                 {
                     if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) return;
                     UseToolOnTile(location, player, pickaxe, tile);

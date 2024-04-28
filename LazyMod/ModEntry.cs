@@ -714,7 +714,7 @@ public class ModEntry : Mod
 
         #endregion
 
-        #region 觅食
+        #region 采集
 
         configMenu.AddPage(
             ModManifest,

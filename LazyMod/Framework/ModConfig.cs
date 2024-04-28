@@ -108,7 +108,7 @@ public class ModConfig
 
     #endregion
 
-    #region 觅食
+    #region 采集
 
     // 自动觅食
     public bool AutoForage { get; set; }

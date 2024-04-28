@@ -98,15 +98,15 @@
     "Config.ShowMonsterKillInfo.Tooltip":"当该选项启用时,鼠标左键点击怪物信息图标会打开杀怪目标清单.",
     "Config.ShowMineralInfo.Name": "显示矿物信息",
 
-    // 觅食
-    "Config.ForagingPage.Name": "觅食",
+    // 采集
+    "Config.ForagingPage.Name": "采集",
     "Config.AutoForage.Name": "自动觅食",
     "Config.AutoForageRange.Name": "自动觅食范围",
     "Config.AutoShakeTree.Name": "自动摇树",
     "Config.AutoShakeTreeRange.Name": "自动摇树范围",
-    "Config.AutoUseTapperOnTree.Name":"自动装备采集器", // 1.0.4 Add
-    "Config.AutoUseTapperOnTree.Tooltip":"当你手持树液采集器时,该功能才有效果.", // 1.0.4 Add
-    "Config.AutoUseTapperOnTreeRange.Name":"自动装备采集器范围", // 1.0.4 Add
+    "Config.AutoUseTapperOnTree.Name":"自动装备采集器",
+    "Config.AutoUseTapperOnTree.Tooltip":"当你手持树液采集器时,该功能才有效果.",
+    "Config.AutoUseTapperOnTreeRange.Name":"自动装备采集器范围",
     "Config.AutoHarvestMoss.Name": "自动收获苔藓",
     "Config.AutoHarvestMoss.Tooltip": "当你手持镰刀(近战武器)时,该功能才有效果.",
     "Config.AutoHarvestMossRange.Name": "自动收获苔藓范围",
@@ -127,13 +127,13 @@
     "Config.StopAutoClearTreeSeedStamina.Name": "停止自动清理树种体力",
     
     // 钓鱼
-    "Config.FishingPage.Name": "钓鱼", // 1.0.4 Add
-    "Config.AutoPlaceCarbPot.Name": "自动放置蟹笼", // 1.0.4 Add
-    "Config.AutoPlaceCarbPot.Tooltip": "当你手持蟹笼时,该功能才有效果", // 1.0.4 Add
-    "Config.AutoPlaceCarbPotRange.Name": "自动放置蟹笼范围", // 1.0.4 Add
-    "Config.AutoAddBaitForCarbPot.Name": "自动添加蟹笼鱼饵", // 1.0.4 Add
-    "Config.AutoAddBaitForCarbPot.Tooltip": "当你手持鱼饵时,该功能才有效果.", // 1.0.4 Add
-    "Config.AutoAddBaitForCarbPotRange.Name": "自动添加鱼饵范围", // 1.0.4 Add
+    "Config.FishingPage.Name": "钓鱼",
+    "Config.AutoPlaceCarbPot.Name": "自动放置蟹笼",
+    "Config.AutoPlaceCarbPot.Tooltip": "当你手持蟹笼时,该功能才有效果",
+    "Config.AutoPlaceCarbPotRange.Name": "自动放置蟹笼范围",
+    "Config.AutoAddBaitForCarbPot.Name": "自动添加蟹笼鱼饵",
+    "Config.AutoAddBaitForCarbPot.Tooltip": "当你手持鱼饵时,该功能才有效果.",
+    "Config.AutoAddBaitForCarbPotRange.Name": "自动添加鱼饵范围",
 
     // 食物
     "Config.FoodPage.Name": "食物",

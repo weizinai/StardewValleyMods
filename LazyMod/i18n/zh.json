@@ -104,6 +104,9 @@
     "Config.AutoForageRange.Name": "自动觅食范围",
     "Config.AutoShakeTree.Name": "自动摇树",
     "Config.AutoShakeTreeRange.Name": "自动摇树范围",
+    "Config.AutoUseTapperOnTree.Name":"自动装备采集器", // 1.0.4 Add
+    "Config.AutoUseTapperOnTree.Tooltip":"当你手持树液采集器时,该功能才有效果.", // 1.0.4 Add
+    "Config.AutoUseTapperOnTreeRange.Name":"自动装备采集器范围", // 1.0.4 Add
     "Config.AutoHarvestMoss.Name": "自动收获苔藓",
     "Config.AutoHarvestMoss.Tooltip": "当你手持镰刀(近战武器)时,该功能才有效果.",
     "Config.AutoHarvestMossRange.Name": "自动收获苔藓范围",

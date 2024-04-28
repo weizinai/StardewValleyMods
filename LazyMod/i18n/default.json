@@ -104,6 +104,9 @@
     "Config.AutoForageRange.Name":"Auto Forage Range",
     "Config.AutoShakeTree.Name":"Auto Shake Tree",
     "Config.AutoShakeTreeRange.Name":"Auto Shake Tree Range",
+    "Config.AutoUseTapperOnTree.Name":"Auto Use Tapper On Tree", // 1.0.4 Add
+    "Config.AutoUseTapperOnTree.Tooltip":"This feature only works when you hold the tapper.", // 1.0.4 Add
+    "Config.AutoUseTapperOnTreeRange.Name":"Auto Use Tapper On Tree Range", // 1.0.4 Add
     "Config.AutoHarvestMoss.Name":"Auto Harvest Moss",
     "Config.AutoHarvestMoss.Tooltip":"This feature only works when you hold the scythe(melee weapon).", // 1.0.1 Add
     "Config.AutoHarvestMossRange.Name":"Auto Harvest Moss Range",

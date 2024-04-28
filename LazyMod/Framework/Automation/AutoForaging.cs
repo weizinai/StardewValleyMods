@@ -24,10 +24,12 @@ public class AutoForaging : Automate
         if (config.AutoForage) AutoForage(location, player);
         // 自动摇树
         if (config.AutoShakeTree) AutoShakeTree(location, player);
+        // 自动装备采集器
+        if (config.AutoUseTapperOnTree && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) AutoUseTapperOnTree(location, player, tapper);
         // 自动收获苔藓
         if (config.AutoHarvestMoss && (tool is MeleeWeapon || config.FindScytheFromInventory)) AutoHarvestMoss(location, player);
         // 自动在树上浇醋
-        if (config.AutoUseVinegarOnTree && item is SObject obj && item.QualifiedItemId is "(O)419") AutoUseVinegarOnTree(location, player, obj);
+        if (config.AutoUseVinegarOnTree && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoUseVinegarOnTree(location, player, vinegar);
         // 自动清理树枝
         if (config.AutoClearTwig && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
         // 自动清理树种
@@ -77,6 +79,23 @@ public class AutoForaging : Automate
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree && tree.hasMoss.Value)
                 tree.performToolAction(scythe, 0, tile);
+        }
+    }
+    
+    // 自动装备采集器
+    private void AutoUseTapperOnTree(GameLocation location, Farmer player, SObject tapper)
+    {
+        var origin = player.Tile;
+        var grid = GetTileGrid(origin, config.AutoUseVinegarOnTreeRange);
+        foreach (var tile in grid)
+        {
+            location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+            if (terrainFeature is Tree tree && !tree.tapped.Value)
+            {
+                var tilePixelPosition = GetTilePixelPosition(tile);
+                tapper.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player);
+                ConsumeItem(player, tapper);
+            }
         }
     }
 

@@ -4,8 +4,6 @@ using LazyMod.Framework.Automation;
 using LazyMod.Framework.Hud;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
-using StardewValley.Locations;
 
 namespace LazyMod;
 
@@ -784,6 +782,26 @@ public class ModEntry : Mod
             value => config.FindScytheFromInventory = value,
             I18n.Config_FindScytheFromInventory_Name,
             I18n.Config_FindScytheFromInventory_Tooltip
+        );
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoUseTapperOnTree_Name,
+            I18n.Config_AutoUseTapperOnTree_Tooltip
+            );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoUseTapperOnTree,
+            value => config.AutoUseTapperOnTree = value,
+            I18n.Config_AutoUseTapperOnTree_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoUseTapperOnTreeRange,
+            value => config.AutoUseTapperOnTreeRange = value,
+            I18n.Config_AutoUseTapperOnTreeRange_Name,
+            null,
+            1,
+            3
         );
         // 自动在树上浇醋
         configMenu.AddSectionTitle(

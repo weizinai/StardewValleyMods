@@ -170,9 +170,9 @@ public class ModConfig
     public int AutoClearWeedsRange { get; set; } = 1;
     public bool FindToolFromInventory { get; set; } = true;
     // 自动挖掘远古斑点
-    public bool AutoDigArtifactSpots { get; set; }
-    public int AutoDigArtifactSpotsRange { get; set; }
-    public float StopAutoDigArtifactSpotsStamina { get; set; } = 3;
+    public bool AutoDigSpots { get; set; }
+    public int AutoDigSpotsRange { get; set; }
+    public float StopAutoDigSpotsStamina { get; set; } = 3;
     public bool FindHoeFromInventory { get; set; } = true;
     // 自动收获机器
     public bool AutoHarvestMachine { get; set; }

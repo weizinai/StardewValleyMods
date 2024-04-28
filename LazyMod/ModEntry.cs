@@ -1066,28 +1066,28 @@ public class ModEntry : Mod
         // 自动挖掘远古斑点
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoDigArtifactSpots_Name,
-            I18n.Config_AutoDigArtifactSpots_Tooltip
+            I18n.Config_AutoDigSpots_Name,
+            I18n.Config_AutoDigSpots_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoDigArtifactSpots,
-            value => config.AutoDigArtifactSpots = value,
-            I18n.Config_AutoDigArtifactSpots_Name
+            () => config.AutoDigSpots,
+            value => config.AutoDigSpots = value,
+            I18n.Config_AutoDigSpots_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.AutoDigArtifactSpotsRange,
-            value => config.AutoDigArtifactSpotsRange = value,
-            I18n.Config_AutoDigArtifactSpotsRange_Name,
+            () => config.AutoDigSpotsRange,
+            value => config.AutoDigSpotsRange = value,
+            I18n.Config_AutoDigSpotsRange_Name,
             null,
             0,
             3);
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoDigArtifactSpotsStamina,
-            value => config.StopAutoDigArtifactSpotsStamina = value,
-            I18n.Config_StopAutoDigArtifactSpotsStamina_Name
+            () => config.StopAutoDigSpotsStamina,
+            value => config.StopAutoDigSpotsStamina = value,
+            I18n.Config_StopAutoDigSpotsStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,

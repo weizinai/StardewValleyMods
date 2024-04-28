@@ -155,10 +155,10 @@
     "Config.AutoClearWeedsRange.Name": "Auto Clear Weeds Range",
     "Config.FindToolFromInventory.Name": "Find Tool From Inventory",
     "Config.FindToolFromInventory.Tooltip": "When this option is enabled, only a scythe (melee weapon) is required in the backpack for the feature to work.", // 1.0.1 Add
-    "Config.AutoDigArtifactSpots.Name": "Auto Dig Artifact Spots",
-    "Config.AutoDigArtifactSpots.Tooltip": "This feature only works when you hold the hoe.Artifact spots and seed spots will be mined.", // 1.0.1 Add
-    "Config.AutoDigArtifactSpotsRange.Name": "Auto Dig Artifact Spots Range",
-    "Config.StopAutoDigArtifactSpotsStamina.Name": "Stop Auto Dig Artifact Spots Stamina",
+    "Config.AutoDigSpots.Name": "Auto Dig Spots",
+    "Config.AutoDigSpots.Tooltip": "This feature only works when you hold the hoe.", // 1.0.1 Add
+    "Config.AutoDigSpotsRange.Name": "Auto Dig Spots Range",
+    "Config.StopAutoDigSpotsStamina.Name": "Stop Auto Dig Spots Stamina",
     "Config.FindHoeFromInventory.Name": "Find Hoe From Inventory",
     "Config.FindHoeFromInventory.Tooltip": "When this option is enabled, only a hoe is required in the backpack for the feature to work.", // 1.0.1 Add
     "Config.AutoHarvestMachine.Name": "Auto Harvest Machine",

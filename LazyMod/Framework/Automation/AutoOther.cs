@@ -26,7 +26,7 @@ public class AutoOther : Automate
         // 自动清理杂草
         if (config.AutoClearWeeds && (tool is MeleeWeapon || config.FindToolFromInventory)) AutoClearWeeds(location, player);
         // 自动挖掘远古斑点
-        if (config.AutoDigArtifactSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigArtifactSpots(location, player);
+        if (config.AutoDigSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigArtifactSpots(location, player);
         // 自动收获机器
         if (config.AutoHarvestMachine) AutoHarvestMachine(location, player);
         // 自动触发机器
@@ -85,7 +85,7 @@ public class AutoOther : Automate
         if (hoe is null)
             return;
 
-        var grid = GetTileGrid(player, config.AutoDigArtifactSpotsRange);
+        var grid = GetTileGrid(player, config.AutoDigSpotsRange);
         var hasAddMessage = true;
         foreach (var tile in grid)
         {

@@ -66,8 +66,7 @@ public class AutoOther : Automate
         var scythe = FindToolFromInventory<MeleeWeapon>(true);
         if (scythe is null) return;
 
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoClearWeedsRange);
+        var grid = GetTileGrid(player, config.AutoClearWeedsRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -86,8 +85,7 @@ public class AutoOther : Automate
         if (hoe is null)
             return;
 
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoDigArtifactSpotsRange).ToList();
+        var grid = GetTileGrid(player, config.AutoDigArtifactSpotsRange).ToList();
         var hasAddMessage = true;
         foreach (var tile in grid)
         {
@@ -101,8 +99,7 @@ public class AutoOther : Automate
     // 自动收获机器
     private void AutoHarvestMachine(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoHarvestMachineRange);
+        var grid = GetTileGrid(player, config.AutoHarvestMachineRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -114,8 +111,7 @@ public class AutoOther : Automate
     // 自动触发机器
     private void AutoTriggerMachine(GameLocation location, Farmer player, Item item)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoTriggerMachineRange);
+        var grid = GetTileGrid(player, config.AutoTriggerMachineRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -129,9 +125,8 @@ public class AutoOther : Automate
     // 自动翻垃圾桶
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        if (CheckNPCNearTile(location, origin) && config.StopAutoGarbageCanNearVillager) return;
-        var grid = GetTileGrid(origin, config.AutoCollectCoalRange);
+        if (CheckNPCNearTile(location, player) && config.StopAutoGarbageCanNearVillager) return;
+        var grid = GetTileGrid(player, config.AutoCollectCoalRange);
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
@@ -143,8 +138,9 @@ public class AutoOther : Automate
     /// 检测周围是否有NPC
     /// </summary>
     /// <returns>如果有,则返回true,否则返回false</returns>
-    private bool CheckNPCNearTile(GameLocation location, Vector2 tile)
+    private bool CheckNPCNearTile(GameLocation location, Farmer player)
     {
+        var tile = player.Tile;
         var npcs = Utility.GetNpcsWithinDistance(tile, 7, location).ToList();
         if (!npcs.Any()) return false;
         var horse = npcs.FirstOrDefault(npc => npc is Horse);

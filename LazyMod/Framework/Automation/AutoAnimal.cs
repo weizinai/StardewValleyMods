@@ -33,8 +33,7 @@ public class AutoAnimal : Automate
     // 自动抚摸动物
     private void AutoPetAnimal(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoPetAnimalRange).ToList();
+        var grid = GetTileGrid(player, config.AutoPetAnimalRange).ToList();
 
         var animals = location.animals.Values;
         foreach (var animal in from animal in animals from tile in grid.Where(tile => CanPetAnimal(tile, animal)) select animal) animal.pet(player);
@@ -49,8 +48,7 @@ public class AutoAnimal : Automate
         if (milkPail is null) return;
 
         var hasAddMessage = true;
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoMilkAnimalRange);
+        var grid = GetTileGrid(player, config.AutoMilkAnimalRange);
         foreach (var tile in grid)
         {
             if (StopAutomate(player, config.StopAutoMilkAnimalStamina, ref hasAddMessage)) break;
@@ -71,8 +69,7 @@ public class AutoAnimal : Automate
             return;
 
         var hasAddMessage = true;
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoShearsAnimalRange);
+        var grid = GetTileGrid(player, config.AutoShearsAnimalRange);
         foreach (var tile in grid)
         {
             if (StopAutomate(player, config.StopAutoShearsAnimalStamina, ref hasAddMessage)) break;
@@ -107,15 +104,14 @@ public class AutoAnimal : Automate
     // 自动打开栅栏门
     private void AutoOpenFenceGate(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoOpenFenceGateRange + 2).ToList();
+        var grid = GetTileGrid(player, config.AutoOpenFenceGateRange + 2).ToList();
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not Fence fence || !fence.isGate.Value)
                 continue;
 
-            var distance = GetDistance(origin, tile);
+            var distance = GetDistance(player.Tile, tile);
             if (distance <= config.AutoOpenFenceGateRange && fence.gatePosition.Value == 0)
             {
                 fence.toggleGate(player, true);
@@ -130,8 +126,7 @@ public class AutoAnimal : Automate
     // 自动抚摸宠物
     private void AutoPetPet(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoPetAnimalRange).ToList();
+        var grid = GetTileGrid(player, config.AutoPetAnimalRange).ToList();
 
         var pets = location.characters.OfType<Pet>();
         foreach (var pet in pets)

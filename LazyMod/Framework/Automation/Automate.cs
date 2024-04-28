@@ -9,14 +9,16 @@ namespace LazyMod.Framework.Automation;
 public abstract class Automate
 {
     protected readonly Lazy<MeleeWeapon> FakeScythe = new(() => new MeleeWeapon("47"));
+    protected readonly Dictionary<int, List<Vector2>> TileCache = new();
 
     public abstract void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item);
 
-    protected IEnumerable<Vector2> GetTileGrid(Vector2 origin, int range)
+    protected IEnumerable<Vector2> GetTileGrid(Farmer player, int range)
     {
+        var origin = player.Tile;
         for (var x = -range; x <= range; x++)
-        for (var y = -range; y <= range; y++)
-            yield return new Vector2(origin.X + x, origin.Y + y);
+            for (var y = -range; y <= range; y++)
+                yield return new Vector2(origin.X + x, origin.Y + y);
     }
 
     protected T? FindToolFromInventory<T>(bool findScythe = false) where T : Tool

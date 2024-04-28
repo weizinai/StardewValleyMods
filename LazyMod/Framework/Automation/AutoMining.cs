@@ -64,8 +64,7 @@ public class AutoMining : Automate
         };
 
         var hasAddMessage = true;
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoClearStoneRange);
+        var grid = GetTileGrid(player, config.AutoClearStoneRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -86,8 +85,7 @@ public class AutoMining : Automate
     // 自动收集煤炭
     private void AutoCollectCoal(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoCollectCoalRange);
+        var grid = GetTileGrid(player, config.AutoCollectCoalRange);
         foreach (var tile in grid)
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
                 CheckTileAction(location, player, tile);
@@ -98,9 +96,8 @@ public class AutoMining : Automate
     {
         var weapon = FindToolFromInventory<MeleeWeapon>();
         if (weapon is null) return;
-
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoBreakContainerRange);
+        
+        var grid = GetTileGrid(player, config.AutoBreakContainerRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -112,10 +109,7 @@ public class AutoMining : Automate
     // 自动打开宝藏
     private void AutoOpenTreasure(GameLocation location, Farmer player)
     {
-        // if (location is not MineShaft) return;
-
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoBreakContainerRange);
+        var grid = GetTileGrid(player, config.AutoBreakContainerRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -127,8 +121,7 @@ public class AutoMining : Automate
     // 自动清理水晶
     private void AutoClearCrystal(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoClearCrystalRange);
+        var grid = GetTileGrid(player, config.AutoClearCrystalRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);

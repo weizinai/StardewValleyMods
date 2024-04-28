@@ -39,8 +39,7 @@ public class AutoForaging : Automate
     // 自动觅食
     private void AutoForage(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoForageRange);
+        var grid = GetTileGrid(player, config.AutoForageRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -56,8 +55,7 @@ public class AutoForaging : Automate
     // 自动摇树
     private void AutoShakeTree(GameLocation location, Farmer player)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoShakeFruitTreeRange);
+        var grid = GetTileGrid(player, config.AutoShakeFruitTreeRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -71,9 +69,8 @@ public class AutoForaging : Automate
     {
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
-
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoHarvestMossRange);
+        
+        var grid = GetTileGrid(player, config.AutoHarvestMossRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -85,8 +82,7 @@ public class AutoForaging : Automate
     // 自动装备采集器
     private void AutoUseTapperOnTree(GameLocation location, Farmer player, SObject tapper)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoUseVinegarOnTreeRange);
+        var grid = GetTileGrid(player, config.AutoUseVinegarOnTreeRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -102,8 +98,7 @@ public class AutoForaging : Automate
     // 自动在树上浇醋
     private void AutoUseVinegarOnTree(GameLocation location, Farmer player, SObject vinegar)
     {
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoUseVinegarOnTreeRange);
+        var grid = GetTileGrid(player, config.AutoUseVinegarOnTreeRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -123,8 +118,7 @@ public class AutoForaging : Automate
         if (axe is null) return;
 
         var hasAddMessage = true;
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoClearTwigRange);
+        var grid = GetTileGrid(player, config.AutoClearTwigRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -140,8 +134,7 @@ public class AutoForaging : Automate
     private void AutoClearTreeSeed(GameLocation location, Farmer player, Tool tool)
     {
         var hasAddMessage = true;
-        var origin = player.Tile;
-        var grid = GetTileGrid(origin, config.AutoClearTreeSeedRange);
+        var grid = GetTileGrid(player, config.AutoClearTreeSeedRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

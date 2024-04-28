@@ -45,7 +45,7 @@ public class AutoFarming : Automate
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
         var hasAddMessage = true;
-        var grid = GetTileGrid(player, config.AutoTillDirtRange).ToList();
+        var grid = GetTileGrid(player, config.AutoTillDirtRange);
         foreach (var tile in grid)
         {
             // 如果该瓦片不可耕地,则跳过该瓦片的处理
@@ -64,7 +64,7 @@ public class AutoFarming : Automate
     private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
     {
         var hasAddMessage = true;
-        var grid = GetTileGrid(player, config.AutoClearTilledDirtRange).ToList();
+        var grid = GetTileGrid(player, config.AutoClearTilledDirtRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
@@ -81,7 +81,7 @@ public class AutoFarming : Automate
     {
         var hasAddStaminaMessage = true;
         var hasAddWaterMessage = true;
-        var grid = GetTileGrid(player, config.AutoWaterDirtRange).ToList();
+        var grid = GetTileGrid(player, config.AutoWaterDirtRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
@@ -109,7 +109,7 @@ public class AutoFarming : Automate
         if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
             return;
         
-        var grid = GetTileGrid(player, config.AutoRefillWateringCanRange).ToList();
+        var grid = GetTileGrid(player, config.AutoRefillWateringCanRange);
         foreach (var tile in grid.Where(tile => location.CanRefillWateringCanOnTile((int)tile.X, (int)tile.Y)))
         {
             UseToolOnTile(location, player, wateringCan, tile);

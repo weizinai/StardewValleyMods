@@ -13,12 +13,18 @@ public abstract class Automate
 
     public abstract void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item);
 
-    protected IEnumerable<Vector2> GetTileGrid(Farmer player, int range)
+    protected List<Vector2> GetTileGrid(Farmer player, int range)
     {
+        if (TileCache.TryGetValue(range, out var cache))
+            return cache;
+        
         var origin = player.Tile;
+        var grid = new List<Vector2>();
         for (var x = -range; x <= range; x++)
             for (var y = -range; y <= range; y++)
-                yield return new Vector2(origin.X + x, origin.Y + y);
+                grid.Add(new Vector2(origin.X + x, origin.Y + y));
+        TileCache.Add(range, grid);
+        return grid;
     }
 
     protected T? FindToolFromInventory<T>(bool findScythe = false) where T : Tool

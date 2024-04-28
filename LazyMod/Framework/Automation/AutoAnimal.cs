@@ -35,7 +35,7 @@ public class AutoAnimal : Automate
     // 自动抚摸动物
     private void AutoPetAnimal(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoPetAnimalRange).ToList();
+        var grid = GetTileGrid(player, config.AutoPetAnimalRange);
 
         var animals = location.animals.Values;
         foreach (var animal in from animal in animals from tile in grid.Where(tile => CanPetAnimal(tile, animal)) select animal) animal.pet(player);
@@ -106,7 +106,7 @@ public class AutoAnimal : Automate
     // 自动打开栅栏门
     private void AutoOpenFenceGate(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoOpenFenceGateRange + 2).ToList();
+        var grid = GetTileGrid(player, config.AutoOpenFenceGateRange + 2);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -128,7 +128,7 @@ public class AutoAnimal : Automate
     // 自动抚摸宠物
     private void AutoPetPet(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoPetAnimalRange).ToList();
+        var grid = GetTileGrid(player, config.AutoPetAnimalRange);
 
         var pets = location.characters.OfType<Pet>();
         foreach (var pet in pets)

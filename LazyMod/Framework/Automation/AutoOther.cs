@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
-using StardewValley.Locations;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
@@ -87,7 +85,7 @@ public class AutoOther : Automate
         if (hoe is null)
             return;
 
-        var grid = GetTileGrid(player, config.AutoDigArtifactSpotsRange).ToList();
+        var grid = GetTileGrid(player, config.AutoDigArtifactSpotsRange);
         var hasAddMessage = true;
         foreach (var tile in grid)
         {

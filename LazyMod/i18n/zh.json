@@ -125,6 +125,15 @@
     "Config.AutoClearTreeSeed.Tooltip": "当你手持斧头时,该功能才有效果.",
     "Config.AutoClearTreeSeedRange.Name": "自动清理树种范围",
     "Config.StopAutoClearTreeSeedStamina.Name": "停止自动清理树种体力",
+    
+    // 钓鱼
+    "Config.FishingPage.Name": "钓鱼", // 1.0.4 Add
+    "Config.AutoPlaceCarbPot.Name": "自动放置蟹笼", // 1.0.4 Add
+    "Config.AutoPlaceCarbPot.Tooltip": "当你手持蟹笼时,该功能才有效果", // 1.0.4 Add
+    "Config.AutoPlaceCarbPotRange.Name": "自动放置蟹笼范围", // 1.0.4 Add
+    "Config.AutoAddBaitForCarbPot.Name": "自动添加蟹笼鱼饵", // 1.0.4 Add
+    "Config.AutoAddBaitForCarbPot.Tooltip": "当你手持鱼饵时,该功能才有效果.", // 1.0.4 Add
+    "Config.AutoAddBaitForCarbPotRange.Name": "自动添加鱼饵范围", // 1.0.4 Add
 
     // 食物
     "Config.FoodPage.Name": "食物",

@@ -95,6 +95,12 @@ public class ModEntry : Mod
 
         configMenu.AddPageLink(
             ModManifest,
+            "Fishing",
+            I18n.Config_FishingPage_Name
+        );
+
+        configMenu.AddPageLink(
+            ModManifest,
             "Food",
             I18n.Config_FoodPage_Name
         );
@@ -787,7 +793,7 @@ public class ModEntry : Mod
             ModManifest,
             I18n.Config_AutoUseTapperOnTree_Name,
             I18n.Config_AutoUseTapperOnTree_Tooltip
-            );
+        );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.AutoUseTapperOnTree,
@@ -884,6 +890,58 @@ public class ModEntry : Mod
             () => config.StopAutoClearTreeSeedStamina,
             value => config.StopAutoClearTreeSeedStamina = value,
             I18n.Config_StopAutoClearTreeSeedStamina_Name
+        );
+
+        #endregion
+
+        #region 钓鱼
+
+        configMenu.AddPage(
+            ModManifest,
+            "Fishing",
+            I18n.Config_FishingPage_Name
+        );
+        // 自动使用蟹笼
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoPlaceCarbPot_Name,
+            I18n.Config_AutoPlaceCarbPot_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoPlaceCarbPot,
+            value => config.AutoPlaceCarbPot = value,
+            I18n.Config_AutoPlaceCarbPot_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoPlaceCarbPotRange,
+            value => config.AutoPlaceCarbPotRange = value,
+            I18n.Config_AutoPlaceCarbPotRange_Name,
+            null,
+            1,
+            3
+        );
+        // 自动添加蟹笼鱼饵
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoAddBaitForCarbPot_Name,
+            I18n.Config_AutoAddBaitForCarbPot_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoAddBaitForCarbPot,
+            value => config.AutoAddBaitForCarbPot = value,
+            I18n.Config_AutoAddBaitForCarbPot_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoAddBaitForCarbPotRange,
+            value => config.AutoAddBaitForCarbPotRange = value,
+            I18n.Config_AutoAddBaitForCarbPotRange_Name,
+            null,
+            1,
+            3
         );
 
         #endregion

@@ -138,6 +138,17 @@ public class ModConfig
 
     #endregion
 
+    #region 钓鱼
+
+    // 自动放置蟹笼
+    public bool AutoPlaceCarbPot { get; set; }
+    public int AutoPlaceCarbPotRange { get; set; } = 1;
+    // 自动添加鱼饵鱼饵
+    public bool AutoAddBaitForCarbPot { get; set; }
+    public int AutoAddBaitForCarbPotRange { get; set; } = 1;
+
+    #endregion
+
     #region 食物
 
     // 自动吃食物_体力

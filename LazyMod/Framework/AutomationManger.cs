@@ -50,6 +50,7 @@ public class AutomationManger
             new AutoAnimal(config),
             new AutoMining(config),
             new AutoForaging(config),
+            new AutoFishing(config),
             new AutoFood(config),
             new AutoOther(config),
         });

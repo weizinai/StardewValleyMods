@@ -126,6 +126,15 @@
     "Config.AutoClearTreeSeedRange.Name":"Auto Clear Tree Seed Range",
     "Config.StopAutoClearTreeSeedStamina.Name":"Stop Auto Clear Tree Seed Stamina",
     
+    // Fishing
+    "Config.FishingPage.Name": "Fishing", // 1.0.4 Add
+    "Config.AutoPlaceCarbPot.Name": "Auto Place Carb Pot", // 1.0.4 Add
+    "Config.AutoPlaceCarbPot.Tooltip": "This feature only works when you hold the carb pot.", // 1.0.4 Add
+    "Config.AutoPlaceCarbPotRange.Name": "Auto Place Carb Pot Range", // 1.0.4 Add
+    "Config.AutoAddBaitForCarbPot.Name": "Auto Add Bait For Carb Pot", // 1.0.4 Add
+    "Config.AutoAddBaitForCarbPot.Tooltip": "This feature only works when you hold the bait.", // 1.0.4 Add
+    "Config.AutoAddBaitForCarbPotRange.Name": "Auto Add Bait For Carb Pot Range", // 1.0.4 Add
+    
     // Food
     "Config.FoodPage.Name": "Food",
     "Config.AutoEatFoodForStamina.Name": "Auto Eat Food For Stamina",

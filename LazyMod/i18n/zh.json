@@ -67,7 +67,7 @@
     "Config.FindPickaxeFromInventory.Tooltip": "当该选项启用时,只需要背包中有稿子,该功能就会生效.",
     "Config.ClearStoneOnMineShaft.Name": "在矿井中清理石头",
     "Config.ClearStoneOnMineShaft.Tooltip": "当该选项启用时,即使玩家在矿井中,该功能也会生效.",
-    "Config.ClearStoneOnVolcano.Name" : "在火山中清理石头",
+    "Config.ClearStoneOnVolcano.Name": "在火山中清理石头",
     "Config.ClearStoneOnVolcano.Tooltip": "当该选项启用时,即使玩家在火山中,该功能也会生效.",
     "Config.ClearFarmStone.Name": "清理农场石头",
     "Config.ClearFarmStone.Tooltip": "当该选项启用时,该功能会清理会在农场上生成的两种类型的普通石头.",
@@ -76,8 +76,8 @@
     "Config.ClearIslandStone.Name": "清理姜岛石头",
     "Config.ClearIslandStone.Tooltip": "当该选项启用时,该功能会清理在姜岛上生成的石头.(蚌矿,化石矿,粘土矿)",
     "Config.ClearOreStone.Name": "清理矿物石头",
-    "Config.ClearGemStone.Name" :"清理宝石石头",
-    "Config.ClearGeodeStone.Name":"清理晶球石头",
+    "Config.ClearGemStone.Name": "清理宝石石头",
+    "Config.ClearGeodeStone.Name": "清理晶球石头",
     "Config.AutoCollectCoal.Name": "自动收集煤炭",
     "Config.AutoCollectCoal.Tooltip": "当该选项启用时,会自动为你收集背包和矿车中的煤炭.",
     "Config.AutoCollectCoalRange.Name": "自动收集煤炭范围",
@@ -94,8 +94,8 @@
     "Config.ShowLadderInfo.Name": "显示梯子信息",
     "Config.ShowShaftInfo.Name": "显示竖井信息",
     "Config.ShowMonsterInfo.Name": "显示怪物信息",
-    "Config.ShowMonsterKillInfo.Name":"显示杀怪目标",
-    "Config.ShowMonsterKillInfo.Tooltip":"当该选项启用时,鼠标左键点击怪物信息图标会打开杀怪目标清单.",
+    "Config.ShowMonsterKillInfo.Name": "显示杀怪目标",
+    "Config.ShowMonsterKillInfo.Tooltip": "当该选项启用时,鼠标左键点击怪物信息图标会打开杀怪目标清单.",
     "Config.ShowMineralInfo.Name": "显示矿物信息",
 
     // 采集
@@ -104,9 +104,9 @@
     "Config.AutoForageRange.Name": "自动觅食范围",
     "Config.AutoShakeTree.Name": "自动摇树",
     "Config.AutoShakeTreeRange.Name": "自动摇树范围",
-    "Config.AutoUseTapperOnTree.Name":"自动装备采集器",
-    "Config.AutoUseTapperOnTree.Tooltip":"当你手持树液采集器时,该功能才有效果.",
-    "Config.AutoUseTapperOnTreeRange.Name":"自动装备采集器范围",
+    "Config.AutoUseTapperOnTree.Name": "自动装备采集器",
+    "Config.AutoUseTapperOnTree.Tooltip": "当你手持树液采集器时,该功能才有效果.",
+    "Config.AutoUseTapperOnTreeRange.Name": "自动装备采集器范围",
     "Config.AutoHarvestMoss.Name": "自动收获苔藓",
     "Config.AutoHarvestMoss.Tooltip": "当你手持镰刀(近战武器)时,该功能才有效果.",
     "Config.AutoHarvestMossRange.Name": "自动收获苔藓范围",
@@ -125,7 +125,7 @@
     "Config.AutoClearTreeSeed.Tooltip": "当你手持斧头时,该功能才有效果.",
     "Config.AutoClearTreeSeedRange.Name": "自动清理树种范围",
     "Config.StopAutoClearTreeSeedStamina.Name": "停止自动清理树种体力",
-    
+
     // 钓鱼
     "Config.FishingPage.Name": "钓鱼",
     "Config.AutoPlaceCarbPot.Name": "自动放置蟹笼",

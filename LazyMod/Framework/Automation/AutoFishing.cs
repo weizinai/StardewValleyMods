@@ -57,8 +57,7 @@ public class AutoFishing : Automate
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is CrabPot && obj.readyForHarvest.Value && obj.heldObject is not null)
-                obj.checkForAction(player);
+            if (obj is CrabPot) HarvestMachine(player, obj);
         }
     }
 }

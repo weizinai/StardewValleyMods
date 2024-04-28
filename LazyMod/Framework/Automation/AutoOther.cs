@@ -20,7 +20,7 @@ public class AutoOther : Automate
     public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
     {
         if (location is null) return;
-        
+
         // 增加磁力范围
         MagneticRadiusIncrease(player);
         TileCache.Clear();
@@ -105,8 +105,7 @@ public class AutoOther : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is CrabPot) continue;
-            if (obj is not null && obj.readyForHarvest.Value && obj.heldObject is not null)
-                obj.checkForAction(player);
+            HarvestMachine(player, obj);
         }
     }
 

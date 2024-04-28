@@ -3,6 +3,7 @@ using StardewValley;
 using StardewValley.Tools;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
+using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Automation;
 
@@ -84,5 +85,15 @@ public abstract class Automate
     protected void CheckTileAction(GameLocation location, Farmer player, Vector2 tile)
     {
         location.checkAction(new Location((int)tile.X, (int)tile.Y), Game1.viewport, player);
+    }
+
+    protected void HarvestMachine(Farmer player,SObject? machine)
+    {
+        if (machine is null) return;
+        
+        var heldObject = machine.heldObject.Value;
+        if (player.freeSpotsInInventory() == 0 && !player.Items.Contains(heldObject)) return;
+        if (machine.readyForHarvest.Value && heldObject is not null)
+            machine.checkForAction(player);
     }
 }

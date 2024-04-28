@@ -146,6 +146,9 @@ public class ModConfig
     // 自动添加鱼饵鱼饵
     public bool AutoAddBaitForCarbPot { get; set; }
     public int AutoAddBaitForCarbPotRange { get; set; } = 1;
+    // 自动收获蟹笼
+    public bool AutoHarvestCarbPot { get; set; }
+    public int AutoHarvestCarbPotRange { get; set; } = 1;
 
     #endregion
 

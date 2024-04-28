@@ -1,6 +1,7 @@
 ﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
+using StardewValley.Objects;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
@@ -103,6 +104,7 @@ public class AutoOther : Automate
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
+            if (obj is CrabPot) continue;
             if (obj is not null && obj.readyForHarvest.Value && obj.heldObject is not null)
                 obj.checkForAction(player);
         }

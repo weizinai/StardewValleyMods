@@ -22,6 +22,8 @@ public class AutoFishing : Automate
         if (config.AutoPlaceCarbPot && item is SObject { QualifiedItemId: "(O)710" } crabPot) AutoPlaceCrabPot(location, player, crabPot);
         // 自动添加蟹笼鱼饵
         if (config.AutoAddBaitForCarbPot && item is SObject { Category: SObject.baitCategory } bait) AutoAddBaitForCrabPot(location, player, bait);
+        // 自动收获蟹笼
+        if (config.AutoHarvestCarbPot) AutoHarvestCarbPot(location, player);
         TileCache.Clear();
     }
 
@@ -45,6 +47,18 @@ public class AutoFishing : Automate
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not CrabPot crabPot || crabPot.bait.Value is not null) continue;
             if (obj.performObjectDropInAction(bait, false, player)) ConsumeItem(player, bait);
+        }
+    }
+    
+    // 自动收获蟹笼
+    private void AutoHarvestCarbPot(GameLocation location, Farmer player)
+    {
+        var grid = GetTileGrid(player, config.AutoHarvestCarbPotRange);
+        foreach (var tile in grid)
+        {
+            location.objects.TryGetValue(tile, out var obj);
+            if (obj is CrabPot && obj.readyForHarvest.Value && obj.heldObject is not null)
+                obj.checkForAction(player);
         }
     }
 }

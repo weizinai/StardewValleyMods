@@ -791,20 +791,20 @@ public class ModEntry : Mod
         );
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoUseTapperOnTree_Name,
-            I18n.Config_AutoUseTapperOnTree_Tooltip
+            I18n.Config_AutoPlaceTapper_Name,
+            I18n.Config_AutoPlaceTapper_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoUseTapperOnTree,
-            value => config.AutoUseTapperOnTree = value,
-            I18n.Config_AutoUseTapperOnTree_Name
+            () => config.AutoPlaceTapper,
+            value => config.AutoPlaceTapper = value,
+            I18n.Config_AutoPlaceTapper_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.AutoUseTapperOnTreeRange,
-            value => config.AutoUseTapperOnTreeRange = value,
-            I18n.Config_AutoUseTapperOnTreeRange_Name,
+            () => config.AutoPlaceTapperRange,
+            value => config.AutoPlaceTapperRange = value,
+            I18n.Config_AutoPlaceTapperRange_Name,
             null,
             1,
             3
@@ -812,20 +812,20 @@ public class ModEntry : Mod
         // 自动在树上浇醋
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoUseVinegarOnTree_Name,
-            I18n.Config_AutoUseVinegarOnTree_Tooltip
+            I18n.Config_AutoPlaceVinegar_Name,
+            I18n.Config_AutoPlaceVinegar_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoUseVinegarOnTree,
-            value => config.AutoUseVinegarOnTree = value,
-            I18n.Config_AutoUseVinegarOnTree_Name
+            () => config.AutoPlaceVinegar,
+            value => config.AutoPlaceVinegar = value,
+            I18n.Config_AutoPlaceVinegar_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.AutoUseVinegarOnTreeRange,
-            value => config.AutoUseVinegarOnTreeRange = value,
-            I18n.Config_AutoUseVinegarOnTreeRange_Name,
+            () => config.AutoPlaceVinegarRange,
+            value => config.AutoPlaceVinegarRange = value,
+            I18n.Config_AutoPlaceVinegarRange_Name,
             null,
             1,
             3

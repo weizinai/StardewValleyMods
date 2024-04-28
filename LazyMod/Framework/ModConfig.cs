@@ -120,12 +120,12 @@ public class ModConfig
     public bool AutoHarvestMoss { get; set; }
     public int AutoHarvestMossRange { get; set; } = 1;
     public bool FindScytheFromInventory { get; set; } = true;
-    // 自动安装采集器
-    public bool AutoUseTapperOnTree { get; set; }
-    public int AutoUseTapperOnTreeRange { get; set; } = 1;
-    // 自动在树上浇醋
-    public bool AutoUseVinegarOnTree { get; set; }
-    public int AutoUseVinegarOnTreeRange { get; set; } = 1;
+    // 自动放置采集器
+    public bool AutoPlaceTapper { get; set; }
+    public int AutoPlaceTapperRange { get; set; } = 1;
+    // 自动放置醋
+    public bool AutoPlaceVinegar { get; set; }
+    public int AutoPlaceVinegarRange { get; set; } = 1;
     // 自动清理树枝
     public bool AutoClearTwig { get; set; }
     public int AutoClearTwigRange { get; set; } = 1;

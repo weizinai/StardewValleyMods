@@ -24,7 +24,7 @@ public class Button : Element
     }
 
 
-    public Button(Texture2D texture, Rectangle sourceRectangle, Color textureColor, string text, SpriteFont font, Color textColor, Vector2 localPosition,
+    private Button(Texture2D texture, Rectangle sourceRectangle, Color textureColor, string text, SpriteFont font, Color textColor, Vector2 localPosition,
         float scale = 1f)
     {
         this.texture = texture;

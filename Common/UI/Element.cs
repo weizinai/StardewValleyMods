@@ -37,8 +37,6 @@ public abstract class Element
         var mousePosition = Game1.getMousePosition();
         hover = Bounds.Contains(mousePosition);
         leftClickGesture = Game1.input.GetMouseState().LeftButton == ButtonState.Pressed && Game1.oldMouseState.LeftButton == ButtonState.Pressed;
-
-        // if (LeftClick) OnLeftClick?.Invoke();
     }
 
     public abstract void Draw(SpriteBatch spriteBatch);

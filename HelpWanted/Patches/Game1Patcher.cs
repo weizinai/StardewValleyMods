@@ -2,7 +2,7 @@ using Common.Patch;
 using HarmonyLib;
 using StardewValley;
 
-namespace HelpWanted.Framework;
+namespace HelpWanted.Patches;
 
 public class Game1Patcher : BasePatcher
 {

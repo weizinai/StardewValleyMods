@@ -11,20 +11,20 @@ namespace HelpWanted.Framework;
 public sealed class HWQuestBoard : Billboard
 {
     private readonly ModConfig config;
-    
-    public static readonly List<ClickableTextureComponent> QuestNotes = new();
-    public static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
-    private static Rectangle boardRect = new(78 * 4, 58 * 4, 184 * 4, 96 * 4);
+
+    private static readonly List<ClickableTextureComponent> QuestNotes = new();
+    private static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
+    private static Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
     private const int OptionIndex = -4200;
 
     // 面板纹理
     private readonly Texture2D billboardTexture;
 
     /// <summary>正在展示的任务的ID</summary>
-    public static int ShowingQuestID;
+    private static int showingQuestID;
 
     /// <summary>正在展示的任务</summary>
-    public static Quest? ShowingQuest;
+    private static Quest? showingQuest;
 
     // 悬浮标题和悬浮文本
     private string hoverTitle = "";
@@ -37,7 +37,7 @@ public sealed class HWQuestBoard : Billboard
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
         acceptQuestButton.visible = true;
-        ShowingQuest = null;
+        showingQuest = null;
         if (ModEntry.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典
@@ -67,28 +67,19 @@ public sealed class HWQuestBoard : Billboard
 
             ModEntry.QuestList.Clear();
         }
-
-        exitFunction = delegate
-        {
-            if (ShowingQuest is not null)
-                Game1.activeClickableMenu = new HWQuestBoard(config);
-        };
-        // 获得所有的可点击组件
-        populateClickableComponentList();
     }
 
     /// <summary>处理鼠标悬停事件</summary>
     public override void performHoverAction(int x, int y)
     {
+        // 关闭按钮逻辑
         upperRightCloseButton?.tryHover(x, y, 0.5f);
         
-        // 如果目前正在展示任务,则调用任务面板的悬停事件处理方法
-        if (ShowingQuest is null)
+        if (showingQuest is null)
         {
-            // 清空悬浮标题和悬浮文本
+            // 任务便签逻辑
             hoverTitle = "";
             hoverText = "";
-            // 遍历所有的任务选项,判断鼠标是否悬停在某个任务选项上,如果是,则设置悬浮标题和悬浮文本,结束循环
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
                 hoverTitle = QuestDataDictionary[option.myID].Quest.questTitle;
@@ -98,6 +89,7 @@ public sealed class HWQuestBoard : Billboard
         }
         else
         {
+            // 接受任务按钮逻辑
             hoverTitle = "";
             hoverText = "";
             var oldScale = acceptQuestButton.scale;
@@ -106,24 +98,23 @@ public sealed class HWQuestBoard : Billboard
         }
     }
 
-    /// <summary>处理鼠标左键点击</summary>
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
         // 如果当前没有展示任务面板,则处理OrderBillboard的鼠标左键点击事件
-        if (ShowingQuest is null)
+        if (showingQuest is null)
         {
-            // 如果点击在右上角的关闭按钮上,则关闭面板
-            if (upperRightCloseButton != null && readyToClose() && upperRightCloseButton.containsPoint(x, y))
+            // 关闭按钮逻辑
+            if (upperRightCloseButton != null && upperRightCloseButton.containsPoint(x, y))
             {
                 if (playSound) Game1.playSound(closeSound);
                 exitThisMenu();
             }
-            
-            // 遍历所有的任务选项,判断鼠标是否点击在某个任务选项上
+
+            // 任务便签逻辑
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
-                ShowingQuestID = option.myID;
-                ShowingQuest = QuestDataDictionary[option.myID].Quest;
+                showingQuestID = option.myID;
+                showingQuest = QuestDataDictionary[option.myID].Quest;
                 return;
             }
         }
@@ -133,70 +124,26 @@ public sealed class HWQuestBoard : Billboard
             if (upperRightCloseButton != null && upperRightCloseButton.containsPoint(x, y))
             {
                 if (playSound) Game1.playSound(closeSound);
-                ShowingQuest = null;
+                showingQuest = null;
+                return;
             }
-            
+
             // 接受任务按钮逻辑
             if (acceptQuestButton.containsPoint(x, y))
             {
                 Game1.playSound("newArtifact");
-                ShowingQuest!.dailyQuest.Value = true;
-                ShowingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
-                ShowingQuest.accepted.Value = true;
-                ShowingQuest.canBeCancelled.Value = true;
-                ShowingQuest.daysLeft.Value = config.QuestDays;
-                Game1.player.questLog.Add(ShowingQuest);
-                QuestDataDictionary.Remove(ShowingQuestID);
-                QuestNotes.RemoveAll(option => option.myID == ShowingQuestID);
-                ShowingQuest = null;
+                showingQuest.dailyQuest.Value = true;
+                showingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
+                showingQuest.accepted.Value = true;
+                showingQuest.canBeCancelled.Value = true;
+                showingQuest.daysLeft.Value = config.QuestDays;
+                Game1.player.questLog.Add(showingQuest);
+                QuestDataDictionary.Remove(showingQuestID);
+                QuestNotes.RemoveAll(option => option.myID == showingQuestID);
+                showingQuest = null;
             }
         }
     }
-
-    public override bool readyToClose()
-    {
-        if (ShowingQuest is null) return true;
-        ShowingQuest = null;
-        return false;
-    }
-
-    // public override void applyMovementKey(int direction)
-    // {
-    //     if (ShowingQuest is null)
-    //     {
-    //         base.applyMovementKey(direction);
-    //     }
-    //     else
-    //     {
-    //         ShowingQuest.applyMovementKey(direction);
-    //     }
-    // }
-    //
-    // public override void automaticSnapBehavior(int direction, int oldRegion, int oldID)
-    // {
-    //     if (ShowingQuest is null)
-    //     {
-    //         base.automaticSnapBehavior(direction, oldRegion, oldID);
-    //     }
-    //     else
-    //     {
-    //         ShowingQuest.automaticSnapBehavior(direction, oldRegion, oldID);
-    //     }
-    // }
-    //
-    // public override void snapToDefaultClickableComponent()
-    // {
-    //     if (ShowingQuest is null)
-    //     {
-    //         base.snapToDefaultClickableComponent();
-    //         currentlySnappedComponent = getComponentWithID(OptionIndex);
-    //         snapCursorToCurrentSnappedComponent();
-    //     }
-    //     else
-    //     {
-    //         ShowingQuest.snapToDefaultClickableComponent();
-    //     }
-    // }
 
     /// <summary>绘制多任务面板</summary>
     public override void draw(SpriteBatch spriteBatch)
@@ -219,7 +166,7 @@ public sealed class HWQuestBoard : Billboard
         }
         else
         {
-            if (ShowingQuest is null)
+            if (showingQuest is null)
                 DrawQuestNotes(spriteBatch);
             else
             {
@@ -286,7 +233,7 @@ public sealed class HWQuestBoard : Billboard
     private void DrawShowingQuest(SpriteBatch spriteBatch)
     {
         var font = LocalizedContentManager.CurrentLanguageCode == LocalizedContentManager.LanguageCode.ko ? Game1.smallFont : Game1.dialogueFont;
-        var description = Game1.parseText(ShowingQuest!.questDescription, font, 640);
+        var description = Game1.parseText(showingQuest!.questDescription, font, 640);
         // 绘制任务描述
         Utility.drawTextWithShadow(spriteBatch, description, font, new Vector2(xPositionOnScreen + 320 + 32, yPositionOnScreen + 256), Game1.textColor, 1f, -1f,
             -1, -1, 0.5f);

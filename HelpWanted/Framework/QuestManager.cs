@@ -112,7 +112,6 @@ public class QuestManager
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
-        // Game1.netWorldState.Value.SetQuestOfTheDay(quest);
         return quest;
     }
 

@@ -53,7 +53,7 @@ public class AutoFarming : Automate
                 !location.isTilePassable(tile) || location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Diggable", "Back") is null)
                 continue;
 
-            if (StopAutomate(player, config.StopAutoTillDirtStamina, ref hasAddMessage)) break;
+            if (StopAutomate(player, config.StopTillDirtStamina, ref hasAddMessage)) break;
             UseToolOnTile(location, player, tool, tile);
         }
     }
@@ -68,7 +68,7 @@ public class AutoFarming : Automate
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
-                if (StopAutomate(player, config.StopAutoClearTilledDirtStamina, ref hasAddMessage)) break;
+                if (StopAutomate(player, config.StopClearTilledDirtStamina, ref hasAddMessage)) break;
                 UseToolOnTile(location, player, tool, tile);
             }
         }
@@ -94,7 +94,7 @@ public class AutoFarming : Automate
 
                 hasAddWaterMessage = false;
 
-                if (StopAutomate(player, config.StopAutoWaterDirtStamina, ref hasAddStaminaMessage)) break;
+                if (StopAutomate(player, config.StopWaterDirtStamina, ref hasAddStaminaMessage)) break;
                 UseToolOnTile(location, player, wateringCan, tile);
             }
         }

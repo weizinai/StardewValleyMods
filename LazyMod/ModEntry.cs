@@ -141,9 +141,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoTillDirtStamina,
-            value => config.StopAutoTillDirtStamina = value,
-            I18n.Config_StopAutoTillDirtStamina_Name
+            () => config.StopTillDirtStamina,
+            value => config.StopTillDirtStamina = value,
+            I18n.Config_StopTillDirtStamina_Name
         );
         // 自动清理耕地
         configMenu.AddSectionTitle(
@@ -168,9 +168,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoClearTilledDirtStamina,
-            value => config.StopAutoClearTilledDirtStamina = value,
-            I18n.Config_StopAutoClearTilledDirtStamina_Name
+            () => config.StopClearTilledDirtStamina,
+            value => config.StopClearTilledDirtStamina = value,
+            I18n.Config_StopClearTilledDirtStamina_Name
         );
         // 自动浇水
         configMenu.AddSectionTitle(
@@ -195,9 +195,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoWaterDirtStamina,
-            value => config.StopAutoWaterDirtStamina = value,
-            I18n.Config_StopAutoWaterDirtStamina_Name
+            () => config.StopWaterDirtStamina,
+            value => config.StopWaterDirtStamina = value,
+            I18n.Config_StopWaterDirtStamina_Name
         );
         // 自动补充水壶
         configMenu.AddSectionTitle(
@@ -388,9 +388,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoMilkAnimalStamina,
-            value => config.StopAutoMilkAnimalStamina = value,
-            I18n.Config_StopAutoMilkAnimalStamina_Name
+            () => config.StopMilkAnimalStamina,
+            value => config.StopMilkAnimalStamina = value,
+            I18n.Config_StopMilkAnimalStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -422,9 +422,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoShearsAnimalStamina,
-            value => config.StopAutoShearsAnimalStamina = value,
-            I18n.Config_StopAutoShearsAnimalStamina_Name
+            () => config.StopShearsAnimalStamina,
+            value => config.StopShearsAnimalStamina = value,
+            I18n.Config_StopShearsAnimalStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -518,9 +518,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoClearStoneStamina,
-            value => config.StopAutoClearStoneStamina = value,
-            I18n.Config_StopAutoClearStoneStamina_Name
+            () => config.StopClearStoneStamina,
+            value => config.StopClearStoneStamina = value,
+            I18n.Config_StopClearStoneStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -853,9 +853,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoClearTwigStamina,
-            value => config.StopAutoClearTwigStamina = value,
-            I18n.Config_StopAutoClearTwigStamina_Name
+            () => config.StopClearTwigStamina,
+            value => config.StopClearTwigStamina = value,
+            I18n.Config_StopClearTwigStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -887,9 +887,9 @@ public class ModEntry : Mod
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoClearTreeSeedStamina,
-            value => config.StopAutoClearTreeSeedStamina = value,
-            I18n.Config_StopAutoClearTreeSeedStamina_Name
+            () => config.StopClearTreeSeedStamina,
+            value => config.StopClearTreeSeedStamina = value,
+            I18n.Config_StopClearTreeSeedStamina_Name
         );
 
         #endregion
@@ -1163,9 +1163,9 @@ public class ModEntry : Mod
             3);
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopAutoDigSpotsStamina,
-            value => config.StopAutoDigSpotsStamina = value,
-            I18n.Config_StopAutoDigSpotsStamina_Name
+            () => config.StopDigSpotsStamina,
+            value => config.StopDigSpotsStamina = value,
+            I18n.Config_StopDigSpotsStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1236,9 +1236,9 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.StopAutoGarbageCanNearVillager,
-            value => config.StopAutoGarbageCanNearVillager = value,
-            I18n.Config_StopAutoGarbageCanNearVillager_Name
+            () => config.StopGarbageCanNearVillager,
+            value => config.StopGarbageCanNearVillager = value,
+            I18n.Config_StopGarbageCanNearVillager_Name
         );
         // 自动学习食谱
         // configMenu.AddBoolOption(

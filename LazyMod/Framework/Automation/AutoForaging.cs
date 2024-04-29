@@ -124,7 +124,7 @@ public class AutoForaging : Automate
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null && obj.IsTwig())
             {
-                if (StopAutomate(player, config.StopAutoClearTreeSeedStamina, ref hasAddMessage)) break;
+                if (StopAutomate(player, config.StopClearTreeSeedStamina, ref hasAddMessage)) break;
                 UseToolOnTile(location, player, axe, tile);
             }
         }
@@ -140,7 +140,7 @@ public class AutoForaging : Automate
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree && tree.growthStage.Value == Tree.seedStage)
             {
-                if (StopAutomate(player, config.StopAutoClearTreeSeedStamina, ref hasAddMessage)) break;
+                if (StopAutomate(player, config.StopClearTreeSeedStamina, ref hasAddMessage)) break;
                 UseToolOnTile(location, player, tool, tile);
             }
         }

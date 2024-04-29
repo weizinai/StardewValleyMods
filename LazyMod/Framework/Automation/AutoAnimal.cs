@@ -51,7 +51,7 @@ public class AutoAnimal : Automate
         var grid = GetTileGrid(player, config.AutoMilkAnimalRange);
         foreach (var tile in grid)
         {
-            if (StopAutomate(player, config.StopAutoMilkAnimalStamina, ref hasAddMessage)) break;
+            if (StopAutomate(player, config.StopMilkAnimalStamina, ref hasAddMessage)) break;
             var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
             if (animal is null) continue;
             milkPail.animal = animal;
@@ -72,7 +72,7 @@ public class AutoAnimal : Automate
         var grid = GetTileGrid(player, config.AutoShearsAnimalRange);
         foreach (var tile in grid)
         {
-            if (StopAutomate(player, config.StopAutoShearsAnimalStamina, ref hasAddMessage)) break;
+            if (StopAutomate(player, config.StopShearsAnimalStamina, ref hasAddMessage)) break;
             var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
             if (animal is null) continue;
             shears.animal = animal;

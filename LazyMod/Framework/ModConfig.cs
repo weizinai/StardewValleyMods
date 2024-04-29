@@ -9,15 +9,15 @@ public class ModConfig
     // 自动耕地
     public bool AutoTillDirt { get; set; }
     public int AutoTillDirtRange { get; set; }
-    public float StopAutoTillDirtStamina { get; set; } = 3;
+    public float StopTillDirtStamina { get; set; } = 3;
     // 自动清理耕地
     public bool AutoClearTilledDirt { get; set; }
     public int AutoClearTilledDirtRange { get; set; }
-    public float StopAutoClearTilledDirtStamina { get; set; } = 3;
+    public float StopClearTilledDirtStamina { get; set; } = 3;
     // 自动浇水
     public bool AutoWaterDirt { get; set; }
     public int AutoWaterDirtRange { get; set; }
-    public float StopAutoWaterDirtStamina { get; set; } = 3;
+    public float StopWaterDirtStamina { get; set; } = 3;
     // 自动补充水壶
     public bool AutoRefillWateringCan { get; set; }
     public int AutoRefillWateringCanRange { get; set; } = 1;
@@ -49,12 +49,12 @@ public class ModConfig
     // 自动挤奶
     public bool AutoMilkAnimal { get; set; }
     public int AutoMilkAnimalRange { get; set; } = 1;
-    public float StopAutoMilkAnimalStamina { get; set; } = 3;
+    public float StopMilkAnimalStamina { get; set; } = 3;
     public bool FindMilkPailFromInventory { get; set; } = true;
     // 自动剪毛
     public bool AutoShearsAnimal { get; set; }
     public int AutoShearsAnimalRange { get; set; } = 1;
-    public float StopAutoShearsAnimalStamina { get; set; } = 3;
+    public float StopShearsAnimalStamina { get; set; } = 3;
     public bool FindShearsFromInventory { get; set; } = true;
     // 自动打开动物门
     public bool AutoOpenAnimalDoor { get; set; }
@@ -72,7 +72,7 @@ public class ModConfig
     // 自动清理石头
     public bool AutoClearStone { get; set; }
     public int AutoClearStoneRange { get; set; } = 1;
-    public float StopAutoClearStoneStamina { get; set; } = 3;
+    public float StopClearStoneStamina { get; set; } = 3;
     public bool FindPickaxeFromInventory { get; set; } = true;
     public bool ClearStoneOnMineShaft { get; set; }
     public bool ClearStoneOnVolcano { get; set; }
@@ -129,12 +129,12 @@ public class ModConfig
     // 自动清理树枝
     public bool AutoClearTwig { get; set; }
     public int AutoClearTwigRange { get; set; } = 1;
-    public float StopAutoClearTwigStamina { get; set; } = 3;
+    public float StopClearTwigStamina { get; set; } = 3;
     public bool FindAxeFromInventory { get; set; } = true;
     // 自动清理树种
     public bool AutoClearTreeSeed { get; set; }
     public int AutoClearTreeSeedRange { get; set; }
-    public float StopAutoClearTreeSeedStamina { get; set; } = 3;
+    public float StopClearTreeSeedStamina { get; set; } = 3;
 
     #endregion
 
@@ -186,7 +186,7 @@ public class ModConfig
     // 自动挖掘远古斑点
     public bool AutoDigSpots { get; set; }
     public int AutoDigSpotsRange { get; set; }
-    public float StopAutoDigSpotsStamina { get; set; } = 3;
+    public float StopDigSpotsStamina { get; set; } = 3;
     public bool FindHoeFromInventory { get; set; } = true;
     // 自动收获机器
     public bool AutoHarvestMachine { get; set; }
@@ -197,7 +197,7 @@ public class ModConfig
     // 自动翻垃圾桶
     public bool AutoGarbageCan { get; set; }
     public int AutoGarbageCanRange { get; set; } = 1;
-    public bool StopAutoGarbageCanNearVillager { get; set; } = true;
+    public bool StopGarbageCanNearVillager { get; set; } = true;
 
     #endregion
 }

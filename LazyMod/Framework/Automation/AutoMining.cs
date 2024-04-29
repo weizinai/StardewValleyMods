@@ -74,7 +74,7 @@ public class AutoMining : Automate
             {
                 if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
                 {
-                    if (StopAutomate(player, config.StopAutoClearStoneStamina, ref hasAddMessage)) return;
+                    if (StopAutomate(player, config.StopClearStoneStamina, ref hasAddMessage)) return;
                     UseToolOnTile(location, player, pickaxe, tile);
                     break;
                 }

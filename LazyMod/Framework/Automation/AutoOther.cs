@@ -90,7 +90,7 @@ public class AutoOther : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is not ("(O)590" or "(O)SeedSpot")) continue;
-            if (StopAutomate(player, config.StopAutoTillDirtStamina, ref hasAddMessage)) break;
+            if (StopAutomate(player, config.StopTillDirtStamina, ref hasAddMessage)) break;
             UseToolOnTile(location, player, hoe, tile);
         }
     }
@@ -124,7 +124,7 @@ public class AutoOther : Automate
     // 自动翻垃圾桶
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
-        if (CheckNPCNearTile(location, player) && config.StopAutoGarbageCanNearVillager) return;
+        if (CheckNPCNearTile(location, player) && config.StopGarbageCanNearVillager) return;
         var grid = GetTileGrid(player, config.AutoCollectCoalRange);
         foreach (var tile in grid)
         {

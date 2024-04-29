@@ -108,7 +108,9 @@ public class QuestManager
             return null;
         }
 
-        quest.dailyQuest.Set(true);
+        quest.dailyQuest.Value = true;
+        quest.accepted.Value = true;
+        quest.canBeCancelled.Value = true;
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();

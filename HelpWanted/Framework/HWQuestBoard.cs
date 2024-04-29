@@ -132,11 +132,7 @@ public sealed class HWQuestBoard : Billboard
             if (acceptQuestButton.containsPoint(x, y))
             {
                 Game1.playSound("newArtifact");
-                showingQuest.dailyQuest.Value = true;
                 showingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
-                showingQuest.accepted.Value = true;
-                showingQuest.canBeCancelled.Value = true;
-                showingQuest.daysLeft.Value = config.QuestDays;
                 Game1.player.questLog.Add(showingQuest);
                 QuestDataDictionary.Remove(showingQuestID);
                 QuestNotes.RemoveAll(option => option.myID == showingQuestID);

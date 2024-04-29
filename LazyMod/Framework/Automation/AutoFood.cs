@@ -15,7 +15,7 @@ public class AutoFood : Automate
         this.config = config;
     }
 
-    public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
+    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         if (tool is FishingRod fishingRod && (fishingRod.isReeling || fishingRod.isFishing || fishingRod.pullingOutOfWater)) return;
 

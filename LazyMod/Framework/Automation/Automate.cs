@@ -12,7 +12,7 @@ public abstract class Automate
     protected readonly Lazy<MeleeWeapon> FakeScythe = new(() => new MeleeWeapon("47"));
     protected readonly Dictionary<int, List<Vector2>> TileCache = new();
 
-    public abstract void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item);
+    public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
 
     protected List<Vector2> GetTileGrid(Farmer player, int range)
     {

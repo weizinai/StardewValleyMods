@@ -13,10 +13,8 @@ public class AutoFishing : Automate
         this.config = config;
     }
 
-    public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
+    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (location is null) return;
-
         TileCache.Clear();
         // 自动放置蟹笼
         if (config.AutoPlaceCarbPot && item is SObject { QualifiedItemId: "(O)710" } crabPot) AutoPlaceCrabPot(location, player, crabPot);

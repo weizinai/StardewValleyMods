@@ -15,10 +15,8 @@ public class AutoFarming : Automate
         this.config = config;
     }
 
-    public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
+    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (location is null) return;
-
         TileCache.Clear();
         // 自动耕地
         if (config.AutoTillDirt && tool is Hoe) AutoTillDirt(location, player, tool);

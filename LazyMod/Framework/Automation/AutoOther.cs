@@ -17,10 +17,8 @@ public class AutoOther : Automate
         this.config = config;
     }
 
-    public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
+    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (location is null) return;
-
         // 增加磁力范围
         MagneticRadiusIncrease(player);
         TileCache.Clear();

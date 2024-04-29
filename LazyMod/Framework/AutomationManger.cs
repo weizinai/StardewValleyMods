@@ -8,6 +8,11 @@ public class AutomationManger
     private readonly ModConfig config;
     private readonly List<Automate> automations = new();
 
+    private GameLocation? location;
+    private Farmer? player;
+    private Tool? tool;
+    private Item? item;
+
     public AutomationManger(ModConfig config)
     {
         this.config = config;
@@ -21,25 +26,19 @@ public class AutomationManger
     
     public void Update()
     {
-        UpdateAutomation();
+        location = Game1.currentLocation;
+        player = Game1.player;
+        tool = player?.CurrentTool;
+        item = player?.CurrentItem;
+        
+        if (location is null || player is null) return;
+
+        foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
     }
     
     public void OnDayEnded()
     {
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(false);
-    }
-
-    private void UpdateAutomation()
-    {
-        var location = Game1.currentLocation;
-        var player = Game1.player;
-        var tool = player.CurrentTool;
-        var item = player.CurrentItem;
-
-        foreach (var automate in automations)
-        {
-            automate.AutoDoFunction(location, player, tool, item);
-        }
     }
     
     private void InitAutomates()

@@ -14,10 +14,8 @@ public class AutoMining : Automate
         this.config = config;
     }
 
-    public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
+    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (location is null) return;
-
         TileCache.Clear();
         // 自动清理石头
         if (config.AutoClearStone && (tool is Pickaxe || config.FindPickaxeFromInventory)) AutoClearStone(location, player);

@@ -14,10 +14,8 @@ public class AutoAnimal : Automate
         this.config = config;
     }
 
-    public override void AutoDoFunction(GameLocation? location, Farmer player, Tool? tool, Item? item)
+    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (location is null) return;
-
         TileCache.Clear();
         // 自动抚摸动物
         if (config.AutoPetAnimal) AutoPetAnimal(location, player);

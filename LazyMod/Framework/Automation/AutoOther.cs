@@ -26,8 +26,8 @@ public class AutoOther : Automate
         TileCache.Clear();
         // 自动清理杂草
         if (config.AutoClearWeeds && (tool is MeleeWeapon || config.FindToolFromInventory)) AutoClearWeeds(location, player);
-        // 自动挖掘远古斑点
-        if (config.AutoDigSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigArtifactSpots(location, player);
+        // 自动挖掘斑点
+        if (config.AutoDigSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器
         if (config.AutoHarvestMachine) AutoHarvestMachine(location, player);
         // 自动触发机器
@@ -79,8 +79,8 @@ public class AutoOther : Automate
         }
     }
 
-    // 自动挖掘远古斑点
-    private void AutoDigArtifactSpots(GameLocation location, Farmer player)
+    // 自动挖掘斑点
+    private void AutoDigSpots(GameLocation location, Farmer player)
     {
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null)

@@ -34,18 +34,11 @@ internal partial class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (!Context.IsMainPlayer) return;
         if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay) return;
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival) return;
         if (Game1.random.NextDouble() >= config.DailyQuestChance) return;
-
-        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-    }
-
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
-    {
+        
         questManager.InitQuestList(QuestList);
-        Helper.Events.GameLoop.UpdateTicked -= OnUpdateTicked;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

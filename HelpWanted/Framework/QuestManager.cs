@@ -19,19 +19,19 @@ public class QuestManager
         this.monitor = monitor;
         this.appearanceManager = appearanceManager;
     }
-    
+
     public void InitQuestList(List<QuestData> questList)
     {
         questList.Clear();
-        if (Game1.questOfTheDay is null) RefreshQuestOfTheDay();
+        var quest = RefreshQuestOfTheDay();
         // 尝试次数
         var tries = 0;
         // 已有任务NPC列表
         var npcs = new HashSet<string>();
         for (var i = 0; i < config.MaxQuests; i++)
         {
-            if (Game1.questOfTheDay is null) break;
-            var npc = GetNpcFromQuest(Game1.questOfTheDay);
+            if (quest is null) break;
+            var npc = GetNpcFromQuest(quest);
             if (npc is not null)
             {
                 if ((config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
@@ -43,19 +43,20 @@ public class QuestManager
                         tries = 0;
                     else
                         i--;
-    
-                    RefreshQuestOfTheDay();
+
+                    quest = RefreshQuestOfTheDay();
                     continue;
                 }
-    
+
                 tries = 0;
                 npcs.Add(npc.Name);
-                AddQuest(questList, npc);
+                AddQuest(questList, npc, quest);
             }
-            RefreshQuestOfTheDay();
+
+            quest = RefreshQuestOfTheDay();
         }
     }
-    
+
     private NPC? GetNpcFromQuest(Quest quest)
     {
         return quest switch
@@ -67,7 +68,7 @@ public class QuestManager
             _ => null
         };
     }
-    
+
     private QuestType GetQuestType(Quest quest)
     {
         return quest switch
@@ -80,7 +81,7 @@ public class QuestManager
         };
     }
 
-    private void AddQuest(List<QuestData> questList, NPC npc)
+    private void AddQuest(List<QuestData> questList, NPC npc, Quest quest)
     {
         var questType = GetQuestType(Game1.questOfTheDay);
         var padTexture = appearanceManager.GetPadTexture(npc.Name, questType.ToString());
@@ -94,24 +95,25 @@ public class QuestManager
         var iconSource = new Rectangle(0, 0, 64, 64);
         var iconScale = config.PortraitScale;
         var iconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
-        var quest = Game1.questOfTheDay;
         var questData = new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor, icon, iconSource, iconColor, iconScale, iconOffset, quest);
         questList.Add(questData);
     }
 
-    private void RefreshQuestOfTheDay()
+    private Quest? RefreshQuestOfTheDay()
     {
         var quest = GetQuestOfTheDay();
         if (quest is null)
         {
             monitor.Log("Refresh Quest Of The Day Failed.", LogLevel.Warn);
-            return;
+            return null;
         }
+
         quest.dailyQuest.Set(true);
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
-        Game1.netWorldState.Value.SetQuestOfTheDay(quest);
+        // Game1.netWorldState.Value.SetQuestOfTheDay(quest);
+        return quest;
     }
 
     private Quest? GetQuestOfTheDay()
@@ -132,6 +134,7 @@ public class QuestManager
             currentWeight += weight;
             if (randomDouble < currentWeight / totalWeight) return createQuest();
         }
+
         return null;
     }
 }

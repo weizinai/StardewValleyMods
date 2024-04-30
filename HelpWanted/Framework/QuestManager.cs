@@ -108,6 +108,7 @@ public class QuestManager
             return null;
         }
 
+        quest.daysLeft.Value = config.QuestDays;
         quest.dailyQuest.Value = true;
         quest.accepted.Value = true;
         quest.canBeCancelled.Value = true;

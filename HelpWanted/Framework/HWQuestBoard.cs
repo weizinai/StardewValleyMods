@@ -237,7 +237,7 @@ public sealed class HWQuestBoard : Billboard
         drawTextureBox(spriteBatch, Game1.mouseCursors, new Rectangle(403, 373, 9, 9), acceptQuestButton.bounds.X, acceptQuestButton.bounds.Y,
             acceptQuestButton.bounds.Width, acceptQuestButton.bounds.Height, acceptQuestButton.scale > 1f ? Color.LightPink : Color.White, 4f * acceptQuestButton.scale);
         Utility.drawTextWithShadow(spriteBatch, Game1.content.LoadString("Strings\\UI:AcceptQuest"), Game1.dialogueFont,
-            new Vector2(this.acceptQuestButton.bounds.X + 12, this.acceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
+            new Vector2(acceptQuestButton.bounds.X + 12, acceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
         if (Game1.stats.Get("BillboardQuestsDone") % 3 != 2) return;
         // 绘制奖券
         Utility.drawWithShadow(spriteBatch, Game1.content.Load<Texture2D>("TileSheets\\Objects_2"), Position + new Vector2(215f, 144f) * 4f,

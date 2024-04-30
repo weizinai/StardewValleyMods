@@ -32,6 +32,8 @@ public class AutoOther : Automate
         if (config.AutoTriggerMachine && item is not null) AutoTriggerMachine(location, player, item);
         // 自动翻垃圾桶
         if (config.AutoGarbageCan) AutoGarbageCan(location, player);
+        // 自动放置地板
+        if (config.AutoPlaceFloor && (item is SObject floor) && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
         TileCache.Clear();
     }
 
@@ -130,6 +132,17 @@ public class AutoOther : Automate
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
                 CheckTileAction(location, player, tile);
+        }
+    }
+    
+    // 自动放置地板
+    private void AutoPlaceFloor(GameLocation location, Farmer player, SObject floor)
+    {
+        var grid = GetTileGrid(player, config.AutoPlaceFloorRange);
+        foreach (var tile in grid)
+        {
+            var tilePixelPosition = GetTilePixelPosition(tile);
+            if (floor.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) ConsumeItem(player, floor);
         }
     }
 

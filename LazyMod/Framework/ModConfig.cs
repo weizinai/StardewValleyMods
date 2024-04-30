@@ -198,6 +198,9 @@ public class ModConfig
     public bool AutoGarbageCan { get; set; }
     public int AutoGarbageCanRange { get; set; } = 1;
     public bool StopGarbageCanNearVillager { get; set; } = true;
+    // 自动放置地板
+    public bool AutoPlaceFloor { get; set; }
+    public int AutoPlaceFloorRange { get; set; } = 1;
 
     #endregion
 }

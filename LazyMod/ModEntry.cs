@@ -947,7 +947,7 @@ public class ModEntry : Mod
         configMenu.AddSectionTitle(
             ModManifest,
             I18n.Config_AutoHarvestCarbPot_Name
-            );
+        );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.AutoHarvestCarbPot,
@@ -1239,6 +1239,27 @@ public class ModEntry : Mod
             () => config.StopGarbageCanNearVillager,
             value => config.StopGarbageCanNearVillager = value,
             I18n.Config_StopGarbageCanNearVillager_Name
+        );
+        // 自动放置地板
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoPlaceFloor_Name,
+            I18n.Config_AutoPlaceFloor_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoPlaceFloor,
+            value => config.AutoPlaceFloor = value,
+            I18n.Config_AutoPlaceFloor_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoPlaceFloorRange,
+            value => config.AutoPlaceFloorRange = value,
+            I18n.Config_AutoPlaceFloorRange_Name,
+            null,
+            0,
+            3
         );
         // 自动学习食谱
         // configMenu.AddBoolOption(

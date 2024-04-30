@@ -179,6 +179,9 @@
     "Config.AutoGarbageCan.Name": "自动翻垃圾桶",
     "Config.AutoGarbageCanRange.Name": "自动翻垃圾桶范围",
     "Config.StopGarbageCanNearVillager.Name": "附近有村民停止自动翻垃圾桶",
+    "Config.AutoPlaceFloor.Name" : "自动放置地板",
+    "Config.AutoPlaceFloor.Tooltip" : "当你手持地板时,该功能才有效果.",
+    "Config.AutoPlaceFloorRange.Name" : "自动放置地板范围",
 
     // 增益类型
     "BuffType.Combat.Name": "战斗",

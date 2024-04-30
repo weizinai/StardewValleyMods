@@ -23,5 +23,8 @@
         <Compile Include="$(MSBuildThisFileDirectory)UI\CombineImage.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)UI\RootElement.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)UI\Text.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)模组开发学习笔记\Utility中的实用方法.md" />
     </ItemGroup>
 </Project>

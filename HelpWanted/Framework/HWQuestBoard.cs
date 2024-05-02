@@ -144,7 +144,7 @@ public sealed class HWQuestBoard : Billboard
     /// <summary>绘制多任务面板</summary>
     public override void draw(SpriteBatch spriteBatch)
     {
-        var hideMouse = false;
+        // var hideMouse = false;
         
         // 绘制阴影
         if (!Game1.options.showClearBackgrounds) spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
@@ -153,7 +153,7 @@ public sealed class HWQuestBoard : Billboard
         spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White,
             0f, Vector2.Zero, 4f, SpriteEffects.None, 1f);
 
-        if (Game1.options.SnappyMenus) hideMouse = true;
+        // if (Game1.options.SnappyMenus) hideMouse = true;
 
         if (!QuestNotes.Any())
         {
@@ -166,7 +166,7 @@ public sealed class HWQuestBoard : Billboard
                 DrawQuestNotes(spriteBatch);
             else
             {
-                hideMouse = false;
+                // hideMouse = false;
                 DrawShowingQuest(spriteBatch);
             }
         }
@@ -184,7 +184,7 @@ public sealed class HWQuestBoard : Billboard
         // 绘制右上角的关闭按钮
         if (upperRightCloseButton != null && shouldDrawCloseButton()) upperRightCloseButton.draw(spriteBatch);
 
-        if (hideMouse) return;
+        // if (hideMouse) return;
         
         // 绘制鼠标
         Game1.mouseCursorTransparency = 1f;

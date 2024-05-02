@@ -96,6 +96,10 @@ public class AutoFarming : Automate
 
                 if (StopAutomate(player, config.StopWaterDirtStamina, ref hasAddStaminaMessage)) break;
                 UseToolOnTile(location, player, wateringCan, tile);
+                if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
+                {
+                    player.playNearbySoundLocal("wateringCan");
+                }
             }
         }
     }

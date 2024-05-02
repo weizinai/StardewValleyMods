@@ -1046,7 +1046,7 @@ public class ModEntry : Mod
             () => config.FoodBuffMaintain1.ToString(),
             value => config.FoodBuffMaintain1 = AutoFood.GetBuffType(value),
             I18n.Config_FoodBuffMaintain1_Name,
-            null,
+            I18n.Config_FoodBuffMaintain_Tooltip,
             buffMaintainAllowValues,
             GetStringFromBuffType
         );
@@ -1055,7 +1055,7 @@ public class ModEntry : Mod
             () => config.FoodBuffMaintain2.ToString(),
             value => config.FoodBuffMaintain2 = AutoFood.GetBuffType(value),
             I18n.Config_FoodBuffMaintain2_Name,
-            null,
+            I18n.Config_FoodBuffMaintain_Tooltip,
             buffMaintainAllowValues,
             GetStringFromBuffType
         );
@@ -1076,7 +1076,7 @@ public class ModEntry : Mod
             () => config.DrinkBuffMaintain1.ToString(),
             value => config.DrinkBuffMaintain1 = AutoFood.GetBuffType(value),
             I18n.Config_DrinkBuffMaintain1_Name,
-            null,
+            I18n.Config_DrinkBuffMaintain_ToolTip,
             buffMaintainAllowValues,
             GetStringFromBuffType
         );
@@ -1084,8 +1084,8 @@ public class ModEntry : Mod
             ModManifest,
             () => config.DrinkBuffMaintain2.ToString(),
             value => config.DrinkBuffMaintain2 = AutoFood.GetBuffType(value),
-            I18n.Config_DrinkBuffMaintain1_Name,
-            null,
+            I18n.Config_DrinkBuffMaintain2_Name,
+            I18n.Config_DrinkBuffMaintain_ToolTip,
             buffMaintainAllowValues,
             GetStringFromBuffType
         );

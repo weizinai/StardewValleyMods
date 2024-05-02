@@ -127,7 +127,7 @@ public class AutoOther : Automate
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
         if (CheckNPCNearTile(location, player) && config.StopGarbageCanNearVillager) return;
-        var grid = GetTileGrid(player, config.AutoCollectCoalRange);
+        var grid = GetTileGrid(player, config.AutoGarbageCanRange);
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)

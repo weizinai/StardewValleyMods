@@ -1,4 +1,6 @@
 ﻿using LazyMod.Framework.Automation;
+using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 
 namespace LazyMod.Framework;
@@ -13,34 +15,41 @@ public class AutomationManger
     private Tool? tool;
     private Item? item;
 
-    public AutomationManger(ModConfig config)
+    public AutomationManger(IModHelper helper, ModConfig config)
     {
+        // 初始化
         this.config = config;
         InitAutomates();
+        // 注册事件
+        helper.Events.GameLoop.DayStarted += OnDayStarted;
+        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
+        helper.Events.GameLoop.DayEnding += OnDayEnded;
     }
-    
-    public void OnDayStarted()
+
+    private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(true);
     }
-    
-    public void Update()
+
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
+        if (!Context.IsPlayerFree) return;
+        
         location = Game1.currentLocation;
         player = Game1.player;
         tool = player?.CurrentTool;
         item = player?.CurrentItem;
-        
+
         if (location is null || player is null) return;
 
         foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
     }
-    
-    public void OnDayEnded()
+
+    private void OnDayEnded(object? sender, DayEndingEventArgs e)
     {
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(false);
     }
-    
+
     private void InitAutomates()
     {
         automations.AddRange(new Automate[]

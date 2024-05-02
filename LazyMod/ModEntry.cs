@@ -20,13 +20,11 @@ public class ModEntry : Mod
 
         // 初始化
         I18n.Init(helper.Translation);
-        automationManger = new AutomationManger(config);
+        automationManger = new AutomationManger(helper, config);
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.GameLoop.DayStarted += OnDayStarted;
-        helper.Events.GameLoop.DayEnding += OnDayEnded;
         helper.Events.Display.RenderedHud += OnRenderedHud;
     }
 
@@ -35,22 +33,11 @@ public class ModEntry : Mod
         miningHud.Draw(e.SpriteBatch);
     }
 
-    private void OnDayStarted(object? sender, DayStartedEventArgs e)
-    {
-        automationManger.OnDayStarted();
-    }
-
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!Context.IsPlayerFree) return;
-
-        automationManger.Update();
+        
         miningHud.Update();
-    }
-
-    private void OnDayEnded(object? sender, DayEndingEventArgs e)
-    {
-        automationManger.OnDayEnded();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

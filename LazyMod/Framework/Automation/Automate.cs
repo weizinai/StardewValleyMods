@@ -56,7 +56,7 @@ public abstract class Automate
         if (player.Stamina <= stopAutomateStamina)
         {
             if (!hasAddMessage)
-                Game1.showRedMessage(I18n.MessageStamina());
+                Game1.showRedMessage(I18n.Message_Stamina());
             return true;
         }
 

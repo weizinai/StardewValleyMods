@@ -1,5 +1,7 @@
 ﻿{
     // 配置选项
+    "Config.ToggleModStateKeybind.Name": "切换模组状态快捷键",
+    "Config.ToggleModStateKeybind.Tooltip": "切换模组自动化功能是否启用的快捷键.自动打开动物门和显示信息功能不受影响.",
     // 耕种
     "Config.FarmingPage.Name": "耕种",
     "Config.AutoTillDirt.Name": "自动耕地",
@@ -138,7 +140,7 @@
     "Config.AutoAddBaitForCarbPotRange.Name": "自动添加鱼饵范围",
     "Config.AutoHarvestCarbPot.Name": "自动收获蟹笼",
     "Config.AutoHarvestCarbPotRange.Name": "自动收获蟹笼范围",
-    
+
     // 食物
     "Config.FoodPage.Name": "食物",
     "Config.AutoEatFoodForStamina.Name": "自动吃食物-体力",
@@ -181,9 +183,9 @@
     "Config.AutoGarbageCan.Name": "自动翻垃圾桶",
     "Config.AutoGarbageCanRange.Name": "自动翻垃圾桶范围",
     "Config.StopGarbageCanNearVillager.Name": "附近有村民停止自动翻垃圾桶",
-    "Config.AutoPlaceFloor.Name" : "自动放置地板",
-    "Config.AutoPlaceFloor.Tooltip" : "当你手持地板时,该功能才有效果.",
-    "Config.AutoPlaceFloorRange.Name" : "自动放置地板范围",
+    "Config.AutoPlaceFloor.Name": "自动放置地板",
+    "Config.AutoPlaceFloor.Tooltip": "当你手持地板时,该功能才有效果.",
+    "Config.AutoPlaceFloorRange.Name": "自动放置地板范围",
 
     // 增益类型
     "BuffType.Combat.Name": "战斗",
@@ -200,5 +202,7 @@
     "BuffType.None.Name": "无",
 
     // 消息
-    "Message_Stamina": "没有体力了"
+    "Message.Stamina": "没有体力了.",
+    "Message.ModEnable": "模组自动化功能已启用.",
+    "Message.ModDisable": "模组自动化功能已禁用."
 }

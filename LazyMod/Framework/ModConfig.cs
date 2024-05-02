@@ -6,6 +6,8 @@ namespace LazyMod.Framework;
 
 public class ModConfig
 {
+    public KeybindList ToggleModStateKeybind { get; set; } = new (SButton.G);
+    
     #region 耕种
 
     // 自动耕地

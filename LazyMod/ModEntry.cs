@@ -56,42 +56,43 @@ public class ModEntry : Mod
             () => Helper.WriteConfig(config)
         );
 
+        configMenu.AddKeybindList(
+            ModManifest,
+            () => config.ToggleModStateKeybind,
+            value => config.ToggleModStateKeybind = value,
+            I18n.Config_ToggleModStateKeybind_Name,
+            I18n.Config_ToggleModStateKeybind_Tooltip
+        );
         configMenu.AddPageLink(
             ModManifest,
             "Farming",
             I18n.Config_FarmingPage_Name
         );
-
         configMenu.AddPageLink(
             ModManifest,
             "Animal",
             I18n.Config_AnimalPage_Name
         );
-
         configMenu.AddPageLink(
             ModManifest,
             "Mining",
             I18n.Config_MiningPage_Name
         );
-
         configMenu.AddPageLink(
             ModManifest,
             "Foraging",
             I18n.Config_ForagingPage_Name
         );
-
         configMenu.AddPageLink(
             ModManifest,
             "Fishing",
             I18n.Config_FishingPage_Name
         );
-
         configMenu.AddPageLink(
             ModManifest,
             "Food",
             I18n.Config_FoodPage_Name
         );
-
         configMenu.AddPageLink(
             ModManifest,
             "Other",

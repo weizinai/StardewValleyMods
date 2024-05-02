@@ -14,6 +14,7 @@ public class AutomationManger
     private Farmer? player;
     private Tool? tool;
     private Item? item;
+    private bool modEnable = true;
 
     public AutomationManger(IModHelper helper, ModConfig config)
     {
@@ -24,6 +25,7 @@ public class AutomationManger
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.GameLoop.DayEnding += OnDayEnded;
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
@@ -33,6 +35,8 @@ public class AutomationManger
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
+        if (!modEnable) return;
+        
         if (!Context.IsPlayerFree) return;
         
         location = Game1.currentLocation;
@@ -48,6 +52,15 @@ public class AutomationManger
     private void OnDayEnded(object? sender, DayEndingEventArgs e)
     {
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(false);
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (config.ToggleModStateKeybind.JustPressed())
+        {
+            Game1.addHUDMessage(modEnable ? new HUDMessage(I18n.Message_ModDisable()) : new HUDMessage(I18n.Message_ModEnable()));
+            modEnable = !modEnable;
+        }
     }
 
     private void InitAutomates()

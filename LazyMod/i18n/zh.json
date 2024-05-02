@@ -90,6 +90,8 @@
     "Config.AutoOpenTreasureRange.Name": "自动打开宝藏范围",
     "Config.AutoClearCrystal.Name": "自动清理水晶",
     "Config.AutoClearCrystalRange.Name": "自动清理水晶范围",
+    "Config.FindToolForClearCrystal.Name": "从背包中寻找工具",
+    "Config.FindToolForClearCrystal.Tooltip": "当该选项启用时,只需要背包中有近战武器(镰刀),该功能就会生效.",
     "Config.ShowMineShaftInfo.Name": "显示矿井信息",
     "Config.ShowLadderInfo.Name": "显示梯子信息",
     "Config.ShowShaftInfo.Name": "显示竖井信息",

@@ -108,14 +108,16 @@ public class AutoMining : Automate
     // 自动清理水晶
     private void AutoClearCrystal(GameLocation location, Farmer player)
     {
+        var tool = FindToolFromInventory<MeleeWeapon>();
+        if (tool is null) return;
+        
         var grid = GetTileGrid(player, config.AutoClearCrystalRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is "(O)319" or "(O)320" or "(O)321")
             {
-                obj.performToolAction(FakeScythe.Value);
-                location.removeObject(tile, false);
+                if (obj.performToolAction(tool)) location.removeObject(tile, false);
             }
         }
     }

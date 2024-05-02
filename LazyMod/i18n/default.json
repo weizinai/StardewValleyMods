@@ -90,6 +90,8 @@
     "Config.AutoOpenTreasureRange.Name": "Auto Open Treasure Range",
     "Config.AutoClearCrystal.Name": "Auto Clear Crystal",
     "Config.AutoClearCrystalRange.Name": "Auto Clear Crystal Range",
+    "Config.FindToolForClearCrystal.Name": "Find Tool From Inventory",
+    "Config.FindToolForClearCrystal.Tooltip": "When this option is enabled, only a melee weapon (scythe) is required in the backpack for the feature to work.",
     "Config.ShowMineShaftInfo.Name": "Show Mine Shaft Info",
     "Config.ShowLadderInfo.Name": "Show Ladder Info",
     "Config.ShowShaftInfo.Name": "Show Shaft Info",
@@ -179,9 +181,9 @@
     "Config.AutoGarbageCan.Name": "Auto Garbage Can",
     "Config.AutoGarbageCanRange.Name": "Auto Garbage Can Range",
     "Config.StopGarbageCanNearVillager.Name": "Stop Garbage Can Near Villager",
-    "Config.AutoPlaceFloor.Name" : "Auto Place Floor",
-    "Config.AutoPlaceFloor.Tooltip" : "This feature only works when you hold the floor.",
-    "Config.AutoPlaceFloorRange.Name" : "Auto Place Floor Range",
+    "Config.AutoPlaceFloor.Name": "Auto Place Floor",
+    "Config.AutoPlaceFloor.Tooltip": "This feature only works when you hold the floor.",
+    "Config.AutoPlaceFloorRange.Name": "Auto Place Floor Range",
 
     // Buff Type
     "BuffType.Combat.Name": "Combat",

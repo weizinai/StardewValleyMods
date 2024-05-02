@@ -1,4 +1,6 @@
 ﻿using LazyMod.Framework.Automation;
+using StardewModdingAPI;
+using StardewModdingAPI.Utilities;
 
 namespace LazyMod.Framework;
 
@@ -96,6 +98,7 @@ public class ModConfig
     // 自动清理水晶
     public bool AutoClearCrystal { get; set; }
     public int AutoClearCrystalRange { get; set; } = 1;
+    public bool FindToolForClearCrystal { get; set; } = true;
     // 显示梯子信息
     public bool ShowLadderInfo { get; set; } = true;
     // 显示竖井信息

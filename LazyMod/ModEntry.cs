@@ -671,6 +671,13 @@ public class ModEntry : Mod
             1,
             3
         );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindToolForClearCrystal,
+            value => config.FindToolForClearCrystal = value,
+            I18n.Config_FindToolForClearCrystal_Name,
+            I18n.Config_FindToolForClearCrystal_Tooltip
+        );
         // 显示矿井信息
         configMenu.AddSectionTitle(
             ModManifest,

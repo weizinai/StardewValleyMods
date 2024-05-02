@@ -187,7 +187,7 @@ public class ModConfig
     // 自动清理杂草
     public bool AutoClearWeeds { get; set; }
     public int AutoClearWeedsRange { get; set; } = 1;
-    public bool FindToolFromInventory { get; set; } = true;
+    public bool FindToolForClearWeeds { get; set; } = true;
     // 自动挖掘远古斑点
     public bool AutoDigSpots { get; set; }
     public int AutoDigSpotsRange { get; set; }

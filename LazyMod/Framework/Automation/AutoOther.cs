@@ -23,7 +23,7 @@ public class AutoOther : Automate
         MagneticRadiusIncrease(player);
         TileCache.Clear();
         // 自动清理杂草
-        if (config.AutoClearWeeds && (tool is MeleeWeapon || config.FindToolFromInventory)) AutoClearWeeds(location, player);
+        if (config.AutoClearWeeds && (tool is MeleeWeapon || config.FindToolForClearWeeds)) AutoClearWeeds(location, player);
         // 自动挖掘斑点
         if (config.AutoDigSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器

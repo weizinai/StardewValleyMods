@@ -1131,10 +1131,10 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.FindToolFromInventory,
-            value => config.FindToolFromInventory = value,
-            I18n.Config_FindToolFromInventory_Name,
-            I18n.Config_FindToolFromInventory_Tooltip
+            () => config.FindToolForClearWeeds,
+            value => config.FindToolForClearWeeds = value,
+            I18n.Config_FindToolForClearWeeds_Name,
+            I18n.Config_FindToolForClearWeeds_Tooltip
         );
         // 自动挖掘远古斑点
         configMenu.AddSectionTitle(

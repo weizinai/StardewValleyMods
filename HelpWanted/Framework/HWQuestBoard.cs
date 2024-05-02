@@ -20,10 +20,10 @@ public sealed class HWQuestBoard : Billboard
     // 面板纹理
     private readonly Texture2D billboardTexture;
 
-    /// <summary>正在展示的任务的ID</summary>
+    // 正在展示的任务的ID
     private static int showingQuestID;
 
-    /// <summary>正在展示的任务</summary>
+    // 正在展示的任务
     private static Quest? showingQuest;
 
     // 悬浮标题和悬浮文本

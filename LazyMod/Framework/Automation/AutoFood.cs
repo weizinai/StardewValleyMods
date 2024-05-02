@@ -17,8 +17,8 @@ public class AutoFood : Automate
 
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (tool is FishingRod fishingRod && (fishingRod.isReeling || fishingRod.isFishing || fishingRod.pullingOutOfWater)) return;
-
+        if (tool is FishingRod fishingRod && (fishingRod.isReeling || fishingRod.isFishing || fishingRod.pullingOutOfWater || fishingRod.isCasting)) return;
+        
         FindFoodFromInventory(player);
         if (!foodData.Any()) return;
         

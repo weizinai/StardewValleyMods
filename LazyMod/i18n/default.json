@@ -84,6 +84,8 @@
     "Config.ClearOreStone.Name": "Clear Ore Stone",
     "Config.ClearGemStone.Name": "Clear Gem Stone",
     "Config.ClearGeodeStone.Name": "Clear Geode Stone",
+    "Config.ClearBoulder.Name": "Clear Boulder",
+    "Config.ClearMeteorite.Name": "Clear Meteorite",
     "Config.AutoCollectCoal.Name": "Auto Collect Coal",
     "Config.AutoCollectCoal.Tooltip": "When this option is enabled, coal from backpack and mine cart will be automatically collected for you.",
     "Config.AutoCollectCoalRange.Name": "Auto Collect Coal Range",

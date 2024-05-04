@@ -3,6 +3,7 @@ using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using Common;
+using StardewValley.TerrainFeatures;
 
 namespace LazyMod.Framework.Automation;
 
@@ -56,7 +57,6 @@ public class AutoMining : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is null) continue;
-
             foreach (var stoneType in stoneTypes)
             {
                 if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
@@ -64,6 +64,31 @@ public class AutoMining : Automate
                     if (StopAutomate(player, config.StopClearStoneStamina, ref hasAddMessage)) return;
                     UseToolOnTile(location, player, pickaxe, tile);
                     break;
+                }
+            }
+        }
+
+        foreach (var clump in location.resourceClumps)
+        {
+            foreach (var tile in grid)
+            {
+                if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
+                
+                if (config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex && pickaxe.UpgradeLevel >= Tool.gold)
+                {
+                    UseToolOnTile(location, player, pickaxe, tile);
+                    continue;
+                }
+
+                if (config.ClearBoulder && clump.parentSheetIndex.Value == ResourceClump.boulderIndex && pickaxe.UpgradeLevel >= Tool.steel)
+                {
+                    UseToolOnTile(location, player, pickaxe, tile);
+                    continue;
+                }
+
+                if (config.ClearBoulder && ResourceClumpRepository.MineBoulder.Contains(clump.parentSheetIndex.Value))
+                {
+                    UseToolOnTile(location, player, pickaxe, tile);
                 }
             }
         }

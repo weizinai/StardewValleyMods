@@ -591,6 +591,18 @@ public class ModEntry : Mod
             value => config.ClearGeodeStone = value,
             I18n.Config_ClearGeodeStone_Name
         );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearBoulder,
+            value => config.ClearBoulder = value,
+            I18n.Config_ClearBoulder_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearMeteorite,
+            value => config.ClearMeteorite = value,
+            I18n.Config_ClearMeteorite_Name
+        );
         // 自动收集煤炭
         configMenu.AddSectionTitle(
             ModManifest,

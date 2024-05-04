@@ -89,6 +89,8 @@ public class ModConfig
     public bool ClearOreStone { get; set; } = true;
     public bool ClearGemStone { get; set; } = true;
     public bool ClearGeodeStone { get; set; } = true;
+    public bool ClearBoulder { get; set; }
+    public bool ClearMeteorite { get; set; }
     
     // 自动收集煤炭
     public bool AutoCollectCoal { get; set; }

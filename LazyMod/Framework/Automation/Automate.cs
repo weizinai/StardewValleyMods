@@ -48,6 +48,7 @@ public abstract class Automate
     protected void UseToolOnTile(GameLocation location, Farmer player, Tool tool, Vector2 tile)
     {
         var tilePixelPosition = GetTilePixelPosition(tile);
+        tool.swingTicker++;
         tool.DoFunction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, 1, player);
     }
 

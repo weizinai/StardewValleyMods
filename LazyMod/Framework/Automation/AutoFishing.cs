@@ -32,7 +32,7 @@ public class AutoFishing : Automate
         foreach (var _ in grid.Select(tile => GetTilePixelPosition(tile))
                      .Where(tilePixelPosition => crabPot.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)))
         {
-            ConsumeItem(player, crabPot);
+            player.reduceActiveItemByOne();
         }
     }
     

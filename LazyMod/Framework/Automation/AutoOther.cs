@@ -161,7 +161,7 @@ public class AutoOther : Automate
         foreach (var tile in grid)
         {
             var tilePixelPosition = GetTilePixelPosition(tile);
-            if (floor.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) ConsumeItem(player, floor);
+            if (floor.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
         }
     }
 

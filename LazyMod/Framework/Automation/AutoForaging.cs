@@ -28,7 +28,7 @@ public class AutoForaging : Automate
         // 自动收获苔藓
         if (config.AutoHarvestMoss && (tool is MeleeWeapon || config.FindScytheFromInventory)) AutoHarvestMoss(location, player);
         // 自动在树上浇醋
-        if (config.AutoPlaceVinegar && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoUseVinegarOnTree(location, player, vinegar);
+        if (config.AutoPlaceVinegar && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
         // 自动清理树枝
         if (config.AutoClearTwig && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
         // 自动清理树种
@@ -89,13 +89,13 @@ public class AutoForaging : Automate
             {
                 var tilePixelPosition = GetTilePixelPosition(tile);
                 tapper.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player);
-                ConsumeItem(player, tapper);
+                player.reduceActiveItemByOne();
             }
         }
     }
 
     // 自动在树上浇醋
-    private void AutoUseVinegarOnTree(GameLocation location, Farmer player, SObject vinegar)
+    private void AutoPlaceVinegar(GameLocation location, Farmer player, SObject vinegar)
     {
         var grid = GetTileGrid(player, config.AutoPlaceVinegarRange);
         foreach (var tile in grid)
@@ -105,7 +105,7 @@ public class AutoForaging : Automate
             {
                 var tilePixelPosition = GetTilePixelPosition(tile);
                 vinegar.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player);
-                ConsumeItem(player, vinegar);
+                player.reduceActiveItemByOne();
             }
         }
     }

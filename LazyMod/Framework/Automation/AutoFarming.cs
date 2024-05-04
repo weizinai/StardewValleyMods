@@ -134,8 +134,7 @@ public class AutoFarming : Automate
                 if (item.Stack <= 0)
                     break;
 
-                if (hoeDirt.plant(item.ItemId, player, false))
-                    ConsumeItem(player, item);
+                if (hoeDirt.plant(item.ItemId, player, false)) player.reduceActiveItemByOne();
             }
         }
     }
@@ -153,14 +152,13 @@ public class AutoFarming : Automate
             {
                 // 树肥逻辑
                 case "(O)805":
-                    if (terrainFeature is Tree tree && !tree.fertilized.Value && tree.growthStage.Value < Tree.treeStage &&
-                        tree.fertilize())
-                        ConsumeItem(player, item);
+                    if (terrainFeature is Tree tree && !tree.fertilized.Value && tree.growthStage.Value < Tree.treeStage && tree.fertilize())
+                        player.reduceActiveItemByOne();
                     break;
                 // 其他肥料逻辑
                 default:
                     if (terrainFeature is HoeDirt hoeDirt && hoeDirt.plant(item.ItemId, player, true))
-                        ConsumeItem(player, item);
+                        player.reduceActiveItemByOne();
                     break;
             }
         }

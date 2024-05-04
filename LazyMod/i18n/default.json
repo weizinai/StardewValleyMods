@@ -40,6 +40,8 @@
     "Config.AnimalPage.Name": "Animal",
     "Config.AutoPetAnimal.Name": "Auto Pet Animal",
     "Config.AutoPetAnimalRange.Name": "Auto Pet Animal Range",
+    "Config.AutoPetPet.Name": "Auto Pet Pet",
+    "Config.AutoPetPetRange.Name": "Auto Pet Pet Range",
     "Config.AutoMilkAnimal.Name": "Auto Milk Animal",
     "Config.AutoMilkAnimal.Tooltip": "This feature only works when you hold the milk pail.",
     "Config.AutoMilkAnimalRange.Name": "Auto Milk Animal Range",
@@ -56,8 +58,6 @@
     "Config.AutoOpenAnimalDoor.Tooltip": "When this option is enabled, if the weather is not rainy or the season is not winter, the animal door will be automatically opened for you at the beginning of each day and closed for you at the end of each day.",
     "Config.AutoOpenFenceGate.Name": "Auto Open Fence Gate",
     "Config.AutoOpenFenceGateRange.Name": "Auto Open Fence Gate Range",
-    "Config.AutoPetPet.Name": "Auto Pet Pet",
-    "Config.AutoPetPetRange.Name": "Auto Pet Pet Range",
 
     // Mining
     "Config.MiningPage.Name": "Mining",

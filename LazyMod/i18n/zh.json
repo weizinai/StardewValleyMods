@@ -40,6 +40,8 @@
     "Config.AnimalPage.Name": "动物",
     "Config.AutoPetAnimal.Name": "自动抚摸动物",
     "Config.AutoPetAnimalRange.Name": "自动抚摸动物范围",
+    "Config.AutoPetPet.Name": "自动抚摸宠物",
+    "Config.AutoPetPetRange.Name": "自动抚摸宠物范围",
     "Config.AutoMilkAnimal.Name": "自动挤奶",
     "Config.AutoMilkAnimal.Tooltip": "当你手持挤奶桶时,该功能才有效果.",
     "Config.AutoMilkAnimalRange.Name": "自动挤奶范围",
@@ -56,8 +58,6 @@
     "Config.AutoOpenAnimalDoor.Tooltip": "当该选项启用时,如果天气不是雨天或者季节不是冬季,每天开始会为你自动打开动物门,每天结束会为你自动关闭动物门.",
     "Config.AutoOpenFenceGate.Name": "自动打开栅栏门",
     "Config.AutoOpenFenceGateRange.Name": "自动打开栅栏门范围",
-    "Config.AutoPetPet.Name": "自动抚摸宠物",
-    "Config.AutoPetPetRange.Name": "自动抚摸宠物范围",
 
     // 采矿
     "Config.MiningPage.Name": "采矿",

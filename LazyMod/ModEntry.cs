@@ -333,7 +333,7 @@ public class ModEntry : Mod
             "Animal",
             I18n.Config_AnimalPage_Name
         );
-        // 自动抚摸
+        // 自动抚摸动物
         configMenu.AddSectionTitle(
             ModManifest,
             I18n.Config_AutoPetAnimal_Name
@@ -349,6 +349,26 @@ public class ModEntry : Mod
             () => config.AutoPetAnimalRange,
             value => config.AutoPetAnimalRange = value,
             I18n.Config_AutoPetAnimalRange_Name,
+            null,
+            1,
+            3
+        );
+        // 自动抚摸宠物
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoPetPet_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoPetPet,
+            value => config.AutoPetPet = value,
+            I18n.Config_AutoPetPet_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoPetPetRange,
+            value => config.AutoPetPetRange = value,
+            I18n.Config_AutoPetPetRange_Name,
             null,
             1,
             3
@@ -449,26 +469,6 @@ public class ModEntry : Mod
             () => config.AutoOpenFenceGateRange,
             value => config.AutoOpenFenceGateRange = value,
             I18n.Config_AutoOpenFenceGateRange_Name,
-            null,
-            1,
-            3
-        );
-        // 自动抚摸宠物
-        configMenu.AddSectionTitle(
-            ModManifest,
-            I18n.Config_AutoPetPet_Name
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.AutoPetPet,
-            value => config.AutoPetPet = value,
-            I18n.Config_AutoPetPet_Name
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.AutoPetPetRange,
-            value => config.AutoPetPetRange = value,
-            I18n.Config_AutoPetPetRange_Name,
             null,
             1,
             3

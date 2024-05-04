@@ -50,6 +50,9 @@ public class ModConfig
     // 自动抚摸动物
     public bool AutoPetAnimal { get; set; }
     public int AutoPetAnimalRange { get; set; } = 1;
+    // 自动抚摸宠物
+    public bool AutoPetPet { get; set; }
+    public int AutoPetPetRange { get; set; } = 1;
     // 自动挤奶
     public bool AutoMilkAnimal { get; set; }
     public int AutoMilkAnimalRange { get; set; } = 1;
@@ -65,9 +68,6 @@ public class ModConfig
     // 自动打开栅栏门
     public bool AutoOpenFenceGate { get; set; }
     public int AutoOpenFenceGateRange { get; set; } = 1;    
-    // 自动抚摸宠物
-    public bool AutoPetPet { get; set; }
-    public int AutoPetPetRange { get; set; } = 1;
     
     #endregion;
 

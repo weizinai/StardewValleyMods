@@ -2,6 +2,7 @@
     // 配置选项
     "Config.ToggleModStateKeybind.Name": "切换模组状态快捷键",
     "Config.ToggleModStateKeybind.Tooltip": "切换模组自动化功能是否启用的快捷键.自动打开动物门和显示信息功能不受影响.",
+    
     // 耕种
     "Config.FarmingPage.Name": "耕种",
     "Config.AutoTillDirt.Name": "自动耕地",
@@ -109,6 +110,7 @@
     "Config.ForagingPage.Name": "采集",
     "Config.AutoForage.Name": "自动觅食",
     "Config.AutoForageRange.Name": "自动觅食范围",
+    "Config.ForageBerry.Name": "采集树莓",
     "Config.AutoShakeTree.Name": "自动摇树",
     "Config.AutoShakeTreeRange.Name": "自动摇树范围",
     "Config.AutoPlaceTapper.Name": "自动放置采集器",

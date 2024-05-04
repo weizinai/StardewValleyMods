@@ -2,6 +2,7 @@
     // Config
     "Config.ToggleModStateKeybind.Name": "Toggle Mod State Keybind",
     "Config.ToggleModStateKeybind.Tooltip": "Keybind for toggling automation feature in mods. AutoOpenAnimalDoor and ShowInfo are not affected.",
+    
     // Farming
     "Config.FarmingPage.Name": "Farming",
     "Config.AutoTillDirt.Name": "Auto Till Dirt",
@@ -109,6 +110,7 @@
     "Config.ForagingPage.Name": "Foraging",
     "Config.AutoForage.Name": "Auto Forage",
     "Config.AutoForageRange.Name": "Auto Forage Range",
+    "Config.ForageBerry.Name": "Forage Berry",
     "Config.AutoShakeTree.Name": "Auto Shake Tree",
     "Config.AutoShakeTreeRange.Name": "Auto Shake Tree Range",
     "Config.AutoPlaceTapper.Name": "Auto Place Tapper",

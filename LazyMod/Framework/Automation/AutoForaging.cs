@@ -45,9 +45,9 @@ public class AutoForaging : Automate
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null && obj.IsSpawnedObject) CollectSpawnedObject(location, player, tile, obj);
 
+            if (!config.ForageBerry) return;
             foreach (var terrainFeature in location.largeTerrainFeatures)
-                if (terrainFeature is Bush bush && bush.getBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
-                    bush.tileSheetOffset.Value == 1 && bush.size.Value == Bush.mediumBush && !bush.townBush.Value)
+                if (terrainFeature is Bush bush && CanForageBerry(tile, bush))
                     bush.performUseAction(tile);
         }
     }
@@ -225,5 +225,14 @@ public class AutoForaging : Automate
         }
 
         obj.Quality = oldQuality;
+    }
+
+    private bool CanForageBerry(Vector2 tile, Bush bush)
+    {
+        return (Game1.season is Season.Spring || Game1.season is Season.Fall) &&
+               bush.getBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+               bush.tileSheetOffset.Value == 1 &&
+               bush.size.Value == Bush.mediumBush &&
+               !bush.townBush.Value;
     }
 }

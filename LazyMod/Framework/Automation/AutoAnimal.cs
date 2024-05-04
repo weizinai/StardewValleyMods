@@ -179,7 +179,8 @@ public class AutoAnimal : Automate
     {
         return animal.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
                !animal.wasPet.Value &&
-               (animal.isMoving() || Game1.timeOfDay < 1900);
+               (animal.isMoving() || Game1.timeOfDay < 1900) &&
+               !animal.Name.StartsWith("DH.MEEP.SpawnedAnimal_");
     }
 
 

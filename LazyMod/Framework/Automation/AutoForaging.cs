@@ -44,8 +44,7 @@ public class AutoForaging : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null && obj.IsSpawnedObject) CollectSpawnedObject(location, player, tile, obj);
-
-            if (!config.ForageBerry) return;
+            
             foreach (var terrainFeature in location.largeTerrainFeatures)
                 if (terrainFeature is Bush bush && CanForageBerry(tile, bush))
                     bush.performUseAction(tile);

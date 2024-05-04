@@ -110,7 +110,6 @@
     "Config.ForagingPage.Name": "采集",
     "Config.AutoForage.Name": "自动觅食",
     "Config.AutoForageRange.Name": "自动觅食范围",
-    "Config.ForageBerry.Name": "采集树莓",
     "Config.AutoShakeTree.Name": "自动摇树",
     "Config.AutoShakeTreeRange.Name": "自动摇树范围",
     "Config.AutoPlaceTapper.Name": "自动放置采集器",

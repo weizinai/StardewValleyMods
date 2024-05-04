@@ -121,7 +121,6 @@ public class ModConfig
     // 自动觅食
     public bool AutoForage { get; set; }
     public int AutoForageRange { get; set; } = 1;
-    public bool ForageBerry { get; set; } = true;
     // 自动摇树
     public bool AutoShakeTree { get; set; }
     public int AutoShakeTreeRange { get; set; } = 1;

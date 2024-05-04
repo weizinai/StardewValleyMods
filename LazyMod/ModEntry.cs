@@ -441,6 +441,27 @@ public class ModEntry : Mod
             I18n.Config_FindShearsFromInventory_Name,
             I18n.Config_FindShearsFromInventory_Tooltip
         );
+        // 自动喂食动物饼干
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoFeedAnimalCracker_Name,
+            I18n.Config_AutoFeedAnimalCracker_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoFeedAnimalCracker,
+            value => config.AutoFeedAnimalCracker = value,
+            I18n.Config_AutoFeedAnimalCracker_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoFeedAnimalCrackerRange,
+            value => config.AutoFeedAnimalCrackerRange = value,
+            I18n.Config_AutoFeedAnimalCrackerRange_Name,
+            null,
+            1,
+            3
+        );
         // 自动打开动物门
         configMenu.AddSectionTitle(
             ModManifest,

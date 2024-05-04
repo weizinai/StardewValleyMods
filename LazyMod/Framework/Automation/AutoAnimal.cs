@@ -19,14 +19,16 @@ public class AutoAnimal : Automate
         TileCache.Clear();
         // 自动抚摸动物
         if (config.AutoPetAnimal) AutoPetAnimal(location, player);
+        // 自动抚摸宠物
+        if (config.AutoPetPet) AutoPetPet(location, player);
         // 自动挤奶
         if (config.AutoMilkAnimal && (tool is MilkPail || config.FindMilkPailFromInventory)) AutoMilkAnimal(location, player);
         // 自动剪毛
         if (config.AutoShearsAnimal && (tool is Shears || config.FindShearsFromInventory)) AutoShearsAnimal(location, player);
+        // 自动喂食动物饼干
+        if (config.AutoFeedAnimalCracker && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
         if (config.AutoOpenFenceGate) AutoOpenFenceGate(location, player);
-        // 自动抚摸宠物
-        if (config.AutoPetPet) AutoPetPet(location, player);
         TileCache.Clear();
     }
 
@@ -37,15 +39,26 @@ public class AutoAnimal : Automate
 
         var animals = location.animals.Values;
         foreach (var animal in animals)
+            foreach (var tile in grid)
+                if (CanPetAnimal(tile, animal))
+                    PetAnimal(player, animal);
+    }
+
+    // 自动抚摸宠物
+    private void AutoPetPet(GameLocation location, Farmer player)
+    {
+        var grid = GetTileGrid(player, config.AutoPetAnimalRange);
+
+        var pets = location.characters.OfType<Pet>();
+        foreach (var pet in pets)
         {
             foreach (var tile in grid)
             {
-                if (CanPetAnimal(tile, animal)) PetAnimal(player, animal);
+                if (pet.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+                    (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays))
+                    pet.checkAction(player, location);
             }
         }
-
-
-        // foreach (var animal in from animal in animals from tile in grid.Where(tile => CanPetAnimal(tile, animal)) select animal) PetAnimal(player, tile, animal);
     }
 
     // 自动挤奶
@@ -87,6 +100,17 @@ public class AutoAnimal : Automate
             shears.animal = animal;
             UseToolOnTile(location, player, shears, tile);
         }
+    }
+
+    // 自动喂食动物饼干
+    private void AutoFeedAnimalCracker(GameLocation location, Farmer player)
+    {
+        var grid = GetTileGrid(player, config.AutoFeedAnimalCrackerRange);
+        var animals = location.animals.Values;
+        foreach (var animal in animals)
+            foreach (var tile in grid)
+                if (CanFeedAnimalCracker(tile, animal))
+                    FeedAnimalCracker(player, animal);
     }
 
     // 自动打开动物门
@@ -132,23 +156,6 @@ public class AutoAnimal : Automate
         }
     }
 
-    // 自动抚摸宠物
-    private void AutoPetPet(GameLocation location, Farmer player)
-    {
-        var grid = GetTileGrid(player, config.AutoPetAnimalRange);
-
-        var pets = location.characters.OfType<Pet>();
-        foreach (var pet in pets)
-        {
-            foreach (var tile in grid)
-            {
-                if (pet.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
-                    (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays))
-                    pet.checkAction(player, location);
-            }
-        }
-    }
-
     private FarmAnimal? GetBestHarvestableFarmAnimal(GameLocation location, Tool tool, Vector2 tile)
     {
         var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool, GetTileBoundingBox(tile));
@@ -170,8 +177,8 @@ public class AutoAnimal : Automate
 
     private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)
     {
-        return animal.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) && 
-               !animal.wasPet.Value && 
+        return animal.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+               !animal.wasPet.Value &&
                (animal.isMoving() || Game1.timeOfDay < 1900);
     }
 
@@ -179,7 +186,7 @@ public class AutoAnimal : Automate
     private void PetAnimal(Farmer player, FarmAnimal animal)
     {
         animal.wasPet.Value = true;
-        
+
         // 好感度和心情逻辑
         var data = animal.GetAnimalData();
         var happinessDrain = data?.HappinessDrain ?? 0;
@@ -199,8 +206,23 @@ public class AutoAnimal : Automate
 
         // 声音逻辑
         animal.makeSound();
-        
+
         // 经验逻辑
         player.gainExperience(0, 5);
+    }
+
+    private bool CanFeedAnimalCracker(Vector2 tile, FarmAnimal animal)
+    {
+        return animal.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+               !animal.hasEatenAnimalCracker.Value &&
+               (animal.GetAnimalData()?.CanEatGoldenCrackers ?? false);
+    }
+
+    private void FeedAnimalCracker(Farmer player, FarmAnimal animal)
+    {
+        animal.hasEatenAnimalCracker.Value = true;
+        Game1.playSound("give_gift");
+        animal.doEmote(56);
+        player.reduceActiveItemByOne();
     }
 }

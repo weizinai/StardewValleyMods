@@ -63,6 +63,9 @@ public class ModConfig
     public int AutoShearsAnimalRange { get; set; } = 1;
     public float StopShearsAnimalStamina { get; set; } = 3;
     public bool FindShearsFromInventory { get; set; } = true;
+    // 自动喂食动物饼干
+    public bool AutoFeedAnimalCracker { get; set; }
+    public int AutoFeedAnimalCrackerRange { get; set; } = 1;
     // 自动打开动物门
     public bool AutoOpenAnimalDoor { get; set; }
     // 自动打开栅栏门

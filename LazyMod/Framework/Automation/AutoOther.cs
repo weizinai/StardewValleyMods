@@ -146,7 +146,11 @@ public class AutoOther : Automate
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
-                CheckTileAction(location, player, tile);
+            {
+                var action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
+                if (action.StartsWith("Garbage")) CheckTileAction(location, player, tile);
+            }
+            
         }
     }
     

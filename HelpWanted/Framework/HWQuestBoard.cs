@@ -12,7 +12,7 @@ public sealed class HWQuestBoard : Billboard
 {
     private readonly ModConfig config;
 
-    private static readonly List<ClickableTextureComponent> QuestNotes = new();
+    public static readonly List<ClickableTextureComponent> QuestNotes = new();
     private static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
     private static Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
     private const int OptionIndex = -4200;

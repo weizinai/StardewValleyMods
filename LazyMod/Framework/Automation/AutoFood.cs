@@ -70,7 +70,6 @@ public class AutoFood : Automate
         if (!foodList.Any()) foodList = GetBuffFoodList("food", config.FoodBuffMaintain1);
         if (!foodList.Any()) foodList = GetBuffFoodList("food", config.FoodBuffMaintain2);
         if (!foodList.Any()) return;
-        if (!foodList.Any()) return;
         EatFirstFood(player, foodList.First());
     }
     

@@ -57,10 +57,10 @@ public sealed class HWQuestBoard : Billboard
                 {
                     // 设置该选项的ID
                     myID = OptionIndex - i,
-                    // 如果该选项是最左侧的选项,则左邻居ID为-1,否则为当前选项ID+1
-                    leftNeighborID = i > 0 ? OptionIndex - i + 1 : -1,
-                    // 如果该选项是最右侧的选项,则右邻居ID为-1,否则为当前选项ID-1
-                    rightNeighborID = i < questList.Count - 1 ? OptionIndex - i - 1 : -1
+                    // // 如果该选项是最左侧的选项,则左邻居ID为-1,否则为当前选项ID+1
+                    // leftNeighborID = i > 0 ? OptionIndex - i + 1 : -1,
+                    // // 如果该选项是最右侧的选项,则右邻居ID为-1,否则为当前选项ID-1
+                    // rightNeighborID = i < questList.Count - 1 ? OptionIndex - i - 1 : -1
                 });
                 QuestDataDictionary[QuestNotes[i].myID] = questList[i];
             }

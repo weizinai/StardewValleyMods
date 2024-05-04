@@ -21,6 +21,8 @@ public class AutoForaging : Automate
         TileCache.Clear();
         // 自动觅食
         if (config.AutoForage) AutoForage(location, player);
+        // 自动收获姜
+        if (config.AutoHarvestGinger && (tool is Hoe || config.FindToolForHarvestGinger)) AutoHarvestGinger(location, player);
         // 自动摇树
         if (config.AutoShakeTree) AutoShakeTree(location, player);
         // 自动装备采集器
@@ -48,6 +50,25 @@ public class AutoForaging : Automate
             foreach (var terrainFeature in location.largeTerrainFeatures)
                 if (terrainFeature is Bush bush && CanForageBerry(tile, bush))
                     bush.performUseAction(tile);
+        }
+    }
+    
+    // 自动收获姜
+    private void AutoHarvestGinger(GameLocation location, Farmer player)
+    {
+        var hoe = FindToolFromInventory<Hoe>();
+        if (hoe is null) return;
+        
+        var hasAddMessage = true;
+        var grid = GetTileGrid(player, config.AutoHarvestGingerRange);
+        foreach (var tile in grid)
+        {
+            location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+            if (terrainFeature is HoeDirt { crop: not null } horDirt)
+            {
+                if (StopAutomate(player, config.StopHarvestGingerStamina, ref hasAddMessage)) break;
+                if (horDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, horDirt)) horDirt.destroyCrop(true);
+            }
         }
     }
 

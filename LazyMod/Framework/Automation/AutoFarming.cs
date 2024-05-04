@@ -179,9 +179,6 @@ public class AutoFarming : Automate
                     if (location is IslandLocation && Game1.random.NextDouble() < 0.05)
                         player.team.RequestLimitedNutDrops("IslandFarming", location, (int)tile.X * 64, (int)tile.Y * 64, 5);
                 }
-
-                if (crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt))
-                    hoeDirt.destroyCrop(true);
             }
         }
     }

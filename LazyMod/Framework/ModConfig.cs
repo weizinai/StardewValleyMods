@@ -122,6 +122,11 @@ public class ModConfig
     // 自动觅食
     public bool AutoForage { get; set; }
     public int AutoForageRange { get; set; } = 1;
+    // 自动收获姜
+    public bool AutoHarvestGinger { get; set; }
+    public int AutoHarvestGingerRange { get; set; }
+    public float StopHarvestGingerStamina { get; set; } = 3;
+    public bool FindToolForHarvestGinger { get; set; } = true;
     // 自动摇树
     public bool AutoShakeTree { get; set; }
     public int AutoShakeTreeRange { get; set; } = 1;

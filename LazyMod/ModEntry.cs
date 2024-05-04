@@ -769,6 +769,40 @@ public class ModEntry : Mod
             0,
             3
         );
+        // 自动收获姜
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoHarvestGinger_Name,
+            I18n.Config_AutoHarvestGinger_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoHarvestGinger,
+            value => config.AutoHarvestGinger = value,
+            I18n.Config_AutoHarvestGinger_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoHarvestGingerRange,
+            value => config.AutoHarvestGingerRange = value,
+            I18n.Config_AutoHarvestGingerRange_Name,
+            null,
+            0,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopHarvestGingerStamina,
+            value => config.StopHarvestGingerStamina = value,
+            I18n.Config_StopHarvestGingerStamina_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindToolForHarvestGinger,
+            value => config.FindToolForHarvestGinger = value,
+            I18n.Config_FindToolForHarvestGinger_Name,
+            I18n.Config_FindToolForHarvestGinger_Tooltip
+        );
         // 自动摇树
         configMenu.AddSectionTitle(
             ModManifest,
@@ -786,7 +820,7 @@ public class ModEntry : Mod
             value => config.AutoShakeTreeRange = value,
             I18n.Config_AutoShakeTreeRange_Name,
             null,
-            1,
+            0,
             3
         );
         // 自动收获苔藓

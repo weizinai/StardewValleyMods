@@ -91,7 +91,6 @@ public class ModConfig
     public bool ClearGeodeStone { get; set; } = true;
     public bool ClearBoulder { get; set; }
     public bool ClearMeteorite { get; set; }
-    
     // 自动收集煤炭
     public bool AutoCollectCoal { get; set; }
     public int AutoCollectCoalRange { get; set; } = 1;
@@ -193,6 +192,7 @@ public class ModConfig
     public bool AutoClearWeeds { get; set; }
     public int AutoClearWeedsRange { get; set; } = 1;
     public bool FindToolForClearWeeds { get; set; } = true;
+    public bool ClearLargeWeeds { get; set; }
     // 自动挖掘远古斑点
     public bool AutoDigSpots { get; set; }
     public int AutoDigSpotsRange { get; set; }

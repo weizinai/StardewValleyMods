@@ -176,6 +176,7 @@
     "Config.AutoClearWeedsRange.Name": "Auto Clear Weeds Range",
     "Config.FindToolForClearWeeds.Name": "Find Tool From Inventory",
     "Config.FindToolForClearWeeds.Tooltip": "When this option is enabled, only a scythe (melee weapon) is required in the backpack for the feature to work.",
+    "Config.ClearLargeWeeds.Name": "Clear Large Weeds",
     "Config.AutoDigSpots.Name": "Auto Dig Spots",
     "Config.AutoDigSpots.Tooltip": "This feature only works when you hold the hoe.",
     "Config.AutoDigSpotsRange.Name": "Auto Dig Spots Range",

@@ -1169,6 +1169,12 @@ public class ModEntry : Mod
             I18n.Config_FindToolForClearWeeds_Name,
             I18n.Config_FindToolForClearWeeds_Tooltip
         );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearLargeWeeds,
+            value => config.ClearLargeWeeds = value,
+            I18n.Config_ClearLargeWeeds_Name
+        );
         // 自动挖掘远古斑点
         configMenu.AddSectionTitle(
             ModManifest,

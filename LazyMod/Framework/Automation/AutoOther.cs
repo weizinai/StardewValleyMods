@@ -76,6 +76,21 @@ public class AutoOther : Automate
                 obj.performToolAction(scythe);
                 location.removeObject(tile, false);
             }
+
+            foreach (var clump in location.resourceClumps)
+            {
+                if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
+
+                if (config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
+                {
+                    UseToolOnTile(location, player, scythe, tile);
+                    if (clump.performToolAction(scythe, 1, tile))
+                    {
+                        location.resourceClumps.Remove(clump);
+                        break;
+                    }
+                }
+            }
         }
     }
 

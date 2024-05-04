@@ -66,10 +66,7 @@ public class AutoMining : Automate
                     break;
                 }
             }
-        }
-
-        foreach (var tile in grid)
-        {
+            
             foreach (var clump in location.resourceClumps)
             {
                 if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;

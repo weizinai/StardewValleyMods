@@ -1,4 +1,5 @@
-﻿using StardewValley;
+﻿using Microsoft.Xna.Framework;
+using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
@@ -45,14 +46,8 @@ public class AutoFarming : Automate
         var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoTillDirtRange);
         foreach (var tile in grid)
-        {
-            // 如果该瓦片不可耕地,则跳过该瓦片的处理
-            location.terrainFeatures.TryGetValue(tile, out var tileFeature);
-            location.objects.TryGetValue(tile, out var obj);
-            if (tileFeature is not null || obj is not null || location.IsTileOccupiedBy(tile, CollisionMask.All, CollisionMask.Farmers) ||
-                !location.isTilePassable(tile) || location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Diggable", "Back") is null)
-                continue;
-
+        {   
+            if (!CanTillDirt(location, tile)) continue;
             if (StopAutomate(player, config.StopTillDirtStamina, ref hasAddMessage)) break;
             UseToolOnTile(location, player, tool, tile);
         }
@@ -217,5 +212,15 @@ public class AutoFarming : Automate
                     hoeDirt.performToolAction(FakeScythe.Value, 0, tile);
             }
         }
+    }
+
+    private bool CanTillDirt(GameLocation location, Vector2 tile)
+    {
+        location.terrainFeatures.TryGetValue(tile, out var tileFeature);
+        location.objects.TryGetValue(tile, out var obj);
+        return tileFeature is null && obj is null &&
+               !location.IsTileOccupiedBy(tile, CollisionMask.All, CollisionMask.Farmers) &&
+               location.isTilePassable(tile) &&
+               location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Diggable", "Back") is not null;
     }
 }

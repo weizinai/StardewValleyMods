@@ -68,27 +68,38 @@ public class AutoMining : Automate
             }
         }
 
-        foreach (var clump in location.resourceClumps)
+        foreach (var tile in grid)
         {
-            foreach (var tile in grid)
+            foreach (var clump in location.resourceClumps)
             {
                 if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
-                
-                if (config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex && pickaxe.UpgradeLevel >= Tool.gold)
-                {
-                    UseToolOnTile(location, player, pickaxe, tile);
-                    continue;
-                }
 
-                if (config.ClearBoulder && clump.parentSheetIndex.Value == ResourceClump.boulderIndex && pickaxe.UpgradeLevel >= Tool.steel)
-                {
-                    UseToolOnTile(location, player, pickaxe, tile);
-                    continue;
-                }
+                var clear = false;
+                var requiredUpgradeLevel = Tool.stone;
 
-                if (config.ClearBoulder && ResourceClumpRepository.MineBoulder.Contains(clump.parentSheetIndex.Value))
+                if (config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex)
                 {
+                    clear = true;
+                    requiredUpgradeLevel = Tool.gold;
+                }
+                else
+                    switch (config.ClearBoulder)
+                    {
+                        case true when clump.parentSheetIndex.Value == ResourceClump.boulderIndex:
+                            clear = true;
+                            requiredUpgradeLevel = Tool.steel;
+                            break;
+                        case true when ResourceClumpRepository.MineBoulder.Contains(clump.parentSheetIndex.Value):
+                            clear = true;
+                            requiredUpgradeLevel = Tool.stone;
+                            break;
+                    }
+
+                if (clear && pickaxe.UpgradeLevel >= requiredUpgradeLevel)
+                {
+                    if (StopAutomate(player, config.StopClearStoneStamina, ref hasAddMessage)) return;
                     UseToolOnTile(location, player, pickaxe, tile);
+                    break;
                 }
             }
         }
@@ -135,7 +146,7 @@ public class AutoMining : Automate
     {
         var tool = FindToolFromInventory<MeleeWeapon>();
         if (tool is null) return;
-        
+
         var grid = GetTileGrid(player, config.AutoClearCrystalRange);
         foreach (var tile in grid)
         {

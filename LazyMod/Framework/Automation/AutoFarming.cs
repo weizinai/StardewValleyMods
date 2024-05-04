@@ -128,6 +128,9 @@ public class AutoFarming : Automate
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is HoeDirt { crop: null } hoeDirt)
             {
+                location.objects.TryGetValue(tile, out var obj);
+                if (obj is not null) continue;
+                
                 if (item.Stack <= 0)
                     break;
 

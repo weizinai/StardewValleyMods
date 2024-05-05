@@ -46,19 +46,19 @@ public class AutoForaging : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null && obj.IsSpawnedObject) CollectSpawnedObject(location, player, tile, obj);
-            
+
             foreach (var terrainFeature in location.largeTerrainFeatures)
                 if (terrainFeature is Bush bush && CanForageBerry(tile, bush))
                     bush.performUseAction(tile);
         }
     }
-    
+
     // 自动收获姜
     private void AutoHarvestGinger(GameLocation location, Farmer player)
     {
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null) return;
-        
+
         var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoHarvestGingerRange);
         foreach (var tile in grid)
@@ -89,7 +89,7 @@ public class AutoForaging : Automate
     {
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
-        
+
         var grid = GetTileGrid(player, config.AutoHarvestMossRange);
         foreach (var tile in grid)
         {
@@ -98,8 +98,8 @@ public class AutoForaging : Automate
                 tree.performToolAction(scythe, 0, tile);
         }
     }
-    
-    // 自动装备采集器
+
+    // 自动放置采集器
     private void AutoPlaceTapper(GameLocation location, Farmer player, SObject tapper)
     {
         var grid = GetTileGrid(player, config.AutoPlaceVinegarRange);
@@ -109,8 +109,7 @@ public class AutoForaging : Automate
             if (terrainFeature is Tree tree && !tree.tapped.Value)
             {
                 var tilePixelPosition = GetTilePixelPosition(tile);
-                tapper.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player);
-                player.reduceActiveItemByOne();
+                if (tapper.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
             }
         }
     }
@@ -125,8 +124,7 @@ public class AutoForaging : Automate
             if (terrainFeature is Tree tree && !tree.stopGrowingMoss.Value)
             {
                 var tilePixelPosition = GetTilePixelPosition(tile);
-                vinegar.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player);
-                player.reduceActiveItemByOne();
+                if (vinegar.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Common.Patch;
+﻿using Common.Integrations;
+using Common.Patch;
 using SomeMultiplayerFeature.Framework;
 using SomeMultiplayerFeature.Patches;
 using StardewModdingAPI;
@@ -9,16 +10,59 @@ namespace SomeMultiplayerFeature;
 
 public class ModEntry : Mod
 {
+    private ModConfig config = new();
+
     public override void Entry(IModHelper helper)
     {
+        // 初始化
+        config = helper.ReadConfig<ModConfig>();
+        I18n.Init(helper.Translation);
+        // 注册事件
+        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
         // 注册Harmony补丁
         HarmonyPatcher.Patch(this, new UtilityPatcher(helper), new IClickableMenuPatcher(helper));
     }
 
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (!Context.IsMultiplayer) return; 
+        
+        if (config.ShowModInfoKeybind.JustPressed())
+        {
+            var modInstall = true;
+            foreach (var farmer in Game1.getOnlineFarmers())
+            {
+                var peer = Helper.Multiplayer.GetConnectedPlayer(farmer.UniqueMultiplayerID);
+                if (peer is null) continue;
+                if (peer.GetMod(ModManifest.UniqueID) is null)
+                {
+                    var hudMessage = new HUDMessage($"{farmer.Name}没有安装该模组")
+                    {
+                        noIcon = true,
+                        timeLeft = 500f,
+                    };
+                    Game1.addHUDMessage(hudMessage);
+                    modInstall = false;
+                }
+            }
+
+            if (modInstall)
+            {
+                var hudMessage = new HUDMessage("所有人都安装了模组")
+                {
+                    noIcon = true,
+                    timeLeft = 500f,
+                };
+                Game1.addHUDMessage(hudMessage);
+            }
+        }
+    }
+
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
-        if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ShopMessage" })
+        if (config.ShowShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ShopMessage" })
         {
             var message = e.ReadAs<Message>();
             var hudMessage = new HUDMessage(message.ToString())
@@ -29,5 +73,30 @@ public class ModEntry : Mod
             };
             Game1.addHUDMessage(hudMessage);
         }
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
+        if (configMenu is null) return;
+
+        configMenu.Register(
+            ModManifest,
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
+        );
+
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ShowShopInfo,
+            value => config.ShowShopInfo = value,
+            I18n.Config_ShowShopInfo_Name
+        );
+        configMenu.AddKeybindList(
+            ModManifest,
+            () => config.ShowModInfoKeybind,
+            value => config.ShowModInfoKeybind = value,
+            I18n.Config_ShowModInfoKeybind_Name
+        );
     }
 }

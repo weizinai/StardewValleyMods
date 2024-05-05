@@ -5,6 +5,7 @@ using SomeMultiplayerFeature.Patches;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Menus;
 
 namespace SomeMultiplayerFeature;
 
@@ -58,6 +59,11 @@ public class ModEntry : Mod
                 Game1.addHUDMessage(hudMessage);
             }
         }
+        
+        if (Context.IsMainPlayer && Game1.activeClickableMenu is ReadyCheckDialog menu && config.SetAllPlayerReadyKeybind.JustPressed())
+        {
+            Helper.Multiplayer.SendMessage(menu.checkName, "SetAllPlayerReady", new[] { "weizinai.SomeMultiplayerFeature" });
+        }
     }
 
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
@@ -72,6 +78,20 @@ public class ModEntry : Mod
                 type = message.PlayerName + message.IsExit
             };
             Game1.addHUDMessage(hudMessage);
+        }
+        
+        if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "SetAllPlayerReady" })
+        {
+            var message = e.ReadAs<string>();
+            switch (message)
+            {
+                case "sleep":
+                    Helper.Reflection.GetMethod(new GameLocation(), "startSleep").Invoke();
+                    break;
+                default: 
+                    Game1.netReady.SetLocalReady(message, true);
+                    break;
+            }
         }
     }
 

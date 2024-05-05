@@ -171,7 +171,7 @@
     "Config.AutoDrinkBuffDrink.Name": "自动喝增益饮料",
     "Config.AutoDrinkBuffDrink.Tooltip": "当该选项启用时,若玩家没有来自饮料的增益,则会根据你要维持的增益,自动喝掉背包中带增益的饮料.(例如咖啡)",
     "Config.DrinkBuffMaintain1.Name": "维持的饮料增益1",
-    "Config.DrinkBuffMaintain2.Name": "维持的赢料增益2",
+    "Config.DrinkBuffMaintain2.Name": "维持的饮料增益2",
     "Config.DrinkBuffMaintain.ToolTip": "你想要维持的饮料增益.当两项都设置为非无时,会优先寻找背包中同时具有两种增益的饮料.若没有,则会接着寻找具有增益1的饮料.若还是没有,则会寻找具有增益2的饮料.当只有一项为无时,就会寻找具有另一项增益的饮料.",
 
     // 其他

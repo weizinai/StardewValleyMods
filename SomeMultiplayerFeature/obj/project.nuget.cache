@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "4pCWDsJR0511YSZK7x0fVOrkdz6dE2f5Ry5rQ71CIZ2sEwWaZjo8h3HMyNIBNJgZ92h7Mkwt5lwuc4u1dD3ZRQ==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\StardewValleyMods\\SomeMultiplayerFeature\\SomeMultiplayerFeature.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\17760\\.nuget\\packages\\pathoschild.stardew.modbuildconfig\\4.1.1\\pathoschild.stardew.modbuildconfig.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

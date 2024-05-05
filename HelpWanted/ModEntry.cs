@@ -2,12 +2,9 @@
 using Common.Patch;
 using HelpWanted.Framework;
 using HelpWanted.Patches;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Locations;
 
 namespace HelpWanted;
 
@@ -29,7 +26,7 @@ internal partial class ModEntry : Mod
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.DayStarted += OnDayStarted; ;
+        helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
         HarmonyPatcher.Patch(this, new BillboardPatcher(config), new UtilityPatcher(), new ItemDeliveryQuestPatcher(config),
             new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher());

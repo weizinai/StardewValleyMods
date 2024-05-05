@@ -1,0 +1,9 @@
+C:\Projects\StardewValleyMods\WhoIsShopping\bin\Debug\net6.0\WhoIsShopping.deps.json
+C:\Projects\StardewValleyMods\WhoIsShopping\bin\Debug\net6.0\WhoIsShopping.dll
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.csproj.AssemblyReference.cache
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.AssemblyInfoInputs.cache
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.AssemblyInfo.cs
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.csproj.CoreCompileInputs.cache
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.sourcelink.json
+C:\Projects\StardewValleyMods\WhoIsShopping\obj\Debug\net6.0\WhoIsShopping.dll

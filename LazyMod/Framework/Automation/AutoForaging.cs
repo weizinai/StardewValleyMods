@@ -64,10 +64,10 @@ public class AutoForaging : Automate
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is HoeDirt { crop: not null } horDirt)
+            if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 if (StopAutomate(player, config.StopHarvestGingerStamina, ref hasAddMessage)) break;
-                if (horDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, horDirt)) horDirt.destroyCrop(true);
+                if (hoeDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt)) hoeDirt.destroyCrop(true);
             }
         }
     }

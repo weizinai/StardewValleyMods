@@ -52,19 +52,6 @@ public abstract class Automate
         tool.DoFunction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, 1, player);
     }
 
-    protected bool StopAutomate(Farmer player, float stopAutomateStamina, ref bool hasAddMessage)
-    {
-        if (player.Stamina <= stopAutomateStamina)
-        {
-            if (!hasAddMessage)
-                Game1.showRedMessage(I18n.Message_Stamina());
-            return true;
-        }
-
-        hasAddMessage = false;
-        return false;
-    }
-
     protected void ConsumeItem(Farmer player, Item item)
     {
         item.Stack--;

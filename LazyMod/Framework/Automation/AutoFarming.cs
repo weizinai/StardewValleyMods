@@ -43,12 +43,11 @@ public class AutoFarming : Automate
     // 自动耕地
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoTillDirtRange);
         foreach (var tile in grid)
         {   
             if (!CanTillDirt(location, tile)) continue;
-            if (StopAutomate(player, config.StopTillDirtStamina, ref hasAddMessage)) break;
+            if (player.Stamina <= config.StopTillDirtStamina) break;
             UseToolOnTile(location, player, tool, tile);
         }
     }
@@ -63,7 +62,7 @@ public class AutoFarming : Automate
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
-                if (StopAutomate(player, config.StopClearTilledDirtStamina, ref hasAddMessage)) break;
+                if (player.Stamina <= config.StopClearTilledDirtStamina) break;
                 UseToolOnTile(location, player, tool, tile);
             }
         }
@@ -72,7 +71,6 @@ public class AutoFarming : Automate
     // 自动浇水
     private void AutoWaterDirt(GameLocation location, Farmer player, WateringCan wateringCan)
     {
-        var hasAddStaminaMessage = true;
         var hasAddWaterMessage = true;
         var grid = GetTileGrid(player, config.AutoWaterDirtRange);
         foreach (var tile in grid)
@@ -82,14 +80,13 @@ public class AutoFarming : Automate
             {
                 if (wateringCan.WaterLeft <= 0)
                 {
-                    if (!hasAddWaterMessage)
-                        Game1.showRedMessageUsingLoadString("Strings\\StringsFromCSFiles:WateringCan.cs.14335");
+                    if (!hasAddWaterMessage) Game1.showRedMessageUsingLoadString("Strings\\StringsFromCSFiles:WateringCan.cs.14335");
                     break;
                 }
 
                 hasAddWaterMessage = false;
 
-                if (StopAutomate(player, config.StopWaterDirtStamina, ref hasAddStaminaMessage)) break;
+                if (player.Stamina <= config.StopWaterDirtStamina) break;
                 UseToolOnTile(location, player, wateringCan, tile);
                 if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
                 {

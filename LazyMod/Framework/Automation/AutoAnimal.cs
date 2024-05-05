@@ -69,11 +69,10 @@ public class AutoAnimal : Automate
         var milkPail = FindToolFromInventory<MilkPail>();
         if (milkPail is null) return;
 
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoMilkAnimalRange);
         foreach (var tile in grid)
         {
-            if (StopAutomate(player, config.StopMilkAnimalStamina, ref hasAddMessage)) break;
+            if (player.Stamina <= config.StopMilkAnimalStamina) break;
             var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
             if (animal is null) continue;
             milkPail.animal = animal;
@@ -90,11 +89,10 @@ public class AutoAnimal : Automate
         if (shears is null)
             return;
 
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoShearsAnimalRange);
         foreach (var tile in grid)
         {
-            if (StopAutomate(player, config.StopShearsAnimalStamina, ref hasAddMessage)) break;
+            if (player.Stamina <= config.StopShearsAnimalStamina) break;
             var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
             if (animal is null) continue;
             shears.animal = animal;

@@ -59,14 +59,13 @@ public class AutoForaging : Automate
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null) return;
 
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoHarvestGingerRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
-                if (StopAutomate(player, config.StopHarvestGingerStamina, ref hasAddMessage)) break;
+                if (player.Stamina <= config.StopHarvestGingerStamina) break;
                 if (hoeDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt)) hoeDirt.destroyCrop(true);
             }
         }
@@ -135,14 +134,13 @@ public class AutoForaging : Automate
         var axe = FindToolFromInventory<Axe>();
         if (axe is null) return;
 
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoClearTwigRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null && obj.IsTwig())
             {
-                if (StopAutomate(player, config.StopClearTreeSeedStamina, ref hasAddMessage)) break;
+                if (player.Stamina <= config.StopClearTwigStamina) break;
                 UseToolOnTile(location, player, axe, tile);
             }
         }
@@ -151,14 +149,13 @@ public class AutoForaging : Automate
     // 自动清理树种
     private void AutoClearTreeSeed(GameLocation location, Farmer player, Tool tool)
     {
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoClearTreeSeedRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree && tree.growthStage.Value == Tree.seedStage)
             {
-                if (StopAutomate(player, config.StopClearTreeSeedStamina, ref hasAddMessage)) break;
+                if (player.Stamina <= config.StopClearTreeSeedStamina) break;
                 UseToolOnTile(location, player, tool, tile);
             }
         }

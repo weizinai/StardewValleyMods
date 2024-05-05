@@ -51,7 +51,6 @@ public class AutoMining : Automate
             { ItemRepository.GeodeStone, config.ClearGeodeStone }
         };
 
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoClearStoneRange);
         foreach (var tile in grid)
         {
@@ -61,7 +60,7 @@ public class AutoMining : Automate
             {
                 if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
                 {
-                    if (StopAutomate(player, config.StopClearStoneStamina, ref hasAddMessage)) return;
+                    if (player.Stamina <= config.StopClearStoneStamina) return;
                     UseToolOnTile(location, player, pickaxe, tile);
                     break;
                 }
@@ -94,7 +93,7 @@ public class AutoMining : Automate
 
                 if (clear && pickaxe.UpgradeLevel >= requiredUpgradeLevel)
                 {
-                    if (StopAutomate(player, config.StopClearStoneStamina, ref hasAddMessage)) return;
+                    if (player.Stamina <= config.StopClearStoneStamina) return;
                     UseToolOnTile(location, player, pickaxe, tile);
                     break;
                 }

@@ -102,12 +102,11 @@ public class AutoOther : Automate
             return;
 
         var grid = GetTileGrid(player, config.AutoDigSpotsRange);
-        var hasAddMessage = true;
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is not ("(O)590" or "(O)SeedSpot")) continue;
-            if (StopAutomate(player, config.StopTillDirtStamina, ref hasAddMessage)) break;
+            if (player.Stamina <= config.StopDigSpotsStamina) break;
             UseToolOnTile(location, player, hoe, tile);
         }
     }

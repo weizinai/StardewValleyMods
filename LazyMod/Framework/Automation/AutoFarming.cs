@@ -55,7 +55,6 @@ public class AutoFarming : Automate
     // 自动清理耕地
     private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
     {
-        var hasAddMessage = true;
         var grid = GetTileGrid(player, config.AutoClearTilledDirtRange);
         foreach (var tile in grid)
         {

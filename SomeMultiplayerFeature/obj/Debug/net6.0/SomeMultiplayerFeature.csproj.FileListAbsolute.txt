@@ -1,9 +1,0 @@
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\bin\Debug\net6.0\SomeMultiplayerFeature.deps.json
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\bin\Debug\net6.0\SomeMultiplayerFeature.dll
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.csproj.AssemblyReference.cache
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.GeneratedMSBuildEditorConfig.editorconfig
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.AssemblyInfoInputs.cache
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.AssemblyInfo.cs
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.csproj.CoreCompileInputs.cache
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.sourcelink.json
-C:\Projects\StardewValleyMods\SomeMultiplayerFeature\obj\Debug\net6.0\SomeMultiplayerFeature.dll

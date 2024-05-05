@@ -22,18 +22,15 @@ public class AutomationManger
         this.config = config;
         InitAutomates();
         // 注册事件
-        helper.Events.GameLoop.DayStarted += OnDayStarted;
-        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.GameLoop.DayEnding += OnDayEnded;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
     }
 
-    private void OnDayStarted(object? sender, DayStartedEventArgs e)
+    public void OnDayStarted()
     {
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(true);
     }
 
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    public void OnUpdateTicked()
     {
         if (!modEnable) return;
         
@@ -49,7 +46,7 @@ public class AutomationManger
         foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
     }
 
-    private void OnDayEnded(object? sender, DayEndingEventArgs e)
+    public void OnDayEnding()
     {
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(false);
     }

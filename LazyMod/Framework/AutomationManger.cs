@@ -16,10 +16,14 @@ public class AutomationManger
     private Item? item;
     private bool modEnable = true;
 
+    private readonly int ticksPerAction;
+    private int skippedActionTicks;
+
     public AutomationManger(IModHelper helper, ModConfig config)
     {
         // 初始化
         this.config = config;
+        ticksPerAction = config.Cooldown;
         InitAutomates();
         // 注册事件
         helper.Events.GameLoop.DayStarted += OnDayStarted;
@@ -37,6 +41,8 @@ public class AutomationManger
     {
         if (!modEnable) return;
         
+        if (!UpdateCooldown()) return;
+        
         location = Game1.currentLocation;
         player = Game1.player;
         tool = player?.CurrentTool;
@@ -45,6 +51,15 @@ public class AutomationManger
         if (location is null || player is null) return;
 
         foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
+    }
+
+    private bool UpdateCooldown()
+    {
+        skippedActionTicks++;
+        if (skippedActionTicks < ticksPerAction) return false;
+        
+        skippedActionTicks = 0;
+        return true;
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs dayEndingEventArgs)

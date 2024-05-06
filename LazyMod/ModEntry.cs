@@ -1,4 +1,5 @@
-﻿using Common.Integrations;
+﻿using System.ComponentModel;
+using Common.Integrations;
 using LazyMod.Framework;
 using LazyMod.Framework.Automation;
 using LazyMod.Framework.Hud;
@@ -60,6 +61,16 @@ public class ModEntry : Mod
             value => config.ToggleModStateKeybind = value,
             I18n.Config_ToggleModStateKeybind_Name,
             I18n.Config_ToggleModStateKeybind_Tooltip
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.Cooldown,
+            value => config.Cooldown = value,
+            I18n.Config_Cooldown_Name,
+            I18n.Config_Cooldown_Tooltip,
+            0,
+            60,
+            5
         );
         configMenu.AddPageLink(
             ModManifest,
@@ -801,6 +812,18 @@ public class ModEntry : Mod
             () => config.StopChopTreeStamina,
             value => config.StopChopTreeStamina = value,
             I18n.Config_StopChopTreeStamina_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopTapperTree,
+            value => config.ChopTapperTree = value,
+            I18n.Config_ChopTapperTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopVinegarTree,
+            value => config.ChopVinegarTree = value,
+            I18n.Config_ChopVinegarTree_Name
         );
         configMenu.AddPageLink(
             ModManifest,

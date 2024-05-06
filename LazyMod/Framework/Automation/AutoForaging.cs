@@ -34,7 +34,7 @@ public class AutoForaging : Automate
         // 自动清理树枝
         if (config.AutoClearTwig && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
         // 自动清理树种
-        if (config.AutoClearTreeSeed && tool is Axe) AutoClearTreeSeed(location, player, tool);
+        if (config.AutoChopTree && tool is Axe) AutoChopTree(location, player, tool);
         TileCache.Clear();
     }
 
@@ -67,6 +67,53 @@ public class AutoForaging : Automate
             {
                 if (player.Stamina <= config.StopHarvestGingerStamina) break;
                 if (hoeDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt)) hoeDirt.destroyCrop(true);
+            }
+        }
+    }
+
+    // 自动清理树种
+    private void AutoChopTree(GameLocation location, Farmer player, Tool tool)
+    {
+        var treeType = new Dictionary<string, Dictionary<int, bool>>
+        {
+            { Tree.bushyTree, config.ChopOakTree },
+            { Tree.leafyTree, config.ChopMapleTree },
+            { Tree.pineTree, config.ChopPineTree },
+            { Tree.mahoganyTree, config.ChopMahoganyTree },
+            { Tree.palmTree, config.ChopPalmTree },
+            { Tree.palmTree2, config.ChopPalmTree },
+            { Tree.mushroomTree, config.ChopMushroomTree },
+            { Tree.greenRainTreeBushy, config.ChopGreenRainTree },
+            { Tree.greenRainTreeLeafy, config.ChopGreenRainTree },
+            { Tree.greenRainTreeFern, config.ChopGreenRainTree },
+            { Tree.mysticTree, config.ChopMysticTree }
+        };
+
+        var grid = GetTileGrid(player, config.AutoChopTreeRange);
+        foreach (var tile in grid)
+        {
+            location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+            if (terrainFeature is Tree tree)
+            {
+                if (tree.tapped.Value || !config.ChopTapperTree) continue;
+                if (tree.stopGrowingMoss.Value || !config.ChopVinegarTree) continue;
+                if (player.Stamina <= config.StopChopTreeStamina) break;
+
+                foreach (var (key, value) in treeType)
+                {
+                    // 树逻辑
+                    if (tree.treeType.Value.Equals(key))
+                    {
+                        foreach (var (stage, chopTree) in value)
+                        {
+                            if (tree.growthStage.Value == stage && chopTree)
+                                UseToolOnTile(location, player, tool, tile);
+                        }
+                    }
+                    
+                    // 树桩逻辑
+                    if (tree.stump.Value && value[-1]) UseToolOnTile(location, player, tool, tile);
+                }
             }
         }
     }
@@ -142,21 +189,6 @@ public class AutoForaging : Automate
             {
                 if (player.Stamina <= config.StopClearTwigStamina) break;
                 UseToolOnTile(location, player, axe, tile);
-            }
-        }
-    }
-
-    // 自动清理树种
-    private void AutoClearTreeSeed(GameLocation location, Farmer player, Tool tool)
-    {
-        var grid = GetTileGrid(player, config.AutoClearTreeSeedRange);
-        foreach (var tile in grid)
-        {
-            location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is Tree tree && tree.growthStage.Value == Tree.seedStage)
-            {
-                if (player.Stamina <= config.StopClearTreeSeedStamina) break;
-                UseToolOnTile(location, player, tool, tile);
             }
         }
     }

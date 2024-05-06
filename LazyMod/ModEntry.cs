@@ -935,29 +935,34 @@ public class ModEntry : Mod
         // 自动清理树种
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearTreeSeed_Name,
-            I18n.Config_AutoClearTreeSeed_Tooltip
+            I18n.Config_AutoChopTree_Name,
+            I18n.Config_AutoChopTree_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoClearTreeSeed,
-            value => config.AutoClearTreeSeed = value,
-            I18n.Config_AutoClearTreeSeed_Name
+            () => config.AutoChopTree,
+            value => config.AutoChopTree = value,
+            I18n.Config_AutoChopTree_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.AutoClearTreeSeedRange,
-            value => config.AutoClearTreeSeedRange = value,
-            I18n.Config_AutoClearTreeSeedRange_Name,
+            () => config.AutoChopTreeRange,
+            value => config.AutoChopTreeRange = value,
+            I18n.Config_AutoChopTreeRange_Name,
             null,
             0,
             3
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopClearTreeSeedStamina,
-            value => config.StopClearTreeSeedStamina = value,
-            I18n.Config_StopClearTreeSeedStamina_Name
+            () => config.StopChopTreeStamina,
+            value => config.StopChopTreeStamina = value,
+            I18n.Config_StopChopTreeStamina_Name
+        );
+        configMenu.AddPageLink(
+            ModManifest,
+            "TreeSettings",
+            I18n.Config_TreeSettingsPage_Name
         );
 
         #endregion
@@ -1344,6 +1349,300 @@ public class ModEntry : Mod
         // );
 
         #endregion
+        
+        configMenu.AddPage(ModManifest, "TreeSettings", I18n.Config_TreeSettingsPage_Name);
+        // 橡树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_OakTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopOakTree[0],
+            value => config.ChopOakTree[0] = value,
+            I18n.Config_ChopSeedStageOakTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopOakTree[1],
+            value => config.ChopOakTree[1] = value,
+            I18n.Config_ChopSproutStageOakTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopOakTree[2],
+            value => config.ChopOakTree[2] = value,
+            I18n.Config_ChopSaplingStageOakTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopOakTree[3],
+            value => config.ChopOakTree[3] = value,
+            I18n.Config_ChopBushStageOakTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopOakTree[5],
+            value => config.ChopOakTree[5] = value,
+            I18n.Config_ChopTreeStageOakTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopOakTree[-1],
+            value => config.ChopOakTree[-1] = value,
+            I18n.Config_ChopStumpStageOakTree_Name
+        );
+        // 枫树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_MapleTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMapleTree[0],
+            value => config.ChopMapleTree[0] = value,
+            I18n.Config_ChopSeedStageMapleTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMapleTree[1],
+            value => config.ChopMapleTree[1] = value,
+            I18n.Config_ChopSproutStageMapleTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMapleTree[2],
+            value => config.ChopMapleTree[2] = value,
+            I18n.Config_ChopSaplingStageMapleTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMapleTree[3],
+            value => config.ChopMapleTree[3] = value,
+            I18n.Config_ChopBushStageMapleTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMapleTree[5],
+            value => config.ChopMapleTree[5] = value,
+            I18n.Config_ChopTreeStageMapleTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMapleTree[-1],
+            value => config.ChopMapleTree[-1] = value,
+            I18n.Config_ChopStumpStageMapleTree_Name
+        );
+        // 松树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_PineTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPineTree[0],
+            value => config.ChopPineTree[0] = value,
+            I18n.Config_ChopSeedStagePineTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPineTree[1],
+            value => config.ChopPineTree[1] = value,
+            I18n.Config_ChopSproutStagePineTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPineTree[2],
+            value => config.ChopPineTree[2] = value,
+            I18n.Config_ChopSaplingStagePineTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPineTree[3],
+            value => config.ChopPineTree[3] = value,
+            I18n.Config_ChopBushStagePineTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPineTree[5],
+            value => config.ChopPineTree[5] = value,
+            I18n.Config_ChopTreeStagePineTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPineTree[-1],
+            value => config.ChopPineTree[-1] = value,
+            I18n.Config_ChopStumpStagePineTree_Name
+        );
+        // 桃花心木树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_MahoganyTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMahoganyTree[0],
+            value => config.ChopMahoganyTree[0] = value,
+            I18n.Config_ChopSeedStageMahoganyTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMahoganyTree[1],
+            value => config.ChopMahoganyTree[1] = value,
+            I18n.Config_ChopSproutStageMahoganyTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMahoganyTree[2],
+            value => config.ChopMahoganyTree[2] = value,
+            I18n.Config_ChopSaplingStageMahoganyTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMahoganyTree[3],
+            value => config.ChopMahoganyTree[3] = value,
+            I18n.Config_ChopBushStageMahoganyTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMahoganyTree[5],
+            value => config.ChopMahoganyTree[5] = value,
+            I18n.Config_ChopTreeStageMahoganyTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMahoganyTree[-1],
+            value => config.ChopMahoganyTree[-1] = value,
+            I18n.Config_ChopStumpStageMahoganyTree_Name
+        );
+        // 棕榈树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_PalmTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPalmTree[2],
+            value => config.ChopPalmTree[2] = value,
+            I18n.Config_ChopSaplingStagePalmTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPalmTree[3],
+            value => config.ChopPalmTree[3] = value,
+            I18n.Config_ChopBushStagePalmTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPalmTree[5],
+            value => config.ChopPalmTree[5] = value,
+            I18n.Config_ChopTreeStagePalmTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopPalmTree[-1],
+            value => config.ChopPalmTree[-1] = value,
+            I18n.Config_ChopStumpStagePalmTree_Name
+        );
+        // 蘑菇树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_MushroomTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMushroomTree[0],
+            value => config.ChopMushroomTree[0] = value,
+            I18n.Config_ChopSeedStageMushroomTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMushroomTree[1],
+            value => config.ChopMushroomTree[1] = value,
+            I18n.Config_ChopSproutStageMushroomTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMushroomTree[2],
+            value => config.ChopMushroomTree[2] = value,
+            I18n.Config_ChopSaplingStageMushroomTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMushroomTree[3],
+            value => config.ChopMushroomTree[3] = value,
+            I18n.Config_ChopBushStageMushroomTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMushroomTree[5],
+            value => config.ChopMushroomTree[5] = value,
+            I18n.Config_ChopTreeStageMushroomTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMushroomTree[-1],
+            value => config.ChopMushroomTree[-1] = value,
+            I18n.Config_ChopStumpStageMushroomTree_Name
+        );
+        // 苔雨树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_GreenRainTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopGreenRainTree[0],
+            value => config.ChopGreenRainTree[0] = value,
+            I18n.Config_ChopSeedStageGreenRainTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopGreenRainTree[1],
+            value => config.ChopGreenRainTree[1] = value,
+            I18n.Config_ChopSproutStageGreenRainTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopGreenRainTree[2],
+            value => config.ChopGreenRainTree[2] = value,
+            I18n.Config_ChopSaplingStageGreenRainTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopGreenRainTree[3],
+            value => config.ChopGreenRainTree[3] = value,
+            I18n.Config_ChopBushStageGreenRainTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopGreenRainTree[5],
+            value => config.ChopGreenRainTree[5] = value,
+            I18n.Config_ChopTreeStageGreenRainTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopGreenRainTree[-1],
+            value => config.ChopGreenRainTree[-1] = value,
+            I18n.Config_ChopStumpStageGreenRainTree_Name
+        );
+        // 神秘树
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_MysticTreeTitle_Name);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMysticTree[0],
+            value => config.ChopMysticTree[0] = value,
+            I18n.Config_ChopSeedStageMysticTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMysticTree[1],
+            value => config.ChopMysticTree[1] = value,
+            I18n.Config_ChopSproutStageMysticTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMysticTree[2],
+            value => config.ChopMysticTree[2] = value,
+            I18n.Config_ChopSaplingStageMysticTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMysticTree[3],
+            value => config.ChopMysticTree[3] = value,
+            I18n.Config_ChopBushStageMysticTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMysticTree[5],
+            value => config.ChopMysticTree[5] = value,
+            I18n.Config_ChopTreeStageMysticTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ChopMysticTree[-1],
+            value => config.ChopMysticTree[-1] = value,
+            I18n.Config_ChopStumpStageMysticTree_Name
+        );
     }
 
     private static string GetStringFromBuffType(string value)

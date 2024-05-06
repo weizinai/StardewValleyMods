@@ -48,11 +48,7 @@ public class ModEntry : Mod
 
         if (configMenu is null) return;
 
-        configMenu.Register(
-            ModManifest,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
-        );
+        configMenu.Register(ModManifest, () => config = new ModConfig(), () => Helper.WriteConfig(config));
 
         configMenu.AddKeybindList(
             ModManifest,
@@ -71,41 +67,14 @@ public class ModEntry : Mod
             60,
             5
         );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Farming",
-            I18n.Config_FarmingPage_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Animal",
-            I18n.Config_AnimalPage_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Mining",
-            I18n.Config_MiningPage_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Foraging",
-            I18n.Config_ForagingPage_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Fishing",
-            I18n.Config_FishingPage_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Food",
-            I18n.Config_FoodPage_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "Other",
-            I18n.Config_OtherPage_Name
-        );
+        configMenu.AddPageLink(ModManifest, "Farming", I18n.Config_FarmingPage_Name);
+        configMenu.AddPageLink(ModManifest, "Animal", I18n.Config_AnimalPage_Name);
+        configMenu.AddPageLink(ModManifest, "Mining", I18n.Config_MiningPage_Name);
+        configMenu.AddPageLink(ModManifest, "Foraging", I18n.Config_ForagingPage_Name);
+        configMenu.AddPageLink(ModManifest, "Fishing", I18n.Config_FishingPage_Name);
+        configMenu.AddPageLink(ModManifest, "Combat", I18n.Config_CombatPage_Name);
+        configMenu.AddPageLink(ModManifest, "Food", I18n.Config_FoodPage_Name);
+        configMenu.AddPageLink(ModManifest, "Other", I18n.Config_OtherPage_Name);
 
         #region 耕种
 

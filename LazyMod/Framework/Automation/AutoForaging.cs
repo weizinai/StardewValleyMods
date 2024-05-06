@@ -33,8 +33,8 @@ public class AutoForaging : Automate
         if (config.AutoHarvestMoss && (tool is MeleeWeapon || config.FindScytheFromInventory)) AutoHarvestMoss(location, player);
         // 自动在树上浇醋
         if (config.AutoPlaceVinegar && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
-        // 自动清理树枝
-        if (config.AutoClearWood && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
+        // 自动清理木头
+        if (config.AutoClearWood && (tool is Axe || config.FindAxeFromInventory)) AutoClearWood(location, player);
         TileCache.Clear();
     }
 
@@ -187,8 +187,8 @@ public class AutoForaging : Automate
         }
     }
 
-    // 自动清理树枝
-    private void AutoClearTwig(GameLocation location, Farmer player)
+    // 自动清理木头
+    private void AutoClearWood(GameLocation location, Farmer player)
     {
         if (player.Stamina <= config.StopClearWoodStamina) return;
         

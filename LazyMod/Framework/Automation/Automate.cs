@@ -27,20 +27,10 @@ public abstract class Automate
         return grid;
     }
 
-    protected T? FindToolFromInventory<T>(bool findScythe = false) where T : Tool
+    protected T? FindToolFromInventory<T>() where T : Tool
     {
         var player = Game1.player;
-        if (player.CurrentTool is T tool)
-        {
-            if (findScythe && tool is MeleeWeapon scythe && scythe.isScythe())
-                return tool;
-            return tool;
-        }
-
-        foreach (var item in player.Items)
-            if (findScythe && item is MeleeWeapon scythe && scythe.isScythe())
-                return scythe as T;
-
+        if (player.CurrentTool is T tool) return tool;
         return player.Items.FirstOrDefault(item => item is T) as T;
     }
 

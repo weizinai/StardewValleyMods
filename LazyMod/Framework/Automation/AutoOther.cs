@@ -64,7 +64,7 @@ public class AutoOther : Automate
     // 自动清理杂草
     private void AutoClearWeeds(GameLocation location, Farmer player)
     {
-        var scythe = FindToolFromInventory<MeleeWeapon>(true);
+        var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
         var grid = GetTileGrid(player, config.AutoClearWeedsRange);

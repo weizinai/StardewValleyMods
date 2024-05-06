@@ -86,6 +86,7 @@ public class AutomationManger
             new AutoMining(config),
             new AutoForaging(config),
             new AutoFishing(config),
+            new AutoCombat(config),
             new AutoFood(config),
             new AutoOther(config),
         });

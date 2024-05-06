@@ -168,6 +168,12 @@
     "Config.AutoAddBaitForCarbPotRange.Name": "Auto Add Bait For Carb Pot Range",
     "Config.AutoHarvestCarbPot.Name": "Auto Harvest Carb Pot",
     "Config.AutoHarvestCarbPotRange.Name": "Auto Harvest Carb Pot Range",
+    
+    // Combat
+    "Config.CombatPage.Name": "Combat",
+    "Config.AutoAttackMonster.Name": "Auto Attack Monster",
+    "Config.AutoAttackMonster.Tooltip": "This feature only works when you hold the melee weapon.",
+    "Config.AutoAttackMonsterRange.Name": "Auto Attack Monster Range",
 
     // Food
     "Config.FoodPage.Name": "Food",

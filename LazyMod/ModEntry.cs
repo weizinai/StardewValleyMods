@@ -1109,6 +1109,29 @@ public class ModEntry : Mod
 
         #endregion
 
+        #region 战斗
+
+        configMenu.AddPage(ModManifest, "Combat", I18n.Config_CombatPage_Name);
+        // 自动攻击怪物
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_AutoAttackMonster_Name, I18n.Config_AutoAttackMonster_Tooltip);
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoAttackMonster,
+            value => config.AutoAttackMonster = value,
+            I18n.Config_AutoAttackMonster_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoAttackMonsterRange,
+            value => config.AutoAttackMonsterRange = value,
+            I18n.Config_AutoAttackMonsterRange_Name,
+            null,
+            1,
+            3
+        );
+
+        #endregion
+
         #region 食物
 
         configMenu.AddPage(

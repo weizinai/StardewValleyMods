@@ -57,10 +57,6 @@ public sealed class HWQuestBoard : Billboard
                 {
                     // 设置该选项的ID
                     myID = OptionIndex - i,
-                    // // 如果该选项是最左侧的选项,则左邻居ID为-1,否则为当前选项ID+1
-                    // leftNeighborID = i > 0 ? OptionIndex - i + 1 : -1,
-                    // // 如果该选项是最右侧的选项,则右邻居ID为-1,否则为当前选项ID-1
-                    // rightNeighborID = i < questList.Count - 1 ? OptionIndex - i - 1 : -1
                 });
                 QuestDataDictionary[QuestNotes[i].myID] = questList[i];
             }
@@ -144,17 +140,13 @@ public sealed class HWQuestBoard : Billboard
     /// <summary>绘制多任务面板</summary>
     public override void draw(SpriteBatch spriteBatch)
     {
-        // var hideMouse = false;
-        
         // 绘制阴影
         if (!Game1.options.showClearBackgrounds) spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
         
         // 绘制面板纹理
         spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White,
             0f, Vector2.Zero, 4f, SpriteEffects.None, 1f);
-
-        // if (Game1.options.SnappyMenus) hideMouse = true;
-
+        
         if (!QuestNotes.Any())
         {
             spriteBatch.DrawString(Game1.dialogueFont, Game1.content.LoadString("Strings\\UI:Billboard_NothingPosted"),
@@ -165,10 +157,7 @@ public sealed class HWQuestBoard : Billboard
             if (showingQuest is null)
                 DrawQuestNotes(spriteBatch);
             else
-            {
-                // hideMouse = false;
                 DrawShowingQuest(spriteBatch);
-            }
         }
 
         // 绘制星星
@@ -183,8 +172,6 @@ public sealed class HWQuestBoard : Billboard
 
         // 绘制右上角的关闭按钮
         if (upperRightCloseButton != null && shouldDrawCloseButton()) upperRightCloseButton.draw(spriteBatch);
-
-        // if (hideMouse) return;
         
         // 绘制鼠标
         Game1.mouseCursorTransparency = 1f;

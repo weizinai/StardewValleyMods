@@ -24,33 +24,12 @@ public class ModEntry : Mod
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.DayStarted += OnDayStarted;
-        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.GameLoop.DayEnding += OnDayEnding;
         helper.Events.Display.RenderedHud += OnRenderedHud;
     }
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
         miningHud.Draw(e.SpriteBatch);
-    }
-
-    private void OnDayStarted(object? sender, DayStartedEventArgs e)
-    {
-        automationManger.OnDayStarted();
-    }
-
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
-    {
-        if (!Context.IsPlayerFree) return;
-        
-        miningHud.Update();
-        automationManger.OnUpdateTicked();
-    }
-
-    private void OnDayEnding(object? sender, DayEndingEventArgs e)
-    {
-        automationManger.OnDayEnding();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

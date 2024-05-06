@@ -7,7 +7,7 @@ namespace LazyMod.Framework;
 public class ModConfig
 {
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);
-    public int Cooldown { get; set; } = 5;
+    public int Cooldown { get; set; } = 10;
 
     #region 耕种
 

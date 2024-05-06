@@ -3,7 +3,7 @@
     "Config.ToggleModStateKeybind.Name": "切换模组状态快捷键",
     "Config.ToggleModStateKeybind.Tooltip": "切换模组自动化功能是否启用的快捷键.自动打开动物门和显示信息功能不受影响.",
     "Config.Cooldown.Name": "冷却时间",
-    "Config.Cooldown.Tooltip": "每次自动化操作的冷却时间(帧).该选项更改后需要重启游戏才会生效.",
+    "Config.Cooldown.Tooltip": "每次自动化操作的冷却时间(帧).该选项更改后需要开始新的一天才会生效.",
     
     // 耕种
     "Config.FarmingPage.Name": "耕种",

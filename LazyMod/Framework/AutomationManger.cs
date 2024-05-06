@@ -16,7 +16,7 @@ public class AutomationManger
     private Item? item;
     private bool modEnable = true;
 
-    private readonly int ticksPerAction;
+    private int ticksPerAction;
     private int skippedActionTicks;
 
     public AutomationManger(IModHelper helper, ModConfig config)
@@ -34,6 +34,7 @@ public class AutomationManger
 
     private void OnDayStarted(object? sender, DayStartedEventArgs dayStartedEventArgs)
     {
+        ticksPerAction = config.Cooldown;
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(true);
     }
 

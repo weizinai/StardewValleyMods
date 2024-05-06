@@ -35,7 +35,10 @@
     "Config.AutoShakeFruitTree.Name": "Auto Shake Fruit Tree",
     "Config.AutoShakeFruitTreeRange.Name": "Auto Shake Fruit Tree Range",
     "Config.AutoClearDeadCrop.Name": "Auto Clear Dead Crop",
+    "Config.AutoClearDeadCrop.Tooltip": "This feature only works when you hold the scythe(melee weapon).",
     "Config.AutoClearDeadCropRange.Name": "Auto Clear Dead Crop Range",
+    "Config.FindToolForClearDeadCrop.Name": "Find Tool From Inventory",
+    "Config.FindToolForClearDeadCrop.Tooltip": "When this option is enabled, only a scythe (melee weapon) is required in the backpack for the feature to work.",
 
     // Animal
     "Config.AnimalPage.Name": "Animal",
@@ -90,7 +93,7 @@
     "Config.AutoCollectCoal.Tooltip": "When this option is enabled, coal from backpack and mine cart will be automatically collected for you.",
     "Config.AutoCollectCoalRange.Name": "Auto Collect Coal Range",
     "Config.AutoBreakContainer.Name": "Auto Break Container",
-    "Config.AutoBreakContainer.Tooltip": "This feature only works when you hold the melee weapon.",
+    "Config.AutoBreakContainer.Tooltip": "This feature only works when you hold the melee weapon(scythe).",
     "Config.AutoBreakContainerRange.Name": "Auto Break Container Range",
     "Config.FindWeaponFromInventory.Name": "Find Weapon From Inventory",
     "Config.FindWeaponFromInventory.Tooltip": "When this option is enabled, only a melee weapon (scythe) is required in the backpack for the feature to work.",

@@ -35,7 +35,10 @@
     "Config.AutoShakeFruitTree.Name": "自动摇晃果树",
     "Config.AutoShakeFruitTreeRange.Name": "自动摇晃果树范围",
     "Config.AutoClearDeadCrop.Name": "自动清理枯萎作物",
+    "Config.AutoClearDeadCrop.Tooltip": "当你手持镰刀(近战武器)时,该功能才有效果",
     "Config.AutoClearDeadCropRange.Name": "自动清理枯萎作物范围",
+    "Config.FindToolForClearDeadCrop.Name": "从背包中寻找工具",
+    "Config.FindToolForClearDeadCrop.Tooltip": "当该选项启用时,只需要背包中有镰刀(近战武器),该功能就回生效.",
 
     // 动物
     "Config.AnimalPage.Name": "动物",

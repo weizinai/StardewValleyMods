@@ -42,6 +42,7 @@ public class ModConfig
     // 自动清理枯萎作物
     public bool AutoClearDeadCrop { get; set; }
     public int AutoClearDeadCropRange { get; set; } = 1;
+    public bool FindToolForClearDeadCrop { get; set; } = true;
 
     #endregion
 

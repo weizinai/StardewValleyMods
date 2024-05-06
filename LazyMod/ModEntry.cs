@@ -304,7 +304,8 @@ public class ModEntry : Mod
         // 自动清理枯萎作物
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearDeadCrop_Name
+            I18n.Config_AutoClearDeadCrop_Name,
+            I18n.Config_AutoClearDeadCrop_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -320,6 +321,13 @@ public class ModEntry : Mod
             null,
             0,
             3
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindToolForClearDeadCrop,
+            value => config.FindToolForClearDeadCrop = value,
+            I18n.Config_FindToolForClearDeadCrop_Name,
+            I18n.Config_FindToolForClearDeadCrop_Tooltip
         );
 
         #endregion

@@ -36,7 +36,7 @@ public class AutoFarming : Automate
         // 自动摇晃果树
         if (config.AutoShakeFruitTree) AutoShakeFruitTree(location, player);
         // 自动清理枯萎作物
-        if (config.AutoClearDeadCrop) AutoClearDeadCrop(location, player);
+        if (config.AutoClearDeadCrop && (tool is MeleeWeapon || config.FindToolForClearDeadCrop)) AutoClearDeadCrop(location, player);
         TileCache.Clear();
     }
 
@@ -194,6 +194,9 @@ public class AutoFarming : Automate
     // 自动清理枯萎作物
     private void AutoClearDeadCrop(GameLocation location, Farmer player)
     {
+        var scythe = FindToolFromInventory<MeleeWeapon>();
+        if (scythe is null) return;
+        
         var grid = GetTileGrid(player, config.AutoHarvestCropRange);
         foreach (var tile in grid)
         {
@@ -201,8 +204,7 @@ public class AutoFarming : Automate
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 var crop = hoeDirt.crop;
-                if (crop.dead.Value)
-                    hoeDirt.performToolAction(FakeScythe.Value, 0, tile);
+                if (crop.dead.Value) hoeDirt.performToolAction(scythe, 0, tile);
             }
         }
     }

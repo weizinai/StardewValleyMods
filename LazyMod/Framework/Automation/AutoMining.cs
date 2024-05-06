@@ -3,6 +3,7 @@ using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using Common;
+using Microsoft.Xna.Framework;
 using StardewValley.TerrainFeatures;
 
 namespace LazyMod.Framework.Automation;
@@ -165,16 +166,33 @@ public class AutoMining : Automate
         var wateringCan = FindToolFromInventory<WateringCan>();
         if (wateringCan is null) return;
 
+        var hasAddWaterMessage = true;
         var grid = GetTileGrid(player, config.AutoCoolLavaRange);
         foreach (var tile in grid)
         {
-            if (dungeon.waterTiles[(int)tile.X, (int)tile.Y] && !dungeon.cooledLavaTiles.ContainsKey(tile))
+            if (wateringCan.WaterLeft <= 0)
             {
-                if (player.Stamina <= config.StopCoolLavaStamina) return;
-                UseToolOnTile(location, player, wateringCan, tile);
-                if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
-                    player.playNearbySoundLocal("wateringCan");
+                if (!hasAddWaterMessage) Game1.showRedMessageUsingLoadString("Strings\\StringsFromCSFiles:WateringCan.cs.14335");
+                break;
             }
+
+            hasAddWaterMessage = false;
+            
+            if (player.Stamina <= config.StopCoolLavaStamina) return;
+            if (!CanCoolLave(dungeon, tile)) continue;
+            UseToolOnTile(location, player, wateringCan, tile);
+            if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
+                player.playNearbySoundLocal("wateringCan");
         }
+    }
+
+    private bool CanCoolLave(VolcanoDungeon dungeon, Vector2 tile)
+    {
+        var x = (int)tile.X;
+        var y = (int)tile.Y;
+        return !dungeon.CanRefillWateringCanOnTile(x,y) &&
+               dungeon.isTileOnMap(tile) &&
+               dungeon.waterTiles[x, y] &&
+               !dungeon.cooledLavaTiles.ContainsKey(tile);
     }
 }

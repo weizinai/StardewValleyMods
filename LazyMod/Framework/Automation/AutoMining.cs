@@ -55,14 +55,16 @@ public class AutoMining : Automate
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is null) continue;
-            foreach (var stoneType in stoneTypes)
+            if (obj is not null)
             {
-                if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
+                foreach (var stoneType in stoneTypes)
                 {
-                    if (player.Stamina <= config.StopClearStoneStamina) return;
-                    UseToolOnTile(location, player, pickaxe, tile);
-                    break;
+                    if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
+                    {
+                        if (player.Stamina <= config.StopClearStoneStamina) return;
+                        UseToolOnTile(location, player, pickaxe, tile);
+                        break;
+                    }
                 }
             }
             

@@ -211,13 +211,6 @@ public class ModConfig
 
     #endregion
 
-    #region 战斗
-
-    public bool AutoAttackMonster { get; set; }
-    public int AutoAttackMonsterRange { get; set; } = 1;
-
-    #endregion
-
     #region 食物
 
     // 自动吃食物_体力

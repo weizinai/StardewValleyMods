@@ -169,12 +169,6 @@
     "Config.AutoHarvestCarbPot.Name": "自动收获蟹笼",
     "Config.AutoHarvestCarbPotRange.Name": "自动收获蟹笼范围",
 
-    // Combat
-    "Config.CombatPage.Name": "战斗",
-    "Config.AutoAttackMonster.Name": "自动攻击怪物",
-    "Config.AutoAttackMonster.Tooltip": "当你手持近战武器时,该功能才有效果.",
-    "Config.AutoAttackMonsterRange.Name": "自动攻击怪物范围",
-
     // 食物
     "Config.FoodPage.Name": "食物",
     "Config.AutoEatFoodForStamina.Name": "自动吃食物-体力",

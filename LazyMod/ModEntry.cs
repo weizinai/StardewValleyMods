@@ -72,7 +72,6 @@ public class ModEntry : Mod
         configMenu.AddPageLink(ModManifest, "Mining", I18n.Config_MiningPage_Name);
         configMenu.AddPageLink(ModManifest, "Foraging", I18n.Config_ForagingPage_Name);
         configMenu.AddPageLink(ModManifest, "Fishing", I18n.Config_FishingPage_Name);
-        configMenu.AddPageLink(ModManifest, "Combat", I18n.Config_CombatPage_Name);
         configMenu.AddPageLink(ModManifest, "Food", I18n.Config_FoodPage_Name);
         configMenu.AddPageLink(ModManifest, "Other", I18n.Config_OtherPage_Name);
 
@@ -1071,29 +1070,6 @@ public class ModEntry : Mod
             () => config.AutoHarvestCarbPotRange,
             value => config.AutoHarvestCarbPotRange = value,
             I18n.Config_AutoHarvestCarbPotRange_Name,
-            null,
-            1,
-            3
-        );
-
-        #endregion
-
-        #region 战斗
-
-        configMenu.AddPage(ModManifest, "Combat", I18n.Config_CombatPage_Name);
-        // 自动攻击怪物
-        configMenu.AddSectionTitle(ModManifest, I18n.Config_AutoAttackMonster_Name, I18n.Config_AutoAttackMonster_Tooltip);
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.AutoAttackMonster,
-            value => config.AutoAttackMonster = value,
-            I18n.Config_AutoAttackMonster_Name
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.AutoAttackMonsterRange,
-            value => config.AutoAttackMonsterRange = value,
-            I18n.Config_AutoAttackMonsterRange_Name,
             null,
             1,
             3

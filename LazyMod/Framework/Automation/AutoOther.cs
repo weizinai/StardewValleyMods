@@ -83,7 +83,7 @@ public class AutoOther : Automate
 
                 if (config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
                 {
-                    UseToolOnTile(location, player, scythe, tile);
+                    scythe.swingTicker++;
                     if (clump.performToolAction(scythe, 1, tile))
                     {
                         location.resourceClumps.Remove(clump);

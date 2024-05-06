@@ -715,26 +715,57 @@ public class ModEntry : Mod
             I18n.Config_FindToolForClearCrystal_Name,
             I18n.Config_FindToolForClearCrystal_Tooltip
         );
+        // 自动冷却岩浆
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoCoolLava_Name,
+            I18n.Config_AutoCoolLava_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoCoolLava,
+            value => config.AutoCoolLava = value,
+            I18n.Config_AutoCoolLava_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoCoolLavaRange,
+            value => config.AutoCoolLavaRange = value,
+            I18n.Config_AutoCoolLavaRange_Name,
+            null,
+            1,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopCoolLavaStamina,
+            value => config.StopCoolLavaStamina = value,
+            I18n.Config_StopCoolLavaStamina_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.FindToolForCoolLava,
+            value => config.FindToolForCoolLava = value,
+            I18n.Config_FindToolForCoolLava_Name,
+            I18n.Config_FindToolForCoolLava_Tooltip
+        );
         // 显示矿井信息
         configMenu.AddSectionTitle(
             ModManifest,
             I18n.Config_ShowMineShaftInfo_Name
         );
-        // 显示梯子信息
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ShowLadderInfo,
             value => config.ShowLadderInfo = value,
             I18n.Config_ShowLadderInfo_Name
         );
-        // 显示竖井信息
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ShowShaftInfo,
             value => config.ShowShaftInfo = value,
             I18n.Config_ShowShaftInfo_Name
         );
-        // 显示怪物信息
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ShowMonsterInfo,
@@ -748,7 +779,6 @@ public class ModEntry : Mod
             I18n.Config_ShowMonsterKillInfo_Name,
             I18n.Config_ShowMonsterKillInfo_Tooltip
         );
-        // 显示矿物信息
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ShowMineralInfo,

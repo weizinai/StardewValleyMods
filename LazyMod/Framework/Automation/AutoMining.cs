@@ -29,6 +29,8 @@ public class AutoMining : Automate
         if (config.AutoOpenTreasure) AutoOpenTreasure(location, player);
         // 自动清理水晶
         if (config.AutoClearCrystal) AutoClearCrystal(location, player);
+        // 自动冷却岩浆
+        if (config.AutoCoolLava && (tool is WateringCan || config.FindToolForCoolLava)) AutoCoolLava(location, player);
         TileCache.Clear();
     }
 
@@ -152,6 +154,26 @@ public class AutoMining : Automate
             if (obj?.QualifiedItemId is "(O)319" or "(O)320" or "(O)321")
             {
                 if (obj.performToolAction(tool)) location.removeObject(tile, false);
+            }
+        }
+    }
+    
+    // 自动冷却岩浆
+    private void AutoCoolLava(GameLocation location, Farmer player)
+    {
+        if (location is not VolcanoDungeon dungeon) return;
+        var wateringCan = FindToolFromInventory<WateringCan>();
+        if (wateringCan is null) return;
+
+        var grid = GetTileGrid(player, config.AutoCoolLavaRange);
+        foreach (var tile in grid)
+        {
+            if (dungeon.waterTiles[(int)tile.X, (int)tile.Y] && !dungeon.cooledLavaTiles.ContainsKey(tile))
+            {
+                if (player.Stamina <= config.StopCoolLavaStamina) return;
+                UseToolOnTile(location, player, wateringCan, tile);
+                if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
+                    player.playNearbySoundLocal("wateringCan");
             }
         }
     }

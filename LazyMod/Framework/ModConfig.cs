@@ -119,25 +119,23 @@ public class ModConfig
 
     // 自动打开宝藏
     public bool AutoOpenTreasure { get; set; }
-
     public int AutoOpenTreasureRange { get; set; } = 1;
 
     // 自动清理水晶
     public bool AutoClearCrystal { get; set; }
     public int AutoClearCrystalRange { get; set; } = 1;
     public bool FindToolForClearCrystal { get; set; } = true;
-
-    // 显示梯子信息
+    
+    // 自动冷却岩浆
+    public bool AutoCoolLava { get; set; }
+    public int AutoCoolLavaRange { get; set; } = 1;
+    public float StopCoolLavaStamina { get; set; } = 3;
+    public bool FindToolForCoolLava { get; set; } = true;
+    // 显示矿井信息
     public bool ShowLadderInfo { get; set; } = true;
-
-    // 显示竖井信息
     public bool ShowShaftInfo { get; set; } = true;
-
-    // 显示怪物信息
     public bool ShowMonsterInfo { get; set; } = true;
     public bool ShowMonsterKillInfo { get; set; } = true;
-
-    // 显示矿物信息
     public bool ShowMineralInfo { get; set; } = true;
 
     #endregion

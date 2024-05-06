@@ -985,29 +985,29 @@ public class ModEntry : Mod
         // 自动清理树枝
         configMenu.AddSectionTitle(
             ModManifest,
-            I18n.Config_AutoClearTwig_Name,
-            I18n.Config_AutoClearTwig_Tooltip
+            I18n.Config_AutoClearWood_Name,
+            I18n.Config_AutoClearWood_Tooltip
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.AutoClearTwig,
-            value => config.AutoClearTwig = value,
-            I18n.Config_AutoClearTwig_Name
+            () => config.AutoClearWood,
+            value => config.AutoClearWood = value,
+            I18n.Config_AutoClearWood_Name
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.AutoClearTwigRange,
-            value => config.AutoClearTwigRange = value,
-            I18n.Config_AutoClearTwigRange_Name,
+            () => config.AutoClearWoodRange,
+            value => config.AutoClearWoodRange = value,
+            I18n.Config_AutoClearWoodRange_Name,
             null,
             1,
             3
         );
         configMenu.AddNumberOption(
             ModManifest,
-            () => config.StopClearTwigStamina,
-            value => config.StopClearTwigStamina = value,
-            I18n.Config_StopClearTwigStamina_Name
+            () => config.StopClearWoodStamina,
+            value => config.StopClearWoodStamina = value,
+            I18n.Config_StopClearWoodStamina_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1015,6 +1015,24 @@ public class ModEntry : Mod
             value => config.FindAxeFromInventory = value,
             I18n.Config_FindAxeFromInventory_Name,
             I18n.Config_FindAxeFromInventory_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearTwig,
+            value => config.ClearTwig = value,
+            I18n.Config_ClearTwig_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearStump,
+            value => config.ClearStump = value,
+            I18n.Config_ClearStump_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.ClearHollowLog,
+            value => config.ClearHollowLog = value,
+            I18n.Config_ClearHollowLog_Name
         );
 
         #endregion

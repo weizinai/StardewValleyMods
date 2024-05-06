@@ -185,9 +185,12 @@ public class ModConfig
     public int AutoPlaceVinegarRange { get; set; } = 1;
 
     // 自动清理树枝
-    public bool AutoClearTwig { get; set; }
-    public int AutoClearTwigRange { get; set; } = 1;
-    public float StopClearTwigStamina { get; set; } = 3;
+    public bool AutoClearWood { get; set; }
+    public int AutoClearWoodRange { get; set; } = 1;
+    public float StopClearWoodStamina { get; set; } = 3;
+    public bool ClearTwig { get; set; } = true;
+    public bool ClearStump { get; set; } 
+    public bool ClearHollowLog { get; set; }
     public bool FindAxeFromInventory { get; set; } = true;
 
     #endregion

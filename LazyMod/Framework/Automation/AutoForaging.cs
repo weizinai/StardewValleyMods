@@ -34,7 +34,7 @@ public class AutoForaging : Automate
         // 自动在树上浇醋
         if (config.AutoPlaceVinegar && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
         // 自动清理树枝
-        if (config.AutoClearTwig && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
+        if (config.AutoClearWood && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
         TileCache.Clear();
     }
 
@@ -190,18 +190,47 @@ public class AutoForaging : Automate
     // 自动清理树枝
     private void AutoClearTwig(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= config.StopClearTwigStamina) return;
+        if (player.Stamina <= config.StopClearWoodStamina) return;
         
         var axe = FindToolFromInventory<Axe>();
         if (axe is null) return;
 
-        var grid = GetTileGrid(player, config.AutoClearTwigRange);
+        var grid = GetTileGrid(player, config.AutoClearWoodRange);
         foreach (var tile in grid)
         {
-            location.objects.TryGetValue(tile, out var obj);
-            if (obj is not null && obj.IsTwig())
+            if (config.ClearTwig)
             {
-                UseToolOnTile(location, player, axe, tile);
+                location.objects.TryGetValue(tile, out var obj);
+                if (obj is not null && obj.IsTwig())
+                {
+                    UseToolOnTile(location, player, axe, tile);
+                }
+            }
+            
+            foreach (var clump in location.resourceClumps)
+            {
+                if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
+            
+                var clear = false;
+                var requiredUpgradeLevel = Tool.stone;
+
+                if (config.ClearStump && clump.parentSheetIndex.Value == ResourceClump.stumpIndex)
+                {
+                    clear = true;
+                    requiredUpgradeLevel = Tool.copper;
+                }
+                
+                if (config.ClearHollowLog && clump.parentSheetIndex.Value == ResourceClump.hollowLogIndex)
+                {
+                    clear = true;
+                    requiredUpgradeLevel = Tool.steel;
+                }
+            
+                if (clear && axe.UpgradeLevel >= requiredUpgradeLevel)
+                {
+                    UseToolOnTile(location, player, axe, tile);
+                    break;
+                }
             }
         }
     }

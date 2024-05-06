@@ -190,6 +190,8 @@ public class AutoForaging : Automate
     // 自动清理树枝
     private void AutoClearTwig(GameLocation location, Farmer player)
     {
+        if (player.Stamina <= config.StopClearTwigStamina) return;
+        
         var axe = FindToolFromInventory<Axe>();
         if (axe is null) return;
 
@@ -199,7 +201,6 @@ public class AutoForaging : Automate
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null && obj.IsTwig())
             {
-                if (player.Stamina <= config.StopClearTwigStamina) break;
                 UseToolOnTile(location, player, axe, tile);
             }
         }

@@ -38,6 +38,7 @@ public class AutoMining : Automate
     // 自动清理石头
     private void AutoClearStone(GameLocation location, Farmer player)
     {
+        if (player.Stamina <= config.StopClearStoneStamina) return;
         if (!config.ClearStoneOnMineShaft && location is MineShaft) return;
         if (!config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
 
@@ -64,7 +65,6 @@ public class AutoMining : Automate
                 {
                     if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
                     {
-                        if (player.Stamina <= config.StopClearStoneStamina) return;
                         UseToolOnTile(location, player, pickaxe, tile);
                         break;
                     }
@@ -98,7 +98,6 @@ public class AutoMining : Automate
 
                 if (clear && pickaxe.UpgradeLevel >= requiredUpgradeLevel)
                 {
-                    if (player.Stamina <= config.StopClearStoneStamina) return;
                     UseToolOnTile(location, player, pickaxe, tile);
                     break;
                 }

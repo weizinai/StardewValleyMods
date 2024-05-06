@@ -43,11 +43,12 @@ public class AutoFarming : Automate
     // 自动耕地
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
+        if (player.Stamina <= config.StopTillDirtStamina) return;
+        
         var grid = GetTileGrid(player, config.AutoTillDirtRange);
         foreach (var tile in grid)
         {   
             if (!CanTillDirt(location, tile)) continue;
-            if (player.Stamina <= config.StopTillDirtStamina) break;
             UseToolOnTile(location, player, tool, tile);
         }
     }
@@ -55,13 +56,14 @@ public class AutoFarming : Automate
     // 自动清理耕地
     private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
     {
+        if (player.Stamina <= config.StopClearTilledDirtStamina) return;
+        
         var grid = GetTileGrid(player, config.AutoClearTilledDirtRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
-                if (player.Stamina <= config.StopClearTilledDirtStamina) break;
                 UseToolOnTile(location, player, tool, tile);
             }
         }
@@ -70,6 +72,8 @@ public class AutoFarming : Automate
     // 自动浇水
     private void AutoWaterDirt(GameLocation location, Farmer player, WateringCan wateringCan)
     {
+        if (player.Stamina <= config.StopWaterDirtStamina) return;
+        
         var hasAddWaterMessage = true;
         var grid = GetTileGrid(player, config.AutoWaterDirtRange);
         foreach (var tile in grid)
@@ -84,8 +88,7 @@ public class AutoFarming : Automate
                 }
 
                 hasAddWaterMessage = false;
-
-                if (player.Stamina <= config.StopWaterDirtStamina) break;
+                
                 UseToolOnTile(location, player, wateringCan, tile);
                 if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
                 {

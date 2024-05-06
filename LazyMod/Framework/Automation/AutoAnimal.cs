@@ -64,6 +64,7 @@ public class AutoAnimal : Automate
     // 自动挤奶
     private void AutoMilkAnimal(GameLocation location, Farmer player)
     {
+        if (player.Stamina <= config.StopMilkAnimalStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
         var milkPail = FindToolFromInventory<MilkPail>();
@@ -72,7 +73,6 @@ public class AutoAnimal : Automate
         var grid = GetTileGrid(player, config.AutoMilkAnimalRange);
         foreach (var tile in grid)
         {
-            if (player.Stamina <= config.StopMilkAnimalStamina) break;
             var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
             if (animal is null) continue;
             milkPail.animal = animal;
@@ -83,6 +83,7 @@ public class AutoAnimal : Automate
     // 自动剪毛
     private void AutoShearsAnimal(GameLocation location, Farmer player)
     {
+        if (player.Stamina <= config.StopShearsAnimalStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
         var shears = FindToolFromInventory<Shears>();
@@ -92,7 +93,6 @@ public class AutoAnimal : Automate
         var grid = GetTileGrid(player, config.AutoShearsAnimalRange);
         foreach (var tile in grid)
         {
-            if (player.Stamina <= config.StopShearsAnimalStamina) break;
             var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
             if (animal is null) continue;
             shears.animal = animal;

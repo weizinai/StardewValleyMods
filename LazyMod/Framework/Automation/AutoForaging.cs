@@ -56,6 +56,8 @@ public class AutoForaging : Automate
     // 自动收获姜
     private void AutoHarvestGinger(GameLocation location, Farmer player)
     {
+        if (player.Stamina <= config.StopHarvestGingerStamina) return;
+        
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null) return;
 
@@ -65,7 +67,6 @@ public class AutoForaging : Automate
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
-                if (player.Stamina <= config.StopHarvestGingerStamina) break;
                 if (hoeDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt)) hoeDirt.destroyCrop(true);
             }
         }
@@ -74,6 +75,8 @@ public class AutoForaging : Automate
     // 自动砍树
     private void AutoChopTree(GameLocation location, Farmer player, Tool tool)
     {
+        if (player.Stamina <= config.StopChopTreeStamina) return;
+        
         var treeType = new Dictionary<string, Dictionary<int, bool>>
         {
             { Tree.bushyTree, config.ChopOakTree },
@@ -97,7 +100,6 @@ public class AutoForaging : Automate
             {
                 if (tree.tapped.Value && !config.ChopTapperTree) continue;
                 if (tree.stopGrowingMoss.Value && !config.ChopVinegarTree) continue;
-                if (player.Stamina <= config.StopChopTreeStamina) break;
 
                 foreach (var (key, value) in treeType)
                 {

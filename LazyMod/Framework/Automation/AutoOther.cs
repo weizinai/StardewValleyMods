@@ -97,6 +97,8 @@ public class AutoOther : Automate
     // 自动挖掘斑点
     private void AutoDigSpots(GameLocation location, Farmer player)
     {
+        if (player.Stamina <= config.StopDigSpotsStamina) return;
+        
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null)
             return;
@@ -106,7 +108,6 @@ public class AutoOther : Automate
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is not ("(O)590" or "(O)SeedSpot")) continue;
-            if (player.Stamina <= config.StopDigSpotsStamina) break;
             UseToolOnTile(location, player, hoe, tile);
         }
     }

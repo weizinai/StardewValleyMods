@@ -21,6 +21,8 @@ public class AutoForaging : Automate
         TileCache.Clear();
         // 自动觅食
         if (config.AutoForage) AutoForage(location, player);
+        // 自动砍树
+        if (config.AutoChopTree && tool is Axe) AutoChopTree(location, player, tool);
         // 自动收获姜
         if (config.AutoHarvestGinger && (tool is Hoe || config.FindToolForHarvestGinger)) AutoHarvestGinger(location, player);
         // 自动摇树
@@ -33,8 +35,6 @@ public class AutoForaging : Automate
         if (config.AutoPlaceVinegar && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
         // 自动清理树枝
         if (config.AutoClearTwig && (tool is Axe || config.FindAxeFromInventory)) AutoClearTwig(location, player);
-        // 自动清理树种
-        if (config.AutoChopTree && tool is Axe) AutoChopTree(location, player, tool);
         TileCache.Clear();
     }
 
@@ -71,7 +71,7 @@ public class AutoForaging : Automate
         }
     }
 
-    // 自动清理树种
+    // 自动砍树
     private void AutoChopTree(GameLocation location, Farmer player, Tool tool)
     {
         var treeType = new Dictionary<string, Dictionary<int, bool>>
@@ -95,8 +95,8 @@ public class AutoForaging : Automate
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree)
             {
-                if (tree.tapped.Value || !config.ChopTapperTree) continue;
-                if (tree.stopGrowingMoss.Value || !config.ChopVinegarTree) continue;
+                if (tree.tapped.Value && !config.ChopTapperTree) continue;
+                if (tree.stopGrowingMoss.Value && !config.ChopVinegarTree) continue;
                 if (player.Stamina <= config.StopChopTreeStamina) break;
 
                 foreach (var (key, value) in treeType)
@@ -106,13 +106,23 @@ public class AutoForaging : Automate
                     {
                         foreach (var (stage, chopTree) in value)
                         {
-                            if (tree.growthStage.Value == stage && chopTree)
+                            if (tree.growthStage.Value < 5 && tree.growthStage.Value == stage && chopTree ||
+                                tree.growthStage.Value >= 5 && value[5])
+                            {
                                 UseToolOnTile(location, player, tool, tile);
+                                break;
+                            }
                         }
+
+                        break;
                     }
-                    
+
                     // 树桩逻辑
-                    if (tree.stump.Value && value[-1]) UseToolOnTile(location, player, tool, tile);
+                    if (tree.stump.Value && value[-1])
+                    {
+                        UseToolOnTile(location, player, tool, tile);
+                        break;
+                    }
                 }
             }
         }

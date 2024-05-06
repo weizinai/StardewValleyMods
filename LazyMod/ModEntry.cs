@@ -775,6 +775,38 @@ public class ModEntry : Mod
             0,
             3
         );
+        // 自动砍树
+        configMenu.AddSectionTitle(
+            ModManifest,
+            I18n.Config_AutoChopTree_Name,
+            I18n.Config_AutoChopTree_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoChopTree,
+            value => config.AutoChopTree = value,
+            I18n.Config_AutoChopTree_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.AutoChopTreeRange,
+            value => config.AutoChopTreeRange = value,
+            I18n.Config_AutoChopTreeRange_Name,
+            null,
+            0,
+            3
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.StopChopTreeStamina,
+            value => config.StopChopTreeStamina = value,
+            I18n.Config_StopChopTreeStamina_Name
+        );
+        configMenu.AddPageLink(
+            ModManifest,
+            "TreeSettings",
+            I18n.Config_TreeSettingsPage_Name
+        );
         // 自动收获姜
         configMenu.AddSectionTitle(
             ModManifest,
@@ -931,38 +963,6 @@ public class ModEntry : Mod
             value => config.FindAxeFromInventory = value,
             I18n.Config_FindAxeFromInventory_Name,
             I18n.Config_FindAxeFromInventory_Tooltip
-        );
-        // 自动清理树种
-        configMenu.AddSectionTitle(
-            ModManifest,
-            I18n.Config_AutoChopTree_Name,
-            I18n.Config_AutoChopTree_Tooltip
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.AutoChopTree,
-            value => config.AutoChopTree = value,
-            I18n.Config_AutoChopTree_Name
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.AutoChopTreeRange,
-            value => config.AutoChopTreeRange = value,
-            I18n.Config_AutoChopTreeRange_Name,
-            null,
-            0,
-            3
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.StopChopTreeStamina,
-            value => config.StopChopTreeStamina = value,
-            I18n.Config_StopChopTreeStamina_Name
-        );
-        configMenu.AddPageLink(
-            ModManifest,
-            "TreeSettings",
-            I18n.Config_TreeSettingsPage_Name
         );
 
         #endregion
@@ -1349,7 +1349,9 @@ public class ModEntry : Mod
         // );
 
         #endregion
-        
+
+        #region 树设置
+
         configMenu.AddPage(ModManifest, "TreeSettings", I18n.Config_TreeSettingsPage_Name);
         // 橡树
         configMenu.AddSectionTitle(ModManifest, I18n.Config_OakTreeTitle_Name);
@@ -1373,8 +1375,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopOakTree[3],
-            value => config.ChopOakTree[3] = value,
+            () => config.ChopOakTree[4],
+            value => config.ChopOakTree[4] = value,
             I18n.Config_ChopBushStageOakTree_Name
         );
         configMenu.AddBoolOption(
@@ -1411,8 +1413,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopMapleTree[3],
-            value => config.ChopMapleTree[3] = value,
+            () => config.ChopMapleTree[4],
+            value => config.ChopMapleTree[4] = value,
             I18n.Config_ChopBushStageMapleTree_Name
         );
         configMenu.AddBoolOption(
@@ -1449,8 +1451,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopPineTree[3],
-            value => config.ChopPineTree[3] = value,
+            () => config.ChopPineTree[4],
+            value => config.ChopPineTree[4] = value,
             I18n.Config_ChopBushStagePineTree_Name
         );
         configMenu.AddBoolOption(
@@ -1487,8 +1489,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopMahoganyTree[3],
-            value => config.ChopMahoganyTree[3] = value,
+            () => config.ChopMahoganyTree[4],
+            value => config.ChopMahoganyTree[4] = value,
             I18n.Config_ChopBushStageMahoganyTree_Name
         );
         configMenu.AddBoolOption(
@@ -1513,8 +1515,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopPalmTree[3],
-            value => config.ChopPalmTree[3] = value,
+            () => config.ChopPalmTree[4],
+            value => config.ChopPalmTree[4] = value,
             I18n.Config_ChopBushStagePalmTree_Name
         );
         configMenu.AddBoolOption(
@@ -1551,8 +1553,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopMushroomTree[3],
-            value => config.ChopMushroomTree[3] = value,
+            () => config.ChopMushroomTree[4],
+            value => config.ChopMushroomTree[4] = value,
             I18n.Config_ChopBushStageMushroomTree_Name
         );
         configMenu.AddBoolOption(
@@ -1589,8 +1591,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopGreenRainTree[3],
-            value => config.ChopGreenRainTree[3] = value,
+            () => config.ChopGreenRainTree[4],
+            value => config.ChopGreenRainTree[4] = value,
             I18n.Config_ChopBushStageGreenRainTree_Name
         );
         configMenu.AddBoolOption(
@@ -1627,8 +1629,8 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.ChopMysticTree[3],
-            value => config.ChopMysticTree[3] = value,
+            () => config.ChopMysticTree[4],
+            value => config.ChopMysticTree[4] = value,
             I18n.Config_ChopBushStageMysticTree_Name
         );
         configMenu.AddBoolOption(
@@ -1643,6 +1645,8 @@ public class ModEntry : Mod
             value => config.ChopMysticTree[-1] = value,
             I18n.Config_ChopStumpStageMysticTree_Name
         );
+
+        #endregion
     }
 
     private static string GetStringFromBuffType(string value)

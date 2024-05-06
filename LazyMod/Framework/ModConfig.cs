@@ -179,14 +179,14 @@ public class ModConfig
     public float StopChopTreeStamina { get; set; } = 3;
     public bool ChopTapperTree { get; set; }
     public bool ChopVinegarTree { get; set; }
-    public Dictionary<int, bool> ChopOakTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMapleTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopPineTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMahoganyTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopPalmTree { get; set; } = new() { { 2, true }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMushroomTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopGreenRainTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMysticTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopOakTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMapleTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopPineTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMahoganyTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopPalmTree { get; set; } = new() { { 2, true }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMushroomTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopGreenRainTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMysticTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
 
     // 自动摇树
     public bool AutoShakeTree { get; set; }

@@ -24,7 +24,13 @@ public class ModEntry : Mod
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Display.RenderedHud += OnRenderedHud;
+    }
+
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    {
+        miningHud.Update();
     }
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)

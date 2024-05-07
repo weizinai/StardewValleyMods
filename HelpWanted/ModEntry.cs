@@ -28,7 +28,7 @@ internal partial class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new BillboardPatcher(config), new UtilityPatcher(), new ItemDeliveryQuestPatcher(config),
+        HarmonyPatcher.Patch(this, new BillboardPatcher(config), new ItemDeliveryQuestPatcher(config),
             new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher());
     }
 
@@ -178,26 +178,15 @@ internal partial class ModEntry : Mod
             I18n.Config_ItemDeliveryFriendshipGain_Name,
             I18n.Config_ItemDeliveryFriendshipGain_Tooltip
         );
-        configMenu.AddBoolOption(
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_QuestItemSettingsTitle_Name);
+        configMenu.AddNumberOption(
             ModManifest,
-            () => config.MustLikeItem,
-            value => config.MustLikeItem = value,
-            I18n.Config_MustLikeItem_Name,
-            I18n.Config_MustLikeItem_Tooltip
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.MustLoveItem,
-            value => config.MustLoveItem = value,
-            I18n.Config_MustLoveItem_Name,
-            I18n.Config_MustLoveItem_Tooltip
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.AllowArtisanGoods,
-            value => config.AllowArtisanGoods = value,
-            I18n.Config_AllowArtisanGoods_Name,
-            I18n.Config_AllowArtisanGoods_Tooltip
+            () => config.QuestItemRequirement,
+            value => config.QuestItemRequirement = value,
+            I18n.Config_QuestItemRequirement_Name,
+            null,
+            0,
+            4
         );
         configMenu.AddNumberOption(
             ModManifest,
@@ -208,10 +197,16 @@ internal partial class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
-            () => config.IgnoreVanillaItemRestriction,
-            value => config.IgnoreVanillaItemRestriction = value,
-            I18n.Config_IgnoreVanillaItemRestriction_Name,
-            I18n.Config_IgnoreVanillaItemRestriction_Tooltip
+            () => config.AllowArtisanGoods,
+            value => config.AllowArtisanGoods = value,
+            I18n.Config_AllowArtisanGoods_Name,
+            I18n.Config_AllowArtisanGoods_Tooltip
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.UseModPossibleItems,
+            value => config.UseModPossibleItems = value,
+            I18n.Config_UseModPossibleItems_Name
         );
 
         #endregion

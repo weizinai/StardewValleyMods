@@ -15,11 +15,10 @@ public class ModConfig
     public float ItemDeliveryWeight { get; set; } = 0.4f;
     public float ItemDeliveryRewardMultiplier { get; set; } = 1f;
     public int ItemDeliveryFriendshipGain { get; set; } = 150;
-    public bool MustLikeItem { get; set; } = true;
-    public bool MustLoveItem { get; set; }
-    public bool AllowArtisanGoods { get; set; } = true;
+    public int QuestItemRequirement { get; set; } = 1;
     public int MaxPrice { get; set; } = -1;
-    public bool IgnoreVanillaItemRestriction { get; set; } = true;
+    public bool AllowArtisanGoods { get; set; } = true;
+    public bool UseModPossibleItems { get; set; } = true;
     // 采集任务
     public float ResourceCollectionWeight { get; set; } = 0.08f;
     public float ResourceCollectionRewardMultiplier { get; set; } = 1f;

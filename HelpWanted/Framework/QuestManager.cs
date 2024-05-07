@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using HelpWanted.Patches;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
@@ -22,6 +23,7 @@ public class QuestManager
 
     public void InitQuestList(List<QuestData> questList)
     {
+        ItemDeliveryQuestPatcher.Init();
         questList.Clear();
         var quest = RefreshQuestOfTheDay();
         // 尝试次数

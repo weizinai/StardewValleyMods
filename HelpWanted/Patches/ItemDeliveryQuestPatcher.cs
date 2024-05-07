@@ -1,16 +1,24 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
+﻿using System.Reflection.Emit;
 using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
+using Netcode;
 using StardewValley;
+using StardewValley.Extensions;
+using StardewValley.Locations;
 using StardewValley.Quests;
+using SObject = StardewValley.Object;
 
 namespace HelpWanted.Patches;
 
 public class ItemDeliveryQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
+    private static Random random = new();
+    
+    private static List<string> possibleItems = new();
+    private static string universalGiftTaste = "";
+    private static string npcGiftTaste = "";
 
     public ItemDeliveryQuestPatcher(ModConfig config)
     {
@@ -32,7 +40,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
             transpiler: GetHarmonyMethod(nameof(CheckIfCompleteTranspiler))
         );
     }
-    
+
     private static IEnumerable<CodeInstruction> CheckIfCompleteTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
@@ -40,48 +48,225 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         codes[index].operand = config.ItemDeliveryFriendshipGain;
         return codes.AsEnumerable();
     }
-    
+
     private static void GetGoldRewardPerItemPostfix(ref int __result)
     {
         __result = (int)(__result * config.ItemDeliveryRewardMultiplier);
     }
-    
+
     private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
 
-        var start = false;
-        var found1 = false;
-        var found2 = false;
-        for (var i = 0; i < codes.Count; i++)
-        {
-            switch (start)
-            {
-                case true when !found1 && codes[i].opcode == OpCodes.Ldc_R8:
-                    codes[i].operand = -0.1;
-                    found1 = true;
-                    break;
-                case false when codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking":
-                    start = true;
-                    break;
-                default:
-                {
-                    if (!found2 && codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand ==
-                        AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
-                    {
-                        codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
-                        i++;
-                        found2 = true;
-                    }
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Call &&
+                                            code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
+                                                new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
+        codes[index].operand = AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomItem));
+        codes[index - 3].opcode = OpCodes.Ldarg_0;
+        codes[index - 2].opcode = OpCodes.Ldfld;
+        codes[index - 2].operand = AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target));
+        codes[index - 1].opcode = OpCodes.Callvirt;
+        codes[index - 1].operand = AccessTools.Method(typeof(NetString), nameof(NetString.Get));
 
+        // var start = false;
+        // var found1 = false;
+        // var found2 = false;
+        // for (var i = 0; i < codes.Count; i++)
+        // {
+        //     switch (start)
+        //     {
+        //         case true when !found1 && codes[i].opcode == OpCodes.Ldc_R8:
+        //             codes[i].operand = -0.1;
+        //             found1 = true;
+        //             break;
+        //         case false when codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking":
+        //             start = true;
+        //             break;
+        //         default:
+        //         {
+        //             if (!found2 && codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand ==
+        //                 AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
+        //             {
+        //                 codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
+        //                 i++;
+        //                 found2 = true;
+        //             }
+        //
+        //             break;
+        //         }
+        //     }
+        //
+        //     if (found1 && found2)
+        //         break;
+        // }
+
+        return codes.AsEnumerable();
+    }
+
+    private static string GetRandomItem(Season season, string npcName)
+    {
+        if (config.UseModPossibleItems)
+            InitModPossibleItems(npcName);
+        else
+            InitVanillaPossibleItems(season);
+        
+        var result = random.ChooseFrom(possibleItems);
+        possibleItems = possibleItems.Where(IsItemAvailable).ToList();
+        return possibleItems.Any() ? random.ChooseFrom(possibleItems) : result;
+    }
+
+    public static void Init()
+    {
+        possibleItems.Clear();
+        InitUniversalGiftTaste();
+    }
+
+    private static void InitVanillaPossibleItems(Season season)
+    {
+        if (possibleItems.Any()) return;
+        
+        possibleItems.AddRange(new []{"68", "66", "78", "80", "86", "152", "167", "153", "420"});
+        var allUnlockedCraftingRecipes = Utility.GetAllPlayerUnlockedCraftingRecipes();
+        var allUnlockedCookingRecipes = Utility.GetAllPlayerUnlockedCookingRecipes();
+
+        if (MineShaft.lowestLevelReached > 40 || Utility.GetAllPlayerReachedBottomOfMines() >= 1)
+        {
+            possibleItems.AddRange(new[] { "62", "70", "72", "84", "422" });
+        }
+
+        if (MineShaft.lowestLevelReached > 80 || Utility.GetAllPlayerReachedBottomOfMines() >= 1)
+        {
+            possibleItems.AddRange(new[] { "64", "60", "82" });
+        }
+
+        if (Utility.doesAnyFarmerHaveMail("ccVault"))
+        {
+            possibleItems.AddRange(new[] { "88", "90", "164", "165" });
+        }
+
+        if (allUnlockedCraftingRecipes.Contains("Furnace"))
+        {
+            possibleItems.AddRange(new[] { "334", "335", "336", "338" });
+        }
+
+        if (allUnlockedCraftingRecipes.Contains("Quartz Globe"))
+        {
+            possibleItems.Add("339");
+        }
+
+        switch (season)
+        {
+            case Season.Spring:
+                possibleItems.AddRange(new[]
+                {
+                    "16", "18", "20", "22", "129", "131", "132", "136", "137", "142",
+                    "143", "145", "147", "148", "152", "167", "267"
+                });
+                break;
+            case Season.Summer:
+                possibleItems.AddRange(new[]
+                {
+                    "128", "130", "132", "136", "138", "142", "144", "145", "146", "149",
+                    "150", "155", "396", "398", "402", "267"
+                });
+                break;
+            case Season.Fall:
+                possibleItems.AddRange(new[]
+                {
+                    "404", "406", "408", "410", "129", "131", "132", "136", "137", "139",
+                    "140", "142", "143", "148", "150", "154", "155", "269"
+                });
+                break;
+            case Season.Winter:
+                possibleItems.AddRange(new[]
+                {
+                    "412", "414", "416", "418", "130", "131", "132", "136", "140", "141",
+                    "144", "146", "147", "150", "151", "154", "269"
+                });
+                break;
+        }
+
+
+        foreach (var recipe in allUnlockedCookingRecipes)
+        {
+            if (random.NextDouble() < 0.4)
+            {
+                continue;
+            }
+
+            var cropsAvailableNow = Utility.possibleCropsAtThisTime(Game1.season, Game1.dayOfMonth <= 7);
+            if (!DataLoader.CookingRecipes(Game1.content).TryGetValue(recipe, out var rawCraftingData))
+            {
+                continue;
+            }
+
+            var fields = rawCraftingData.Split('/');
+            var ingredientsSplit = ArgUtility.SplitBySpace(ArgUtility.Get(fields, 0));
+            var ingredientsAvailable = true;
+            foreach (var ingredients in ingredientsSplit)
+            {
+                if (!possibleItems.Contains(ingredients) && !IsCategoryAvailable(ingredients) &&
+                    (cropsAvailableNow == null || !cropsAvailableNow.Contains(ingredients)))
+                {
+                    ingredientsAvailable = false;
                     break;
                 }
             }
 
-            if (found1 && found2)
-                break;
+            if (ingredientsAvailable)
+            {
+                var itemId = ArgUtility.Get(fields, 2);
+                if (itemId != null)
+                {
+                    possibleItems.Add(itemId);
+                }
+            }
         }
+    }
+    
+    private static void InitModPossibleItems(string npcName)
+    {
+        if (possibleItems.Any()) return;
+        
+        InitNPCGiftTaste(npcName);
+        var giftTaste = universalGiftTaste + " " + npcGiftTaste;
+        possibleItems.AddRange(ArgUtility.SplitBySpace(giftTaste));
+    }
 
-        return codes.AsEnumerable();
+    private static void InitUniversalGiftTaste()
+    {
+        universalGiftTaste = "";
+        universalGiftTaste += Game1.NPCGiftTastes["Universal_Love"];
+        if (config.QuestItemRequirement > 0) universalGiftTaste += " " + Game1.NPCGiftTastes["Universal_Like"];
+        if (config.QuestItemRequirement > 1) universalGiftTaste += " " + Game1.NPCGiftTastes["Universal_Neutral"];
+        if (config.QuestItemRequirement > 2) universalGiftTaste += " " + Game1.NPCGiftTastes["Universal_Dislike"];
+        if (config.QuestItemRequirement > 3) universalGiftTaste += " " + Game1.NPCGiftTastes["Universal_Hate"];
+    }
+
+    private static void InitNPCGiftTaste(string npcName)
+    {
+        npcGiftTaste = "";
+        if (!Game1.NPCGiftTastes.TryGetValue(npcName, out var data)) return;
+        var split = data.Split('/');
+        if (split.Length < 10) return;
+        npcGiftTaste += split[1];
+        if (config.QuestItemRequirement > 0) npcGiftTaste += " " + split[3];
+        if (config.QuestItemRequirement > 1) npcGiftTaste += " " + split[5];
+        if (config.QuestItemRequirement > 2) npcGiftTaste += " " + split[7];
+        if (config.QuestItemRequirement > 3) npcGiftTaste += " " + split[9];
+    }
+
+    private static bool IsItemAvailable(string itemId)
+    {
+        if (!IsCategoryAvailable(itemId)) return false;
+        
+        var item = new SObject(itemId, 1);
+        return !(config.MaxPrice > 0 && item.Price > config.MaxPrice) && 
+               !(!config.AllowArtisanGoods && item.Category == SObject.artisanGoodsCategory);
+    }
+
+    private static bool IsCategoryAvailable(string category)
+    {
+        return category.StartsWith('-') && category != "-5" && category != "-6";
     }
 }

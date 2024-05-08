@@ -36,8 +36,12 @@ public sealed class HWQuestBoard : Billboard
         
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
-        acceptQuestButton.visible = true;
         showingQuest = null;
+        exitFunction = () =>
+        {
+            showingQuest = null;
+            acceptQuestButton.visible = false;
+        };
         if (ModEntry.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典
@@ -64,8 +68,7 @@ public sealed class HWQuestBoard : Billboard
             ModEntry.QuestList.Clear();
         }
     }
-
-    /// <summary>处理鼠标悬停事件</summary>
+    
     public override void performHoverAction(int x, int y)
     {
         // 关闭按钮逻辑
@@ -111,6 +114,7 @@ public sealed class HWQuestBoard : Billboard
             {
                 showingQuestID = option.myID;
                 showingQuest = QuestDataDictionary[option.myID].Quest;
+                acceptQuestButton.visible = true;
                 return;
             }
         }
@@ -121,6 +125,7 @@ public sealed class HWQuestBoard : Billboard
             {
                 if (playSound) Game1.playSound(closeSound);
                 showingQuest = null;
+                acceptQuestButton.visible = false;
                 return;
             }
 
@@ -133,11 +138,11 @@ public sealed class HWQuestBoard : Billboard
                 QuestDataDictionary.Remove(showingQuestID);
                 QuestNotes.RemoveAll(option => option.myID == showingQuestID);
                 showingQuest = null;
+                acceptQuestButton.visible = false;
             }
         }
     }
-
-    /// <summary>绘制多任务面板</summary>
+    
     public override void draw(SpriteBatch spriteBatch)
     {
         // 绘制阴影

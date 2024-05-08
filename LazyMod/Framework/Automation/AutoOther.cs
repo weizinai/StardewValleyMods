@@ -148,6 +148,7 @@ public class AutoOther : Automate
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
             {
                 var action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
+                if (string.IsNullOrEmpty(action)) break;
                 if (action.StartsWith("Garbage")) CheckTileAction(location, player, tile);
             }
             

@@ -58,49 +58,38 @@ public class ItemDeliveryQuestPatcher : BasePatcher
     {
         var codes = new List<CodeInstruction>(instructions);
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Call &&
-                                            code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
-                                                new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
-        codes[index - 3].opcode = OpCodes.Ldarg_0;
-        codes[index - 2].opcode = OpCodes.Ldfld;
-        codes[index - 2].operand = AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target));
-        codes[index - 1].opcode = OpCodes.Callvirt;
-        codes[index - 1].operand = AccessTools.Method(typeof(NetString), nameof(NetString.Get));
+        // 随机作物逻辑
+        var index = codes.FindIndex(code =>
+            code.opcode == OpCodes.Call && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime))));
+        codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_0));
+        codes.Insert(index + 2, new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target))));
+        codes.Insert(index + 3, new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get))));
+        codes.Insert(index + 4, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomCrops))));
+
+        // 随机任务物品逻辑
+        index = codes.FindIndex(code => code.opcode == OpCodes.Call &&
+                                        code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
+                                            new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
+        codes[index - 3] = new CodeInstruction(OpCodes.Ldarg_0);
+        codes[index - 2] = new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target)));
+        codes[index - 1] = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get)));
         codes[index].operand = AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomItem));
 
-        // var start = false;
-        // var found1 = false;
-        // var found2 = false;
-        // for (var i = 0; i < codes.Count; i++)
-        // {
-        //     switch (start)
-        //     {
-        //         case true when !found1 && codes[i].opcode == OpCodes.Ldc_R8:
-        //             codes[i].operand = -0.1;
-        //             found1 = true;
-        //             break;
-        //         case false when codes[i].opcode == OpCodes.Ldstr && (string)codes[i].operand == "Cooking":
-        //             start = true;
-        //             break;
-        //         default:
-        //         {
-        //             if (!found2 && codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand ==
-        //                 AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime)))
-        //             {
-        //                 codes.Insert(i + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ModEntry), nameof(ModEntry.GetPossibleCrops))));
-        //                 i++;
-        //                 found2 = true;
-        //             }
-        //
-        //             break;
-        //         }
-        //     }
-        //
-        //     if (found1 && found2)
-        //         break;
-        // }
+        // 不知道为什么,但不这么做会报错
+        index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.33));
+        codes[index].operand = -0.1;
 
         return codes.AsEnumerable();
+    }
+
+    private static List<string> GetRandomCrops(List<string> possibleCrops, string npcName)
+    {
+        InitNPCGiftTaste(npcName);
+        var giftTaste = universalGiftTaste + " " + npcGiftTaste;
+        var temp = new List<string>(possibleCrops);
+        temp = temp.Where(crop => giftTaste.Contains(crop)).ToList();
+        
+        return temp.Any() ? temp : possibleCrops;
     }
 
     private static string GetRandomItem(Season season, string npcName)

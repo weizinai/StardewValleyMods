@@ -158,7 +158,7 @@ public class ModConfig
 
     // 自动砍树
     public bool AutoChopTree { get; set; }
-    public int AutoChopTreeRange { get; set; }
+    public int AutoChopTreeRange { get; set; } = 1;
     public float StopChopTreeStamina { get; set; } = 3;
     public bool ChopTapperTree { get; set; }
     public bool ChopVinegarTree { get; set; }
@@ -242,7 +242,7 @@ public class ModConfig
     #region 其他
 
     // 磁力半径增加
-    public int MagneticRadiusIncrease { get; set; } = 64;
+    public int MagneticRadiusIncrease { get; set; }
 
     // 自动清理杂草
     public bool AutoClearWeeds { get; set; }

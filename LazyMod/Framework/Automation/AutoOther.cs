@@ -33,7 +33,7 @@ public class AutoOther : Automate
         // 自动翻垃圾桶
         if (config.AutoGarbageCan) AutoGarbageCan(location, player);
         // 自动放置地板
-        if (config.AutoPlaceFloor && (item is SObject floor) && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
+        if (config.AutoPlaceFloor && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
         TileCache.Clear();
     }
 
@@ -130,6 +130,8 @@ public class AutoOther : Automate
         var grid = GetTileGrid(player, config.AutoTriggerMachineRange);
         foreach (var tile in grid)
         {
+            if (item.Stack <= 0) break;
+            
             location.objects.TryGetValue(tile, out var obj);
             var machineData = obj?.GetMachineData();
             if (machineData is null) continue;

@@ -8,14 +8,12 @@ using StardewValley;
 
 namespace HelpWanted;
 
-internal partial class ModEntry : Mod
+internal class ModEntry : Mod
 {
     public static IMonitor SMonitor = null!;
     private QuestManager questManager = null!;
 
     private static ModConfig config = new();
-
-    public static readonly List<QuestData> QuestList = new();
 
     public override void Entry(IModHelper helper)
     {
@@ -38,7 +36,7 @@ internal partial class ModEntry : Mod
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival) return;
         if (Game1.random.NextDouble() >= config.DailyQuestChance) return;
         
-        questManager.InitQuestList(QuestList);
+        questManager.InitQuestList();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

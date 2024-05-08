@@ -14,17 +14,17 @@ public sealed class HWQuestBoard : Billboard
 
     public static readonly List<ClickableTextureComponent> QuestNotes = new();
     private static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
-    private static Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
+    private Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
     private const int OptionIndex = -4200;
 
     // 面板纹理
     private readonly Texture2D billboardTexture;
 
     // 正在展示的任务的ID
-    private static int showingQuestID;
+    private int showingQuestID;
 
     // 正在展示的任务
-    private static Quest? showingQuest;
+    private Quest? showingQuest;
 
     // 悬浮标题和悬浮文本
     private string hoverTitle = "";
@@ -37,13 +37,13 @@ public sealed class HWQuestBoard : Billboard
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
         showingQuest = null;
-        if (ModEntry.QuestList.Count > 0)
+        if (QuestManager.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典
             QuestNotes.Clear();
             QuestDataDictionary.Clear();
             // 遍历所有的任务数据,创建任务选项
-            var questList = ModEntry.QuestList;
+            var questList = QuestManager.QuestList;
             for (var i = 0; i < questList.Count; i++)
             {
                 var size = new Point(
@@ -60,7 +60,7 @@ public sealed class HWQuestBoard : Billboard
                 QuestDataDictionary[QuestNotes[i].myID] = questList[i];
             }
 
-            ModEntry.QuestList.Clear();
+            QuestManager.QuestList.Clear();
         }
     }
     

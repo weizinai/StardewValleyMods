@@ -8,11 +8,13 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Framework;
 
-public class QuestManager
+internal class QuestManager
 {
     private readonly ModConfig config;
     private readonly IMonitor monitor;
     private readonly AppearanceManager appearanceManager;
+    
+    public static readonly List<QuestData> QuestList = new();
 
     public QuestManager(ModConfig config, IMonitor monitor, AppearanceManager appearanceManager)
     {
@@ -21,10 +23,10 @@ public class QuestManager
         this.appearanceManager = appearanceManager;
     }
 
-    public void InitQuestList(List<QuestData> questList)
+    public void InitQuestList()
     {
         ItemDeliveryQuestPatcher.Init();
-        questList.Clear();
+        QuestList.Clear();
         var quest = RefreshQuestOfTheDay();
         // 尝试次数
         var tries = 0;
@@ -52,7 +54,7 @@ public class QuestManager
 
                 tries = 0;
                 npcs.Add(npc.Name);
-                AddQuest(questList, npc, quest);
+                AddQuest(npc, quest);
             }
 
             quest = RefreshQuestOfTheDay();
@@ -83,7 +85,7 @@ public class QuestManager
         };
     }
 
-    private void AddQuest(List<QuestData> questList, NPC npc, Quest quest)
+    private void AddQuest(NPC npc, Quest quest)
     {
         var questType = GetQuestType(Game1.questOfTheDay);
         var padTexture = appearanceManager.GetPadTexture(npc.Name, questType.ToString());
@@ -98,7 +100,7 @@ public class QuestManager
         var iconScale = config.PortraitScale;
         var iconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
         var questData = new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor, icon, iconSource, iconColor, iconScale, iconOffset, quest);
-        questList.Add(questData);
+        QuestList.Add(questData);
     }
 
     private Quest? RefreshQuestOfTheDay()

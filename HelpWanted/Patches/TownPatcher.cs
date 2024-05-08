@@ -20,7 +20,7 @@ public class TownPatcher : BasePatcher
     
     private static void DrawPostfix(SpriteBatch spriteBatch)
     {
-        if (!ModEntry.QuestList.Any() && !HWQuestBoard.QuestNotes.Any()) return;
+        if (!QuestManager.QuestList.Any() && !HWQuestBoard.QuestNotes.Any()) return;
         
         var yOffset = 4f * (float)Math.Round(Math.Sin(Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 250.0), 2);
         spriteBatch.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, new Vector2(2692f, 3528f + yOffset)),

@@ -2,6 +2,8 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+
 namespace LazyMod.Framework;
 
 public class ModConfig
@@ -125,12 +127,14 @@ public class ModConfig
     public bool AutoClearCrystal { get; set; }
     public int AutoClearCrystalRange { get; set; } = 1;
     public bool FindToolForClearCrystal { get; set; } = true;
-    
+
     // 自动冷却岩浆
     public bool AutoCoolLava { get; set; }
     public int AutoCoolLavaRange { get; set; } = 1;
     public float StopCoolLavaStamina { get; set; } = 3;
+
     public bool FindToolForCoolLava { get; set; } = true;
+
     // 显示矿井信息
     public bool ShowLadderInfo { get; set; } = true;
     public bool ShowShaftInfo { get; set; } = true;
@@ -158,14 +162,14 @@ public class ModConfig
     public float StopChopTreeStamina { get; set; } = 3;
     public bool ChopTapperTree { get; set; }
     public bool ChopVinegarTree { get; set; }
-    public Dictionary<int, bool> ChopOakTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMapleTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopPineTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMahoganyTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopPalmTree { get; set; } = new() { { 2, true }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMushroomTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopGreenRainTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
-    public Dictionary<int, bool> ChopMysticTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopOakTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMapleTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopPineTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMahoganyTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopPalmTree = new() { { 2, true }, { 3, true }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMushroomTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopGreenRainTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+    public Dictionary<int, bool> ChopMysticTree = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
 
     // 自动摇树
     public bool AutoShakeTree { get; set; }
@@ -189,7 +193,7 @@ public class ModConfig
     public int AutoClearWoodRange { get; set; } = 1;
     public float StopClearWoodStamina { get; set; } = 3;
     public bool ClearTwig { get; set; } = true;
-    public bool ClearStump { get; set; } 
+    public bool ClearStump { get; set; }
     public bool ClearHollowLog { get; set; }
     public bool FindAxeFromInventory { get; set; } = true;
 

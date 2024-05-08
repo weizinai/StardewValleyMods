@@ -1413,15 +1413,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopOakTree[3],
+            value => config.ChopOakTree[3] = value,
+            I18n.Config_ChopBushStageOakTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopOakTree[4],
             value => config.ChopOakTree[4] = value,
-            I18n.Config_ChopBushStageOakTree_Name
+            I18n.Config_ChopSmallTreeStageOakTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopOakTree[5],
             value => config.ChopOakTree[5] = value,
-            I18n.Config_ChopTreeStageOakTree_Name
+            I18n.Config_ChopOakTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1451,15 +1457,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopMapleTree[3],
+            value => config.ChopMapleTree[3] = value,
+            I18n.Config_ChopBushStageMapleTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopMapleTree[4],
             value => config.ChopMapleTree[4] = value,
-            I18n.Config_ChopBushStageMapleTree_Name
+            I18n.Config_ChopSmallTreeStageMapleTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopMapleTree[5],
             value => config.ChopMapleTree[5] = value,
-            I18n.Config_ChopTreeStageMapleTree_Name
+            I18n.Config_ChopMapleTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1489,15 +1501,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopPineTree[3],
+            value => config.ChopPineTree[3] = value,
+            I18n.Config_ChopBushStagePineTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopPineTree[4],
             value => config.ChopPineTree[4] = value,
-            I18n.Config_ChopBushStagePineTree_Name
+            I18n.Config_ChopSmallTreeStagePineTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopPineTree[5],
             value => config.ChopPineTree[5] = value,
-            I18n.Config_ChopTreeStagePineTree_Name
+            I18n.Config_ChopPineTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1527,15 +1545,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopMahoganyTree[3],
+            value => config.ChopMahoganyTree[3] = value,
+            I18n.Config_ChopBushStageMahoganyTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopMahoganyTree[4],
             value => config.ChopMahoganyTree[4] = value,
-            I18n.Config_ChopBushStageMahoganyTree_Name
+            I18n.Config_ChopSmallTreeStageMahoganyTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopMahoganyTree[5],
             value => config.ChopMahoganyTree[5] = value,
-            I18n.Config_ChopTreeStageMahoganyTree_Name
+            I18n.Config_ChopMahoganyTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1553,15 +1577,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopPalmTree[3],
+            value => config.ChopPalmTree[3] = value,
+            I18n.Config_ChopBushStagePalmTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopPalmTree[4],
             value => config.ChopPalmTree[4] = value,
-            I18n.Config_ChopBushStagePalmTree_Name
+            I18n.Config_ChopSmallTreeStagePalmTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopPalmTree[5],
             value => config.ChopPalmTree[5] = value,
-            I18n.Config_ChopTreeStagePalmTree_Name
+            I18n.Config_ChopPalmTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1591,15 +1621,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopMushroomTree[3],
+            value => config.ChopMushroomTree[3] = value,
+            I18n.Config_ChopBushStageMushroomTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopMushroomTree[4],
             value => config.ChopMushroomTree[4] = value,
-            I18n.Config_ChopBushStageMushroomTree_Name
+            I18n.Config_ChopSmallTreeStageMushroomTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopMushroomTree[5],
             value => config.ChopMushroomTree[5] = value,
-            I18n.Config_ChopTreeStageMushroomTree_Name
+            I18n.Config_ChopMushroomTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1629,15 +1665,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopGreenRainTree[3],
+            value => config.ChopGreenRainTree[3] = value,
+            I18n.Config_ChopBushStageGreenRainTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopGreenRainTree[4],
             value => config.ChopGreenRainTree[4] = value,
-            I18n.Config_ChopBushStageGreenRainTree_Name
+            I18n.Config_ChopSmallTreeStageGreenRainTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopGreenRainTree[5],
             value => config.ChopGreenRainTree[5] = value,
-            I18n.Config_ChopTreeStageGreenRainTree_Name
+            I18n.Config_ChopGreenRainTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
@@ -1667,15 +1709,21 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ChopMysticTree[3],
+            value => config.ChopMysticTree[3] = value,
+            I18n.Config_ChopBushStageMysticTree_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ChopMysticTree[4],
             value => config.ChopMysticTree[4] = value,
-            I18n.Config_ChopBushStageMysticTree_Name
+            I18n.Config_ChopSmallTreeStageMysticTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,
             () => config.ChopMysticTree[5],
             value => config.ChopMysticTree[5] = value,
-            I18n.Config_ChopTreeStageMysticTree_Name
+            I18n.Config_ChopMysticTree_Name
         );
         configMenu.AddBoolOption(
             ModManifest,

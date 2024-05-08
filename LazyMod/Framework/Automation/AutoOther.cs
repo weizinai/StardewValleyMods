@@ -1,6 +1,7 @@
 ﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
+using StardewValley.GameData.Machines;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
@@ -130,13 +131,21 @@ public class AutoOther : Automate
         var grid = GetTileGrid(player, config.AutoTriggerMachineRange);
         foreach (var tile in grid)
         {
-            if (item.Stack <= 0) break;
-            
             location.objects.TryGetValue(tile, out var obj);
-            var machineData = obj?.GetMachineData();
+            if (obj is null) continue; 
+            var machineData = obj.GetMachineData();
             if (machineData is null) continue;
-            if (!MachineDataUtility.HasAdditionalRequirements(SObject.autoLoadFrom ?? player.Items, machineData.AdditionalConsumedItems, out _)) continue;
-            obj?.PlaceInMachine(machineData, item, false, player);
+            
+            if (machineData.AdditionalConsumedItems is not null  && 
+                !MachineDataUtility.HasAdditionalRequirements(SObject.autoLoadFrom ?? player.Items, machineData.AdditionalConsumedItems, out _))
+                continue;
+
+            if (obj.PlaceInMachine(machineData, item, false, player))
+            {
+                MachineDataUtility.TryGetMachineOutputRule(obj, machineData, MachineOutputTrigger.ItemPlacedInMachine, item, player, location, 
+                    out _, out var triggerRule, out _, out _);
+                if (item.Stack <= triggerRule.RequiredCount) break;
+            }
         }
     }
 

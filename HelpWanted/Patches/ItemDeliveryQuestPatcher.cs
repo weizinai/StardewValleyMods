@@ -108,14 +108,15 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         if (config.UseModPossibleItems)
             InitModPossibleItems(npcName);
         else
+        {
             InitVanillaPossibleItems(season);
+            InitNPCGiftTaste(npcName);
+        }
 
         var result = random.ChooseFrom(possibleItems);
         possibleItems = possibleItems.Where(IsItemAvailable).ToList();
-        var result2 = random.ChooseFrom(possibleItems);
-        // if (result2.StartsWith('-')) Game1.chatBox.addInfoMessage(result2);
-        
-        return possibleItems.Any() ? result2 : result;
+
+        return possibleItems.Any() ? random.ChooseFrom(possibleItems) : result;
     }
 
     public static void Init()
@@ -260,12 +261,15 @@ public class ItemDeliveryQuestPatcher : BasePatcher
 
     private static bool IsItemAvailable(string itemId)
     {
-        if (itemId is "-5" or "-6") return true;
+        var isGiftTaste = config.UseModPossibleItems || (universalGiftTaste.Contains(itemId) && npcGiftTaste.Contains(itemId));
 
-        if (itemId.StartsWith('-')) return false;
+        if (itemId is "-5" or "-6" && isGiftTaste) return true;
+
+        if (itemId.StartsWith('-') && isGiftTaste) return false;
 
         var item = new SObject(itemId, 1);
-        return (config.MaxPrice <= 0 || item.Price <= config.MaxPrice) && 
+        return isGiftTaste &&
+               (config.MaxPrice <= 0 || item.Price <= config.MaxPrice) &&
                (config.AllowArtisanGoods || item.Category != SObject.artisanGoodsCategory);
     }
 

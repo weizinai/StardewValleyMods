@@ -37,11 +37,6 @@ public sealed class HWQuestBoard : Billboard
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
         showingQuest = null;
-        exitFunction = () =>
-        {
-            showingQuest = null;
-            acceptQuestButton.visible = false;
-        };
         if (ModEntry.QuestList.Count > 0)
         {
             // 清空任务选项列表和任务数据字典

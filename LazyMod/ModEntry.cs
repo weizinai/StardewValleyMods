@@ -1222,7 +1222,7 @@ public class ModEntry : Mod
             I18n.Config_MagneticRadiusIncrease_Name,
             null,
             0,
-            256
+            10
         );
         // 自动清理杂草
         configMenu.AddSectionTitle(

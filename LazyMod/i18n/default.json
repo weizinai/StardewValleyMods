@@ -192,7 +192,7 @@
 
     // Other
     "Config.OtherPage.Name": "Other",
-    "Config.MagneticRadiusIncrease.Name": "Magnetic Radius Increase",
+    "Config.MagneticRadiusIncrease.Name": "Magnetic Radius Increase(Tile)",
     "Config.AutoClearWeeds.Name": "Auto Clear Weeds",
     "Config.AutoClearWeeds.Tooltip": "This feature only works when you hold the scythe(melee weapon).",
     "Config.AutoClearWeedsRange.Name": "Auto Clear Weeds Range",

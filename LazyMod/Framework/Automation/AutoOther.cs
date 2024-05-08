@@ -55,7 +55,7 @@ public class AutoOther : Automate
                 duration: 60000,
                 effects: new BuffEffects
                 {
-                    MagneticRadius = { Value = config.MagneticRadiusIncrease }
+                    MagneticRadius = { Value = config.MagneticRadiusIncrease * 64 }
                 });
             player.applyBuff(buff);
         }

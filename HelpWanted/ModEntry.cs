@@ -32,9 +32,23 @@ internal class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay) return;
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival) return;
-        if (Game1.random.NextDouble() >= config.DailyQuestChance) return;
+        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay)
+        {
+            Monitor.Log("今天是游戏第一天,不生成任务.");
+            return;
+        }
+
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival)
+        {
+            Monitor.Log("今天或明天是节日,不生成任务.");
+            return;
+        }
+
+        if (Game1.random.NextDouble() >= config.DailyQuestChance)
+        {
+            Monitor.Log("今天不生成任务.");
+            return;
+        }
         
         questManager.InitQuestList();
     }

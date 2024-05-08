@@ -25,6 +25,7 @@ internal class QuestManager
 
     public void InitQuestList()
     {
+        monitor.Log("初始化任务列表.");
         ItemDeliveryQuestPatcher.Init();
         QuestList.Clear();
         var quest = RefreshQuestOfTheDay();
@@ -56,7 +57,6 @@ internal class QuestManager
                 npcs.Add(npc.Name);
                 AddQuest(npc, quest);
             }
-
             quest = RefreshQuestOfTheDay();
         }
     }
@@ -111,7 +111,6 @@ internal class QuestManager
             monitor.Log("Refresh Quest Of The Day Failed.", LogLevel.Warn);
             return null;
         }
-
         quest.daysLeft.Value = config.QuestDays;
         quest.dailyQuest.Value = true;
         quest.accepted.Value = true;
@@ -119,6 +118,7 @@ internal class QuestManager
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
+        monitor.Log("随机生成每日任务");
         return quest;
     }
 

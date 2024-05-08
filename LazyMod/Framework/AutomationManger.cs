@@ -40,9 +40,7 @@ public class AutomationManger
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
     {
-        if (!modEnable) return;
-        
-        if (!UpdateCooldown()) return;
+        if (!Context.IsPlayerFree || !modEnable || !UpdateCooldown()) return;
         
         location = Game1.currentLocation;
         player = Game1.player;

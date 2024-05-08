@@ -70,7 +70,7 @@ public abstract class Automate
         var heldObject = machine.heldObject.Value;
         if (machine.readyForHarvest.Value && heldObject is not null)
         {
-            if (!player.addItemToInventoryBool(heldObject)) return;
+            if (player.freeSpotsInInventory() == 0 && !player.Items.ContainsId(heldObject.ItemId)) return;
             machine.checkForAction(player);
         }
     }

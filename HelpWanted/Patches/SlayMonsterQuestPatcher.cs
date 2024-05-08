@@ -39,12 +39,12 @@ public class SlayMonsterQuestPatcher : BasePatcher
 
         var number = __instance.monsterName.Value == null ? 1 : __instance.numberToKill.Value == 0 ? 1 : 0;
         if (number != 0) __instance.monsterName.Value = ___random.ChooseFrom(possibleMonsters);
-        // if (__instance.monsterName.Value is "Frost Jelly" or "Sludge" or "Big Slime")
-        // {
-        //     __instance.monster!.Value = new Monster("Green Slime", Vector2.Zero);
-        //     __instance.monster.Value.Name = __instance.monsterName.Value;
-        // }
-        // else
+        if (__instance.monsterName.Value is "Frost Jelly" or "Sludge" or "Big Slime")
+        {
+            __instance.monster!.Value = new Monster("Green Slime", Vector2.Zero);
+            __instance.monster.Value.Name = __instance.monsterName.Value;
+        }
+        else
         {
             __instance.monster!.Value = new Monster(__instance.monsterName.Value, Vector2.Zero);
         }

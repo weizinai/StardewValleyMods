@@ -15,7 +15,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
     private static Random random = new();
-    
+
     private static List<string> possibleItems = new();
     private static string universalGiftTaste = "";
     private static string npcGiftTaste = "";
@@ -61,12 +61,12 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         var index = codes.FindIndex(code => code.opcode == OpCodes.Call &&
                                             code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
                                                 new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
-        codes[index].operand = AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomItem));
         codes[index - 3].opcode = OpCodes.Ldarg_0;
         codes[index - 2].opcode = OpCodes.Ldfld;
         codes[index - 2].operand = AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target));
         codes[index - 1].opcode = OpCodes.Callvirt;
         codes[index - 1].operand = AccessTools.Method(typeof(NetString), nameof(NetString.Get));
+        codes[index].operand = AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomItem));
 
         // var start = false;
         // var found1 = false;
@@ -109,10 +109,13 @@ public class ItemDeliveryQuestPatcher : BasePatcher
             InitModPossibleItems(npcName);
         else
             InitVanillaPossibleItems(season);
-        
+
         var result = random.ChooseFrom(possibleItems);
         possibleItems = possibleItems.Where(IsItemAvailable).ToList();
-        return possibleItems.Any() ? random.ChooseFrom(possibleItems) : result;
+        var result2 = random.ChooseFrom(possibleItems);
+        // if (result2.StartsWith('-')) Game1.chatBox.addInfoMessage(result2);
+        
+        return possibleItems.Any() ? result2 : result;
     }
 
     public static void Init()
@@ -124,8 +127,8 @@ public class ItemDeliveryQuestPatcher : BasePatcher
     private static void InitVanillaPossibleItems(Season season)
     {
         if (possibleItems.Any()) return;
-        
-        possibleItems.AddRange(new []{"68", "66", "78", "80", "86", "152", "167", "153", "420"});
+
+        possibleItems.AddRange(new[] { "68", "66", "78", "80", "86", "152", "167", "153", "420" });
         var allUnlockedCraftingRecipes = Utility.GetAllPlayerUnlockedCraftingRecipes();
         var allUnlockedCookingRecipes = Utility.GetAllPlayerUnlockedCookingRecipes();
 
@@ -223,11 +226,10 @@ public class ItemDeliveryQuestPatcher : BasePatcher
             }
         }
     }
-    
+
     private static void InitModPossibleItems(string npcName)
     {
-        if (possibleItems.Any()) return;
-        
+        possibleItems.Clear();
         InitNPCGiftTaste(npcName);
         var giftTaste = universalGiftTaste + " " + npcGiftTaste;
         possibleItems.AddRange(ArgUtility.SplitBySpace(giftTaste));
@@ -258,11 +260,13 @@ public class ItemDeliveryQuestPatcher : BasePatcher
 
     private static bool IsItemAvailable(string itemId)
     {
-        if (!IsCategoryAvailable(itemId)) return false;
-        
+        if (itemId is "-5" or "-6") return true;
+
+        if (itemId.StartsWith('-')) return false;
+
         var item = new SObject(itemId, 1);
-        return !(config.MaxPrice > 0 && item.Price > config.MaxPrice) && 
-               !(!config.AllowArtisanGoods && item.Category == SObject.artisanGoodsCategory);
+        return (config.MaxPrice <= 0 || item.Price <= config.MaxPrice) && 
+               (config.AllowArtisanGoods || item.Category != SObject.artisanGoodsCategory);
     }
 
     private static bool IsCategoryAvailable(string category)

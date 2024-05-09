@@ -17,7 +17,7 @@ public class ModEntry : Mod
     {
         // 读取配置文件
         config = helper.ReadConfig<ModConfig>();
-        // if (!config.ChopOakTree.ContainsKey(3)) config = new ModConfig();
+        Migrate();
 
         // 初始化
         I18n.Init(helper.Translation);
@@ -1793,5 +1793,18 @@ public class ModEntry : Mod
             "Attack" => I18n.BuffType_Attack_Name(),
             _ => I18n.BuffType_None_Name()
         };
+    }
+
+    private void Migrate()
+    {
+        // 1.0.8
+        config.ChopOakTree.TryAdd(3, false);
+        config.ChopMapleTree.TryAdd(3, false);
+        config.ChopPineTree.TryAdd(3, false);
+        config.ChopMahoganyTree.TryAdd(3, false);
+        config.ChopPalmTree.TryAdd(3, false);
+        config.ChopMushroomTree.TryAdd(3, false);
+        config.ChopGreenRainTree.TryAdd(3, false);
+        config.ChopMysticTree.TryAdd(3, false);
     }
 }

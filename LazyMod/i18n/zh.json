@@ -284,7 +284,7 @@
     "Config.ChopSaplingStageMysticTree.Name": "砍神秘树苗",
     "Config.ChopBushStageMysticTree.Name": "砍神秘树丛",
     "Config.ChopSmallTreeStageMysticTree.Name": "砍小神秘树",
-    "Config.ChopMythicTree.Name": "砍神秘树",
+    "Config.ChopMysticTree.Name": "砍神秘树",
     "Config.ChopStumpStageMysticTree.Name": "砍神秘树桩",
 
     // 增益类型

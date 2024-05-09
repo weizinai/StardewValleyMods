@@ -1,3 +1,7 @@
 {
+    "Config.DailyGreetingModifyTitle.Name": "Daily Greeting Modify",
+    "Config.DailyGreetingModifyForVillager.Name": "Villager",
+    "Config.DailyGreetingModifyForDatingVillager.Name": "Dating Villager",
+    "Config.DailyGreetingModifyForSpouse.Name": "Spouse",
     "Config.GarbageCanModify.Name": "Garbage Can Modify",
 }

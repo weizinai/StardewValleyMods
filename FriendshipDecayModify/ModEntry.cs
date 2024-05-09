@@ -19,7 +19,7 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new GameLocationPatcher(config));
+        HarmonyPatcher.Patch(this, new GameLocationPatcher(config), new FarmerPatcher(config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -29,15 +29,32 @@ public class ModEntry : Mod
 
         configMenu.Register(ModManifest, () => config = new ModConfig(), () => Helper.WriteConfig(config));
 
+        // 每日对话修改
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_DailyGreetingModifyTitle_Name);
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.DailyGreetingModifyForVillager,
+            value => config.DailyGreetingModifyForVillager = value,
+            I18n.Config_DailyGreetingModifyForVillager_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.DailyGreetingModifyForDatingVillager,
+            value => config.DailyGreetingModifyForDatingVillager = value,
+            I18n.Config_DailyGreetingModifyForDatingVillager_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.DailyGreetingModifyForSpouse,
+            value => config.DailyGreetingModifyForSpouse = value,
+            I18n.Config_DailyGreetingModifyForSpouse_Name
+        );
+        // 垃圾桶修改
         configMenu.AddNumberOption(
             ModManifest,
             () => config.GarbageCanModify,
             value => config.GarbageCanModify = value,
-            I18n.Config_GarbageCanModify_Name,
-            null,
-            0,
-            50,
-            5
+            I18n.Config_GarbageCanModify_Name
         );
     }
 }

@@ -23,6 +23,7 @@ public class GameLocationPatcher : BasePatcher
         );
     }
 
+    // 垃圾桶修改
     private static IEnumerable<CodeInstruction> CheckGarbageTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();

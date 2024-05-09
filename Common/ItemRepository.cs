@@ -27,4 +27,7 @@ public class ItemRepository
 
     /// <summary>晶球石头的QualifiedItemId</summary>
     public static readonly HashSet<string> GeodeStone = new() { "(O)75", "(O)76", "(O)77", "(O)819" };
+    
+    /// <summary>卡利三花蛋的QualifiedItemId</summary>
+    public static readonly HashSet<string> CalicoEggStone = new() { "(O)CalicoEggStone_0", "(O)CalicoEggStone_1", "(O)CalicoEggStone_2" };
 }

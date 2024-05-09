@@ -52,7 +52,8 @@ public class AutoMining : Automate
             { ItemRepository.IslandStone, config.ClearIslandStone },
             { ItemRepository.OreStone, config.ClearOreStone },
             { ItemRepository.GemStone, config.ClearGemStone },
-            { ItemRepository.GeodeStone, config.ClearGeodeStone }
+            { ItemRepository.GeodeStone, config.ClearGeodeStone },
+            { ItemRepository.CalicoEggStone, config.ClearCalicoEggStone }
         };
 
         var grid = GetTileGrid(player, config.AutoClearStoneRange);

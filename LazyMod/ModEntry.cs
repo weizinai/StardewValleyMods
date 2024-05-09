@@ -578,6 +578,12 @@ public class ModEntry : Mod
         );
         configMenu.AddBoolOption(
             ModManifest,
+            () => config.ClearCalicoEggStone,
+            value => config.ClearCalicoEggStone = value,
+            I18n.Config_ClearCalicoEggStone_Name
+        );
+        configMenu.AddBoolOption(
+            ModManifest,
             () => config.ClearBoulder,
             value => config.ClearBoulder = value,
             I18n.Config_ClearBoulder_Name

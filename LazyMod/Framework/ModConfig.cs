@@ -102,11 +102,12 @@ public class ModConfig
     public bool ClearStoneOnMineShaft { get; set; }
     public bool ClearStoneOnVolcano { get; set; }
     public bool ClearFarmStone { get; set; } = true;
-    public bool ClearOtherStone { get; set; } = true;
-    public bool ClearIslandStone { get; set; } = true;
-    public bool ClearOreStone { get; set; } = true;
-    public bool ClearGemStone { get; set; } = true;
-    public bool ClearGeodeStone { get; set; } = true;
+    public bool ClearOtherStone { get; set; }
+    public bool ClearIslandStone { get; set; }
+    public bool ClearOreStone { get; set; }
+    public bool ClearGemStone { get; set; } 
+    public bool ClearGeodeStone { get; set; }
+    public bool ClearCalicoEggStone { get; set; }
     public bool ClearBoulder { get; set; }
     public bool ClearMeteorite { get; set; }
 

@@ -181,6 +181,8 @@
     "Config.AutoEatFoodHealthRate.Name": "Auto Eat Food Health Rate",
     "Config.IntelligentFoodSelectionForHealth.Name": "Intelligent Food Selection For Health",
     "Config.IntelligentFoodSelectionForHealth.Tooltip": "When this option is enabled, the most cost-effective food in the backpack is automatically selected.",
+    "Config.RedundantFoodCount.Name": "Redundant Food Count",
+    "Config.RedundantFoodCount.Tooltip": "When the number of foods with the highest quantity in the backpack minus the number of foods with the second highest quantity is greater than the value you set, the food with the highest quantity will be automatically selected.",
     "Config.AutoEatBuffFood.Name": "Auto Eat Buff Food",
     "Config.AutoEatBuffFood.Tooltip": "When this option is enabled, if the player does not have a buff from food, they will automatically eat food with the speed buff in their inventory.(e.g. spinner)",
     "Config.FoodBuffMaintain1.Name": "Food Buff Maintain 1",

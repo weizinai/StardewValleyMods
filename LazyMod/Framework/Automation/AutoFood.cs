@@ -42,6 +42,16 @@ public class AutoFood : Automate
             EatFirstFood(player, foodData.Keys.First());
             return;
         }
+        
+        if (foodData.Count > 1)
+        {
+            var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
+            if (allFood[0].Stack - allFood[1].Stack > config.RedundantStaminaFoodCount)
+            {
+                EatFirstFood(player, allFood[0]);
+                return;
+            }
+        }
 
         var food = foodData.Keys.OrderBy(food => (food.Price / food.Edibility, -food.Stack)).First();
         EatFirstFood(player, food);
@@ -56,6 +66,16 @@ public class AutoFood : Automate
         {
             EatFirstFood(player, foodData.Keys.First());
             return;
+        }
+        
+        if (foodData.Count > 1)
+        {
+            var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
+            if (allFood[0].Stack - allFood[1].Stack > config.RedundantHealthFoodCount)
+            {
+                EatFirstFood(player, allFood[0]);
+                return;
+            }
         }
 
         var food = foodData.Keys.OrderBy(food => (food.Price / food.Edibility, -food.Stack)).First();

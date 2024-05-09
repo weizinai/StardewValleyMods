@@ -1127,6 +1127,16 @@ public class ModEntry : Mod
             I18n.Config_IntelligentFoodSelectionForStamina_Name,
             I18n.Config_IntelligentFoodSelectionForStamina_Tooltip
         );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.RedundantStaminaFoodCount,
+            value => config.RedundantStaminaFoodCount = value,
+            I18n.Config_RedundantFoodCount_Name,
+            I18n.Config_RedundantFoodCount_Tooltip,
+            0,
+            50,
+            5
+        );
         // 自动吃食物-生命值
         configMenu.AddSectionTitle(
             ModManifest,
@@ -1154,6 +1164,16 @@ public class ModEntry : Mod
             value => config.IntelligentFoodSelectionForHealth = value,
             I18n.Config_IntelligentFoodSelectionForHealth_Name,
             I18n.Config_IntelligentFoodSelectionForHealth_Tooltip
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.RedundantHealthFoodCount,
+            value => config.RedundantHealthFoodCount = value,
+            I18n.Config_RedundantFoodCount_Name,
+            I18n.Config_RedundantFoodCount_Tooltip,
+            0,
+            50,
+            5
         );
         // 自动吃增益食物
         configMenu.AddSectionTitle(

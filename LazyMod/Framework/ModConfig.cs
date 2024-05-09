@@ -225,11 +225,13 @@ public class ModConfig
     public bool AutoEatFoodForStamina { get; set; }
     public float AutoEatFoodStaminaRate { get; set; } = 0.1f;
     public bool IntelligentFoodSelectionForStamina { get; set; } = true;
+    public int RedundantStaminaFoodCount { get; set; } = 20;
 
     // 自动吃食物_生命值
     public bool AutoEatFoodForHealth { get; set; }
     public float AutoEatFoodHealthRate { get; set; } = 0.1f;
     public bool IntelligentFoodSelectionForHealth { get; set; } = true;
+    public int RedundantHealthFoodCount { get; set; } = 20;
 
     // 自动吃增益食物
     public bool AutoEatBuffFood { get; set; }

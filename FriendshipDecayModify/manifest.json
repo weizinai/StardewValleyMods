@@ -1,0 +1,8 @@
+﻿{
+    "Name": "Friendship Decay Modify",
+    "Author": "weizinai",
+    "Version": "1.0.0",
+    "Description": "Friendship Decay Modify",
+    "UniqueID": "weizinai.FriendshipDecayModify",
+    "EntryDll": "FriendshipDecayModify.dll",
+}

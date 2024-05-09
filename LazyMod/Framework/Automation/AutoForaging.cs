@@ -109,7 +109,7 @@ public class AutoForaging : Automate
                         foreach (var (stage, chopTree) in value)
                         {
                             if (tree.growthStage.Value < 5 && tree.growthStage.Value == stage && chopTree ||
-                                tree.growthStage.Value >= 5 && value[5])
+                                tree.growthStage.Value >= 5 && !tree.stump.Value && value[5])
                             {
                                 UseToolOnTile(location, player, tool, tile);
                                 break;
@@ -122,6 +122,7 @@ public class AutoForaging : Automate
                     // 树桩逻辑
                     if (tree.stump.Value && value[-1])
                     {
+                        Game1.chatBox.addInfoMessage("砍树桩");
                         UseToolOnTile(location, player, tool, tile);
                         break;
                     }

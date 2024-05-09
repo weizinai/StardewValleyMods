@@ -160,6 +160,8 @@
 
     // 钓鱼
     "Config.FishingPage.Name": "钓鱼",
+    "Config.AutoGrabTreasureItem.Name": "自动抓取宝箱物品",
+    "Config.AutoExitTreasureMenu.Name": "自动退出宝箱菜单",
     "Config.AutoPlaceCarbPot.Name": "自动放置蟹笼",
     "Config.AutoPlaceCarbPot.Tooltip": "当你手持蟹笼时,该功能才有效果",
     "Config.AutoPlaceCarbPotRange.Name": "自动放置蟹笼范围",

@@ -201,6 +201,10 @@ public class ModConfig
 
     #region 钓鱼
 
+    // 自动抓取宝箱物品
+    public bool AutoGrabTreasureItem;
+    public bool AutoExitTreasureMenu;
+
     // 自动放置蟹笼
     public bool AutoPlaceCarbPot { get; set; }
     public int AutoPlaceCarbPotRange { get; set; } = 1;

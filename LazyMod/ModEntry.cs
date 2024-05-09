@@ -9,7 +9,7 @@ namespace LazyMod;
 
 public class ModEntry : Mod
 {
-    private ModConfig config = new();
+    private ModConfig config = null!;
     private AutomationManger automationManger = null!;
     private MiningHud miningHud = null!;
 
@@ -17,6 +17,7 @@ public class ModEntry : Mod
     {
         // 读取配置文件
         config = helper.ReadConfig<ModConfig>();
+        // if (!config.ChopOakTree.ContainsKey(3)) config = new ModConfig();
 
         // 初始化
         I18n.Init(helper.Translation);
@@ -1011,6 +1012,20 @@ public class ModEntry : Mod
             ModManifest,
             "Fishing",
             I18n.Config_FishingPage_Name
+        );
+        // 自动抓取宝箱物品
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoGrabTreasureItem,
+            value => config.AutoGrabTreasureItem = value,
+            I18n.Config_AutoGrabTreasureItem_Name
+        );
+        // 自动退出宝箱菜单
+        configMenu.AddBoolOption(
+            ModManifest,
+            () => config.AutoExitTreasureMenu,
+            value => config.AutoExitTreasureMenu = value,
+            I18n.Config_AutoExitTreasureMenu_Name
         );
         // 自动使用蟹笼
         configMenu.AddSectionTitle(

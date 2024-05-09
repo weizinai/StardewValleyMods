@@ -160,6 +160,8 @@
 
     // Fishing
     "Config.FishingPage.Name": "Fishing",
+    "Config.AutoGrabTreasureItem.Name": "Auto Grab Treasure Item",
+    "Config.AutoExitTreasureMenu.Name": "Auto Exit Treasure Menu",
     "Config.AutoPlaceCarbPot.Name": "Auto Place Carb Pot",
     "Config.AutoPlaceCarbPot.Tooltip": "This feature only works when you hold the carb pot.",
     "Config.AutoPlaceCarbPotRange.Name": "Auto Place Carb Pot Range",

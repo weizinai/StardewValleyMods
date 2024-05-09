@@ -40,16 +40,11 @@ public class AutomationManger
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
     {
-        if (!Context.IsPlayerFree || !modEnable || !UpdateCooldown()) return;
+        if (!modEnable || !UpdateCooldown()) return;
         
-        location = Game1.currentLocation;
-        player = Game1.player;
-        tool = player?.CurrentTool;
-        item = player?.CurrentItem;
-
-        if (location is null || player is null) return;
-
-        foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
+        (automations[4] as AutoFishing)!.AutoMenuFunction();
+        
+        UpdateAutomate();
     }
 
     private bool UpdateCooldown()
@@ -59,6 +54,20 @@ public class AutomationManger
         
         skippedActionTicks = 0;
         return true;
+    }
+
+    private void UpdateAutomate()
+    {
+        if (!Context.IsPlayerFree) return;
+        
+        location = Game1.currentLocation;
+        player = Game1.player;
+        tool = player?.CurrentTool;
+        item = player?.CurrentItem;
+
+        if (location is null || player is null) return;
+
+        foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs dayEndingEventArgs)

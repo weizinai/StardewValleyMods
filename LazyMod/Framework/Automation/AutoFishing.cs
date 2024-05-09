@@ -1,4 +1,5 @@
 ﻿using StardewValley;
+using StardewValley.Menus;
 using StardewValley.Objects;
 using SObject = StardewValley.Object;
 
@@ -25,6 +26,36 @@ public class AutoFishing : Automate
         TileCache.Clear();
     }
 
+    public void AutoMenuFunction()
+    {
+        if (Game1.activeClickableMenu is ItemGrabMenu { source: ItemGrabMenu.source_fishingChest } menu)
+        {
+            if (config.AutoGrabTreasureItem) AutoGrabTreasureItem(menu);
+            if (config.AutoExitTreasureMenu) AutoExitTreasureMenu(menu);
+        }
+    }
+
+    // 自动抓取宝箱物品
+    private void AutoGrabTreasureItem(ItemGrabMenu menu)
+    {
+        var items = menu.ItemsToGrabMenu.actualInventory;
+        for (var i = 0; i < items.Count; i++)
+        {
+            if (items[i] is null) continue;
+            if (!CanAddItemToInventory(items[i])) break;
+            
+            var center = menu.ItemsToGrabMenu.inventory[i].bounds.Center;
+            menu.receiveLeftClick(center.X, center.Y);
+        }
+    }
+
+    // 自动退出宝箱菜单
+    private void AutoExitTreasureMenu(ItemGrabMenu menu)
+    {
+        var hasItem = menu.ItemsToGrabMenu.actualInventory.OfType<Item>().Any();
+        if (!hasItem) menu.exitThisMenu();
+    }
+
     // 自动放置蟹笼
     private void AutoPlaceCrabPot(GameLocation location, Farmer player, SObject crabPot)
     {
@@ -35,7 +66,7 @@ public class AutoFishing : Automate
             player.reduceActiveItemByOne();
         }
     }
-    
+
     // 自动添加蟹笼鱼饵
     private void AutoAddBaitForCrabPot(GameLocation location, Farmer player, SObject bait)
     {
@@ -47,7 +78,7 @@ public class AutoFishing : Automate
             if (obj.performObjectDropInAction(bait, false, player)) ConsumeItem(player, bait);
         }
     }
-    
+
     // 自动收获蟹笼
     private void AutoHarvestCarbPot(GameLocation location, Farmer player)
     {

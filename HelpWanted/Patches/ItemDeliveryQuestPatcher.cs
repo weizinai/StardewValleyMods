@@ -67,7 +67,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         codes.Insert(index + 4, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomCrops))));
 
         // 随机任务物品逻辑
-        index = codes.FindIndex(code => code.opcode == OpCodes.Call &&
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Call &&
                                         code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
                                             new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
         codes[index - 3] = new CodeInstruction(OpCodes.Ldarg_0);
@@ -76,7 +76,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         codes[index].operand = AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomItem));
 
         // 不知道为什么,但不这么做会报错
-        index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.33));
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.33));
         codes[index].operand = -0.1;
 
         return codes.AsEnumerable();
@@ -254,9 +254,12 @@ public class ItemDeliveryQuestPatcher : BasePatcher
 
         if (itemId is "-5" or "-6" && isGiftTaste) return true;
 
-        if (itemId.StartsWith('-') && isGiftTaste) return false;
+        if (itemId.StartsWith('-')) return false;
 
         var item = new SObject(itemId, 1);
+
+        if (item.Name.Contains("Error")) return false;
+        
         return isGiftTaste &&
                (config.MaxPrice <= 0 || item.Price <= config.MaxPrice) &&
                (config.AllowArtisanGoods || item.Category != SObject.artisanGoodsCategory);

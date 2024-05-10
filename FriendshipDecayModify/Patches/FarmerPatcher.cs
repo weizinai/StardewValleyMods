@@ -29,7 +29,6 @@ public class FarmerPatcher : BasePatcher
         var codes = instructions.ToList();
 
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-20));
-        if (index == -1) return codes.AsEnumerable();
         codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForSpouse)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-8));
         codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForDatingVillager)));

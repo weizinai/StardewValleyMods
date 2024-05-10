@@ -3,7 +3,6 @@ using Common.Patch;
 using FriendshipDecayModify.Framework;
 using HarmonyLib;
 using StardewValley;
-using StardewValley.Characters;
 
 namespace FriendshipDecayModify.Patches;
 
@@ -29,11 +28,11 @@ public class FarmerPatcher : BasePatcher
     {
         var codes = instructions.ToList();
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && (sbyte)code.operand == -20);
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-20));
         codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForSpouse)));
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && (sbyte)code.operand == -8);
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-8));
         codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForDatingVillager)));
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && (sbyte)code.operand == -2);
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-2));
         codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForVillager)));
 
         return codes.AsEnumerable();

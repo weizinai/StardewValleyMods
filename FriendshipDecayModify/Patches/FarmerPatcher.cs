@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using Common.Patch;
 using FriendshipDecayModify.Framework;
 using HarmonyLib;
@@ -19,37 +20,36 @@ public class FarmerPatcher : BasePatcher
     {
         harmony.Patch(
             RequireMethod<Farmer>(nameof(Farmer.resetFriendshipsForNewDay)),
-            prefix: GetHarmonyMethod(nameof(ResetFriendshipsForNewDayPrefix))
+            transpiler: GetHarmonyMethod(nameof(ResetFriendshipsForNewDayTranspiler))
         );
     }
 
-    private static bool ResetFriendshipsForNewDayPrefix(Farmer __instance)
+    private static IEnumerable<CodeInstruction> ResetFriendshipsForNewDayTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        foreach (var name in __instance.friendshipData.Keys)
-        {
-            var npc = Game1.getCharacterFromName(name) ?? Game1.getCharacterFromName<Child>(name, false);
-            if (npc is null) continue;
-            
-            var single = npc.datable.Value && !__instance.friendshipData[name].IsDating() && !npc.isMarried();
-            var talkToNPC = __instance.hasPlayerTalkedToNPC(name);
-            var points = __instance.friendshipData[name].Points;
+        var codes = instructions.ToList();
 
-            if (talkToNPC)
-            {
-                __instance.friendshipData[name].TalkedToToday = false;
-            }
-            else
-            {
-                if (__instance.spouse == name)
-                    __instance.changeFriendship(-config.DailyGreetingModifyForSpouse, npc);
-                else if (__instance.friendshipData[name].IsDating() && points < 2500)
-                    __instance.changeFriendship(-config.DailyGreetingModifyForDatingVillager, npc);
-                else if ((!single && points < 2500) || (single && points < 2000))
-                    __instance.changeFriendship(-config.DailyGreetingModifyForVillager, npc);
-            }
-        }
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && (sbyte)code.operand == -20);
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForSpouse)));
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && (sbyte)code.operand == -8);
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForDatingVillager)));
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && (sbyte)code.operand == -2);
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForVillager)));
 
-        __instance.updateFriendshipGifts(Game1.Date);
-        return false;
+        return codes.AsEnumerable();
+    }
+
+    private static int GetDailyGreetingModifyForVillager()
+    {
+        return -config.DailyGreetingModifyForVillager;
+    }
+
+    private static int GetDailyGreetingModifyForDatingVillager()
+    {
+        return -config.DailyGreetingModifyForDatingVillager;
+    }
+
+    private static int GetDailyGreetingModifyForSpouse()
+    {
+        return -config.DailyGreetingModifyForSpouse;
     }
 }

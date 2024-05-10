@@ -37,16 +37,16 @@ public class FarmAnimalPatcher : BasePatcher
 
         // 抚摸动物友谊修改
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)10));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetPetAnimalModifyForFriendship)));
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetPetAnimalModifyForFriendship)));
         // 抚摸动物心情修改
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)50));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetPetAnimalModifyForHappiness)));
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetPetAnimalModifyForHappiness)));
         // 喂食动物心情修改
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)100));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetFeedAnimalModifyForHappiness)));
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetFeedAnimalModifyForHappiness)));
         // 喂食动物友谊修改
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)20));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetFeedAnimalModifyForFriendship)));
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetFeedAnimalModifyForFriendship)));
 
         return codes.AsEnumerable();
     }

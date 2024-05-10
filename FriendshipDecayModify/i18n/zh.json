@@ -10,4 +10,10 @@
     "Config.HateGiftModify.Name": "讨厌礼物",
     // 垃圾桶修改
     "Config.GarbageCanModify.Name": "垃圾桶修改",
+    // 动物好感度修改
+    "Config.AnimalFriendshipModifyTitle.Name": "动物好感度修改",
+    "Config.PetAnimalModifyForFriendship.Name": "抚摸动物修改",
+    // 动物心情修改
+    "Config.AnimalHappinessModifyTitle.Name": "动物心情修改",
+    "Config.PetAnimalModifyForHappiness.Name": "抚摸动物修改",
 }

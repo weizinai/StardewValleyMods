@@ -12,4 +12,8 @@ public class ModConfig
     public int HateGiftModify = 40;
     // 垃圾桶修改
     public int GarbageCanModify = 25;
+    // 动物好感度修改
+    public int PetAnimalModifyForFriendship = 10;
+    // 动物心情修改
+    public int PetAnimalModifyForHappiness = 50;
 }

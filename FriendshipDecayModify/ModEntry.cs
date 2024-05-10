@@ -19,7 +19,7 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new GameLocationPatcher(config), new FarmerPatcher(config), new NPCPatcher(config));
+        HarmonyPatcher.Patch(this, new GameLocationPatcher(config), new FarmerPatcher(config), new NPCPatcher(config), new FarmerPatcher(config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -70,6 +70,22 @@ public class ModEntry : Mod
             () => config.GarbageCanModify,
             value => config.GarbageCanModify = value,
             I18n.Config_GarbageCanModify_Name
+        );
+        // 动物好感度修改
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_PetAnimalModifyForFriendship_Name);
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.PetAnimalModifyForFriendship,
+            value => config.PetAnimalModifyForFriendship = value,
+            I18n.Config_PetAnimalModifyForFriendship_Name
+        );
+        // 动物心情修改
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_PetAnimalModifyForHappiness_Name);
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.PetAnimalModifyForHappiness,
+            value => config.PetAnimalModifyForHappiness = value,
+            I18n.Config_PetAnimalModifyForHappiness_Name
         );
     }
 }

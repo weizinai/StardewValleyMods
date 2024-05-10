@@ -29,12 +29,12 @@ public class GameLocationPatcher : BasePatcher
         var codes = instructions.ToList();
 
         var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.changeFriendship))));
-        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GarbageCanModify))));
+        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetGarbageCanModify))));
 
         return codes.AsEnumerable();
     }
 
-    private static int GarbageCanModify(int friendshipChange)
+    private static int GetGarbageCanModify(int friendshipChange)
     {
         return friendshipChange >= 0 ? friendshipChange : -config.GarbageCanModify;
     }

@@ -51,22 +51,26 @@ public class FarmAnimalPatcher : BasePatcher
         return codes.AsEnumerable();
     }
 
+    // 抚摸动物友谊修改
     private static int GetPetAnimalModifyForFriendship()
     {
         var petAnimalDecay = config.PetAnimalModifyForFriendship - friendshipTowardFarmer / 200;
         return petAnimalDecay < 0 ? petAnimalDecay : config.PetAnimalModifyForFriendship;
     }
     
+    // 抚摸动物心情修改
     private static int GetPetAnimalModifyForHappiness()
     {
         return config.PetAnimalModifyForHappiness;
     }
     
+    // 喂食动物友谊修改
     private static int GetFeedAnimalModifyForFriendship()
     {
         return config.FeedAnimalModifyForFriendship;
     }
     
+    // 喂食动物心情修改
     private static int GetFeedAnimalModifyForHappiness()
     {
         return config.FeedAnimalModifyForHappiness;

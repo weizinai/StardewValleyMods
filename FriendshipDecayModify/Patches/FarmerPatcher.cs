@@ -24,6 +24,7 @@ public class FarmerPatcher : BasePatcher
         );
     }
 
+    // 每日对话修改
     private static IEnumerable<CodeInstruction> ResetFriendshipsForNewDayTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();

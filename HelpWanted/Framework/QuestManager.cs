@@ -13,7 +13,7 @@ internal class QuestManager
     private readonly ModConfig config;
     private readonly IMonitor monitor;
     private readonly AppearanceManager appearanceManager;
-    
+
     public static readonly List<QuestData> QuestList = new();
 
     public QuestManager(ModConfig config, IMonitor monitor, AppearanceManager appearanceManager)
@@ -32,16 +32,16 @@ internal class QuestManager
         // 尝试次数
         var tries = 0;
         // 已有任务NPC列表
-        var npcs = new HashSet<string>();
+        var npcNames = new HashSet<string>();
         for (var i = 0; i < config.MaxQuests; i++)
         {
             if (quest is null) break;
             var npc = GetNpcFromQuest(quest);
             if (npc is not null)
             {
-                if ((config.OneQuestPerVillager && npcs.Contains(npc.Name)) ||
-                    (config.ExcludeMaxHeartsNPC && Game1.MasterPlayer.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250) ||
-                    config.ExcludeNPCList.Contains(npc.Name))
+                monitor.Log($"第{i + 1}个任务: {quest.questTitle} - {npc.Name}");
+
+                if (!CheckNPCAvailable(npcNames, npc))
                 {
                     tries++;
                     if (tries > 100)
@@ -54,9 +54,10 @@ internal class QuestManager
                 }
 
                 tries = 0;
-                npcs.Add(npc.Name);
+                npcNames.Add(npc.Name);
                 AddQuest(npc, quest);
             }
+
             quest = RefreshQuestOfTheDay();
         }
     }
@@ -85,6 +86,24 @@ internal class QuestManager
         };
     }
 
+    private bool CheckNPCAvailable(HashSet<string> npcNames, NPC npc)
+    {
+        var oneQuestPerVillager = config.OneQuestPerVillager && npcNames.Contains(npc.Name);
+        var excludeMaxHeartsNPC = config.ExcludeMaxHeartsNPC && Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250;
+        var excludeNPCList = config.ExcludeNPCList.Contains(npc.Name);
+
+        var available = !oneQuestPerVillager && !excludeMaxHeartsNPC && !excludeNPCList;
+
+        if (!available)
+        {
+            if (oneQuestPerVillager) monitor.Log($"{npc.Name}已有任务");
+            if (excludeMaxHeartsNPC) monitor.Log($"{npc.Name}好感度已满");
+            if (excludeNPCList) monitor.Log($"{npc.Name}在排除列表中");
+        }
+
+        return available;
+    }
+
     private void AddQuest(NPC npc, Quest quest)
     {
         var questType = GetQuestType(Game1.questOfTheDay);
@@ -99,7 +118,8 @@ internal class QuestManager
         var iconSource = new Rectangle(0, 0, 64, 64);
         var iconScale = config.PortraitScale;
         var iconOffset = new Point(config.PortraitOffsetX, config.PortraitOffsetY);
-        var questData = new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor, icon, iconSource, iconColor, iconScale, iconOffset, quest);
+        var questData = new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor, icon, iconSource, iconColor, iconScale, iconOffset,
+            quest);
         QuestList.Add(questData);
     }
 
@@ -111,6 +131,7 @@ internal class QuestManager
             monitor.Log("Refresh Quest Of The Day Failed.", LogLevel.Warn);
             return null;
         }
+
         quest.daysLeft.Value = config.QuestDays;
         quest.dailyQuest.Value = true;
         quest.accepted.Value = true;

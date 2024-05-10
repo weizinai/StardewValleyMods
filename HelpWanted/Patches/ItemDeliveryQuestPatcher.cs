@@ -44,8 +44,8 @@ public class ItemDeliveryQuestPatcher : BasePatcher
     private static IEnumerable<CodeInstruction> CheckIfCompleteTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4 && (int)code.operand == 150);
-        codes[index].operand = config.ItemDeliveryFriendshipGain;
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4 && code.operand.Equals(150));
+        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetItemDeliveryFriendshipGain)));
         return codes.AsEnumerable();
     }
 
@@ -268,5 +268,10 @@ public class ItemDeliveryQuestPatcher : BasePatcher
     private static bool IsCategoryAvailable(string category)
     {
         return category.StartsWith('-') && category != "-5" && category != "-6";
+    }
+
+    private static int GetItemDeliveryFriendshipGain()
+    {
+        return config.ItemDeliveryFriendshipGain;
     }
 }

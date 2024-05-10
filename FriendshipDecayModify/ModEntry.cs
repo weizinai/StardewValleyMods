@@ -19,7 +19,7 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new GameLocationPatcher(config), new FarmerPatcher(config));
+        HarmonyPatcher.Patch(this, new GameLocationPatcher(config), new FarmerPatcher(config), new NPCPatcher(config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -49,7 +49,22 @@ public class ModEntry : Mod
             value => config.DailyGreetingModifyForSpouse = value,
             I18n.Config_DailyGreetingModifyForSpouse_Name
         );
+        // 礼物修改
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_GiftModifyTitle_Name);
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.DislikeGiftModify,
+            value => config.DislikeGiftModify = value,
+            I18n.Config_DislikeGiftModify_Name
+        );
+        configMenu.AddNumberOption(
+            ModManifest,
+            () => config.HateGiftModify,
+            value => config.HateGiftModify = value,
+            I18n.Config_HateGiftModify_Name
+        );
         // 垃圾桶修改
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_GarbageCanModify_Name);
         configMenu.AddNumberOption(
             ModManifest,
             () => config.GarbageCanModify,

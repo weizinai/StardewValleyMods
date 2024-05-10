@@ -1,7 +1,13 @@
 {
+    // Daily Greeting Modify
     "Config.DailyGreetingModifyTitle.Name": "Daily Greeting Modify",
     "Config.DailyGreetingModifyForVillager.Name": "Villager",
     "Config.DailyGreetingModifyForDatingVillager.Name": "Dating Villager",
     "Config.DailyGreetingModifyForSpouse.Name": "Spouse",
+    // Gift Modify
+    "Config.GiftModifyTitle.Name": "Gift Modify",
+    "Config.DislikeGiftModify.Name": "Dislike Gift",
+    "Config.HateGiftModify.Name": "Hate Gift",
+    // Garbage Can Modify
     "Config.GarbageCanModify.Name": "Garbage Can Modify",
 }

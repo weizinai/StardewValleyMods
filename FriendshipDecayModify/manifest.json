@@ -5,4 +5,7 @@
     "Description": "This mod allows you to change the value of the friendship decay.",
     "UniqueID": "weizinai.FriendshipDecayModify",
     "EntryDll": "FriendshipDecayModify.dll",
+    "UpdateKeys": [
+        "Nexus:22826"
+    ]
 }

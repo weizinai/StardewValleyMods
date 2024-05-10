@@ -23,6 +23,7 @@ public class NPCPatcher : BasePatcher
         );
     }
 
+    // 礼物修改
     private static IEnumerable<CodeInstruction> ReceiveGiftTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
@@ -37,11 +38,11 @@ public class NPCPatcher : BasePatcher
 
     private static float GetHateGiftModify()
     {
-        return -(float)config.HateGiftModify;
+        return -config.HateGiftModify;
     }
     
     private static float GetDislikeGiftModify()
     {
-        return -(float)config.DislikeGiftModify;
+        return -config.DislikeGiftModify;
     }
 }

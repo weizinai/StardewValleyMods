@@ -6,7 +6,7 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Patches;
 
-public class FishingQuestPatcher : BasePatcher
+internal class FishingQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
     private static bool hasLoadQuestInfo;
@@ -16,12 +16,12 @@ public class FishingQuestPatcher : BasePatcher
         FishingQuestPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<FishingQuest>(nameof(FishingQuest.loadQuestInfo)),
-            prefix: GetHarmonyMethod(nameof(LoadQuestInfoPrefix)),
-            postfix: GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
+            GetHarmonyMethod(nameof(LoadQuestInfoPrefix)),
+            GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
         );
     }
     

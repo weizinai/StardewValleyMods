@@ -5,9 +5,9 @@ using StardewValley;
 
 namespace TestMod.Patches;
 
-public class GameLocationPatcher : BasePatcher
+internal class GameLocationPatcher : BasePatcher
 {
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<GameLocation>(nameof(GameLocation.performTenMinuteUpdate)),

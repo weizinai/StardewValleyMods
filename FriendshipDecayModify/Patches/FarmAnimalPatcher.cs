@@ -6,7 +6,7 @@ using StardewValley;
 
 namespace FriendshipDecayModify.Patches;
 
-public class FarmAnimalPatcher : BasePatcher
+internal class FarmAnimalPatcher : BasePatcher
 {
     private static ModConfig config = null!;
     private static int friendshipTowardFarmer;
@@ -16,7 +16,7 @@ public class FarmAnimalPatcher : BasePatcher
         FarmAnimalPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<FarmAnimal>(nameof(FarmAnimal.dayUpdate)),
@@ -37,16 +37,16 @@ public class FarmAnimalPatcher : BasePatcher
 
         // 抚摸动物友谊修改
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)10));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetPetAnimalModifyForFriendship)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmAnimalPatcher>(nameof(GetPetAnimalModifyForFriendship)));
         // 抚摸动物心情修改
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)50));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetPetAnimalModifyForHappiness)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmAnimalPatcher>(nameof(GetPetAnimalModifyForHappiness)));
         // 喂食动物心情修改
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)100));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetFeedAnimalModifyForHappiness)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmAnimalPatcher>(nameof(GetFeedAnimalModifyForHappiness)));
         // 喂食动物友谊修改
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)20));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmAnimalPatcher), nameof(GetFeedAnimalModifyForFriendship)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmAnimalPatcher>(nameof(GetFeedAnimalModifyForFriendship)));
 
         return codes.AsEnumerable();
     }

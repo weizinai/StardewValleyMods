@@ -4,9 +4,9 @@ using StardewValley;
 
 namespace HelpWanted.Patches;
 
-public class Game1Patcher : BasePatcher
+internal class Game1Patcher : BasePatcher
 {
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<Game1>(nameof(Game1.RefreshQuestOfTheDay)),

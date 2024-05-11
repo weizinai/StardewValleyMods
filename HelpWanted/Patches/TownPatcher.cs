@@ -8,9 +8,9 @@ using StardewValley.Locations;
 
 namespace HelpWanted.Patches;
 
-public class TownPatcher : BasePatcher
+internal class TownPatcher : BasePatcher
 {
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<Town>(nameof(Town.draw), new[] { typeof(SpriteBatch) }),

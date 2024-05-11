@@ -5,7 +5,7 @@ using TestMod.Framework;
 
 namespace TestMod.Patches;
 
-public class VolcanoDungeonPatcher : BasePatcher
+internal class VolcanoDungeonPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -14,7 +14,7 @@ public class VolcanoDungeonPatcher : BasePatcher
         VolcanoDungeonPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(RequireMethod<VolcanoDungeon>(nameof(VolcanoDungeon.GenerateLevel)), GetHarmonyMethod(nameof(GenerateLevelPrefix)));
     }

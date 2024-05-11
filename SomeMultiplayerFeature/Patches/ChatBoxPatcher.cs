@@ -6,7 +6,7 @@ using StardewValley.Menus;
 
 namespace SomeMultiplayerFeature.Patches;
 
-public class ChatBoxPatcher : BasePatcher
+internal class ChatBoxPatcher : BasePatcher
 {
     private static IModHelper helper = null!;
 
@@ -15,7 +15,7 @@ public class ChatBoxPatcher : BasePatcher
         ChatBoxPatcher.helper = helper;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         
     }

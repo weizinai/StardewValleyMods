@@ -8,7 +8,7 @@ using TestMod.Framework;
 
 namespace TestMod.Patches;
 
-public class MineShaftPatcher : BasePatcher
+internal class MineShaftPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -17,7 +17,7 @@ public class MineShaftPatcher : BasePatcher
         MineShaftPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(RequireMethod<MineShaft>(nameof(MineShaft.loadLevel)), transpiler: GetHarmonyMethod(nameof(LoadLevelTranspiler)));
     }
@@ -32,7 +32,7 @@ public class MineShaftPatcher : BasePatcher
         {
             if (!findChanceField && codes[i].opcode == OpCodes.Call)
             {
-                if (codes[i].opcode == OpCodes.Call && (MethodInfo)codes[i].operand == AccessTools.Method(typeof(Utility), nameof(Utility.CreateDaySaveRandom)))
+                if (codes[i].opcode == OpCodes.Call && codes[i].operand.Equals(GetMethod<Utility>(nameof(Utility.CreateDaySaveRandom))))
                     findCreateDaySaveRandomMethod = true;
             }
 

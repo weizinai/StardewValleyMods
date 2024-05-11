@@ -9,7 +9,7 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Patches;
 
-public class SlayMonsterQuestPatcher : BasePatcher
+internal class SlayMonsterQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -18,7 +18,7 @@ public class SlayMonsterQuestPatcher : BasePatcher
         SlayMonsterQuestPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)),

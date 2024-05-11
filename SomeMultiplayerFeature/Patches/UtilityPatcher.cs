@@ -7,7 +7,7 @@ using StardewValley;
 
 namespace SomeMultiplayerFeature.Patches;
 
-public class UtilityPatcher : BasePatcher
+internal class UtilityPatcher : BasePatcher
 {
     private static IModHelper helper = null!;
 
@@ -16,7 +16,7 @@ public class UtilityPatcher : BasePatcher
         UtilityPatcher.helper = helper;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<Utility>(nameof(Utility.TryOpenShopMenu), new[] { typeof(string), typeof(string), typeof(bool) }),

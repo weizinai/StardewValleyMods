@@ -10,7 +10,7 @@ using StardewValley.Menus;
 
 namespace AutoBreakGeode.Patches;
 
-public class GeodeMenuPatcher : BasePatcher
+internal class GeodeMenuPatcher : BasePatcher
 {
     private static RootElement? ui;
     private static ModConfig config = null!;
@@ -20,7 +20,7 @@ public class GeodeMenuPatcher : BasePatcher
         GeodeMenuPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireConstructor<GeodeMenu>(),
@@ -71,7 +71,7 @@ public class GeodeMenuPatcher : BasePatcher
         var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt &&
                                             (MethodInfo)code.operand == AccessTools.Method(typeof(SpriteBatch), nameof(SpriteBatch.Draw), parameters));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
-        codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GeodeMenuPatcher), nameof(DrawButton))));
+        codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, GetMethod<GeodeMenuPatcher>(nameof(DrawButton))));
         return codes.AsEnumerable();
     }
 

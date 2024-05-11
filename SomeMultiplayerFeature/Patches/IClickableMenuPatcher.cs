@@ -8,7 +8,7 @@ using StardewValley.Menus;
 namespace SomeMultiplayerFeature.Patches;
 
 // ReSharper disable once InconsistentNaming
-public class IClickableMenuPatcher : BasePatcher
+internal class IClickableMenuPatcher : BasePatcher
 {
     private static IModHelper helper = null!;
 
@@ -17,7 +17,7 @@ public class IClickableMenuPatcher : BasePatcher
         IClickableMenuPatcher.helper = helper;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<IClickableMenu>(nameof(IClickableMenu.exitThisMenu), new[] { typeof(bool) }),

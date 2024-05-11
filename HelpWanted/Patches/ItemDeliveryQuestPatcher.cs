@@ -11,7 +11,7 @@ using SObject = StardewValley.Object;
 
 namespace HelpWanted.Patches;
 
-public class ItemDeliveryQuestPatcher : BasePatcher
+internal class ItemDeliveryQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
     private static Random random = new();
@@ -25,7 +25,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         ItemDeliveryQuestPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.loadQuestInfo)),
@@ -63,17 +63,17 @@ public class ItemDeliveryQuestPatcher : BasePatcher
             code.opcode == OpCodes.Call && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime))));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_0));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target))));
-        codes.Insert(index + 3, new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get))));
-        codes.Insert(index + 4, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomCrops))));
+        codes.Insert(index + 3, new CodeInstruction(OpCodes.Callvirt, GetMethod<NetString>(nameof(NetString.Get))));
+        codes.Insert(index + 4, new CodeInstruction(OpCodes.Call, GetMethod<ItemDeliveryQuestPatcher>(nameof(GetRandomCrops))));
 
         // 随机任务物品逻辑
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Call &&
-                                        code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
-                                            new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
+        index = codes.FindIndex(index,
+            code => code.opcode == OpCodes.Call &&
+                    code.operand.Equals(GetMethod<Utility>(nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
         codes[index - 3] = new CodeInstruction(OpCodes.Ldarg_0);
         codes[index - 2] = new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target)));
-        codes[index - 1] = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get)));
-        codes[index].operand = AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetRandomItem));
+        codes[index - 1] = new CodeInstruction(OpCodes.Callvirt, GetMethod<NetString>(nameof(NetString.Get)));
+        codes[index].operand = GetMethod<ItemDeliveryQuestPatcher>(nameof(GetRandomItem));
 
         // 不知道为什么,但不这么做会报错
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.33));
@@ -88,7 +88,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         var giftTaste = universalGiftTaste + " " + npcGiftTaste;
         var temp = new List<string>(possibleCrops);
         temp = temp.Where(crop => giftTaste.Contains(crop)).ToList();
-        
+
         return temp.Any() ? temp : possibleCrops;
     }
 
@@ -259,7 +259,7 @@ public class ItemDeliveryQuestPatcher : BasePatcher
         var item = new SObject(itemId, 1);
 
         if (item.Name.Contains("Error")) return false;
-        
+
         return isGiftTaste &&
                (config.MaxPrice <= 0 || item.Price <= config.MaxPrice) &&
                (config.AllowArtisanGoods || item.Category != SObject.artisanGoodsCategory);

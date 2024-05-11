@@ -23,7 +23,7 @@ public class ModEntry : Mod
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new UtilityPatcher(helper), new IClickableMenuPatcher(helper));
+        HarmonyPatcher.Apply(this, new UtilityPatcher(helper), new IClickableMenuPatcher(helper));
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

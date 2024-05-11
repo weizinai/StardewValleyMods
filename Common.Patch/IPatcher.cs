@@ -2,7 +2,7 @@ using HarmonyLib;
 
 namespace Common.Patch;
 
-public interface IPatcher
+internal interface IPatcher
 {
-    public void Patch(Harmony harmony);
+    public void Apply(Harmony harmony);
 }

@@ -6,7 +6,7 @@ using StardewValley;
 
 namespace FriendshipDecayModify.Patches;
 
-public class GameLocationPatcher : BasePatcher
+internal class GameLocationPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -15,7 +15,7 @@ public class GameLocationPatcher : BasePatcher
         GameLocationPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<GameLocation>(nameof(GameLocation.CheckGarbage)),
@@ -28,8 +28,8 @@ public class GameLocationPatcher : BasePatcher
     {
         var codes = instructions.ToList();
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.changeFriendship))));
-        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetGarbageCanModify))));
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(GetMethod<Farmer>(nameof(Farmer.changeFriendship))));
+        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, GetMethod<GameLocationPatcher>(nameof(GetGarbageCanModify))));
 
         return codes.AsEnumerable();
     }

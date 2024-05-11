@@ -6,7 +6,7 @@ using StardewValley;
 
 namespace FriendshipDecayModify.Patches;
 
-public class FarmerPatcher : BasePatcher
+internal class FarmerPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -15,7 +15,7 @@ public class FarmerPatcher : BasePatcher
         FarmerPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<Farmer>(nameof(Farmer.resetFriendshipsForNewDay)),
@@ -29,11 +29,11 @@ public class FarmerPatcher : BasePatcher
         var codes = instructions.ToList();
 
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-20));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForSpouse)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmerPatcher>(nameof(GetDailyGreetingModifyForSpouse)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-8));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForDatingVillager)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmerPatcher>(nameof(GetDailyGreetingModifyForDatingVillager)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-2));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForVillager)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmerPatcher>(nameof(GetDailyGreetingModifyForVillager)));
 
         return codes.AsEnumerable();
     }

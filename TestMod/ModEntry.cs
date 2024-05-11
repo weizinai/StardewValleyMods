@@ -19,7 +19,7 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Patch(this, new GameLocationPatcher());
+        HarmonyPatcher.Apply(this, new GameLocationPatcher());
     }
     
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

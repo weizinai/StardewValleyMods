@@ -7,7 +7,7 @@ using StardewValley.Menus;
 
 namespace HelpWanted.Patches;
 
-public class BillboardPatcher : BasePatcher
+internal class BillboardPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -16,7 +16,7 @@ public class BillboardPatcher : BasePatcher
         BillboardPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<Billboard>(nameof(Billboard.draw), new[] { typeof(SpriteBatch) }),

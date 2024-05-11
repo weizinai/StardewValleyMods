@@ -6,7 +6,7 @@ using StardewValley;
 
 namespace FriendshipDecayModify.Patches;
 
-public class NPCPatcher : BasePatcher
+internal class NPCPatcher : BasePatcher
 {
     private static ModConfig config = null!;
 
@@ -15,7 +15,7 @@ public class NPCPatcher : BasePatcher
         NPCPatcher.config = config;
     }
 
-    public override void Patch(Harmony harmony)
+    public override void Apply(Harmony harmony)
     {
         harmony.Patch(
             RequireMethod<NPC>(nameof(NPC.receiveGift)),
@@ -29,9 +29,9 @@ public class NPCPatcher : BasePatcher
         var codes = instructions.ToList();
         
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R4 && code.operand.Equals(-40f));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(NPCPatcher), nameof(GetHateGiftModify)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<NPCPatcher>(nameof(GetHateGiftModify)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R4 && code.operand.Equals(-20f));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(NPCPatcher), nameof(GetDislikeGiftModify)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<NPCPatcher>(nameof(GetDislikeGiftModify)));
 
         return codes.AsEnumerable();
     }

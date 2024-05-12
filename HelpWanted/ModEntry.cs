@@ -65,10 +65,7 @@ internal class ModEntry : Mod
         );
 
         // 一般设置
-        configMenu.AddSectionTitle(
-            ModManifest,
-            I18n.Config_GeneralSettingsTitle_Name
-        );
+        configMenu.AddSectionTitle(ModManifest, I18n.Config_GeneralSettingsTitle_Name);
         configMenu.AddBoolOption(
             ModManifest,
             () => config.QuestFirstDay,
@@ -129,43 +126,19 @@ internal class ModEntry : Mod
             I18n.Config_MaxQuests_Tooltip
         );
         // 交易任务
-        configMenu.AddPageLink(
-            ModManifest,
-            "ItemDeliveryQuest",
-            I18n.Config_ItemDeliveryPage_Name
-        );
+        configMenu.AddPageLink(ModManifest, "ItemDeliveryQuest", I18n.Config_ItemDeliveryPage_Name);
         // 采集任务
-        configMenu.AddPageLink(
-            ModManifest,
-            "ResourceCollectionQuest",
-            I18n.Config_ResourceCollectionPage_Name
-        );
+        configMenu.AddPageLink(ModManifest, "ResourceCollectionQuest", I18n.Config_ResourceCollectionPage_Name);
         // 钓鱼任务
-        configMenu.AddPageLink(
-            ModManifest,
-            "FishingQuest",
-            I18n.Config_FishingPage_Name
-        );
+        configMenu.AddPageLink(ModManifest, "FishingQuest", I18n.Config_FishingPage_Name);
         // 杀怪任务
-        configMenu.AddPageLink(
-            ModManifest,
-            "SlayMonstersQuest",
-            I18n.Config_SlayMonstersPage_Name
-        );
+        configMenu.AddPageLink(ModManifest, "SlayMonstersQuest", I18n.Config_SlayMonstersPage_Name);
         // 外观
-        configMenu.AddPageLink(
-            ModManifest,
-            "Appearance",
-            I18n.Config_AppearancePage_Name
-        );
+        configMenu.AddPageLink(ModManifest, "Appearance", I18n.Config_AppearancePage_Name);
 
         #region 交易任务
 
-        configMenu.AddPage(
-            ModManifest,
-            "ItemDeliveryQuest",
-            I18n.Config_ItemDeliveryPage_Name
-        );
+        configMenu.AddPage(ModManifest, "ItemDeliveryQuest", I18n.Config_ItemDeliveryPage_Name);
         configMenu.AddNumberOption(
             ModManifest,
             () => config.ItemDeliveryWeight,
@@ -196,7 +169,7 @@ internal class ModEntry : Mod
             () => config.QuestItemRequirement,
             value => config.QuestItemRequirement = value,
             I18n.Config_QuestItemRequirement_Name,
-            null,
+            I18n.Config_QuestItemRequirement_Tooltip,
             0,
             4
         );
@@ -218,7 +191,8 @@ internal class ModEntry : Mod
             ModManifest,
             () => config.UseModPossibleItems,
             value => config.UseModPossibleItems = value,
-            I18n.Config_UseModPossibleItems_Name
+            I18n.Config_UseModPossibleItems_Name,
+            I18n.Config_UseModPossibleItems_Tooltip
         );
 
         #endregion

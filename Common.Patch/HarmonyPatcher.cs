@@ -17,7 +17,7 @@ internal static class HarmonyPatcher
             }
             catch (Exception ex)
             {
-                mod.Monitor.Log($"Failed to apply '{patcher.GetType().FullName}' patcher; some features may not work correctly. Technical details:\n{ex}", LogLevel.Error);
+                mod.Monitor.Log($"Failed to apply '{patcher.GetType().FullName}' patcher. Technical details:\n{ex}", LogLevel.Error);
             }
         }
     }

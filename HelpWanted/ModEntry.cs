@@ -49,7 +49,7 @@ internal class ModEntry : Mod
             Monitor.Log("今天不生成任务.");
             return;
         }
-        
+
         questManager.InitQuestList();
     }
 

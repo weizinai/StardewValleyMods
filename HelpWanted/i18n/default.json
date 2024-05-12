@@ -20,8 +20,8 @@
     "Config.ItemDeliveryWeight.Name": "Item Delivery Weight",
     "Config.ItemDeliveryWeight.Tooltip": "The weight of the item delivery quest.",
     "Config.ItemDeliveryRewardMultiplier.Name": "Item Delivery Reward Multiplier",
-    "Config.ItemDeliveryFriendshipGain.Name":"Item Delivery Friendship Gain",
-    "Config.ItemDeliveryFriendshipGain.Tooltip":"The value of this option requires a game restart for it to take effect.",
+    "Config.ItemDeliveryFriendshipGain.Name": "Item Delivery Friendship Gain",
+    "Config.ItemDeliveryFriendshipGain.Tooltip": "The value of this option requires a game restart for it to take effect.",
     "Config.QuestItemSettingsTitle.Name": "Quest Item Settings",
     "Config.QuestItemRequirement.Name": "Quest Item Requirement",
     "Config.QuestItemRequirement.Tooltip": "Item requirements for item delivery quest. If it is 0, it means that the item must be at least love. If it is 1, it means that the item must be at least like. If it is 2, it means that the item is at least neutral. If it is 3, it means that the item is at least dislike. If it is 4, it means that the item is at least hate.",
@@ -69,5 +69,5 @@
     "Config.PortraitTintR.Name": "Portrait Tint R",
     "Config.PortraitTintG.Name": "Portrait Tint G",
     "Config.PortraitTintB.Name": "Portrait Tint B",
-    "Config.PortraitTintA.Name": "Portrait Tint A",
+    "Config.PortraitTintA.Name": "Portrait Tint A"
 }

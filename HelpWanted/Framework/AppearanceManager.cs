@@ -9,10 +9,10 @@ namespace HelpWanted.Framework;
 public class AppearanceManager
 {
     private readonly ModConfig config;
-    
+
     private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
     private const string PinTexturePath = "aedenthorn.HelpWanted/Pin";
-    
+
     private readonly Texture2D defaultPadTexture;
     private readonly Texture2D defaultPinTexture;
 
@@ -22,7 +22,7 @@ public class AppearanceManager
         defaultPadTexture = helper.ModContent.Load<Texture2D>("Assets/Pad.png");
         defaultPinTexture = helper.ModContent.Load<Texture2D>("Assets/Pin.png");
     }
-    
+
     public Texture2D GetPinTexture(string target, string questType)
     {
         // 获取特定NPC和特定任务类型的任务的自定义Pin纹理
@@ -41,7 +41,7 @@ public class AppearanceManager
         texture = GetTexture(PinTexturePath);
         return texture ?? defaultPinTexture;
     }
-    
+
     public Texture2D GetPadTexture(string target, string questType)
     {
         // 获取特定NPC和特定任务类型的任务的自定义Pad纹理
@@ -60,7 +60,7 @@ public class AppearanceManager
         texture = GetTexture(PadTexturePath);
         return texture ?? defaultPadTexture;
     }
-    
+
     private Texture2D? GetTexture(string path)
     {
         // 获取特定NPC或特定任务类型的任务的不同自定义纹理,如果纹理存在,则随机返回一个
@@ -73,6 +73,7 @@ public class AppearanceManager
         {
             // ignored
         }
+
         if (textures.Any())
         {
             return Game1.random.ChooseFrom(textures);
@@ -90,7 +91,7 @@ public class AppearanceManager
 
         return null;
     }
-    
+
     public Color GetRandomColor()
     {
         var random = Game1.random;

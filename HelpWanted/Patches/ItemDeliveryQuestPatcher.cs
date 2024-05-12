@@ -1,4 +1,5 @@
-﻿using System.Reflection.Emit;
+﻿using System.Reflection;
+using System.Reflection.Emit;
 using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
@@ -63,17 +64,18 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
             code.opcode == OpCodes.Call && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime))));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_0));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target))));
-        codes.Insert(index + 3, new CodeInstruction(OpCodes.Callvirt, GetMethod<NetString>(nameof(NetString.Get))));
-        codes.Insert(index + 4, new CodeInstruction(OpCodes.Call, GetMethod<ItemDeliveryQuestPatcher>(nameof(GetRandomCrops))));
+        codes.Insert(index + 3, new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get))));
+        codes.Insert(index + 4, new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetRandomCrops))));
 
         // 随机任务物品逻辑
         index = codes.FindIndex(index,
             code => code.opcode == OpCodes.Call &&
-                    code.operand.Equals(GetMethod<Utility>(nameof(Utility.getRandomItemFromSeason), new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
+                    code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
+                        new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
         codes[index - 3] = new CodeInstruction(OpCodes.Ldarg_0);
         codes[index - 2] = new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target)));
-        codes[index - 1] = new CodeInstruction(OpCodes.Callvirt, GetMethod<NetString>(nameof(NetString.Get)));
-        codes[index].operand = GetMethod<ItemDeliveryQuestPatcher>(nameof(GetRandomItem));
+        codes[index - 1] = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get)));
+        codes[index].operand = GetMethod(nameof(GetRandomItem));
 
         // 不知道为什么,但不这么做会报错
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.33));
@@ -273,5 +275,11 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
     private static int GetItemDeliveryFriendshipGain()
     {
         return config.ItemDeliveryFriendshipGain;
+    }
+
+    private static MethodInfo GetMethod(string name)
+    {
+        return AccessTools.Method(typeof(ItemDeliveryQuestPatcher), name) ??
+               throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(ItemDeliveryQuestPatcher), name)}.");
     }
 }

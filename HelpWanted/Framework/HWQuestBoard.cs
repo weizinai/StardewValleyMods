@@ -33,7 +33,7 @@ public sealed class HWQuestBoard : Billboard
     public HWQuestBoard(ModConfig config) : base(true)
     {
         this.config = config;
-        
+
         // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
         showingQuest = null;
@@ -63,12 +63,12 @@ public sealed class HWQuestBoard : Billboard
             QuestManager.QuestList.Clear();
         }
     }
-    
+
     public override void performHoverAction(int x, int y)
     {
         // 关闭按钮逻辑
         upperRightCloseButton?.tryHover(x, y, 0.5f);
-        
+
         if (showingQuest is null)
         {
             // 任务便签逻辑
@@ -137,16 +137,16 @@ public sealed class HWQuestBoard : Billboard
             }
         }
     }
-    
+
     public override void draw(SpriteBatch spriteBatch)
     {
         // 绘制阴影
         if (!Game1.options.showClearBackgrounds) spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
-        
+
         // 绘制面板纹理
         spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White,
             0f, Vector2.Zero, 4f, SpriteEffects.None, 1f);
-        
+
         if (!QuestNotes.Any())
         {
             spriteBatch.DrawString(Game1.dialogueFont, Game1.content.LoadString("Strings\\UI:Billboard_NothingPosted"),
@@ -164,7 +164,7 @@ public sealed class HWQuestBoard : Billboard
         for (var i = 0; i < Game1.stats.Get("BillboardQuestsDone") % 3; i++)
             spriteBatch.Draw(billboardTexture, Position + new Vector2(18 + 12 * i, 36f) * 4f, new Rectangle(140, 397, 10, 11), Color.White,
                 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
-        
+
         // 绘制祝尼魔
         if (Game1.player.hasCompletedCommunityCenter())
             spriteBatch.Draw(billboardTexture, Position + new Vector2(290f, 59f) * 4f, new Rectangle(0, 427, 39, 54), Color.White, 0f,
@@ -172,11 +172,11 @@ public sealed class HWQuestBoard : Billboard
 
         // 绘制右上角的关闭按钮
         if (upperRightCloseButton != null && shouldDrawCloseButton()) upperRightCloseButton.draw(spriteBatch);
-        
+
         // 绘制鼠标
         Game1.mouseCursorTransparency = 1f;
         drawMouse(spriteBatch);
-        
+
         // 绘制悬浮文本
         if (hoverText.Length > 0) drawHoverText(spriteBatch, hoverText, Game1.smallFont, 0, 0, -1, hoverTitle);
     }
@@ -212,7 +212,7 @@ public sealed class HWQuestBoard : Billboard
         // 如果尝试次数用完,还没有获得不冲突的矩形区域,则放回null
         return null;
     }
-    
+
     private void DrawShowingQuest(SpriteBatch spriteBatch)
     {
         var font = LocalizedContentManager.CurrentLanguageCode == LocalizedContentManager.LanguageCode.ko ? Game1.smallFont : Game1.dialogueFont;
@@ -231,7 +231,7 @@ public sealed class HWQuestBoard : Billboard
             new Rectangle(80, 128, 16, 16), Color.White, 0f, Vector2.Zero, 4f);
         SpriteText.drawString(spriteBatch, "x1", (int)Position.X + 936, (int)Position.Y + 596);
     }
-    
+
     private void DrawQuestNotes(SpriteBatch spriteBatch)
     {
         // 遍历所有的任务选项,绘制任务选项

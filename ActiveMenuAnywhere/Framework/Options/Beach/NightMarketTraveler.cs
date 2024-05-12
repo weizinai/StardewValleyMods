@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class NightMarketTraveler: BaseOption
+public class NightMarketTraveler : BaseOption
 {
     public NightMarketTraveler(Rectangle sourceRect) : base("NightMarketTraveler", sourceRect)
     {

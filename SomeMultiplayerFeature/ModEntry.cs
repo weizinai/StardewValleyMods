@@ -28,8 +28,8 @@ public class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsMultiplayer) return; 
-        
+        if (!Context.IsMultiplayer) return;
+
         if (config.ShowModInfoKeybind.JustPressed())
         {
             var modInstall = true;
@@ -59,7 +59,7 @@ public class ModEntry : Mod
                 Game1.addHUDMessage(hudMessage);
             }
         }
-        
+
         if (Context.IsMainPlayer && Game1.activeClickableMenu is ReadyCheckDialog menu && config.SetAllPlayerReadyKeybind.JustPressed())
         {
             Helper.Multiplayer.SendMessage(menu.checkName, "SetAllPlayerReady", new[] { "weizinai.SomeMultiplayerFeature" });
@@ -79,7 +79,7 @@ public class ModEntry : Mod
             };
             Game1.addHUDMessage(hudMessage);
         }
-        
+
         if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "SetAllPlayerReady" })
         {
             var message = e.ReadAs<string>();
@@ -88,7 +88,7 @@ public class ModEntry : Mod
                 case "sleep":
                     Helper.Reflection.GetMethod(new GameLocation(), "startSleep").Invoke();
                     break;
-                default: 
+                default:
                     Game1.netReady.SetLocalReady(message, true);
                     break;
             }

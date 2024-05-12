@@ -23,7 +23,7 @@ internal class BillboardPatcher : BasePatcher
             GetHarmonyMethod(nameof(DrawPrefix))
         );
     }
-    
+
     private static bool DrawPrefix(bool ___dailyQuestBoard)
     {
         if (!___dailyQuestBoard) return true;

@@ -4,7 +4,7 @@
     "Config.ToggleModStateKeybind.Tooltip": "Keybind for toggling automation feature in mods. AutoOpenAnimalDoor and ShowInfo are not affected.",
     "Config.Cooldown.Name": "Cooldown",
     "Config.Cooldown.Tooltip": "The cooldown (frames) for each automation operation. The option needs to start a new day after the change to take effect.",
-    
+
     // Farming
     "Config.FarmingPage.Name": "Farming",
     "Config.AutoTillDirt.Name": "Auto Till Dirt",
@@ -220,7 +220,7 @@
     "Config.AutoPlaceFloor.Name": "Auto Place Floor",
     "Config.AutoPlaceFloor.Tooltip": "This feature only works when you hold the floor.",
     "Config.AutoPlaceFloorRange.Name": "Auto Place Floor Range",
-    
+
     // Tree Settings
     "Config.TreeSettingsPage.Name": "Tree Settings",
     "Config.TreeSettingsPage.Tooltip": "Here you can set the tree that automatically chops the tree.",
@@ -246,7 +246,7 @@
     "Config.ChopSaplingStagePineTree.Name": "Chop Sapling Stage Pine Tree",
     "Config.ChopBushStagePineTree.Name": "Chop Bush Stage Pine Tree",
     "Config.ChopSmallTreeStagePineTree.Name": "Chop Small Tree Stage Pine Tree",
-    "Config.ChopPineTree.Name" : "Chop Pine Tree",
+    "Config.ChopPineTree.Name": "Chop Pine Tree",
     "Config.ChopStumpStagePineTree.Name": "Chop Stump Stage Pine Tree",
     "Config.MahoganyTreeTitle.Name": "Mahogany Tree",
     "Config.ChopSeedStageMahoganyTree.Name": "Chop Seed Stage Mahogany Tree",
@@ -302,6 +302,6 @@
     "BuffType.None.Name": "None",
 
     // Message
-    "Message.ModEnable":"The mod automation feature is enabled.",
-    "Message.ModDisable":"The mod automation feature is disable.",
+    "Message.ModEnable": "The mod automation feature is enabled.",
+    "Message.ModDisable": "The mod automation feature is disable."
 }

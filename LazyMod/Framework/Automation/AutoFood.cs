@@ -18,10 +18,10 @@ public class AutoFood : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         if (tool is FishingRod fishingRod && (fishingRod.isReeling || fishingRod.isFishing || fishingRod.pullingOutOfWater || fishingRod.isCasting)) return;
-        
+
         FindFoodFromInventory(player);
         if (!foodData.Any()) return;
-        
+
         // 自动吃食物-体力
         if (config.AutoEatFoodForStamina) AutoEatFoodForStamina(player);
         // 自动吃食物-生命值
@@ -42,7 +42,7 @@ public class AutoFood : Automate
             EatFirstFood(player, foodData.Keys.First());
             return;
         }
-        
+
         if (foodData.Count > 1)
         {
             var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
@@ -67,7 +67,7 @@ public class AutoFood : Automate
             EatFirstFood(player, foodData.Keys.First());
             return;
         }
-        
+
         if (foodData.Count > 1)
         {
             var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
@@ -92,7 +92,7 @@ public class AutoFood : Automate
         if (!foodList.Any()) return;
         EatFirstFood(player, foodList.First());
     }
-    
+
     // 自动喝增益饮料
     private void AutoDrinkBuffDrink(Farmer player)
     {
@@ -103,7 +103,7 @@ public class AutoFood : Automate
         if (!foodList.Any()) return;
         EatFirstFood(player, foodList.First());
     }
-    
+
     private List<SObject> GetBuffFoodList(string buffId, params BuffType[] buffTypes)
     {
         var foodList = new List<SObject>();
@@ -123,6 +123,7 @@ public class AutoFood : Automate
                 }
             }
         }
+
         return foodList;
     }
 

@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Reflection.Emit;
 using Common.Patch;
 using FriendshipDecayModify.Framework;
@@ -29,11 +30,11 @@ internal class FarmerPatcher : BasePatcher
         var codes = instructions.ToList();
 
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-20));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmerPatcher>(nameof(GetDailyGreetingModifyForSpouse)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDailyGreetingModifyForSpouse)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-8));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmerPatcher>(nameof(GetDailyGreetingModifyForDatingVillager)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDailyGreetingModifyForDatingVillager)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-2));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<FarmerPatcher>(nameof(GetDailyGreetingModifyForVillager)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDailyGreetingModifyForVillager)));
 
         return codes.AsEnumerable();
     }
@@ -51,5 +52,11 @@ internal class FarmerPatcher : BasePatcher
     private static int GetDailyGreetingModifyForSpouse()
     {
         return -config.DailyGreetingModifyForSpouse;
+    }
+
+    private static MethodInfo GetMethod(string name)
+    {
+        return AccessTools.Method(typeof(FarmerPatcher), name) ??
+               throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(FarmerPatcher), name)}.");
     }
 }

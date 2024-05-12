@@ -21,7 +21,7 @@ internal class MineShaftPatcher : BasePatcher
     {
         harmony.Patch(RequireMethod<MineShaft>(nameof(MineShaft.loadLevel)), transpiler: GetHarmonyMethod(nameof(LoadLevelTranspiler)));
     }
-    
+
     private static IEnumerable<CodeInstruction> LoadLevelTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
@@ -32,7 +32,7 @@ internal class MineShaftPatcher : BasePatcher
         {
             if (!findChanceField && codes[i].opcode == OpCodes.Call)
             {
-                if (codes[i].opcode == OpCodes.Call && codes[i].operand.Equals(GetMethod<Utility>(nameof(Utility.CreateDaySaveRandom))))
+                if (codes[i].opcode == OpCodes.Call && codes[i].operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.CreateDaySaveRandom))))
                     findCreateDaySaveRandomMethod = true;
             }
 

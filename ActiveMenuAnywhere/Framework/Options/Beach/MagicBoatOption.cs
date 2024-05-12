@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class MagicBoatOption: BaseOption
+public class MagicBoatOption : BaseOption
 {
     public MagicBoatOption(Rectangle sourceRect) : base("MagicBoat", sourceRect)
     {
@@ -12,7 +12,7 @@ public class MagicBoatOption: BaseOption
     public override void ReceiveLeftClick()
     {
         if (Utility.IsPassiveFestivalDay("NightMarket"))
-             Utility.TryOpenShopMenu("Festival_NightMarket_MagicBoat_Day"+Utility.GetDayOfPassiveFestival("NightMarket"), null, false);
+            Utility.TryOpenShopMenu("Festival_NightMarket_MagicBoat_Day" + Utility.GetDayOfPassiveFestival("NightMarket"), null, false);
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

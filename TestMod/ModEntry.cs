@@ -21,7 +21,7 @@ public class ModEntry : Mod
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this, new GameLocationPatcher());
     }
-    
+
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");

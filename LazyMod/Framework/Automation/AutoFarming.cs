@@ -44,10 +44,10 @@ public class AutoFarming : Automate
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
         if (player.Stamina <= config.StopTillDirtStamina) return;
-        
+
         var grid = GetTileGrid(player, config.AutoTillDirtRange);
         foreach (var tile in grid)
-        {   
+        {
             if (!CanTillDirt(location, tile)) continue;
             UseToolOnTile(location, player, tool, tile);
         }
@@ -57,7 +57,7 @@ public class AutoFarming : Automate
     private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
     {
         if (player.Stamina <= config.StopClearTilledDirtStamina) return;
-        
+
         var grid = GetTileGrid(player, config.AutoClearTilledDirtRange);
         foreach (var tile in grid)
         {
@@ -73,7 +73,7 @@ public class AutoFarming : Automate
     private void AutoWaterDirt(GameLocation location, Farmer player, WateringCan wateringCan)
     {
         if (player.Stamina <= config.StopWaterDirtStamina) return;
-        
+
         var hasAddWaterMessage = true;
         var grid = GetTileGrid(player, config.AutoWaterDirtRange);
         foreach (var tile in grid)
@@ -88,7 +88,7 @@ public class AutoFarming : Automate
                 }
 
                 hasAddWaterMessage = false;
-                
+
                 UseToolOnTile(location, player, wateringCan, tile);
                 if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
                 {
@@ -104,7 +104,7 @@ public class AutoFarming : Automate
         var wateringCan = FindToolFromInventory<WateringCan>();
         if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
             return;
-        
+
         var grid = GetTileGrid(player, config.AutoRefillWateringCanRange);
         foreach (var tile in grid.Where(tile => location.CanRefillWateringCanOnTile((int)tile.X, (int)tile.Y)))
         {
@@ -124,7 +124,7 @@ public class AutoFarming : Automate
             {
                 location.objects.TryGetValue(tile, out var obj);
                 if (obj is not null) continue;
-                
+
                 if (item.Stack <= 0)
                     break;
 
@@ -199,7 +199,7 @@ public class AutoFarming : Automate
     {
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
-        
+
         var grid = GetTileGrid(player, config.AutoHarvestCropRange);
         foreach (var tile in grid)
         {

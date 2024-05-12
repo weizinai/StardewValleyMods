@@ -99,7 +99,7 @@ public class AutoOther : Automate
     private void AutoDigSpots(GameLocation location, Farmer player)
     {
         if (player.Stamina <= config.StopDigSpotsStamina) return;
-        
+
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null)
             return;
@@ -132,17 +132,17 @@ public class AutoOther : Automate
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is null) continue; 
+            if (obj is null) continue;
             var machineData = obj.GetMachineData();
             if (machineData is null) continue;
-            
-            if (machineData.AdditionalConsumedItems is not null  && 
+
+            if (machineData.AdditionalConsumedItems is not null &&
                 !MachineDataUtility.HasAdditionalRequirements(SObject.autoLoadFrom ?? player.Items, machineData.AdditionalConsumedItems, out _))
                 continue;
 
             if (obj.PlaceInMachine(machineData, item, false, player))
             {
-                MachineDataUtility.TryGetMachineOutputRule(obj, machineData, MachineOutputTrigger.ItemPlacedInMachine, item, player, location, 
+                MachineDataUtility.TryGetMachineOutputRule(obj, machineData, MachineOutputTrigger.ItemPlacedInMachine, item, player, location,
                     out _, out var triggerRule, out _, out _);
                 if (item.Stack <= triggerRule.RequiredCount) break;
             }
@@ -161,10 +161,9 @@ public class AutoOther : Automate
                 var action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
                 if (action?.StartsWith("Garbage") ?? false) CheckTileAction(location, player, tile);
             }
-            
         }
     }
-    
+
     // 自动放置地板
     private void AutoPlaceFloor(GameLocation location, Farmer player, SObject floor)
     {

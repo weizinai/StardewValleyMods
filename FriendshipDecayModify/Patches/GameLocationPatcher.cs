@@ -28,8 +28,8 @@ internal class GameLocationPatcher : BasePatcher
     {
         var codes = instructions.ToList();
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(GetMethod<Farmer>(nameof(Farmer.changeFriendship))));
-        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, GetMethod<GameLocationPatcher>(nameof(GetGarbageCanModify))));
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.changeFriendship))));
+        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetGarbageCanModify))));
 
         return codes.AsEnumerable();
     }

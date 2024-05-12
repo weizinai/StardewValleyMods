@@ -41,9 +41,9 @@ public class AutomationManger
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
     {
         if (!modEnable || !UpdateCooldown()) return;
-        
+
         (automations[4] as AutoFishing)!.AutoMenuFunction();
-        
+
         UpdateAutomate();
     }
 
@@ -51,7 +51,7 @@ public class AutomationManger
     {
         skippedActionTicks++;
         if (skippedActionTicks < ticksPerAction) return false;
-        
+
         skippedActionTicks = 0;
         return true;
     }
@@ -59,7 +59,7 @@ public class AutomationManger
     private void UpdateAutomate()
     {
         if (!Context.IsPlayerFree) return;
-        
+
         location = Game1.currentLocation;
         player = Game1.player;
         tool = player?.CurrentTool;

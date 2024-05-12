@@ -18,8 +18,9 @@ public class QuestData
     public float IconScale { get; set; }
     public Point IconOffset { get; set; }
     public Quest Quest { get; set; }
-    
-    public QuestData(Texture2D padTexture, Rectangle padTextureSource, Color padColor, Texture2D pinTexture, Rectangle pinTextureSource, Color pinColor, Texture2D icon, Rectangle iconSource, Color iconColor, float iconScale, Point iconOffset, Quest quest)
+
+    public QuestData(Texture2D padTexture, Rectangle padTextureSource, Color padColor, Texture2D pinTexture, Rectangle pinTextureSource, Color pinColor, Texture2D icon,
+        Rectangle iconSource, Color iconColor, float iconScale, Point iconOffset, Quest quest)
     {
         PadTexture = padTexture;
         PadTextureSource = padTextureSource;

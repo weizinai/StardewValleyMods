@@ -43,7 +43,7 @@ public class AutoFishing : Automate
         {
             if (items[i] is null) continue;
             if (!CanAddItemToInventory(items[i])) break;
-            
+
             var center = menu.ItemsToGrabMenu.inventory[i].bounds.Center;
             menu.receiveLeftClick(center.X, center.Y);
         }

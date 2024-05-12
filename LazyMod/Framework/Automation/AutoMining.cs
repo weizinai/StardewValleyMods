@@ -71,7 +71,7 @@ public class AutoMining : Automate
                     }
                 }
             }
-            
+
             foreach (var clump in location.resourceClumps)
             {
                 if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
@@ -158,7 +158,7 @@ public class AutoMining : Automate
             }
         }
     }
-    
+
     // 自动冷却岩浆
     private void AutoCoolLava(GameLocation location, Farmer player)
     {
@@ -177,7 +177,7 @@ public class AutoMining : Automate
             }
 
             hasAddWaterMessage = false;
-            
+
             if (player.Stamina <= config.StopCoolLavaStamina) return;
             if (!CanCoolLave(dungeon, tile)) continue;
             UseToolOnTile(location, player, wateringCan, tile);
@@ -190,7 +190,7 @@ public class AutoMining : Automate
     {
         var x = (int)tile.X;
         var y = (int)tile.Y;
-        return !dungeon.CanRefillWateringCanOnTile(x,y) &&
+        return !dungeon.CanRefillWateringCanOnTile(x, y) &&
                dungeon.isTileOnMap(tile) &&
                dungeon.waterTiles[x, y] &&
                !dungeon.cooledLavaTiles.ContainsKey(tile);

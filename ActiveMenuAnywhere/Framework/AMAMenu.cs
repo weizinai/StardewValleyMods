@@ -30,7 +30,7 @@ public class AMAMenu : IClickableMenu
     private ClickableTextureComponent downArrow;
     private ClickableComponent title;
     private ClickableTextureComponent upArrow;
-    
+
     public AMAMenu(MenuTabID menuTabID, IModHelper helper)
     {
         this.helper = helper;
@@ -149,7 +149,7 @@ public class AMAMenu : IClickableMenu
         var tabOffset = (x: 4, y: 16);
         var tabSize = (width: 100, height: 48);
         var tabPosition = (x: xPositionOnScreen - tabSize.width, y: yPositionOnScreen + tabOffset.y);
-        
+
         return new Rectangle(tabPosition.x, tabPosition.y + tabSize.height * index, tabSize.width - tabOffset.x, tabSize.height);
     }
 
@@ -286,7 +286,7 @@ public class AMAMenu : IClickableMenu
                 {
                     new RSVQuestBoardOption(GetSourceRectangle(0), helper),
                     new RSVSpecialOrderOption(GetSourceRectangle(1), helper),
-                    new IanOption(GetSourceRectangle(2),helper),
+                    new IanOption(GetSourceRectangle(2), helper),
                     new PaulaOption(GetSourceRectangle(3), helper),
                     new LorenzoOption(GetSourceRectangle(4)),
                     new JericOption(GetSourceRectangle(5)),

@@ -1,4 +1,5 @@
 // ReSharper disable MemberCanBePrivate.Global
+
 namespace SomeMultiplayerFeature.Framework;
 
 public class Message

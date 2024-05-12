@@ -17,11 +17,11 @@ internal class TownPatcher : BasePatcher
             postfix: GetHarmonyMethod(nameof(DrawPostfix))
         );
     }
-    
+
     private static void DrawPostfix(SpriteBatch spriteBatch)
     {
         if (!QuestManager.QuestList.Any() && !HWQuestBoard.QuestNotes.Any()) return;
-        
+
         var yOffset = 4f * (float)Math.Round(Math.Sin(Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 250.0), 2);
         spriteBatch.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, new Vector2(2692f, 3528f + yOffset)),
             new Rectangle(395, 497, 3, 8), Color.White, 0f, new Vector2(1f, 4f), 4f + Math.Max(0f, 0.25f - yOffset / 16f),

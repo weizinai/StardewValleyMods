@@ -57,7 +57,7 @@ public class AutoForaging : Automate
     private void AutoHarvestGinger(GameLocation location, Farmer player)
     {
         if (player.Stamina <= config.StopHarvestGingerStamina) return;
-        
+
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null) return;
 
@@ -76,7 +76,7 @@ public class AutoForaging : Automate
     private void AutoChopTree(GameLocation location, Farmer player, Tool tool)
     {
         if (player.Stamina <= config.StopChopTreeStamina) return;
-        
+
         var treeType = new Dictionary<string, Dictionary<int, bool>>
         {
             { Tree.bushyTree, config.ChopOakTree },
@@ -192,7 +192,7 @@ public class AutoForaging : Automate
     private void AutoClearWood(GameLocation location, Farmer player)
     {
         if (player.Stamina <= config.StopClearWoodStamina) return;
-        
+
         var axe = FindToolFromInventory<Axe>();
         if (axe is null) return;
 
@@ -207,11 +207,11 @@ public class AutoForaging : Automate
                     UseToolOnTile(location, player, axe, tile);
                 }
             }
-            
+
             foreach (var clump in location.resourceClumps)
             {
                 if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
-            
+
                 var clear = false;
                 var requiredUpgradeLevel = Tool.stone;
 
@@ -220,13 +220,13 @@ public class AutoForaging : Automate
                     clear = true;
                     requiredUpgradeLevel = Tool.copper;
                 }
-                
+
                 if (config.ClearHollowLog && clump.parentSheetIndex.Value == ResourceClump.hollowLogIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.steel;
                 }
-            
+
                 if (clear && axe.UpgradeLevel >= requiredUpgradeLevel)
                 {
                     UseToolOnTile(location, player, axe, tile);

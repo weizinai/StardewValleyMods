@@ -105,7 +105,7 @@ public class ModConfig
     public bool ClearOtherStone { get; set; }
     public bool ClearIslandStone { get; set; }
     public bool ClearOreStone { get; set; }
-    public bool ClearGemStone { get; set; } 
+    public bool ClearGemStone { get; set; }
     public bool ClearGeodeStone { get; set; }
     public bool ClearCalicoEggStone { get; set; }
     public bool ClearBoulder { get; set; }

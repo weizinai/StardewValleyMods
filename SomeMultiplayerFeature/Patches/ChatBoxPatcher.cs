@@ -17,7 +17,6 @@ internal class ChatBoxPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        
     }
 
     private static void RunCommandPrefix(ChatBox __instance, string command)
@@ -26,9 +25,9 @@ internal class ChatBoxPatcher : BasePatcher
         switch (split[0])
         {
             case "cpm":
-                if (!Game1.IsMultiplayer || !Game1.IsServer) 
+                if (!Game1.IsMultiplayer || !Game1.IsServer)
                     break;
-                
+
                 break;
         }
     }

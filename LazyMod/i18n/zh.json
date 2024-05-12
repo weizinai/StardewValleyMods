@@ -4,7 +4,7 @@
     "Config.ToggleModStateKeybind.Tooltip": "切换模组自动化功能是否启用的快捷键.自动打开动物门和显示信息功能不受影响.",
     "Config.Cooldown.Name": "冷却时间",
     "Config.Cooldown.Tooltip": "每次自动化操作的冷却时间(帧).该选项更改后需要开始新的一天才会生效.",
-    
+
     // 耕种
     "Config.FarmingPage.Name": "耕种",
     "Config.AutoTillDirt.Name": "自动耕地",
@@ -246,7 +246,7 @@
     "Config.ChopSaplingStagePineTree.Name": "砍松树苗",
     "Config.ChopBushStagePineTree.Name": "砍松树丛",
     "Config.ChopSmallTreeStagePineTree.Name": "砍小松树",
-    "Config.ChopPineTree.Name" : "砍松树",
+    "Config.ChopPineTree.Name": "砍松树",
     "Config.ChopStumpStagePineTree.Name": "砍松树桩",
     "Config.MahoganyTreeTitle.Name": "桃花心木树",
     "Config.ChopSeedStageMahoganyTree.Name": "砍桃花心木树种子",

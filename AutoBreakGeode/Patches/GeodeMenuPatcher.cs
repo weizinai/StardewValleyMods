@@ -71,7 +71,7 @@ internal class GeodeMenuPatcher : BasePatcher
         var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt &&
                                             (MethodInfo)code.operand == AccessTools.Method(typeof(SpriteBatch), nameof(SpriteBatch.Draw), parameters));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
-        codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, GetMethod<GeodeMenuPatcher>(nameof(DrawButton))));
+        codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GeodeMenuPatcher), nameof(DrawButton))));
         return codes.AsEnumerable();
     }
 

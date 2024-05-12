@@ -24,7 +24,7 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
             GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
         );
     }
-    
+
     private static bool LoadQuestInfoPrefix(ResourceCollectionQuest __instance)
     {
         if (__instance.target.Value is not null && __instance.ItemId.Value is not null)
@@ -36,7 +36,7 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
         hasLoadQuestInfo = true;
         return true;
     }
-    
+
     private static void LoadQuestInfoPostfix(ref NetInt ___reward, ref NetDescriptionElementList ___parts)
     {
         if (hasLoadQuestInfo) return;

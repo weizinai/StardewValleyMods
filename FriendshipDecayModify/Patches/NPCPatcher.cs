@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Reflection.Emit;
 using Common.Patch;
 using FriendshipDecayModify.Framework;
@@ -27,11 +28,11 @@ internal class NPCPatcher : BasePatcher
     private static IEnumerable<CodeInstruction> ReceiveGiftTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
-        
+
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R4 && code.operand.Equals(-40f));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<NPCPatcher>(nameof(GetHateGiftModify)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetHateGiftModify)));
         index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R4 && code.operand.Equals(-20f));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod<NPCPatcher>(nameof(GetDislikeGiftModify)));
+        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDislikeGiftModify)));
 
         return codes.AsEnumerable();
     }
@@ -40,9 +41,15 @@ internal class NPCPatcher : BasePatcher
     {
         return -config.HateGiftModify;
     }
-    
+
     private static float GetDislikeGiftModify()
     {
         return -config.DislikeGiftModify;
+    }
+
+    private static MethodInfo GetMethod(string name)
+    {
+        return AccessTools.Method(typeof(NPCPatcher), name) ??
+               throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(FarmerPatcher), name)}.");
     }
 }

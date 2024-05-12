@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Text;
 using HarmonyLib;
 
 namespace Common.Patch;
@@ -29,12 +28,6 @@ internal abstract class BasePatcher : IPatcher
                throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(T), name, parameters)} to patch.");
     }
 
-    // protected static MethodInfo GetMethod<T>(string name, Type[]? parameters = null)
-    // {
-    //     return AccessTools.Method(typeof(T), name, parameters) ??
-    //            throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(T), name)}.");
-    // }
-
     /// <summary>获取当前实例上的 Harmony 方法。</summary>
     /// <param name="name">方法名称。</param>
     protected HarmonyMethod GetHarmonyMethod(string name)
@@ -49,26 +42,10 @@ internal abstract class BasePatcher : IPatcher
     /// <param name="parameters">方法参数类型，如果未重载则为 <c>null</c>。</param>
     protected static string GetMethodString(Type type, string? name, Type[]? parameters = null)
     {
-        var methodString = new StringBuilder();
+        var paramString = parameters?.Any() == true 
+            ? $"({string.Join(", ", parameters.Select(p => p.FullName))})"
+            : string.Empty;
 
-        // 类名
-        methodString.Append(type.FullName);
-
-        // 方法名(非构造函数)
-        if (name is not null)
-        {
-            methodString.Append('.');
-            methodString.Append(name);
-        }
-
-        // 参数
-        if (parameters?.Any() == true)
-        {
-            methodString.Append('(');
-            methodString.Append(string.Join(", ", parameters.Select(p => p.FullName)));
-            methodString.Append(')');
-        }
-
-        return methodString.ToString();
+        return $"{type.FullName}{(name != null ? "." + name : string.Empty)}{paramString}";
     }
 }

@@ -7,7 +7,7 @@ using TestMod.Patches;
 
 namespace TestMod;
 
-public class ModEntry : Mod
+internal class ModEntry : Mod
 {
     private ModConfig config = null!;
 
@@ -19,7 +19,7 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new GameLocationPatcher());
+        HarmonyPatcher.Apply(this, new FishingRodPatcher());
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

@@ -3,7 +3,7 @@ using HarmonyLib;
 
 namespace Common.Patch;
 
-internal abstract class BasePatcher : IPatcher
+public abstract class BasePatcher : IPatcher
 {
     public abstract void Apply(Harmony harmony);
 

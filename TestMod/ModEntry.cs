@@ -17,7 +17,7 @@ internal class ModEntry : Mod
         config = helper.ReadConfig<ModConfig>();
         I18n.Init(helper.Translation);
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        // helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this, new FishingRodPatcher());
     }

@@ -2,11 +2,11 @@
 
 ## 矿井地图修改
 
-可以在GenericModConfigMenu中设置想要访问的矿井地图的ID.用于测试1.6中新添加的矿井地图。
+可以在`GenericModConfigMenu`中设置想要访问的矿井地图的ID.用于测试1.6中新添加的矿井地图。
 
 ## 火山地图修改
 
-可以在GenericModConfigMenu中设置想要访问的火山地图的ID.用于测试1.6中新添加的火山地图.
+可以在`GenericModConfigMenu`中设置想要访问的火山地图的ID.用于测试1.6中新添加的火山地图.
 
 ## 鱼的狂潮修改
 

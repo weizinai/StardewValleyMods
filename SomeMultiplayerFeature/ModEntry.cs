@@ -12,6 +12,7 @@ namespace SomeMultiplayerFeature;
 public class ModEntry : Mod
 {
     private ModConfig config = new();
+    private IClickableMenu? lastShopMenu;
 
     public override void Entry(IModHelper helper)
     {
@@ -20,10 +21,25 @@ public class ModEntry : Mod
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new UtilityPatcher(helper), new IClickableMenuPatcher(helper));
+        // HarmonyPatcher.Apply(this, new UtilityPatcher(helper), new IClickableMenuPatcher(helper));
+    }
+
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    {
+        if (Game1.activeClickableMenu is ShopMenu && lastShopMenu is not ShopMenu)
+        {
+            Game1.addHUDMessage(new HUDMessage("进入商店"));
+        }
+        else if (lastShopMenu is ShopMenu && Game1.activeClickableMenu is not ShopMenu)
+        {
+            Game1.addHUDMessage(new HUDMessage("离开商店"));
+        }
+        
+        lastShopMenu = Game1.activeClickableMenu;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

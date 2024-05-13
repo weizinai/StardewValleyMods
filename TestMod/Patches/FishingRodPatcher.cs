@@ -24,7 +24,7 @@ public class FishingRodPatcher : BasePatcher
     {
         var codes = instructions.ToList();
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.25));
-        codes[index].operand = 1;
+        codes[index].operand = 1.0;
         return codes.AsEnumerable();
     }
 }

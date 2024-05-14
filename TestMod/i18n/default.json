@@ -3,5 +3,7 @@
     "Config.MineShaftMap.ToolTip": "该选项需要重启游戏才能生效.",
     "Config.VolcanoDungeonMap.Name": "火山地图",
     "Config.VolcanoDungeonMap.ToolTip": "该选项可及时生效.",
+    "Config.RandomInt.Name": "随机 int",
+    "Config.RandomBool.Name": "随机 bool",
     "UI.Button.Name": "开始"
 }

@@ -1,5 +1,6 @@
 ﻿{
     // Config
+    "Config.OpenConfigMenuKeybind.Name": "Open Config Menu Keybind",
     "Config.ToggleModStateKeybind.Name": "Toggle Mod State Keybind",
     "Config.ToggleModStateKeybind.Tooltip": "Keybind for toggling automation feature in mods. AutoOpenAnimalDoor and ShowInfo are not affected.",
     "Config.Cooldown.Name": "Cooldown",

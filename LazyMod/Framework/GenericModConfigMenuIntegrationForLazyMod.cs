@@ -24,9 +24,14 @@ public class GenericModConfigMenuIntegrationForLazyMod
     public void Register()
     {
         if (!configMenu.IsLoaded) return;
-        
+
         configMenu
             .Register()
+            .AddKeybindList(
+                config => config.OpenConfigMenuKeybind,
+                (config, value) => config.OpenConfigMenuKeybind = value,
+                I18n.Config_OpenConfigMenuKeybind_Name
+            )
             .AddKeybindList(
                 config => config.ToggleModStateKeybind,
                 (config, value) => config.ToggleModStateKeybind = value,

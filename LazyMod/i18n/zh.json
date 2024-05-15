@@ -1,5 +1,6 @@
 ﻿{
     // 配置选项
+    "Config.OpenConfigMenuKeybind.Name": "打开配置菜单快捷键",
     "Config.ToggleModStateKeybind.Name": "切换模组状态快捷键",
     "Config.ToggleModStateKeybind.Tooltip": "切换模组自动化功能是否启用的快捷键.自动打开动物门和显示信息功能不受影响.",
     "Config.Cooldown.Name": "冷却时间",

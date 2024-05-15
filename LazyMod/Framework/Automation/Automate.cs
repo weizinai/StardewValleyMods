@@ -17,6 +17,11 @@ public abstract class Automate
     }
 
     public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
+    
+    public void UpdateConfig(ModConfig config)
+    {
+        Config = config;
+    }
 
     protected List<Vector2> GetTileGrid(Farmer player, int range)
     {

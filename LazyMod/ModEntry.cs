@@ -65,7 +65,7 @@ internal class ModEntry : Mod
 
     private void UpdateConfig()
     {
-        
+        automationManger.UpdateConfig(config);
     }
 
     private void Migrate()

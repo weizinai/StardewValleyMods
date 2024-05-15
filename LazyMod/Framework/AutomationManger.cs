@@ -7,7 +7,7 @@ namespace LazyMod.Framework;
 
 public class AutomationManger
 {
-    private readonly ModConfig config;
+    private ModConfig config;
     private readonly List<Automate> automations = new();
 
     private GameLocation? location;
@@ -102,6 +102,11 @@ public class AutomationManger
 
     public void UpdateConfig(ModConfig newConfig)
     {
-        
+        foreach (var automation in automations)
+        {
+            automation.UpdateConfig(newConfig);
+        }
+
+        config = newConfig;
     }
 }

@@ -77,9 +77,11 @@ public class AutomationManger
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (config.ToggleModStateKeybind.JustPressed())
+        if (config.ToggleModStateKeybind.JustPressed() && Context.IsPlayerFree)
         {
-            Game1.addHUDMessage(modEnable ? new HUDMessage(I18n.Message_ModDisable()) : new HUDMessage(I18n.Message_ModEnable()));
+            var message = modEnable ? new HUDMessage(I18n.Message_ModDisable()) : new HUDMessage(I18n.Message_ModEnable());
+            message.noIcon = true;
+            Game1.addHUDMessage(message);
             modEnable = !modEnable;
         }
     }

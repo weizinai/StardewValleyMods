@@ -13,9 +13,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs"/>
-    <Compile Include="$(MSBuildThisFileDirectory)Integrations\BaseIntegration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Integrations\GenericModConfigMenu\GenericModConfigMenuIntegration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\GenericModConfigMenu\IGenericModConfigMenuAPI.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Integrations\IModIntegration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\RSV\RSVIntegration.cs" />
         <Compile Include="$(MSBuildThisFileDirectory)ItemRepository.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)ResourceClumpRepository.cs"/>

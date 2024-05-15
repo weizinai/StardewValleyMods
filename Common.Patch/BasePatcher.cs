@@ -6,6 +6,7 @@ namespace Common.Patch;
 /// <summary>Provides base implementation logic for <see cref="IPatcher"/> instances.</summary>
 public abstract class BasePatcher : IPatcher
 {
+    /// <inheritdoc />
     public abstract void Apply(Harmony harmony);
 
     /// <summary>Get a constructor and assert that it was found.</summary>

@@ -17,13 +17,6 @@ internal class ModEntry : Mod
         // 初始化
         config = helper.ReadConfig<ModConfig>();
         automationManger = new AutomationManger(helper, config);
-        integration = new GenericModConfigMenuIntegrationForLazyMod(
-            Helper.ModRegistry,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
-        );
         I18n.Init(helper.Translation);
 
         // 注册事件
@@ -38,7 +31,8 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (config.OpenConfigMenuKeybind.JustPressed()) integration.OpenMenu();
+        if (config.OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree) 
+            integration.OpenMenu();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -55,6 +49,13 @@ internal class ModEntry : Mod
     {
         miningHud = new MiningHud(Helper, config);
 
+        integration = new GenericModConfigMenuIntegrationForLazyMod(
+            Helper.ModRegistry,
+            ModManifest,
+            () => config,
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
+        );
         integration.Register();
     }
 

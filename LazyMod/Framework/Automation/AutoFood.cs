@@ -7,12 +7,10 @@ namespace LazyMod.Framework.Automation;
 
 public class AutoFood : Automate
 {
-    private readonly ModConfig config;
     private readonly Dictionary<SObject, string?> foodData = new();
 
-    public AutoFood(ModConfig config)
+    public AutoFood(ModConfig config): base(config)
     {
-        this.config = config;
     }
 
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
@@ -23,21 +21,21 @@ public class AutoFood : Automate
         if (!foodData.Any()) return;
 
         // 自动吃食物-体力
-        if (config.AutoEatFoodForStamina) AutoEatFoodForStamina(player);
+        if (Config.AutoEatFoodForStamina) AutoEatFoodForStamina(player);
         // 自动吃食物-生命值
-        if (config.AutoEatFoodForHealth) AutoEatFoodForHealth(player);
+        if (Config.AutoEatFoodForHealth) AutoEatFoodForHealth(player);
         // 自动吃食物-Buff
-        if (config.AutoEatBuffFood) AutoEatBuffFood(player);
+        if (Config.AutoEatBuffFood) AutoEatBuffFood(player);
         // 自动喝饮料-Buff
-        if (config.AutoDrinkBuffDrink) AutoDrinkBuffDrink(player);
+        if (Config.AutoDrinkBuffDrink) AutoDrinkBuffDrink(player);
     }
 
     // 自动吃食物-体力
     private void AutoEatFoodForStamina(Farmer player)
     {
-        if (player.Stamina > player.MaxStamina * config.AutoEatFoodStaminaRate) return;
+        if (player.Stamina > player.MaxStamina * Config.AutoEatFoodStaminaRate) return;
 
-        if (!config.IntelligentFoodSelectionForStamina)
+        if (!Config.IntelligentFoodSelectionForStamina)
         {
             EatFirstFood(player, foodData.Keys.First());
             return;
@@ -46,7 +44,7 @@ public class AutoFood : Automate
         if (foodData.Count > 1)
         {
             var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
-            if (allFood[0].Stack - allFood[1].Stack > config.RedundantStaminaFoodCount)
+            if (allFood[0].Stack - allFood[1].Stack > Config.RedundantStaminaFoodCount)
             {
                 EatFirstFood(player, allFood[0]);
                 return;
@@ -60,9 +58,9 @@ public class AutoFood : Automate
     // 自动吃食物-生命值
     private void AutoEatFoodForHealth(Farmer player)
     {
-        if (player.health > player.maxHealth * config.AutoEatFoodHealthRate) return;
+        if (player.health > player.maxHealth * Config.AutoEatFoodHealthRate) return;
 
-        if (!config.IntelligentFoodSelectionForHealth)
+        if (!Config.IntelligentFoodSelectionForHealth)
         {
             EatFirstFood(player, foodData.Keys.First());
             return;
@@ -71,7 +69,7 @@ public class AutoFood : Automate
         if (foodData.Count > 1)
         {
             var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
-            if (allFood[0].Stack - allFood[1].Stack > config.RedundantHealthFoodCount)
+            if (allFood[0].Stack - allFood[1].Stack > Config.RedundantHealthFoodCount)
             {
                 EatFirstFood(player, allFood[0]);
                 return;
@@ -86,9 +84,9 @@ public class AutoFood : Automate
     private void AutoEatBuffFood(Farmer player)
     {
         if (player.buffs.AppliedBuffs.Values.Any(buff => buff.id is "food")) return;
-        var foodList = GetBuffFoodList("food", config.FoodBuffMaintain1, config.FoodBuffMaintain2);
-        if (!foodList.Any()) foodList = GetBuffFoodList("food", config.FoodBuffMaintain1);
-        if (!foodList.Any()) foodList = GetBuffFoodList("food", config.FoodBuffMaintain2);
+        var foodList = GetBuffFoodList("food", Config.FoodBuffMaintain1, Config.FoodBuffMaintain2);
+        if (!foodList.Any()) foodList = GetBuffFoodList("food", Config.FoodBuffMaintain1);
+        if (!foodList.Any()) foodList = GetBuffFoodList("food", Config.FoodBuffMaintain2);
         if (!foodList.Any()) return;
         EatFirstFood(player, foodList.First());
     }
@@ -97,9 +95,9 @@ public class AutoFood : Automate
     private void AutoDrinkBuffDrink(Farmer player)
     {
         if (player.buffs.AppliedBuffs.Values.Any(buff => buff.id is "drink")) return;
-        var foodList = GetBuffFoodList("drink", config.DrinkBuffMaintain1, config.DrinkBuffMaintain2);
-        if (!foodList.Any()) foodList = GetBuffFoodList("drink", config.DrinkBuffMaintain1);
-        if (!foodList.Any()) foodList = GetBuffFoodList("drink", config.DrinkBuffMaintain2);
+        var foodList = GetBuffFoodList("drink", Config.DrinkBuffMaintain1, Config.DrinkBuffMaintain2);
+        if (!foodList.Any()) foodList = GetBuffFoodList("drink", Config.DrinkBuffMaintain1);
+        if (!foodList.Any()) foodList = GetBuffFoodList("drink", Config.DrinkBuffMaintain2);
         if (!foodList.Any()) return;
         EatFirstFood(player, foodList.First());
     }

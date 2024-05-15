@@ -99,4 +99,9 @@ public class AutomationManger
             new AutoOther(config),
         });
     }
+
+    public void UpdateConfig(ModConfig newConfig)
+    {
+        
+    }
 }

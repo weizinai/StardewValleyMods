@@ -8,7 +8,13 @@ namespace LazyMod.Framework.Automation;
 
 public abstract class Automate
 {
+    protected ModConfig Config;
     protected readonly Dictionary<int, List<Vector2>> TileCache = new();
+
+    protected Automate(ModConfig config)
+    {
+        Config = config;
+    }
 
     public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
 

@@ -7,35 +7,32 @@ namespace LazyMod.Framework.Automation;
 
 public class AutoAnimal : Automate
 {
-    private readonly ModConfig config;
-
-    public AutoAnimal(ModConfig config)
+    public AutoAnimal(ModConfig config) : base(config)
     {
-        this.config = config;
     }
 
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         TileCache.Clear();
         // 自动抚摸动物
-        if (config.AutoPetAnimal) AutoPetAnimal(location, player);
+        if (Config.AutoPetAnimal) AutoPetAnimal(location, player);
         // 自动抚摸宠物
-        if (config.AutoPetPet) AutoPetPet(location, player);
+        if (Config.AutoPetPet) AutoPetPet(location, player);
         // 自动挤奶
-        if (config.AutoMilkAnimal && (tool is MilkPail || config.FindMilkPailFromInventory)) AutoMilkAnimal(location, player);
+        if (Config.AutoMilkAnimal && (tool is MilkPail || Config.FindMilkPailFromInventory)) AutoMilkAnimal(location, player);
         // 自动剪毛
-        if (config.AutoShearsAnimal && (tool is Shears || config.FindShearsFromInventory)) AutoShearsAnimal(location, player);
+        if (Config.AutoShearsAnimal && (tool is Shears || Config.FindShearsFromInventory)) AutoShearsAnimal(location, player);
         // 自动喂食动物饼干
-        if (config.AutoFeedAnimalCracker && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
+        if (Config.AutoFeedAnimalCracker && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
-        if (config.AutoOpenFenceGate) AutoOpenFenceGate(location, player);
+        if (Config.AutoOpenFenceGate) AutoOpenFenceGate(location, player);
         TileCache.Clear();
     }
 
     // 自动抚摸动物
     private void AutoPetAnimal(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoPetAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoPetAnimalRange);
 
         var animals = location.animals.Values;
         foreach (var animal in animals)
@@ -47,7 +44,7 @@ public class AutoAnimal : Automate
     // 自动抚摸宠物
     private void AutoPetPet(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoPetAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoPetAnimalRange);
 
         var pets = location.characters.OfType<Pet>();
         foreach (var pet in pets)
@@ -64,13 +61,13 @@ public class AutoAnimal : Automate
     // 自动挤奶
     private void AutoMilkAnimal(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= config.StopMilkAnimalStamina) return;
+        if (player.Stamina <= Config.StopMilkAnimalStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
         var milkPail = FindToolFromInventory<MilkPail>();
         if (milkPail is null) return;
 
-        var grid = GetTileGrid(player, config.AutoMilkAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoMilkAnimalRange);
         foreach (var tile in grid)
         {
             var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
@@ -83,14 +80,14 @@ public class AutoAnimal : Automate
     // 自动剪毛
     private void AutoShearsAnimal(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= config.StopShearsAnimalStamina) return;
+        if (player.Stamina <= Config.StopShearsAnimalStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
         var shears = FindToolFromInventory<Shears>();
         if (shears is null)
             return;
 
-        var grid = GetTileGrid(player, config.AutoShearsAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoShearsAnimalRange);
         foreach (var tile in grid)
         {
             var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
@@ -103,7 +100,7 @@ public class AutoAnimal : Automate
     // 自动喂食动物饼干
     private void AutoFeedAnimalCracker(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoFeedAnimalCrackerRange);
+        var grid = GetTileGrid(player, Config.AutoFeedAnimalCrackerRange);
         var animals = location.animals.Values;
         foreach (var animal in animals)
             foreach (var tile in grid)
@@ -135,7 +132,7 @@ public class AutoAnimal : Automate
     // 自动打开栅栏门
     private void AutoOpenFenceGate(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoOpenFenceGateRange + 2);
+        var grid = GetTileGrid(player, Config.AutoOpenFenceGateRange + 2);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -143,11 +140,11 @@ public class AutoAnimal : Automate
                 continue;
 
             var distance = GetDistance(player.Tile, tile);
-            if (distance <= config.AutoOpenFenceGateRange && fence.gatePosition.Value == 0)
+            if (distance <= Config.AutoOpenFenceGateRange && fence.gatePosition.Value == 0)
             {
                 fence.toggleGate(player, true);
             }
-            else if (distance > config.AutoOpenFenceGateRange + 1 && fence.gatePosition.Value != 0)
+            else if (distance > Config.AutoOpenFenceGateRange + 1 && fence.gatePosition.Value != 0)
             {
                 fence.toggleGate(player, false);
             }

@@ -53,10 +53,19 @@ internal class ModEntry : Mod
             Helper.ModRegistry,
             ModManifest,
             () => config,
-            () => config = new ModConfig(),
+            () =>
+            {
+                config = new ModConfig();
+                UpdateConfig();
+            },
             () => Helper.WriteConfig(config)
         );
         integration.Register();
+    }
+
+    private void UpdateConfig()
+    {
+        
     }
 
     private void Migrate()

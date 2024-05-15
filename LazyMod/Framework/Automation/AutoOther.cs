@@ -11,11 +11,9 @@ namespace LazyMod.Framework.Automation;
 public class AutoOther : Automate
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
-    private readonly ModConfig config;
 
-    public AutoOther(ModConfig config)
+    public AutoOther(ModConfig config): base(config) 
     {
-        this.config = config;
     }
 
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
@@ -24,31 +22,31 @@ public class AutoOther : Automate
         MagneticRadiusIncrease(player);
         TileCache.Clear();
         // 自动清理杂草
-        if (config.AutoClearWeeds && (tool is MeleeWeapon || config.FindToolForClearWeeds)) AutoClearWeeds(location, player);
+        if (Config.AutoClearWeeds && (tool is MeleeWeapon || Config.FindToolForClearWeeds)) AutoClearWeeds(location, player);
         // 自动挖掘斑点
-        if (config.AutoDigSpots && (tool is Hoe || config.FindHoeFromInventory)) AutoDigSpots(location, player);
+        if (Config.AutoDigSpots && (tool is Hoe || Config.FindHoeFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器
-        if (config.AutoHarvestMachine) AutoHarvestMachine(location, player);
+        if (Config.AutoHarvestMachine) AutoHarvestMachine(location, player);
         // 自动触发机器
-        if (config.AutoTriggerMachine && item is not null) AutoTriggerMachine(location, player, item);
+        if (Config.AutoTriggerMachine && item is not null) AutoTriggerMachine(location, player, item);
         // 自动翻垃圾桶
-        if (config.AutoGarbageCan) AutoGarbageCan(location, player);
+        if (Config.AutoGarbageCan) AutoGarbageCan(location, player);
         // 自动放置地板
-        if (config.AutoPlaceFloor && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
+        if (Config.AutoPlaceFloor && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
         TileCache.Clear();
     }
 
     // 增加磁力范围
     private void MagneticRadiusIncrease(Farmer player)
     {
-        if (config.MagneticRadiusIncrease == 0)
+        if (Config.MagneticRadiusIncrease == 0)
         {
             player.buffs.Remove(UniqueBuffId);
             return;
         }
 
         player.buffs.AppliedBuffs.TryGetValue(UniqueBuffId, out var buff);
-        if (buff is null || buff.millisecondsDuration <= 5000 || Math.Abs(buff.effects.MagneticRadius.Value - config.MagneticRadiusIncrease) > 0.1f)
+        if (buff is null || buff.millisecondsDuration <= 5000 || Math.Abs(buff.effects.MagneticRadius.Value - Config.MagneticRadiusIncrease) > 0.1f)
         {
             buff = new Buff(
                 id: UniqueBuffId,
@@ -56,7 +54,7 @@ public class AutoOther : Automate
                 duration: 60000,
                 effects: new BuffEffects
                 {
-                    MagneticRadius = { Value = config.MagneticRadiusIncrease * 64 }
+                    MagneticRadius = { Value = Config.MagneticRadiusIncrease * 64 }
                 });
             player.applyBuff(buff);
         }
@@ -68,7 +66,7 @@ public class AutoOther : Automate
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(player, config.AutoClearWeedsRange);
+        var grid = GetTileGrid(player, Config.AutoClearWeedsRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -82,7 +80,7 @@ public class AutoOther : Automate
             {
                 if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
 
-                if (config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
+                if (Config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
                 {
                     scythe.swingTicker++;
                     if (clump.performToolAction(scythe, 1, tile))
@@ -98,13 +96,13 @@ public class AutoOther : Automate
     // 自动挖掘斑点
     private void AutoDigSpots(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= config.StopDigSpotsStamina) return;
+        if (player.Stamina <= Config.StopDigSpotsStamina) return;
 
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null)
             return;
 
-        var grid = GetTileGrid(player, config.AutoDigSpotsRange);
+        var grid = GetTileGrid(player, Config.AutoDigSpotsRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -116,7 +114,7 @@ public class AutoOther : Automate
     // 自动收获机器
     private void AutoHarvestMachine(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, config.AutoHarvestMachineRange);
+        var grid = GetTileGrid(player, Config.AutoHarvestMachineRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -128,7 +126,7 @@ public class AutoOther : Automate
     // 自动触发机器
     private void AutoTriggerMachine(GameLocation location, Farmer player, Item item)
     {
-        var grid = GetTileGrid(player, config.AutoTriggerMachineRange);
+        var grid = GetTileGrid(player, Config.AutoTriggerMachineRange);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -152,8 +150,8 @@ public class AutoOther : Automate
     // 自动翻垃圾桶
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
-        if (CheckNPCNearTile(location, player) && config.StopGarbageCanNearVillager) return;
-        var grid = GetTileGrid(player, config.AutoGarbageCanRange);
+        if (CheckNPCNearTile(location, player) && Config.StopGarbageCanNearVillager) return;
+        var grid = GetTileGrid(player, Config.AutoGarbageCanRange);
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
@@ -167,7 +165,7 @@ public class AutoOther : Automate
     // 自动放置地板
     private void AutoPlaceFloor(GameLocation location, Farmer player, SObject floor)
     {
-        var grid = GetTileGrid(player, config.AutoPlaceFloorRange);
+        var grid = GetTileGrid(player, Config.AutoPlaceFloorRange);
         foreach (var tile in grid)
         {
             var tilePixelPosition = GetTilePixelPosition(tile);

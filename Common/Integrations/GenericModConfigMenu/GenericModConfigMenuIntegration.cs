@@ -196,4 +196,10 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
         configMenu?.AddPageLink(consumerManifest, pageId, text, tooltip);
         return this;
     }
+
+    /// <summary>Open the config UI for a specific mod.</summary>
+    public void OpenMenu()
+    {
+        configMenu?.OpenModMenu(consumerManifest);
+    }
 }

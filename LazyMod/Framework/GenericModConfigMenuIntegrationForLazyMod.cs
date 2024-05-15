@@ -16,6 +16,11 @@ public class GenericModConfigMenuIntegrationForLazyMod
         configMenu = new GenericModConfigMenuIntegration<ModConfig>(modRegistry, consumerManifest, getConfig, reset, save);
     }
 
+    public void OpenMenu()
+    {
+        configMenu.OpenMenu();
+    }
+
     public void Register()
     {
         if (!configMenu.IsLoaded) return;

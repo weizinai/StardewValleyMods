@@ -6,6 +6,7 @@ namespace LazyMod.Framework;
 
 public class ModConfig
 {
+    public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.R);
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);
     public int Cooldown { get; set; } = 10;
 

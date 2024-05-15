@@ -5,26 +5,40 @@ using StardewModdingAPI.Events;
 
 namespace LazyMod;
 
-public class ModEntry : Mod
+internal class ModEntry : Mod
 {
     private ModConfig config = null!;
     private AutomationManger automationManger = null!;
     private MiningHud miningHud = null!;
+    private GenericModConfigMenuIntegrationForLazyMod integration = null!;
 
     public override void Entry(IModHelper helper)
     {
-        // 读取配置文件
-        config = helper.ReadConfig<ModConfig>();
-        Migrate();
-
         // 初始化
-        I18n.Init(helper.Translation);
+        config = helper.ReadConfig<ModConfig>();
         automationManger = new AutomationManger(helper, config);
+        integration = new GenericModConfigMenuIntegrationForLazyMod(
+            Helper.ModRegistry,
+            ModManifest,
+            () => config,
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
+        );
+        I18n.Init(helper.Translation);
 
         // 注册事件
+        helper.Events.Display.RenderedHud += OnRenderedHud;
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.Display.RenderedHud += OnRenderedHud;
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+
+        // 迁移
+        Migrate();
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (config.OpenConfigMenuKeybind.JustPressed()) integration.OpenMenu();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -41,13 +55,7 @@ public class ModEntry : Mod
     {
         miningHud = new MiningHud(Helper, config);
 
-        new GenericModConfigMenuIntegrationForLazyMod(
-            Helper.ModRegistry,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
-        ).Register();
+        integration.Register();
     }
 
     private void Migrate()

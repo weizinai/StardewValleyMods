@@ -162,7 +162,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="set"></param>
     /// <param name="name">The label text to show in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
-    public GenericModConfigMenuIntegration<TConfig> AddKeybindList(Func<TConfig, KeybindList> get, Action<TConfig, KeybindList> set, Func<string> name, Func<string> tooltip)
+    public GenericModConfigMenuIntegration<TConfig> AddKeybindList(Func<TConfig, KeybindList> get, Action<TConfig, KeybindList> set, Func<string> name, Func<string>? tooltip = null)
     {
         configMenu?.AddKeybindList(
             consumerManifest,

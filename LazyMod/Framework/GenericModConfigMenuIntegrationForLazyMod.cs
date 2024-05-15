@@ -578,7 +578,7 @@ public class GenericModConfigMenuIntegrationForLazyMod
                 (config, value) => config.AutoChopTreeRange = value,
                 I18n.Config_AutoChopTreeRange_Name,
                 null,
-                0,
+                1,
                 3
             )
             .AddNumberOption(

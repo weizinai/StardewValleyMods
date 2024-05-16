@@ -7,6 +7,10 @@
 - 自动砸开晶球
 - 砸开晶球快速动画
 
+# 贡献
+
+- 感谢`Pathoschild`的`Fast Animation`源码
+
 # 其他
 
 - [源码](https://github.com/weizinai/StardewValleyMods)

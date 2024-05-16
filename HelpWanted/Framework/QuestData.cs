@@ -4,7 +4,7 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Framework;
 
-public class QuestData
+internal class QuestData
 {
     public Texture2D PadTexture { get; set; }
     public Rectangle PadTextureSource { get; set; }

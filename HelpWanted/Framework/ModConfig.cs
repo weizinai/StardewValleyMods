@@ -1,6 +1,6 @@
 ﻿namespace HelpWanted.Framework;
 
-public class ModConfig
+internal class ModConfig
 {
     // 一般设置
     public bool QuestFirstDay { get; set; }

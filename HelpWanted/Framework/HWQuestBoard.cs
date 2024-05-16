@@ -8,7 +8,7 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Framework;
 
-public sealed class HWQuestBoard : Billboard
+internal sealed class HWQuestBoard : Billboard
 {
     private readonly ModConfig config;
 

@@ -6,7 +6,7 @@ using StardewValley.Extensions;
 
 namespace HelpWanted.Framework;
 
-public class AppearanceManager
+internal class AppearanceManager
 {
     private readonly ModConfig config;
 

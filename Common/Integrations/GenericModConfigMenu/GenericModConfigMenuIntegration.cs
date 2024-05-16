@@ -11,7 +11,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     private readonly IManifest consumerManifest;
 
     /// <summary>Get the current config model.</summary>
-    private readonly Func<TConfig> getConfig;
+    public readonly Func<TConfig> GetConfig;
 
     /// <summary>Reset the mod's config to its default values.</summary>
     private readonly Action reset;
@@ -35,7 +35,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     public GenericModConfigMenuIntegration(IModRegistry modRegistry, IManifest consumerManifest, Func<TConfig> getConfig, Action reset, Action save)
     {
         this.consumerManifest = consumerManifest;
-        this.getConfig = getConfig;
+        GetConfig = getConfig;
         this.reset = reset;
         this.save = save;
         configMenu = modRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
@@ -75,8 +75,8 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     {
         configMenu?.AddBoolOption(
             consumerManifest,
-            () => get(getConfig()),
-            value => set(getConfig(), value),
+            () => get(GetConfig()),
+            value => set(GetConfig(), value),
             name,
             tooltip
         );
@@ -97,8 +97,8 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     {
         configMenu?.AddNumberOption(
             consumerManifest,
-            () => get(getConfig()),
-            value => set(getConfig(), value),
+            () => get(GetConfig()),
+            value => set(GetConfig(), value),
             name,
             tooltip,
             min,
@@ -123,8 +123,8 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     {
         configMenu?.AddNumberOption(
             consumerManifest,
-            () => get(getConfig()),
-            value => set(getConfig(), value),
+            () => get(GetConfig()),
+            value => set(GetConfig(), value),
             name,
             tooltip,
             min,
@@ -147,8 +147,8 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     {
         configMenu?.AddTextOption(
             consumerManifest,
-            () => get(getConfig()),
-            value => set(getConfig(), value),
+            () => get(GetConfig()),
+            value => set(GetConfig(), value),
             name,
             tooltip,
             allowedValues,
@@ -166,8 +166,8 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     {
         configMenu?.AddKeybindList(
             consumerManifest,
-            () => get(getConfig()),
-            value => set(getConfig(), value),
+            () => get(GetConfig()),
+            value => set(GetConfig(), value),
             name,
             tooltip
         );

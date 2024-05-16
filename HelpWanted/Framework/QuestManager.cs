@@ -16,10 +16,10 @@ internal class QuestManager
 
     public static readonly List<QuestData> QuestList = new();
 
-    public QuestManager(ModConfig config, AppearanceManager appearanceManager)
+    public QuestManager(IModHelper helper, ModConfig config)
     {
         this.config = config;
-        this.appearanceManager = appearanceManager;
+        appearanceManager = new AppearanceManager(helper, config);
     }
 
     public void InitQuestList()

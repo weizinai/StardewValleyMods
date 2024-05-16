@@ -10,17 +10,15 @@ namespace HelpWanted;
 
 internal class ModEntry : Mod
 {
-    // public static IMonitor SMonitor = null!;
-    private QuestManager questManager = null!;
-
     private static ModConfig config = new();
+    private QuestManager questManager = null!;
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         var log = new Log(Monitor);
         config = helper.ReadConfig<ModConfig>();
-        questManager = new QuestManager(config, new AppearanceManager(helper, config));
+        questManager = new QuestManager(helper, config);
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;

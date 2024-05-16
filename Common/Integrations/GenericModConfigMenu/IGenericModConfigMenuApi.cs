@@ -3,7 +3,7 @@ using StardewModdingAPI.Utilities;
 
 namespace Common.Integrations;
 
-public interface IGenericModConfigMenuAPI
+public interface IGenericModConfigMenuApi
 {
     /// <summary>Register a mod whose config can be edited through the UI.</summary>
     /// <param name="mod">The mod's manifest.</param>

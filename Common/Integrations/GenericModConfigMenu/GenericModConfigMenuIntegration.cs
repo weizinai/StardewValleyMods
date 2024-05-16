@@ -20,7 +20,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     private readonly Action save;
 
     /// <summary>The mod's public API.</summary>
-    private readonly IGenericModConfigMenuAPI? configMenu;
+    private readonly IGenericModConfigMenuApi? configMenu;
 
     /// <summary>Whether the mod is available.</summary>
     public bool IsLoaded => configMenu != null;
@@ -38,7 +38,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
         this.getConfig = getConfig;
         this.reset = reset;
         this.save = save;
-        configMenu = modRegistry.GetApi<IGenericModConfigMenuAPI>("spacechase0.GenericModConfigMenu");
+        configMenu = modRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
     }
 
     /// <summary>Register a mod whose config can be edited through the UI.</summary>

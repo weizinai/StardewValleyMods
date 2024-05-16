@@ -1,3 +1,3 @@
 # 1.3.1
 
-- 使用`GenericModConfigMenuIntegration`重构`GenericModConfigMenu`
+- 添加打开模组配置菜单快捷键

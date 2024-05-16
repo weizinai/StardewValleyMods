@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Common.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
@@ -8,34 +9,41 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Framework;
 
-internal sealed class HWQuestBoard : Billboard
+internal sealed class HWQuestBoard : IClickableMenu
 {
-    private readonly ModConfig config;
+    private readonly Texture2D billboardTexture;
+    private readonly ClickableComponent acceptQuestButton;
+    private string hoverTitle = "";
+    private string hoverText = "";
+
+    private int showingQuestID;
+    private Quest? showingQuest;
 
     public static readonly List<ClickableTextureComponent> QuestNotes = new();
     private static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
     private Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
     private const int OptionIndex = -4200;
+    private readonly ModConfig config;
 
-    // 面板纹理
-    private readonly Texture2D billboardTexture;
-
-    // 正在展示的任务的ID
-    private int showingQuestID;
-
-    // 正在展示的任务
-    private Quest? showingQuest;
-
-    // 悬浮标题和悬浮文本
-    private string hoverTitle = "";
-    private string hoverText = "";
-
-    public HWQuestBoard(ModConfig config) : base(true)
+    public HWQuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
     {
-        this.config = config;
-
-        // 设置面板纹理
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
+        width = 338 * 4;
+        height = 198 * 4;
+        var center = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
+        xPositionOnScreen = (int)center.X;
+        yPositionOnScreen = (int)center.Y;
+
+        var stringSize = Game1.dialogueFont.MeasureString(Game1.content.LoadString("Strings\\UI:AcceptQuest"));
+        acceptQuestButton = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2 - 128, yPositionOnScreen + height - 128,
+            (int)stringSize.X + 24, (int)stringSize.Y + 24), "");
+
+        upperRightCloseButton = new ClickableTextureComponent(new Rectangle(xPositionOnScreen + width - 20, yPositionOnScreen, 48, 48),
+            Game1.mouseCursors, CommonImage.CloseButton, 4f);
+
+        Game1.playSound("bigSelect");
+
+        this.config = config;
         showingQuest = null;
         if (QuestManager.QuestList.Count > 0)
         {

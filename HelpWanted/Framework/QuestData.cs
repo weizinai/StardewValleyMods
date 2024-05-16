@@ -6,27 +6,27 @@ namespace HelpWanted.Framework;
 
 internal class QuestData
 {
-    public Texture2D PadTexture { get; set; }
-    public Rectangle PadTextureSource { get; set; }
-    public Color PadColor { get; set; }
-    public Texture2D PinTexture { get; set; }
-    public Rectangle PinTextureSource { get; set; }
-    public Color PinColor { get; set; }
-    public Texture2D Icon { get; set; }
-    public Rectangle IconSource { get; set; }
-    public Color IconColor { get; set; }
-    public float IconScale { get; set; }
-    public Point IconOffset { get; set; }
-    public Quest Quest { get; set; }
+    public Texture2D Pad { get; }
+    public Rectangle PadSource { get; }
+    public Color PadColor { get; }
+    public Texture2D Pin { get; }
+    public Rectangle PinSource { get; }
+    public Color PinColor { get; }
+    public Texture2D Icon { get; }
+    public Rectangle IconSource { get; }
+    public Color IconColor { get; }
+    public float IconScale { get; }
+    public Point IconOffset { get; }
+    public Quest Quest { get; }
 
-    public QuestData(Texture2D padTexture, Rectangle padTextureSource, Color padColor, Texture2D pinTexture, Rectangle pinTextureSource, Color pinColor, Texture2D icon,
-        Rectangle iconSource, Color iconColor, float iconScale, Point iconOffset, Quest quest)
+    public QuestData(Texture2D pad, Rectangle padSource, Color padColor, Texture2D pin, Rectangle pinSource, Color pinColor, 
+        Texture2D icon, Rectangle iconSource, Color iconColor, float iconScale, Point iconOffset, Quest quest)
     {
-        PadTexture = padTexture;
-        PadTextureSource = padTextureSource;
+        Pad = pad;
+        PadSource = padSource;
         PadColor = padColor;
-        PinTexture = pinTexture;
-        PinTextureSource = pinTextureSource;
+        Pin = pin;
+        PinSource = pinSource;
         PinColor = pinColor;
         Icon = icon;
         IconSource = iconSource;

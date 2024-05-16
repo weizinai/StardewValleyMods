@@ -234,8 +234,8 @@ internal sealed class HWQuestBoard : IClickableMenu
         for (var i = 0; i < questList.Count; i++)
         {
             var size = new Point(
-                (int)(questList[i].PadTextureSource.Width * config.NoteScale),
-                (int)(questList[i].PadTextureSource.Height * config.NoteScale));
+                (int)(questList[i].PadSource.Width * config.NoteScale),
+                (int)(questList[i].PadSource.Height * config.NoteScale));
             var bounds = GetFreeBounds(size.X, size.Y);
             if (bounds is null) break;
             QuestNotes.Add(new QuestNote(questList[i], bounds.Value)

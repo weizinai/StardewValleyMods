@@ -34,3 +34,8 @@ public class Image : Element
         return new Vector2(sourceRectangle.Width, sourceRectangle.Height) * scale;
     }
 }
+
+internal static class CommonImage
+{
+    public static Rectangle CloseButton => new(337, 494, 12, 12);
+}

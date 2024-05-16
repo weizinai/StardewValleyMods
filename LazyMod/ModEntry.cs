@@ -10,7 +10,6 @@ internal class ModEntry : Mod
     private ModConfig config = null!;
     private AutomationManger automationManger = null!;
     private MiningHud miningHud = null!;
-    private GenericModConfigMenuIntegrationForLazyMod integration = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -23,16 +22,9 @@ internal class ModEntry : Mod
         helper.Events.Display.RenderedHud += OnRenderedHud;
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
 
         // 迁移
         Migrate();
-    }
-
-    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
-    {
-        if (config.OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree) 
-            integration.OpenMenu();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -48,9 +40,9 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         miningHud = new MiningHud(Helper, config);
-
-        integration = new GenericModConfigMenuIntegrationForLazyMod(
-            Helper.ModRegistry,
+        
+        new GenericModConfigMenuIntegrationForLazyMod(
+            Helper,
             ModManifest,
             () => config,
             () =>
@@ -59,8 +51,7 @@ internal class ModEntry : Mod
                 UpdateConfig();
             },
             () => Helper.WriteConfig(config)
-        );
-        integration.Register();
+        ).Register();
     }
 
     private void UpdateConfig()

@@ -1,6 +1,7 @@
 using Common.Integrations;
 using LazyMod.Framework.Automation;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 
 namespace LazyMod.Framework;
 
@@ -11,14 +12,17 @@ public class GenericModConfigMenuIntegrationForLazyMod
     private readonly string[] buffMaintainAllowValues =
         { "Combat", "Farming", "Fishing", "Mining", "Luck", "Foraging", "MaxStamina", "MagneticRadius", "Speed", "Defense", "Attack", "None" };
 
-    public GenericModConfigMenuIntegrationForLazyMod(IModRegistry modRegistry, IManifest consumerManifest, Func<ModConfig> getConfig, Action reset, Action save)
+    public GenericModConfigMenuIntegrationForLazyMod(IModHelper helper, IManifest consumerManifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(modRegistry, consumerManifest, getConfig, reset, save);
+        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, consumerManifest, getConfig, reset, save);
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
     }
 
-    public void OpenMenu()
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        configMenu.OpenMenu();
+        if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
+            configMenu.OpenMenu();
+            
     }
 
     public void Register()

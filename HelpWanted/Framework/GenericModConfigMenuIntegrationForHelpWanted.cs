@@ -1,5 +1,6 @@
 using Common.Integrations;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 
 namespace HelpWanted.Framework;
 
@@ -10,6 +11,13 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
     public GenericModConfigMenuIntegrationForHelpWanted(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
         configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
+            configMenu.OpenMenu();
     }
 
     public void Register()
@@ -20,6 +28,11 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
             .Register()
             // 一般设置
             .AddSectionTitle(I18n.Config_GeneralSettingsTitle_Name)
+            .AddKeybindList(
+                config => config.OpenConfigMenuKeybind,
+                (config, value) => config.OpenConfigMenuKeybind = value,
+                I18n.Config_OpenConfigMenuKeybind_Name
+            )
             .AddBoolOption(
                 config => config.QuestFirstDay,
                 (config, value) => config.QuestFirstDay = value,

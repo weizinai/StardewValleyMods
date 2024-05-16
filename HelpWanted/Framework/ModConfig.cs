@@ -1,8 +1,12 @@
-﻿namespace HelpWanted.Framework;
+﻿using StardewModdingAPI;
+using StardewModdingAPI.Utilities;
+
+namespace HelpWanted.Framework;
 
 internal class ModConfig
 {
     // 一般设置
+    public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.None);
     public bool QuestFirstDay { get; set; }
     public bool QuestFestival { get; set; }
     public float DailyQuestChance { get; set; } = 0.9f;

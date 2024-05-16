@@ -1,6 +1,7 @@
 ﻿{
     // 一般设置
     "Config.GeneralSettingsTitle.Name": "一般设置",
+    "Config.OpenConfigMenuKeybind.Name": "打开配置菜单快捷键",
     "Config.QuestFirstDay.Name": "第一天任务",
     "Config.QuestFirstDay.Tooltip": "当该选项禁用时,游戏不会在第一天生成任务,正如原版游戏一样.",
     "Config.QuestFestival.Name": "节日任务",

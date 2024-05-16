@@ -38,7 +38,7 @@ public class Button : Element
     }
 
     public override int Width => (int)GetTextSize().X + ContentPadding * 2;
-    protected override int Height => (int)GetTextSize().Y + ContentPadding * 2;
+    public override int Height => (int)GetTextSize().Y + ContentPadding * 2;
 
     public override void Draw(SpriteBatch spriteBatch)
     {

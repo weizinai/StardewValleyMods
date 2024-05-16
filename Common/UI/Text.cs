@@ -22,7 +22,7 @@ public sealed class Text : Element
     }
 
     public override int Width => (int)GetTextSize().X;
-    protected override int Height => (int)GetTextSize().Y;
+    public override int Height => (int)GetTextSize().Y;
 
     public override void Draw(SpriteBatch spriteBatch)
     {

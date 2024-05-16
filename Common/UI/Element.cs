@@ -20,7 +20,7 @@ public abstract class Element
     public Vector2 LocalPosition { get; set; }
     protected Vector2 Position => LocalPosition + (Parent?.Position ?? Vector2.Zero);
     public abstract int Width { get; }
-    protected abstract int Height { get; }
+    public abstract int Height { get; }
     private Rectangle Bounds => new((int)Position.X, (int)Position.Y, Width, Height);
     private bool LeftClick => hover && leftClickGesture;
 

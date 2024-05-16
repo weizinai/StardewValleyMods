@@ -36,7 +36,7 @@ public class CombineImage : Element
     }
 
     public override int Width => (int)GetImageSize().X;
-    protected override int Height => (int)GetImageSize().Y;
+    public override int Height => (int)GetImageSize().Y;
 
 
     public override void Draw(SpriteBatch spriteBatch)

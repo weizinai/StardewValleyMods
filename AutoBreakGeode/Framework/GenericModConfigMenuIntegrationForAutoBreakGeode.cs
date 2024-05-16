@@ -32,9 +32,9 @@ internal class GenericModConfigMenuIntegrationForAutoBreakGeode
                 I18n.Config_OpenConfigMenuKeybind_Name
             )
             .AddKeybindList(
-                config => config.AutoBreakGeodeKey,
-                (config, value) => config.AutoBreakGeodeKey = value,
-                I18n.Config_AutoBreakGeodeKey_Name
+                config => config.AutoBreakGeodeKeybind,
+                (config, value) => config.AutoBreakGeodeKeybind = value,
+                I18n.Config_AutoBreakGeodeKeybind_Name
             )
             .AddBoolOption(
                 config => config.DrawBeginButton,

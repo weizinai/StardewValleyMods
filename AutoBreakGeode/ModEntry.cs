@@ -30,7 +30,7 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (config.AutoBreakGeodeKey.JustPressed()) AutoBreakGeode = !AutoBreakGeode;
+        if (config.AutoBreakGeodeKeybind.JustPressed()) AutoBreakGeode = !AutoBreakGeode;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)

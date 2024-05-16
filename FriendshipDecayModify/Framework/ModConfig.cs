@@ -1,6 +1,6 @@
 namespace FriendshipDecayModify.Framework;
 
-public class ModConfig
+internal class ModConfig
 {
     // 每日对话修改
     public int DailyGreetingModifyForVillager = 2;

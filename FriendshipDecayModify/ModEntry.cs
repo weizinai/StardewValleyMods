@@ -7,7 +7,7 @@ using StardewModdingAPI.Events;
 
 namespace FriendshipDecayModify;
 
-public class ModEntry : Mod
+internal class ModEntry : Mod
 {
     private ModConfig config = null!;
 

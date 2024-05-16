@@ -1,4 +1,5 @@
 {
+    "Config.OpenConfigMenuKeybind.Name": "Open Config Menu Keybind",
     // Daily Greeting Modify
     "Config.DailyGreetingModifyTitle.Name": "Daily Greeting Modify",
     "Config.DailyGreetingModifyForVillager.Name": "Villager",

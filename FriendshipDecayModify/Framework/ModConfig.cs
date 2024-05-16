@@ -1,7 +1,11 @@
+using StardewModdingAPI;
+using StardewModdingAPI.Utilities;
+
 namespace FriendshipDecayModify.Framework;
 
 internal class ModConfig
 {
+    public KeybindList OpenConfigMenu = new(SButton.None);
     // 每日对话修改
     public int DailyGreetingModifyForVillager = 2;
     public int DailyGreetingModifyForDatingVillager = 8;

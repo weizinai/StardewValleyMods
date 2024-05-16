@@ -1,5 +1,6 @@
 using Common.Integrations;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 
 namespace FriendshipDecayModify.Framework;
 
@@ -10,6 +11,13 @@ internal class GenericModConfigMenuIntegrationForFriendshipDecayModify
     public GenericModConfigMenuIntegrationForFriendshipDecayModify(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
         configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (configMenu.GetConfig().OpenConfigMenu.JustPressed())
+            configMenu.OpenMenu();
     }
 
     public void Register()
@@ -18,6 +26,11 @@ internal class GenericModConfigMenuIntegrationForFriendshipDecayModify
 
         configMenu
             .Register()
+            .AddKeybindList(
+                config => config.OpenConfigMenu,
+                (config, value) => config.OpenConfigMenu = value,
+                I18n.Config_OpenConfigMenuKeybind_Name
+            )
             // 每日对话修改
             .AddSectionTitle(I18n.Config_DailyGreetingModifyTitle_Name)
             .AddNumberOption(

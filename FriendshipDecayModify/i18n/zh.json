@@ -1,4 +1,5 @@
 {
+    "Config.OpenConfigMenuKeybind.Name": "打开配置菜单快捷键",
     // 每日对话修改
     "Config.DailyGreetingModifyTitle.Name": "每日对话修改",
     "Config.DailyGreetingModifyForVillager.Name": "村民",

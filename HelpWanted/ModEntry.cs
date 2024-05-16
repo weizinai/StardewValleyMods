@@ -16,7 +16,7 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        var log = new Log(Monitor);
+        _ = new Log(Monitor);
         config = helper.ReadConfig<ModConfig>();
         questManager = new QuestManager(helper, config);
         I18n.Init(helper.Translation);

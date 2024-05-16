@@ -3,7 +3,7 @@ using StardewModdingAPI.Utilities;
 
 namespace AutoBreakGeode.Framework;
 
-public class ModConfig
+internal class ModConfig
 {
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.None);
     public KeybindList AutoBreakGeodeKey { get; set; } = new(SButton.F);

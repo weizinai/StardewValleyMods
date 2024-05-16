@@ -8,7 +8,7 @@ using StardewValley.Menus;
 
 namespace AutoBreakGeode;
 
-public class ModEntry : Mod
+internal class ModEntry : Mod
 {
     public static bool AutoBreakGeode;
     private ModConfig config = new();

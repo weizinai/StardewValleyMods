@@ -4,7 +4,7 @@ using StardewModdingAPI.Events;
 
 namespace AutoBreakGeode.Framework;
 
-public class GenericModConfigMenuIntegrationForAutoBreakGeode
+internal class GenericModConfigMenuIntegrationForAutoBreakGeode
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 

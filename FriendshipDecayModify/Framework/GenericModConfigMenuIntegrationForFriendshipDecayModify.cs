@@ -16,7 +16,7 @@ internal class GenericModConfigMenuIntegrationForFriendshipDecayModify
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (configMenu.GetConfig().OpenConfigMenu.JustPressed())
+        if (configMenu.GetConfig().OpenConfigMenu.JustPressed() && Context.IsPlayerFree)
             configMenu.OpenMenu();
     }
 

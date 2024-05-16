@@ -27,6 +27,11 @@ internal class GenericModConfigMenuIntegrationForAutoBreakGeode
         configMenu
             .Register()
             .AddKeybindList(
+                config => config.OpenConfigMenuKeybind,
+                (config, value) => config.OpenConfigMenuKeybind = value,
+                I18n.Config_OpenConfigMenuKeybind_Name
+            )
+            .AddKeybindList(
                 config => config.AutoBreakGeodeKey,
                 (config, value) => config.AutoBreakGeodeKey = value,
                 I18n.Config_AutoBreakGeodeKey_Name

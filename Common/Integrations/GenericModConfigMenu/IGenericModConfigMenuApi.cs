@@ -18,7 +18,7 @@ public interface IGenericModConfigMenuApi
     /// <param name="text">The title text shown in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the title, or <c>null</c> to disable the tooltip.</param>
     public void AddSectionTitle(IManifest mod, Func<string> text, Func<string>? tooltip = null);
-    
+
     /// <summary>Add a paragraph of text at the current position in the form.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="text">The paragraph text to display.</param>
@@ -103,17 +103,17 @@ public interface IGenericModConfigMenuApi
     /// <param name="text">The link text shown in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the link, or <c>null</c> to disable the tooltip.</param>
     public void AddPageLink(IManifest mod, string pageId, Func<string> text, Func<string>? tooltip = null);
-    
+
     /// <summary>Register a method to notify when any option registered by this mod is edited through the config UI.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="onChange">The method to call with the option's unique field ID and new value.</param>
     /// <remarks>Options use a randomized ID by default; you'll likely want to specify the <c>fieldId</c> argument when adding options if you use this.</remarks>
     public void OnFieldChanged(IManifest mod, Action<string, object> onChange);
-    
+
     /// <summary>Open the config UI for a specific mod.</summary>
     /// <param name="mod">The mod's manifest.</param>
     public void OpenModMenu(IManifest mod);
-    
+
     /// <summary>Remove a mod from the config UI and delete all its options and pages.</summary>
     /// <param name="mod">The mod's manifest.</param>
     public void Unregister(IManifest mod);

@@ -12,7 +12,7 @@ internal static class HarmonyPatcher
     public static void Apply(Mod mod, params IPatcher[] patchers)
     {
         var harmony = new Harmony(mod.ModManifest.UniqueID);
-        
+
         foreach (var patcher in patchers)
         {
             try

@@ -44,7 +44,7 @@ public abstract class BasePatcher : IPatcher
     /// <param name="parameters">The method parameter types, or <c>null</c> if it's not overloaded.</param>
     protected static string GetMethodString(Type type, string? name, Type[]? parameters = null)
     {
-        var paramString = parameters?.Any() == true 
+        var paramString = parameters?.Any() == true
             ? $"({string.Join(", ", parameters.Select(p => p.FullName))})"
             : string.Empty;
 

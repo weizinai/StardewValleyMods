@@ -1,4 +1,5 @@
-﻿using Common.Patch;
+﻿using Common;
+using Common.Patch;
 using HelpWanted.Framework;
 using HelpWanted.Patches;
 using StardewModdingAPI;
@@ -9,7 +10,7 @@ namespace HelpWanted;
 
 internal class ModEntry : Mod
 {
-    public static IMonitor SMonitor = null!;
+    // public static IMonitor SMonitor = null!;
     private QuestManager questManager = null!;
 
     private static ModConfig config = new();
@@ -17,9 +18,9 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
+        var log = new Log(Monitor);
         config = helper.ReadConfig<ModConfig>();
-        SMonitor = Monitor;
-        questManager = new QuestManager(config, Monitor, new AppearanceManager(helper, config));
+        questManager = new QuestManager(config, new AppearanceManager(helper, config));
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
@@ -33,19 +34,19 @@ internal class ModEntry : Mod
     {
         if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay)
         {
-            Monitor.Log("今天是游戏第一天,不生成任务.");
+            Log.Trace("今天是游戏第一天,不生成任务.");
             return;
         }
 
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival)
         {
-            Monitor.Log("今天或明天是节日,不生成任务.");
+            Log.Trace("今天或明天是节日,不生成任务.");
             return;
         }
 
         if (Game1.random.NextDouble() >= config.DailyQuestChance)
         {
-            Monitor.Log("今天不生成任务.");
+            Log.Trace("今天不生成任务.");
             return;
         }
 

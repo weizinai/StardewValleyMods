@@ -1,7 +1,7 @@
-﻿using Common.UI;
+﻿using Common;
+using Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
@@ -195,7 +195,7 @@ internal sealed class HWQuestBoard : IClickableMenu
         // 如果宽度和高度大于面板的宽度和高度,则输出错误警告
         if (width1 >= boardRect.Width || height1 >= boardRect.Height)
         {
-            ModEntry.SMonitor.Log($"note size {width1},{height1} is too big for the screen", LogLevel.Warn);
+            Log.Warn($"note size {width1},{height1} is too big for the screen");
             return null;
         }
 
@@ -225,16 +225,16 @@ internal sealed class HWQuestBoard : IClickableMenu
     {
         var font = LocalizedContentManager.CurrentLanguageCode == LocalizedContentManager.LanguageCode.ko ? Game1.smallFont : Game1.dialogueFont;
         var description = Game1.parseText(showingQuest!.questDescription, font, 640);
-        // 绘制任务描述
+        // 任务描述逻辑
         Utility.drawTextWithShadow(spriteBatch, description, font, new Vector2(xPositionOnScreen + 320 + 32, yPositionOnScreen + 256), Game1.textColor, 1f, -1f,
             -1, -1, 0.5f);
-        // 绘制接受任务按钮
+        // 接受任务按钮逻辑
         drawTextureBox(spriteBatch, Game1.mouseCursors, new Rectangle(403, 373, 9, 9), acceptQuestButton.bounds.X, acceptQuestButton.bounds.Y,
             acceptQuestButton.bounds.Width, acceptQuestButton.bounds.Height, acceptQuestButton.scale > 1f ? Color.LightPink : Color.White, 4f * acceptQuestButton.scale);
         Utility.drawTextWithShadow(spriteBatch, Game1.content.LoadString("Strings\\UI:AcceptQuest"), Game1.dialogueFont,
             new Vector2(acceptQuestButton.bounds.X + 12, acceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
+        // 奖券逻辑
         if (Game1.stats.Get("BillboardQuestsDone") % 3 != 2) return;
-        // 绘制奖券
         Utility.drawWithShadow(spriteBatch, Game1.content.Load<Texture2D>("TileSheets\\Objects_2"), Position + new Vector2(215f, 144f) * 4f,
             new Rectangle(80, 128, 16, 16), Color.White, 0f, Vector2.Zero, 4f);
         SpriteText.drawString(spriteBatch, "x1", (int)Position.X + 936, (int)Position.Y + 596);

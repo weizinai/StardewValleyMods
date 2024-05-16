@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Common;
+using HarmonyLib;
 using HelpWanted.Patches;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
@@ -11,21 +12,19 @@ namespace HelpWanted.Framework;
 internal class QuestManager
 {
     private readonly ModConfig config;
-    private readonly IMonitor monitor;
     private readonly AppearanceManager appearanceManager;
 
     public static readonly List<QuestData> QuestList = new();
 
-    public QuestManager(ModConfig config, IMonitor monitor, AppearanceManager appearanceManager)
+    public QuestManager(ModConfig config, AppearanceManager appearanceManager)
     {
         this.config = config;
-        this.monitor = monitor;
         this.appearanceManager = appearanceManager;
     }
 
     public void InitQuestList()
     {
-        monitor.Log("初始化任务列表.");
+        Log.Trace("初始化任务列表.");
         ItemDeliveryQuestPatcher.Init();
         QuestList.Clear();
         var quest = RefreshQuestOfTheDay();
@@ -39,7 +38,7 @@ internal class QuestManager
             var npc = GetNpcFromQuest(quest);
             if (npc is not null)
             {
-                monitor.Log($"第{i + 1}个任务: {quest.questTitle} - {npc.Name}");
+                Log.Trace($"第{i + 1}个任务: {quest.questTitle} - {npc.Name}");
 
                 if (!CheckNPCAvailable(npcNames, npc))
                 {
@@ -96,9 +95,9 @@ internal class QuestManager
 
         if (!available)
         {
-            if (oneQuestPerVillager) monitor.Log($"{npc.Name}已有任务");
-            if (excludeMaxHeartsNPC) monitor.Log($"{npc.Name}好感度已满");
-            if (excludeNPCList) monitor.Log($"{npc.Name}在排除列表中");
+            if (oneQuestPerVillager) Log.Trace($"{npc.Name}已有任务");
+            if (excludeMaxHeartsNPC) Log.Trace($"{npc.Name}好感度已满");
+            if (excludeNPCList) Log.Trace($"{npc.Name}在排除列表中");
         }
 
         return available;
@@ -128,7 +127,7 @@ internal class QuestManager
         var quest = GetQuestOfTheDay();
         if (quest is null)
         {
-            monitor.Log("Refresh Quest Of The Day Failed.", LogLevel.Warn);
+            Log.Warn("Refresh Quest Of The Day Failed.");
             return null;
         }
 
@@ -139,7 +138,7 @@ internal class QuestManager
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
-        monitor.Log("随机生成每日任务");
+        Log.Trace("随机生成每日任务");
         return quest;
     }
 

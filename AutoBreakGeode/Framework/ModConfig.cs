@@ -5,8 +5,8 @@ namespace AutoBreakGeode.Framework;
 
 internal class ModConfig
 {
-    public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.None);
-    public KeybindList AutoBreakGeodeKey { get; set; } = new(SButton.F);
-    public bool DrawBeginButton { get; set; } = true;
-    public int BreakGeodeSpeed { get; set; } = 20;
+    public KeybindList OpenConfigMenuKeybind = new(SButton.None);
+    public KeybindList AutoBreakGeodeKey = new(SButton.F);
+    public bool DrawBeginButton = true;
+    public int BreakGeodeSpeed= 20;
 }

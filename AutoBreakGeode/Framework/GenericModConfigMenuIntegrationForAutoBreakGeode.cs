@@ -1,5 +1,6 @@
 using Common.Integrations;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 
 namespace AutoBreakGeode.Framework;
 
@@ -10,6 +11,13 @@ public class GenericModConfigMenuIntegrationForAutoBreakGeode
     public GenericModConfigMenuIntegrationForAutoBreakGeode(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
         configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
+            configMenu.OpenMenu();
     }
 
     public void Register()

@@ -1,5 +1,6 @@
 ﻿{
     // Config
+    "Config.OpenConfigMenuKeybind.Name": "Open Config Menu Keybind",
     "Config.AutoBreakGeodeKey.Name": "Auto Break Geode Key",
     "Config.DrawBeginButton.Name": "Draw Begin Button",
     "Config.DrawBeginButton.Tooltip": "When this option is enabled, a button will be drawn on the GeodeMenu, and when you hold the Geode and click on the button, it will start breaking the Geode automatically.",

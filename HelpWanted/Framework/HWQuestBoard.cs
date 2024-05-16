@@ -20,7 +20,6 @@ internal sealed class HWQuestBoard : IClickableMenu
     private Quest? showingQuest;
 
     public static readonly List<QuestNote> QuestNotes = new();
-    private static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
     private Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
     private const int OptionIndex = -4200;
     private readonly ModConfig config;
@@ -49,7 +48,6 @@ internal sealed class HWQuestBoard : IClickableMenu
         {
             // 清空任务选项列表和任务数据字典
             QuestNotes.Clear();
-            QuestDataDictionary.Clear();
             // 遍历所有的任务数据,创建任务选项
             var questList = QuestManager.QuestList;
             for (var i = 0; i < questList.Count; i++)
@@ -64,7 +62,6 @@ internal sealed class HWQuestBoard : IClickableMenu
                     // 设置该选项的ID
                     myID = OptionIndex - i,
                 });
-                QuestDataDictionary[QuestNotes[i].myID] = questList[i];
             }
 
             QuestManager.QuestList.Clear();
@@ -83,8 +80,8 @@ internal sealed class HWQuestBoard : IClickableMenu
             hoverText = "";
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
-                hoverTitle = QuestDataDictionary[option.myID].Quest.questTitle;
-                hoverText = QuestDataDictionary[option.myID].Quest.currentObjective;
+                hoverTitle = option.QuestData.Quest.questTitle;
+                hoverText =  option.QuestData.Quest.currentObjective;
                 break;
             }
         }
@@ -115,7 +112,7 @@ internal sealed class HWQuestBoard : IClickableMenu
                 hoverTitle = "";
                 hoverText = "";
                 showingQuestID = option.myID;
-                showingQuest = QuestDataDictionary[option.myID].Quest;
+                showingQuest =  option.QuestData.Quest;
                 acceptQuestButton.visible = true;
                 return;
             }
@@ -137,7 +134,6 @@ internal sealed class HWQuestBoard : IClickableMenu
                 Game1.playSound("newArtifact");
                 showingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
                 Game1.player.questLog.Add(showingQuest);
-                QuestDataDictionary.Remove(showingQuestID);
                 QuestNotes.RemoveAll(option => option.myID == showingQuestID);
                 showingQuest = null;
                 acceptQuestButton.visible = false;

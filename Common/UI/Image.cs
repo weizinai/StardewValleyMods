@@ -6,7 +6,7 @@ namespace Common.UI;
 public class Image : Element
 {
     private readonly Color color;
-    private readonly float scale;
+    public float Scale;
     private readonly Rectangle sourceRectangle;
     private readonly Texture2D texture;
 
@@ -16,7 +16,7 @@ public class Image : Element
         LocalPosition = localPosition;
         this.sourceRectangle = sourceRectangle;
         this.color = color ?? Color.White;
-        this.scale = scale;
+        this.Scale = scale;
     }
 
     public override int Width => (int)GetImageSize().X;
@@ -26,12 +26,12 @@ public class Image : Element
     {
         if (IsHidden()) return;
 
-        spriteBatch.Draw(texture, Position, sourceRectangle, color, 0, Vector2.Zero, scale, SpriteEffects.None, -1);
+        spriteBatch.Draw(texture, Position, sourceRectangle, color, 0, Vector2.Zero, Scale, SpriteEffects.None, -1);
     }
 
     private Vector2 GetImageSize()
     {
-        return new Vector2(sourceRectangle.Width, sourceRectangle.Height) * scale;
+        return new Vector2(sourceRectangle.Width, sourceRectangle.Height) * Scale;
     }
 }
 

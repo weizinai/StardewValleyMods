@@ -7,7 +7,7 @@ namespace Common.UI;
 
 public class Button : Element
 {
-    private const int ContentPadding = 16;
+    public int ContentPadding = 16;
     private readonly SpriteFont font;
     private readonly float scale;
     private readonly Rectangle sourceRectangle;
@@ -24,7 +24,7 @@ public class Button : Element
     }
 
 
-    private Button(Texture2D texture, Rectangle sourceRectangle, Color textureColor, string text, SpriteFont font, Color textColor, Vector2 localPosition,
+    public Button(Texture2D texture, Rectangle sourceRectangle, Color textureColor, string text, SpriteFont font, Color textColor, Vector2 localPosition,
         float scale = 1f)
     {
         this.texture = texture;

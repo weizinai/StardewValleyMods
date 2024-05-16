@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\GenericModConfigMenu\IGenericModConfigMenuAPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\RSV\RSVIntegration.cs" />
         <Compile Include="$(MSBuildThisFileDirectory)ItemRepository.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Log.cs" />
         <Compile Include="$(MSBuildThisFileDirectory)ResourceClumpRepository.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)UI\Container.cs"/>

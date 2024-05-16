@@ -19,7 +19,7 @@ internal sealed class HWQuestBoard : IClickableMenu
     private int showingQuestID;
     private Quest? showingQuest;
 
-    public static readonly List<ClickableTextureComponent> QuestNotes = new();
+    public static readonly List<QuestNote> QuestNotes = new();
     private static readonly Dictionary<int, QuestData> QuestDataDictionary = new();
     private Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
     private const int OptionIndex = -4200;
@@ -59,8 +59,7 @@ internal sealed class HWQuestBoard : IClickableMenu
                     (int)(questList[i].PadTextureSource.Height * config.NoteScale));
                 var bounds = GetFreeBounds(size.X, size.Y);
                 if (bounds is null) break;
-                QuestNotes.Add(new ClickableTextureComponent(bounds.Value,
-                    questList[i].PadTexture, questList[i].PadTextureSource, config.NoteScale)
+                QuestNotes.Add(new QuestNote(questList[i], bounds.Value)
                 {
                     // 设置该选项的ID
                     myID = OptionIndex - i,
@@ -242,18 +241,6 @@ internal sealed class HWQuestBoard : IClickableMenu
 
     private void DrawQuestNotes(SpriteBatch spriteBatch)
     {
-        // 遍历所有的任务选项,绘制任务选项
-        foreach (var option in QuestNotes)
-        {
-            var questData = QuestDataDictionary[option.myID];
-            // 绘制 Pad
-            option.draw(spriteBatch, questData.PadColor, 1);
-            // 绘制 Pin
-            spriteBatch.Draw(questData.PinTexture, option.bounds, questData.PinTextureSource, questData.PinColor);
-            // 绘制 Icon
-            spriteBatch.Draw(questData.Icon,
-                new Vector2(option.bounds.X + questData.IconOffset.X, option.bounds.Y + questData.IconOffset.Y),
-                questData.IconSource, questData.IconColor, 0, Vector2.Zero, questData.IconScale, SpriteEffects.FlipHorizontally, 1);
-        }
+        foreach (var questNote in QuestNotes) questNote.Draw(spriteBatch);
     }
 }

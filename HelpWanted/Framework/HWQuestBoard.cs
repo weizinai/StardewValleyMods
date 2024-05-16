@@ -26,46 +26,29 @@ internal sealed class HWQuestBoard : IClickableMenu
 
     public HWQuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
     {
-        billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
+        // 位置和大小逻辑
         width = 338 * 4;
         height = 198 * 4;
         var center = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
         xPositionOnScreen = (int)center.X;
         yPositionOnScreen = (int)center.Y;
-
+        
+        // 背景逻辑
+        billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
+        
+        // 接受任务按钮逻辑
         var stringSize = Game1.dialogueFont.MeasureString(Game1.content.LoadString("Strings\\UI:AcceptQuest"));
         acceptQuestButton = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2 - 128, yPositionOnScreen + height - 128,
             (int)stringSize.X + 24, (int)stringSize.Y + 24), "");
 
+        // 关闭按钮逻辑
         upperRightCloseButton = new ClickableTextureComponent(new Rectangle(xPositionOnScreen + width - 20, yPositionOnScreen, 48, 48),
             Game1.mouseCursors, CommonImage.CloseButton, 4f);
 
-        Game1.playSound("bigSelect");
-
+        // 初始化
         this.config = config;
         showingQuest = null;
-        if (QuestManager.QuestList.Count > 0)
-        {
-            // 清空任务选项列表和任务数据字典
-            QuestNotes.Clear();
-            // 遍历所有的任务数据,创建任务选项
-            var questList = QuestManager.QuestList;
-            for (var i = 0; i < questList.Count; i++)
-            {
-                var size = new Point(
-                    (int)(questList[i].PadTextureSource.Width * config.NoteScale),
-                    (int)(questList[i].PadTextureSource.Height * config.NoteScale));
-                var bounds = GetFreeBounds(size.X, size.Y);
-                if (bounds is null) break;
-                QuestNotes.Add(new QuestNote(questList[i], bounds.Value)
-                {
-                    // 设置该选项的ID
-                    myID = OptionIndex - i,
-                });
-            }
-
-            QuestManager.QuestList.Clear();
-        }
+        InitQuestNotes();
     }
 
     public override void performHoverAction(int x, int y)
@@ -174,7 +157,7 @@ internal sealed class HWQuestBoard : IClickableMenu
                 Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
 
         // 绘制右上角的关闭按钮
-        if (upperRightCloseButton != null && shouldDrawCloseButton()) upperRightCloseButton.draw(spriteBatch);
+        upperRightCloseButton.draw(spriteBatch);
 
         // 绘制鼠标
         Game1.mouseCursorTransparency = 1f;
@@ -238,5 +221,30 @@ internal sealed class HWQuestBoard : IClickableMenu
     private void DrawQuestNotes(SpriteBatch spriteBatch)
     {
         foreach (var questNote in QuestNotes) questNote.Draw(spriteBatch);
+    }
+
+    private void InitQuestNotes()
+    {
+        if (QuestManager.QuestList.Count <= 0) return;
+        
+        // 清空任务选项列表
+        QuestNotes.Clear();
+        // 遍历所有的任务数据,创建任务选项
+        var questList = QuestManager.QuestList;
+        for (var i = 0; i < questList.Count; i++)
+        {
+            var size = new Point(
+                (int)(questList[i].PadTextureSource.Width * config.NoteScale),
+                (int)(questList[i].PadTextureSource.Height * config.NoteScale));
+            var bounds = GetFreeBounds(size.X, size.Y);
+            if (bounds is null) break;
+            QuestNotes.Add(new QuestNote(questList[i], bounds.Value)
+            {
+                // 设置该选项的ID
+                myID = OptionIndex - i,
+            });
+        }
+
+        QuestManager.QuestList.Clear();
     }
 }

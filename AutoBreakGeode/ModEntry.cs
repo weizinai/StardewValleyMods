@@ -1,6 +1,5 @@
 ﻿using AutoBreakGeode.Framework;
 using AutoBreakGeode.Patches;
-using Common.Integrations;
 using Common.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -68,37 +67,12 @@ public class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
-
-        if (configMenu is null) return;
-
-        configMenu.Register(
+        new GenericModConfigMenuIntegrationForAutoBreakGeode(
+            Helper,
             ModManifest,
+            () => config,
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
-        );
-
-        configMenu.AddKeybindList(
-            ModManifest,
-            () => config.AutoBreakGeodeKey,
-            value => { config.AutoBreakGeodeKey = value; },
-            I18n.Config_AutoBreakGeodeKey_Name
-        );
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.DrawBeginButton,
-            value => config.DrawBeginButton = value,
-            I18n.Config_DrawBeginButton_Name,
-            I18n.Config_DrawBeginButton_Tooltip
-        );
-        configMenu.AddNumberOption(
-            ModManifest,
-            () => config.BreakGeodeSpeed,
-            value => config.BreakGeodeSpeed = value,
-            I18n.Config_BreakGeodeSpeed_Name,
-            null,
-            1,
-            20
-        );
+        ).Register();
     }
 }

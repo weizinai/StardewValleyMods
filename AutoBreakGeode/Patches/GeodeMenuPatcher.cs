@@ -68,8 +68,8 @@ internal class GeodeMenuPatcher : BasePatcher
         {
             typeof(Texture2D), typeof(Vector2), typeof(Rectangle), typeof(Color), typeof(float), typeof(Vector2), typeof(float), typeof(SpriteEffects), typeof(float)
         };
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt &&
-                                            (MethodInfo)code.operand == AccessTools.Method(typeof(SpriteBatch), nameof(SpriteBatch.Draw), parameters));
+        var index = codes.FindIndex(code => 
+            code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(SpriteBatch), nameof(SpriteBatch.Draw), parameters)));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GeodeMenuPatcher), nameof(DrawButton))));
         return codes.AsEnumerable();

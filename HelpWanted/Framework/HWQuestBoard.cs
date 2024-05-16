@@ -92,8 +92,6 @@ internal sealed class HWQuestBoard : IClickableMenu
         else
         {
             // 接受任务按钮逻辑
-            hoverTitle = "";
-            hoverText = "";
             var oldScale = acceptQuestButton.scale;
             acceptQuestButton.scale = acceptQuestButton.bounds.Contains(x, y) ? 1.5f : 1f;
             if (acceptQuestButton.scale > oldScale) Game1.playSound("Cowboy_gunshot");
@@ -115,6 +113,8 @@ internal sealed class HWQuestBoard : IClickableMenu
             // 任务便签逻辑
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
+                hoverTitle = "";
+                hoverText = "";
                 showingQuestID = option.myID;
                 showingQuest = QuestDataDictionary[option.myID].Quest;
                 acceptQuestButton.visible = true;

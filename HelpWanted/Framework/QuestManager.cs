@@ -72,7 +72,11 @@ internal class QuestManager
         var quest = GetRSVQuest();
         for (var i = 0; i < config.MaxRSVQuests; i++)
         {
-            if (quest is null) break;
+            if (quest is null)
+            {
+                quest = GetRSVQuest();
+                continue;
+            }
             var npc = GetNpcFromQuest(quest);
             if (npc is not null)
             {

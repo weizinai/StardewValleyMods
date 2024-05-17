@@ -26,23 +26,7 @@ internal class QuestManager
 
     public void InitVanillaQuestList()
     {
-        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay)
-        {
-            Log.Info("Today is the first day of the game, no daily quests are generated.");
-            return;
-        }
-
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival)
-        {
-            Log.Info("Today or tomorrow is the festival day, no daily quests are generated.");
-            return;
-        }
-
-        if (Game1.random.NextDouble() >= config.DailyQuestChance)
-        {
-            Log.Trace("No daily quests are generated.");
-            return;
-        }
+        if (!CheckDayAvailable()) return;
 
         Log.Info("Begin generating today's daily quests.");
         ItemDeliveryQuestPatcher.Init();
@@ -124,6 +108,29 @@ internal class QuestManager
             FishingQuest => QuestType.Fishing,
             _ => QuestType.Unknown
         };
+    }
+
+    private bool CheckDayAvailable()
+    {
+        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay)
+        {
+            Log.Info("Today is the first day of the game, no daily quests are generated.");
+            return false;
+        }
+
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival)
+        {
+            Log.Info("Today or tomorrow is the festival day, no daily quests are generated.");
+            return false;
+        }
+
+        if (Game1.random.NextDouble() >= config.DailyQuestChance)
+        {
+            Log.Trace("No daily quests are generated.");
+            return false;
+        }
+
+        return true;
     }
 
     private bool CheckNPCAvailable(HashSet<string> npcNames, NPC npc)

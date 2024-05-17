@@ -20,7 +20,7 @@ internal sealed class QuestBoard : IClickableMenu
     private Quest? showingQuest;
 
     public static readonly List<QuestNote> QuestNotes = new();
-    private Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
+    private Rectangle boardRect = new(78 * 4, 52 * 4, 184 * 4, 102 * 4);
     private const int OptionIndex = -4200;
     private readonly ModConfig config;
 

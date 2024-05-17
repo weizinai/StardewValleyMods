@@ -3,7 +3,6 @@ using Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
-using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using StardewValley.Quests;
 
@@ -20,7 +19,7 @@ internal class RSVQuestBoard : IClickableMenu
     private Quest? showingQuest;
 
     public static readonly List<QuestNote> QuestNotes = new();
-    private Rectangle boardRect = new(70 * 4, 52 * 4, 196 * 4, 119 * 4);
+    private Rectangle boardRect = new(78 * 4, 52 * 4, 184 * 4, 102 * 4);
     private const int OptionIndex = -4200;
     private readonly ModConfig config;
 
@@ -32,10 +31,10 @@ internal class RSVQuestBoard : IClickableMenu
         var center = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
         xPositionOnScreen = (int)center.X;
         yPositionOnScreen = (int)center.Y;
-        
+
         // 背景逻辑
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/RSVQuestBoard");
-        
+
         // 接受任务按钮逻辑
         var stringSize = Game1.dialogueFont.MeasureString(Game1.content.LoadString("Strings\\UI:AcceptQuest"));
         acceptQuestButton = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2 - 128, yPositionOnScreen + height - 128,
@@ -64,7 +63,7 @@ internal class RSVQuestBoard : IClickableMenu
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
                 hoverTitle = option.QuestData.Quest.questTitle;
-                hoverText =  option.QuestData.Quest.currentObjective;
+                hoverText = option.QuestData.Quest.currentObjective;
                 break;
             }
         }
@@ -95,7 +94,7 @@ internal class RSVQuestBoard : IClickableMenu
                 hoverTitle = "";
                 hoverText = "";
                 showingQuestID = option.myID;
-                showingQuest =  option.QuestData.Quest;
+                showingQuest = option.QuestData.Quest;
                 acceptQuestButton.visible = true;
                 return;
             }
@@ -130,7 +129,7 @@ internal class RSVQuestBoard : IClickableMenu
         if (!Game1.options.showClearBackgrounds) spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
 
         // 绘制面板纹理
-        spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 198), Color.White,
+        spriteBatch.Draw(billboardTexture, new Vector2(xPositionOnScreen, yPositionOnScreen), new Rectangle(0, 0, 338, 424), Color.White,
             0f, Vector2.Zero, 4f, SpriteEffects.None, 1f);
 
         if (!QuestNotes.Any())
@@ -145,16 +144,6 @@ internal class RSVQuestBoard : IClickableMenu
             else
                 DrawShowingQuest(spriteBatch);
         }
-
-        // 绘制星星
-        for (var i = 0; i < Game1.stats.Get("BillboardQuestsDone") % 3; i++)
-            spriteBatch.Draw(billboardTexture, Position + new Vector2(18 + 12 * i, 36f) * 4f, new Rectangle(140, 397, 10, 11), Color.White,
-                0f, Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
-
-        // 绘制祝尼魔
-        if (Game1.player.hasCompletedCommunityCenter())
-            spriteBatch.Draw(billboardTexture, Position + new Vector2(290f, 59f) * 4f, new Rectangle(0, 427, 39, 54), Color.White, 0f,
-                Vector2.Zero, 4f, SpriteEffects.None, 0.6f);
 
         // 绘制右上角的关闭按钮
         upperRightCloseButton.draw(spriteBatch);
@@ -211,11 +200,6 @@ internal class RSVQuestBoard : IClickableMenu
             acceptQuestButton.bounds.Width, acceptQuestButton.bounds.Height, acceptQuestButton.scale > 1f ? Color.LightPink : Color.White, 4f * acceptQuestButton.scale);
         Utility.drawTextWithShadow(spriteBatch, Game1.content.LoadString("Strings\\UI:AcceptQuest"), Game1.dialogueFont,
             new Vector2(acceptQuestButton.bounds.X + 12, acceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
-        // 奖券逻辑
-        if (Game1.stats.Get("BillboardQuestsDone") % 3 != 2) return;
-        Utility.drawWithShadow(spriteBatch, Game1.content.Load<Texture2D>("TileSheets\\Objects_2"), Position + new Vector2(215f, 144f) * 4f,
-            new Rectangle(80, 128, 16, 16), Color.White, 0f, Vector2.Zero, 4f);
-        SpriteText.drawString(spriteBatch, "x1", (int)Position.X + 936, (int)Position.Y + 596);
     }
 
     private void DrawQuestNotes(SpriteBatch spriteBatch)
@@ -226,7 +210,7 @@ internal class RSVQuestBoard : IClickableMenu
     private void InitQuestNotes()
     {
         if (QuestManager.RSVQuestList.Count <= 0) return;
-        
+
         // 清空任务选项列表
         QuestNotes.Clear();
         // 遍历所有的任务数据,创建任务选项
@@ -241,7 +225,7 @@ internal class RSVQuestBoard : IClickableMenu
             QuestNotes.Add(new QuestNote(questList[i], bounds.Value)
             {
                 // 设置该选项的ID
-                myID = OptionIndex - i,
+                myID = OptionIndex - i
             });
         }
 

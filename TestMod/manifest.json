@@ -4,5 +4,11 @@
     "Version": "1.0.0",
     "Description": "Test Mod",
     "UniqueID": "weizinai.TestMod",
-    "EntryDll": "TestMod.dll"
+    "EntryDll": "TestMod.dll",
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
 }

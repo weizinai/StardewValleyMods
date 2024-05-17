@@ -7,5 +7,11 @@
     "EntryDll": "FriendshipDecayModify.dll",
     "UpdateKeys": [
         "Nexus:23862"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
     ]
 }

@@ -7,5 +7,11 @@
     "EntryDll": "ActiveMenuAnywhere.dll",
     "UpdateKeys": [
         "Nexus:21093"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
     ]
 }

@@ -25,7 +25,8 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this, new BillboardPatcher(config), new ItemDeliveryQuestPatcher(config),
-            new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher());
+            new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher(),
+            new RSVQuestBoardPatcher(config));
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)

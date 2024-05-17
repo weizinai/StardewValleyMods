@@ -17,7 +17,7 @@ internal class QuestManager
     private readonly AppearanceManager appearanceManager;
 
     public static readonly List<QuestData> VanillaQuestList = new();
-    private static readonly List<QuestData> RSVQuestList = new();
+    public static readonly List<QuestData> RSVQuestList = new();
 
     public QuestManager(IModHelper helper, ModConfig config)
     {

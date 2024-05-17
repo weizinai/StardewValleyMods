@@ -43,6 +43,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
         );
     }
 
+    // 交易任务友谊奖励修改
     private static IEnumerable<CodeInstruction> CheckIfCompleteTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
@@ -51,6 +52,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
         return codes.AsEnumerable();
     }
 
+    // 交易任务金钱奖励修改
     private static void GetGoldRewardPerItemPostfix(ref int __result)
     {
         __result = (int)(__result * config.ItemDeliveryRewardMultiplier);

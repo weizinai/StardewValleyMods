@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
+using Common;
 using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
@@ -15,7 +16,7 @@ namespace HelpWanted.Patches;
 internal class ItemDeliveryQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
-    private static Random random = new();
+    private static readonly Random Random = new();
 
     private static List<string> possibleItems = new();
     private static string universalGiftTaste = "";
@@ -102,10 +103,10 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
             InitNPCGiftTaste(npcName);
         }
 
-        var result = random.ChooseFrom(possibleItems);
+        var result = Random.ChooseFrom(possibleItems);
         possibleItems = possibleItems.Where(IsItemAvailable).ToList();
 
-        return possibleItems.Any() ? random.ChooseFrom(possibleItems) : result;
+        return possibleItems.Any() ? Random.ChooseFrom(possibleItems) : result;
     }
 
     public static void Init()
@@ -182,7 +183,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
         foreach (var recipe in allUnlockedCookingRecipes)
         {
-            if (random.NextDouble() < 0.4)
+            if (Random.NextDouble() < 0.4)
             {
                 continue;
             }
@@ -254,11 +255,13 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
         if (itemId is "-5" or "-6" && isGiftTaste) return true;
 
-        if (itemId.StartsWith('-')) return false;
+        if (!ItemRegistry.Exists(itemId))
+        {
+            Log.Info($"ItemId: {itemId} doesn't exist.");
+            return false;
+        }
 
         var item = new SObject(itemId, 1);
-
-        if (item.Name.Contains("Error")) return false;
 
         return isGiftTaste &&
                (config.MaxPrice <= 0 || item.Price <= config.MaxPrice) &&

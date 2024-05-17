@@ -28,6 +28,23 @@ internal class QuestManager
 
     public void InitVanillaQuestList()
     {
+        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay)
+        {
+            Log.Trace("今天是游戏第一天,不生成任务.");
+            return;
+        }
+
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival)
+        {
+            Log.Trace("今天或明天是节日,不生成任务.");
+            return;
+        }
+
+        if (Game1.random.NextDouble() >= config.DailyQuestChance)
+        {
+            Log.Trace("今天不生成任务.");
+            return;
+        }
         Log.Trace("初始化原版任务列表.");
         ItemDeliveryQuestPatcher.Init();
         VanillaQuestList.Clear();

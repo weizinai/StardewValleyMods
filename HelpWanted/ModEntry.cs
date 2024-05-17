@@ -4,7 +4,6 @@ using HelpWanted.Framework;
 using HelpWanted.Patches;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
 
 namespace HelpWanted;
 
@@ -26,8 +25,8 @@ internal class ModEntry : Mod
         // 注册Harmony补丁
         var patches = new List<IPatcher>
         {
-            new BillboardPatcher(config), new ItemDeliveryQuestPatcher(config),
-            new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher()
+            new BillboardPatcher(config), new ItemDeliveryQuestPatcher(config), new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config),
+            new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher()
         };
         if (helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage")) patches.Add(new RSVQuestBoardPatcher(config));
         HarmonyPatcher.Apply(this, patches.ToArray());
@@ -35,24 +34,6 @@ internal class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (Game1.stats.DaysPlayed <= 1 && !config.QuestFirstDay)
-        {
-            Log.Trace("今天是游戏第一天,不生成任务.");
-            return;
-        }
-
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !config.QuestFestival)
-        {
-            Log.Trace("今天或明天是节日,不生成任务.");
-            return;
-        }
-
-        if (Game1.random.NextDouble() >= config.DailyQuestChance)
-        {
-            Log.Trace("今天不生成任务.");
-            return;
-        }
-
         questManager.InitVanillaQuestList();
         if (Helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage"))
             questManager.InitRSVQuestList();

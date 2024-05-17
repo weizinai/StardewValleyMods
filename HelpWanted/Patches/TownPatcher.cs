@@ -1,7 +1,7 @@
 using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
-using HelpWanted.Framework.QuestBoard;
+using HelpWanted.Framework.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;

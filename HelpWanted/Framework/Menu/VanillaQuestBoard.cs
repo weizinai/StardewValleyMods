@@ -7,7 +7,7 @@ using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework.QuestBoard;
+namespace HelpWanted.Framework.Menu;
 
 internal sealed class VanillaQuestBoard : IClickableMenu
 {

@@ -86,7 +86,7 @@ internal class QuestManager
         Log.Info("Begin generating today's daily quests of RSV.");
         RSVQuestList.Clear();
         var quest = GetRSVQuest();
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < config.MaxRSVQuests; i++)
         {
             if (quest is null) break;
             var npc = GetNpcFromQuest(quest);

@@ -15,6 +15,7 @@
     "Config.QuestDays.Tooltip": "完成任务的限制时间",
     "Config.MaxQuests.Name": "最大任务数量",
     "Config.MaxQuests.Tooltip": "每日的最大任务数量.受限于任务板能放下的便签数量",
+    "Config.MaxRSVQuests.Name": "最大RSV任务数量",
 
     // 交易任务
     "Config.ItemDeliveryPage.Name": "交易任务",

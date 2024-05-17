@@ -14,8 +14,8 @@ internal class ModConfig
     public bool ExcludeMaxHeartsNPC { get; set; } = true;
     public List<string> ExcludeNPCList { get; set; } = new();
     public int QuestDays { get; set; } = 2;
-
     public int MaxQuests { get; set; } = 10;
+    public int MaxRSVQuests { get; set; } = 5;
 
     // 交易任务
     public float ItemDeliveryWeight { get; set; } = 0.4f;
@@ -24,7 +24,6 @@ internal class ModConfig
     public int QuestItemRequirement { get; set; } = 1;
     public int MaxPrice { get; set; } = -1;
     public bool AllowArtisanGoods { get; set; } = true;
-
     public bool UseModPossibleItems { get; set; } = true;
 
     // 采集任务

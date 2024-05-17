@@ -7,10 +7,12 @@ namespace HelpWanted.Framework;
 internal class GenericModConfigMenuIntegrationForHelpWanted
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
+    private readonly bool isRSVLoaded;
 
     public GenericModConfigMenuIntegrationForHelpWanted(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
         configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        isRSVLoaded = helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage");
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
     }
 
@@ -83,6 +85,12 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 (config, value) => config.MaxQuests = value,
                 I18n.Config_MaxQuests_Name,
                 I18n.Config_MaxQuests_Tooltip
+            )
+            .AddNumberOption(
+                config => config.MaxRSVQuests,
+                (config, value) => config.MaxRSVQuests = value,
+                I18n.Config_MaxRSVQuests_Name,
+                enable: isRSVLoaded
             )
             .AddPageLink("ItemDeliveryQuest", I18n.Config_ItemDeliveryPage_Name)
             .AddPageLink("ResourceCollectionQuest", I18n.Config_ResourceCollectionPage_Name)

@@ -259,7 +259,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
         if (!ItemRegistry.Exists(itemId))
         {
-            Log.Info($"ItemId: {itemId} doesn't exist.");
+            Log.Trace($"ItemId: {itemId} doesn't exist.");
             return false;
         }
 

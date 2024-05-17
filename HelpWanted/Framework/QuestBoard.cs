@@ -9,7 +9,7 @@ using StardewValley.Quests;
 
 namespace HelpWanted.Framework;
 
-internal sealed class HWQuestBoard : IClickableMenu
+internal sealed class QuestBoard : IClickableMenu
 {
     private readonly Texture2D billboardTexture;
     private readonly ClickableComponent acceptQuestButton;
@@ -24,7 +24,7 @@ internal sealed class HWQuestBoard : IClickableMenu
     private const int OptionIndex = -4200;
     private readonly ModConfig config;
 
-    public HWQuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
+    public QuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
     {
         // 位置和大小逻辑
         width = 338 * 4;

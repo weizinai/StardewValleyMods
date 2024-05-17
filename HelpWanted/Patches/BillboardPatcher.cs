@@ -27,7 +27,7 @@ internal class BillboardPatcher : BasePatcher
     private static bool DrawPrefix(bool ___dailyQuestBoard)
     {
         if (!___dailyQuestBoard) return true;
-        Game1.activeClickableMenu = new HWQuestBoard(config);
+        Game1.activeClickableMenu = new QuestBoard(config);
         return false;
     }
 }

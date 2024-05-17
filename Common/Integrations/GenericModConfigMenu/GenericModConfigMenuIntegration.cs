@@ -52,17 +52,19 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <summary>Add a section title at the current position in the form.</summary>
     /// <param name="text">The title text shown in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the title, or <c>null</c> to disable the tooltip.</param>
-    public GenericModConfigMenuIntegration<TConfig> AddSectionTitle(Func<string> text, Func<string>? tooltip = null)
+    /// <param name="enable">Whether the option is enabled.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddSectionTitle(Func<string> text, Func<string>? tooltip = null, bool enable = true)
     {
-        configMenu?.AddSectionTitle(consumerManifest, text, tooltip);
+        if (enable) configMenu?.AddSectionTitle(consumerManifest, text, tooltip);
         return this;
     }
 
     /// <summary>Add a paragraph of text at the current position in the form.</summary>
     /// <param name="text">The paragraph text to display.</param>
-    public GenericModConfigMenuIntegration<TConfig> AddParagraph(Func<string> text)
+    /// <param name="enable">Whether the option is enabled.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddParagraph(Func<string> text, bool enable = true)
     {
-        configMenu?.AddParagraph(consumerManifest, text);
+        if (enable) configMenu?.AddParagraph(consumerManifest, text);
         return this;
     }
 
@@ -71,15 +73,20 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="set"></param>
     /// <param name="name">The label text to show in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
-    public GenericModConfigMenuIntegration<TConfig> AddBoolOption(Func<TConfig, bool> get, Action<TConfig, bool> set, Func<string> name, Func<string>? tooltip = null)
+    /// <param name="enable">Whether the option is enabled.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddBoolOption(Func<TConfig, bool> get, Action<TConfig, bool> set, Func<string> name,
+        Func<string>? tooltip = null, bool enable = true)
     {
-        configMenu?.AddBoolOption(
-            consumerManifest,
-            () => get(GetConfig()),
-            value => set(GetConfig(), value),
-            name,
-            tooltip
-        );
+        if (enable)
+        {
+            configMenu?.AddBoolOption(
+                consumerManifest,
+                () => get(GetConfig()),
+                value => set(GetConfig(), value),
+                name,
+                tooltip
+            );
+        }
         return this;
     }
 
@@ -92,20 +99,24 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="max">The maximum allowed value, or <c>null</c> to allow any.</param>
     /// <param name="interval">The interval of values that can be selected.</param>
     /// <param name="formatValue">Get the display text to show for a value, or <c>null</c> to show the number as-is.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddNumberOption(Func<TConfig, int> get, Action<TConfig, int> set, Func<string> name,
-        Func<string>? tooltip = null, int? min = null, int? max = null, int? interval = null, Func<int, string>? formatValue = null)
+        Func<string>? tooltip = null, int? min = null, int? max = null, int? interval = null, Func<int, string>? formatValue = null, bool enable = true)
     {
-        configMenu?.AddNumberOption(
-            consumerManifest,
-            () => get(GetConfig()),
-            value => set(GetConfig(), value),
-            name,
-            tooltip,
-            min,
-            max,
-            interval,
-            formatValue
-        );
+        if (enable)
+        {
+            configMenu?.AddNumberOption(
+                consumerManifest,
+                () => get(GetConfig()),
+                value => set(GetConfig(), value),
+                name,
+                tooltip,
+                min,
+                max,
+                interval,
+                formatValue
+            );
+        }
         return this;
     }
 
@@ -118,20 +129,25 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="max">The maximum allowed value, or <c>null</c> to allow any.</param>
     /// <param name="interval">The interval of values that can be selected.</param>
     /// <param name="formatValue">Get the display text to show for a value, or <c>null</c> to show the number as-is.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddNumberOption(Func<TConfig, float> get, Action<TConfig, float> set, Func<string> name,
-        Func<string>? tooltip = null, float? min = null, float? max = null, float? interval = null, Func<float, string>? formatValue = null)
+        Func<string>? tooltip = null, float? min = null, float? max = null, float? interval = null, Func<float, string>? formatValue = null, bool enable = true)
     {
-        configMenu?.AddNumberOption(
-            consumerManifest,
-            () => get(GetConfig()),
-            value => set(GetConfig(), value),
-            name,
-            tooltip,
-            min,
-            max,
-            interval,
-            formatValue
-        );
+        if (enable)
+        {
+            configMenu?.AddNumberOption(
+                consumerManifest,
+                () => get(GetConfig()),
+                value => set(GetConfig(), value),
+                name,
+                tooltip,
+                min,
+                max,
+                interval,
+                formatValue
+            );
+        }
+
         return this;
     }
 
@@ -142,18 +158,23 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
     /// <param name="allowedValues">The values that can be selected, or <c>null</c> to allow any.</param>
     /// <param name="formatAllowedValue">Get the display text to show for a value from <paramref name="allowedValues" />, or <c>null</c> to show the values as-is. </param>
+    /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddTextOption(Func<TConfig, string> get, Action<TConfig, string> set, Func<string> name, Func<string>? tooltip = null,
-        string[]? allowedValues = null, Func<string, string>? formatAllowedValue = null)
+        string[]? allowedValues = null, Func<string, string>? formatAllowedValue = null, bool enable = true)
     {
-        configMenu?.AddTextOption(
-            consumerManifest,
-            () => get(GetConfig()),
-            value => set(GetConfig(), value),
-            name,
-            tooltip,
-            allowedValues,
-            formatAllowedValue
-        );
+        if (enable)
+        {
+            configMenu?.AddTextOption(
+                consumerManifest,
+                () => get(GetConfig()),
+                value => set(GetConfig(), value),
+                name,
+                tooltip,
+                allowedValues,
+                formatAllowedValue
+            );
+        }
+
         return this;
     }
 
@@ -162,16 +183,21 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="set"></param>
     /// <param name="name">The label text to show in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddKeybindList(Func<TConfig, KeybindList> get, Action<TConfig, KeybindList> set, Func<string> name,
-        Func<string>? tooltip = null)
+        Func<string>? tooltip = null, bool enable = true)
     {
-        configMenu?.AddKeybindList(
-            consumerManifest,
-            () => get(GetConfig()),
-            value => set(GetConfig(), value),
-            name,
-            tooltip
-        );
+        if (enable)
+        {
+            configMenu?.AddKeybindList(
+                consumerManifest,
+                () => get(GetConfig()),
+                value => set(GetConfig(), value),
+                name,
+                tooltip
+            );
+        }
+
         return this;
     }
 
@@ -192,9 +218,10 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
     /// <param name="pageId">The unique ID of the page to open when the link is clicked.</param>
     /// <param name="text">The link text shown in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the link, or <c>null</c> to disable the tooltip.</param>
-    public GenericModConfigMenuIntegration<TConfig> AddPageLink(string pageId, Func<string> text, Func<string>? tooltip = null)
+    /// <param name="enable">Whether the option is enabled.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddPageLink(string pageId, Func<string> text, Func<string>? tooltip = null, bool enable = true)
     {
-        configMenu?.AddPageLink(consumerManifest, pageId, text, tooltip);
+        if (enable) configMenu?.AddPageLink(consumerManifest, pageId, text, tooltip);
         return this;
     }
 

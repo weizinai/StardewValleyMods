@@ -7,9 +7,9 @@ using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework;
+namespace HelpWanted.Framework.QuestBoard;
 
-internal sealed class QuestBoard : IClickableMenu
+internal sealed class VanillaQuestBoard : IClickableMenu
 {
     private readonly Texture2D billboardTexture;
     private readonly ClickableComponent acceptQuestButton;
@@ -24,7 +24,7 @@ internal sealed class QuestBoard : IClickableMenu
     private const int OptionIndex = -4200;
     private readonly ModConfig config;
 
-    public QuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
+    public VanillaQuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
     {
         // 位置和大小逻辑
         width = 338 * 4;

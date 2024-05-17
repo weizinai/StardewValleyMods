@@ -1,6 +1,7 @@
 using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
+using HelpWanted.Framework.QuestBoard;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
@@ -20,7 +21,7 @@ internal class TownPatcher : BasePatcher
 
     private static void DrawPostfix(SpriteBatch spriteBatch)
     {
-        if (!QuestManager.VanillaQuestList.Any() && !QuestBoard.QuestNotes.Any()) return;
+        if (!QuestManager.VanillaQuestList.Any() && !VanillaQuestBoard.QuestNotes.Any()) return;
 
         var yOffset = 4f * (float)Math.Round(Math.Sin(Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 250.0), 2);
         spriteBatch.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, new Vector2(2692f, 3528f + yOffset)),

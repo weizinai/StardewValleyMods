@@ -6,7 +6,7 @@ using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework;
+namespace HelpWanted.Framework.QuestBoard;
 
 internal class RSVQuestBoard : IClickableMenu
 {

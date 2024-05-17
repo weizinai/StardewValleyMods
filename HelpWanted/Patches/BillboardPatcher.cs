@@ -1,6 +1,7 @@
 ﻿using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
+using HelpWanted.Framework.QuestBoard;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
@@ -27,7 +28,7 @@ internal class BillboardPatcher : BasePatcher
     private static bool DrawPrefix(bool ___dailyQuestBoard)
     {
         if (!___dailyQuestBoard) return true;
-        Game1.activeClickableMenu = new QuestBoard(config);
+        Game1.activeClickableMenu = new VanillaQuestBoard(config);
         return false;
     }
 }

@@ -24,9 +24,13 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new BillboardPatcher(config), new ItemDeliveryQuestPatcher(config),
-            new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher(),
-            new RSVQuestBoardPatcher(config));
+        var patches = new List<IPatcher>
+        {
+            new BillboardPatcher(config), new ItemDeliveryQuestPatcher(config),
+            new SlayMonsterQuestPatcher(config), new ResourceCollectionQuestPatcher(config), new FishingQuestPatcher(config), new Game1Patcher(), new TownPatcher()
+        };
+        if (helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage")) patches.Add(new RSVQuestBoardPatcher(config));
+        HarmonyPatcher.Apply(this, patches.ToArray());
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)

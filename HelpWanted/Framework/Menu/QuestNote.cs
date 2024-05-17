@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Menus;
 
-namespace HelpWanted.Framework;
+namespace HelpWanted.Framework.Menu;
 
 internal class QuestNote : ClickableComponent
 {

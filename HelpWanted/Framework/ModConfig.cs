@@ -15,6 +15,7 @@ internal class ModConfig
     public List<string> ExcludeNPCList { get; set; } = new();
     public int QuestDays { get; set; } = 2;
     public int MaxQuests { get; set; } = 10;
+    public bool EnableRSVQuestBoard { get; set; } = true;
     public int MaxRSVQuests { get; set; } = 5;
 
     // 交易任务

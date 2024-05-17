@@ -86,6 +86,12 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 I18n.Config_MaxQuests_Name,
                 I18n.Config_MaxQuests_Tooltip
             )
+            .AddBoolOption(
+                config => config.EnableRSVQuestBoard,
+                (config, value) => config.EnableRSVQuestBoard = value,
+                I18n.Config_EnableRSVQuestBoard_Name,
+                enable: isRSVLoaded
+            )
             .AddNumberOption(
                 config => config.MaxRSVQuests,
                 (config, value) => config.MaxRSVQuests = value,

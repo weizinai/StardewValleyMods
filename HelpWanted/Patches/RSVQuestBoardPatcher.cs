@@ -26,7 +26,7 @@ internal class RSVQuestBoardPatcher : BasePatcher
 
     private static bool DrawPrefix(string ___boardType)
     {
-        if (___boardType != "VillageQuestBoard") return true;
+        if (___boardType != "VillageQuestBoard" || !config.EnableRSVQuestBoard) return true;
         Game1.activeClickableMenu = new RSVQuestBoard(config);
         return false;
     }

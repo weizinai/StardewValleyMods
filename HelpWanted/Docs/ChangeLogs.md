@@ -1,6 +1,7 @@
 # 1.1.1
 
 - 修复交易任务的物品是错误物品的问题
+- 添加`EnableRSVQuestBoard`选项
 - 添加`MaxRSVQuests`选项
 
 # 1.1.0

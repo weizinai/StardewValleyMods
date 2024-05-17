@@ -15,6 +15,7 @@
     "Config.QuestDays.Tooltip": "The time limit to complete the quest",
     "Config.MaxQuests.Name": "Max Quests",
     "Config.MaxQuests.Tooltip": "The maximum number of quest per day is limited by the number of sticky notes that can be placed on the billboard",
+    "Config.EnableRSVQuestBoard.Name": "Enable RSV Quest Board",
     "Config.MaxRSVQuests.Name": "Max RSV Quests",
 
     // Item Delivery

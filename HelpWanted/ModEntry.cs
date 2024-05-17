@@ -35,7 +35,7 @@ internal class ModEntry : Mod
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
         questManager.InitVanillaQuestList();
-        if (Helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage"))
+        if (Helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage") && config.EnableRSVQuestBoard)
             questManager.InitRSVQuestList();
     }
 

@@ -225,12 +225,12 @@ internal sealed class QuestBoard : IClickableMenu
 
     private void InitQuestNotes()
     {
-        if (QuestManager.QuestList.Count <= 0) return;
+        if (QuestManager.VanillaQuestList.Count <= 0) return;
         
         // 清空任务选项列表
         QuestNotes.Clear();
         // 遍历所有的任务数据,创建任务选项
-        var questList = QuestManager.QuestList;
+        var questList = QuestManager.VanillaQuestList;
         for (var i = 0; i < questList.Count; i++)
         {
             var size = new Point(
@@ -245,6 +245,6 @@ internal sealed class QuestBoard : IClickableMenu
             });
         }
 
-        QuestManager.QuestList.Clear();
+        QuestManager.VanillaQuestList.Clear();
     }
 }

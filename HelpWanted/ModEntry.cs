@@ -48,7 +48,9 @@ internal class ModEntry : Mod
             return;
         }
 
-        questManager.InitQuestList();
+        questManager.InitVanillaQuestList();
+        if (Helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage"))
+            questManager.InitRSVQuestList();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

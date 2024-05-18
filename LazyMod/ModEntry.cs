@@ -1,4 +1,5 @@
-﻿using LazyMod.Framework;
+﻿using Common;
+using LazyMod.Framework;
 using LazyMod.Framework.Config;
 using LazyMod.Framework.Hud;
 using StardewModdingAPI;
@@ -15,9 +16,19 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        config = helper.ReadConfig<ModConfig>();
-        automationManger = new AutomationManger(helper, config);
+        Log.Init(Monitor);
         I18n.Init(helper.Translation);
+        try
+        {
+            config = helper.ReadConfig<ModConfig>();
+        }
+        catch (Exception)
+        {
+            helper.WriteConfig(new ModConfig());
+            config = helper.ReadConfig<ModConfig>();
+            Log.Info("Read config.json file failed and was automatically fixed. Please reset the features you want to turn on.");
+        }
+        automationManger = new AutomationManger(helper, config);
 
         // 注册事件
         helper.Events.Display.RenderedHud += OnRenderedHud;

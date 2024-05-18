@@ -109,7 +109,7 @@ internal class ModConfig
     public bool FindToolForClearCrystal { get; set; } = true;
 
     // 自动冷却岩浆
-    public BaseConfig AutoCoolLava { get; set; } = new();
+    public BaseConfig AutoCoolLava { get; set; } = new(1);
     public float StopCoolLavaStamina { get; set; } = 3;
     public bool FindToolForCoolLava { get; set; } = true;
 

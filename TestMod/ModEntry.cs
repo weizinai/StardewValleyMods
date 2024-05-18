@@ -30,6 +30,8 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
+        if (config.Key.JustPressed())
+            Game1.activeClickableMenu = new ShippingMenu(new List<Item>());
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)

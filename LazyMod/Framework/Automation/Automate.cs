@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -6,7 +7,7 @@ using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Automation;
 
-public abstract class Automate
+internal abstract class Automate
 {
     protected ModConfig Config;
     protected readonly Dictionary<int, List<Vector2>> TileCache = new();

@@ -2,9 +2,9 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace LazyMod.Framework;
+namespace LazyMod.Framework.Config;
 
-public class ModConfig
+internal class ModConfig
 {
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.R);
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Monsters;
 using StardewValley.TerrainFeatures;
@@ -7,7 +8,7 @@ using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Automation;
 
-public class AutoForaging : Automate
+internal class AutoForaging : Automate
 {
     public AutoForaging(ModConfig config): base(config)
     {

@@ -1,11 +1,12 @@
 ﻿using LazyMod.Framework.Automation;
+using LazyMod.Framework.Config;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 
 namespace LazyMod.Framework;
 
-public class AutomationManger
+internal class AutomationManger
 {
     private ModConfig config;
     private readonly List<Automate> automations = new();

@@ -1,11 +1,12 @@
 using Common.Integrations;
 using LazyMod.Framework.Automation;
+using LazyMod.Framework.Config;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
 namespace LazyMod.Framework;
 
-public class GenericModConfigMenuIntegrationForLazyMod
+internal class GenericModConfigMenuIntegrationForLazyMod
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 

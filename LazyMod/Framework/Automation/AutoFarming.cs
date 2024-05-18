@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
@@ -7,7 +8,7 @@ using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Automation;
 
-public class AutoFarming : Automate
+internal class AutoFarming : Automate
 {
     public AutoFarming(ModConfig config) : base(config)
     {

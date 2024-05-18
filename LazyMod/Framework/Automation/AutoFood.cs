@@ -1,11 +1,12 @@
-﻿using StardewValley;
+﻿using LazyMod.Framework.Config;
+using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Automation;
 
-public class AutoFood : Automate
+internal class AutoFood : Automate
 {
     private readonly Dictionary<SObject, string?> foodData = new();
 

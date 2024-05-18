@@ -1,4 +1,5 @@
-﻿using StardewValley;
+﻿using LazyMod.Framework.Config;
+using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
 using StardewValley.GameData.Machines;
@@ -8,7 +9,7 @@ using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Automation;
 
-public class AutoOther : Automate
+internal class AutoOther : Automate
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
 

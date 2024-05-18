@@ -1,5 +1,6 @@
 using System.Text;
 using Common.UI;
+using LazyMod.Framework.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -11,7 +12,7 @@ using SObject = StardewValley.Object;
 
 namespace LazyMod.Framework.Hud;
 
-public class MiningHud
+internal class MiningHud
 {
     private readonly RootElement hud;
     private bool hasGetMineralInfo;

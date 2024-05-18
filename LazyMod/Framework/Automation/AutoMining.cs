@@ -3,12 +3,13 @@ using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using Common;
+using LazyMod.Framework.Config;
 using Microsoft.Xna.Framework;
 using StardewValley.TerrainFeatures;
 
 namespace LazyMod.Framework.Automation;
 
-public class AutoMining : Automate
+internal class AutoMining : Automate
 {
     public AutoMining(ModConfig config): base(config)
     {

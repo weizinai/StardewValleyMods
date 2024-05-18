@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class SophiaOption : BaseOption
+internal class SophiaOption : BaseOption
 {
     public SophiaOption(Rectangle sourceRect) : base("Sophia", sourceRect)
     {

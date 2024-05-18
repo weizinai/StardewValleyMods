@@ -6,7 +6,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class RaccoonOption : BaseOption
+internal class RaccoonOption : BaseOption
 {
     private readonly IModHelper helper;
 

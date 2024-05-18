@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class VolcanoShopOption : BaseOption
+internal class VolcanoShopOption : BaseOption
 {
     public VolcanoShopOption(Rectangle sourceRect) :
         base(I18n.Option_VolcanoShop(), sourceRect)

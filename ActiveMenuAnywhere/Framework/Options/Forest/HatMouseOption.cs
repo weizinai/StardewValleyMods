@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class HatMouseOption : BaseOption
+internal class HatMouseOption : BaseOption
 {
     public HatMouseOption(Rectangle sourceRect) :
         base(I18n.Option_HatMouse(), sourceRect)

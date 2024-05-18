@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class KimpoiOption : BaseOption
+internal class KimpoiOption : BaseOption
 {
     public KimpoiOption(Rectangle sourceRect) :
         base(I18n.Option_Kimpoi(), sourceRect)

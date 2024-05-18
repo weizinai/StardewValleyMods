@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class DecorationBoatOption : BaseOption
+internal class DecorationBoatOption : BaseOption
 {
     public DecorationBoatOption(Rectangle sourceRect) : base("DecorationBoat", sourceRect)
     {

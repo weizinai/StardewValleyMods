@@ -5,7 +5,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class QiCatOption : BaseOption
+internal class QiCatOption : BaseOption
 {
     private readonly IModHelper helper;
 

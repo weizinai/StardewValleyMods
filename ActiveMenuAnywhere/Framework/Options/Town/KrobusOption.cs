@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class KrobusOption : BaseOption
+internal class KrobusOption : BaseOption
 {
     public KrobusOption(Rectangle sourceRect) :
         base(I18n.Option_Krobus(), sourceRect)

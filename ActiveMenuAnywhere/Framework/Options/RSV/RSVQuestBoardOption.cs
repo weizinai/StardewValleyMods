@@ -6,7 +6,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class RSVQuestBoardOption : BaseOption
+internal class RSVQuestBoardOption : BaseOption
 {
     private readonly IModHelper helper;
 

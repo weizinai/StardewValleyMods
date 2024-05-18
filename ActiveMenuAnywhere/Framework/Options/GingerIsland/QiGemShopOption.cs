@@ -4,7 +4,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class QiGemShopOption : BaseOption
+internal class QiGemShopOption : BaseOption
 {
     public QiGemShopOption(Rectangle sourceRect) :
         base(I18n.Option_QiGemShop(), sourceRect)

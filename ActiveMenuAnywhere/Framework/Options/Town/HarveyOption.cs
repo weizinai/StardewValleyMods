@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class HarveyOption : BaseOption
+internal class HarveyOption : BaseOption
 {
     public HarveyOption(Rectangle sourceRect) :
         base(I18n.Option_Harvey(), sourceRect)

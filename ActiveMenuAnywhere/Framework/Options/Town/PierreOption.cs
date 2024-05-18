@@ -4,7 +4,7 @@ using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class PierreOption : BaseOption
+internal class PierreOption : BaseOption
 {
     public PierreOption(Rectangle sourceRect) :
         base(I18n.Option_Pierre(), sourceRect)

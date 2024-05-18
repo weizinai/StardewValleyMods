@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class JoiOption : BaseOption
+internal class JoiOption : BaseOption
 {
     public JoiOption(Rectangle sourceRect) : base(I18n.Option_Joi(), sourceRect)
     {

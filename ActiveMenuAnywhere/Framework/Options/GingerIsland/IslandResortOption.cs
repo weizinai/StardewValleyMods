@@ -4,7 +4,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class IslandResortOption : BaseOption
+internal class IslandResortOption : BaseOption
 {
     public IslandResortOption(Rectangle sourceRect) :
         base(I18n.Option_IslandResort(), sourceRect)

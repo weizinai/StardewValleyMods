@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class JojaShopOption : BaseOption
+internal class JojaShopOption : BaseOption
 {
     public JojaShopOption(Rectangle sourceRect) :
         base(I18n.Option_JojaShop(), sourceRect)

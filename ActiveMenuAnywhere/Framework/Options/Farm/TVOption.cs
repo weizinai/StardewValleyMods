@@ -5,7 +5,7 @@ using StardewValley.Objects;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class TVOption : BaseOption
+internal class TVOption : BaseOption
 {
     private readonly IModHelper helper;
 

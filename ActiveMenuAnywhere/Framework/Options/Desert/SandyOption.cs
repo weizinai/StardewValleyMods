@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class SandyOption : BaseOption
+internal class SandyOption : BaseOption
 {
     public SandyOption(Rectangle sourceRect) :
         base(I18n.Option_Sandy(), sourceRect)

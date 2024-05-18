@@ -6,7 +6,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class RSVSpecialOrderOption : BaseOption
+internal class RSVSpecialOrderOption : BaseOption
 {
     private readonly IModHelper helper;
 

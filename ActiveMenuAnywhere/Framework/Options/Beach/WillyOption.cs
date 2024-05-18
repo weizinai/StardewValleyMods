@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class WillyOption : BaseOption
+internal class WillyOption : BaseOption
 {
     public WillyOption(Rectangle sourceRect) :
         base(I18n.Option_Willy(), sourceRect)

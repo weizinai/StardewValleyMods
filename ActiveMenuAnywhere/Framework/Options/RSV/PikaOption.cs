@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class PikaOption : BaseOption
+internal class PikaOption : BaseOption
 {
     public PikaOption(Rectangle sourceRect) :
         base(I18n.Option_Pika(), sourceRect)

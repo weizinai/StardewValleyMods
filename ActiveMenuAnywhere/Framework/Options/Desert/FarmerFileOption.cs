@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class FarmerFileOption : BaseOption
+internal class FarmerFileOption : BaseOption
 {
     public FarmerFileOption(Rectangle sourceRect) :
         base(I18n.Option_FarmerFile(), sourceRect)

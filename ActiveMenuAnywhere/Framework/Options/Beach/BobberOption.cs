@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class BobberOption : BaseOption
+internal class BobberOption : BaseOption
 {
     public BobberOption(Rectangle sourceRect) :
         base(I18n.Option_Bobber(), sourceRect)

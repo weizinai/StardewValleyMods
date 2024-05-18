@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class ForgeOption : BaseOption
+internal class ForgeOption : BaseOption
 {
     public ForgeOption(Rectangle sourceRect) :
         base(I18n.Option_Forge(), sourceRect)

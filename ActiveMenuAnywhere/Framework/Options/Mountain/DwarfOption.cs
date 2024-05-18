@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class DwarfOption : BaseOption
+internal class DwarfOption : BaseOption
 {
     public DwarfOption(Rectangle sourceRect) :
         base(I18n.Option_Dwarf(), sourceRect)

@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class DesertTradeOption : BaseOption
+internal class DesertTradeOption : BaseOption
 {
     public DesertTradeOption(Rectangle sourceRect) :
         base(I18n.Option_DesertTrade(), sourceRect)

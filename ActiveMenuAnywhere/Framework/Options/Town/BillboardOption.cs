@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class BillboardOption : BaseOption
+internal class BillboardOption : BaseOption
 {
     public BillboardOption(Rectangle sourceRect) :
         base(I18n.Option_Billboard(), sourceRect)

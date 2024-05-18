@@ -4,7 +4,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class AbandonedJojaMartOption : BaseOption
+internal class AbandonedJojaMartOption : BaseOption
 {
     public AbandonedJojaMartOption(Rectangle sourceRect) :
         base(I18n.Option_AbandonedJojaMart(), sourceRect)

@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class LolaOption : BaseOption
+internal class LolaOption : BaseOption
 {
     public LolaOption(Rectangle sourceRect) :
         base(I18n.Option_Lola(), sourceRect)

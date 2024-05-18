@@ -8,7 +8,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework;
 
-public class AMAMenu : IClickableMenu
+internal class AMAMenu : IClickableMenu
 {
     private const int InnerWidth = 600;
     private const int InnerHeight = 600;

@@ -5,7 +5,7 @@ using StardewModdingAPI;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class IanOption : BaseOption
+internal class IanOption : BaseOption
 {
     private readonly IModHelper helper;
 

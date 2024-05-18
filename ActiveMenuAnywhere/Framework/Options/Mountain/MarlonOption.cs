@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class MarlonOption : BaseOption
+internal class MarlonOption : BaseOption
 {
     public MarlonOption(Rectangle sourceRect) :
         base(I18n.Option_Marlon(), sourceRect)

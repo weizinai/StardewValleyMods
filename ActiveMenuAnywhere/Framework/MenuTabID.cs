@@ -1,6 +1,6 @@
 ﻿namespace ActiveMenuAnywhere.Framework;
 
-public enum MenuTabID
+internal enum MenuTabID
 {
     Farm,
     Town,

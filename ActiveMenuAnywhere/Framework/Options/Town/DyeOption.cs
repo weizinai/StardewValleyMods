@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class DyeOption : BaseOption
+internal class DyeOption : BaseOption
 {
     public DyeOption(Rectangle sourceRect) :
         base(I18n.Option_Dye(), sourceRect)

@@ -2,7 +2,7 @@
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public abstract class BaseOption
+internal abstract class BaseOption
 {
     protected BaseOption(string name, Rectangle sourceRect)
     {

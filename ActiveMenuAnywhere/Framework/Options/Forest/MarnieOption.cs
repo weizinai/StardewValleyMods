@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class MarnieOption : BaseOption
+internal class MarnieOption : BaseOption
 {
     public MarnieOption(Rectangle sourceRect) :
         base(I18n.Option_Marnie(), sourceRect)

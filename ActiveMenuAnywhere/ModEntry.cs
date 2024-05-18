@@ -7,18 +7,15 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere;
 
-// ReSharper disable once ClassNeverInstantiated.Global
-public class ModEntry : Mod
+internal class ModEntry : Mod
 {
-    public static IMonitor SMonitor;
+    private ModConfig config = null!;
     public static readonly Dictionary<MenuTabID, Texture2D> Textures = new();
-    private ModConfig config = new();
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         config = helper.ReadConfig<ModConfig>();
-        SMonitor = Monitor;
         LoadTexture();
         I18n.Init(helper.Translation);
         // 注册事件

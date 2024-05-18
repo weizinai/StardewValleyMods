@@ -5,7 +5,7 @@ using StardewModdingAPI;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class PaulaOption : BaseOption
+internal class PaulaOption : BaseOption
 {
     private readonly IModHelper helper;
 

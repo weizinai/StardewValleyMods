@@ -5,7 +5,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class QiSpecialOrderOption : BaseOption
+internal class QiSpecialOrderOption : BaseOption
 {
     public QiSpecialOrderOption(Rectangle sourceRect) :
         base(I18n.Option_QiSpecialOrder(), sourceRect)

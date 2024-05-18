@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class CasinoOption : BaseOption
+internal class CasinoOption : BaseOption
 {
     public CasinoOption(Rectangle sourceRect) :
         base(I18n.Option_Casino(), sourceRect)

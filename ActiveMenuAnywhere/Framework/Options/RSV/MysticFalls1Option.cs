@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class MysticFalls1Option : BaseOption
+internal class MysticFalls1Option : BaseOption
 {
     public MysticFalls1Option(Rectangle sourceRect) : base(I18n.Option_MysticFall1(), sourceRect)
     {

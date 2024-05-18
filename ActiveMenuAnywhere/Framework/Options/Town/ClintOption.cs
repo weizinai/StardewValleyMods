@@ -5,7 +5,7 @@ using StardewValley.Tools;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class ClintOption : BaseOption
+internal class ClintOption : BaseOption
 {
     public ClintOption(Rectangle sourceRect) :
         base(I18n.Option_Clint(), sourceRect)

@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class LorenzoOption : BaseOption
+internal class LorenzoOption : BaseOption
 {
     public LorenzoOption(Rectangle sourceRect) :
         base(I18n.Option_Lorenzo(), sourceRect)

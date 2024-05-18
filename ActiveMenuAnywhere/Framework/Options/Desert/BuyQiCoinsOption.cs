@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class BuyQiCoinsOption : BaseOption
+internal class BuyQiCoinsOption : BaseOption
 {
     public BuyQiCoinsOption(Rectangle sourceRect) :
         base(I18n.Option_BuyQiCoins(), sourceRect)

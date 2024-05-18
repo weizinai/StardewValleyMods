@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class SpecialOrderOption : BaseOption
+internal class SpecialOrderOption : BaseOption
 {
     public SpecialOrderOption(Rectangle sourceRect) :
         base(I18n.Option_SpecialOrder(), sourceRect)

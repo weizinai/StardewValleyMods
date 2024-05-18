@@ -5,7 +5,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class NinjaBoardOption : BaseOption
+internal class NinjaBoardOption : BaseOption
 {
     public NinjaBoardOption(Rectangle sourceRect) :
         base(I18n.Option_NinjaBoard(), sourceRect)

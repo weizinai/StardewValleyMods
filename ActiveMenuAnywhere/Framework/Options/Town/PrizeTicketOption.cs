@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class PrizeTicketOption : BaseOption
+internal class PrizeTicketOption : BaseOption
 {
     public PrizeTicketOption(Rectangle sourceRect) :
         base(I18n.Option_PrizeTicket(), sourceRect)

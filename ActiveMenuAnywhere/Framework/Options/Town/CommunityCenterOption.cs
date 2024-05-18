@@ -4,7 +4,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class CommunityCenterOption : BaseOption
+internal class CommunityCenterOption : BaseOption
 {
     private readonly List<string> keys;
     private readonly List<string> texts;

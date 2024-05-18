@@ -7,7 +7,7 @@ using Object = StardewValley.Object;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class ShippingBinOption : BaseOption
+internal class ShippingBinOption : BaseOption
 {
     private readonly IModHelper helper;
 

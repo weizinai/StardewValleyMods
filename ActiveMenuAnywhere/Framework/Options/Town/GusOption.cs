@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class GusOption : BaseOption
+internal class GusOption : BaseOption
 {
     public GusOption(Rectangle sourceRect) :
         base(I18n.Option_Gus(), sourceRect)

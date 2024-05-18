@@ -4,7 +4,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class RobinOption : BaseOption
+internal class RobinOption : BaseOption
 {
     public RobinOption(Rectangle sourceRect) :
         base(I18n.Option_Robin(), sourceRect)

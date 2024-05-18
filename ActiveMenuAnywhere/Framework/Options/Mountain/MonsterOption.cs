@@ -5,7 +5,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class MonsterOption : BaseOption
+internal class MonsterOption : BaseOption
 {
     private readonly IModHelper helper;
 

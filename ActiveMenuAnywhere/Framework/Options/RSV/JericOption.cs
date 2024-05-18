@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class JericOption : BaseOption
+internal class JericOption : BaseOption
 {
     public JericOption(Rectangle sourceRect) :
         base(I18n.Option_Jeric(), sourceRect)

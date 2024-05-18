@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class TravelerOption : BaseOption
+internal class TravelerOption : BaseOption
 {
     public TravelerOption(Rectangle sourceRect) :
         base(I18n.Option_Traveler(), sourceRect)

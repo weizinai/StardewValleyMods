@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class BooksellerOption : BaseOption
+internal class BooksellerOption : BaseOption
 {
     public BooksellerOption(Rectangle sourceRect) :
         base(I18n.Option_Bookseller(), sourceRect)

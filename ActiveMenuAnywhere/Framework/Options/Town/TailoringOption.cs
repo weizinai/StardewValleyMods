@@ -4,7 +4,7 @@ using StardewValley.Menus;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class TailoringOption : BaseOption
+internal class TailoringOption : BaseOption
 {
     public TailoringOption(Rectangle sourceRect) :
         base(I18n.Option_Tailoring(), sourceRect)

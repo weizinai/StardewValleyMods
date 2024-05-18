@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class ClubSellerOption : BaseOption
+internal class ClubSellerOption : BaseOption
 {
     public ClubSellerOption(Rectangle sourceRect) :
         base(I18n.Option_ClubSeller(), sourceRect)

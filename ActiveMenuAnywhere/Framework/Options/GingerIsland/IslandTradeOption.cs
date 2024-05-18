@@ -4,7 +4,7 @@ using StardewValley.Locations;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class IslandTradeOption : BaseOption
+internal class IslandTradeOption : BaseOption
 {
     public IslandTradeOption(Rectangle sourceRect) :
         base(I18n.Option_IslandTrade(), sourceRect)

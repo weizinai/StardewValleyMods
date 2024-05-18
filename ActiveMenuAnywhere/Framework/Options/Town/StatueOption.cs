@@ -3,7 +3,7 @@ using StardewValley;
 
 namespace ActiveMenuAnywhere.Framework.Options;
 
-public class StatueOption : BaseOption
+internal class StatueOption : BaseOption
 {
     public StatueOption(Rectangle sourceRect) :
         base(I18n.Option_Statue(), sourceRect)

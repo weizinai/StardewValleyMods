@@ -37,7 +37,6 @@ internal class AutomationManger
 
     private void OnDayStarted(object? sender, DayStartedEventArgs dayStartedEventArgs)
     {
-        ticksPerAction = config.Cooldown;
         if (config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(true);
     }
 
@@ -113,6 +112,7 @@ internal class AutomationManger
         }
 
         config = newConfig;
+        ticksPerAction = config.Cooldown;
     }
 
     private List<Vector2> GetTileGrid(int range)

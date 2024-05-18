@@ -3,7 +3,6 @@ using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using Common;
-using LazyMod.Framework.Config;
 using Microsoft.Xna.Framework;
 using StardewValley.TerrainFeatures;
 

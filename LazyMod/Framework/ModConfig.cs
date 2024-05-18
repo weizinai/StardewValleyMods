@@ -2,7 +2,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace LazyMod.Framework.Config;
+namespace LazyMod.Framework;
 
 internal class ModConfig
 {

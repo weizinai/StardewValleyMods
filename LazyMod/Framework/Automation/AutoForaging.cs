@@ -1,5 +1,4 @@
-﻿using LazyMod.Framework.Config;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Monsters;
 using StardewValley.TerrainFeatures;

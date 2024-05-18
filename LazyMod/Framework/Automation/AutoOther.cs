@@ -1,5 +1,4 @@
-﻿using LazyMod.Framework.Config;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
 using StardewValley.GameData.Machines;

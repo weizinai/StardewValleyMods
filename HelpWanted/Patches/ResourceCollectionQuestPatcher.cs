@@ -1,4 +1,5 @@
-﻿using Common.Patch;
+﻿using System.Reflection.Emit;
+using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
 using Netcode;
@@ -9,7 +10,6 @@ namespace HelpWanted.Patches;
 internal class ResourceCollectionQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
-    private static bool hasLoadQuestInfo;
 
     public ResourceCollectionQuestPatcher(ModConfig config)
     {
@@ -20,27 +20,28 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
     {
         harmony.Patch(
             RequireMethod<ResourceCollectionQuest>(nameof(ResourceCollectionQuest.loadQuestInfo)),
-            GetHarmonyMethod(nameof(LoadQuestInfoPrefix)),
-            GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
+            transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
     }
-
-    private static bool LoadQuestInfoPrefix(ResourceCollectionQuest __instance)
+    
+    // 任务奖励逻辑
+    private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        if (__instance.target.Value is not null && __instance.ItemId.Value is not null)
-        {
-            hasLoadQuestInfo = false;
-            return false;
-        }
+        var codes = instructions.ToList();
 
-        hasLoadQuestInfo = true;
-        return true;
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Stloc_3);
+        codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_0));
+        codes.Insert(index + 2, new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ResourceCollectionQuest), nameof(ResourceCollectionQuest.reward))));
+        codes.Insert(index + 3, new CodeInstruction(OpCodes.Ldarg_0));
+        codes.Insert(index + 4, new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ResourceCollectionQuest), nameof(ResourceCollectionQuest.reward))));
+        codes.Insert(index + 5, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourceCollectionQuestPatcher), nameof(GetReward))));
+        codes.Insert(index + 6, new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetInt), nameof(NetInt.Set))));
+
+        return codes.AsEnumerable();
     }
 
-    private static void LoadQuestInfoPostfix(ref NetInt ___reward, ref NetDescriptionElementList ___parts)
+    private static int GetReward(NetInt reward)
     {
-        if (hasLoadQuestInfo) return;
-        ___reward.Value = (int)(___reward.Value * config.ResourceCollectionRewardMultiplier);
-        ___parts[^2].substitutions = new List<object> { ___reward.Value };
+        return (int)(reward.Value * config.ResourceCollectionRewardMultiplier);
     }
 }

@@ -195,7 +195,7 @@ internal class QuestManager
             if (randomDouble < currentWeight / totalWeight)
             {
                 quest = createQuest();
-                Log.Trace($"随机到一个{GetQuestType(createQuest())}任务");
+                Log.Trace($"随机到一个{quest}任务");
                 break;
             }
         }
@@ -213,7 +213,7 @@ internal class QuestManager
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
-        Log.Trace("成功获取一个原版随机任务");
+        Log.Trace($"成功获取一个原版{GetQuestType(quest)}任务");
         return quest;
     }
 

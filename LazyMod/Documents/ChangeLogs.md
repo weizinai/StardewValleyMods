@@ -1,3 +1,7 @@
+# 1.1.1
+
+- 修复`AutoShakeTreeRange`选项不生效的问题
+
 # 1.1.0
 
 - 修复`RedundantFoodCount`选项没有中文翻译的问题

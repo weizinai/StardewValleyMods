@@ -131,7 +131,7 @@ public class AutoForaging : Automate
     // 自动摇树
     private void AutoShakeTree(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoShakeFruitTreeRange);
+        var grid = GetTileGrid(player, Config.AutoShakeTreeRange);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

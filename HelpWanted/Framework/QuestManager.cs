@@ -190,8 +190,14 @@ internal class QuestManager
         var totalWeight = config.ResourceCollectionWeight + (slayMonsterQuest ? config.SlayMonstersWeight : 0) + config.FishingWeight + config.ItemDeliveryWeight;
         foreach (var (weight, createQuest) in questTypes)
         {
+            Log.Trace($"{GetQuestType(createQuest())}的权重为{weight}");
             currentWeight += weight;
-            if (randomDouble < currentWeight / totalWeight) quest = createQuest();
+            if (randomDouble < currentWeight / totalWeight)
+            {
+                quest = createQuest();
+                Log.Trace($"随机到一个{GetQuestType(createQuest())}任务");
+                break;
+            }
         }
 
         if (quest is null)
@@ -207,7 +213,7 @@ internal class QuestManager
         AccessTools.FieldRefAccess<Quest, Random>(quest, "random") = Game1.random;
         quest.reloadDescription();
         quest.reloadObjective();
-        Log.Trace("Get Vanilla Quest Succeed.");
+        Log.Trace("成功获取一个原版随机任务");
         return quest;
     }
 

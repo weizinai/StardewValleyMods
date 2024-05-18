@@ -237,7 +237,11 @@ internal sealed class VanillaQuestBoard : IClickableMenu
                 (int)(questList[i].PadSource.Width * config.NoteScale),
                 (int)(questList[i].PadSource.Height * config.NoteScale));
             var bounds = GetFreeBounds(size.X, size.Y);
-            if (bounds is null) break;
+            if (bounds is null)
+            {
+                Log.Trace($"任务面板没有空间放置任务了({i + 1}/{questList.Count})");
+                break;
+            }
             QuestNotes.Add(new QuestNote(questList[i], bounds.Value)
             {
                 // 设置该选项的ID

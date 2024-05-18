@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Characters;
 using StardewValley.Tools;
@@ -15,24 +16,24 @@ internal class AutoAnimal : Automate
     {
         TileCache.Clear();
         // 自动抚摸动物
-        if (Config.AutoPetAnimal) AutoPetAnimal(location, player);
+        if (Config.AutoPetAnimal.IsEnable) AutoPetAnimal(location, player);
         // 自动抚摸宠物
-        if (Config.AutoPetPet) AutoPetPet(location, player);
+        if (Config.AutoPetPet.IsEnable) AutoPetPet(location, player);
         // 自动挤奶
-        if (Config.AutoMilkAnimal && (tool is MilkPail || Config.FindMilkPailFromInventory)) AutoMilkAnimal(location, player);
+        if (Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || Config.FindMilkPailFromInventory)) AutoMilkAnimal(location, player);
         // 自动剪毛
-        if (Config.AutoShearsAnimal && (tool is Shears || Config.FindShearsFromInventory)) AutoShearsAnimal(location, player);
+        if (Config.AutoShearsAnimal.IsEnable && (tool is Shears || Config.FindShearsFromInventory)) AutoShearsAnimal(location, player);
         // 自动喂食动物饼干
-        if (Config.AutoFeedAnimalCracker && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
+        if (Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
-        if (Config.AutoOpenFenceGate) AutoOpenFenceGate(location, player);
+        if (Config.AutoOpenFenceGate.IsEnable) AutoOpenFenceGate(location, player);
         TileCache.Clear();
     }
 
     // 自动抚摸动物
     private void AutoPetAnimal(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoPetAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoPetAnimal.Range);
 
         var animals = location.animals.Values;
         foreach (var animal in animals)
@@ -44,7 +45,7 @@ internal class AutoAnimal : Automate
     // 自动抚摸宠物
     private void AutoPetPet(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoPetAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoPetAnimal.Range);
 
         var pets = location.characters.OfType<Pet>();
         foreach (var pet in pets)
@@ -67,7 +68,7 @@ internal class AutoAnimal : Automate
         var milkPail = FindToolFromInventory<MilkPail>();
         if (milkPail is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoMilkAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoMilkAnimal.Range);
         foreach (var tile in grid)
         {
             var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
@@ -87,7 +88,7 @@ internal class AutoAnimal : Automate
         if (shears is null)
             return;
 
-        var grid = GetTileGrid(player, Config.AutoShearsAnimalRange);
+        var grid = GetTileGrid(player, Config.AutoShearsAnimal.Range);
         foreach (var tile in grid)
         {
             var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
@@ -100,7 +101,7 @@ internal class AutoAnimal : Automate
     // 自动喂食动物饼干
     private void AutoFeedAnimalCracker(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoFeedAnimalCrackerRange);
+        var grid = GetTileGrid(player, Config.AutoFeedAnimalCracker.Range);
         var animals = location.animals.Values;
         foreach (var animal in animals)
             foreach (var tile in grid)
@@ -132,7 +133,7 @@ internal class AutoAnimal : Automate
     // 自动打开栅栏门
     private void AutoOpenFenceGate(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoOpenFenceGateRange + 2);
+        var grid = GetTileGrid(player, Config.AutoOpenFenceGate.Range + 2);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -140,11 +141,11 @@ internal class AutoAnimal : Automate
                 continue;
 
             var distance = GetDistance(player.Tile, tile);
-            if (distance <= Config.AutoOpenFenceGateRange && fence.gatePosition.Value == 0)
+            if (distance <= Config.AutoOpenFenceGate.Range && fence.gatePosition.Value == 0)
             {
                 fence.toggleGate(player, true);
             }
-            else if (distance > Config.AutoOpenFenceGateRange + 1 && fence.gatePosition.Value != 0)
+            else if (distance > Config.AutoOpenFenceGate.Range + 1 && fence.gatePosition.Value != 0)
             {
                 fence.toggleGate(player, false);
             }

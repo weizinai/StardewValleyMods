@@ -1,4 +1,5 @@
-﻿using StardewValley;
+﻿using LazyMod.Framework.Config;
+using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
 using StardewValley.GameData.Machines;
@@ -22,17 +23,17 @@ internal class AutoOther : Automate
         MagneticRadiusIncrease(player);
         TileCache.Clear();
         // 自动清理杂草
-        if (Config.AutoClearWeeds && (tool is MeleeWeapon || Config.FindToolForClearWeeds)) AutoClearWeeds(location, player);
+        if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.FindToolForClearWeeds)) AutoClearWeeds(location, player);
         // 自动挖掘斑点
-        if (Config.AutoDigSpots && (tool is Hoe || Config.FindHoeFromInventory)) AutoDigSpots(location, player);
+        if (Config.AutoDigSpots.IsEnable && (tool is Hoe || Config.FindHoeFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器
-        if (Config.AutoHarvestMachine) AutoHarvestMachine(location, player);
+        if (Config.AutoHarvestMachine.IsEnable) AutoHarvestMachine(location, player);
         // 自动触发机器
-        if (Config.AutoTriggerMachine && item is not null) AutoTriggerMachine(location, player, item);
+        if (Config.AutoTriggerMachine.IsEnable && item is not null) AutoTriggerMachine(location, player, item);
         // 自动翻垃圾桶
-        if (Config.AutoGarbageCan) AutoGarbageCan(location, player);
+        if (Config.AutoGarbageCan.IsEnable) AutoGarbageCan(location, player);
         // 自动放置地板
-        if (Config.AutoPlaceFloor && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
+        if (Config.AutoPlaceFloor.IsEnable && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
         TileCache.Clear();
     }
 
@@ -66,7 +67,7 @@ internal class AutoOther : Automate
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoClearWeedsRange);
+        var grid = GetTileGrid(player, Config.AutoClearWeeds.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -102,7 +103,7 @@ internal class AutoOther : Automate
         if (hoe is null)
             return;
 
-        var grid = GetTileGrid(player, Config.AutoDigSpotsRange);
+        var grid = GetTileGrid(player, Config.AutoDigSpots.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -114,7 +115,7 @@ internal class AutoOther : Automate
     // 自动收获机器
     private void AutoHarvestMachine(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoHarvestMachineRange);
+        var grid = GetTileGrid(player, Config.AutoHarvestMachine.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -126,7 +127,7 @@ internal class AutoOther : Automate
     // 自动触发机器
     private void AutoTriggerMachine(GameLocation location, Farmer player, Item item)
     {
-        var grid = GetTileGrid(player, Config.AutoTriggerMachineRange);
+        var grid = GetTileGrid(player, Config.AutoTriggerMachine.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -151,7 +152,7 @@ internal class AutoOther : Automate
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
         if (CheckNPCNearTile(location, player) && Config.StopGarbageCanNearVillager) return;
-        var grid = GetTileGrid(player, Config.AutoGarbageCanRange);
+        var grid = GetTileGrid(player, Config.AutoGarbageCan.Range);
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
@@ -165,7 +166,7 @@ internal class AutoOther : Automate
     // 自动放置地板
     private void AutoPlaceFloor(GameLocation location, Farmer player, SObject floor)
     {
-        var grid = GetTileGrid(player, Config.AutoPlaceFloorRange);
+        var grid = GetTileGrid(player, Config.AutoPlaceFloor.Range);
         foreach (var tile in grid)
         {
             var tilePixelPosition = GetTilePixelPosition(tile);

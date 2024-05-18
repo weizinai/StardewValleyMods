@@ -1,4 +1,5 @@
-﻿using StardewValley;
+﻿using LazyMod.Framework.Config;
+using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Objects;
 using SObject = StardewValley.Object;
@@ -15,11 +16,11 @@ internal class AutoFishing : Automate
     {
         TileCache.Clear();
         // 自动放置蟹笼
-        if (Config.AutoPlaceCarbPot && item is SObject { QualifiedItemId: "(O)710" } crabPot) AutoPlaceCrabPot(location, player, crabPot);
+        if (Config.AutoPlaceCarbPot.IsEnable && item is SObject { QualifiedItemId: "(O)710" } crabPot) AutoPlaceCrabPot(location, player, crabPot);
         // 自动添加蟹笼鱼饵
-        if (Config.AutoAddBaitForCarbPot && item is SObject { Category: SObject.baitCategory } bait) AutoAddBaitForCrabPot(location, player, bait);
+        if (Config.AutoAddBaitForCarbPot.IsEnable && item is SObject { Category: SObject.baitCategory } bait) AutoAddBaitForCrabPot(location, player, bait);
         // 自动收获蟹笼
-        if (Config.AutoHarvestCarbPot) AutoHarvestCarbPot(location, player);
+        if (Config.AutoHarvestCarbPot.IsEnable) AutoHarvestCarbPot(location, player);
         TileCache.Clear();
     }
 
@@ -56,7 +57,7 @@ internal class AutoFishing : Automate
     // 自动放置蟹笼
     private void AutoPlaceCrabPot(GameLocation location, Farmer player, SObject crabPot)
     {
-        var grid = GetTileGrid(player, Config.AutoPlaceCarbPotRange);
+        var grid = GetTileGrid(player, Config.AutoPlaceCarbPot.Range);
         foreach (var _ in grid.Select(tile => GetTilePixelPosition(tile))
                      .Where(tilePixelPosition => crabPot.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)))
         {
@@ -67,7 +68,7 @@ internal class AutoFishing : Automate
     // 自动添加蟹笼鱼饵
     private void AutoAddBaitForCrabPot(GameLocation location, Farmer player, SObject bait)
     {
-        var grid = GetTileGrid(player, Config.AutoAddBaitForCarbPotRange);
+        var grid = GetTileGrid(player, Config.AutoAddBaitForCarbPot.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -79,7 +80,7 @@ internal class AutoFishing : Automate
     // 自动收获蟹笼
     private void AutoHarvestCarbPot(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoHarvestCarbPotRange);
+        var grid = GetTileGrid(player, Config.AutoHarvestCarbPot.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);

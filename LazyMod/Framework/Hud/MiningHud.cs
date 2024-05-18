@@ -1,5 +1,6 @@
 using System.Text;
 using Common.UI;
+using LazyMod.Framework.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;

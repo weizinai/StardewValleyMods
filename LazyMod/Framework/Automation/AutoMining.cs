@@ -3,6 +3,7 @@ using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.Tools;
 using Common;
+using LazyMod.Framework.Config;
 using Microsoft.Xna.Framework;
 using StardewValley.TerrainFeatures;
 
@@ -18,17 +19,17 @@ internal class AutoMining : Automate
     {
         TileCache.Clear();
         // 自动清理石头
-        if (Config.AutoClearStone && (tool is Pickaxe || Config.FindPickaxeFromInventory)) AutoClearStone(location, player);
+        if (Config.AutoClearStone.IsEnable && (tool is Pickaxe || Config.FindPickaxeFromInventory)) AutoClearStone(location, player);
         // 自动收集煤炭
-        if (Config.AutoCollectCoal) AutoCollectCoal(location, player);
+        if (Config.AutoCollectCoal.IsEnable) AutoCollectCoal(location, player);
         // 自动破坏容器
-        if (Config.AutoBreakContainer && (tool is MeleeWeapon || Config.FindWeaponFromInventory)) AutoBreakContainer(location, player);
+        if (Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || Config.FindToolForBreakContainer)) AutoBreakContainer(location, player);
         // 自动打开宝藏
-        if (Config.AutoOpenTreasure) AutoOpenTreasure(location, player);
+        if (Config.AutoOpenTreasure.IsEnable) AutoOpenTreasure(location, player);
         // 自动清理水晶
-        if (Config.AutoClearCrystal) AutoClearCrystal(location, player);
+        if (Config.AutoClearCrystal.IsEnable) AutoClearCrystal(location, player);
         // 自动冷却岩浆
-        if (Config.AutoCoolLava && (tool is WateringCan || Config.FindToolForCoolLava)) AutoCoolLava(location, player);
+        if (Config.AutoCoolLava.IsEnable && (tool is WateringCan || Config.FindToolForCoolLava)) AutoCoolLava(location, player);
         TileCache.Clear();
     }
 
@@ -53,7 +54,7 @@ internal class AutoMining : Automate
             { ItemRepository.CalicoEggStone, Config.ClearCalicoEggStone }
         };
 
-        var grid = GetTileGrid(player, Config.AutoClearStoneRange);
+        var grid = GetTileGrid(player, Config.AutoClearStone.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -106,7 +107,7 @@ internal class AutoMining : Automate
     // 自动收集煤炭
     private void AutoCollectCoal(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoCollectCoalRange);
+        var grid = GetTileGrid(player, Config.AutoCollectCoal.Range);
         foreach (var tile in grid)
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
                 CheckTileAction(location, player, tile);
@@ -118,7 +119,7 @@ internal class AutoMining : Automate
         var weapon = FindToolFromInventory<MeleeWeapon>();
         if (weapon is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoBreakContainerRange);
+        var grid = GetTileGrid(player, Config.AutoBreakContainer.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -130,7 +131,7 @@ internal class AutoMining : Automate
     // 自动打开宝藏
     private void AutoOpenTreasure(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoBreakContainerRange);
+        var grid = GetTileGrid(player, Config.AutoBreakContainer.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -145,7 +146,7 @@ internal class AutoMining : Automate
         var tool = FindToolFromInventory<MeleeWeapon>();
         if (tool is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoClearCrystalRange);
+        var grid = GetTileGrid(player, Config.AutoClearCrystal.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -164,7 +165,7 @@ internal class AutoMining : Automate
         if (wateringCan is null) return;
 
         var hasAddWaterMessage = true;
-        var grid = GetTileGrid(player, Config.AutoCoolLavaRange);
+        var grid = GetTileGrid(player, Config.AutoCoolLava.Range);
         foreach (var tile in grid)
         {
             if (wateringCan.WaterLeft <= 0)

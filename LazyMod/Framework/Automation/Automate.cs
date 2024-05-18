@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;

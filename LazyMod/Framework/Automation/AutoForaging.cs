@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Monsters;
 using StardewValley.TerrainFeatures;
@@ -17,28 +18,28 @@ internal class AutoForaging : Automate
     {
         TileCache.Clear();
         // 自动觅食
-        if (Config.AutoForage) AutoForage(location, player);
+        if (Config.AutoForage.IsEnable) AutoForage(location, player);
         // 自动砍树
-        if (Config.AutoChopTree && tool is Axe) AutoChopTree(location, player, tool);
+        if (Config.AutoChopTree.IsEnable && tool is Axe) AutoChopTree(location, player, tool);
         // 自动收获姜
-        if (Config.AutoHarvestGinger && (tool is Hoe || Config.FindToolForHarvestGinger)) AutoHarvestGinger(location, player);
+        if (Config.AutoHarvestGinger.IsEnable && (tool is Hoe || Config.FindToolForHarvestGinger)) AutoHarvestGinger(location, player);
         // 自动摇树
-        if (Config.AutoShakeTree) AutoShakeTree(location, player);
+        if (Config.AutoShakeTree.IsEnable) AutoShakeTree(location, player);
         // 自动装备采集器
-        if (Config.AutoPlaceTapper && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) AutoPlaceTapper(location, player, tapper);
+        if (Config.AutoPlaceTapper.IsEnable && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) AutoPlaceTapper(location, player, tapper);
         // 自动收获苔藓
-        if (Config.AutoHarvestMoss && (tool is MeleeWeapon || Config.FindScytheFromInventory)) AutoHarvestMoss(location, player);
+        if (Config.AutoHarvestMoss.IsEnable && (tool is MeleeWeapon || Config.FindScytheFromInventory)) AutoHarvestMoss(location, player);
         // 自动在树上浇醋
-        if (Config.AutoPlaceVinegar && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
+        if (Config.AutoPlaceVinegar.IsEnable && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
         // 自动清理木头
-        if (Config.AutoClearWood && (tool is Axe || Config.FindAxeFromInventory)) AutoClearWood(location, player);
+        if (Config.AutoClearWood.IsEnable && (tool is Axe || Config.FindAxeFromInventory)) AutoClearWood(location, player);
         TileCache.Clear();
     }
 
     // 自动觅食
     private void AutoForage(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoForageRange);
+        var grid = GetTileGrid(player, Config.AutoForage.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -58,7 +59,7 @@ internal class AutoForaging : Automate
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoHarvestGingerRange);
+        var grid = GetTileGrid(player, Config.AutoHarvestGinger.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -89,7 +90,7 @@ internal class AutoForaging : Automate
             { Tree.mysticTree, Config.ChopMysticTree }
         };
 
-        var grid = GetTileGrid(player, Config.AutoChopTreeRange);
+        var grid = GetTileGrid(player, Config.AutoChopTree.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -131,7 +132,7 @@ internal class AutoForaging : Automate
     // 自动摇树
     private void AutoShakeTree(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoShakeTreeRange);
+        var grid = GetTileGrid(player, Config.AutoShakeTree.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -146,7 +147,7 @@ internal class AutoForaging : Automate
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoHarvestMossRange);
+        var grid = GetTileGrid(player, Config.AutoHarvestMoss.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -158,7 +159,7 @@ internal class AutoForaging : Automate
     // 自动放置采集器
     private void AutoPlaceTapper(GameLocation location, Farmer player, SObject tapper)
     {
-        var grid = GetTileGrid(player, Config.AutoPlaceVinegarRange);
+        var grid = GetTileGrid(player, Config.AutoPlaceVinegar.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -173,7 +174,7 @@ internal class AutoForaging : Automate
     // 自动在树上浇醋
     private void AutoPlaceVinegar(GameLocation location, Farmer player, SObject vinegar)
     {
-        var grid = GetTileGrid(player, Config.AutoPlaceVinegarRange);
+        var grid = GetTileGrid(player, Config.AutoPlaceVinegar.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -193,7 +194,7 @@ internal class AutoForaging : Automate
         var axe = FindToolFromInventory<Axe>();
         if (axe is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoClearWoodRange);
+        var grid = GetTileGrid(player, Config.AutoClearWood.Range);
         foreach (var tile in grid)
         {
             if (Config.ClearTwig)

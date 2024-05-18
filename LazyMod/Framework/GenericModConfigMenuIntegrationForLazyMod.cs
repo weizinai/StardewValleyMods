@@ -1,5 +1,6 @@
 using Common.Integrations;
 using LazyMod.Framework.Automation;
+using LazyMod.Framework.Config;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
@@ -63,13 +64,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动耕地
             .AddSectionTitle(I18n.Config_AutoTillDirt_Name, I18n.Config_AutoTillDirt_Tooltip)
             .AddBoolOption(
-                config => config.AutoTillDirt,
-                (config, value) => config.AutoTillDirt = value,
+                config => config.AutoTillDirt.IsEnable,
+                (config, value) => config.AutoTillDirt.IsEnable = value,
                 I18n.Config_AutoTillDirt_Name
             )
             .AddNumberOption(
-                config => config.AutoTillDirtRange,
-                (config, value) => config.AutoTillDirtRange = value,
+                config => config.AutoTillDirt.Range,
+                (config, value) => config.AutoTillDirt.Range = value,
                 I18n.Config_AutoTillDirtRange_Name,
                 null,
                 0,
@@ -83,13 +84,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理耕地
             .AddSectionTitle(I18n.Config_AutoClearTilledDirt_Name, I18n.Config_AutoClearTilledDirt_Tooltip)
             .AddBoolOption(
-                config => config.AutoClearTilledDirt,
-                (config, value) => config.AutoClearTilledDirt = value,
+                config => config.AutoClearTilledDirt.IsEnable,
+                (config, value) => config.AutoClearTilledDirt.IsEnable = value,
                 I18n.Config_AutoClearTilledDirt_Name
             )
             .AddNumberOption(
-                config => config.AutoClearTilledDirtRange,
-                (config, value) => config.AutoClearTilledDirtRange = value,
+                config => config.AutoClearTilledDirt.Range,
+                (config, value) => config.AutoClearTilledDirt.Range = value,
                 I18n.Config_AutoClearTilledDirtRange_Name,
                 null,
                 0,
@@ -103,13 +104,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动浇水
             .AddSectionTitle(I18n.Config_AutoWaterDirt_Name, I18n.Config_AutoWaterDirt_Tooltip)
             .AddBoolOption(
-                config => config.AutoWaterDirt,
-                (config, value) => config.AutoWaterDirt = value,
+                config => config.AutoWaterDirt.IsEnable,
+                (config, value) => config.AutoWaterDirt.IsEnable = value,
                 I18n.Config_AutoWaterDirt_Name
             )
             .AddNumberOption(
-                config => config.AutoWaterDirtRange,
-                (config, value) => config.AutoWaterDirtRange = value,
+                config => config.AutoWaterDirt.Range,
+                (config, value) => config.AutoWaterDirt.Range = value,
                 I18n.Config_AutoWaterDirtRange_Name,
                 null,
                 0,
@@ -123,13 +124,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动补充水壶
             .AddSectionTitle(I18n.Config_AutoRefillWateringCan_Name, I18n.Config_AutoRefillWateringCan_Tooltip)
             .AddBoolOption(
-                config => config.AutoRefillWateringCan,
-                (config, value) => config.AutoRefillWateringCan = value,
+                config => config.AutoRefillWateringCan.IsEnable,
+                (config, value) => config.AutoRefillWateringCan.IsEnable = value,
                 I18n.Config_AutoRefillWateringCan_Name
             )
             .AddNumberOption(
-                config => config.AutoRefillWateringCanRange,
-                (config, value) => config.AutoRefillWateringCanRange = value,
+                config => config.AutoRefillWateringCan.Range,
+                (config, value) => config.AutoRefillWateringCan.Range = value,
                 I18n.Config_AutoRefillWateringCanRange_Name,
                 null,
                 1,
@@ -144,13 +145,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动播种
             .AddSectionTitle(I18n.Config_AutoSeed_Name, I18n.Config_AutoSeed_Tooltip)
             .AddBoolOption(
-                config => config.AutoSeed,
-                (config, value) => config.AutoSeed = value,
+                config => config.AutoSeed.IsEnable,
+                (config, value) => config.AutoSeed.IsEnable = value,
                 I18n.Config_AutoSeed_Name
             )
             .AddNumberOption(
-                config => config.AutoSeedRange,
-                (config, value) => config.AutoSeedRange = value,
+                config => config.AutoSeed.Range,
+                (config, value) => config.AutoSeed.Range = value,
                 I18n.Config_AutoSeedRange_Name,
                 null,
                 0,
@@ -159,13 +160,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动施肥
             .AddSectionTitle(I18n.Config_AutoFertilize_Name, I18n.Config_AutoFertilize_Tooltip)
             .AddBoolOption(
-                config => config.AutoFertilize,
-                (config, value) => config.AutoFertilize = value,
+                config => config.AutoFertilize.IsEnable,
+                (config, value) => config.AutoFertilize.IsEnable = value,
                 I18n.Config_AutoFertilize_Name
             )
             .AddNumberOption(
-                config => config.AutoFertilizeRange,
-                (config, value) => config.AutoFertilizeRange = value,
+                config => config.AutoFertilize.Range,
+                (config, value) => config.AutoFertilize.Range = value,
                 I18n.Config_AutoFertilizeRange_Name,
                 null,
                 0,
@@ -174,13 +175,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动收获作物
             .AddSectionTitle(I18n.Config_AutoHarvestCrop_Name)
             .AddBoolOption(
-                config => config.AutoHarvestCrop,
-                (config, value) => config.AutoHarvestCrop = value,
+                config => config.AutoHarvestCrop.IsEnable,
+                (config, value) => config.AutoHarvestCrop.IsEnable = value,
                 I18n.Config_AutoHarvestCrop_Name
             )
             .AddNumberOption(
-                config => config.AutoHarvestCropRange,
-                (config, value) => config.AutoHarvestCropRange = value,
+                config => config.AutoHarvestCrop.Range,
+                (config, value) => config.AutoHarvestCrop.Range = value,
                 I18n.Config_AutoHarvestCropRange_Name,
                 null,
                 0,
@@ -194,13 +195,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动摇晃果树
             .AddSectionTitle(I18n.Config_AutoShakeFruitTree_Name)
             .AddBoolOption(
-                config => config.AutoShakeFruitTree,
-                (config, value) => config.AutoShakeFruitTree = value,
+                config => config.AutoShakeFruitTree.IsEnable,
+                (config, value) => config.AutoShakeFruitTree.IsEnable = value,
                 I18n.Config_AutoShakeFruitTree_Name
             )
             .AddNumberOption(
-                config => config.AutoShakeFruitTreeRange,
-                (config, value) => config.AutoShakeFruitTreeRange = value,
+                config => config.AutoShakeFruitTree.Range,
+                (config, value) => config.AutoShakeFruitTree.Range = value,
                 I18n.Config_AutoShakeFruitTreeRange_Name,
                 null,
                 1,
@@ -209,13 +210,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理枯萎作物
             .AddSectionTitle(I18n.Config_AutoClearDeadCrop_Name, I18n.Config_AutoClearDeadCrop_Tooltip)
             .AddBoolOption(
-                config => config.AutoClearDeadCrop,
-                (config, value) => config.AutoClearDeadCrop = value,
+                config => config.AutoClearDeadCrop.IsEnable,
+                (config, value) => config.AutoClearDeadCrop.IsEnable = value,
                 I18n.Config_AutoClearDeadCrop_Name
             )
             .AddNumberOption(
-                config => config.AutoClearDeadCropRange,
-                (config, value) => config.AutoClearDeadCropRange = value,
+                config => config.AutoClearDeadCrop.Range,
+                (config, value) => config.AutoClearDeadCrop.Range = value,
                 I18n.Config_AutoClearDeadCropRange_Name,
                 null,
                 0,
@@ -232,13 +233,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动抚摸动物
             .AddSectionTitle(I18n.Config_AutoPetAnimal_Name)
             .AddBoolOption(
-                config => config.AutoPetAnimal,
-                (config, value) => config.AutoPetAnimal = value,
+                config => config.AutoPetAnimal.IsEnable,
+                (config, value) => config.AutoPetAnimal.IsEnable = value,
                 I18n.Config_AutoPetAnimal_Name
             )
             .AddNumberOption(
-                config => config.AutoPetAnimalRange,
-                (config, value) => config.AutoPetAnimalRange = value,
+                config => config.AutoPetAnimal.Range,
+                (config, value) => config.AutoPetAnimal.Range = value,
                 I18n.Config_AutoPetAnimalRange_Name,
                 null,
                 1,
@@ -247,13 +248,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动抚摸宠物
             .AddSectionTitle(I18n.Config_AutoPetPet_Name)
             .AddBoolOption(
-                config => config.AutoPetPet,
-                (config, value) => config.AutoPetPet = value,
+                config => config.AutoPetPet.IsEnable,
+                (config, value) => config.AutoPetPet.IsEnable = value,
                 I18n.Config_AutoPetPet_Name
             )
             .AddNumberOption(
-                config => config.AutoPetPetRange,
-                (config, value) => config.AutoPetPetRange = value,
+                config => config.AutoPetPet.Range,
+                (config, value) => config.AutoPetPet.Range = value,
                 I18n.Config_AutoPetPetRange_Name,
                 null,
                 1,
@@ -262,13 +263,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动挤奶
             .AddSectionTitle(I18n.Config_AutoMilkAnimal_Name, I18n.Config_AutoMilkAnimal_Tooltip)
             .AddBoolOption(
-                config => config.AutoMilkAnimal,
-                (config, value) => config.AutoMilkAnimal = value,
+                config => config.AutoMilkAnimal.IsEnable,
+                (config, value) => config.AutoMilkAnimal.IsEnable = value,
                 I18n.Config_AutoMilkAnimal_Name
             )
             .AddNumberOption(
-                config => config.AutoMilkAnimalRange,
-                (config, value) => config.AutoMilkAnimalRange = value,
+                config => config.AutoMilkAnimal.Range,
+                (config, value) => config.AutoMilkAnimal.Range = value,
                 I18n.Config_AutoMilkAnimalRange_Name,
                 null,
                 1,
@@ -288,13 +289,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动剪毛
             .AddSectionTitle(I18n.Config_AutoShearsAnimal_Name, I18n.Config_AutoShearsAnimal_Tooltip)
             .AddBoolOption(
-                config => config.AutoShearsAnimal,
-                (config, value) => config.AutoShearsAnimal = value,
+                config => config.AutoShearsAnimal.IsEnable,
+                (config, value) => config.AutoShearsAnimal.IsEnable = value,
                 I18n.Config_AutoShearsAnimal_Name
             )
             .AddNumberOption(
-                config => config.AutoShearsAnimalRange,
-                (config, value) => config.AutoShearsAnimalRange = value,
+                config => config.AutoShearsAnimal.Range,
+                (config, value) => config.AutoShearsAnimal.Range = value,
                 I18n.Config_AutoShearsAnimalRange_Name,
                 null,
                 1,
@@ -314,13 +315,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动喂食动物饼干
             .AddSectionTitle(I18n.Config_AutoFeedAnimalCracker_Name, I18n.Config_AutoFeedAnimalCracker_Tooltip)
             .AddBoolOption(
-                config => config.AutoFeedAnimalCracker,
-                (config, value) => config.AutoFeedAnimalCracker = value,
+                config => config.AutoFeedAnimalCracker.IsEnable,
+                (config, value) => config.AutoFeedAnimalCracker.IsEnable = value,
                 I18n.Config_AutoFeedAnimalCracker_Name
             )
             .AddNumberOption(
-                config => config.AutoFeedAnimalCrackerRange,
-                (config, value) => config.AutoFeedAnimalCrackerRange = value,
+                config => config.AutoFeedAnimalCracker.Range,
+                (config, value) => config.AutoFeedAnimalCracker.Range = value,
                 I18n.Config_AutoFeedAnimalCrackerRange_Name,
                 null,
                 1,
@@ -337,13 +338,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动打开栅栏门
             .AddSectionTitle(I18n.Config_AutoOpenFenceGate_Name)
             .AddBoolOption(
-                config => config.AutoOpenFenceGate,
-                (config, value) => config.AutoOpenFenceGate = value,
+                config => config.AutoOpenFenceGate.IsEnable,
+                (config, value) => config.AutoOpenFenceGate.IsEnable = value,
                 I18n.Config_AutoOpenFenceGate_Name
             )
             .AddNumberOption(
-                config => config.AutoOpenFenceGateRange,
-                (config, value) => config.AutoOpenFenceGateRange = value,
+                config => config.AutoOpenFenceGate.Range,
+                (config, value) => config.AutoOpenFenceGate.Range = value,
                 I18n.Config_AutoOpenFenceGateRange_Name,
                 null,
                 1,
@@ -354,13 +355,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理石头
             .AddSectionTitle(I18n.Config_AutoClearStone_Name, I18n.Config_AutoClearStone_Tooltip)
             .AddBoolOption(
-                config => config.AutoClearStone,
-                (config, value) => config.AutoClearStone = value,
+                config => config.AutoClearStone.IsEnable,
+                (config, value) => config.AutoClearStone.IsEnable = value,
                 I18n.Config_AutoClearStone_Name
             )
             .AddNumberOption(
-                config => config.AutoClearStoneRange,
-                (config, value) => config.AutoClearStoneRange = value,
+                config => config.AutoClearStone.Range,
+                (config, value) => config.AutoClearStone.Range = value,
                 I18n.Config_AutoClearStoneRange_Name,
                 null,
                 1,
@@ -440,13 +441,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动收集煤炭
             .AddSectionTitle(I18n.Config_AutoCollectCoal_Name, I18n.Config_AutoCollectCoal_Tooltip)
             .AddBoolOption(
-                config => config.AutoCollectCoal,
-                (config, value) => config.AutoCollectCoal = value,
+                config => config.AutoCollectCoal.IsEnable,
+                (config, value) => config.AutoCollectCoal.IsEnable = value,
                 I18n.Config_AutoCollectCoal_Name
             )
             .AddNumberOption(
-                config => config.AutoCollectCoalRange,
-                (config, value) => config.AutoCollectCoalRange = value,
+                config => config.AutoCollectCoal.Range,
+                (config, value) => config.AutoCollectCoal.Range = value,
                 I18n.Config_AutoCollectCoalRange_Name,
                 null,
                 1,
@@ -455,34 +456,34 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动破坏容器
             .AddSectionTitle(I18n.Config_AutoBreakContainer_Name, I18n.Config_AutoBreakContainer_Tooltip)
             .AddBoolOption(
-                config => config.AutoBreakContainer,
-                (config, value) => config.AutoBreakContainer = value,
+                config => config.AutoBreakContainer.IsEnable,
+                (config, value) => config.AutoBreakContainer.IsEnable = value,
                 I18n.Config_AutoBreakContainer_Name
             )
             .AddNumberOption(
-                config => config.AutoBreakContainerRange,
-                (config, value) => config.AutoBreakContainerRange = value,
+                config => config.AutoBreakContainer.Range,
+                (config, value) => config.AutoBreakContainer.Range = value,
                 I18n.Config_AutoBreakContainerRange_Name,
                 null,
                 1,
                 3
             )
             .AddBoolOption(
-                config => config.FindWeaponFromInventory,
-                (config, value) => config.FindWeaponFromInventory = value,
-                I18n.Config_FindWeaponFromInventory_Name,
-                I18n.Config_FindWeaponFromInventory_Tooltip
+                config => config.FindToolForBreakContainer,
+                (config, value) => config.FindToolForBreakContainer = value,
+                I18n.Config_FindToolForBreakContainer_Name,
+                I18n.Config_FindToolForBreakContainer_Tooltip
             )
             // 自动打开宝箱
             .AddSectionTitle(I18n.Config_AutoOpenTreasure_Name)
             .AddBoolOption(
-                config => config.AutoOpenTreasure,
-                (config, value) => config.AutoOpenTreasure = value,
+                config => config.AutoOpenTreasure.IsEnable,
+                (config, value) => config.AutoOpenTreasure.IsEnable = value,
                 I18n.Config_AutoOpenTreasure_Name
             )
             .AddNumberOption(
-                config => config.AutoOpenTreasureRange,
-                (config, value) => config.AutoOpenTreasureRange = value,
+                config => config.AutoOpenTreasure.Range,
+                (config, value) => config.AutoOpenTreasure.Range = value,
                 I18n.Config_AutoOpenTreasureRange_Name,
                 null,
                 1,
@@ -491,13 +492,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理水晶
             .AddSectionTitle(I18n.Config_AutoClearCrystal_Name)
             .AddBoolOption(
-                config => config.AutoClearCrystal,
-                (config, value) => config.AutoClearCrystal = value,
+                config => config.AutoClearCrystal.IsEnable,
+                (config, value) => config.AutoClearCrystal.IsEnable = value,
                 I18n.Config_AutoClearCrystal_Name
             )
             .AddNumberOption(
-                config => config.AutoClearCrystalRange,
-                (config, value) => config.AutoClearCrystalRange = value,
+                config => config.AutoClearCrystal.Range,
+                (config, value) => config.AutoClearCrystal.Range = value,
                 I18n.Config_AutoClearCrystalRange_Name,
                 null,
                 1,
@@ -512,13 +513,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动冷却岩浆
             .AddSectionTitle(I18n.Config_AutoCoolLava_Name, I18n.Config_AutoCoolLava_Tooltip)
             .AddBoolOption(
-                config => config.AutoCoolLava,
-                (config, value) => config.AutoCoolLava = value,
+                config => config.AutoCoolLava.IsEnable,
+                (config, value) => config.AutoCoolLava.IsEnable = value,
                 I18n.Config_AutoCoolLava_Name
             )
             .AddNumberOption(
-                config => config.AutoCoolLavaRange,
-                (config, value) => config.AutoCoolLavaRange = value,
+                config => config.AutoCoolLava.Range,
+                (config, value) => config.AutoCoolLava.Range = value,
                 I18n.Config_AutoCoolLavaRange_Name,
                 null,
                 1,
@@ -568,13 +569,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动觅食
             .AddSectionTitle(I18n.Config_AutoForage_Name)
             .AddBoolOption(
-                config => config.AutoForage,
-                (config, value) => config.AutoForage = value,
+                config => config.AutoForage.IsEnable,
+                (config, value) => config.AutoForage.IsEnable = value,
                 I18n.Config_AutoForage_Name
             )
             .AddNumberOption(
-                config => config.AutoForageRange,
-                (config, value) => config.AutoForageRange = value,
+                config => config.AutoForage.Range,
+                (config, value) => config.AutoForage.Range = value,
                 I18n.Config_AutoForageRange_Name,
                 null,
                 0,
@@ -583,13 +584,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动砍树
             .AddSectionTitle(I18n.Config_AutoChopTree_Name, I18n.Config_AutoChopTree_Tooltip)
             .AddBoolOption(
-                config => config.AutoChopTree,
-                (config, value) => config.AutoChopTree = value,
+                config => config.AutoChopTree.IsEnable,
+                (config, value) => config.AutoChopTree.IsEnable = value,
                 I18n.Config_AutoChopTree_Name
             )
             .AddNumberOption(
-                config => config.AutoChopTreeRange,
-                (config, value) => config.AutoChopTreeRange = value,
+                config => config.AutoChopTree.Range,
+                (config, value) => config.AutoChopTree.Range = value,
                 I18n.Config_AutoChopTreeRange_Name,
                 null,
                 1,
@@ -614,13 +615,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动收获姜
             .AddSectionTitle(I18n.Config_AutoHarvestGinger_Name, I18n.Config_AutoHarvestGinger_Tooltip)
             .AddBoolOption(
-                config => config.AutoHarvestGinger,
-                (config, value) => config.AutoHarvestGinger = value,
+                config => config.AutoHarvestGinger.IsEnable,
+                (config, value) => config.AutoHarvestGinger.IsEnable = value,
                 I18n.Config_AutoHarvestGinger_Name
             )
             .AddNumberOption(
-                config => config.AutoHarvestGingerRange,
-                (config, value) => config.AutoHarvestGingerRange = value,
+                config => config.AutoHarvestGinger.Range,
+                (config, value) => config.AutoHarvestGinger.Range = value,
                 I18n.Config_AutoHarvestGingerRange_Name,
                 null,
                 0,
@@ -640,13 +641,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动摇树
             .AddSectionTitle(I18n.Config_AutoShakeTree_Name)
             .AddBoolOption(
-                config => config.AutoShakeTree,
-                (config, value) => config.AutoShakeTree = value,
+                config => config.AutoShakeTree.IsEnable,
+                (config, value) => config.AutoShakeTree.IsEnable = value,
                 I18n.Config_AutoShakeTree_Name
             )
             .AddNumberOption(
-                config => config.AutoShakeTreeRange,
-                (config, value) => config.AutoShakeTreeRange = value,
+                config => config.AutoShakeTree.Range,
+                (config, value) => config.AutoShakeTree.Range = value,
                 I18n.Config_AutoShakeTreeRange_Name,
                 null,
                 0,
@@ -655,13 +656,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动收获苔藓
             .AddSectionTitle(I18n.Config_AutoHarvestMoss_Name, I18n.Config_AutoHarvestMoss_Tooltip)
             .AddBoolOption(
-                config => config.AutoHarvestMoss,
-                (config, value) => config.AutoHarvestMoss = value,
+                config => config.AutoHarvestMoss.IsEnable,
+                (config, value) => config.AutoHarvestMoss.IsEnable = value,
                 I18n.Config_AutoHarvestMoss_Name
             )
             .AddNumberOption(
-                config => config.AutoHarvestMossRange,
-                (config, value) => config.AutoHarvestMossRange = value,
+                config => config.AutoHarvestMoss.Range,
+                (config, value) => config.AutoHarvestMoss.Range = value,
                 I18n.Config_AutoHarvestMossRange_Name,
                 null,
                 1,
@@ -676,13 +677,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动放置采集器
             .AddSectionTitle(I18n.Config_AutoPlaceTapper_Name, I18n.Config_AutoPlaceTapper_Tooltip)
             .AddBoolOption(
-                config => config.AutoPlaceTapper,
-                (config, value) => config.AutoPlaceTapper = value,
+                config => config.AutoPlaceTapper.IsEnable,
+                (config, value) => config.AutoPlaceTapper.IsEnable = value,
                 I18n.Config_AutoPlaceTapper_Name
             )
             .AddNumberOption(
-                config => config.AutoPlaceTapperRange,
-                (config, value) => config.AutoPlaceTapperRange = value,
+                config => config.AutoPlaceTapper.Range,
+                (config, value) => config.AutoPlaceTapper.Range = value,
                 I18n.Config_AutoPlaceTapperRange_Name,
                 null,
                 1,
@@ -691,13 +692,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动在树上浇醋
             .AddSectionTitle(I18n.Config_AutoPlaceVinegar_Name, I18n.Config_AutoPlaceVinegar_Tooltip)
             .AddBoolOption(
-                config => config.AutoPlaceVinegar,
-                (config, value) => config.AutoPlaceVinegar = value,
+                config => config.AutoPlaceVinegar.IsEnable,
+                (config, value) => config.AutoPlaceVinegar.IsEnable = value,
                 I18n.Config_AutoPlaceVinegar_Name
             )
             .AddNumberOption(
-                config => config.AutoPlaceVinegarRange,
-                (config, value) => config.AutoPlaceVinegarRange = value,
+                config => config.AutoPlaceVinegar.Range,
+                (config, value) => config.AutoPlaceVinegar.Range = value,
                 I18n.Config_AutoPlaceVinegarRange_Name,
                 null,
                 1,
@@ -706,13 +707,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理木头
             .AddSectionTitle(I18n.Config_AutoClearWood_Name, I18n.Config_AutoClearWood_Tooltip)
             .AddBoolOption(
-                config => config.AutoClearWood,
-                (config, value) => config.AutoClearWood = value,
+                config => config.AutoClearWood.IsEnable,
+                (config, value) => config.AutoClearWood.IsEnable = value,
                 I18n.Config_AutoClearWood_Name
             )
             .AddNumberOption(
-                config => config.AutoClearWoodRange,
-                (config, value) => config.AutoClearWoodRange = value,
+                config => config.AutoClearWood.Range,
+                (config, value) => config.AutoClearWood.Range = value,
                 I18n.Config_AutoClearWoodRange_Name,
                 null,
                 1,
@@ -761,13 +762,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动使用蟹笼
             .AddSectionTitle(I18n.Config_AutoPlaceCarbPot_Name, I18n.Config_AutoPlaceCarbPot_Tooltip)
             .AddBoolOption(
-                config => config.AutoPlaceCarbPot,
-                (config, value) => config.AutoPlaceCarbPot = value,
+                config => config.AutoPlaceCarbPot.IsEnable,
+                (config, value) => config.AutoPlaceCarbPot.IsEnable = value,
                 I18n.Config_AutoPlaceCarbPot_Name
             )
             .AddNumberOption(
-                config => config.AutoPlaceCarbPotRange,
-                (config, value) => config.AutoPlaceCarbPotRange = value,
+                config => config.AutoPlaceCarbPot.Range,
+                (config, value) => config.AutoPlaceCarbPot.Range = value,
                 I18n.Config_AutoPlaceCarbPotRange_Name,
                 null,
                 1,
@@ -776,13 +777,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动添加蟹笼鱼饵
             .AddSectionTitle(I18n.Config_AutoAddBaitForCarbPot_Name, I18n.Config_AutoAddBaitForCarbPot_Tooltip)
             .AddBoolOption(
-                config => config.AutoAddBaitForCarbPot,
-                (config, value) => config.AutoAddBaitForCarbPot = value,
+                config => config.AutoAddBaitForCarbPot.IsEnable,
+                (config, value) => config.AutoAddBaitForCarbPot.IsEnable = value,
                 I18n.Config_AutoAddBaitForCarbPot_Name
             )
             .AddNumberOption(
-                config => config.AutoAddBaitForCarbPotRange,
-                (config, value) => config.AutoAddBaitForCarbPotRange = value,
+                config => config.AutoAddBaitForCarbPot.Range,
+                (config, value) => config.AutoAddBaitForCarbPot.Range = value,
                 I18n.Config_AutoAddBaitForCarbPotRange_Name,
                 null,
                 1,
@@ -791,13 +792,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动收获蟹笼
             .AddSectionTitle(I18n.Config_AutoHarvestCarbPot_Name)
             .AddBoolOption(
-                config => config.AutoHarvestCarbPot,
-                (config, value) => config.AutoHarvestCarbPot = value,
+                config => config.AutoHarvestCarbPot.IsEnable,
+                (config, value) => config.AutoHarvestCarbPot.IsEnable = value,
                 I18n.Config_AutoHarvestCarbPot_Name
             )
             .AddNumberOption(
-                config => config.AutoHarvestCarbPotRange,
-                (config, value) => config.AutoHarvestCarbPotRange = value,
+                config => config.AutoHarvestCarbPot.Range,
+                (config, value) => config.AutoHarvestCarbPot.Range = value,
                 I18n.Config_AutoHarvestCarbPotRange_Name,
                 null,
                 1,
@@ -930,13 +931,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理杂草
             .AddSectionTitle(I18n.Config_AutoClearWeeds_Name, I18n.Config_AutoClearWeeds_Tooltip)
             .AddBoolOption(
-                config => config.AutoClearWeeds,
-                (config, value) => config.AutoClearWeeds = value,
+                config => config.AutoClearWeeds.IsEnable,
+                (config, value) => config.AutoClearWeeds.IsEnable = value,
                 I18n.Config_AutoClearWeeds_Name
             )
             .AddNumberOption(
-                config => config.AutoClearWeedsRange,
-                (config, value) => config.AutoClearWeedsRange = value,
+                config => config.AutoClearWeeds.Range,
+                (config, value) => config.AutoClearWeeds.Range = value,
                 I18n.Config_AutoClearWeedsRange_Name,
                 null,
                 1,
@@ -956,13 +957,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动挖掘斑点
             .AddSectionTitle(I18n.Config_AutoDigSpots_Name, I18n.Config_AutoDigSpots_Tooltip)
             .AddBoolOption(
-                config => config.AutoDigSpots,
-                (config, value) => config.AutoDigSpots = value,
+                config => config.AutoDigSpots.IsEnable,
+                (config, value) => config.AutoDigSpots.IsEnable = value,
                 I18n.Config_AutoDigSpots_Name
             )
             .AddNumberOption(
-                config => config.AutoDigSpotsRange,
-                (config, value) => config.AutoDigSpotsRange = value,
+                config => config.AutoDigSpots.Range,
+                (config, value) => config.AutoDigSpots.Range = value,
                 I18n.Config_AutoDigSpotsRange_Name,
                 null,
                 0,
@@ -982,13 +983,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动收获机器
             .AddSectionTitle(I18n.Config_AutoHarvestMachine_Name)
             .AddBoolOption(
-                config => config.AutoHarvestMachine,
-                (config, value) => config.AutoHarvestMachine = value,
+                config => config.AutoHarvestMachine.IsEnable,
+                (config, value) => config.AutoHarvestMachine.IsEnable = value,
                 I18n.Config_AutoHarvestMachine_Name
             )
             .AddNumberOption(
-                config => config.AutoHarvestMachineRange,
-                (config, value) => config.AutoHarvestMachineRange = value,
+                config => config.AutoHarvestMachine.Range,
+                (config, value) => config.AutoHarvestMachine.Range = value,
                 I18n.Config_AutoHarvestMachineRange_Name,
                 null,
                 1,
@@ -997,13 +998,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动触发机器
             .AddSectionTitle(I18n.Config_AutoTriggerMachine_Name)
             .AddBoolOption(
-                config => config.AutoTriggerMachine,
-                (config, value) => config.AutoTriggerMachine = value,
+                config => config.AutoTriggerMachine.IsEnable,
+                (config, value) => config.AutoTriggerMachine.IsEnable = value,
                 I18n.Config_AutoTriggerMachine_Name
             )
             .AddNumberOption(
-                config => config.AutoTriggerMachineRange,
-                (config, value) => config.AutoTriggerMachineRange = value,
+                config => config.AutoTriggerMachine.Range,
+                (config, value) => config.AutoTriggerMachine.Range = value,
                 I18n.Config_AutoTriggerMachineRange_Name,
                 null,
                 1,
@@ -1012,13 +1013,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动翻垃圾桶
             .AddSectionTitle(I18n.Config_AutoGarbageCan_Name)
             .AddBoolOption(
-                config => config.AutoGarbageCan,
-                (config, value) => config.AutoGarbageCan = value,
+                config => config.AutoGarbageCan.IsEnable,
+                (config, value) => config.AutoGarbageCan.IsEnable = value,
                 I18n.Config_AutoGarbageCan_Name
             )
             .AddNumberOption(
-                config => config.AutoGarbageCanRange,
-                (config, value) => config.AutoGarbageCanRange = value,
+                config => config.AutoGarbageCan.Range,
+                (config, value) => config.AutoGarbageCan.Range = value,
                 I18n.Config_AutoGarbageCanRange_Name,
                 null,
                 1,
@@ -1032,13 +1033,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动放置地板
             .AddSectionTitle(I18n.Config_AutoPlaceFloor_Name, I18n.Config_AutoPlaceFloor_Tooltip)
             .AddBoolOption(
-                config => config.AutoPlaceFloor,
-                (config, value) => config.AutoPlaceFloor = value,
+                config => config.AutoPlaceFloor.IsEnable,
+                (config, value) => config.AutoPlaceFloor.IsEnable = value,
                 I18n.Config_AutoPlaceFloor_Name
             )
             .AddNumberOption(
-                config => config.AutoPlaceFloorRange,
-                (config, value) => config.AutoPlaceFloorRange = value,
+                config => config.AutoPlaceFloor.Range,
+                (config, value) => config.AutoPlaceFloor.Range = value,
                 I18n.Config_AutoPlaceFloorRange_Name,
                 null,
                 0,

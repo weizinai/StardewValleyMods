@@ -1,4 +1,5 @@
 ﻿using LazyMod.Framework.Automation;
+using LazyMod.Framework.Config;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;

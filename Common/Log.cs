@@ -6,9 +6,9 @@ internal class Log
 {
     private static IMonitor monitor = null!;
 
-    public Log(IMonitor monitor)
+    public static void Init(IMonitor _monitor)
     {
-        Log.monitor = monitor;
+        monitor = _monitor;
     }
 
     public static void Trace(string message)

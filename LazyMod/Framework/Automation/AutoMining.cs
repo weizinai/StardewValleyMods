@@ -107,6 +107,8 @@ internal class AutoMining : Automate
     // 自动收集煤炭
     private void AutoCollectCoal(GameLocation location, Farmer player)
     {
+        if (location is not MineShaft) return;
+        
         var grid = GetTileGrid(player, Config.AutoCollectCoal.Range);
         foreach (var tile in grid)
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)

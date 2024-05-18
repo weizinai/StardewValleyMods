@@ -103,6 +103,7 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
             .AddPageLink("FishingQuest", I18n.Config_FishingPage_Name)
             .AddPageLink("SlayMonstersQuest", I18n.Config_SlayMonstersPage_Name)
             .AddPageLink("Appearance", I18n.Config_AppearancePage_Name)
+            
             // 交易任务
             .AddPage("ItemDeliveryQuest", I18n.Config_ItemDeliveryPage_Name)
             .AddNumberOption(
@@ -153,6 +154,7 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 I18n.Config_UseModPossibleItems_Name,
                 I18n.Config_UseModPossibleItems_Tooltip
             )
+            
             // 采集任务
             .AddPage("ResourceCollectionQuest", I18n.Config_ResourceCollectionPage_Name)
             .AddNumberOption(
@@ -170,6 +172,7 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 5f,
                 0.25f
             )
+            
             // 钓鱼任务
             .AddPage("FishingQuest", I18n.Config_FishingPage_Name)
             .AddNumberOption(
@@ -187,6 +190,7 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 5f,
                 0.25f
             )
+            
             // 杀怪任务
             .AddPage("SlayMonstersQuest", I18n.Config_SlayMonstersPage_Name)
             .AddNumberOption(
@@ -209,6 +213,7 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 (config, value) => config.MoreSlayMonsterQuest = value,
                 I18n.Config_MoreSlayMonsterQuests_Name
             )
+            
             // 外观
             .AddPage("Appearance", I18n.Config_AppearancePage_Name)
             .AddSectionTitle(I18n.Config_NoteAppearanceTitle_Name)

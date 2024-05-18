@@ -11,26 +11,24 @@ namespace LazyMod.Framework.Automation;
 
 internal class AutoMining : Automate
 {
-    public AutoMining(ModConfig config): base(config)
+    public AutoMining(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid)
     {
     }
 
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        TileCache.Clear();
         // 自动清理石头
         if (Config.AutoClearStone.IsEnable && (tool is Pickaxe || Config.FindPickaxeFromInventory)) AutoClearStone(location, player);
         // 自动收集煤炭
         if (Config.AutoCollectCoal.IsEnable) AutoCollectCoal(location, player);
         // 自动破坏容器
-        if (Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || Config.FindToolForBreakContainer)) AutoBreakContainer(location, player);
+        if (Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || Config.FindToolForBreakContainer)) AutoBreakContainer(location);
         // 自动打开宝藏
         if (Config.AutoOpenTreasure.IsEnable) AutoOpenTreasure(location, player);
         // 自动清理水晶
-        if (Config.AutoClearCrystal.IsEnable) AutoClearCrystal(location, player);
+        if (Config.AutoClearCrystal.IsEnable) AutoClearCrystal(location);
         // 自动冷却岩浆
         if (Config.AutoCoolLava.IsEnable && (tool is WateringCan || Config.FindToolForCoolLava)) AutoCoolLava(location, player);
-        TileCache.Clear();
     }
 
     // 自动清理石头
@@ -54,7 +52,7 @@ internal class AutoMining : Automate
             { ItemRepository.CalicoEggStone, Config.ClearCalicoEggStone }
         };
 
-        var grid = GetTileGrid(player, Config.AutoClearStone.Range);
+        var grid = GetTileGrid(Config.AutoClearStone.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -109,19 +107,19 @@ internal class AutoMining : Automate
     {
         if (location is not MineShaft) return;
         
-        var grid = GetTileGrid(player, Config.AutoCollectCoal.Range);
+        var grid = GetTileGrid(Config.AutoCollectCoal.Range);
         foreach (var tile in grid)
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
                 CheckTileAction(location, player, tile);
     }
 
     // 自动破坏容器
-    private void AutoBreakContainer(GameLocation location, Farmer player)
+    private void AutoBreakContainer(GameLocation location)
     {
         var weapon = FindToolFromInventory<MeleeWeapon>();
         if (weapon is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoBreakContainer.Range);
+        var grid = GetTileGrid(Config.AutoBreakContainer.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -133,7 +131,7 @@ internal class AutoMining : Automate
     // 自动打开宝藏
     private void AutoOpenTreasure(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoBreakContainer.Range);
+        var grid = GetTileGrid(Config.AutoBreakContainer.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -143,12 +141,12 @@ internal class AutoMining : Automate
     }
 
     // 自动清理水晶
-    private void AutoClearCrystal(GameLocation location, Farmer player)
+    private void AutoClearCrystal(GameLocation location)
     {
         var tool = FindToolFromInventory<MeleeWeapon>();
         if (tool is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoClearCrystal.Range);
+        var grid = GetTileGrid(Config.AutoClearCrystal.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -167,7 +165,7 @@ internal class AutoMining : Automate
         if (wateringCan is null) return;
 
         var hasAddWaterMessage = true;
-        var grid = GetTileGrid(player, Config.AutoCoolLava.Range);
+        var grid = GetTileGrid(Config.AutoCoolLava.Range);
         foreach (var tile in grid)
         {
             if (wateringCan.WaterLeft <= 0)

@@ -10,11 +10,12 @@ namespace LazyMod.Framework.Automation;
 internal abstract class Automate
 {
     protected ModConfig Config;
-    protected readonly Dictionary<int, List<Vector2>> TileCache = new();
+    protected readonly Func<int, List<Vector2>> GetTileGrid;
 
-    protected Automate(ModConfig config)
+    protected Automate(ModConfig config, Func<int, List<Vector2>> getTileGrid)
     {
         Config = config;
+        GetTileGrid = getTileGrid;
     }
 
     public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
@@ -22,20 +23,6 @@ internal abstract class Automate
     public void UpdateConfig(ModConfig config)
     {
         Config = config;
-    }
-
-    protected List<Vector2> GetTileGrid(Farmer player, int range)
-    {
-        if (TileCache.TryGetValue(range, out var cache))
-            return cache;
-
-        var origin = player.Tile;
-        var grid = new List<Vector2>();
-        for (var x = -range; x <= range; x++)
-            for (var y = -range; y <= range; y++)
-                grid.Add(new Vector2(origin.X + x, origin.Y + y));
-        TileCache.Add(range, grid);
-        return grid;
     }
 
     protected T? FindToolFromInventory<T>() where T : Tool

@@ -1,5 +1,6 @@
 ﻿using LazyMod.Framework.Automation;
 using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -10,6 +11,7 @@ internal class AutomationManger
 {
     private ModConfig config;
     private readonly List<Automate> automations = new();
+    private readonly Dictionary<int, List<Vector2>> tileCache = new();
 
     private GameLocation? location;
     private Farmer? player;
@@ -68,7 +70,9 @@ internal class AutomationManger
 
         if (location is null || player is null) return;
 
+        tileCache.Clear();
         foreach (var automate in automations) automate.AutoDoFunction(location, player, tool, item);
+        tileCache.Clear();
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs dayEndingEventArgs)
@@ -91,13 +95,13 @@ internal class AutomationManger
     {
         automations.AddRange(new Automate[]
         {
-            new AutoFarming(config),
-            new AutoAnimal(config),
-            new AutoMining(config),
-            new AutoForaging(config),
-            new AutoFishing(config),
-            new AutoFood(config),
-            new AutoOther(config),
+            new AutoFarming(config, GetTileGrid),
+            new AutoAnimal(config, GetTileGrid),
+            new AutoMining(config, GetTileGrid),
+            new AutoForaging(config, GetTileGrid),
+            new AutoFishing(config, GetTileGrid),
+            new AutoFood(config, GetTileGrid),
+            new AutoOther(config, GetTileGrid)
         });
     }
 
@@ -109,5 +113,19 @@ internal class AutomationManger
         }
 
         config = newConfig;
+    }
+
+    private List<Vector2> GetTileGrid(int range)
+    {
+        if (tileCache.TryGetValue(range, out var cache))
+            return cache;
+
+        var origin = player!.Tile;
+        var grid = new List<Vector2>();
+        for (var x = -range; x <= range; x++)
+            for (var y = -range; y <= range; y++)
+                grid.Add(new Vector2(origin.X + x, origin.Y + y));
+        tileCache.Add(range, grid);
+        return grid;
     }
 }

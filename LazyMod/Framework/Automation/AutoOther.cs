@@ -1,4 +1,5 @@
 ﻿using LazyMod.Framework.Config;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
@@ -13,7 +14,7 @@ internal class AutoOther : Automate
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
 
-    public AutoOther(ModConfig config): base(config) 
+    public AutoOther(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid) 
     {
     }
 
@@ -21,9 +22,8 @@ internal class AutoOther : Automate
     {
         // 增加磁力范围
         MagneticRadiusIncrease(player);
-        TileCache.Clear();
         // 自动清理杂草
-        if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.FindToolForClearWeeds)) AutoClearWeeds(location, player);
+        if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.FindToolForClearWeeds)) AutoClearWeeds(location);
         // 自动挖掘斑点
         if (Config.AutoDigSpots.IsEnable && (tool is Hoe || Config.FindHoeFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器
@@ -34,7 +34,6 @@ internal class AutoOther : Automate
         if (Config.AutoGarbageCan.IsEnable) AutoGarbageCan(location, player);
         // 自动放置地板
         if (Config.AutoPlaceFloor.IsEnable && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
-        TileCache.Clear();
     }
 
     // 增加磁力范围
@@ -62,12 +61,12 @@ internal class AutoOther : Automate
     }
 
     // 自动清理杂草
-    private void AutoClearWeeds(GameLocation location, Farmer player)
+    private void AutoClearWeeds(GameLocation location)
     {
         var scythe = FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(player, Config.AutoClearWeeds.Range);
+        var grid = GetTileGrid(Config.AutoClearWeeds.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -103,7 +102,7 @@ internal class AutoOther : Automate
         if (hoe is null)
             return;
 
-        var grid = GetTileGrid(player, Config.AutoDigSpots.Range);
+        var grid = GetTileGrid(Config.AutoDigSpots.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -115,7 +114,7 @@ internal class AutoOther : Automate
     // 自动收获机器
     private void AutoHarvestMachine(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(player, Config.AutoHarvestMachine.Range);
+        var grid = GetTileGrid(Config.AutoHarvestMachine.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -127,7 +126,7 @@ internal class AutoOther : Automate
     // 自动触发机器
     private void AutoTriggerMachine(GameLocation location, Farmer player, Item item)
     {
-        var grid = GetTileGrid(player, Config.AutoTriggerMachine.Range);
+        var grid = GetTileGrid(Config.AutoTriggerMachine.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -152,7 +151,7 @@ internal class AutoOther : Automate
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
         if (CheckNPCNearTile(location, player) && Config.StopGarbageCanNearVillager) return;
-        var grid = GetTileGrid(player, Config.AutoGarbageCan.Range);
+        var grid = GetTileGrid(Config.AutoGarbageCan.Range);
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
@@ -166,7 +165,7 @@ internal class AutoOther : Automate
     // 自动放置地板
     private void AutoPlaceFloor(GameLocation location, Farmer player, SObject floor)
     {
-        var grid = GetTileGrid(player, Config.AutoPlaceFloor.Range);
+        var grid = GetTileGrid(Config.AutoPlaceFloor.Range);
         foreach (var tile in grid)
         {
             var tilePixelPosition = GetTilePixelPosition(tile);

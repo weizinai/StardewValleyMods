@@ -227,12 +227,3 @@ internal class QuestManager
             : AccessTools.Method(Type.GetType("RidgesideVillage.Questing.QuestFactory,RidgesideVillage"), "GetFishingQuest").Invoke(null, null) as Quest;
     }
 }
-
-public enum QuestType
-{
-    ItemDelivery,
-    ResourceCollection,
-    SlayMonster,
-    Fishing,
-    Unknown
-}

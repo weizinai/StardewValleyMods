@@ -87,6 +87,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
                 tooltip
             );
         }
+
         return this;
     }
 
@@ -117,6 +118,7 @@ internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
                 formatValue
             );
         }
+
         return this;
     }
 

@@ -23,7 +23,7 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
             transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
     }
-    
+
     // 任务奖励逻辑
     private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
     {

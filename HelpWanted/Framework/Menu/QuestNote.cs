@@ -8,7 +8,7 @@ internal class QuestNote : ClickableComponent
 {
     public readonly QuestData QuestData;
 
-    public QuestNote(QuestData questData, Rectangle bounds): base(bounds, "")
+    public QuestNote(QuestData questData, Rectangle bounds) : base(bounds, "")
     {
         QuestData = questData;
     }
@@ -18,6 +18,6 @@ internal class QuestNote : ClickableComponent
         spriteBatch.Draw(QuestData.Pad, bounds, QuestData.PadSource, QuestData.PadColor);
         spriteBatch.Draw(QuestData.Pin, bounds, QuestData.PinSource, QuestData.PinColor);
         spriteBatch.Draw(QuestData.Icon, new Vector2(bounds.X + QuestData.IconOffset.X, bounds.Y + QuestData.IconOffset.Y), QuestData.IconSource, QuestData.IconColor,
-            0,Vector2.Zero,QuestData.IconScale,SpriteEffects.None,0);
+            0, Vector2.Zero, QuestData.IconScale, SpriteEffects.None, 0);
     }
 }

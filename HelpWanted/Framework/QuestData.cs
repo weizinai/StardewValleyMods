@@ -19,7 +19,7 @@ internal class QuestData
     public Point IconOffset { get; }
     public Quest Quest { get; }
 
-    public QuestData(Texture2D pad, Rectangle padSource, Color padColor, Texture2D pin, Rectangle pinSource, Color pinColor, 
+    public QuestData(Texture2D pad, Rectangle padSource, Color padColor, Texture2D pin, Rectangle pinSource, Color pinColor,
         Texture2D icon, Rectangle iconSource, Color iconColor, float iconScale, Point iconOffset, Quest quest)
     {
         Pad = pad;

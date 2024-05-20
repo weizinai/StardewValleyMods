@@ -32,10 +32,10 @@ internal sealed class VanillaQuestBoard : IClickableMenu
         var center = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
         xPositionOnScreen = (int)center.X;
         yPositionOnScreen = (int)center.Y;
-        
+
         // 背景逻辑
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
-        
+
         // 接受任务按钮逻辑
         var stringSize = Game1.dialogueFont.MeasureString(Game1.content.LoadString("Strings\\UI:AcceptQuest"));
         acceptQuestButton = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2 - 128, yPositionOnScreen + height - 128,
@@ -64,7 +64,7 @@ internal sealed class VanillaQuestBoard : IClickableMenu
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
                 hoverTitle = option.QuestData.Quest.questTitle;
-                hoverText =  option.QuestData.Quest.currentObjective;
+                hoverText = option.QuestData.Quest.currentObjective;
                 break;
             }
         }
@@ -95,7 +95,7 @@ internal sealed class VanillaQuestBoard : IClickableMenu
                 hoverTitle = "";
                 hoverText = "";
                 showingQuestID = option.myID;
-                showingQuest =  option.QuestData.Quest;
+                showingQuest = option.QuestData.Quest;
                 acceptQuestButton.visible = true;
                 return;
             }
@@ -226,7 +226,7 @@ internal sealed class VanillaQuestBoard : IClickableMenu
     private void InitQuestNotes()
     {
         if (QuestManager.VanillaQuestList.Count <= 0) return;
-        
+
         // 清空任务选项列表
         QuestNotes.Clear();
         // 遍历所有的任务数据,创建任务选项
@@ -242,6 +242,7 @@ internal sealed class VanillaQuestBoard : IClickableMenu
                 Log.Trace($"任务面板没有空间放置任务了({i + 1}/{questList.Count})");
                 break;
             }
+
             QuestNotes.Add(new QuestNote(questList[i], bounds.Value)
             {
                 // 设置该选项的ID

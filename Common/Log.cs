@@ -30,12 +30,12 @@ internal class Log
     {
         monitor.Log(message, LogLevel.Warn);
     }
-    
+
     public static void Error(string message)
     {
         monitor.Log(message, LogLevel.Error);
     }
-    
+
     public static void Alert(string message)
     {
         monitor.Log(message, LogLevel.Alert);

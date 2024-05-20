@@ -78,6 +78,7 @@ internal class QuestManager
                 quest = GetRSVQuest();
                 continue;
             }
+
             var npc = GetNpcFromQuest(quest);
             if (npc is not null)
             {

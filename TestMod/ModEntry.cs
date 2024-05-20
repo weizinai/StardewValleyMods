@@ -1,4 +1,5 @@
-﻿using Common.Integrations;
+﻿using Common;
+using Common.Integrations;
 using Common.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -12,13 +13,14 @@ namespace TestMod;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private IClickableMenu? lastMenu;
+    // private IClickableMenu? lastMenu;
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        config = helper.ReadConfig<ModConfig>();
+        Log.Init(Monitor);
         I18n.Init(helper.Translation);
+        config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.DayStarted += OnDayStarted;
@@ -36,30 +38,7 @@ internal class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        var test = new TestWheelSpin(10000);
         
-        test.Update();
-        
-        Monitor.Log($"{test.count/(double)test.total}", LogLevel.Info);
-
-        // var count = 0;
-        //
-        // for (int i = 0; i < 100000; i++)
-        // {
-        //     var randomInt = Game1.random.Next(0, 15);
-        //     var randomBool = Game1.random.NextBool();
-        //     if (randomInt == 1 && randomBool == false) continue;
-        //     if (randomInt == 4 && randomBool == false) continue;
-        //     if (randomInt == 5 && randomBool == false) continue;
-        //     if (randomInt == 0 && randomBool) continue;
-        //     if (randomInt == 1 && randomBool) continue;
-        //     if (randomInt == 11 && randomBool) continue;
-        //     if (randomInt == 12 && randomBool) continue;
-        //     if (randomInt == 13 && randomBool) continue;
-        //     count++;
-        // }
-        //
-        // Monitor.Log($"{count / 100000.0}", LogLevel.Info);
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -77,16 +56,10 @@ internal class ModEntry : Mod
         //
         //     Monitor.Log($"修改后随机速度({config.RandomInt}-{config.RandomBool}): {menu.arrowRotationVelocity}", LogLevel.Info);
         // }
-
-        if (Game1.activeClickableMenu is WheelSpinGame gameMenu)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                gameMenu.update(Game1.currentGameTime);
-            }
-        }
-
         // lastMenu = Game1.activeClickableMenu;
+        
+        // if (Game1.player.isAnimatingMount)
+            Log.Info($"{Game1.player.FarmerSprite.currentSingleAnimation}");
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

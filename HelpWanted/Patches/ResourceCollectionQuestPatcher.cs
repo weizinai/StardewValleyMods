@@ -24,7 +24,7 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
         );
     }
 
-    // 任务奖励逻辑
+    // 任务奖励修改逻辑
     private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();

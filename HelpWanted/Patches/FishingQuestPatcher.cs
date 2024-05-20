@@ -1,7 +1,7 @@
-﻿using Common.Patch;
+﻿using System.Reflection.Emit;
+using Common.Patch;
 using HarmonyLib;
 using HelpWanted.Framework;
-using Netcode;
 using StardewValley.Quests;
 
 namespace HelpWanted.Patches;
@@ -9,7 +9,6 @@ namespace HelpWanted.Patches;
 internal class FishingQuestPatcher : BasePatcher
 {
     private static ModConfig config = null!;
-    private static bool hasLoadQuestInfo;
 
     public FishingQuestPatcher(ModConfig config)
     {
@@ -20,29 +19,25 @@ internal class FishingQuestPatcher : BasePatcher
     {
         harmony.Patch(
             RequireMethod<FishingQuest>(nameof(FishingQuest.loadQuestInfo)),
-            GetHarmonyMethod(nameof(LoadQuestInfoPrefix)),
-            GetHarmonyMethod(nameof(LoadQuestInfoPostfix))
+            transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
     }
 
-    private static bool LoadQuestInfoPrefix(FishingQuest __instance)
+    // 钓鱼任务奖励修改
+    private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        if (__instance.target.Value is not null && __instance.ItemId.Value is not null)
-        {
-            hasLoadQuestInfo = false;
-            return false;
-        }
+        var codes = instructions.ToList();
 
-        hasLoadQuestInfo = true;
-        return true;
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Mul);
+        codes.Insert(index + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FishingQuestPatcher), nameof(GetReward))));
+        index = codes.FindIndex(index, code => code.opcode == OpCodes.Mul);
+        codes.Insert(index + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FishingQuestPatcher), nameof(GetReward))));
+
+        return codes.AsEnumerable();
     }
 
-    private static void LoadQuestInfoPostfix(NetInt ___reward, ref NetDescriptionElementList ___parts)
+    private static int GetReward(int reward)
     {
-        if (hasLoadQuestInfo) return;
-
-        ___reward.Value = (int)(___reward.Value * config.FishingRewardMultiplier);
-        var keySet = new HashSet<string> { "Strings\\StringsFromCSFiles:FishingQuest.cs.13248", "Strings\\StringsFromCSFiles:FishingQuest.cs.13274" };
-        foreach (var part in ___parts.Where(part => keySet.Contains(part.translationKey))) part.substitutions[0] = ___reward.Value;
+        return (int)(reward * config.FishingRewardMultiplier);
     }
 }

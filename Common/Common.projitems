@@ -9,13 +9,9 @@
         <Import_RootNamespace>Common</Import_RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="$(MSBuildThisFileDirectory)ModDll\"/>
-    </ItemGroup>
-    <ItemGroup>
         <Compile Include="$(MSBuildThisFileDirectory)DrawHelper.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)Integrations\GenericModConfigMenu\GenericModConfigMenuIntegration.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)Integrations\GenericModConfigMenu\IGenericModConfigMenuAPI.cs"/>
-        <Compile Include="$(MSBuildThisFileDirectory)Integrations\RSV\RSVIntegration.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)ItemRepository.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)Log.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)ResourceClumpRepository.cs"/>

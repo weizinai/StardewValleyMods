@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using Common.Integration;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 
 namespace ActiveMenuAnywhere.Framework.Options;
@@ -16,7 +14,7 @@ internal class IanOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
-        var lanHouse = RSVIntegration.GetType("RidgesideVillage.IanShop");
-        lanHouse?.GetMethod("IanCounterMenu", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, null);
+        // var lanHouse = RSVIntegration.GetType("RidgesideVillage.IanShop");
+        // lanHouse?.GetMethod("IanCounterMenu", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, null);
     }
 }

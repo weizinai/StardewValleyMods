@@ -57,6 +57,7 @@ internal class QuestManager
                 tries = 0;
                 npcNames.Add(npc.Name);
                 VanillaQuestList.Add(GetQuestData(npc, quest));
+                Log.Trace("成功添加一个任务到原版任务列表");
             }
 
             quest = GetVanillaQuest();
@@ -82,6 +83,7 @@ internal class QuestManager
             {
                 Log.Trace($"第{i + 1}个任务: {quest.questTitle} - {npc.Name}");
                 RSVQuestList.Add(GetQuestData(npc, quest));
+                Log.Trace("成功添加一个任务到RSV任务列表");
             }
 
             quest = GetRSVQuest();

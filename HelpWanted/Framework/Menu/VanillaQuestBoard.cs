@@ -247,6 +247,7 @@ internal sealed class VanillaQuestBoard : IClickableMenu
                 // 设置该选项的ID
                 myID = OptionIndex - i,
             });
+            Log.Trace("成功添加一个任务到原版任务面板");
         }
 
         QuestManager.VanillaQuestList.Clear();

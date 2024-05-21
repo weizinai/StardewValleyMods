@@ -1,4 +1,6 @@
-﻿using FastControlInput.Framework;
+﻿using Common.Patch;
+using FastControlInput.Framework;
+using FastControlInput.Patches;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
@@ -11,9 +13,12 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
+        I18n.Init(helper.Translation);
         config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        // 注册Harmony补丁
+        HarmonyPatcher.Apply(this, new ModHooksPatcher(() => config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

@@ -1,0 +1,17 @@
+{
+    "Name": "Fast Control Input",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "A mod speed up the control input.",
+    "UniqueID": "weizinai.FastControlInput",
+    "EntryDll": "FastControlInput.dll",
+//    "UpdateKeys": [
+//        "Nexus:22826"
+//    ],
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

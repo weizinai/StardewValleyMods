@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Common.Integrations;
 using StardewModdingAPI;
 
@@ -18,6 +19,23 @@ internal class GenericModConfigMenuIntegrationForFastControlInput
 
         configMenu
             .Register()
-            ;
+            .AddNumberOption(
+                config => config.ActionButton,
+                (config, value) => config.ActionButton = value,
+                I18n.Config_ActionButton_Name,
+                I18n.Config_ActionButton_Tooltip,
+                1f,
+                5f,
+                0.25f
+            )
+            .AddNumberOption(
+                config => config.UseToolButton,
+                (config, value) => config.UseToolButton = value,
+                I18n.Config_UseToolButton_Name,
+                I18n.Config_UseToolButton_Tooltip,
+                1f,
+                5f,
+                0.25f
+            );
     }
 }

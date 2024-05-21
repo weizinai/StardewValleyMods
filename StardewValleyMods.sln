@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeMultiplayerFeature", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendshipDecayModify", "FriendshipDecayModify\FriendshipDecayModify.csproj", "{8AD54592-7C5B-4325-98AF-20A352C12D74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastControlInput", "FastControlInput\FastControlInput.csproj", "{EB05AFAA-312C-483B-9B86-BFCBA35DBF91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +54,9 @@ Global
 		{8AD54592-7C5B-4325-98AF-20A352C12D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AD54592-7C5B-4325-98AF-20A352C12D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AD54592-7C5B-4325-98AF-20A352C12D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB05AFAA-312C-483B-9B86-BFCBA35DBF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB05AFAA-312C-483B-9B86-BFCBA35DBF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB05AFAA-312C-483B-9B86-BFCBA35DBF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB05AFAA-312C-483B-9B86-BFCBA35DBF91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

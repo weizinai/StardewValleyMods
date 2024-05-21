@@ -4,7 +4,6 @@ using Common.Patch;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Extensions;
 using StardewValley.Menus;
 using TestMod.Framework;
 
@@ -58,8 +57,12 @@ internal class ModEntry : Mod
         // }
         // lastMenu = Game1.activeClickableMenu;
         
-        // if (Game1.player.isAnimatingMount)
-            Log.Info($"{Game1.player.FarmerSprite.currentSingleAnimation}");
+        if (!Context.IsPlayerFree) return;
+
+        for (int i = 0; i < 0; i++)
+        {
+            Helper.Reflection.GetMethod(Game1.game1, "UpdateControlInput").Invoke(Game1.currentGameTime);
+        }
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

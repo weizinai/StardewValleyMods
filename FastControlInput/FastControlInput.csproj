@@ -16,10 +16,6 @@
       <AdditionalFiles Remove="i18n\default.json" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Docs\" />
-    </ItemGroup>
-
     <Import Project="..\Common.Patch\Common.Patch.projitems" Label="Shared" />
 
     <Import Project="..\Common\Common.projitems" Label="Shared" />

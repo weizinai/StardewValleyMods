@@ -2,13 +2,13 @@
 
 namespace SomeMultiplayerFeature.Framework;
 
-public class Message
+public class ModMessage
 {
     public readonly string PlayerName;
     public readonly string ShopId;
     public readonly bool IsExit;
 
-    public Message(string playerName, string shopId, bool isExit = false)
+    public ModMessage(string playerName, string shopId, bool isExit = false)
     {
         PlayerName = playerName;
         ShopId = shopId;

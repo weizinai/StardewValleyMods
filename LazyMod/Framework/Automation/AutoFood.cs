@@ -11,13 +11,13 @@ internal class AutoFood : Automate
 {
     private readonly Dictionary<SObject, string?> foodData = new();
 
-    public AutoFood(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid)
+    public AutoFood(ModConfig config, Func<int, List<Vector2>> getTileGrid) : base(config, getTileGrid)
     {
     }
 
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        if (tool is FishingRod fishingRod && (fishingRod.isReeling || fishingRod.isFishing || fishingRod.pullingOutOfWater || fishingRod.isCasting)) return;
+        if (tool is FishingRod && player.UsingTool) return;
 
         FindFoodFromInventory(player);
         if (!foodData.Any()) return;

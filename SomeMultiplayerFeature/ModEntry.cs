@@ -1,7 +1,6 @@
 ﻿using Common.Integrations;
 using Common.Patch;
 using SomeMultiplayerFeature.Framework;
-using SomeMultiplayerFeature.Patches;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -11,7 +10,7 @@ namespace SomeMultiplayerFeature;
 
 public class ModEntry : Mod
 {
-    private ModConfig config = new();
+    private ModConfig config = null!;
     private IClickableMenu? lastShopMenu;
 
     public override void Entry(IModHelper helper)
@@ -25,18 +24,20 @@ public class ModEntry : Mod
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
         // 注册Harmony补丁
-        // HarmonyPatcher.Apply(this, new UtilityPatcher(helper), new IClickableMenuPatcher(helper));
+        HarmonyPatcher.Apply(this);
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (Game1.activeClickableMenu is ShopMenu && lastShopMenu is not ShopMenu)
+        if (Game1.activeClickableMenu is ShopMenu shopMenu1 && lastShopMenu is not ShopMenu)
         {
-            Game1.addHUDMessage(new HUDMessage("进入商店"));
+            var message = new ModMessage(Game1.player.Name, shopMenu1.ShopId);
+            Helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
-        else if (lastShopMenu is ShopMenu && Game1.activeClickableMenu is not ShopMenu)
+        else if (lastShopMenu is ShopMenu shopMenu2 && Game1.activeClickableMenu is not ShopMenu)
         {
-            Game1.addHUDMessage(new HUDMessage("离开商店"));
+            var message = new ModMessage(Game1.player.Name, shopMenu2.ShopId, true);
+            Helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
         
         lastShopMenu = Game1.activeClickableMenu;
@@ -86,7 +87,7 @@ public class ModEntry : Mod
     {
         if (config.ShowShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ShopMessage" })
         {
-            var message = e.ReadAs<Message>();
+            var message = e.ReadAs<ModMessage>();
             var hudMessage = new HUDMessage(message.ToString())
             {
                 noIcon = true,

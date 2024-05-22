@@ -39,7 +39,7 @@ public class ModEntry : Mod
             var message = new ModMessage(Game1.player.Name, shopMenu2.ShopId, true);
             Helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
-        
+
         lastShopMenu = Game1.activeClickableMenu;
     }
 
@@ -114,26 +114,12 @@ public class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        var configMenu = Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
-        if (configMenu is null) return;
-
-        configMenu.Register(
+        new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(
+            Helper,
             ModManifest,
+            () => config,
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
-        );
-
-        configMenu.AddBoolOption(
-            ModManifest,
-            () => config.ShowShopInfo,
-            value => config.ShowShopInfo = value,
-            I18n.Config_ShowShopInfo_Name
-        );
-        configMenu.AddKeybindList(
-            ModManifest,
-            () => config.ShowModInfoKeybind,
-            value => config.ShowModInfoKeybind = value,
-            I18n.Config_ShowModInfoKeybind_Name
-        );
+        ).Register();
     }
 }

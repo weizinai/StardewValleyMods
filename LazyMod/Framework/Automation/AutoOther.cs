@@ -142,7 +142,7 @@ internal class AutoOther : Automate
             {
                 MachineDataUtility.TryGetMachineOutputRule(obj, machineData, MachineOutputTrigger.ItemPlacedInMachine, item, player, location,
                     out _, out var triggerRule, out _, out _);
-                if (item.Stack <= triggerRule.RequiredCount) break;
+                if (item.Stack <= triggerRule?.RequiredCount) break;
             }
         }
     }

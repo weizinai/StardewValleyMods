@@ -6,5 +6,6 @@
 - 修复`AutoShakeTreeRange`选项不生效的问题
 - 修复`AutoCollectCoal`在某些位置会导致玩家强制下马的问题
 - 修复钓鱼有时会导致吃食物动画卡住
+- 修复有时`AutoTriggerMachine`会出现空引用的问题
 - 现在`Cooldown`选项修改会立即生效
 - 添加打开配置菜单快捷键(默认R)

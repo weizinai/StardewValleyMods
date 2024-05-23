@@ -1,4 +1,4 @@
-namespace HelpWanted.Framework;
+namespace HelpWanted.Framework.Data;
 
 internal enum QuestType
 {

@@ -1,5 +1,6 @@
 ﻿using Common;
 using HarmonyLib;
+using HelpWanted.Framework.Data;
 using HelpWanted.Patches;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;

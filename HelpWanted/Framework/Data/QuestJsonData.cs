@@ -12,5 +12,5 @@ internal class QuestJsonData
     public string Target { get; set; } = null!;
     public string TargetMessage { get; set; } = null!;
     public string CurrentObjective { get; set; } = null!;
-    public GameStateQuery Condition { get; set; } = null!;
+    public string Condition { get; set; } = null!;
 }

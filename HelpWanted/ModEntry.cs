@@ -16,7 +16,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         config = helper.ReadConfig<ModConfig>();
-        questManager = new QuestManager(helper, config);
+        questManager = new QuestManager(config, helper);
         Log.Init(Monitor);
         I18n.Init(helper.Translation);
         // 注册事件

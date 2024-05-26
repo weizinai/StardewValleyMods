@@ -4,6 +4,7 @@ using HelpWanted.Framework.Data;
 using HelpWanted.Patches;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Locations;
@@ -14,15 +15,31 @@ namespace HelpWanted.Framework;
 internal class QuestManager
 {
     private readonly ModConfig config;
+    private readonly IModHelper helper;
     private readonly AppearanceManager appearanceManager;
 
     public static readonly List<QuestData> VanillaQuestList = new();
     public static readonly List<QuestData> RSVQuestList = new();
 
-    public QuestManager(IModHelper helper, ModConfig config)
+    private Dictionary<string, QuestJsonData> rawCustomQuestData = new();
+    private readonly Dictionary<QuestType, List<QuestData>> customQuestData = new();
+
+    private const string CustomQuestDataPath = "weizinai.HelpWanted/Quest";
+
+    public QuestManager(ModConfig config, IModHelper helper)
     {
+        // 初始化
+        this.helper = helper;
         this.config = config;
         appearanceManager = new AppearanceManager(helper, config);
+        // 注册事件
+        helper.Events.Content.AssetRequested += OnAssetRequested;
+    }
+
+    private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
+    {
+        if (e.NameWithoutLocale.IsEquivalentTo(CustomQuestDataPath))
+            e.LoadFrom(() => new Dictionary<string, QuestJsonData>(), AssetLoadPriority.Exclusive);
     }
 
     public void InitVanillaQuestList()
@@ -93,6 +110,18 @@ internal class QuestManager
 
         Log.Info("End generating today's daily quests of RSV.");
     }
+
+    private void InitCustomQuestData()
+    {
+        rawCustomQuestData = helper.GameContent.Load<Dictionary<string, QuestJsonData>>(CustomQuestDataPath);
+        foreach (var (id, questData) in rawCustomQuestData)
+        {
+            if (!GameStateQuery.CheckConditions(questData.Condition)) continue;
+            
+            
+        }
+    }
+    
 
     private NPC? GetNpcFromQuest(Quest quest)
     {

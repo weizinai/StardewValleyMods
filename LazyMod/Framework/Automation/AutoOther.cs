@@ -30,6 +30,8 @@ internal class AutoOther : Automate
         if (Config.AutoHarvestMachine.IsEnable) AutoHarvestMachine(location, player);
         // 自动触发机器
         if (Config.AutoTriggerMachine.IsEnable && item is not null) AutoTriggerMachine(location, player, item);
+        // 自动使用仙尘
+        if (Config.AutoUseFairyDust.IsEnable && item?.QualifiedItemId is "(O)872") AutoUseFairyDust(location, player);
         // 自动翻垃圾桶
         if (Config.AutoGarbageCan.IsEnable) AutoGarbageCan(location, player);
         // 自动放置地板
@@ -144,6 +146,18 @@ internal class AutoOther : Automate
                     out _, out var triggerRule, out _, out _);
                 if (item.Stack <= triggerRule?.RequiredCount) break;
             }
+        }
+    }
+
+    // 自动使用仙尘
+    private void AutoUseFairyDust(GameLocation location, Farmer player)
+    {
+        var grid = GetTileGrid(Config.AutoUseFairyDust.Range);
+
+        foreach (var tile in grid)
+        {
+            location.objects.TryGetValue(tile, out var obj);
+            if (obj.TryApplyFairyDust()) player.reduceActiveItemByOne();
         }
     }
 

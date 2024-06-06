@@ -232,6 +232,9 @@ internal class ModConfig
 
     // 自动触发机器
     public BaseAutomationConfig AutoTriggerMachine { get; set; } = new(1);
+    
+    // 自动使用仙尘
+    public BaseAutomationConfig AutoUseFairyDust { get; set; } = new(1);
 
     // 自动翻垃圾桶
     public BaseAutomationConfig AutoGarbageCan { get; set; } = new(1);

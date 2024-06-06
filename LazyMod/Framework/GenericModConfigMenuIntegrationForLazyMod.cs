@@ -23,7 +23,6 @@ internal class GenericModConfigMenuIntegrationForLazyMod
     {
         if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
             configMenu.OpenMenu();
-            
     }
 
     public void Register()
@@ -58,10 +57,21 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             .AddPageLink("Foraging", I18n.Config_ForagingPage_Name)
             .AddPageLink("Fishing", I18n.Config_FishingPage_Name)
             .AddPageLink("Food", I18n.Config_FoodPage_Name)
-            .AddPageLink("Other", I18n.Config_OtherPage_Name)
+            .AddPageLink("Other", I18n.Config_OtherPage_Name);
+        
+        AddFarmingPage();
+        AddAnimalPage();
+        AddMiningPage();
+        AddForagingPage();
+        AddFishingPage();
+        AddFoodPage();
+        AddOtherPage();
+        AddTreeSettingsPage();
+    }
 
-            #region 耕种
-
+    private void AddFarmingPage()
+    {
+        configMenu
             .AddPage("Farming", I18n.Config_FarmingPage_Name)
             // 自动耕地
             .AddSectionTitle(I18n.Config_AutoTillDirt_Name, I18n.Config_AutoTillDirt_Tooltip)
@@ -229,12 +239,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 (config, value) => config.FindToolForClearDeadCrop = value,
                 I18n.Config_FindToolForClearDeadCrop_Name,
                 I18n.Config_FindToolForClearDeadCrop_Tooltip
-            )
+            );
+    }
 
-            #endregion
-
-            #region 动物
-
+    private void AddAnimalPage()
+    {
+        configMenu
             .AddPage("Animal", I18n.Config_AnimalPage_Name)
             // 自动抚摸动物
             .AddSectionTitle(I18n.Config_AutoPetAnimal_Name)
@@ -355,12 +365,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 null,
                 1,
                 3
-            )
+            );
+    }
 
-            #endregion
-
-            #region 采矿
-
+    private void AddMiningPage()
+    {
+        configMenu
             .AddPage("Mining", I18n.Config_MiningPage_Name)
             // 自动清理石头
             .AddSectionTitle(I18n.Config_AutoClearStone_Name, I18n.Config_AutoClearStone_Tooltip)
@@ -573,12 +583,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 config => config.ShowMineralInfo,
                 (config, value) => config.ShowMineralInfo = value,
                 I18n.Config_ShowMineralInfo_Name
-            )
+            );
+    }
 
-            #endregion
-
-            #region 采集
-
+    private void AddForagingPage()
+    {
+        configMenu
             .AddPage("Foraging", I18n.Config_ForagingPage_Name)
             // 自动觅食
             .AddSectionTitle(I18n.Config_AutoForage_Name)
@@ -758,12 +768,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 config => config.ClearHollowLog,
                 (config, value) => config.ClearHollowLog = value,
                 I18n.Config_ClearHollowLog_Name
-            )
+            );
+    }
 
-            #endregion
-
-            #region 钓鱼
-
+    private void AddFishingPage()
+    {
+        configMenu
             .AddPage("Fishing", I18n.Config_FishingPage_Name)
             // 自动抓取宝箱物品
             .AddBoolOption(
@@ -821,12 +831,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 null,
                 1,
                 3
-            )
+            );
+    }
 
-            #endregion
-
-            #region 食物
-
+    private void AddFoodPage()
+    {
+        configMenu
             .AddPage("Food", I18n.Config_FoodPage_Name)
             // 自动吃食物-体力
             .AddSectionTitle(I18n.Config_AutoEatFoodForStamina_Name)
@@ -937,12 +947,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 I18n.Config_DrinkBuffMaintain_ToolTip,
                 buffMaintainAllowValues,
                 GetStringFromBuffType
-            )
+            );
+    }
 
-            #endregion
-
-            #region 其他
-
+    private void AddOtherPage()
+    {
+        configMenu
             .AddPage("Other", I18n.Config_OtherPage_Name)
             // 磁力范围增加
             .AddSectionTitle(I18n.Config_MagneticRadiusIncrease_Name)
@@ -1086,12 +1096,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 null,
                 0,
                 3
-            )
-
-            #endregion
-
-            #region 树设置
-
+            );
+    }
+    
+    private void AddTreeSettingsPage()
+    {
+        configMenu
             .AddPage("TreeSettings", I18n.Config_TreeSettingsPage_Name)
             // 橡树
             .AddSectionTitle(I18n.Config_OakTreeTitle_Name)
@@ -1379,8 +1389,6 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 (config, value) => config.ChopMysticTree[-1] = value,
                 I18n.Config_ChopStumpStageMysticTree_Name
             );
-
-        #endregion
     }
 
     private static string GetStringFromBuffType(string value)

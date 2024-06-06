@@ -1,11 +1,11 @@
 namespace LazyMod.Framework.Config;
 
-internal class BaseConfig
+internal class BaseAutomationConfig
 {
     public bool IsEnable { get; set; } 
     public int Range { get; set; }
 
-    public BaseConfig(int range = 0)
+    public BaseAutomationConfig(int range = 0)
     {
         Range = range;
     }

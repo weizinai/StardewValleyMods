@@ -16,6 +16,10 @@
         <None Remove="LazyMod.csproj.DotSettings"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Docs\Screenshots\" />
+    </ItemGroup>
+
     <Import Project="..\Common\Common.projitems" Label="Shared"/>
 
 </Project>

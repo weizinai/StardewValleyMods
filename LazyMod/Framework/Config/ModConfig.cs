@@ -156,7 +156,7 @@ internal class ModConfig
     // 自动放置采集器
     public BaseAutomationConfig AutoPlaceTapper { get; set; } = new(1);
 
-    // 自动放置醋
+    // 自动浇醋
     public BaseAutomationConfig AutoPlaceVinegar { get; set; } = new(1);
 
     // 自动清理木头
@@ -173,6 +173,8 @@ internal class ModConfig
 
     // 自动抓取宝箱物品
     public bool AutoGrabTreasureItem;
+    
+    // 自动关闭宝箱菜单
     public bool AutoExitTreasureMenu;
 
     // 自动放置蟹笼
@@ -188,13 +190,13 @@ internal class ModConfig
 
     #region 食物
 
-    // 自动吃食物_体力
+    // 自动吃食物-体力
     public bool AutoEatFoodForStamina { get; set; }
     public float AutoEatFoodStaminaRate { get; set; } = 0.1f;
     public bool IntelligentFoodSelectionForStamina { get; set; } = true;
     public int RedundantStaminaFoodCount { get; set; } = 20;
 
-    // 自动吃食物_生命值
+    // 自动吃食物-生命值
     public bool AutoEatFoodForHealth { get; set; }
     public float AutoEatFoodHealthRate { get; set; } = 0.1f;
     public bool IntelligentFoodSelectionForHealth { get; set; } = true;
@@ -222,7 +224,7 @@ internal class ModConfig
     public bool FindToolForClearWeeds { get; set; } = true;
     public bool ClearLargeWeeds { get; set; }
 
-    // 自动挖掘远古斑点
+    // 自动挖掘斑点
     public BaseAutomationConfig AutoDigSpots { get; set; } = new();
     public float StopDigSpotsStamina { get; set; } = 3;
     public bool FindHoeFromInventory { get; set; } = true;

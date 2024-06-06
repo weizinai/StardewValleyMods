@@ -34,9 +34,6 @@ internal class ModEntry : Mod
         helper.Events.Display.RenderedHud += OnRenderedHud;
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-
-        // 迁移
-        Migrate();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -69,18 +66,5 @@ internal class ModEntry : Mod
     private void UpdateConfig()
     {
         automationManger.UpdateConfig(config);
-    }
-
-    private void Migrate()
-    {
-        // 1.0.8
-        config.ChopOakTree.TryAdd(3, false);
-        config.ChopMapleTree.TryAdd(3, false);
-        config.ChopPineTree.TryAdd(3, false);
-        config.ChopMahoganyTree.TryAdd(3, false);
-        config.ChopPalmTree.TryAdd(3, false);
-        config.ChopMushroomTree.TryAdd(3, false);
-        config.ChopGreenRainTree.TryAdd(3, false);
-        config.ChopMysticTree.TryAdd(3, false);
     }
 }

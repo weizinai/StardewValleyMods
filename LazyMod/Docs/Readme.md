@@ -64,6 +64,11 @@
     - 自动翻垃圾桶
     - 自动放置地板
 
+# 贡献
+
+- 感谢`Pathoschild`的`Tractor Mod`源码
+- 感谢`yakminepunyo`的`Joys of Efficiency`源码
+
 # 其他
 
 - [源码](https://github.com/weizinai/StardewValleyMods)

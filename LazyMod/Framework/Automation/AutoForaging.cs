@@ -118,7 +118,6 @@ internal class AutoForaging : Automate
                     // 树桩逻辑
                     if (tree.stump.Value && value[-1])
                     {
-                        Game1.chatBox.addInfoMessage("砍树桩");
                         UseToolOnTile(location, player, tool, tile);
                         break;
                     }

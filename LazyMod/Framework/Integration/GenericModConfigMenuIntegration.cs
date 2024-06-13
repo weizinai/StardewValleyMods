@@ -11,19 +11,19 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     public GenericModConfigMenuIntegration<TConfig> AddBaseAutomationConfig(Func<TConfig, BaseAutomationConfig> get, Func<string> text, Func<string> tooltip, int minRange = 0)
     {
         AddSectionTitle(text, tooltip);
-            AddBoolOption(
-                config => get(config).IsEnable,
-                (config, value) => get(config).IsEnable = value,
-                I18n.Config_Enable_Name
-            );
-            AddNumberOption(
-                config => get(config).Range,
-                (config, value) => get(config).Range = value,
-                I18n.Config_Range_Name,
-                null,
-                minRange,
-                3
-            );
+        AddBoolOption(
+            config => get(config).IsEnable,
+            (config, value) => get(config).IsEnable = value,
+            I18n.Config_Enable_Name
+        );
+        AddNumberOption(
+            config => get(config).Range,
+            (config, value) => get(config).Range = value,
+            I18n.Config_Range_Name,
+            null,
+            minRange,
+            3
+        );
 
         return this;
     }

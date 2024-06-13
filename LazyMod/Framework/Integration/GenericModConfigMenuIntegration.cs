@@ -8,7 +8,7 @@ namespace Common.Integrations;
 /// <typeparam name="TConfig">The mod config type.</typeparam>
 internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
 {
-    public GenericModConfigMenuIntegration<TConfig> AddBaseAutomationConfig(Func<TConfig, BaseAutomationConfig> get, Func<string> text, Func<string> tooltip, int minRange = 0)
+    public GenericModConfigMenuIntegration<TConfig> AddBaseAutomationConfig(Func<TConfig, BaseAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange = 0)
     {
         AddSectionTitle(text, tooltip);
         AddBoolOption(

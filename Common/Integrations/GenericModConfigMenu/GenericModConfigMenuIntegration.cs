@@ -5,7 +5,7 @@ namespace Common.Integrations;
 
 /// <summary>Handles the logic for integrating with the Generic Mod Config Menu mod.</summary>
 /// <typeparam name="TConfig">The mod config type.</typeparam>
-internal class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
+internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
 {
     /// <summary>The manifest for the mod consuming the API.</summary>
     private readonly IManifest consumerManifest;

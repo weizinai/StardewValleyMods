@@ -1,4 +1,4 @@
-﻿using LazyMod.Framework.Automation;
+﻿using LazyMod.Automation;
 using LazyMod.Framework.Config;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;

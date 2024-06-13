@@ -5,7 +5,7 @@ using StardewValley.Menus;
 using StardewValley.Objects;
 using SObject = StardewValley.Object;
 
-namespace LazyMod.Framework.Automation;
+namespace LazyMod.Automation;
 
 internal class AutoFishing : Automate
 {

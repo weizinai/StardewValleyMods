@@ -5,7 +5,7 @@ using StardewValley.Buffs;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
-namespace LazyMod.Framework.Automation;
+namespace LazyMod.Automation;
 
 internal class AutoFood : Automate
 {

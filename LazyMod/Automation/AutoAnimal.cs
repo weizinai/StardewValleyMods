@@ -4,7 +4,7 @@ using StardewValley;
 using StardewValley.Characters;
 using StardewValley.Tools;
 
-namespace LazyMod.Framework.Automation;
+namespace LazyMod.Automation;
 
 internal class AutoAnimal : Automate
 {

@@ -2,6 +2,7 @@
 using LazyMod.Framework;
 using LazyMod.Framework.Config;
 using LazyMod.Framework.Hud;
+using LazyMod.Framework.Integration;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 

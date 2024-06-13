@@ -8,7 +8,7 @@ using StardewValley.Objects;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
-namespace LazyMod.Framework.Automation;
+namespace LazyMod.Automation;
 
 internal class AutoOther : Automate
 {

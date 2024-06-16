@@ -19,10 +19,10 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
         configMenu
             .Register()
             .AddBoolOption(
-                config => config.ShowShopInfo,
-                (config, value) => config.ShowShopInfo = value,
-                I18n.Config_ShowShopInfo_Name
-            )
-            ;
+                config => config.AccessShopInfo,
+                (config, value) => config.AccessShopInfo = value,
+                I18n.Config_AccessShopInfo_Name,
+                I18n.Config_AccessShopInfo_Tooltip
+            );
     }
 }

@@ -1,10 +1,9 @@
-﻿using Common.Patch;
+﻿using Common;
+using Common.Patch;
 using SomeMultiplayerFeature.Framework;
 using SomeMultiplayerFeature.Handlers;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
-using StardewValley.Menus;
 
 namespace SomeMultiplayerFeature;
 
@@ -12,19 +11,28 @@ public class ModEntry : Mod
 {
     private ModConfig config = null!;
     private AccessShopInfoHandler accessShopInfoHandler = null!;
+    private ModLimitHandler modLimitHandler = null!;
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         config = helper.ReadConfig<ModConfig>();
         accessShopInfoHandler = new AccessShopInfoHandler(helper, config);
+        modLimitHandler = new ModLimitHandler(helper);
         I18n.Init(helper.Translation);
+        Log.Init(Monitor);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
+        helper.Events.Multiplayer.PeerContextReceived += OnPeerContextReceived;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this);
+    }
+
+    private void OnPeerContextReceived(object? sender, PeerContextReceivedEventArgs e)
+    {
+        modLimitHandler.OnPeerContextReceived(e);
     }
 
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)

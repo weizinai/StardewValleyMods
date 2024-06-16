@@ -1,0 +1,36 @@
+{
+    /*
+    // 必须模组
+    "Console Commands": "SMAPI.ConsoleCommands",
+    "Save Backup": "SMAPI.SaveBackup",
+    */
+    
+    /*
+    // 可选模组
+    "Adventurers Guild Multiplayer Shared Kills": "Veniamin-Arefev.AdventurersGuildMultiplayerSharedKills",
+    "Content Patcher": "Pathoschild.ContentPatcher",
+    "Convenient Inventory": "gaussfire.ConvenientInventory",
+    "Generic Mod Config Menu": "spacechase0.GenericModConfigMenu",
+    "Share Experience": "season.ShareExperience",
+    "Shared Spaces": "SinZ.SharedSpaces",
+    "Some Multiplayer Feature": "weizinai.SomeMultiplayerFeature",
+    "Stardew Name Tags": "tylergibbs2.StardewNametags",
+    "UI Info Suite 2": "Annosz.UiInfoSuite2",
+    */
+    
+    "AllowedModList": [
+        "SMAPI.ConsoleCommands",
+        "SMAPI.SaveBackup"
+    ],
+    "RequiredModList": [
+        "Veniamin-Arefev.AdventurersGuildMultiplayerSharedKills",
+        "Pathoschild.ContentPatcher",
+        "gaussfire.ConvenientInventory",
+        "spacechase0.GenericModConfigMenu",
+        "season.ShareExperience",
+        "SinZ.SharedSpaces",
+        "weizinai.SomeMultiplayerFeature",
+        "tylergibbs2.StardewNametags",
+        "Annosz.UiInfoSuite2"
+    ]
+}

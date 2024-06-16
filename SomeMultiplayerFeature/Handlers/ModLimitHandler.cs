@@ -15,11 +15,10 @@ internal class ModLimitHandler
 
     public ModLimitHandler(IModHelper helper, ModConfig config)
     {
+        // 初始化
         this.config = config;
-        // 读取要求模组列表
         modRequirement = helper.Data.ReadJsonFile<Dictionary<string, string[]>>(ModRequirementPatch);
-        if (modRequirement is null)
-            Log.Error($"无法找到Json文件: {ModRequirementPatch}");
+        if (modRequirement is null) Log.Error($"无法找到Json文件: {ModRequirementPatch}");
     }
 
     public void OnPeerConnected(PeerConnectedEventArgs e)

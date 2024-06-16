@@ -39,7 +39,7 @@ internal class AutoFarming : Automate
     // 自动耕地
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
-        if (player.Stamina <= Config.StopTillDirtStamina) return;
+        if (player.Stamina <= Config.AutoTillDirt.StopStamina) return;
 
         var grid = GetTileGrid(Config.AutoTillDirt.Range);
         foreach (var tile in grid)
@@ -52,7 +52,7 @@ internal class AutoFarming : Automate
     // 自动清理耕地
     private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
     {
-        if (player.Stamina <= Config.StopClearTilledDirtStamina) return;
+        if (player.Stamina <= Config.AutoClearTilledDirt.StopStamina) return;
 
         var grid = GetTileGrid(Config.AutoClearTilledDirt.Range);
         foreach (var tile in grid)
@@ -68,7 +68,7 @@ internal class AutoFarming : Automate
     // 自动浇水
     private void AutoWaterDirt(GameLocation location, Farmer player, WateringCan wateringCan)
     {
-        if (player.Stamina <= Config.StopWaterDirtStamina) return;
+        if (player.Stamina <= Config.AutoWaterDirt.StopStamina) return;
 
         var hasAddWaterMessage = true;
         var grid = GetTileGrid(Config.AutoWaterDirt.Range);

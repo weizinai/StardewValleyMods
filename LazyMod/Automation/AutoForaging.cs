@@ -21,7 +21,7 @@ internal class AutoForaging : Automate
         // 自动砍树
         if (Config.AutoChopTree.IsEnable && tool is Axe) AutoChopTree(location, player, tool);
         // 自动收获姜
-        if (Config.AutoHarvestGinger.IsEnable && (tool is Hoe || Config.FindToolForHarvestGinger)) AutoHarvestGinger(location, player);
+        if (Config.AutoHarvestGinger.IsEnable && (tool is Hoe || Config.AutoHarvestGinger.FindToolFromInventory)) AutoHarvestGinger(location, player);
         // 自动摇树
         if (Config.AutoShakeTree.IsEnable) AutoShakeTree(location);
         // 自动装备采集器
@@ -31,7 +31,7 @@ internal class AutoForaging : Automate
         // 自动在树上浇醋
         if (Config.AutoPlaceVinegar.IsEnable && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
         // 自动清理木头
-        if (Config.AutoClearWood.IsEnable && (tool is Axe || Config.FindAxeFromInventory)) AutoClearWood(location, player);
+        if (Config.AutoClearWood.IsEnable && (tool is Axe || Config.AutoClearWeeds.FindToolFromInventory)) AutoClearWood(location, player);
     }
 
     // 自动觅食
@@ -52,7 +52,7 @@ internal class AutoForaging : Automate
     // 自动收获姜
     private void AutoHarvestGinger(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.StopHarvestGingerStamina) return;
+        if (player.Stamina <= Config.AutoHarvestGinger.StopStamina) return;
 
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null) return;
@@ -71,7 +71,7 @@ internal class AutoForaging : Automate
     // 自动砍树
     private void AutoChopTree(GameLocation location, Farmer player, Tool tool)
     {
-        if (player.Stamina <= Config.StopChopTreeStamina) return;
+        if (player.Stamina <= Config.AutoChopTree.StopStamina) return;
 
         var treeType = new Dictionary<string, Dictionary<int, bool>>
         {
@@ -186,7 +186,7 @@ internal class AutoForaging : Automate
     // 自动清理木头
     private void AutoClearWood(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.StopClearWoodStamina) return;
+        if (player.Stamina <= Config.AutoClearWood.StopStamina) return;
 
         var axe = FindToolFromInventory<Axe>();
         if (axe is null) return;

@@ -19,9 +19,9 @@ internal class AutoAnimal : Automate
         // 自动抚摸宠物
         if (Config.AutoPetPet.IsEnable) AutoPetPet(location, player);
         // 自动挤奶
-        if (Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || Config.FindMilkPailFromInventory)) AutoMilkAnimal(location, player);
+        if (Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || Config.AutoMilkAnimal.FindToolFromInventory)) AutoMilkAnimal(location, player);
         // 自动剪毛
-        if (Config.AutoShearsAnimal.IsEnable && (tool is Shears || Config.FindShearsFromInventory)) AutoShearsAnimal(location, player);
+        if (Config.AutoShearsAnimal.IsEnable && (tool is Shears || Config.AutoShearsAnimal.FindToolFromInventory)) AutoShearsAnimal(location, player);
         // 自动喂食动物饼干
         if (Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
@@ -60,7 +60,7 @@ internal class AutoAnimal : Automate
     // 自动挤奶
     private void AutoMilkAnimal(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.StopMilkAnimalStamina) return;
+        if (player.Stamina <= Config.AutoMilkAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
         var milkPail = FindToolFromInventory<MilkPail>();
@@ -79,7 +79,7 @@ internal class AutoAnimal : Automate
     // 自动剪毛
     private void AutoShearsAnimal(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.StopShearsAnimalStamina) return;
+        if (player.Stamina <= Config.AutoShearsAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
         var shears = FindToolFromInventory<Shears>();

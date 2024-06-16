@@ -8,6 +8,7 @@
 
     "Config.Enable.Name": "启用",
     "Config.Range.Name": "范围",
+    "Config.StopStamina.Name": "停止体力",
     "Config.FindToolFromInventory.Name": "从背包中寻找工具",
     "Config.FindToolFromInventory.Tooltip": "当该选项启用时,只需要背包中有工具,该功能就会生效.",
 

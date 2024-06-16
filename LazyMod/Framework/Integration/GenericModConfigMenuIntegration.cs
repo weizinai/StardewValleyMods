@@ -40,4 +40,23 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
 
         return this;
     }
+    
+    public GenericModConfigMenuIntegration<TConfig> AddStaminaToolAutomationConfig(Func<TConfig, StaminaToolAutomationConfig> get, 
+        Func<string> text, Func<string>? tooltip, int minRange)
+    {
+        AddBaseAutomationConfig(get, text, tooltip, minRange);
+        AddNumberOption(
+            config => get(config).StopStamina,
+            (config, value) => get(config).StopStamina = value,
+            I18n.Config_StopStamina_Name
+        );
+        AddBoolOption(
+            config => get(config).FindToolFromInventory,
+            (config, value) => get(config).FindToolFromInventory = value,
+            I18n.Config_FindToolFromInventory_Name,
+            I18n.Config_FindToolFromInventory_Tooltip
+        );
+
+        return this;
+    }
 }

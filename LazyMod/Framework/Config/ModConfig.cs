@@ -13,62 +13,41 @@ internal class ModConfig
     #region 耕种
 
     // 自动耕地
-    public BaseAutomationConfig AutoTillDirt { get; set; } = new(0);
-    public float StopTillDirtStamina { get; set; } = 3;
-
+    public StaminaToolAutomationConfig AutoTillDirt { get; set; } = new(0, 3, false);
     // 自动清理耕地
-    public BaseAutomationConfig AutoClearTilledDirt { get; set; } = new(0);
-    public float StopClearTilledDirtStamina { get; set; } = 3;
-
+    public StaminaToolAutomationConfig AutoClearTilledDirt { get; set; } = new(0, 3, false);
     // 自动浇水
-    public BaseAutomationConfig AutoWaterDirt { get; set; } = new(0);
-    public float StopWaterDirtStamina { get; set; } = 3;
-
+    public StaminaToolAutomationConfig AutoWaterDirt { get; set; } = new(0, 3, false);
     // 自动补充水壶
     public ToolAutomationConfig AutoRefillWateringCan { get; set; } = new(1, true);
-
     // 自动播种
     public BaseAutomationConfig AutoSeed { get; set; } = new(0);
-
     // 自动施肥
     public BaseAutomationConfig AutoFertilize { get; set; } = new(0);
-
     // 自动收获作物
     public BaseAutomationConfig AutoHarvestCrop { get; set; } = new(0);
     public bool AutoHarvestFlower { get; set; }
-
     // 自动摇晃果树
     public BaseAutomationConfig AutoShakeFruitTree { get; set; } = new(1);
-
     // 自动清理枯萎作物
     public ToolAutomationConfig AutoClearDeadCrop { get; set; } = new(0, true);
-
+    
     #endregion
 
     #region 动物
 
     // 自动抚摸动物
     public BaseAutomationConfig AutoPetAnimal { get; set; } = new(1);
-
     // 自动抚摸宠物
     public BaseAutomationConfig AutoPetPet { get; set; } = new(1);
-
     // 自动挤奶
-    public BaseAutomationConfig AutoMilkAnimal { get; set; } = new(1);
-    public float StopMilkAnimalStamina { get; set; } = 3;
-    public bool FindMilkPailFromInventory { get; set; } = true;
-
+    public StaminaToolAutomationConfig AutoMilkAnimal { get; set; } = new(1, 3, true);
     // 自动剪毛
-    public BaseAutomationConfig AutoShearsAnimal { get; set; } = new(1);
-    public float StopShearsAnimalStamina { get; set; } = 3;
-    public bool FindShearsFromInventory { get; set; } = true;
-
+    public StaminaToolAutomationConfig AutoShearsAnimal { get; set; } = new(1, 3, true);
     // 自动喂食动物饼干
     public BaseAutomationConfig AutoFeedAnimalCracker { get; set; } = new(1);
-
     // 自动打开动物门
     public bool AutoOpenAnimalDoor { get; set; }
-
     // 自动打开栅栏门
     public BaseAutomationConfig AutoOpenFenceGate { get; set; } = new(1);
 
@@ -77,9 +56,7 @@ internal class ModConfig
     #region 采矿
 
     // 自动清理石头
-    public BaseAutomationConfig AutoClearStone { get; set; } = new(1);
-    public float StopClearStoneStamina { get; set; } = 3;
-    public bool FindPickaxeFromInventory { get; set; } = true;
+    public StaminaToolAutomationConfig AutoClearStone { get; set; } = new(1, 3, true);
     public bool ClearStoneOnMineShaft { get; set; }
     public bool ClearStoneOnVolcano { get; set; }
     public bool ClearFarmStone { get; set; } = true;
@@ -91,24 +68,16 @@ internal class ModConfig
     public bool ClearCalicoEggStone { get; set; }
     public bool ClearBoulder { get; set; }
     public bool ClearMeteorite { get; set; }
-
     // 自动收集煤炭
     public BaseAutomationConfig AutoCollectCoal { get; set; } = new(1);
-
     // 自动破坏容器
     public ToolAutomationConfig AutoBreakContainer { get; set; } = new(1, true);
-
     // 自动打开宝藏
     public BaseAutomationConfig AutoOpenTreasure { get; set; } = new(1);
-
     // 自动清理水晶
     public ToolAutomationConfig AutoClearCrystal { get; set; } = new(1, true);
-
     // 自动冷却岩浆
-    public BaseAutomationConfig AutoCoolLava { get; set; } = new(1);
-    public float StopCoolLavaStamina { get; set; } = 3;
-    public bool FindToolForCoolLava { get; set; } = true;
-
+    public StaminaToolAutomationConfig AutoCoolLava { get; set; } = new(1, 3, true);
     // 显示矿井信息
     public bool ShowLadderInfo { get; set; } = true;
     public bool ShowShaftInfo { get; set; } = true;
@@ -122,15 +91,10 @@ internal class ModConfig
 
     // 自动觅食
     public BaseAutomationConfig AutoForage { get; set; } = new(1);
-
     // 自动收获姜
-    public BaseAutomationConfig AutoHarvestGinger { get; set; } = new(0);
-    public float StopHarvestGingerStamina { get; set; } = 3;
-    public bool FindToolForHarvestGinger { get; set; } = true;
-
+    public StaminaToolAutomationConfig AutoHarvestGinger { get; set; } = new(0, 3, true);
     // 自动砍树
-    public BaseAutomationConfig AutoChopTree { get; set; } = new(1);
-    public float StopChopTreeStamina { get; set; } = 3;
+    public StaminaToolAutomationConfig AutoChopTree { get; set; } = new(1, 3, false);
     public bool ChopTapperTree { get; set; }
     public bool ChopVinegarTree { get; set; }
     public Dictionary<int, bool> ChopOakTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
@@ -141,26 +105,19 @@ internal class ModConfig
     public Dictionary<int, bool> ChopMushroomTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
     public Dictionary<int, bool> ChopGreenRainTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
     public Dictionary<int, bool> ChopMysticTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
-
     // 自动摇树
     public BaseAutomationConfig AutoShakeTree { get; set; } = new(1);
-
     // 自动收获苔藓
     public ToolAutomationConfig AutoHarvestMoss { get; set; } = new(1, true);
-
     // 自动放置采集器
     public BaseAutomationConfig AutoPlaceTapper { get; set; } = new(1);
-
     // 自动浇醋
     public BaseAutomationConfig AutoPlaceVinegar { get; set; } = new(1);
-
     // 自动清理木头
-    public BaseAutomationConfig AutoClearWood { get; set; } = new(1);
-    public float StopClearWoodStamina { get; set; } = 3;
+    public StaminaToolAutomationConfig AutoClearWood { get; set; } = new(1, 3, true);
     public bool ClearTwig { get; set; } = true;
     public bool ClearStump { get; set; }
     public bool ClearHollowLog { get; set; }
-    public bool FindAxeFromInventory { get; set; } = true;
 
     #endregion
 
@@ -219,9 +176,7 @@ internal class ModConfig
     public bool ClearLargeWeeds { get; set; }
 
     // 自动挖掘斑点
-    public BaseAutomationConfig AutoDigSpots { get; set; } = new(0);
-    public float StopDigSpotsStamina { get; set; } = 3;
-    public bool FindHoeFromInventory { get; set; } = true;
+    public StaminaToolAutomationConfig AutoDigSpots { get; set; } = new(0, 3, true);
 
     // 自动收获机器
     public BaseAutomationConfig AutoHarvestMachine { get; set; } = new(1);

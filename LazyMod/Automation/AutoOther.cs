@@ -25,7 +25,7 @@ internal class AutoOther : Automate
         // 自动清理杂草
         if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.AutoClearWeeds.FindToolFromInventory)) AutoClearWeeds(location);
         // 自动挖掘斑点
-        if (Config.AutoDigSpots.IsEnable && (tool is Hoe || Config.FindHoeFromInventory)) AutoDigSpots(location, player);
+        if (Config.AutoDigSpots.IsEnable && (tool is Hoe || Config.AutoDigSpots.FindToolFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器
         if (Config.AutoHarvestMachine.IsEnable) AutoHarvestMachine(location, player);
         // 自动触发机器
@@ -98,7 +98,7 @@ internal class AutoOther : Automate
     // 自动挖掘斑点
     private void AutoDigSpots(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.StopDigSpotsStamina) return;
+        if (player.Stamina <= Config.AutoDigSpots.StopStamina) return;
 
         var hoe = FindToolFromInventory<Hoe>();
         if (hoe is null)

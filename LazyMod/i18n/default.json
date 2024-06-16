@@ -8,6 +8,7 @@
     
     "Config.Enable.Name": "Enable",
     "Config.Range.Name": "Range",
+    "Config.StopStamina.Name": "Stop Stamina",
     "Config.FindToolFromInventory.Name": "Find Tool From Inventory",
     "Config.FindToolFromInventory.Tooltip": "When this option is enabled, only a tool is required in the backpack for the feature to work.",
 

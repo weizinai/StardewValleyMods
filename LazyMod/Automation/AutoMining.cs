@@ -18,7 +18,7 @@ internal class AutoMining : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动清理石头
-        if (Config.AutoClearStone.IsEnable && (tool is Pickaxe || Config.FindPickaxeFromInventory)) AutoClearStone(location, player);
+        if (Config.AutoClearStone.IsEnable && (tool is Pickaxe || Config.AutoClearStone.FindToolFromInventory)) AutoClearStone(location, player);
         // 自动收集煤炭
         if (Config.AutoCollectCoal.IsEnable) AutoCollectCoal(location, player);
         // 自动破坏容器
@@ -28,13 +28,13 @@ internal class AutoMining : Automate
         // 自动清理水晶
         if (Config.AutoClearCrystal.IsEnable) AutoClearCrystal(location);
         // 自动冷却岩浆
-        if (Config.AutoCoolLava.IsEnable && (tool is WateringCan || Config.FindToolForCoolLava)) AutoCoolLava(location, player);
+        if (Config.AutoCoolLava.IsEnable && (tool is WateringCan || Config.AutoCoolLava.FindToolFromInventory)) AutoCoolLava(location, player);
     }
 
     // 自动清理石头
     private void AutoClearStone(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.StopClearStoneStamina) return;
+        if (player.Stamina <= Config.AutoClearStone.StopStamina) return;
         if (!Config.ClearStoneOnMineShaft && location is MineShaft) return;
         if (!Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
 
@@ -176,7 +176,7 @@ internal class AutoMining : Automate
 
             hasAddWaterMessage = false;
 
-            if (player.Stamina <= Config.StopCoolLavaStamina) return;
+            if (player.Stamina <= Config.AutoCoolLava.StopStamina) return;
             if (!CanCoolLave(dungeon, tile)) continue;
             UseToolOnTile(location, player, wateringCan, tile);
             if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())

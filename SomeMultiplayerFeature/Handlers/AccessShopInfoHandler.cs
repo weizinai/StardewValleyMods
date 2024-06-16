@@ -27,12 +27,12 @@ internal class AccessShopInfoHandler
         if (Game1.activeClickableMenu is ShopMenu shopMenu1 && lastShopMenu is not ShopMenu)
         {
             var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu1.ShopId);
-            helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
+            helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
         else if (lastShopMenu is ShopMenu shopMenu2 && Game1.activeClickableMenu is not ShopMenu)
         {
             var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu2.ShopId, true);
-            helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
+            helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
 
         lastShopMenu = Game1.activeClickableMenu;
@@ -40,7 +40,7 @@ internal class AccessShopInfoHandler
     
     public void OnModMessageReceived(ModMessageReceivedEventArgs e)
     {
-        if (config.AccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ShopMessage" })
+        if (config.AccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
         {
             var message = e.ReadAs<AccessShopInfoMessage>();
             var hudMessage = new HUDMessage(message.ToString())

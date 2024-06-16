@@ -22,26 +22,32 @@ internal class ModLimitHandler
             Log.Error($"无法找到Json文件: {ModRequirementPatch}");
     }
 
-    public void OnPeerContextReceived(PeerContextReceivedEventArgs e)
+    public void OnPeerConnected(PeerConnectedEventArgs e)
     {
         if (!Context.IsMainPlayer || !e.Peer.HasSmapi || modRequirement is null || !config.EnableModLimit) return;
 
-        var targetMods = e.Peer.Mods.Select(mod => mod.Name).ToList();
+        var targetMods = e.Peer.Mods.Select(mod => mod.ID).ToList();
         var unAllowedMods = new List<string>();
 
         foreach (var id in modRequirement["RequiredModList"])
         {
             if (!targetMods.Contains(id))
+            {
                 unAllowedMods.Add(id);
+            }
         }
 
         foreach (var id in targetMods)
         {
             if (!modRequirement["RequiredModList"].Contains(id) && !modRequirement["AllowedModList"].Contains(id))
+            {
                 unAllowedMods.Add(id);
+            }
         }
 
         if (unAllowedMods.Any())
+        {
             Game1.server.kick(e.Peer.PlayerID);
+        }
     }
 }

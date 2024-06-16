@@ -25,14 +25,14 @@ public class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
-        helper.Events.Multiplayer.PeerContextReceived += OnPeerContextReceived;
+        helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this);
     }
 
-    private void OnPeerContextReceived(object? sender, PeerContextReceivedEventArgs e)
+    private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        modLimitHandler.OnPeerContextReceived(e);
+        modLimitHandler.OnPeerConnected(e);
     }
 
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)

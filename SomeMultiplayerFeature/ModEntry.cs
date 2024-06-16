@@ -1,5 +1,4 @@
 ﻿using Common;
-using Common.Patch;
 using SomeMultiplayerFeature.Framework;
 using SomeMultiplayerFeature.Handlers;
 using StardewModdingAPI;
@@ -26,8 +25,6 @@ public class ModEntry : Mod
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
         helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
-        // 注册Harmony补丁
-        HarmonyPatcher.Apply(this);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

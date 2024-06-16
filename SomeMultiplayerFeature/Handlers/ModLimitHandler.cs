@@ -26,14 +26,22 @@ internal class ModLimitHandler
     {
         if (!Context.IsMainPlayer || !e.Peer.HasSmapi || modRequirement is null || !config.EnableModLimit) return;
 
-        var targetMods = e.Peer.Mods.Select(mod => mod.ID).ToList();
-        var unAllowedMods = new List<string>();
-
-        foreach (var id in modRequirement["RequiredModList"])
+        var unAllowedMods = GetUnAllowedMods(e.Peer);
+        if (unAllowedMods.Any())
+        {
+            Game1.server.kick(e.Peer.PlayerID);
+        }
+    }
+    
+    private IEnumerable<string> GetUnAllowedMods(IMultiplayerPeer peer)
+    {
+        var targetMods = peer.Mods.Select(mod => mod.ID).ToList();
+        
+        foreach (var id in modRequirement!["RequiredModList"])
         {
             if (!targetMods.Contains(id))
             {
-                unAllowedMods.Add(id);
+                yield return id;
             }
         }
 
@@ -41,13 +49,8 @@ internal class ModLimitHandler
         {
             if (!modRequirement["RequiredModList"].Contains(id) && !modRequirement["AllowedModList"].Contains(id))
             {
-                unAllowedMods.Add(id);
+                yield return id;
             }
-        }
-
-        if (unAllowedMods.Any())
-        {
-            Game1.server.kick(e.Peer.PlayerID);
         }
     }
 }

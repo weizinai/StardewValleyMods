@@ -25,8 +25,7 @@ internal class ModConfig
     public float StopWaterDirtStamina { get; set; } = 3;
 
     // 自动补充水壶
-    public BaseAutomationConfig AutoRefillWateringCan { get; set; } = new(1);
-    public bool FindWateringCanFromInventory { get; set; } = true;
+    public ToolAutomationConfig AutoRefillWateringCan { get; set; } = new(1, true);
 
     // 自动播种
     public BaseAutomationConfig AutoSeed { get; set; } = new(0);
@@ -42,8 +41,7 @@ internal class ModConfig
     public BaseAutomationConfig AutoShakeFruitTree { get; set; } = new(1);
 
     // 自动清理枯萎作物
-    public BaseAutomationConfig AutoClearDeadCrop { get; set; } = new(0);
-    public bool FindToolForClearDeadCrop { get; set; } = true;
+    public ToolAutomationConfig AutoClearDeadCrop { get; set; } = new(0, true);
 
     #endregion
 
@@ -98,15 +96,13 @@ internal class ModConfig
     public BaseAutomationConfig AutoCollectCoal { get; set; } = new(1);
 
     // 自动破坏容器
-    public BaseAutomationConfig AutoBreakContainer { get; set; } = new(1);
-    public bool FindToolForBreakContainer { get; set; } = true;
+    public ToolAutomationConfig AutoBreakContainer { get; set; } = new(1, true);
 
     // 自动打开宝藏
     public BaseAutomationConfig AutoOpenTreasure { get; set; } = new(1);
 
     // 自动清理水晶
-    public BaseAutomationConfig AutoClearCrystal { get; set; } = new(1);
-    public bool FindToolForClearCrystal { get; set; } = true;
+    public ToolAutomationConfig AutoClearCrystal { get; set; } = new(1, true);
 
     // 自动冷却岩浆
     public BaseAutomationConfig AutoCoolLava { get; set; } = new(1);
@@ -150,8 +146,7 @@ internal class ModConfig
     public BaseAutomationConfig AutoShakeTree { get; set; } = new(1);
 
     // 自动收获苔藓
-    public BaseAutomationConfig AutoHarvestMoss { get; set; } = new(1);
-    public bool FindScytheFromInventory { get; set; } = true;
+    public ToolAutomationConfig AutoHarvestMoss { get; set; } = new(1, true);
 
     // 自动放置采集器
     public BaseAutomationConfig AutoPlaceTapper { get; set; } = new(1);
@@ -220,8 +215,7 @@ internal class ModConfig
     public int MagneticRadiusIncrease { get; set; }
 
     // 自动清理杂草
-    public BaseAutomationConfig AutoClearWeeds { get; set; } = new(1);
-    public bool FindToolForClearWeeds { get; set; } = true;
+    public ToolAutomationConfig AutoClearWeeds { get; set; } = new(1, true);
     public bool ClearLargeWeeds { get; set; }
 
     // 自动挖掘斑点

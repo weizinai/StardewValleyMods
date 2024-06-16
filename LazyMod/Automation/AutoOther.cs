@@ -23,7 +23,7 @@ internal class AutoOther : Automate
         // 增加磁力范围
         MagneticRadiusIncrease(player);
         // 自动清理杂草
-        if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.FindToolForClearWeeds)) AutoClearWeeds(location);
+        if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.AutoClearWeeds.FindToolFromInventory)) AutoClearWeeds(location);
         // 自动挖掘斑点
         if (Config.AutoDigSpots.IsEnable && (tool is Hoe || Config.FindHoeFromInventory)) AutoDigSpots(location, player);
         // 自动收获机器

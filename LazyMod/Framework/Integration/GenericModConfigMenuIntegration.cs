@@ -8,7 +8,7 @@ namespace Common.Integrations;
 /// <typeparam name="TConfig">The mod config type.</typeparam>
 internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : new()
 {
-    public GenericModConfigMenuIntegration<TConfig> AddBaseAutomationConfig(Func<TConfig, BaseAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange = 0)
+    public GenericModConfigMenuIntegration<TConfig> AddBaseAutomationConfig(Func<TConfig, BaseAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange)
     {
         AddSectionTitle(text, tooltip);
         AddBoolOption(
@@ -23,6 +23,19 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
             null,
             minRange,
             3
+        );
+
+        return this;
+    }
+    
+    public GenericModConfigMenuIntegration<TConfig> AddToolAutomationConfig(Func<TConfig, ToolAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange)
+    {
+        AddBaseAutomationConfig(get, text, tooltip, minRange);
+        AddBoolOption(
+            config => get(config).FindToolFromInventory,
+            (config, value) => get(config).FindToolFromInventory = value,
+            I18n.Config_FindToolFromInventory_Name,
+            I18n.Config_FindToolFromInventory_Tooltip
         );
 
         return this;

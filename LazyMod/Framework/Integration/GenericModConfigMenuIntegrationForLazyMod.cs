@@ -74,40 +74,34 @@ internal class GenericModConfigMenuIntegrationForLazyMod
         configMenu
             .AddPage("Farming", I18n.Config_FarmingPage_Name)
             // 自动耕地
-            .AddBaseAutomationConfig(config => config.AutoTillDirt, I18n.Config_AutoTillDirt_Name, I18n.Config_AutoTillDirt_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoTillDirt, I18n.Config_AutoTillDirt_Name, I18n.Config_AutoTillDirt_Tooltip, 0)
             .AddNumberOption(
                 config => config.StopTillDirtStamina,
                 (config, value) => config.StopTillDirtStamina = value,
                 I18n.Config_StopTillDirtStamina_Name
             )
             // 自动清理耕地
-            .AddBaseAutomationConfig(config => config.AutoClearTilledDirt, I18n.Config_AutoClearTilledDirt_Name, I18n.Config_AutoClearTilledDirt_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoClearTilledDirt, I18n.Config_AutoClearTilledDirt_Name, I18n.Config_AutoClearTilledDirt_Tooltip, 0)
             .AddNumberOption(
                 config => config.StopClearTilledDirtStamina,
                 (config, value) => config.StopClearTilledDirtStamina = value,
                 I18n.Config_StopClearTilledDirtStamina_Name
             )
             // 自动浇水
-            .AddBaseAutomationConfig(config => config.AutoWaterDirt, I18n.Config_AutoWaterDirt_Name, I18n.Config_AutoWaterDirt_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoWaterDirt, I18n.Config_AutoWaterDirt_Name, I18n.Config_AutoWaterDirt_Tooltip, 0)
             .AddNumberOption(
                 config => config.StopWaterDirtStamina,
                 (config, value) => config.StopWaterDirtStamina = value,
                 I18n.Config_StopWaterDirtStamina_Name
             )
             // 自动补充水壶
-            .AddBaseAutomationConfig(config => config.AutoRefillWateringCan, I18n.Config_AutoRefillWateringCan_Name, I18n.Config_AutoRefillWateringCan_Tooltip, 1)
-            .AddBoolOption(
-                config => config.FindWateringCanFromInventory,
-                (config, value) => config.FindWateringCanFromInventory = value,
-                I18n.Config_FindWateringCanFromInventory_Name,
-                I18n.Config_FindWateringCanFromInventory_Tooltip
-            )
+            .AddToolAutomationConfig(config => config.AutoRefillWateringCan, I18n.Config_AutoRefillWateringCan_Name, I18n.Config_AutoRefillWateringCan_Tooltip, 1)
             // 自动播种
-            .AddBaseAutomationConfig(config => config.AutoSeed, I18n.Config_AutoSeed_Name, I18n.Config_AutoSeed_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoSeed, I18n.Config_AutoSeed_Name, I18n.Config_AutoSeed_Tooltip, 0)
             // 自动施肥
-            .AddBaseAutomationConfig(config => config.AutoFertilize, I18n.Config_AutoFertilize_Name, I18n.Config_AutoFertilize_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoFertilize, I18n.Config_AutoFertilize_Name, I18n.Config_AutoFertilize_Tooltip, 0)
             // 自动收获作物
-            .AddBaseAutomationConfig(config => config.AutoHarvestCrop, I18n.Config_AutoHarvestCrop_Name, null)
+            .AddBaseAutomationConfig(config => config.AutoHarvestCrop, I18n.Config_AutoHarvestCrop_Name, null, 0)
             .AddBoolOption(
                 config => config.AutoHarvestFlower,
                 (config, value) => config.AutoHarvestFlower = value,
@@ -116,13 +110,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动摇晃果树
             .AddBaseAutomationConfig(config => config.AutoShakeFruitTree, I18n.Config_AutoShakeFruitTree_Name, null, 1)
             // 自动清理枯萎作物
-            .AddBaseAutomationConfig(config => config.AutoClearDeadCrop, I18n.Config_AutoClearDeadCrop_Name, I18n.Config_AutoClearDeadCrop_Tooltip)
-            .AddBoolOption(
-                config => config.FindToolForClearDeadCrop,
-                (config, value) => config.FindToolForClearDeadCrop = value,
-                I18n.Config_FindToolForClearDeadCrop_Name,
-                I18n.Config_FindToolForClearDeadCrop_Tooltip
-            );
+            .AddToolAutomationConfig(config => config.AutoClearDeadCrop, I18n.Config_AutoClearDeadCrop_Name, I18n.Config_AutoClearDeadCrop_Tooltip, 0);
     }
 
     private void AddAnimalPage()
@@ -251,25 +239,13 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 I18n.Config_ClearMeteorite_Name
             )
             // 自动收集煤炭
-            .AddBaseAutomationConfig(config => config.AutoCollectCoal, I18n.Config_AutoCollectCoal_Name, I18n.Config_AutoCollectCoal_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoCollectCoal, I18n.Config_AutoCollectCoal_Name, I18n.Config_AutoCollectCoal_Tooltip, 1)
             // 自动破坏容器
-            .AddBaseAutomationConfig(config => config.AutoBreakContainer, I18n.Config_AutoBreakContainer_Name, I18n.Config_AutoBreakContainer_Tooltip, 1)
-            .AddBoolOption(
-                config => config.FindToolForBreakContainer,
-                (config, value) => config.FindToolForBreakContainer = value,
-                I18n.Config_FindToolForBreakContainer_Name,
-                I18n.Config_FindToolForBreakContainer_Tooltip
-            )
+            .AddToolAutomationConfig(config => config.AutoBreakContainer, I18n.Config_AutoBreakContainer_Name, I18n.Config_AutoBreakContainer_Tooltip, 1)
             // 自动打开宝箱
             .AddBaseAutomationConfig(config => config.AutoOpenTreasure, I18n.Config_AutoOpenTreasure_Name, null, 1)
             // 自动清理水晶
-            .AddBaseAutomationConfig(config => config.AutoClearCrystal, I18n.Config_AutoClearCrystal_Name, null, 1)
-            .AddBoolOption(
-                config => config.FindToolForClearCrystal,
-                (config, value) => config.FindToolForClearCrystal = value,
-                I18n.Config_FindToolForClearCrystal_Name,
-                I18n.Config_FindToolForClearCrystal_Tooltip
-            )
+            .AddToolAutomationConfig(config => config.AutoClearCrystal, I18n.Config_AutoClearCrystal_Name, null, 1)
             // 自动冷却岩浆
             .AddBaseAutomationConfig(config => config.AutoCoolLava, I18n.Config_AutoCoolLava_Name, I18n.Config_AutoCoolLava_Tooltip, 1)
             .AddNumberOption(
@@ -338,7 +314,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             )
             .AddPageLink("TreeSettings", I18n.Config_TreeSettingsPage_Name)
             // 自动收获姜
-            .AddBaseAutomationConfig(config => config.AutoHarvestGinger, I18n.Config_AutoHarvestGinger_Name, I18n.Config_AutoHarvestGinger_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoHarvestGinger, I18n.Config_AutoHarvestGinger_Name, I18n.Config_AutoHarvestGinger_Tooltip, 0)
             .AddNumberOption(
                 config => config.StopHarvestGingerStamina,
                 (config, value) => config.StopHarvestGingerStamina = value,
@@ -353,13 +329,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动摇树
             .AddBaseAutomationConfig(config => config.AutoShakeTree, I18n.Config_AutoShakeTree_Name, null, 1)
             // 自动收获苔藓
-            .AddBaseAutomationConfig(config => config.AutoHarvestMoss, I18n.Config_AutoHarvestMoss_Name, I18n.Config_AutoHarvestMoss_Tooltip, 1)
-            .AddBoolOption(
-                config => config.FindScytheFromInventory,
-                (config, value) => config.FindScytheFromInventory = value,
-                I18n.Config_FindScytheFromInventory_Name,
-                I18n.Config_FindScytheFromInventory_Tooltip
-            )
+            .AddToolAutomationConfig(config => config.AutoHarvestMoss, I18n.Config_AutoHarvestMoss_Name, I18n.Config_AutoHarvestMoss_Tooltip, 1)
             // 自动放置采集器
             .AddBaseAutomationConfig(config => config.AutoPlaceTapper, I18n.Config_AutoPlaceTapper_Name, I18n.Config_AutoPlaceTapper_Tooltip, 1)
             // 自动在树上浇醋
@@ -549,20 +519,14 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 10
             )
             // 自动清理杂草
-            .AddBaseAutomationConfig(config => config.AutoClearWeeds, I18n.Config_AutoClearWeeds_Name, I18n.Config_AutoClearWeeds_Tooltip, 1)
-            .AddBoolOption(
-                config => config.FindToolForClearWeeds,
-                (config, value) => config.FindToolForClearWeeds = value,
-                I18n.Config_FindToolForClearWeeds_Name,
-                I18n.Config_FindToolForClearWeeds_Tooltip
-            )
+            .AddToolAutomationConfig(config => config.AutoClearWeeds, I18n.Config_AutoClearWeeds_Name, I18n.Config_AutoClearWeeds_Tooltip, 1)
             .AddBoolOption(
                 config => config.ClearLargeWeeds,
                 (config, value) => config.ClearLargeWeeds = value,
                 I18n.Config_ClearLargeWeeds_Name
             )
             // 自动挖掘斑点
-            .AddBaseAutomationConfig(config => config.AutoDigSpots, I18n.Config_AutoDigSpots_Name, I18n.Config_AutoDigSpots_Tooltip)
+            .AddBaseAutomationConfig(config => config.AutoDigSpots, I18n.Config_AutoDigSpots_Name, I18n.Config_AutoDigSpots_Tooltip, 0)
             .AddNumberOption(
                 config => config.StopDigSpotsStamina,
                 (config, value) => config.StopDigSpotsStamina = value,
@@ -588,7 +552,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 I18n.Config_StopGarbageCanNearVillager_Name
             )
             // 自动放置地板
-            .AddBaseAutomationConfig(config => config.AutoPlaceFloor, I18n.Config_AutoPlaceFloor_Name, I18n.Config_AutoPlaceFloor_Tooltip);
+            .AddBaseAutomationConfig(config => config.AutoPlaceFloor, I18n.Config_AutoPlaceFloor_Name, I18n.Config_AutoPlaceFloor_Tooltip, 0);
     }
 
     private void AddTreeSettingsPage()

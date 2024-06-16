@@ -22,7 +22,7 @@ internal class AutoMining : Automate
         // 自动收集煤炭
         if (Config.AutoCollectCoal.IsEnable) AutoCollectCoal(location, player);
         // 自动破坏容器
-        if (Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || Config.FindToolForBreakContainer)) AutoBreakContainer(location);
+        if (Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || Config.AutoBreakContainer.FindToolFromInventory)) AutoBreakContainer(location);
         // 自动打开宝藏
         if (Config.AutoOpenTreasure.IsEnable) AutoOpenTreasure(location, player);
         // 自动清理水晶

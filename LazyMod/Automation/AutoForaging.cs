@@ -27,7 +27,7 @@ internal class AutoForaging : Automate
         // 自动装备采集器
         if (Config.AutoPlaceTapper.IsEnable && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) AutoPlaceTapper(location, player, tapper);
         // 自动收获苔藓
-        if (Config.AutoHarvestMoss.IsEnable && (tool is MeleeWeapon || Config.FindScytheFromInventory)) AutoHarvestMoss(location);
+        if (Config.AutoHarvestMoss.IsEnable && (tool is MeleeWeapon || Config.AutoHarvestMoss.FindToolFromInventory)) AutoHarvestMoss(location);
         // 自动在树上浇醋
         if (Config.AutoPlaceVinegar.IsEnable && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
         // 自动清理木头

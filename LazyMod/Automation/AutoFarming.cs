@@ -23,7 +23,7 @@ internal class AutoFarming : Automate
         // 自动浇水
         if (Config.AutoWaterDirt.IsEnable && tool is WateringCan wateringCan) AutoWaterDirt(location, player, wateringCan);
         // 自动填充水壶
-        if (Config.AutoRefillWateringCan.IsEnable && (tool is WateringCan || Config.FindWateringCanFromInventory)) AutoRefillWateringCan(location, player);
+        if (Config.AutoRefillWateringCan.IsEnable && (tool is WateringCan || Config.AutoRefillWateringCan.FindToolFromInventory)) AutoRefillWateringCan(location, player);
         // 自动播种
         if (Config.AutoSeed.IsEnable && item?.Category == SObject.SeedsCategory) AutoSeed(location, player, item);
         // 自动施肥
@@ -33,7 +33,7 @@ internal class AutoFarming : Automate
         // 自动摇晃果树
         if (Config.AutoShakeFruitTree.IsEnable) AutoShakeFruitTree(location);
         // 自动清理枯萎作物
-        if (Config.AutoClearDeadCrop.IsEnable && (tool is MeleeWeapon || Config.FindToolForClearDeadCrop)) AutoClearDeadCrop(location);
+        if (Config.AutoClearDeadCrop.IsEnable && (tool is MeleeWeapon || Config.AutoClearDeadCrop.FindToolFromInventory)) AutoClearDeadCrop(location);
     }
 
     // 自动耕地

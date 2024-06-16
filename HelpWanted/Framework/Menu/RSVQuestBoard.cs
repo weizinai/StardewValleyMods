@@ -1,52 +1,22 @@
 using Common;
-using Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
-using StardewValley.Menus;
-using StardewValley.Quests;
 
 namespace HelpWanted.Framework.Menu;
 
-internal class RSVQuestBoard : IClickableMenu
+internal class RSVQuestBoard : BaseQuestBoard
 {
     private readonly Texture2D billboardTexture;
-    private readonly ClickableComponent acceptQuestButton;
-    private string hoverTitle = "";
-    private string hoverText = "";
-
-    private int showingQuestID;
-    private Quest? showingQuest;
-
     public static readonly List<QuestNote> QuestNotes = new();
-    private Rectangle boardRect = new(78 * 4, 52 * 4, 184 * 4, 102 * 4);
-    private const int OptionIndex = -4200;
-    private readonly ModConfig config;
 
-    public RSVQuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
+    public RSVQuestBoard(ModConfig config) : base(config)
     {
-        // 位置和大小逻辑
-        width = 338 * 4;
-        height = 198 * 4;
-        var center = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
-        xPositionOnScreen = (int)center.X;
-        yPositionOnScreen = (int)center.Y;
-
         // 背景逻辑
         billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/RSVQuestBoard");
 
-        // 接受任务按钮逻辑
-        var stringSize = Game1.dialogueFont.MeasureString(Game1.content.LoadString("Strings\\UI:AcceptQuest"));
-        acceptQuestButton = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2 - 128, yPositionOnScreen + height - 128,
-            (int)stringSize.X + 24, (int)stringSize.Y + 24), "");
-
-        // 关闭按钮逻辑
-        upperRightCloseButton = new ClickableTextureComponent(new Rectangle(xPositionOnScreen + width - 20, yPositionOnScreen, 48, 48),
-            Game1.mouseCursors, CommonImage.CloseButton, 4f);
-
         // 初始化
-        this.config = config;
-        showingQuest = null;
+        ShowingQuest = null;
         InitQuestNotes();
     }
 
@@ -55,31 +25,31 @@ internal class RSVQuestBoard : IClickableMenu
         // 关闭按钮逻辑
         upperRightCloseButton?.tryHover(x, y, 0.5f);
 
-        if (showingQuest is null)
+        if (ShowingQuest is null)
         {
             // 任务便签逻辑
-            hoverTitle = "";
-            hoverText = "";
+            HoverTitle = "";
+            HoverText = "";
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
-                hoverTitle = option.QuestData.Quest.questTitle;
-                hoverText = option.QuestData.Quest.currentObjective;
+                HoverTitle = option.QuestData.Quest.questTitle;
+                HoverText = option.QuestData.Quest.currentObjective;
                 break;
             }
         }
         else
         {
             // 接受任务按钮逻辑
-            var oldScale = acceptQuestButton.scale;
-            acceptQuestButton.scale = acceptQuestButton.bounds.Contains(x, y) ? 1.5f : 1f;
-            if (acceptQuestButton.scale > oldScale) Game1.playSound("Cowboy_gunshot");
+            var oldScale = AcceptQuestButton.scale;
+            AcceptQuestButton.scale = AcceptQuestButton.bounds.Contains(x, y) ? 1.5f : 1f;
+            if (AcceptQuestButton.scale > oldScale) Game1.playSound("Cowboy_gunshot");
         }
     }
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
         // 如果当前没有展示任务面板,则处理OrderBillboard的鼠标左键点击事件
-        if (showingQuest is null)
+        if (ShowingQuest is null)
         {
             // 关闭按钮逻辑
             if (upperRightCloseButton != null && upperRightCloseButton.containsPoint(x, y))
@@ -91,11 +61,11 @@ internal class RSVQuestBoard : IClickableMenu
             // 任务便签逻辑
             foreach (var option in QuestNotes.Where(option => option.containsPoint(x, y)))
             {
-                hoverTitle = "";
-                hoverText = "";
-                showingQuestID = option.myID;
-                showingQuest = option.QuestData.Quest;
-                acceptQuestButton.visible = true;
+                HoverTitle = "";
+                HoverText = "";
+                ShowingQuestID = option.myID;
+                ShowingQuest = option.QuestData.Quest;
+                AcceptQuestButton.visible = true;
                 return;
             }
         }
@@ -105,20 +75,20 @@ internal class RSVQuestBoard : IClickableMenu
             if (upperRightCloseButton != null && upperRightCloseButton.containsPoint(x, y))
             {
                 if (playSound) Game1.playSound(closeSound);
-                showingQuest = null;
-                acceptQuestButton.visible = false;
+                ShowingQuest = null;
+                AcceptQuestButton.visible = false;
                 return;
             }
 
             // 接受任务按钮逻辑
-            if (acceptQuestButton.containsPoint(x, y))
+            if (AcceptQuestButton.containsPoint(x, y))
             {
                 Game1.playSound("newArtifact");
-                showingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
-                Game1.player.questLog.Add(showingQuest);
-                QuestNotes.RemoveAll(option => option.myID == showingQuestID);
-                showingQuest = null;
-                acceptQuestButton.visible = false;
+                ShowingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
+                Game1.player.questLog.Add(ShowingQuest);
+                QuestNotes.RemoveAll(option => option.myID == ShowingQuestID);
+                ShowingQuest = null;
+                AcceptQuestButton.visible = false;
             }
         }
     }
@@ -139,7 +109,7 @@ internal class RSVQuestBoard : IClickableMenu
         }
         else
         {
-            if (showingQuest is null)
+            if (ShowingQuest is null)
                 DrawQuestNotes(spriteBatch);
             else
                 DrawShowingQuest(spriteBatch);
@@ -153,14 +123,14 @@ internal class RSVQuestBoard : IClickableMenu
         drawMouse(spriteBatch);
 
         // 绘制悬浮文本
-        if (hoverText.Length > 0) drawHoverText(spriteBatch, hoverText, Game1.smallFont, 0, 0, -1, hoverTitle);
+        if (HoverText.Length > 0) drawHoverText(spriteBatch, HoverText, Game1.smallFont, 0, 0, -1, HoverTitle);
     }
 
     /// <summary>根据宽度和高度,获取一个没有被其他任务占用的矩形区域,该区域用于放置新的任务</summary>
     private Rectangle? GetFreeBounds(int width1, int height1)
     {
         // 如果宽度和高度大于面板的宽度和高度,则输出错误警告
-        if (width1 >= boardRect.Width || height1 >= boardRect.Height)
+        if (width1 >= BoardRect.Width || height1 >= BoardRect.Height)
         {
             Log.Warn($"note size {width1},{height1} is too big for the screen");
             return null;
@@ -171,12 +141,12 @@ internal class RSVQuestBoard : IClickableMenu
         while (tries > 0)
         {
             // 随机生成一个矩形区域
-            var rectangle = new Rectangle(xPositionOnScreen + Game1.random.Next(boardRect.X, boardRect.Right - width1),
-                yPositionOnScreen + Game1.random.Next(boardRect.Y, boardRect.Bottom - height1), width1, height1);
+            var rectangle = new Rectangle(xPositionOnScreen + Game1.random.Next(BoardRect.X, BoardRect.Right - width1),
+                yPositionOnScreen + Game1.random.Next(BoardRect.Y, BoardRect.Bottom - height1), width1, height1);
             // 遍历所有的可点击组件,计算是否有碰撞发生
             var collision = QuestNotes.Any(cc =>
-                Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * config.XOverlapBoundary ||
-                Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * config.YOverlapBoundary);
+                Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * Config.XOverlapBoundary ||
+                Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * Config.YOverlapBoundary);
             // 如果碰撞发生,则尝试次数减1,否则返回矩形区域
             if (collision)
                 tries--;
@@ -191,15 +161,15 @@ internal class RSVQuestBoard : IClickableMenu
     private void DrawShowingQuest(SpriteBatch spriteBatch)
     {
         var font = LocalizedContentManager.CurrentLanguageCode == LocalizedContentManager.LanguageCode.ko ? Game1.smallFont : Game1.dialogueFont;
-        var description = Game1.parseText(showingQuest!.questDescription, font, 640);
+        var description = Game1.parseText(ShowingQuest!.questDescription, font, 640);
         // 任务描述逻辑
         Utility.drawTextWithShadow(spriteBatch, description, font, new Vector2(xPositionOnScreen + 320 + 32, yPositionOnScreen + 256), Game1.textColor, 1f, -1f,
             -1, -1, 0.5f);
         // 接受任务按钮逻辑
-        drawTextureBox(spriteBatch, Game1.mouseCursors, new Rectangle(403, 373, 9, 9), acceptQuestButton.bounds.X, acceptQuestButton.bounds.Y,
-            acceptQuestButton.bounds.Width, acceptQuestButton.bounds.Height, acceptQuestButton.scale > 1f ? Color.LightPink : Color.White, 4f * acceptQuestButton.scale);
+        drawTextureBox(spriteBatch, Game1.mouseCursors, new Rectangle(403, 373, 9, 9), AcceptQuestButton.bounds.X, AcceptQuestButton.bounds.Y,
+            AcceptQuestButton.bounds.Width, AcceptQuestButton.bounds.Height, AcceptQuestButton.scale > 1f ? Color.LightPink : Color.White, 4f * AcceptQuestButton.scale);
         Utility.drawTextWithShadow(spriteBatch, Game1.content.LoadString("Strings\\UI:AcceptQuest"), Game1.dialogueFont,
-            new Vector2(acceptQuestButton.bounds.X + 12, acceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
+            new Vector2(AcceptQuestButton.bounds.X + 12, AcceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
     }
 
     private void DrawQuestNotes(SpriteBatch spriteBatch)
@@ -218,8 +188,8 @@ internal class RSVQuestBoard : IClickableMenu
         for (var i = 0; i < questList.Count; i++)
         {
             var size = new Point(
-                (int)(questList[i].PadSource.Width * config.NoteScale),
-                (int)(questList[i].PadSource.Height * config.NoteScale));
+                (int)(questList[i].PadSource.Width * Config.NoteScale),
+                (int)(questList[i].PadSource.Height * Config.NoteScale));
             var bounds = GetFreeBounds(size.X, size.Y);
             if (bounds is null) break;
             QuestNotes.Add(new QuestNote(questList[i], bounds.Value)

@@ -1,4 +1,5 @@
 {
     "Config.AccessShopInfo.Name": "访问商店信息",
     "Config.AccessShopInfo.Tooltip": "显示某个玩家目前是否正在访问商店。",
+    "Config.EnableModLimit.Name": "启用模组限制"
 }

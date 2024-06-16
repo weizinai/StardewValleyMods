@@ -23,6 +23,11 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.AccessShopInfo = value,
                 I18n.Config_AccessShopInfo_Name,
                 I18n.Config_AccessShopInfo_Tooltip
+            )
+            .AddBoolOption(
+                config => config.EnableModLimit,
+                (config, value) => config.EnableModLimit = value,
+                I18n.Config_EnableModLimit_Name
             );
     }
 }

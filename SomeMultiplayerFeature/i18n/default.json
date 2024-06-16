@@ -1,4 +1,5 @@
 {
     "Config.AccessShopInfo.Name": "Access Shop Menu",
     "Config.AccessShopInfo.Tooltip": "Shows whether a player is currently accessing the shop.",
+    "Config.EnableModLimit.Name": "Enable Mod Limit"
 }

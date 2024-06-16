@@ -16,11 +16,11 @@ public class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        config = helper.ReadConfig<ModConfig>();
-        accessShopInfoHandler = new AccessShopInfoHandler(helper, config);
-        modLimitHandler = new ModLimitHandler(helper);
         I18n.Init(helper.Translation);
         Log.Init(Monitor);
+        config = helper.ReadConfig<ModConfig>();
+        accessShopInfoHandler = new AccessShopInfoHandler(helper, config);
+        modLimitHandler = new ModLimitHandler(helper, config);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;

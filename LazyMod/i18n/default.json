@@ -5,6 +5,9 @@
     "Config.ToggleModStateKeybind.Tooltip": "Keybind for toggling automation feature in mods. AutoOpenAnimalDoor and ShowInfo are not affected.",
     "Config.Cooldown.Name": "Cooldown",
     "Config.Cooldown.Tooltip": "The cooldown (frames) for each automation operation.",
+    
+    "Config.Enable.Name": "Enable",
+    "Config.Range.Name": "Range",
 
     // Farming
     "Config.FarmingPage.Name": "Farming",

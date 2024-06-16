@@ -6,6 +6,9 @@
     "Config.Cooldown.Name": "冷却时间",
     "Config.Cooldown.Tooltip": "每次自动化操作的冷却时间(帧).",
 
+    "Config.Enable.Name": "启用",
+    "Config.Range.Name": "范围",
+
     // 耕种
     "Config.FarmingPage.Name": "耕种",
     "Config.AutoTillDirt.Name": "自动耕地",

@@ -13,15 +13,15 @@ internal class ModConfig
     #region 耕种
 
     // 自动耕地
-    public BaseAutomationConfig AutoTillDirt { get; set; } = new();
+    public BaseAutomationConfig AutoTillDirt { get; set; } = new(0);
     public float StopTillDirtStamina { get; set; } = 3;
 
     // 自动清理耕地
-    public BaseAutomationConfig AutoClearTilledDirt { get; set; } = new();
+    public BaseAutomationConfig AutoClearTilledDirt { get; set; } = new(0);
     public float StopClearTilledDirtStamina { get; set; } = 3;
 
     // 自动浇水
-    public BaseAutomationConfig AutoWaterDirt { get; set; } = new();
+    public BaseAutomationConfig AutoWaterDirt { get; set; } = new(0);
     public float StopWaterDirtStamina { get; set; } = 3;
 
     // 自动补充水壶
@@ -29,20 +29,20 @@ internal class ModConfig
     public bool FindWateringCanFromInventory { get; set; } = true;
 
     // 自动播种
-    public BaseAutomationConfig AutoSeed { get; set; } = new();
+    public BaseAutomationConfig AutoSeed { get; set; } = new(0);
 
     // 自动施肥
-    public BaseAutomationConfig AutoFertilize { get; set; } = new();
+    public BaseAutomationConfig AutoFertilize { get; set; } = new(0);
 
     // 自动收获作物
-    public BaseAutomationConfig AutoHarvestCrop { get; set; } = new();
+    public BaseAutomationConfig AutoHarvestCrop { get; set; } = new(0);
     public bool AutoHarvestFlower { get; set; }
 
     // 自动摇晃果树
     public BaseAutomationConfig AutoShakeFruitTree { get; set; } = new(1);
 
     // 自动清理枯萎作物
-    public BaseAutomationConfig AutoClearDeadCrop { get; set; } = new();
+    public BaseAutomationConfig AutoClearDeadCrop { get; set; } = new(0);
     public bool FindToolForClearDeadCrop { get; set; } = true;
 
     #endregion
@@ -128,7 +128,7 @@ internal class ModConfig
     public BaseAutomationConfig AutoForage { get; set; } = new(1);
 
     // 自动收获姜
-    public BaseAutomationConfig AutoHarvestGinger { get; set; } = new();
+    public BaseAutomationConfig AutoHarvestGinger { get; set; } = new(0);
     public float StopHarvestGingerStamina { get; set; } = 3;
     public bool FindToolForHarvestGinger { get; set; } = true;
 
@@ -225,7 +225,7 @@ internal class ModConfig
     public bool ClearLargeWeeds { get; set; }
 
     // 自动挖掘斑点
-    public BaseAutomationConfig AutoDigSpots { get; set; } = new();
+    public BaseAutomationConfig AutoDigSpots { get; set; } = new(0);
     public float StopDigSpotsStamina { get; set; } = 3;
     public bool FindHoeFromInventory { get; set; } = true;
 
@@ -243,7 +243,7 @@ internal class ModConfig
     public bool StopGarbageCanNearVillager { get; set; } = true;
 
     // 自动放置地板
-    public BaseAutomationConfig AutoPlaceFloor { get; set; } = new();
+    public BaseAutomationConfig AutoPlaceFloor { get; set; } = new(0);
 
     #endregion
 }

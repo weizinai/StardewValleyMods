@@ -5,7 +5,7 @@ internal class BaseAutomationConfig
     public bool IsEnable { get; set; } 
     public int Range { get; set; }
 
-    public BaseAutomationConfig(int range = 0)
+    public BaseAutomationConfig(int range)
     {
         Range = range;
     }

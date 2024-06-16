@@ -1,14 +1,14 @@
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace SomeMultiplayerFeature.Framework;
+namespace SomeMultiplayerFeature.Framework.Message;
 
-public class ModMessage
+public class AccessShopInfoMessage
 {
     public readonly string PlayerName;
     public readonly string ShopId;
     public readonly bool IsExit;
 
-    public ModMessage(string playerName, string shopId, bool isExit = false)
+    public AccessShopInfoMessage(string playerName, string shopId, bool isExit = false)
     {
         PlayerName = playerName;
         ShopId = shopId;

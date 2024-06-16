@@ -1,4 +1,5 @@
 using SomeMultiplayerFeature.Framework;
+using SomeMultiplayerFeature.Framework.Message;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -25,12 +26,12 @@ internal class AccessShopInfoHandler
     {
         if (Game1.activeClickableMenu is ShopMenu shopMenu1 && lastShopMenu is not ShopMenu)
         {
-            var message = new ModMessage(Game1.player.Name, shopMenu1.ShopId);
+            var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu1.ShopId);
             helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
         else if (lastShopMenu is ShopMenu shopMenu2 && Game1.activeClickableMenu is not ShopMenu)
         {
-            var message = new ModMessage(Game1.player.Name, shopMenu2.ShopId, true);
+            var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu2.ShopId, true);
             helper.Multiplayer.SendMessage(message, "ShopMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
 
@@ -41,7 +42,7 @@ internal class AccessShopInfoHandler
     {
         if (config.AccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ShopMessage" })
         {
-            var message = e.ReadAs<ModMessage>();
+            var message = e.ReadAs<AccessShopInfoMessage>();
             var hudMessage = new HUDMessage(message.ToString())
             {
                 noIcon = true,

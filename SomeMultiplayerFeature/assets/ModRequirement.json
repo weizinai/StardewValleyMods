@@ -4,7 +4,7 @@
     "Console Commands": "SMAPI.ConsoleCommands",
     "Save Backup": "SMAPI.SaveBackup",
     */
-    
+
     /*
     // 可选模组
     "Adventurers Guild Multiplayer Shared Kills": "Veniamin-Arefev.AdventurersGuildMultiplayerSharedKills",
@@ -17,7 +17,7 @@
     "Stardew Name Tags": "tylergibbs2.StardewNametags",
     "UI Info Suite 2": "Annosz.UiInfoSuite2",
     */
-    
+
     "AllowedModList": [
         "SMAPI.ConsoleCommands",
         "SMAPI.SaveBackup"

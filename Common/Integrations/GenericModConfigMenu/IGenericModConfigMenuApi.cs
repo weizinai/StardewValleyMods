@@ -26,7 +26,7 @@ public interface IGenericModConfigMenuApi
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="text">The paragraph text to display.</param>
     public void AddParagraph(IManifest mod, Func<string> text);
-    
+
     /// <summary>Add an image at the current position in the form.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="texture">The image texture to display.</param>
@@ -86,7 +86,7 @@ public interface IGenericModConfigMenuApi
     /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     public void AddTextOption(IManifest mod, Func<string> getValue, Action<string> setValue, Func<string> name, Func<string>? tooltip = null,
         string[]? allowedValues = null, Func<string, string>? formatAllowedValue = null, string? fieldId = null);
-    
+
     /// <summary>Add a key binding at the current position in the form.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="getValue">Get the current value from the mod config.</param>
@@ -137,10 +137,10 @@ public interface IGenericModConfigMenuApi
     /// <param name="height">The pixel height to allocate for the option in the form, or <c>null</c> for a standard input-sized option. This is called and cached each time the form is opened.</param>
     /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged"/>, or <c>null</c> to auto-generate a randomized ID.</param>
     /// <remarks>The custom logic represented by the callback parameters is responsible for managing its own state if needed. For example, you can store state in a static field or use closures to use a state variable.</remarks>
-    public void AddComplexOption(IManifest mod, Func<string> name, Action<SpriteBatch, Vector2> draw, 
-        Func<string>? tooltip = null, Action? beforeMenuOpened = null, Action? beforeSave = null, Action? afterSave = null, 
+    public void AddComplexOption(IManifest mod, Func<string> name, Action<SpriteBatch, Vector2> draw,
+        Func<string>? tooltip = null, Action? beforeMenuOpened = null, Action? beforeSave = null, Action? afterSave = null,
         Action? beforeReset = null, Action? afterReset = null, Action? beforeMenuClosed = null, Func<int>? height = null, string? fieldId = null);
-    
+
     /// <summary>Set whether the options registered after this point can only be edited from the title screen.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="titleScreenOnly">Whether the options can only be edited from the title screen.</param>
@@ -156,7 +156,7 @@ public interface IGenericModConfigMenuApi
     /// <summary>Open the config UI for a specific mod.</summary>
     /// <param name="mod">The mod's manifest.</param>
     public void OpenModMenu(IManifest mod);
-    
+
     /// <summary>Get the currently-displayed mod config menu, if any.</summary>
     /// <param name="mod">The manifest of the mod whose config menu is being shown, or <c>null</c> if not applicable.</param>
     /// <param name="page">The page ID being shown for the current config menu, or <c>null</c> if not applicable. This may be <c>null</c> even if a mod config menu is shown (e.g. because the mod doesn't have pages).</param>

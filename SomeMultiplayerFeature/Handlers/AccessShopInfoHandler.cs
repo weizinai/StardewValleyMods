@@ -37,7 +37,7 @@ internal class AccessShopInfoHandler
 
         lastShopMenu = Game1.activeClickableMenu;
     }
-    
+
     public void OnModMessageReceived(ModMessageReceivedEventArgs e)
     {
         if (config.AccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })

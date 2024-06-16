@@ -23,8 +23,13 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
         helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
+        helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
+    }
+    
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    {
+        accessShopInfoHandler.Update();
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -35,11 +40,6 @@ public class ModEntry : Mod
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         accessShopInfoHandler.OnModMessageReceived(e);
-    }
-
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
-    {
-        accessShopInfoHandler.Update();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

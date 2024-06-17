@@ -20,7 +20,7 @@ internal class PlayerCountHandler
     public void OnSecondUpdateTicked()
     {
         if (!config.ShowPlayerCount || !Context.IsWorldReady) return;
-        playerCountButton.name = Game1.server.connectionsCount + 1 + "个玩家在线";
+        playerCountButton.name = Game1.getOnlineFarmers().Count + "个玩家在线";
     }
 
     public void OnRendered(SpriteBatch spriteBatch)

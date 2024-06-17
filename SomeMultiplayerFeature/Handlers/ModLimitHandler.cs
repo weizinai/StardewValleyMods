@@ -25,26 +25,32 @@ internal class ModLimitHandler
     {
         if (!Context.IsMainPlayer || !e.Peer.HasSmapi || modRequirement is null || !config.EnableModLimit) return;
 
-        var unAllowedMods = GetUnAllowedMods(e.Peer);
+        var unAllowedMods = GetUnAllowedMods(e.Peer).ToList();
         if (unAllowedMods.Any())
         {
+            var detectedPlayer = Game1.getFarmer(e.Peer.PlayerID);
+            Log.Info($"{detectedPlayer.Name}已被踢出，因为其不满足模组要求：");
+            foreach (var id in unAllowedMods) Log.Info(modRequirement!["RequiredModList"].Contains(id) ? $"{id}未安装" : $"{id}被禁止");
             Game1.server.kick(e.Peer.PlayerID);
         }
     }
-    
+
+    /// <summary>
+    /// 获得不满足要求的模组
+    /// </summary>
     private IEnumerable<string> GetUnAllowedMods(IMultiplayerPeer peer)
     {
-        var targetMods = peer.Mods.Select(mod => mod.ID).ToList();
+        var detectedMods = peer.Mods.Select(mod => mod.ID).ToList();
         
         foreach (var id in modRequirement!["RequiredModList"])
         {
-            if (!targetMods.Contains(id))
+            if (!detectedMods.Contains(id))
             {
                 yield return id;
             }
         }
 
-        foreach (var id in targetMods)
+        foreach (var id in detectedMods)
         {
             if (!modRequirement["RequiredModList"].Contains(id) && !modRequirement["AllowedModList"].Contains(id))
             {

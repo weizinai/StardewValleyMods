@@ -35,6 +35,11 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_KickDelayedPlayer_Name,
                 I18n.Config_KickDelayedPlayer_Tooltip
             )
+            .AddBoolOption(
+                config => config.ShowPlayerCount,
+                (config, value) => config.ShowPlayerCount = value,
+                I18n.Config_ShowPlayerCount_Name
+            )
             ;
     }
 }

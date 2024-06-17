@@ -12,6 +12,7 @@ public class ModEntry : Mod
     private AccessShopInfoHandler accessShopInfoHandler = null!;
     private DelayedPlayerHandler delayedPlayerHandler = null!;
     private ModLimitHandler modLimitHandler = null!;
+    private PlayerCountHandler playerCountHandler = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -22,10 +23,12 @@ public class ModEntry : Mod
         accessShopInfoHandler = new AccessShopInfoHandler(helper, config);
         delayedPlayerHandler = new DelayedPlayerHandler(config);
         modLimitHandler = new ModLimitHandler(helper, config);
+        playerCountHandler = new PlayerCountHandler(config);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.GameLoop.OneSecondUpdateTicked += OnSecondUpdateTicked;
+        helper.Events.Display.Rendered += OnRendered;
         helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
     }
@@ -38,6 +41,12 @@ public class ModEntry : Mod
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         delayedPlayerHandler.OnSecondUpdateTicked();
+        playerCountHandler.OnSecondUpdateTicked();
+    }
+
+    private void OnRendered(object? sender, RenderedEventArgs e)
+    {
+        playerCountHandler.OnRendered(e.SpriteBatch);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

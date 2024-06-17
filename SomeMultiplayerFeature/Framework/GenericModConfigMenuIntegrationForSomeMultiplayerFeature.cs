@@ -40,6 +40,11 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.ShowPlayerCount = value,
                 I18n.Config_ShowPlayerCount_Name
             )
+            .AddKeybindList(
+                config => config.KickUnreadyPlayerKey,
+                (config, value) => config.KickUnreadyPlayerKey = value,
+                I18n.Config_KickUnreadyPlayerKey_Name
+                )
             ;
     }
 }

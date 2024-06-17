@@ -11,5 +11,8 @@
     "Config.EnableKickDelayedPlayer.Tooltip": "若某个玩家连续5s内的延迟均超出100ms，则踢出该玩家。",
     
     // 显示玩家数量
-    "Config.ShowPlayerCount.Name": "显示玩家数量"
+    "Config.ShowPlayerCount.Name": "显示玩家数量",
+    
+    // 踢出未准备玩家
+    "Config.KickUnreadyPlayerKey.Name": "踢出未准备的玩家"
 }

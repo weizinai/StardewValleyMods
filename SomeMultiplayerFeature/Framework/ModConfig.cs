@@ -1,3 +1,6 @@
+using StardewModdingAPI;
+using StardewModdingAPI.Utilities;
+
 namespace SomeMultiplayerFeature.Framework;
 
 public class ModConfig
@@ -6,4 +9,5 @@ public class ModConfig
     public bool EnableModLimit { get; set; } = true;
     public bool EnableKickDelayedPlayer { get; set; } = true;
     public bool ShowPlayerCount { get; set; } = true;
+    public KeybindList KickUnreadyPlayerKey { get; set; } = new(SButton.F2);
 }

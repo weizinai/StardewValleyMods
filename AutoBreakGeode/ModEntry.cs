@@ -1,6 +1,6 @@
 ﻿using AutoBreakGeode.Framework;
 using AutoBreakGeode.Patches;
-using Common.Patch;
+using Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;

@@ -6,11 +6,11 @@
         <SharedGUID>d083d44e-25fa-48d4-b64f-b033461eaf28</SharedGUID>
     </PropertyGroup>
     <PropertyGroup Label="Configuration">
-        <Import_RootNamespace>Common.Patch</Import_RootNamespace>
+        <Import_RootNamespace>Common.Patcher</Import_RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="$(MSBuildThisFileDirectory)BasePatcher.cs"/>
-        <Compile Include="$(MSBuildThisFileDirectory)HarmonyPatcher.cs"/>
-        <Compile Include="$(MSBuildThisFileDirectory)IPatcher.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)\BasePatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\HarmonyPatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\IPatcher.cs" />
     </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Common;
 using Common.Integrations;
-using Common.Patch;
+using Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;

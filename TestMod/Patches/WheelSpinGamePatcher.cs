@@ -1,4 +1,4 @@
-using Common.Patch;
+using Common.Patcher;
 using HarmonyLib;
 using StardewValley;
 using StardewValley.Menus;

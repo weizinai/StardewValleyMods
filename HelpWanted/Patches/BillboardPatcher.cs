@@ -1,4 +1,4 @@
-﻿using Common.Patch;
+﻿using Common.Patcher;
 using HarmonyLib;
 using HelpWanted.Framework;
 using HelpWanted.Framework.Menu;

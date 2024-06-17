@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace Common.Patch;
+namespace Common.Patcher;
 
 internal interface IPatcher
 {

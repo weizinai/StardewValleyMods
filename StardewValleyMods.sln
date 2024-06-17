@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyMod", "LazyMod\LazyMod.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{0A7D712B-0123-4C7E-BA15-9738A05247E4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common.Patch", "Common.Patch\Common.Patch.shproj", "{D083D44E-25FA-48D4-B64F-B033461EAF28}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common", "Common\Common.shproj", "{56D39247-83B2-4ABF-8873-1E51B84F6472}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeMultiplayerFeature", "SomeMultiplayerFeature\SomeMultiplayerFeature.csproj", "{A0C02E73-41B8-4DEA-970E-BE7E4B2A8467}"
@@ -19,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendshipDecayModify", "FriendshipDecayModify\FriendshipDecayModify.csproj", "{8AD54592-7C5B-4325-98AF-20A352C12D74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastControlInput", "FastControlInput\FastControlInput.csproj", "{EB05AFAA-312C-483B-9B86-BFCBA35DBF91}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common.Patcher", "Common.Patcher\Common.Patcher.shproj", "{D083D44E-25FA-48D4-B64F-B033461EAF28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

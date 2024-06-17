@@ -1,6 +1,6 @@
 using System.Reflection.Emit;
 using AutoBreakGeode.Framework;
-using Common.Patch;
+using Common.Patcher;
 using Common.UI;
 using HarmonyLib;
 using Microsoft.Xna.Framework;

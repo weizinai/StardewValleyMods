@@ -1,5 +1,5 @@
 ﻿using Common;
-using Common.Patch;
+using Common.Patcher;
 using HelpWanted.Framework;
 using HelpWanted.Patches;
 using StardewModdingAPI;

@@ -1,4 +1,4 @@
-﻿using Common.Patch;
+﻿using Common.Patcher;
 using FriendshipDecayModify.Framework;
 using FriendshipDecayModify.Patches;
 using StardewModdingAPI;

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
 using Common;
-using Common.Patch;
+using Common.Patcher;
 using HarmonyLib;
 using HelpWanted.Framework;
 using Netcode;

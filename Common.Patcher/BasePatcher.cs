@@ -1,7 +1,7 @@
 using System.Reflection;
 using HarmonyLib;
 
-namespace Common.Patch;
+namespace Common.Patcher;
 
 /// <summary>Provides base implementation logic for <see cref="IPatcher"/> instances.</summary>
 public abstract class BasePatcher : IPatcher

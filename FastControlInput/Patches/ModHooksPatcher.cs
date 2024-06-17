@@ -1,4 +1,4 @@
-using Common.Patch;
+using Common.Patcher;
 using FastControlInput.Framework;
 using HarmonyLib;
 using StardewValley;

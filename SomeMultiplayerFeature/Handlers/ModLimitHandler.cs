@@ -29,8 +29,10 @@ internal class ModLimitHandler
         if (unAllowedMods.Any())
         {
             var detectedPlayer = Game1.getFarmer(e.Peer.PlayerID);
+            Log.Info("--------------------");
             Log.Info($"{detectedPlayer.Name}已被踢出，因为其不满足模组要求：");
             foreach (var id in unAllowedMods) Log.Info(modRequirement!["RequiredModList"].Contains(id) ? $"{id}未安装" : $"{id}被禁止");
+            Log.Info("--------------------");
             Game1.server.kick(e.Peer.PlayerID);
         }
     }

@@ -1,4 +1,3 @@
-using Common;
 using SomeMultiplayerFeature.Framework;
 using StardewModdingAPI;
 using StardewValley;
@@ -22,12 +21,9 @@ internal class UnreadyPlayerHandler
         {
             foreach (var farmer in Game1.getOnlineFarmers())
             {
-                if (farmer?.Name is "")
-                {
-                    Log.Info("踢出一个空用户");
+                if (farmer.isUnclaimedFarmhand)
                     Game1.server.kick(farmer.UniqueMultiplayerID);
-                }
-            }   
+            }
         }
     }
 }

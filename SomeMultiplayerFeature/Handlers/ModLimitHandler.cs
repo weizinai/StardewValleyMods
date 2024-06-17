@@ -41,7 +41,7 @@ internal class ModLimitHandler
     private IEnumerable<string> GetUnAllowedMods(IMultiplayerPeer peer)
     {
         var detectedMods = peer.Mods.Select(mod => mod.ID).ToList();
-        
+
         foreach (var id in modRequirement!["RequiredModList"])
         {
             if (!detectedMods.Contains(id))

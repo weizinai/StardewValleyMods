@@ -4,5 +4,5 @@
     "Config.EnableModLimit.Name": "Enable Mod Limit",
     "Config.KickDelayedPlayer.Name": "Kick Delayed Player",
     "Config.KickDelayedPlayer.Tooltip": "If a player has a latency of more than 100ms for 5 consecutive seconds, the player is kicked.",
-    "Config.ShowPlayerCount.Name": "Show Player Count",
+    "Config.ShowPlayerCount.Name": "Show Player Count"
 }

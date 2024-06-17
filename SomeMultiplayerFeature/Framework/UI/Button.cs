@@ -8,7 +8,7 @@ namespace SomeMultiplayerFeature.Framework.UI;
 internal class Button : ClickableComponent
 {
     private readonly Point position;
-    
+
     public Button(Point position, string name) : base(Rectangle.Empty, name)
     {
         this.position = position;

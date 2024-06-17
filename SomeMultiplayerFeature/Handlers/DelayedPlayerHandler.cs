@@ -8,7 +8,7 @@ namespace SomeMultiplayerFeature.Handlers;
 internal class DelayedPlayerHandler
 {
     private readonly ModConfig config;
-    
+
     private readonly Dictionary<long, int> delayedPlayers = new();
 
     public DelayedPlayerHandler(ModConfig config)
@@ -24,21 +24,21 @@ internal class DelayedPlayerHandler
             return;
         }
 
-        foreach (var (id, _) in Game1.otherFarmers)
+        foreach (var farmer in Game1.getOnlineFarmers())
         {
-            if (Game1.server.getPingToClient(id) >= 100)
-                delayedPlayers.TryAdd(id, 1);
+            if (farmer.IsMainPlayer) continue;
+
+            if (Game1.server.getPingToClient(farmer.UniqueMultiplayerID) >= 100)
+                delayedPlayers.TryAdd(farmer.UniqueMultiplayerID, 1);
             else
-                delayedPlayers.Remove(id);  
+                delayedPlayers.Remove(farmer.UniqueMultiplayerID);
         }
 
         foreach (var (id, count) in delayedPlayers)
-        {
             if (count >= 5)
             {
                 Log.Info($"{Game1.otherFarmers[id].Name}的延迟过高，已自动将其踢出。");
                 Game1.server.kick(id);
             }
-        }
     }
 }

@@ -18,7 +18,7 @@ internal class DelayedPlayerHandler
 
     public void OnSecondUpdateTicked()
     {
-        if (!Context.IsMainPlayer || !config.KickDelayedPlayer)
+        if (!Context.IsMainPlayer || !config.EnableKickDelayedPlayer)
         {
             delayedPlayers.Clear();
             return;

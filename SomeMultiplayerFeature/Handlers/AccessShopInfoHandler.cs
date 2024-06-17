@@ -40,7 +40,7 @@ internal class AccessShopInfoHandler
 
     public void OnModMessageReceived(ModMessageReceivedEventArgs e)
     {
-        if (config.AccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
+        if (config.ShowAccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
         {
             var message = e.ReadAs<AccessShopInfoMessage>();
             var hudMessage = new HUDMessage(message.ToString())

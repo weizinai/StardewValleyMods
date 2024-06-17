@@ -19,10 +19,10 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
         configMenu
             .Register()
             .AddBoolOption(
-                config => config.AccessShopInfo,
-                (config, value) => config.AccessShopInfo = value,
-                I18n.Config_AccessShopInfo_Name,
-                I18n.Config_AccessShopInfo_Tooltip
+                config => config.ShowAccessShopInfo,
+                (config, value) => config.ShowAccessShopInfo = value,
+                I18n.Config_ShowAccessShopInfo_Name,
+                I18n.Config_ShowAccessShopInfo_Tooltip
             )
             .AddBoolOption(
                 config => config.EnableModLimit,
@@ -30,10 +30,10 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_EnableModLimit_Name
             )
             .AddBoolOption(
-                config => config.KickDelayedPlayer,
-                (config, value) => config.KickDelayedPlayer = value,
-                I18n.Config_KickDelayedPlayer_Name,
-                I18n.Config_KickDelayedPlayer_Tooltip
+                config => config.EnableKickDelayedPlayer,
+                (config, value) => config.EnableKickDelayedPlayer = value,
+                I18n.Config_EnableKickDelayedPlayer_Name,
+                I18n.Config_EnableKickDelayedPlayer_Tooltip
             )
             .AddBoolOption(
                 config => config.ShowPlayerCount,

@@ -1,8 +1,15 @@
 {
+    // 访问商店信息
     "Config.ShowAccessShopInfo.Name": "显示访问商店信息",
     "Config.ShowAccessShopInfo.Tooltip": "显示某个玩家目前是否正在访问商店。",
+    
+    // 模组限制
     "Config.EnableModLimit.Name": "启用模组限制",
+    
+    // 踢出延迟玩家
     "Config.EnableKickDelayedPlayer.Name": "启用踢出延迟玩家",
     "Config.EnableKickDelayedPlayer.Tooltip": "若某个玩家连续5s内的延迟均超出100ms，则踢出该玩家。",
+    
+    // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量"
 }

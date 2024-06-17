@@ -29,7 +29,7 @@ public class ModEntry : Mod
     
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        accessShopInfoHandler.Update();
+        accessShopInfoHandler.OnUpdateTicked();
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

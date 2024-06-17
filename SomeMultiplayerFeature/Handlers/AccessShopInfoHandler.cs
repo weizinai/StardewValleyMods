@@ -22,7 +22,7 @@ internal class AccessShopInfoHandler
         this.config = config;
     }
 
-    public void Update()
+    public void OnUpdateTicked()
     {
         if (Game1.activeClickableMenu is ShopMenu shopMenu1 && lastShopMenu is not ShopMenu)
         {

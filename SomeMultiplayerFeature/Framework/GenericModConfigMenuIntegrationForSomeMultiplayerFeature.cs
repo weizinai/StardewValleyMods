@@ -28,6 +28,13 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 config => config.EnableModLimit,
                 (config, value) => config.EnableModLimit = value,
                 I18n.Config_EnableModLimit_Name
-            );
+            )
+            .AddBoolOption(
+                config => config.KickDelayedPlayer,
+                (config, value) => config.KickDelayedPlayer = value,
+                I18n.Config_KickDelayedPlayer_Name,
+                I18n.Config_KickDelayedPlayer_Tooltip
+            )
+            ;
     }
 }

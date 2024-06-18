@@ -23,7 +23,7 @@ internal class UnreadyPlayerHandler
             Log.Info("-- 开始踢出未准备好的玩家 --");
             foreach (var farmer in Game1.getOnlineFarmers())
             {
-                if (farmer.isUnclaimedFarmhand)
+                if (!farmer.hasMenuOpen.Value || farmer.isUnclaimedFarmhand)
                 {
                     Log.Info($"{farmer.Name}未准备好，已被踢出");
                     Game1.server.kick(farmer.UniqueMultiplayerID);

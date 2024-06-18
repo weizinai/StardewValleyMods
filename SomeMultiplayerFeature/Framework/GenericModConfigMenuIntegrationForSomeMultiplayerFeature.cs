@@ -49,6 +49,17 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.ShowPlayerCount = value,
                 I18n.Config_ShowPlayerCount_Name
             )
+            // 显示提示
+            .AddBoolOption(
+                config => config.ShowTip,
+                (config, value) => config.ShowTip = value,
+                I18n.Config_ShowTip_Name
+            )
+            .AddTextOption(
+                config => config.TipText,
+                (config, value) => config.TipText = value,
+                I18n.Config_TipText_Name
+            )
             // 踢出未准备玩家
             .AddBoolOption(
                 config => config.EnableKickUnreadyPlayer,

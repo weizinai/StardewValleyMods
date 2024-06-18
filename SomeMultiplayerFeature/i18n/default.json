@@ -19,6 +19,10 @@
     "Config.ShowPlayerCount.Name": "Show Player Count",
     "UI.PlayerCount": "{{playerCount}} Players Online",
     
+    // Show Tip
+    "Config.ShowTip.Name": "Show Tip",
+    "Config.TipText.Name": "Tip Text",
+    
     // Kick Unready Player
     "Config.EnableKickUnreadyPlayer.Name": "Enable Kick Unready Player",
     "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",

@@ -18,6 +18,10 @@
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",
     "UI.PlayerCount": "{{playerCount}}个玩家在线",
+
+    // 显示提示
+    "Config.ShowTip.Name": "显示提示",
+    "Config.TipText.Name": "提示内容",
     
     // 踢出未准备玩家
     "Config.EnableKickUnreadyPlayer.Name": "启用踢出未准备玩家",

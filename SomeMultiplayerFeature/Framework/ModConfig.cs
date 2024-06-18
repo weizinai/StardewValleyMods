@@ -9,6 +9,7 @@ public class ModConfig
     public bool EnableModLimit { get; set; } = true;
     public bool EnableKickDelayedPlayer { get; set; } = true;
     public bool ShowPlayerCount { get; set; } = true;
+    public bool EnableKickUnreadyPlayer { get; set; } = true;
     public KeybindList KickUnreadyPlayerKey { get; set; } = new(SButton.F2);
     public bool BanMoneyCheat { get; set; } = true;
 }

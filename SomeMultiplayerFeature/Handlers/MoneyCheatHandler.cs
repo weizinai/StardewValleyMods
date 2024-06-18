@@ -1,39 +1,43 @@
 using Common;
 using SomeMultiplayerFeature.Framework;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 
 namespace SomeMultiplayerFeature.Handlers;
 
-internal class MoneyCheatHandler
+internal class MoneyCheatHandler : BaseHandler
 {
-    private readonly ModConfig config;
-
     private int lastMoney;
 
-    public MoneyCheatHandler(ModConfig config)
+    public MoneyCheatHandler(IModHelper helper, ModConfig config) 
+        : base(helper, config) {}
+
+    public override void Init()
     {
-        this.config = config;
+        Helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
+        Helper.Events.GameLoop.DayStarted += OnDayStarted;
+        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
     }
 
-    public void OnSaveLoaded()
+    public void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        if (!config.BanMoneyCheat) return;
+        if (!Config.BanMoneyCheat) return;
 
         lastMoney = Game1.player.Money * 10;
     }
 
-    public void OnDayStarted()
+    public void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (!config.BanMoneyCheat) return;
+        if (!Config.BanMoneyCheat) return;
 
         lastMoney = Game1.player.Money * 10;
     }
 
-    public void OnUpdateTicked()
+    public void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (!config.BanMoneyCheat || !Context.IsWorldReady) return;
+        if (!Config.BanMoneyCheat || !Context.IsWorldReady) return;
         
         if (Game1.activeClickableMenu is ShippingMenu) return;
 

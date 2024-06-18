@@ -1,24 +1,26 @@
 using Common;
 using SomeMultiplayerFeature.Framework;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 
 namespace SomeMultiplayerFeature.Handlers;
 
-internal class DelayedPlayerHandler
+internal class DelayedPlayerHandler : BaseHandler
 {
-    private readonly ModConfig config;
-
     private readonly Dictionary<long, int> delayedPlayers = new();
 
-    public DelayedPlayerHandler(ModConfig config)
+    public DelayedPlayerHandler(IModHelper helper, ModConfig config) 
+        : base(helper, config) {}
+
+    public override void Init()
     {
-        this.config = config;
+        Helper.Events.GameLoop.OneSecondUpdateTicked += OnSecondUpdateTicked;
     }
 
-    public void OnSecondUpdateTicked()
+    public void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!Context.IsMainPlayer || !config.EnableKickDelayedPlayer)
+        if (!Context.IsMainPlayer || !Config.EnableKickDelayedPlayer)
         {
             delayedPlayers.Clear();
             return;

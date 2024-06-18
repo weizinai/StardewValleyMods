@@ -6,33 +6,40 @@ using StardewValley;
 
 namespace SomeMultiplayerFeature.Handlers;
 
-internal class ModLimitHandler
+internal class ModLimitHandler : BaseHandler
 {
     private const string ModRequirementPatch = "assets/ModRequirement.json";
-
-    private readonly ModConfig config;
+    
     private readonly Dictionary<string, string[]>? modRequirement;
 
-    public ModLimitHandler(IModHelper helper, ModConfig config)
+    public ModLimitHandler(IModHelper helper, ModConfig config) 
+        : base(helper, config)
     {
-        // 初始化
-        this.config = config;
         modRequirement = helper.Data.ReadJsonFile<Dictionary<string, string[]>>(ModRequirementPatch);
-        if (modRequirement is null) Log.Error($"无法找到Json文件: {ModRequirementPatch}");
+        if (modRequirement is null) 
+            Log.Error($"无法找到Json文件: {ModRequirementPatch}，如果你不是主机玩家，则可以忽略该条消息。");
     }
 
-    public void OnPeerConnected(PeerConnectedEventArgs e)
+    public override void Init()
     {
-        if (!Context.IsMainPlayer || !e.Peer.HasSmapi || modRequirement is null || !config.EnableModLimit) return;
+        Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
+    }
 
+    private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
+    {
+        if (!Context.IsMainPlayer || modRequirement is null || !Config.EnableModLimit) return;
+
+        var detectedPlayer = Game1.getFarmer(e.Peer.PlayerID);
+        
+        // 如果玩家没用安装SMAPI，则踢出该玩家并发送消息
+        if (!e.Peer.HasSmapi) Log.Alert($"{detectedPlayer.Name}已被踢出，因为其未安装SMAPI。");
+
+        // 如果玩家的模组不满足要求，则踢出该玩家并发送消息
         var unAllowedMods = GetUnAllowedMods(e.Peer).ToList();
         if (unAllowedMods.Any())
         {
-            var detectedPlayer = Game1.getFarmer(e.Peer.PlayerID);
-            Log.Info("--------------------");
-            Log.Info($"{detectedPlayer.Name}已被踢出，因为其不满足模组要求：");
+            Log.Alert($"{detectedPlayer.Name}已被踢出，因为其不满足模组要求：");
             foreach (var id in unAllowedMods) Log.Info(modRequirement!["RequiredModList"].Contains(id) ? $"{id}未安装" : $"{id}被禁止");
-            Log.Info("--------------------");
             Game1.server.kick(e.Peer.PlayerID);
         }
     }

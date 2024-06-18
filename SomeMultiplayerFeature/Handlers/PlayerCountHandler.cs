@@ -3,29 +3,33 @@ using Microsoft.Xna.Framework.Graphics;
 using SomeMultiplayerFeature.Framework;
 using SomeMultiplayerFeature.Framework.UI;
 using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 
 namespace SomeMultiplayerFeature.Handlers;
 
-internal class PlayerCountHandler
+internal class PlayerCountHandler : BaseHandler
 {
-    private readonly ModConfig config;
     private readonly Button playerCountButton = new(new Point(64, 64), "");
 
-    public PlayerCountHandler(ModConfig config)
+    public PlayerCountHandler(IModHelper helper, ModConfig config) 
+        : base(helper, config) {}
+
+    public override void Init()
     {
-        this.config = config;
+        Helper.Events.GameLoop.OneSecondUpdateTicked += OnSecondUpdateTicked;
+        Helper.Events.Display.Rendered += OnRendered;
     }
 
-    public void OnSecondUpdateTicked()
+    public void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!config.ShowPlayerCount || !Context.IsWorldReady) return;
+        if (!Config.ShowPlayerCount || !Context.IsWorldReady) return;
         playerCountButton.name = Game1.getOnlineFarmers().Count + "个玩家在线";
     }
 
-    public void OnRendered(SpriteBatch spriteBatch)
+    public void OnRendered(object? sender, RenderedEventArgs e)
     {
-        if (!config.ShowPlayerCount || !Context.IsWorldReady) return;
-        playerCountButton.Draw(spriteBatch);
+        if (!Config.ShowPlayerCount || !Context.IsWorldReady) return;
+        playerCountButton.Draw(e.SpriteBatch);
     }
 }

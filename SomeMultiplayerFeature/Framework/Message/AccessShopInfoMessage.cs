@@ -17,6 +17,6 @@ public class AccessShopInfoMessage
 
     public override string ToString()
     {
-        return IsExit ? $"{PlayerName}离开了{ShopId}" : $"{PlayerName}访问了{ShopId}";
+        return IsExit ? I18n.UI_ExitShop(PlayerName, ShopId) : I18n.UI_AccessShop(PlayerName, ShopId);
     }
 }

@@ -2,6 +2,8 @@
     // Access Shop Info
     "Config.ShowAccessShopInfo.Name": "Enable Access Shop Info",
     "Config.ShowAccessShopInfo.Tooltip": "Shows whether a player is currently accessing the shop.",
+    "UI.AccessShop": "{{playerName}} access {{shopName}}",
+    "UI.ExitShop": "{{playerName}} exit {{shopName}}",
     
     // Kick Delayed Player
     "Config.EnableKickDelayedPlayer.Name": "Enable Kick Delayed Player",
@@ -15,10 +17,9 @@
     
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",
+    "UI.PlayerCount": "{{playerCount}} Players Online",
     
     // Kick Unready Player
     "Config.EnableKickUnreadyPlayer.Name": "Enable Kick Unready Player",
     "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",
-    
-    "UI.PlayerCount": "{{playerCount}} Players Online"
 }

@@ -2,6 +2,8 @@
     // 访问商店信息
     "Config.ShowAccessShopInfo.Name": "显示访问商店信息",
     "Config.ShowAccessShopInfo.Tooltip": "显示某个玩家目前是否正在访问商店。",
+    "UI.AccessShop": "{{playerName}}访问了{{shopName}}",
+    "UI.ExitShop": "{{playerName}}离开了{{shopName}}",
     
     // 踢出延迟玩家
     "Config.EnableKickDelayedPlayer.Name": "启用踢出延迟玩家",
@@ -15,10 +17,9 @@
     
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",
+    "UI.PlayerCount": "{{playerCount}}个玩家在线",
     
     // 踢出未准备玩家
     "Config.EnableKickUnreadyPlayer.Name": "启用踢出未准备玩家",
     "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键",
-
-    "UI.PlayerCount": "{{playerCount}}个玩家在线"
 }

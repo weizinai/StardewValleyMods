@@ -41,7 +41,9 @@ internal class AccessShopInfoHandler : BaseHandler
     // 当收到来自其他玩家的商店访问信息时，显示HUD信息
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
-        if (Config.ShowAccessShopInfo && e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
+        if (!Config.ShowAccessShopInfo) return;
+        
+        if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
         {
             var message = e.ReadAs<AccessShopInfoMessage>();
             var hudMessage = new HUDMessage(message.ToString())

@@ -13,7 +13,7 @@ internal class TipHandler : BaseHandler
     public TipHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
-        tipButton = new Button(new Point(64, 80), config.TipText);
+        tipButton = new Button(new Point(64, 144), config.TipText);
     }
 
     public override void Init()

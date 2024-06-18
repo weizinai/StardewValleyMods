@@ -1,8 +1,8 @@
 {
     "AllowedModList": [],
     "RequiredModList": [
-        "SMAPI.ConsoleCommands",
-        "SMAPI.SaveBackup",
+        // "SMAPI.ConsoleCommands",
+        // "SMAPI.SaveBackup",
         "Veniamin-Arefev.AdventurersGuildMultiplayerSharedKills",
         "Pathoschild.ContentPatcher",
         "gaussfire.ConvenientInventory",

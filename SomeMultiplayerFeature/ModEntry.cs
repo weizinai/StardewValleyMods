@@ -37,6 +37,7 @@ public class ModEntry : Mod
         var handlers = new IHandler[]
         {
             new AccessShopInfoHandler(Helper, config),
+            new BanPlayerHandler(Helper, config),
             new DelayedPlayerHandler(Helper, config),
             new ModLimitHandler(Helper, config),
             // new MoneyCheatHandler(Helper, config),

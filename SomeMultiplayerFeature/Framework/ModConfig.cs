@@ -10,4 +10,5 @@ public class ModConfig
     public bool EnableKickDelayedPlayer { get; set; } = true;
     public bool ShowPlayerCount { get; set; } = true;
     public KeybindList KickUnreadyPlayerKey { get; set; } = new(SButton.F2);
+    public bool BanMoneyCheat { get; set; } = true;
 }

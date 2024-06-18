@@ -14,6 +14,7 @@ public class ModEntry : Mod
     private ModLimitHandler modLimitHandler = null!;
     private PlayerCountHandler playerCountHandler = null!;
     private UnreadyPlayerHandler unreadyPlayerHandler = null!;
+    private MoneyCheatHandler moneyCheatHandler = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -21,13 +22,11 @@ public class ModEntry : Mod
         I18n.Init(helper.Translation);
         Log.Init(Monitor);
         config = helper.ReadConfig<ModConfig>();
-        accessShopInfoHandler = new AccessShopInfoHandler(helper, config);
-        delayedPlayerHandler = new DelayedPlayerHandler(config);
-        modLimitHandler = new ModLimitHandler(helper, config);
-        playerCountHandler = new PlayerCountHandler(config);
-        unreadyPlayerHandler = new UnreadyPlayerHandler(config);
+        InitHandlers();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
+        helper.Events.GameLoop.DayStarted += OnDayStarted;
         helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
         helper.Events.GameLoop.OneSecondUpdateTicked += OnSecondUpdateTicked;
         helper.Events.Display.Rendered += OnRendered;
@@ -36,9 +35,20 @@ public class ModEntry : Mod
         helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
     }
 
+    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
+    {
+        moneyCheatHandler.OnSaveLoaded();
+    }
+
+    private void OnDayStarted(object? sender, DayStartedEventArgs e)
+    {
+        moneyCheatHandler.OnDayStarted();
+    }
+
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         accessShopInfoHandler.OnUpdateTicked();
+        moneyCheatHandler.OnUpdateTicked();
     }
 
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
@@ -76,5 +86,15 @@ public class ModEntry : Mod
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
         ).Register();
+    }
+
+    private void InitHandlers()
+    {
+        accessShopInfoHandler = new AccessShopInfoHandler(Helper, config);
+        delayedPlayerHandler = new DelayedPlayerHandler(config);
+        modLimitHandler = new ModLimitHandler(Helper, config);
+        playerCountHandler = new PlayerCountHandler(config);
+        unreadyPlayerHandler = new UnreadyPlayerHandler(config);
+        moneyCheatHandler = new MoneyCheatHandler(config);
     }
 }

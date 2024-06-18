@@ -44,7 +44,12 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 config => config.KickUnreadyPlayerKey,
                 (config, value) => config.KickUnreadyPlayerKey = value,
                 I18n.Config_KickUnreadyPlayerKey_Name
-                )
+            )
+            .AddBoolOption(
+                config => config.BanMoneyCheat,
+                (config, value) => config.BanMoneyCheat = value,
+                I18n.Config_EnableBanMoneyCheat_Name
+            )
             ;
     }
 }

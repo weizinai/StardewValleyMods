@@ -14,5 +14,8 @@
     "Config.ShowPlayerCount.Name": "显示玩家数量",
     
     // 踢出未准备玩家
-    "Config.KickUnreadyPlayerKey.Name": "踢出未准备的玩家"
+    "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键",
+    
+    // 禁止金钱作弊
+    "Config.EnableBanMoneyCheat.Name": "启用禁止金钱作弊",
 }

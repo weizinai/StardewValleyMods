@@ -14,5 +14,8 @@
     "Config.ShowPlayerCount.Name": "Show Player Count",
     
     // Kick Unready Player
-    "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key"
+    "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",
+    
+    // Ban Money Cheat
+    "Config.EnableBanMoneyCheat.Name": "Enable Ban Money Cheat",
 }

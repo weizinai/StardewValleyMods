@@ -21,13 +21,15 @@ internal class PlayerCountHandler : BaseHandler
         Helper.Events.Display.Rendered += OnRendered;
     }
 
-    public void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
+    // 每秒检测当前在线玩家的数量
+    private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (!Config.ShowPlayerCount || !Context.IsWorldReady) return;
-        playerCountButton.name = Game1.getOnlineFarmers().Count + "个玩家在线";
+        playerCountButton.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
     }
 
-    public void OnRendered(object? sender, RenderedEventArgs e)
+    // 绘制玩家数量按钮
+    private void OnRendered(object? sender, RenderedEventArgs e)
     {
         if (!Config.ShowPlayerCount || !Context.IsWorldReady) return;
         playerCountButton.Draw(e.SpriteBatch);

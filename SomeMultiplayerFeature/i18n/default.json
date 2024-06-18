@@ -19,4 +19,6 @@
     // Kick Unready Player
     "Config.EnableKickUnreadyPlayer.Name": "Enable Kick Unready Player",
     "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",
+    
+    "UI.PlayerCount": "{{playerCount}} Players Online"
 }

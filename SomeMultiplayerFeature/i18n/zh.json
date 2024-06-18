@@ -19,4 +19,6 @@
     // 踢出未准备玩家
     "Config.EnableKickUnreadyPlayer.Name": "启用踢出未准备玩家",
     "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键",
+
+    "UI.PlayerCount": "{{playerCount}}个玩家在线"
 }

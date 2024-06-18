@@ -35,10 +35,12 @@ internal class DelayedPlayerHandler
         }
 
         foreach (var (id, count) in delayedPlayers)
+        {
             if (count >= 5)
             {
                 Log.Info($"{Game1.otherFarmers[id].Name}的延迟过高，已自动将其踢出。");
                 Game1.server.kick(id);
             }
+        }
     }
 }

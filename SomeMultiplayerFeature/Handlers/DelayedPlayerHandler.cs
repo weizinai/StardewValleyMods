@@ -31,6 +31,8 @@ internal class DelayedPlayerHandler : BaseHandler
         var playerPing = new Dictionary<string, float>();
         foreach (var farmer in Game1.getOnlineFarmers())
         {
+            if (farmer.IsMainPlayer) continue;
+            
             var ping = Game1.server.getPingToClient(farmer.UniqueMultiplayerID);
             if (ping >= 100) playerPing.Add(farmer.Name, ping);
         }

@@ -23,7 +23,7 @@ internal class DelayedPlayerHandler : BaseHandler
     // 每5秒显示延迟超过100ms的玩家中延迟最高的玩家
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!Config.EnableKickDelayedPlayer) return;
+        if (!Context.IsMainPlayer || !Context.IsWorldReady || !Config.EnableKickDelayedPlayer) return;
 
         coolDown++;
         if (coolDown < 5) return;
@@ -46,7 +46,7 @@ internal class DelayedPlayerHandler : BaseHandler
     // 当某个玩家加入游戏后，若超过一半的玩家延迟超过100ms，则发送信息
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!Config.EnableKickDelayedPlayer) return;
+        if (!Context.IsMainPlayer || !Context.IsWorldReady || !Config.EnableKickDelayedPlayer) return;
         
         var delayedPlayerCount = Game1.getOnlineFarmers().Count(farmer => Game1.server.getPingToClient(farmer.UniqueMultiplayerID) >= 100);
 

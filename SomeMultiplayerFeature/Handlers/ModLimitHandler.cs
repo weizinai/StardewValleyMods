@@ -31,7 +31,11 @@ internal class ModLimitHandler : BaseHandler
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!Context.IsMainPlayer || modRequirement is null || !Config.EnableModLimit) return;
+        // 如果功能未启用，则返回
+        if (!Config.EnableModLimit) return;
+        
+        // 如果当前不是联机模式或者当前玩家不是主机端，则返回
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var detectedPlayer = Game1.getFarmer(e.Peer.PlayerID);
 

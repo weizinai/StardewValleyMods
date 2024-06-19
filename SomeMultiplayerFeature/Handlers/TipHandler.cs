@@ -23,7 +23,11 @@ internal class TipHandler : BaseHandler
 
     private void OnRendered(object? sender, RenderedEventArgs e)
     {
-        if (!Context.IsWorldReady || !Config.ShowTip) return;
+        // 如果该功能未启用，则返回
+        if (!Config.ShowTip) return;
+        
+        // 如果当前没有玩家在线，则返回
+        if (!Context.HasRemotePlayers) return;
 
         tipButton.Draw(e.SpriteBatch);
     }

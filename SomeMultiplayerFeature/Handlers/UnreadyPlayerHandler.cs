@@ -7,6 +7,10 @@ using StardewValley.Menus;
 
 namespace SomeMultiplayerFeature.Handlers;
 
+/// <summary>
+/// 实现与踢出未准备玩家功能相关的逻辑
+/// </summary>
+/// <remarks>该功能仅主机端可用</remarks>
 internal class UnreadyPlayerHandler : BaseHandler
 {
     private readonly HashSet<long> unreadyPlayers = new();
@@ -27,16 +31,21 @@ internal class UnreadyPlayerHandler : BaseHandler
     // 如果当前玩家不是房主，则检测该玩家是否准备好，若未准备好，则向房主发送消息
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (Context.IsMainPlayer || !Context.IsWorldReady) return;
+        // 如果当前没有玩家在线或者当前玩家是主机端，则返回
+        if (!Context.HasRemotePlayers || Context.IsMainPlayer) return;
 
         Helper.Multiplayer.SendMessage(Game1.activeClickableMenu is not ReadyCheckDialog ? "Unready" : "Ready", "ReadyCheck",
             new[] { "weizinai.SomeMultiplayerFeature" }, new[] { Game1.MasterPlayer.UniqueMultiplayerID });
     }
 
-    // 当按下设置的快捷键时，若当前玩家是房主，则踢出所有未准备好的玩家并显示信息
+    // 当按下设置的快捷键时，若当前玩家是主机端，则踢出所有未准备好的玩家并显示信息
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsMainPlayer || !Context.IsWorldReady || !Config.EnableKickUnreadyPlayer) return;
+        // 如果该功能未启用，则放回
+        if (!Config.EnableKickUnreadyPlayer) return;
+        
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         if (Config.KickUnreadyPlayerKey.JustPressed())
         {
@@ -66,13 +75,20 @@ internal class UnreadyPlayerHandler : BaseHandler
     // 如果有玩家退出，则将其移出'unreadyPlayers'
     private void OnPeerDisconnected(object? sender, PeerDisconnectedEventArgs e)
     {
+        // 如果当前玩家不是主机端，则返回
+        if (!Context.IsMainPlayer) return;
+        
         unreadyPlayers.Remove(e.Peer.PlayerID);
     }
 
-    // 如果当前玩家是房主，则接受来自其他玩家的消息，若该玩家未准备好，则将其加入'unreadyPlayers'
+    // 如果当前玩家是主机端，则接受来自其他玩家的消息，若该玩家未准备好，则将其加入'unreadyPlayers'
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
-        if (!Context.IsMainPlayer || !Config.EnableKickUnreadyPlayer) return;
+        // 如果该功能未启用，则返回
+        if (!Config.EnableKickUnreadyPlayer) return;
+        
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ReadyCheck" })
         {

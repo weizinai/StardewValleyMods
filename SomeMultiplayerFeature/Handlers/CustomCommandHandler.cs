@@ -30,12 +30,13 @@ internal class CustomCommandHandler : BaseHandler
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!Context.IsMainPlayer || bannedPlayers is null) return;
+        // 如果当前不是联机模式或者当前玩家不是主机端，则返回
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var id = e.Peer.PlayerID;
         var name = Game1.getFarmer(id).Name;
 
-        if (bannedPlayers.ContainsKey(id.ToString()))
+        if (bannedPlayers!.ContainsKey(id.ToString()))
         {
             Game1.server.kick(id);
             Log.Alert($"{name}在黑名单中，已被踢出。");
@@ -44,7 +45,8 @@ internal class CustomCommandHandler : BaseHandler
 
     private void BanPlayer(string command, string[] args)
     {
-        if (!Context.IsMainPlayer) return;
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         var target = Game1.getOnlineFarmers().Where(x => x.Name == args[0]);
         foreach (var farmer in target)
@@ -69,7 +71,8 @@ internal class CustomCommandHandler : BaseHandler
 
     private void UnbanPlayer(string command, string[] args)
     {
-        if (!Context.IsMainPlayer) return;
+        // 如果当前不是联机模式或者当前玩家不是主机端，则返回
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var target = bannedPlayers!.Where(x => x.Value == args[0]).ToList();
 
@@ -85,7 +88,8 @@ internal class CustomCommandHandler : BaseHandler
 
     private void PingPlayer(string command, string[] args)
     {
-        if (!Context.IsMainPlayer) return;
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;;
 
         foreach (var (id, farmer) in Game1.otherFarmers)
             Log.Info($"Ping({farmer.Name})\t\t{(int)Game1.server.getPingToClient(id)}ms ");
@@ -93,7 +97,8 @@ internal class CustomCommandHandler : BaseHandler
 
     private void ListPlayer(string command, string[] args)
     {
-        if (!Context.IsMainPlayer) return;
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         foreach (var (_, farmer) in Game1.otherFarmers)
             Log.Info($"{farmer.Name}\t\t{farmer.currentLocation.Name}");

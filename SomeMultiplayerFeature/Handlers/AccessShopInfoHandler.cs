@@ -43,7 +43,11 @@ internal class AccessShopInfoHandler : BaseHandler
     // 当收到来自其他玩家的商店访问信息时，显示HUD信息
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
+        // 如果该功能未启用，则返回
         if (!Config.ShowAccessShopInfo) return;
+        
+        // 如果当前没有玩家在线，则返回
+        if (!Context.HasRemotePlayers) return;
 
         if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
         {

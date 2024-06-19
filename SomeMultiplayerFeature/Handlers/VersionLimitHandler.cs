@@ -42,6 +42,7 @@ internal class VersionLimitHandler : BaseHandler
     // 当载入存档时，向玩家写入版本验证信息
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
+        // 如果当前玩家是主机端，则返回
         if (Context.IsMainPlayer) return;
 
         var farmer = Game1.player;

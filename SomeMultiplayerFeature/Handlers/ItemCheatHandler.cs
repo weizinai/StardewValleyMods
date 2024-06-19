@@ -19,10 +19,10 @@ internal class ItemCheatHandler : BaseHandler
 
     private void AccessInventory(string command, string[] args)
     {
-        if (!Context.IsMainPlayer) return;
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
         
         var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
-
         if (farmer is null)
         {
             Log.Info($"{args[0]}不存在，无法访问该玩家的背包。");

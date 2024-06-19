@@ -63,21 +63,23 @@ internal class CustomCommandHandler : BaseHandler
                 Log.Info($"{name}被加入黑名单。");
             }
         }
+
         Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
     }
 
     private void Unban(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
-        
+
         var target = bannedPlayers!.Where(x => x.Value == args[0]).ToList();
-        
+
         if (!target.Any()) Log.Info($"{args[0]}不在黑名单中。");
         foreach (var (id, name) in target)
         {
             bannedPlayers!.Remove(id);
             Log.Info($"{name}被移出黑名单。");
         }
+
         Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
     }
 

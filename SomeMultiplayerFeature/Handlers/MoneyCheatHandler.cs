@@ -11,8 +11,10 @@ internal class MoneyCheatHandler : BaseHandler
 {
     private int lastMoney;
 
-    public MoneyCheatHandler(IModHelper helper, ModConfig config) 
-        : base(helper, config) {}
+    public MoneyCheatHandler(IModHelper helper, ModConfig config)
+        : base(helper, config)
+    {
+    }
 
     public override void Init()
     {
@@ -38,15 +40,15 @@ internal class MoneyCheatHandler : BaseHandler
     public void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!Config.BanMoneyCheat || !Context.IsWorldReady) return;
-        
+
         if (Game1.activeClickableMenu is ShippingMenu) return;
 
         if (Game1.player.Money - lastMoney / 10 >= 100000)
         {
             Log.Alert("检测到疑似有人作弊");
-            Game1.player.Money = lastMoney/10;
+            Game1.player.Money = lastMoney / 10;
         }
-        
+
         lastMoney = Game1.player.Money * 10;
     }
 }

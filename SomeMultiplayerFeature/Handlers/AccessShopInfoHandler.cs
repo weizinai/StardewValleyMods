@@ -11,10 +11,12 @@ internal class AccessShopInfoHandler : BaseHandler
 {
     private IClickableMenu? lastShopMenu;
 
-    public AccessShopInfoHandler(IModHelper helper, ModConfig config) 
-        : base(helper, config) {}
-    
-    
+    public AccessShopInfoHandler(IModHelper helper, ModConfig config)
+        : base(helper, config)
+    {
+    }
+
+
     public override void Init()
     {
         Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
@@ -42,7 +44,7 @@ internal class AccessShopInfoHandler : BaseHandler
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         if (!Config.ShowAccessShopInfo) return;
-        
+
         if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "AccessShopInfoMessage" })
         {
             var message = e.ReadAs<AccessShopInfoMessage>();

@@ -4,17 +4,17 @@
     "Config.ShowAccessShopInfo.Tooltip": "显示某个玩家目前是否正在访问商店。",
     "UI.AccessShop": "{{playerName}}访问了{{shopName}}",
     "UI.ExitShop": "{{playerName}}离开了{{shopName}}",
-    
+
     // 踢出延迟玩家
     "Config.EnableKickDelayedPlayer.Name": "启用踢出延迟玩家",
     "Config.EnableKickDelayedPlayer.Tooltip": "若某个玩家连续5s内的延迟均超出100ms，则踢出该玩家。",
-    
+
     // 模组限制
     "Config.EnableModLimit.Name": "启用模组限制",
-    
+
     // 禁止金钱作弊
     "Config.EnableBanMoneyCheat.Name": "启用禁止金钱作弊",
-    
+
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",
     "UI.PlayerCount": "{{playerCount}}个玩家在线",
@@ -22,8 +22,8 @@
     // 显示提示
     "Config.ShowTip.Name": "显示提示",
     "Config.TipText.Name": "提示内容",
-    
+
     // 踢出未准备玩家
     "Config.EnableKickUnreadyPlayer.Name": "启用踢出未准备玩家",
-    "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键",
+    "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键"
 }

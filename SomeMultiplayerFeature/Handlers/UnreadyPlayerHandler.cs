@@ -11,8 +11,10 @@ internal class UnreadyPlayerHandler : BaseHandler
 {
     private readonly HashSet<long> unreadyPlayers = new();
 
-    public UnreadyPlayerHandler(IModHelper helper, ModConfig config) 
-        : base(helper, config) {}
+    public UnreadyPlayerHandler(IModHelper helper, ModConfig config)
+        : base(helper, config)
+    {
+    }
 
     public override void Init()
     {
@@ -49,16 +51,18 @@ internal class UnreadyPlayerHandler : BaseHandler
                     Log.Alert($"{farmer.Name}已断开连接，但游戏内依然存在，已被移除。");
                 }
             }
+
             foreach (var player in unreadyPlayers)
             {
                 Game1.server.kick(player);
                 Log.Info($"{Game1.getFarmer(player).Name}未断开连接，但其未准备好，已被踢出。");
             }
+
             unreadyPlayers.Clear();
             Log.Info("-- 结束踢出玩家 --");
         }
     }
-    
+
     // 如果有玩家退出，则将其移出'unreadyPlayers'
     private void OnPeerDisconnected(object? sender, PeerDisconnectedEventArgs e)
     {
@@ -69,7 +73,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         if (!Context.IsMainPlayer || !Config.EnableKickUnreadyPlayer) return;
-        
+
         if (e is { FromModID: "weizinai.SomeMultiplayerFeature", Type: "ReadyCheck" })
         {
             var message = e.ReadAs<string>();

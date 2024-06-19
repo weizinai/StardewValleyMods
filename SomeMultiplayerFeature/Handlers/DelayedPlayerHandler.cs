@@ -11,8 +11,10 @@ internal class DelayedPlayerHandler : BaseHandler
     private bool isBusy;
     private int coolDown;
 
-    public DelayedPlayerHandler(IModHelper helper, ModConfig config) 
-        : base(helper, config) {}
+    public DelayedPlayerHandler(IModHelper helper, ModConfig config)
+        : base(helper, config)
+    {
+    }
 
     public override void Init()
     {
@@ -27,12 +29,12 @@ internal class DelayedPlayerHandler : BaseHandler
 
         coolDown++;
         if (coolDown < 5) return;
-        
+
         var playerPing = new Dictionary<string, float>();
         foreach (var farmer in Game1.getOnlineFarmers())
         {
             if (farmer.IsMainPlayer) continue;
-            
+
             var ping = Game1.server.getPingToClient(farmer.UniqueMultiplayerID);
             if (ping >= 100) playerPing.Add(farmer.Name, ping);
         }
@@ -41,7 +43,7 @@ internal class DelayedPlayerHandler : BaseHandler
         {
             Log.Alert($"{playerPing.MaxBy(x => x.Value).Key}的延迟超过100ms，且其延迟最高。");
         }
-        
+
         coolDown = 0;
     }
 
@@ -49,7 +51,7 @@ internal class DelayedPlayerHandler : BaseHandler
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
         if (!Context.IsMainPlayer || !Context.IsWorldReady || !Config.EnableKickDelayedPlayer) return;
-        
+
         var delayedPlayerCount = Game1.getOnlineFarmers().Count(farmer => Game1.server.getPingToClient(farmer.UniqueMultiplayerID) >= 100);
 
         if (delayedPlayerCount >= Game1.getOnlineFarmers().Count / 2 && !isBusy)

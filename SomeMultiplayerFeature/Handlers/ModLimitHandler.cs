@@ -36,7 +36,7 @@ internal class ModLimitHandler : BaseHandler
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (!Context.IsMainPlayer || !Config.EnableModLimit) return;
-        
+
         if (newVersionPlayers.Count == Game1.otherFarmers.Count) return;
 
         foreach (var (id, farmer) in Game1.otherFarmers)
@@ -73,7 +73,7 @@ internal class ModLimitHandler : BaseHandler
                 new[] { "weizinai.SomeMultiplayerFeature" }, new[] { Game1.MasterPlayer.UniqueMultiplayerID });
         }
     }
-    
+
     // 当某个玩家断开连接时，将其移出<newVersionPlayers>
     private void OnPeerDisconnected(object? sender, PeerDisconnectedEventArgs e)
     {

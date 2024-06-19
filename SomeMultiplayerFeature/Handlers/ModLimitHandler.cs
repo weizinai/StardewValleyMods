@@ -28,6 +28,7 @@ internal class ModLimitHandler : BaseHandler
     public override void Init()
     {
         Helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
+        Helper.Events.GameLoop.ReturnedToTitle += OnReturnedToTitle;
         Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
         Helper.Events.Multiplayer.PeerDisconnected += OnPeerDisconnected;
         Helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
@@ -35,7 +36,7 @@ internal class ModLimitHandler : BaseHandler
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!Context.IsMainPlayer || !Config.EnableModLimit) return;
+        if (!Context.IsMainPlayer || !Context.IsMultiplayer || !Config.EnableModLimit) return;
 
         if (newVersionPlayers.Count == Game1.otherFarmers.Count) return;
 
@@ -47,6 +48,13 @@ internal class ModLimitHandler : BaseHandler
                 Log.Alert($"{farmer.Name}的SomeMultiplayerFeature模组版本不是最新版，已被踢出。");
             }
         }
+    }
+
+    private void OnReturnedToTitle(object? sender, ReturnedToTitleEventArgs e)
+    {
+        if (!Context.IsMainPlayer || !Config.EnableModLimit) return;
+        
+        newVersionPlayers.Clear();
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

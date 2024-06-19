@@ -26,6 +26,8 @@ internal class CustomCommandHandler : BaseHandler
         Helper.ConsoleCommands.Add("unban", "", UnbanPlayer);
         Helper.ConsoleCommands.Add("ping", "", PingPlayer);
         Helper.ConsoleCommands.Add("list", "", ListPlayer);
+        Helper.ConsoleCommands.Add("kick", "", KickPlayer);
+        Helper.ConsoleCommands.Add("kickall", "", KickAllPlayer);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -89,7 +91,7 @@ internal class CustomCommandHandler : BaseHandler
     private void PingPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;;
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         foreach (var (id, farmer) in Game1.otherFarmers)
             Log.Info($"Ping({farmer.Name})\t\t{(int)Game1.server.getPingToClient(id)}ms ");
@@ -102,5 +104,35 @@ internal class CustomCommandHandler : BaseHandler
 
         foreach (var (_, farmer) in Game1.otherFarmers)
             Log.Info($"{farmer.Name}\t\t{farmer.currentLocation.Name}");
+    }
+
+    private void KickPlayer(string command, string[] args)
+    {
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+        
+        var target = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
+        if (target is null)
+        {
+            Log.Info($"{args[0]}不存在。");
+        }
+        else
+        {
+            Game1.server.kick(target.UniqueMultiplayerID);
+            Game1.otherFarmers.Remove(target.UniqueMultiplayerID);
+            Log.Info($"{target.Name}已被踢出。");
+        }
+    }
+
+    private void KickAllPlayer(string command, string[] args)
+    {
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+
+        foreach (var (id, farmer) in Game1.otherFarmers)
+        {
+            Game1.server.kick(id);
+            Log.Info($"{farmer.Name}已被踢出。");
+        }
     }
 }

@@ -23,7 +23,7 @@ internal class TipHandler : BaseHandler
 
     private void OnRendered(object? sender, RenderedEventArgs e)
     {
-        if (!Config.ShowTip) return;
+        if (!Context.IsWorldReady || !Config.ShowTip) return;
 
         tipButton.Draw(e.SpriteBatch);
     }

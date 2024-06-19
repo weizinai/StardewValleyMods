@@ -11,9 +11,6 @@
     // Mod Limit
     "Config.ModLimit.Name": "Mod Limit",
 
-    // Ban Money Cheat
-    "Config.BanMoneyCheat.Name": "Enable Ban Money Cheat",
-
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",
     "UI.PlayerCount": "{{playerCount}} Players Online",

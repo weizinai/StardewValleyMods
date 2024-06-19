@@ -47,7 +47,6 @@ public class ModEntry : Mod
             new DelayedPlayerHandler(Helper, config),
             new ItemCheatHandler(Helper, config),
             new ModLimitHandler(Helper, config),
-            // new MoneyCheatHandler(Helper, config),
             new PlayerCountHandler(Helper, config),
             new TipHandler(Helper, config),
             new UnreadyPlayerHandler(Helper, config),

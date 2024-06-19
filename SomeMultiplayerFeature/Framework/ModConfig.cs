@@ -14,9 +14,6 @@ public class ModConfig
     // 模组限制
     public bool EnableModLimit { get; set; } = true;
 
-    // 禁用金钱作弊
-    public bool BanMoneyCheat { get; set; } = true;
-
     // 显示玩家数量
     public bool ShowPlayerCount { get; set; } = true;
 

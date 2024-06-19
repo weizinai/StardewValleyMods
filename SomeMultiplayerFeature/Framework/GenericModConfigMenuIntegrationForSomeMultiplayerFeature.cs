@@ -36,12 +36,6 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.EnableModLimit = value,
                 I18n.Config_ModLimit_Name
             )
-            // 禁止金钱作弊
-            .AddBoolOption(
-                config => config.BanMoneyCheat,
-                (config, value) => config.BanMoneyCheat = value,
-                I18n.Config_BanMoneyCheat_Name
-            )
             // 显示玩家数量
             .AddBoolOption(
                 config => config.ShowPlayerCount,

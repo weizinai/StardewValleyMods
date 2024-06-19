@@ -11,9 +11,6 @@
     // 模组限制
     "Config.ModLimit.Name": "模组限制",
 
-    // 禁止金钱作弊
-    "Config.BanMoneyCheat.Name": "禁止金钱作弊",
-
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",
     "UI.PlayerCount": "{{playerCount}}个玩家在线",

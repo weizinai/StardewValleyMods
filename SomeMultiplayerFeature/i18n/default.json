@@ -1,19 +1,18 @@
 {
     // Access Shop Info
-    "Config.ShowAccessShopInfo.Name": "Enable Access Shop Info",
+    "Config.ShowAccessShopInfo.Name": "Show Access Shop Info",
     "Config.ShowAccessShopInfo.Tooltip": "Shows whether a player is currently accessing the shop.",
     "UI.AccessShop": "{{playerName}} access {{shopName}}",
     "UI.ExitShop": "{{playerName}} exit {{shopName}}",
 
     // Kick Delayed Player
-    "Config.EnableKickDelayedPlayer.Name": "Enable Kick Delayed Player",
-    "Config.EnableKickDelayedPlayer.Tooltip": "If a player has a latency of more than 100ms for 5 consecutive seconds, the player is kicked.",
+    "Config.KickDelayedPlayer.Name": "Kick Delayed Player",
 
     // Mod Limit
-    "Config.EnableModLimit.Name": "Enable Mod Limit",
+    "Config.ModLimit.Name": "Mod Limit",
 
     // Ban Money Cheat
-    "Config.EnableBanMoneyCheat.Name": "Enable Ban Money Cheat",
+    "Config.BanMoneyCheat.Name": "Enable Ban Money Cheat",
 
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",
@@ -24,6 +23,6 @@
     "Config.TipText.Name": "Tip Text",
 
     // Kick Unready Player
-    "Config.EnableKickUnreadyPlayer.Name": "Enable Kick Unready Player",
+    "Config.KickUnreadyPlayer.Name": "Kick Unready Player",
     "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key"
 }

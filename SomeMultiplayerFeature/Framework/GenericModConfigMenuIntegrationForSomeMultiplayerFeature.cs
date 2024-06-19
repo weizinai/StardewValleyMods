@@ -28,20 +28,19 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddBoolOption(
                 config => config.EnableKickDelayedPlayer,
                 (config, value) => config.EnableKickDelayedPlayer = value,
-                I18n.Config_EnableKickDelayedPlayer_Name,
-                I18n.Config_EnableKickDelayedPlayer_Tooltip
+                I18n.Config_KickDelayedPlayer_Name
             )
             // 模组限制
             .AddBoolOption(
                 config => config.EnableModLimit,
                 (config, value) => config.EnableModLimit = value,
-                I18n.Config_EnableModLimit_Name
+                I18n.Config_ModLimit_Name
             )
             // 禁止金钱作弊
             .AddBoolOption(
                 config => config.BanMoneyCheat,
                 (config, value) => config.BanMoneyCheat = value,
-                I18n.Config_EnableBanMoneyCheat_Name
+                I18n.Config_BanMoneyCheat_Name
             )
             // 显示玩家数量
             .AddBoolOption(
@@ -64,7 +63,7 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddBoolOption(
                 config => config.EnableKickUnreadyPlayer,
                 (config, value) => config.EnableKickUnreadyPlayer = value,
-                I18n.Config_EnableKickUnreadyPlayer_Name
+                I18n.Config_KickUnreadyPlayer_Name
             )
             .AddKeybindList(
                 config => config.KickUnreadyPlayerKey,

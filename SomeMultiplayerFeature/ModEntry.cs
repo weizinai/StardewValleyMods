@@ -50,7 +50,8 @@ public class ModEntry : Mod
             // new MoneyCheatHandler(Helper, config),
             new PlayerCountHandler(Helper, config),
             new TipHandler(Helper, config),
-            new UnreadyPlayerHandler(Helper, config)
+            new UnreadyPlayerHandler(Helper, config),
+            new VersionLimitHandler(Helper, config)
         };
 
         foreach (var handler in handlers) handler.Init();

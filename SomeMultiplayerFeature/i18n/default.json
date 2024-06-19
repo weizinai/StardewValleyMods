@@ -24,5 +24,9 @@
 
     // Kick Unready Player
     "Config.KickUnreadyPlayer.Name": "Kick Unready Player",
-    "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key"
+    "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",
+    
+    // Version Limit
+    "Config.VersionLimit.Name": "Version Limit",
+    "Config.VersionLimit.Tooltip": "Checks if the client player's mod version is up to date.This feature is only available on the host side.",
 }

@@ -70,6 +70,13 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.KickUnreadyPlayerKey = value,
                 I18n.Config_KickUnreadyPlayerKey_Name
             )
+            // 版本限制
+            .AddBoolOption(
+                config => config.VersionLimit,
+                (config, value) => config.VersionLimit = value,
+                I18n.Config_VersionLimit_Name,
+                I18n.Config_VersionLimit_Tooltip
+            )
             ;
     }
 }

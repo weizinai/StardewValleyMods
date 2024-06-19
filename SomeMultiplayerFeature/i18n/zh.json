@@ -24,5 +24,9 @@
 
     // 踢出未准备玩家
     "Config.KickUnreadyPlayer.Name": "踢出未准备玩家",
-    "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键"
+    "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键",
+
+    // Version Limit
+    "Config.VersionLimit.Name": "版本限制",
+    "Config.VersionLimit.Tooltip": "检测客户端玩家的模组版本是否是最新版。该功能仅限主机端可用。",
 }

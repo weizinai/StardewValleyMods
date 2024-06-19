@@ -22,10 +22,10 @@ internal class CustomCommandHandler : BaseHandler
     public override void Init()
     {
         Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
-        Helper.ConsoleCommands.Add("ban", "", Ban);
-        Helper.ConsoleCommands.Add("unban", "", Unban);
-        Helper.ConsoleCommands.Add("ping", "", Ping);
-        Helper.ConsoleCommands.Add("players", "", Players);
+        Helper.ConsoleCommands.Add("ban", "", BanPlayer);
+        Helper.ConsoleCommands.Add("unban", "", UnbanPlayer);
+        Helper.ConsoleCommands.Add("ping", "", PingPlayer);
+        Helper.ConsoleCommands.Add("list", "", ListPlayer);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -42,7 +42,7 @@ internal class CustomCommandHandler : BaseHandler
         }
     }
 
-    private void Ban(string command, string[] args)
+    private void BanPlayer(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
 
@@ -67,7 +67,7 @@ internal class CustomCommandHandler : BaseHandler
         Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
     }
 
-    private void Unban(string command, string[] args)
+    private void UnbanPlayer(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
 
@@ -83,7 +83,7 @@ internal class CustomCommandHandler : BaseHandler
         Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
     }
 
-    private void Ping(string command, string[] args)
+    private void PingPlayer(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
 
@@ -91,7 +91,7 @@ internal class CustomCommandHandler : BaseHandler
             Log.Info($"Ping({farmer.Name})\t\t{(int)Game1.server.getPingToClient(id)}ms ");
     }
 
-    private void Players(string command, string[] args)
+    private void ListPlayer(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
 

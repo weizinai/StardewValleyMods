@@ -5,8 +5,8 @@
     "UI.AccessShop": "{{playerName}}访问了{{shopName}}",
     "UI.ExitShop": "{{playerName}}离开了{{shopName}}",
 
-    // 踢出延迟玩家
-    "Config.KickDelayedPlayer.Name": "踢出延迟玩家",
+    // 显示延迟玩家
+    "Config.ShowDelayedPlayer.Name": "显示延迟玩家",
 
     // 模组限制
     "Config.ModLimit.Name": "模组限制",

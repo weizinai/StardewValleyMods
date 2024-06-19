@@ -26,14 +26,14 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             )
             // 踢出延迟玩家
             .AddBoolOption(
-                config => config.EnableKickDelayedPlayer,
-                (config, value) => config.EnableKickDelayedPlayer = value,
-                I18n.Config_KickDelayedPlayer_Name
+                config => config.ShowDelayedPlayer,
+                (config, value) => config.ShowDelayedPlayer = value,
+                I18n.Config_ShowDelayedPlayer_Name
             )
             // 模组限制
             .AddBoolOption(
-                config => config.EnableModLimit,
-                (config, value) => config.EnableModLimit = value,
+                config => config.ModLimit,
+                (config, value) => config.ModLimit = value,
                 I18n.Config_ModLimit_Name
             )
             // 显示玩家数量
@@ -55,8 +55,8 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             )
             // 踢出未准备玩家
             .AddBoolOption(
-                config => config.EnableKickUnreadyPlayer,
-                (config, value) => config.EnableKickUnreadyPlayer = value,
+                config => config.KickUnreadyPlayer,
+                (config, value) => config.KickUnreadyPlayer = value,
                 I18n.Config_KickUnreadyPlayer_Name
             )
             .AddKeybindList(

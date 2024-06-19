@@ -9,10 +9,10 @@ public class ModConfig
     public bool ShowAccessShopInfo { get; set; } = true;
 
     // 踢出延迟玩家
-    public bool EnableKickDelayedPlayer { get; set; } = true;
+    public bool ShowDelayedPlayer { get; set; } = true;
 
     // 模组限制
-    public bool EnableModLimit { get; set; } = true;
+    public bool ModLimit { get; set; } = true;
 
     // 显示玩家数量
     public bool ShowPlayerCount { get; set; } = true;
@@ -22,7 +22,7 @@ public class ModConfig
     public string TipText { get; set; } = "粉丝联机档QQ群：232127142";
 
     // 踢出未准备玩家
-    public bool EnableKickUnreadyPlayer { get; set; } = true;
+    public bool KickUnreadyPlayer { get; set; } = true;
     public KeybindList KickUnreadyPlayerKey { get; set; } = new(SButton.F3);
     
     // 版本限制

@@ -5,8 +5,8 @@
     "UI.AccessShop": "{{playerName}} access {{shopName}}",
     "UI.ExitShop": "{{playerName}} exit {{shopName}}",
 
-    // Kick Delayed Player
-    "Config.KickDelayedPlayer.Name": "Kick Delayed Player",
+    // Show Delayed Player
+    "Config.ShowDelayedPlayer.Name": "Show Delayed Player",
 
     // Mod Limit
     "Config.ModLimit.Name": "Mod Limit",

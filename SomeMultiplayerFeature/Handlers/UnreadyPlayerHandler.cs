@@ -42,7 +42,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         // 如果该功能未启用，则放回
-        if (!Config.EnableKickUnreadyPlayer) return;
+        if (!Config.KickUnreadyPlayer) return;
         
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
@@ -85,7 +85,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.EnableKickUnreadyPlayer) return;
+        if (!Config.KickUnreadyPlayer) return;
         
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;

@@ -45,6 +45,7 @@ public class ModEntry : Mod
             new AccessShopInfoHandler(Helper, config),
             new CustomCommandHandler(Helper, config),
             new DelayedPlayerHandler(Helper, config),
+            new ItemCheatHandler(Helper, config),
             new ModLimitHandler(Helper, config),
             // new MoneyCheatHandler(Helper, config),
             new PlayerCountHandler(Helper, config),

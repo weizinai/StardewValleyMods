@@ -28,25 +28,29 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddBoolOption(
                 config => config.ShowDelayedPlayer,
                 (config, value) => config.ShowDelayedPlayer = value,
-                I18n.Config_ShowDelayedPlayer_Name
+                I18n.Config_ShowDelayedPlayer_Name,
+                I18n.Config_ShowDelayedPlayer_Tooltip
             )
             // 模组限制
             .AddBoolOption(
                 config => config.ModLimit,
                 (config, value) => config.ModLimit = value,
-                I18n.Config_ModLimit_Name
+                I18n.Config_ModLimit_Name,
+                I18n.Config_ModLimit_Tooltip
             )
             // 显示玩家数量
             .AddBoolOption(
                 config => config.ShowPlayerCount,
                 (config, value) => config.ShowPlayerCount = value,
-                I18n.Config_ShowPlayerCount_Name
+                I18n.Config_ShowPlayerCount_Name,
+                I18n.Config_ShowPlayerCount_Tooltip
             )
             // 显示提示
             .AddBoolOption(
                 config => config.ShowTip,
                 (config, value) => config.ShowTip = value,
-                I18n.Config_ShowTip_Name
+                I18n.Config_ShowTip_Name,
+                I18n.Config_ShowTip_Tooltip
             )
             .AddTextOption(
                 config => config.TipText,
@@ -57,7 +61,8 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddBoolOption(
                 config => config.KickUnreadyPlayer,
                 (config, value) => config.KickUnreadyPlayer = value,
-                I18n.Config_KickUnreadyPlayer_Name
+                I18n.Config_KickUnreadyPlayer_Name,
+                I18n.Config_KickUnreadyPlayer_Tooltip
             )
             .AddKeybindList(
                 config => config.KickUnreadyPlayerKey,

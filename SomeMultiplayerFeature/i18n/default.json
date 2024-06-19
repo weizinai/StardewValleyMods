@@ -1,26 +1,31 @@
 {
     // Access Shop Info
     "Config.ShowAccessShopInfo.Name": "Show Access Shop Info",
-    "Config.ShowAccessShopInfo.Tooltip": "Shows whether a player is currently accessing the shop.",
+    "Config.ShowAccessShopInfo.Tooltip": "Shows whether a player is currently visiting the store. This feature is available on both the host side and the client side.",
     "UI.AccessShop": "{{playerName}} access {{shopName}}",
     "UI.ExitShop": "{{playerName}} exit {{shopName}}",
 
     // Show Delayed Player
     "Config.ShowDelayedPlayer.Name": "Show Delayed Player",
+    "Config.ShowDelayedPlayer.Tooltip": "Every 10 minutes in the game, the player with the highest latency of more than 100ms is displayed. This feature is only available on the host side.",
 
     // Mod Limit
     "Config.ModLimit.Name": "Mod Limit",
+    "Config.ModLimit.Tooltip": "Detect if the client player's mod meets the requirements. This feature is only available on the host side.",
 
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",
+    "Config.ShowPlayerCount.Tooltip": "Displays the number of players currently online. This feature is available on both the host side and the client side.",
     "UI.PlayerCount": "{{playerCount}} Players Online",
 
     // Show Tip
     "Config.ShowTip.Name": "Show Tip",
+    "Config.ShowTip.Tooltip": "A prompt is displayed in the game, which can be used to display the QQ group number. This feature is available on both the host side and the client side.",
     "Config.TipText.Name": "Tip Text",
 
     // Kick Unready Player
     "Config.KickUnreadyPlayer.Name": "Kick Unready Player",
+    "Config.KickUnreadyPlayer.Tooltip": "Kick out unprepared players. This feature is only available on the host side.",
     "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",
     
     // Version Limit

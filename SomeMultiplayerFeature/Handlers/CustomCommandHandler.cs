@@ -25,6 +25,7 @@ internal class CustomCommandHandler : BaseHandler
         Helper.ConsoleCommands.Add("ban", "", Ban);
         Helper.ConsoleCommands.Add("unban", "", Unban);
         Helper.ConsoleCommands.Add("ping", "", Ping);
+        Helper.ConsoleCommands.Add("players", "", Players);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -86,5 +87,13 @@ internal class CustomCommandHandler : BaseHandler
 
         foreach (var (id, farmer) in Game1.otherFarmers)
             Log.Info($"Ping({farmer.Name})\t\t{(int)Game1.server.getPingToClient(id)}ms ");
+    }
+
+    private void Players(string command, string[] args)
+    {
+        if (!Context.IsMainPlayer) return;
+
+        foreach (var (_, farmer) in Game1.otherFarmers)
+            Log.Info($"{farmer.Name}\t\t{farmer.currentLocation.Name}");
     }
 }

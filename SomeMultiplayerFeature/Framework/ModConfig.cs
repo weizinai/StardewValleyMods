@@ -8,7 +8,7 @@ public class ModConfig
     // 访问商店信息
     public bool ShowAccessShopInfo { get; set; } = true;
 
-    // 踢出延迟玩家
+    // 显示延迟玩家
     public bool ShowDelayedPlayer { get; set; } = true;
 
     // 模组限制

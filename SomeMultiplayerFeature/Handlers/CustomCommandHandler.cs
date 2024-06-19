@@ -102,8 +102,12 @@ internal class CustomCommandHandler : BaseHandler
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
-        foreach (var (_, farmer) in Game1.otherFarmers)
-            Log.Info($"{farmer.Name}\t\t{farmer.currentLocation.Name}");
+        Log.Info("下面是在线的玩家：");
+        foreach (var farmer in Game1.getOnlineFarmers())
+            Log.Info($"{farmer.Name}\t{farmer.currentLocation.Name}");
+        Log.Info("下面是离线的玩家");
+        foreach (var farmer in Game1.getOfflineFarmhands())
+            Log.Info($"{farmer.Name}");
     }
 
     private void KickPlayer(string command, string[] args)

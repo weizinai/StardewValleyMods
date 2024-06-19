@@ -1,0 +1,50 @@
+{
+    "Format": "2.0.0",
+    "Changes": [
+        {
+            "Action": "Load",
+            "Target": "{{ModId}}/MiniCabin",
+            "FromFile": "assets/MiniCabin.png"
+        },
+        {
+            "Action": "EditData",
+            "Target": "Data/Buildings",
+            "Entries": {
+                "{{ModId}}_MiniCabin": {
+                    // Required fields
+                    "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                    "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                    "Texture": "{{ModId}}/MiniCabin",
+                    // Construction
+                    "Builder": "Robin",
+                    "BuildCondition": "CAN_BUILD_CABIN",
+                    // Exterior behavior
+                    "Size": {
+                        "X": 2,
+                        "Y": 1
+                    },
+                    "HumanDoor": {
+                        "X": 0,
+                        "Y": 0
+                    },
+                    // Exterior appearance
+                    "DrawShadow": false,
+                    // Interior
+                    "IndoorMap": "FarmHouse",
+                    "IndoorMapType": "StardewValley.Locations.Cabin",
+                    // Tile interactions
+                    "ActionTiles": [
+                        {
+                            "Id": "Default_OpenMailbox",
+                            "Tile": {
+                                "X": 1,
+                                "Y": 0
+                            },
+                            "Action": "Mailbox"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

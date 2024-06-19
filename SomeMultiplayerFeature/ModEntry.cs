@@ -19,6 +19,12 @@ public class ModEntry : Mod
         InitHandler();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
+    }
+
+    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
+    {
+        if (!Context.IsMainPlayer) Log.Info("该模组大部分功能仅在主机端有效。");
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -37,7 +43,7 @@ public class ModEntry : Mod
         var handlers = new IHandler[]
         {
             new AccessShopInfoHandler(Helper, config),
-            new BanPlayerHandler(Helper, config),
+            new CustomCommandHandler(Helper, config),
             new DelayedPlayerHandler(Helper, config),
             new ModLimitHandler(Helper, config),
             // new MoneyCheatHandler(Helper, config),

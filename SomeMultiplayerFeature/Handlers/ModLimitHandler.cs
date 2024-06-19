@@ -13,7 +13,7 @@ namespace SomeMultiplayerFeature.Handlers;
 internal class ModLimitHandler : BaseHandler
 {
     private const string ModRequirementPatch = "assets/ModRequirement.json";
-    
+
     private readonly Dictionary<string, string[]>? modRequirement;
 
     public ModLimitHandler(IModHelper helper, ModConfig config)
@@ -33,7 +33,7 @@ internal class ModLimitHandler : BaseHandler
     {
         // 如果功能未启用，则返回
         if (!Config.ModLimit) return;
-        
+
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
         if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 

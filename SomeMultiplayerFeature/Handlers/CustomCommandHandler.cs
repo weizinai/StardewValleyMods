@@ -110,7 +110,7 @@ internal class CustomCommandHandler : BaseHandler
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
-        
+
         var target = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
         if (target is null)
         {

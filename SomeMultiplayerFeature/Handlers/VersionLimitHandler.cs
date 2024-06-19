@@ -10,7 +10,7 @@ internal class VersionLimitHandler : BaseHandler
 {
     private const string ModKey = "SomeMultiplayerFeature_Version";
 
-    public VersionLimitHandler(IModHelper helper, ModConfig config) 
+    public VersionLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
     }
@@ -28,7 +28,7 @@ internal class VersionLimitHandler : BaseHandler
 
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
-        
+
         foreach (var (id, farmer) in Game1.otherFarmers)
         {
             if (!farmer.modData.ContainsKey(ModKey) || farmer.modData[ModKey] != "0.5.2")

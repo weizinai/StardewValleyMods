@@ -30,5 +30,5 @@
 
     // Version Limit
     "Config.VersionLimit.Name": "版本限制",
-    "Config.VersionLimit.Tooltip": "检测客户端玩家的模组版本是否是最新版。该功能仅限主机端可用。",
+    "Config.VersionLimit.Tooltip": "检测客户端玩家的模组版本是否是最新版。该功能仅限主机端可用。"
 }

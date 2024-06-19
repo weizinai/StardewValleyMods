@@ -22,7 +22,7 @@ internal class DelayedPlayerHandler : BaseHandler
     {
         // 如果功能未启用，则返回
         if (!Config.ShowDelayedPlayer) return;
-        
+
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 

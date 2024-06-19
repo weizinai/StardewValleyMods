@@ -43,7 +43,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     {
         // 如果该功能未启用，则放回
         if (!Config.KickUnreadyPlayer) return;
-        
+
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
@@ -77,7 +77,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     {
         // 如果当前玩家不是主机端，则返回
         if (!Context.IsMainPlayer) return;
-        
+
         unreadyPlayers.Remove(e.Peer.PlayerID);
     }
 
@@ -86,7 +86,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     {
         // 如果该功能未启用，则返回
         if (!Config.KickUnreadyPlayer) return;
-        
+
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 

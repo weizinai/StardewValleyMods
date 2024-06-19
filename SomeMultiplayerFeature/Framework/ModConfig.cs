@@ -24,7 +24,7 @@ public class ModConfig
     // 踢出未准备玩家
     public bool KickUnreadyPlayer { get; set; } = true;
     public KeybindList KickUnreadyPlayerKey { get; set; } = new(SButton.F3);
-    
+
     // 版本限制
     public bool VersionLimit { get; set; } = true;
 }

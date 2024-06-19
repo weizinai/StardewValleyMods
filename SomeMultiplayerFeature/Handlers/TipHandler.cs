@@ -25,7 +25,7 @@ internal class TipHandler : BaseHandler
     {
         // 如果该功能未启用，则返回
         if (!Config.ShowTip) return;
-        
+
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 

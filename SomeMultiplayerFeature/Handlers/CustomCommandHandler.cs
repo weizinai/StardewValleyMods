@@ -6,13 +6,12 @@ using StardewValley;
 
 namespace SomeMultiplayerFeature.Handlers;
 
-internal class BanPlayerHandler : BaseHandler
+internal class CustomCommandHandler : BaseHandler
 {
     private const string BannedPlayerPath = "assets/BannedPlayer.json";
     private readonly Dictionary<string, string>? bannedPlayers;
-    private readonly Dictionary<long, string> onlineFarmers = new();
 
-    public BanPlayerHandler(IModHelper helper, ModConfig config)
+    public CustomCommandHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
         bannedPlayers = helper.Data.ReadJsonFile<Dictionary<string, string>>(BannedPlayerPath);
@@ -22,16 +21,10 @@ internal class BanPlayerHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.ReturnedToTitle += OnReturnedToTitle;
         Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
-        Helper.Events.Multiplayer.PeerDisconnected += OnPeerDisconnected;
-        Helper.ConsoleCommands.Add("ban", "", BanPlayer);
-        Helper.ConsoleCommands.Add("unban", "", UnbanPlayer);
-    }
-
-    private void OnReturnedToTitle(object? sender, ReturnedToTitleEventArgs e)
-    {
-        onlineFarmers.Clear();
+        Helper.ConsoleCommands.Add("ban", "", Ban);
+        Helper.ConsoleCommands.Add("unban", "", Unban);
+        Helper.ConsoleCommands.Add("ping", "", Ping);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -45,48 +38,53 @@ internal class BanPlayerHandler : BaseHandler
         {
             Game1.server.kick(id);
             Log.Alert($"{name}在黑名单中，已被踢出。");
-            return;
         }
-        
-        onlineFarmers.TryAdd(id, name);
     }
 
-    private void OnPeerDisconnected(object? sender, PeerDisconnectedEventArgs e)
+    private void Ban(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
 
-        onlineFarmers.Remove(e.Peer.PlayerID);
-    }
-
-    private void BanPlayer(string command, string[] args)
-    {
-        if (!Context.IsMainPlayer) return;
-
-        var target = onlineFarmers.Where(x => x.Value == args[0]);
-        foreach (var (id, name) in target)
+        var target = Game1.getOnlineFarmers().Where(x => x.Name == args[0]);
+        foreach (var farmer in target)
         {
-            if (bannedPlayers!.TryAdd(id.ToString(), name))
-            {
-                Game1.server.kick(id);
-                Log.Info($"{name}被加入黑名单。");
-            }
-            else
+            var id = farmer.UniqueMultiplayerID;
+            var name = farmer.Name;
+
+            if (bannedPlayers!.ContainsKey(id.ToString()))
             {
                 Log.Info($"{name}已经在黑名单中。");
             }
+            else
+            {
+                bannedPlayers.Add(id.ToString(), name);
+                Game1.server.kick(id);
+                Log.Info($"{name}被加入黑名单。");
+            }
         }
         Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
     }
 
-    private void UnbanPlayer(string command, string[] args)
+    private void Unban(string command, string[] args)
     {
         if (!Context.IsMainPlayer) return;
         
-        var target = bannedPlayers!.Where(x => x.Value == args[0]);
+        var target = bannedPlayers!.Where(x => x.Value == args[0]).ToList();
+        
+        if (!target.Any()) Log.Info($"{args[0]}不在黑名单中。");
         foreach (var (id, name) in target)
         {
-            Log.Info(bannedPlayers!.Remove(id) ? $"{name}被移出黑名单。" : $"{name}不在黑名单中。");
+            bannedPlayers!.Remove(id);
+            Log.Info($"{name}被移出黑名单。");
         }
         Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
+    }
+
+    private void Ping(string command, string[] args)
+    {
+        if (!Context.IsMainPlayer) return;
+
+        foreach (var (id, farmer) in Game1.otherFarmers)
+            Log.Info($"Ping({farmer.Name})\t\t{(int)Game1.server.getPingToClient(id)}ms ");
     }
 }

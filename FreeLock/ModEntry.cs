@@ -45,20 +45,16 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsWorldReady) return;
+        if (!Context.IsPlayerFree) return;
 
         if (config.FreeLockKeybind.JustPressed())
         {
-            if (Game1.viewportFreeze)
+            Game1.viewportFreeze = !Game1.viewportFreeze;
+            var message = new HUDMessage(Game1.viewportFreeze ? I18n.UI_ViewportUnlocked() : I18n.UI_ViewportLocked())
             {
-                Game1.viewportFreeze = false;
-                Game1.addHUDMessage(new HUDMessage(I18n.UI_ViewportLocked()));
-            }
-            else
-            {
-                Game1.viewportFreeze = true;
-                Game1.addHUDMessage(new HUDMessage(I18n.UI_ViewportUnlocked()));
-            }
+                noIcon = true
+            };
+            Game1.addHUDMessage(message);
         }
     }
 

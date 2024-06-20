@@ -23,6 +23,12 @@ internal class GenericModConfigMenuForFreeLock
                 (config, value) => config.FreeLockKeybind = value,
                 I18n.Config_FreeLockKeybind_Name
             )
+            .AddNumberOption(
+                config => config.MoveSpeed,
+                (config, value) => config.MoveSpeed = value,
+                I18n.Config_MoveSpeed_Name,
+                I18n.Config_MoveSpeed_Tooltip
+            )
             ;
     }
 }

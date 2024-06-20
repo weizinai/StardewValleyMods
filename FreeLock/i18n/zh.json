@@ -1,5 +1,7 @@
 {
     "Config.FreeLockKeybind.Name": "自由视角快捷键",
+    "Config.MoveSpeed.Name": "移动速度",
+    "Config.MoveSpeed.Tooltip": "视角移动的速度（像素/帧）。",
 
     "UI.ViewportLocked": "视角已锁定",
     "UI.ViewportUnlocked": "视角已解锁",

@@ -27,22 +27,17 @@ internal class ModEntry : Mod
         
         var mouseX = Game1.getOldMouseX(false);
         var mouseY = Game1.getOldMouseY(false);
+        var moveSpeed = config.MoveSpeed;
+        
         if (mouseX < 64)
-        {
-            Game1.panScreen(-32, 0);
-        }
-        else if (mouseX - Game1.viewport.Width >= -128)
-        {
-            Game1.panScreen(32, 0);
-        }
+            Game1.panScreen(-moveSpeed, 0);
+        else if (mouseX - Game1.viewport.Width >= -128) 
+            Game1.panScreen(moveSpeed, 0);
+        
         if (mouseY < 64)
-        {
-            Game1.panScreen(0, -32);
-        }
-        else if (mouseY - Game1.viewport.Height >= -64)
-        {
-            Game1.panScreen(0, 32);
-        }
+            Game1.panScreen(0, -moveSpeed);
+        else if (mouseY - Game1.viewport.Height >= -64) 
+            Game1.panScreen(0, moveSpeed);
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

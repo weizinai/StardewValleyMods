@@ -1,10 +1,13 @@
 {
     "Name": "Spectator Mode",
     "Author": "weizinai",
-    "Version": "0.1.2",
-    "Description": "Spectator Mode",
+    "Version": "0.2.0",
+    "Description": "This mod allows you to see the world in spectator mode.",
     "UniqueID": "weizinai.SpectatorMode",
     "EntryDll": "SpectatorMode.dll",
+    "UpdateKeys": [
+        "Nexus:22826"
+    ],
     "Dependencies": [
         {
             "UniqueID": "spacechase0.GenericModConfigMenu",

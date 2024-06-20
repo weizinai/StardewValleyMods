@@ -44,7 +44,15 @@ internal class ModEntry : Mod
             else
             {
                 cooldown++;
-                if (Game1.activeClickableMenu is not SpectatorMenu) isRotatingPlayers = false;
+                if (Game1.activeClickableMenu is not SpectatorMenu)
+                {
+                    isRotatingPlayers = false;
+                    var message = new HUDMessage(I18n.UI_StopRotatePlayer())
+                    {
+                        noIcon = true
+                    };
+                    Game1.addHUDMessage(message);
+                }
             }
         }
     }

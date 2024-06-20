@@ -63,8 +63,8 @@ internal class ModEntry : Mod
         if (config.SpectatePlayerKeybind.JustPressed() && Context.HasRemotePlayers && Context.IsPlayerFree)
         {
             var players = new List<KeyValuePair<string, string>>();
-            foreach (var (id, farmer) in Game1.otherFarmers)
-                players.Add(new KeyValuePair<string, string>(id.ToString(), farmer.Name));
+            foreach (var (_, farmer) in Game1.otherFarmers)
+                players.Add(new KeyValuePair<string, string>(farmer.Name, farmer.displayName));
             Game1.currentLocation.ShowPagedResponses("", players, value => SpectateFarmer("spectate_player", new[] { value }),
                 false, true, 10);
         }
@@ -115,13 +115,13 @@ internal class ModEntry : Mod
     // 旁观玩家
     private void SpectateFarmer(string command, string[] args)
     {
-        if (Context.HasRemotePlayers)
+        if (!Context.HasRemotePlayers)
         {
             Log.Info(I18n.UI_NoPlayerOnline());
             return;
         }
 
-        var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
+        var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.Name == args[0]).Value;
 
         if (farmer is null)
         {

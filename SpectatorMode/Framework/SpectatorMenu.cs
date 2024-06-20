@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using StardewValley;
 using StardewValley.Menus;
 using xTile.Dimensions;
@@ -64,6 +65,18 @@ internal class SpectatorMenu : IClickableMenu
     public override void draw(SpriteBatch b)
     {
         drawMouse(b);
+    }
+
+    public override void receiveKeyPress(Keys key)
+    {
+        if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
+            Game1.panScreen(0, 32);
+        else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
+            Game1.panScreen(32, 0);
+        else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
+            Game1.panScreen(0, -32);
+        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
+            Game1.panScreen(-32, 0);
     }
 
     protected override void cleanupBeforeExit()

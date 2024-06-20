@@ -39,7 +39,7 @@ internal class ModEntry : Mod
             {
                 cooldown = 0;
                 var farmer = Game1.random.ChooseFrom(Game1.otherFarmers.Values.ToList());
-                Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
+                Game1.activeClickableMenu = new SpectatorMenu(config, farmer.currentLocation, farmer, true);
             }
             else
             {
@@ -116,7 +116,7 @@ internal class ModEntry : Mod
             return;
         }
 
-        Game1.activeClickableMenu = new SpectatorMenu(location);
+        Game1.activeClickableMenu = new SpectatorMenu(config, location);
         Log.Info(I18n.UI_SpectateLocation_Success(location.DisplayName));
     }
 
@@ -137,7 +137,7 @@ internal class ModEntry : Mod
             return;
         }
 
-        Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
+        Game1.activeClickableMenu = new SpectatorMenu(config, farmer.currentLocation, farmer, true);
         Log.Info(I18n.UI_SpectatePlayer_Success(farmer.Name));
     }
 

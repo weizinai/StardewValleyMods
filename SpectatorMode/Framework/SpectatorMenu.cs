@@ -9,6 +9,7 @@ namespace SpectatorMode.Framework;
 
 internal class SpectatorMenu : IClickableMenu
 {
+    private readonly ModConfig config;
     private readonly bool followPlayer;
     private readonly Farmer targetFarmer;
     private readonly GameLocation targetLocation;
@@ -16,9 +17,10 @@ internal class SpectatorMenu : IClickableMenu
     private static GameLocation originLocation = null!;
     private static Location originViewport;
 
-    public SpectatorMenu(GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false, bool firstActive = true)
+    public SpectatorMenu(ModConfig config, GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false, bool firstActive = true)
     {
         // 初始化
+        this.config = config;
         this.followPlayer = followPlayer;
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
@@ -39,7 +41,7 @@ internal class SpectatorMenu : IClickableMenu
         if (followPlayer)
         {
             if (!targetLocation.Equals(targetFarmer.currentLocation))
-                Game1.activeClickableMenu = new SpectatorMenu(targetFarmer.currentLocation, targetFarmer, true, false);
+                Game1.activeClickableMenu = new SpectatorMenu(config, targetFarmer.currentLocation, targetFarmer, true, false);
 
             Game1.viewport.Location = GetViewportFromFarmer();
             Game1.clampViewportToGameMap();
@@ -49,18 +51,20 @@ internal class SpectatorMenu : IClickableMenu
             // 鼠标移动视角
             var mouseX = Game1.getOldMouseX(false);
             var mouseY = Game1.getOldMouseY(false);
+            var moveSpeed = config.MoveSpeed;
+            var moveThreshold = config.MoveThreshold;
 
             // 水平移动
-            if (mouseX < 64)
-                Game1.panScreen(-32, 0);
-            else if (mouseX - Game1.viewport.Width >= -128)
-                Game1.panScreen(32, 0);
+            if (mouseX < moveThreshold)
+                Game1.panScreen(-moveSpeed, 0);
+            else if (mouseX - Game1.viewport.Width >= -moveThreshold)
+                Game1.panScreen(moveSpeed, 0);
 
             // 垂直移动
-            if (mouseY < 64)
-                Game1.panScreen(0, -32);
-            else if (mouseY - Game1.viewport.Height >= -64)
-                Game1.panScreen(0, 32);
+            if (mouseY < moveThreshold)
+                Game1.panScreen(0, -moveSpeed);
+            else if (mouseY - Game1.viewport.Height >= -moveThreshold)
+                Game1.panScreen(0, moveSpeed);
         }
     }
 
@@ -74,15 +78,17 @@ internal class SpectatorMenu : IClickableMenu
         base.receiveKeyPress(key);
         
         if (followPlayer) return;
+
+        var moveSpeed = config.MoveSpeed;
         
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
-            Game1.panScreen(0, 32);
+            Game1.panScreen(0, moveSpeed);
         else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
-            Game1.panScreen(32, 0);
+            Game1.panScreen(moveSpeed, 0);
         else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
-            Game1.panScreen(0, -32);
+            Game1.panScreen(0, -moveSpeed);
         else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
-            Game1.panScreen(-32, 0);
+            Game1.panScreen(-moveSpeed, 0);
     }
 
     protected override void cleanupBeforeExit()

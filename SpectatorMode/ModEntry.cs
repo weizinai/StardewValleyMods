@@ -23,9 +23,12 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
+        if (!Context.IsPlayerFree) return;
+        
         if (config.SpectatorModeKeybind.JustPressed())
         {
-            Game1.activeClickableMenu = new SpectatorMenu(Game1.getLocationFromName("Town"));
+            var farmer = Game1.getOnlineFarmers().First(x => x.Name == "工具人");
+            Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
         }
     }
 

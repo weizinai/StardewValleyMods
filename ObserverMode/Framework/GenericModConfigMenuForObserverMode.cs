@@ -16,6 +16,13 @@ internal class GenericModConfigMenuForObserverMode
     {
         if (!configMenu.IsLoaded) return;
 
-        configMenu.Register();
+        configMenu
+            .Register()
+            .AddKeybindList(
+                config => config.ObserverModeKey,
+                (config, value) => config.ObserverModeKey = value,
+                I18n.Config_ObserverModeKey_Name
+            )
+            ;
     }
 }

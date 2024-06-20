@@ -1,0 +1,14 @@
+{
+    "Name": "Observer Mode",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "Observer Mode",
+    "UniqueID": "weizinai.ObserverMode",
+    "EntryDll": "ObserverMode.dll",
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

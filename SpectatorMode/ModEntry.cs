@@ -68,13 +68,24 @@ internal class ModEntry : Mod
         }
 
         // 旁观玩家
-        if (config.SpectatePlayerKeybind.JustPressed() && Context.HasRemotePlayers && Context.IsPlayerFree)
+        if (config.SpectatePlayerKeybind.JustPressed() && Context.IsPlayerFree)
         {
-            var players = new List<KeyValuePair<string, string>>();
-            foreach (var (_, farmer) in Game1.otherFarmers)
-                players.Add(new KeyValuePair<string, string>(farmer.Name, farmer.displayName));
-            Game1.currentLocation.ShowPagedResponses("", players, value => SpectateFarmer("spectate_player", new[] { value }),
-                false, true, 10);
+            if (Context.HasRemotePlayers)
+            {
+                var players = new List<KeyValuePair<string, string>>();
+                foreach (var (_, farmer) in Game1.otherFarmers)
+                    players.Add(new KeyValuePair<string, string>(farmer.Name, farmer.displayName));
+                Game1.currentLocation.ShowPagedResponses("", players, value => SpectateFarmer("spectate_player", new[] { value }),
+                    false, true, 10);
+            }
+            else
+            {
+                var message = new HUDMessage(I18n.UI_NoPlayerOnline())
+                {
+                    noIcon = true
+                };
+                Game1.addHUDMessage(message);
+            }
         }
 
         // 轮播玩家

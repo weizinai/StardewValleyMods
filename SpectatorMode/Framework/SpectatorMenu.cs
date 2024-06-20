@@ -3,13 +3,13 @@ using StardewValley;
 using StardewValley.Menus;
 using xTile.Dimensions;
 
-namespace ObserverMode.Framework;
+namespace SpectatorMode.Framework;
 
-internal class ObserverMenu : IClickableMenu
+internal class SpectatorMenu : IClickableMenu
 {
     private readonly GameLocation targetLocation;
 
-    public ObserverMenu(GameLocation targetLocation)
+    public SpectatorMenu(GameLocation targetLocation)
     {
         this.targetLocation = targetLocation;
         Init();

@@ -1,13 +1,13 @@
 using Common.Integrations;
 using StardewModdingAPI;
 
-namespace ObserverMode.Framework;
+namespace SpectatorMode.Framework;
 
-internal class GenericModConfigMenuForObserverMode
+internal class GenericModConfigMenuForSpectatorMode
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 
-    public GenericModConfigMenuForObserverMode(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
+    public GenericModConfigMenuForSpectatorMode(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
         configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
     }
@@ -19,9 +19,9 @@ internal class GenericModConfigMenuForObserverMode
         configMenu
             .Register()
             .AddKeybindList(
-                config => config.ObserverModeKey,
-                (config, value) => config.ObserverModeKey = value,
-                I18n.Config_ObserverModeKey_Name
+                config => config.SpectatorModeKeybind,
+                (config, value) => config.SpectatorModeKeybind = value,
+                I18n.Config_SpectatorModeKeybind_Name
             )
             ;
     }

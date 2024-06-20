@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastControlInput", "FastCon
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common.Patcher", "Common.Patcher\Common.Patcher.shproj", "{D083D44E-25FA-48D4-B64F-B033461EAF28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverMode", "ObserverMode\ObserverMode.csproj", "{7FEE4E66-5304-4EA0-8207-975A433ED23C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpectatorMode", "SpectatorMode\SpectatorMode.csproj", "{7FEE4E66-5304-4EA0-8207-975A433ED23C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeLock", "FreeLock\FreeLock.csproj", "{33BBCB59-2DE6-4F7F-BB32-ECBF755C410D}"
 EndProject

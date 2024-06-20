@@ -1,10 +1,10 @@
 ﻿using Common;
-using ObserverMode.Framework;
+using SpectatorMode.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 
-namespace ObserverMode;
+namespace SpectatorMode;
 
 internal class ModEntry : Mod
 {
@@ -23,15 +23,15 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (config.ObserverModeKey.JustPressed())
+        if (config.SpectatorModeKeybind.JustPressed())
         {
-            Game1.activeClickableMenu = new ObserverMenu(Game1.getLocationFromName("Town"));
+            Game1.activeClickableMenu = new SpectatorMenu(Game1.getLocationFromName("Town"));
         }
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuForObserverMode(
+        new GenericModConfigMenuForSpectatorMode(
             Helper,
             ModManifest,
             () => config,

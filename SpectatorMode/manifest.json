@@ -1,10 +1,10 @@
 {
-    "Name": "Observer Mode",
+    "Name": "Spectator Mode",
     "Author": "weizinai",
     "Version": "0.1.0",
-    "Description": "Observer Mode",
-    "UniqueID": "weizinai.ObserverMode",
-    "EntryDll": "ObserverMode.dll",
+    "Description": "Spectator Mode",
+    "UniqueID": "weizinai.SpectatorMode",
+    "EntryDll": "SpectatorMode.dll",
     "Dependencies": [
         {
             "UniqueID": "spacechase0.GenericModConfigMenu",

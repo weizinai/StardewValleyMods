@@ -41,6 +41,7 @@ internal class GenericModConfigMenuForSpectatorMode
                 I18n.Config_MoveThreshold_Name
             )
             // 轮播玩家
+            .AddSectionTitle(I18n.Config_RotatePlayerTitle_Name)
             .AddKeybindList(
                 config => config.RotatePlayerKeybind,
                 (config, value) => config.RotatePlayerKeybind = value,

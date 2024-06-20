@@ -15,6 +15,7 @@
     "Config.MoveThreshold.Name": "Move Threshold",
     
     // Rotate Player
+    "Config.RotatePlayerTitle.Name": "Rotate Player",
     "Config.RotatePlayerKeybind.Name": "Rotate Player Keybind",
     "Config.RotationInterval.Name": "Rotation Interval",
     "UI.StartRotatePlayer": "Start Rotate Player",

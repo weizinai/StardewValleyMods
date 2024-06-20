@@ -1,3 +1,6 @@
 {
-
+    "Config.FreeLockKeybind.Name": "Free Lock Keybind",
+    
+    "UI.ViewportLocked": "The viewport is locked.",
+    "UI.ViewportUnlocked": "The viewport is unlocked.",
 }

@@ -1,3 +1,6 @@
 {
+    "Config.FreeLockKeybind.Name": "自由视角快捷键",
 
+    "UI.ViewportLocked": "视角已锁定",
+    "UI.ViewportUnlocked": "视角已解锁",
 }

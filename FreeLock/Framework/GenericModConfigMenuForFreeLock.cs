@@ -16,6 +16,13 @@ internal class GenericModConfigMenuForFreeLock
     {
         if (!configMenu.IsLoaded) return;
 
-        configMenu.Register();
+        configMenu
+            .Register()
+            .AddKeybindList(
+                config => config.FreeLockKeybind,
+                (config, value) => config.FreeLockKeybind = value,
+                I18n.Config_FreeLockKeybind_Name
+            )
+            ;
     }
 }

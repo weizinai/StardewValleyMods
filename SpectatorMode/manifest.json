@@ -1,7 +1,7 @@
 {
     "Name": "Spectator Mode",
     "Author": "weizinai",
-    "Version": "0.1.0",
+    "Version": "0.1.2",
     "Description": "Spectator Mode",
     "UniqueID": "weizinai.SpectatorMode",
     "EntryDll": "SpectatorMode.dll",

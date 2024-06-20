@@ -22,6 +22,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Common.Patcher", "Common.Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverMode", "ObserverMode\ObserverMode.csproj", "{7FEE4E66-5304-4EA0-8207-975A433ED23C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeLock", "FreeLock\FreeLock.csproj", "{33BBCB59-2DE6-4F7F-BB32-ECBF755C410D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,5 +66,9 @@ Global
 		{7FEE4E66-5304-4EA0-8207-975A433ED23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FEE4E66-5304-4EA0-8207-975A433ED23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FEE4E66-5304-4EA0-8207-975A433ED23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BBCB59-2DE6-4F7F-BB32-ECBF755C410D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BBCB59-2DE6-4F7F-BB32-ECBF755C410D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BBCB59-2DE6-4F7F-BB32-ECBF755C410D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BBCB59-2DE6-4F7F-BB32-ECBF755C410D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

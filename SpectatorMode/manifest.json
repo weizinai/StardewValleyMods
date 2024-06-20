@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.SpectatorMode",
     "EntryDll": "SpectatorMode.dll",
     "UpdateKeys": [
-        "Nexus:22826"
+        "Nexus:25339"
     ],
     "Dependencies": [
         {

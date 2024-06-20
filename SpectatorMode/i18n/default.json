@@ -1,5 +1,10 @@
 {
+    // Spectator Mode
     "Config.SpectatorModeKeybind.Name": "Spectator Mode Keybind",
+    
+    // Rotate Player
     "Config.RotatePlayerKeybind.Name": "Rotate Player Keybind",
-    "Config.RotationInterval.Name": "Rotation Interval"
+    "Config.RotationInterval.Name": "Rotation Interval",
+    "UI.StartRotatePlayer": "Start Rotate Player",
+    "UI.StopRotatePlayer": "Stop Rotate Player",
 }

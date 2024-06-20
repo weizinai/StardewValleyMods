@@ -38,8 +38,7 @@ internal class SpectatorMenu : IClickableMenu
             if (!targetLocation.Equals(targetFarmer.currentLocation))
                 Game1.activeClickableMenu = new SpectatorMenu(targetFarmer.currentLocation, targetFarmer, true);
 
-            Game1.viewport.Location.X = (int)targetFarmer.Position.X - Game1.viewport.Width / 2;
-            Game1.viewport.Location.Y = (int)targetFarmer.Position.Y - Game1.viewport.Height / 2;
+            Game1.viewport.Location = GetViewportFromFarmer();
             Game1.clampViewportToGameMap();
         }
         else
@@ -69,6 +68,10 @@ internal class SpectatorMenu : IClickableMenu
 
     public override void receiveKeyPress(Keys key)
     {
+        base.receiveKeyPress(key);
+        
+        if (followPlayer) return;
+        
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
             Game1.panScreen(0, 32);
         else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
@@ -97,7 +100,7 @@ internal class SpectatorMenu : IClickableMenu
         InitLocationData(Game1.currentLocation, targetLocation);
         Game1.globalFadeToClear();
         Game1.viewportFreeze = true;
-        Game1.viewport.Location = new Location(0, 0);
+        Game1.viewport.Location = GetInitialViewport();
         Game1.displayFarmer = false;
     }
 
@@ -107,5 +110,23 @@ internal class SpectatorMenu : IClickableMenu
         Game1.currentLocation = newLocation;
         Game1.player.viewingLocation.Value = newLocation.NameOrUniqueName;
         newLocation.resetForPlayerEntry();
+    }
+
+    private Location GetInitialViewport()
+    {
+        if (followPlayer)
+        {
+            return GetViewportFromFarmer();
+        }
+
+        var layer = targetLocation.Map.Layers[0];
+        return new Location(layer.LayerWidth / 2, layer.LayerHeight / 2);
+    }
+
+    private Location GetViewportFromFarmer()
+    {
+        var x = (int)targetFarmer.Position.X - Game1.viewport.Width / 2;
+        var y = (int)targetFarmer.Position.Y - Game1.viewport.Height / 2;
+        return new Location(x, y);
     }
 }

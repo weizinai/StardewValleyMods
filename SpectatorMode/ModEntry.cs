@@ -11,6 +11,7 @@ internal class ModEntry : Mod
 {
     private ModConfig config = null!;
 
+    // 轮播玩家
     private int cooldown;
     private bool isRotatingPlayers;
 
@@ -28,32 +29,40 @@ internal class ModEntry : Mod
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        cooldown++;
-
-        if (isRotatingPlayers && cooldown >= config.RotationInterval)
+        // 轮播玩家
+        if (isRotatingPlayers)
         {
-            cooldown = 0;
-            var farmer = Game1.random.ChooseFrom(Game1.otherFarmers.Values.ToList());
-            Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
-        }
-        else if (Game1.activeClickableMenu is SpectatorMenu menu)
-        {
-            menu.exitThisMenu();
+            if (cooldown >= config.RotationInterval)
+            {
+                cooldown = 0;
+                var farmer = Game1.random.ChooseFrom(Game1.otherFarmers.Values.ToList());
+                Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
+            }
+            else
+            {
+                cooldown++;
+                if (Game1.activeClickableMenu is not SpectatorMenu) isRotatingPlayers = false;
+            }
         }
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
-
-        if (config.SpectatorModeKeybind.JustPressed())
-        {
-            var farmer = Game1.getOnlineFarmers().First(x => x.Name == "工具人");
-            Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
-        }
-
+        // 轮播玩家
         if (config.RotatePlayerKeybind.JustPressed() && Context.HasRemotePlayers)
+        {
+            if (isRotatingPlayers)
+                Game1.activeClickableMenu.exitThisMenu();
+            else
+                cooldown = config.RotationInterval;
+            
             isRotatingPlayers = !isRotatingPlayers;
+            var message = new HUDMessage(isRotatingPlayers ? I18n.UI_StartRotatePlayer() : I18n.UI_StopRotatePlayer())
+            {
+                noIcon = true
+            };
+            Game1.addHUDMessage(message);
+        }
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

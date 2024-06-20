@@ -1,4 +1,5 @@
 {
-    "Config.SpectatorModeKeybind.Name": "旁观者模式快捷键"
-
+    "Config.SpectatorModeKeybind.Name": "旁观者模式快捷键",
+    "Config.RotatePlayerKeybind.Name": "轮播玩家快捷键",
+    "Config.RotationInterval.Name": "轮播间隔"
 }

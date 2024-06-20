@@ -1,3 +1,5 @@
 {
-    "Config.SpectatorModeKeybind.Name": "Spectator Mode Keybind"
+    "Config.SpectatorModeKeybind.Name": "Spectator Mode Keybind",
+    "Config.RotatePlayerKeybind.Name": "Rotate Player Keybind",
+    "Config.RotationInterval.Name": "Rotation Interval"
 }

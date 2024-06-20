@@ -9,9 +9,9 @@ namespace SpectatorMode.Framework;
 
 internal class SpectatorMenu : IClickableMenu
 {
-    private bool followPlayer;
+    private readonly bool followPlayer;
     private readonly Farmer targetFarmer;
-    private GameLocation targetLocation;
+    private readonly GameLocation targetLocation;
 
     private readonly GameLocation originLocation;
     private readonly Location originViewport;
@@ -35,9 +35,9 @@ internal class SpectatorMenu : IClickableMenu
     {
         if (followPlayer)
         {
-            if (!targetLocation.Equals(targetFarmer.currentLocation)) 
+            if (!targetLocation.Equals(targetFarmer.currentLocation))
                 Game1.activeClickableMenu = new SpectatorMenu(targetFarmer.currentLocation, targetFarmer, true);
-                
+
             Game1.viewport.Location.X = (int)targetFarmer.Position.X - Game1.viewport.Width / 2;
             Game1.viewport.Location.Y = (int)targetFarmer.Position.Y - Game1.viewport.Height / 2;
             Game1.clampViewportToGameMap();
@@ -98,6 +98,7 @@ internal class SpectatorMenu : IClickableMenu
         Game1.globalFadeToClear();
         Game1.viewportFreeze = true;
         Game1.viewport.Location = new Location(0, 0);
+        Game1.displayFarmer = false;
     }
 
     private void InitLocationData(GameLocation oldLocation, GameLocation newLocation)

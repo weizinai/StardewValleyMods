@@ -23,6 +23,16 @@ internal class GenericModConfigMenuForSpectatorMode
                 (config, value) => config.SpectatorModeKeybind = value,
                 I18n.Config_SpectatorModeKeybind_Name
             )
+            .AddKeybindList(
+                config => config.RotatePlayerKeybind,
+                (config, value) => config.RotatePlayerKeybind = value,
+                I18n.Config_RotatePlayerKeybind_Name
+            )
+            .AddNumberOption(
+                config => config.RotationInterval,
+                (config, value) => config.RotationInterval = value,
+                I18n.Config_RotationInterval_Name
+            )
             ;
     }
 }

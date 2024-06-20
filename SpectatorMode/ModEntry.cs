@@ -25,6 +25,9 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
         helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        // 自定义命令
+        helper.ConsoleCommands.Add("spectate_location", "", SpectateLocation);
+        helper.ConsoleCommands.Add("spectate_player", "", SpectateFarmer);
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
@@ -48,21 +51,86 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        // 轮播玩家
-        if (config.RotatePlayerKeybind.JustPressed() && Context.HasRemotePlayers)
+        // 旁观地点
+        if (config.SpectateLocationKeybind.JustPressed() && Context.IsPlayerFree)
         {
-            if (isRotatingPlayers)
-                Game1.activeClickableMenu.exitThisMenu();
-            else
-                cooldown = config.RotationInterval;
-            
-            isRotatingPlayers = !isRotatingPlayers;
-            var message = new HUDMessage(isRotatingPlayers ? I18n.UI_StartRotatePlayer() : I18n.UI_StopRotatePlayer())
-            {
-                noIcon = true
-            };
-            Game1.addHUDMessage(message);
+            var locations = Game1.locations.Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
+            Game1.currentLocation.ShowPagedResponses("", locations, value => SpectateLocation("spectate_location", new[] { value }),
+                false, true, 10);
         }
+
+        // 旁观玩家
+        if (config.SpectatePlayerKeybind.JustPressed() && Context.HasRemotePlayers && Context.IsPlayerFree)
+        {
+            var players = new List<KeyValuePair<string, string>>();
+            foreach (var (id, farmer) in Game1.otherFarmers)
+                players.Add(new KeyValuePair<string, string>(id.ToString(), farmer.Name));
+            Game1.currentLocation.ShowPagedResponses("", players, value => SpectateFarmer("spectate_player", new[] { value }),
+                false, true, 10);
+        }
+
+        // 轮播玩家
+        if (config.RotatePlayerKeybind.JustPressed())
+        {
+            if (Context.HasRemotePlayers)
+            {
+                if (isRotatingPlayers)
+                    Game1.activeClickableMenu.exitThisMenu();
+                else
+                    cooldown = config.RotationInterval;
+
+                isRotatingPlayers = !isRotatingPlayers;
+                var message = new HUDMessage(isRotatingPlayers ? I18n.UI_StartRotatePlayer() : I18n.UI_StopRotatePlayer())
+                {
+                    noIcon = true
+                };
+                Game1.addHUDMessage(message);
+            }
+            else
+            {
+                var message = new HUDMessage(I18n.UI_NoPlayerOnline())
+                {
+                    noIcon = false
+                };
+                Game1.addHUDMessage(message);
+            }
+        }
+    }
+
+    // 旁观地点
+    private void SpectateLocation(string command, string[] args)
+    {
+        var location = Game1.getLocationFromName(args[0]);
+
+        if (location is null)
+        {
+            Log.Info(I18n.UI_SpectateLocation_Fail(args[0]));
+            return;
+        }
+
+        Game1.activeClickableMenu = new SpectatorMenu(location);
+        Log.Info(I18n.UI_SpectateLocation_Success(location.DisplayName));
+    }
+
+    // 旁观玩家
+    private void SpectateFarmer(string command, string[] args)
+    {
+        if (Context.HasRemotePlayers)
+        {
+            Log.Info(I18n.UI_NoPlayerOnline());
+            return;
+        }
+
+        var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
+
+        if (farmer is null)
+        {
+            Log.Info(I18n.UI_SpectatePlayer_Fail(args[0]));
+            return;
+        }
+
+        Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
+        Log.Info(I18n.UI_SpectatePlayer_Success(farmer.Name));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

@@ -18,11 +18,18 @@ internal class GenericModConfigMenuForSpectatorMode
 
         configMenu
             .Register()
+            // 旁观者模式
             .AddKeybindList(
-                config => config.SpectatorModeKeybind,
-                (config, value) => config.SpectatorModeKeybind = value,
-                I18n.Config_SpectatorModeKeybind_Name
+                config => config.SpectateLocationKeybind,
+                (config, value) => config.SpectateLocationKeybind = value,
+                I18n.Config_SpectateLocationKeybind_Name
             )
+            .AddKeybindList(
+                config => config.SpectatePlayerKeybind,
+                (config, value) => config.SpectatePlayerKeybind = value,
+                I18n.Config_SpectatePlayerKeybind_Name
+            )
+            // 轮播玩家
             .AddKeybindList(
                 config => config.RotatePlayerKeybind,
                 (config, value) => config.RotatePlayerKeybind = value,

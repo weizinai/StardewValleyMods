@@ -28,15 +28,18 @@ internal class ModEntry : Mod
         var mouseX = Game1.getOldMouseX(false);
         var mouseY = Game1.getOldMouseY(false);
         var moveSpeed = config.MoveSpeed;
+        var moveThreshold = config.MoveThreshold;
         
-        if (mouseX < 64)
+        // 水平移动
+        if (mouseX < moveThreshold)
             Game1.panScreen(-moveSpeed, 0);
-        else if (mouseX - Game1.viewport.Width >= -128) 
+        else if (mouseX - Game1.viewport.Width >= -moveThreshold) 
             Game1.panScreen(moveSpeed, 0);
         
-        if (mouseY < 64)
+        // 垂直移动
+        if (mouseY < moveThreshold)
             Game1.panScreen(0, -moveSpeed);
-        else if (mouseY - Game1.viewport.Height >= -64) 
+        else if (mouseY - Game1.viewport.Height >= -moveThreshold) 
             Game1.panScreen(0, moveSpeed);
     }
 

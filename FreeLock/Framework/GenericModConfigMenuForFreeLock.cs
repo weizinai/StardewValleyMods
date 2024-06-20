@@ -29,6 +29,12 @@ internal class GenericModConfigMenuForFreeLock
                 I18n.Config_MoveSpeed_Name,
                 I18n.Config_MoveSpeed_Tooltip
             )
+            .AddNumberOption(
+                config => config.MoveThreshold,
+                (config, value) => config.MoveThreshold = value,
+                I18n.Config_MoveThreshold_Name,
+                I18n.Config_MoveThreshold_Tooltip
+            )
             ;
     }
 }

@@ -1,6 +1,7 @@
 {
     // Spectator Mode
     "Config.SpectatorModeTitle.Name": "Spectator Mode",
+    "UI.SpectatorMode.Title": "Spectating {{name}}",
     "Config.SpectateLocationKeybind.Name": "Spectate Location Keybind",
     "UI.SpectateLocation.Fail": "{{locationName}} doesn't exist.",
     "UI.SpectateLocation.Success": "{{locationName}} exists, start spectating.",

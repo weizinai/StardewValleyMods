@@ -10,9 +10,21 @@ namespace SpectatorMode.Framework;
 internal class SpectatorMenu : IClickableMenu
 {
     private readonly ModConfig config;
+
+
     private bool followPlayer;
+    private bool FollowPlayer
+    {
+        get => followPlayer;
+        set
+        {
+            followPlayer = value;
+            title = value ? new MenuTitle(I18n.UI_SpectatorMode_Title(targetFarmer.displayName)) : new MenuTitle(I18n.UI_SpectatorMode_Title(targetLocation.DisplayName));
+        }
+    }
     private readonly Farmer targetFarmer;
     private readonly GameLocation targetLocation;
+    private MenuTitle title = null!;
 
     private static GameLocation originLocation = null!;
     private static Location originViewport;
@@ -21,9 +33,9 @@ internal class SpectatorMenu : IClickableMenu
     {
         // 初始化
         this.config = config;
-        this.followPlayer = followPlayer;
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
+        FollowPlayer = followPlayer;
 
         // 储存原始数据
         if (firstActive)
@@ -38,7 +50,7 @@ internal class SpectatorMenu : IClickableMenu
 
     public override void update(GameTime time)
     {
-        if (followPlayer)
+        if (FollowPlayer)
         {
             if (!targetLocation.Equals(targetFarmer.currentLocation))
                 Game1.activeClickableMenu = new SpectatorMenu(config, targetFarmer.currentLocation, targetFarmer, true, false);
@@ -56,30 +68,32 @@ internal class SpectatorMenu : IClickableMenu
         // 水平移动
         if (mouseX < moveThreshold)
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(-moveSpeed, 0);
         }
         else if (mouseX - Game1.viewport.Width >= -moveThreshold)
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(moveSpeed, 0);
         }
 
         // 垂直移动
         if (mouseY < moveThreshold)
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(0, -moveSpeed);
         }
         else if (mouseY - Game1.viewport.Height >= -moveThreshold)
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(0, moveSpeed);
         }
     }
 
     public override void draw(SpriteBatch b)
     {
+        title.Draw(b);
+        
         drawMouse(b);
     }
 
@@ -91,22 +105,22 @@ internal class SpectatorMenu : IClickableMenu
 
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(0, moveSpeed);
         }
         else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(moveSpeed, 0);
         }
         else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(0, -moveSpeed);
         }
         else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
         {
-            followPlayer = false;
+            FollowPlayer = false;
             Game1.panScreen(-moveSpeed, 0);
         }
     }
@@ -143,7 +157,7 @@ internal class SpectatorMenu : IClickableMenu
 
     private Location GetInitialViewport()
     {
-        if (followPlayer)
+        if (FollowPlayer)
         {
             return GetViewportFromFarmer();
         }

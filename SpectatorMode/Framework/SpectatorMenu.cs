@@ -10,7 +10,7 @@ namespace SpectatorMode.Framework;
 internal class SpectatorMenu : IClickableMenu
 {
     private readonly ModConfig config;
-    private readonly bool followPlayer;
+    private bool followPlayer;
     private readonly Farmer targetFarmer;
     private readonly GameLocation targetLocation;
 
@@ -46,25 +46,35 @@ internal class SpectatorMenu : IClickableMenu
             Game1.viewport.Location = GetViewportFromFarmer();
             Game1.clampViewportToGameMap();
         }
-        else
+
+        // 鼠标移动视角
+        var mouseX = Game1.getOldMouseX(false);
+        var mouseY = Game1.getOldMouseY(false);
+        var moveSpeed = config.MoveSpeed;
+        var moveThreshold = config.MoveThreshold;
+
+        // 水平移动
+        if (mouseX < moveThreshold)
         {
-            // 鼠标移动视角
-            var mouseX = Game1.getOldMouseX(false);
-            var mouseY = Game1.getOldMouseY(false);
-            var moveSpeed = config.MoveSpeed;
-            var moveThreshold = config.MoveThreshold;
+            followPlayer = false;
+            Game1.panScreen(-moveSpeed, 0);
+        }
+        else if (mouseX - Game1.viewport.Width >= -moveThreshold)
+        {
+            followPlayer = false;
+            Game1.panScreen(moveSpeed, 0);
+        }
 
-            // 水平移动
-            if (mouseX < moveThreshold)
-                Game1.panScreen(-moveSpeed, 0);
-            else if (mouseX - Game1.viewport.Width >= -moveThreshold)
-                Game1.panScreen(moveSpeed, 0);
-
-            // 垂直移动
-            if (mouseY < moveThreshold)
-                Game1.panScreen(0, -moveSpeed);
-            else if (mouseY - Game1.viewport.Height >= -moveThreshold)
-                Game1.panScreen(0, moveSpeed);
+        // 垂直移动
+        if (mouseY < moveThreshold)
+        {
+            followPlayer = false;
+            Game1.panScreen(0, -moveSpeed);
+        }
+        else if (mouseY - Game1.viewport.Height >= -moveThreshold)
+        {
+            followPlayer = false;
+            Game1.panScreen(0, moveSpeed);
         }
     }
 
@@ -76,19 +86,29 @@ internal class SpectatorMenu : IClickableMenu
     public override void receiveKeyPress(Keys key)
     {
         base.receiveKeyPress(key);
-        
-        if (followPlayer) return;
 
         var moveSpeed = config.MoveSpeed;
-        
+
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
+        {
+            followPlayer = false;
             Game1.panScreen(0, moveSpeed);
+        }
         else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
+        {
+            followPlayer = false;
             Game1.panScreen(moveSpeed, 0);
+        }
         else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
+        {
+            followPlayer = false;
             Game1.panScreen(0, -moveSpeed);
+        }
         else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
+        {
+            followPlayer = false;
             Game1.panScreen(-moveSpeed, 0);
+        }
     }
 
     protected override void cleanupBeforeExit()

@@ -18,10 +18,10 @@ internal class TipHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.Display.Rendered += OnRendered;
+        Helper.Events.Display.RenderingHud += OnRenderingHud;
     }
 
-    private void OnRendered(object? sender, RenderedEventArgs e)
+    private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
     {
         // 如果该功能未启用，则返回
         if (!Config.ShowTip) return;

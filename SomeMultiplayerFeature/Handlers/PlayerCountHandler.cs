@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using SomeMultiplayerFeature.Framework;
 using SomeMultiplayerFeature.Framework.UI;
 using StardewModdingAPI;
@@ -20,7 +19,7 @@ internal class PlayerCountHandler : BaseHandler
     public override void Init()
     {
         Helper.Events.GameLoop.OneSecondUpdateTicked += OnSecondUpdateTicked;
-        Helper.Events.Display.Rendered += OnRendered;
+        Helper.Events.Display.RenderingHud += OnRenderingHud;
     }
 
     // 每秒检测当前在线玩家的数量
@@ -36,7 +35,7 @@ internal class PlayerCountHandler : BaseHandler
     }
 
     // 绘制玩家数量按钮
-    private void OnRendered(object? sender, RenderedEventArgs e)
+    private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
     {
         // 如果该功能未启用，则返回
         if (!Config.ShowPlayerCount) return;

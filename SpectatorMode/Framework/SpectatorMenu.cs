@@ -13,10 +13,10 @@ internal class SpectatorMenu : IClickableMenu
     private readonly Farmer targetFarmer;
     private readonly GameLocation targetLocation;
 
-    private readonly GameLocation originLocation;
-    private readonly Location originViewport;
+    private static GameLocation originLocation = null!;
+    private static Location originViewport;
 
-    public SpectatorMenu(GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false)
+    public SpectatorMenu(GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false, bool firstActive = true)
     {
         // 初始化
         this.followPlayer = followPlayer;
@@ -24,8 +24,11 @@ internal class SpectatorMenu : IClickableMenu
         this.targetLocation = targetLocation;
 
         // 储存原始数据
-        originLocation = Game1.player.currentLocation;
-        originViewport = Game1.viewport.Location;
+        if (firstActive)
+        {
+            originLocation = Game1.player.currentLocation;
+            originViewport = Game1.viewport.Location;
+        }
 
         // 切换视角
         Game1.globalFadeToBlack(Init);
@@ -36,7 +39,7 @@ internal class SpectatorMenu : IClickableMenu
         if (followPlayer)
         {
             if (!targetLocation.Equals(targetFarmer.currentLocation))
-                Game1.activeClickableMenu = new SpectatorMenu(targetFarmer.currentLocation, targetFarmer, true);
+                Game1.activeClickableMenu = new SpectatorMenu(targetFarmer.currentLocation, targetFarmer, true, false);
 
             Game1.viewport.Location = GetViewportFromFarmer();
             Game1.clampViewportToGameMap();

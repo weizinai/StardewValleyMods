@@ -1,0 +1,14 @@
+{
+    "Name": "Better Cabin",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "This mod gives the cabin more features.",
+    "UniqueID": "weizinai.BetterCabin",
+    "EntryDll": "BetterCabin.dll",
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

@@ -3,7 +3,6 @@ using BetterCabin.Patches;
 using Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Locations;
 
@@ -12,7 +11,6 @@ namespace BetterCabin;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private KeybindList keybind = new(SButton.O);
 
     public override void Entry(IModHelper helper)
     {
@@ -21,9 +19,36 @@ internal class ModEntry : Mod
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.Input.ButtonsChanged += OnButtonChanged;
         helper.Events.Player.Warped += OnWarped;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this, new BuildingPatcher(config));
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (!Context.IsMainPlayer) return;
+
+        if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
+        {
+            if (Game1.player.currentLocation is Cabin cabin)
+            {
+                if (!cabin.owner.isUnclaimedFarmhand)
+                {
+                    Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_Success(cabin.owner.displayName)) { noIcon = true });
+                    cabin.DeleteFarmhand();
+                    cabin.CreateFarmhand();
+                }
+                else
+                {
+                    Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_NoOwner()) { noIcon = true });
+                }
+            }
+            else
+            {
+                Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_Location()) { noIcon = true });
+            }
+        }
     }
 
     private void OnWarped(object? sender, WarpedEventArgs e)

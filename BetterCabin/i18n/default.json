@@ -10,4 +10,12 @@
     "Config.CabinOwnerNameTag.Tooltip": "Display the name of the owner of the cabin on the cabin.",
     "Config.XOffset.Name": "X Offset",
     "Config.YOffset.Name": "Y Offset",
+    
+    // Delete Farmhand
+    "Config.DeleteFarmhand.Name": "Delete Farmhand",
+    "Config.DeleteFarmhand.Tooltip": "When you are inside a cabin, pressing the keybind will delete the cabin owner's association to the cabin.",
+    "Config.DeleteFarmhandKeybind.Name": "Delete Farmhand Keybind",
+    "UI.DeleteFarmhand.Success": "{{name}}'s association to the cabin has been deleted, and the cabin can now create new farmer.",
+    "UI.DeleteFarmhand.NoOwner": "The current cabin has no owner and cannot initiate a deletion.",
+    "UI.DeleteFarmhand.Location": "You are not inside the cabin and cannot initiate a deletion.",
 }

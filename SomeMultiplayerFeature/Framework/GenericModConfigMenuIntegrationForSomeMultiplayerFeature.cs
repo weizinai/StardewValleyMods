@@ -47,6 +47,7 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_ModLimit_Tooltip
             )
             .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
+            // 自动设置Ip连接
             .AddBoolOption(
                 config => config.AutoSetIpConnection,
                 (config, value) => config.AutoSetIpConnection = value,
@@ -55,12 +56,18 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddNumberOption(
                 config => config.EnableTime,
                 (config, value) => config.EnableTime = value,
-                I18n.Config_EnableTime_Name
+                I18n.Config_EnableTime_Name,
+                null,
+                6,
+                26
             )
             .AddNumberOption(
                 config => config.DisableTime,
                 (config, value) => config.DisableTime = value,
-                I18n.Config_DisableTime_Name
+                I18n.Config_DisableTime_Name,
+                null,
+                6,
+                26
             )
             .AddBoolOption(
                 config => config.DisableWhenFestival,

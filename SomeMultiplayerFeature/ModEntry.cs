@@ -43,6 +43,7 @@ public class ModEntry : Mod
         var handlers = new IHandler[]
         {
             new AccessShopInfoHandler(Helper, config),
+            new AutoClickHandler(Helper, config),
             new CustomCommandHandler(Helper, config),
             new DelayedPlayerHandler(Helper, config),
             new IpConnectionHandler(Helper, config),

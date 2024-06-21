@@ -14,6 +14,12 @@
     "Config.ModLimit.Name": "模组限制",
     "Config.ModLimit.Tooltip": "检测客户端玩家的模组是否符合要求。该功能仅限主机端可用。",
 
+    // 自动设置Ip连接
+    "Config.AutoSetIpConnection.Name": "自动设置Ip连接",
+    "Config.EnableTime.Name": "启用时间",
+    "Config.DisableTime.Name": "禁用时间",
+    "Config.DisableWhenFestival.Name": "在节日禁用",
+
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",
     "Config.ShowPlayerCount.Tooltip": "显示当前在线的玩家数量。该功能主机端和客户端均可用。",

@@ -46,6 +46,27 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_ModLimit_Name,
                 I18n.Config_ModLimit_Tooltip
             )
+            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
+            .AddBoolOption(
+                config => config.AutoSetIpConnection,
+                (config, value) => config.AutoSetIpConnection = value,
+                I18n.Config_AutoSetIpConnection_Name
+            )
+            .AddNumberOption(
+                config => config.EnableTime,
+                (config, value) => config.EnableTime = value,
+                I18n.Config_EnableTime_Name
+            )
+            .AddNumberOption(
+                config => config.DisableTime,
+                (config, value) => config.DisableTime = value,
+                I18n.Config_DisableTime_Name
+            )
+            .AddBoolOption(
+                config => config.DisableWhenFestival,
+                (config, value) => config.DisableWhenFestival = value,
+                I18n.Config_DisableWhenFestival_Name
+            )
             // 显示玩家数量
             .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
             .AddBoolOption(

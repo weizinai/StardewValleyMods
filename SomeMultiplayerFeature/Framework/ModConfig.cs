@@ -15,6 +15,12 @@ public class ModConfig
     // 模组限制
     public bool ModLimit { get; set; } = true;
 
+    // 自动设置IP连接
+    public bool AutoSetIpConnection { get; set; } = true;
+    public int EnableTime { get; set; } = 6;
+    public int DisableTime { get; set; } = 20;
+    public bool DisableWhenFestival { get; set; } = true;
+
     // 显示玩家数量
     public bool ShowPlayerCount { get; set; } = true;
 

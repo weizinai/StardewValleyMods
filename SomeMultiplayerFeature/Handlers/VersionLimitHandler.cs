@@ -22,6 +22,7 @@ internal class VersionLimitHandler : BaseHandler
         Helper.Events.GameLoop.TimeChanged += OnTimeChanged;
         Helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
         Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
+        Helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
     }
 
     private void OnTimeChanged(object? sender, TimeChangedEventArgs e)
@@ -38,8 +39,9 @@ internal class VersionLimitHandler : BaseHandler
             {
                 if (!farmer.modData.ContainsKey(ModKey) || farmer.modData[ModKey] != "0.6.0")
                 {
+                    Helper.Multiplayer.SendMessage($"{farmer.Name}已被踢出，因为其SomeMultiplayerFeature模组不是最新版。", "VersionLimit",
+                        new[] { "weizinai.SomeMultiplayerFeature" }, new[] { id });
                     Game1.server.kick(id);
-                    Log.Alert($"{farmer.Name}已被踢出，因为其SomeMultiplayerFeature模组不是最新版。");
                 }
             }
 
@@ -66,5 +68,16 @@ internal class VersionLimitHandler : BaseHandler
         if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         actionCount++;
+    }
+
+    private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
+    {
+        if (Context.IsMainPlayer) return;
+        
+        if (e is { Type: "VersionLimit", FromModID: "weizinai.SomeMultiplayerFeature" })
+        {
+            var message = e.ReadAs<string>();
+            Log.Alert(message);
+        }
     }
 }

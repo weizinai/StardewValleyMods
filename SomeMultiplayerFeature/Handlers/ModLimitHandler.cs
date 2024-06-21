@@ -27,6 +27,7 @@ internal class ModLimitHandler : BaseHandler
     public override void Init()
     {
         Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
+        Helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -40,15 +41,31 @@ internal class ModLimitHandler : BaseHandler
         var detectedPlayer = Game1.getFarmer(e.Peer.PlayerID);
 
         // 如果玩家没用安装SMAPI，则踢出该玩家并发送消息
-        if (!e.Peer.HasSmapi) Log.Alert($"{detectedPlayer.Name}已被踢出，因为其未安装SMAPI。");
+        if (!e.Peer.HasSmapi)
+        {
+            Log.Alert($"{detectedPlayer.Name}已被踢出，因为其未安装SMAPI。");
+            return;
+        }
 
         // 如果玩家的模组不满足要求，则踢出该玩家并发送消息
         var unAllowedMods = GetUnAllowedMods(e.Peer).ToList();
         if (unAllowedMods.Any())
         {
-            Log.Alert($"{detectedPlayer.Name}已被踢出，因为其不满足模组要求：");
-            foreach (var id in unAllowedMods) Log.Info(modRequirement!["RequiredModList"].Contains(id) ? $"{id}未安装" : $"{id}被禁止");
+            Helper.Multiplayer.SendMessage(unAllowedMods, "ModLimit",
+                new[] { "weizinai.SomeMultiplayerFeature" }, new[] { e.Peer.PlayerID });
             Game1.server.kick(e.Peer.PlayerID);
+        }
+    }
+
+    private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
+    {
+        if (Context.IsMainPlayer) return;
+
+        if (e is { Type: "ModLimit", FromModID: "weizinai.SomeMultiplayerFeature" })
+        {
+            var message = e.ReadAs<List<string>>();
+            Log.Alert($"{Game1.player.Name}已被踢出，因为其不满足模组要求：");
+            foreach (var id in message) Log.Info(modRequirement!["RequiredModList"].Contains(id) ? $"{id}未安装" : $"{id}被禁止");
         }
     }
 

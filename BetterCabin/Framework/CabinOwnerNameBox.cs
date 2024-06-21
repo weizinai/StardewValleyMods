@@ -11,16 +11,19 @@ internal class CabinOwnerNameBox
 {
     private readonly Building building;
     private readonly Cabin cabin;
+    private readonly Point offset;
 
     private SpriteFont Font => Game1.smallFont;
     private string Name => cabin.owner.displayName;
     private Point Size => Font.MeasureString(Name).ToPoint() + new Point(32, 32);
-    private Point Position => new(building.tileX.Value * 64 - Game1.viewport.X, building.tileY.Value * 64 - Game1.viewport.Y);
+    private Point Position => new(building.tileX.Value * 64 - Game1.viewport.X + offset.X, 
+        building.tileY.Value * 64 - Game1.viewport.Y + offset.Y);
 
-    public CabinOwnerNameBox(Building building, Cabin cabin)
+    public CabinOwnerNameBox(Building building, Cabin cabin, Point offset)
     {
         this.building = building;
         this.cabin = cabin;
+        this.offset = offset;
     }
 
     public void Draw(SpriteBatch spriteBatch)

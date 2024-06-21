@@ -1,6 +1,7 @@
 using BetterCabin.Framework;
 using Common.Patcher;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Buildings;
 using StardewValley.Locations;
@@ -31,7 +32,7 @@ internal class BuildingPatcher : BasePatcher
         
         if (__instance.GetIndoors() is Cabin {HasOwner: true} cabin)
         {
-            box = new CabinOwnerNameBox(__instance, cabin);
+            box = new CabinOwnerNameBox(__instance, cabin, new Point(config.XOffset, config.YOffset));
             box.Draw(b);
         }
     }

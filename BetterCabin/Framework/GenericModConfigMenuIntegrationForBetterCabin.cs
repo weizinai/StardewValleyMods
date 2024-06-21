@@ -32,6 +32,16 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 I18n.Config_CabinOwnerNameTag_Name,
                 I18n.Config_CabinOwnerNameTag_Tooltip
             )
+            .AddNumberOption(
+                config => config.XOffset,
+                (config, value) => config.XOffset = value,
+                I18n.Config_XOffset_Name
+                )
+            .AddNumberOption(
+                config => config.YOffset,
+                (config, value) => config.YOffset = value,
+                I18n.Config_YOffset_Name
+            )
             ;
     }
 }

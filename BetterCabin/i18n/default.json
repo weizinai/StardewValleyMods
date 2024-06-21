@@ -8,4 +8,6 @@
     // Cabin Owner Name Tag
     "Config.CabinOwnerNameTag.Name": "Cabin Owner Name Tag",
     "Config.CabinOwnerNameTag.Tooltip": "Display the name of the owner of the cabin on the cabin.",
+    "Config.XOffset.Name": "X Offset",
+    "Config.YOffset.Name": "Y Offset",
 }

@@ -8,6 +8,8 @@ namespace SomeMultiplayerFeature.Handlers;
 
 internal class DelayedPlayerHandler : BaseHandler
 {
+    private int cooldown;
+
     public DelayedPlayerHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
@@ -15,10 +17,10 @@ internal class DelayedPlayerHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.TimeChanged += OnTimeChanged;
+        Helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
     }
 
-    private void OnTimeChanged(object? sender, TimeChangedEventArgs e)
+    private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         // 如果功能未启用，则返回
         if (!Config.ShowDelayedPlayer) return;
@@ -26,15 +28,22 @@ internal class DelayedPlayerHandler : BaseHandler
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
-        var playerPing = new Dictionary<string, float>();
-        foreach (var farmer in Game1.getOnlineFarmers())
+        cooldown++;
+        
+        if (cooldown >= Config.ShowInterval)
         {
-            if (farmer.IsMainPlayer) continue;
+            cooldown = 0;
+            
+            var playerPing = new Dictionary<string, float>();
+            foreach (var farmer in Game1.getOnlineFarmers())
+            {
+                if (farmer.IsMainPlayer) continue;
 
-            var ping = Game1.server.getPingToClient(farmer.UniqueMultiplayerID);
-            if (ping >= 100) playerPing.Add(farmer.Name, ping);
+                var ping = Game1.server.getPingToClient(farmer.UniqueMultiplayerID);
+                if (ping >= 100) playerPing.Add(farmer.Name, ping);
+            }
+
+            if (playerPing.Any()) Log.Alert($"{playerPing.MaxBy(x => x.Value).Key}的延迟超过100ms，且其延迟最高。");
         }
-
-        if (playerPing.Any()) Log.Alert($"{playerPing.MaxBy(x => x.Value).Key}的延迟超过100ms，且其延迟最高。");
     }
 }

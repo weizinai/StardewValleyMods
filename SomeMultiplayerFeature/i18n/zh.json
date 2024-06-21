@@ -7,7 +7,8 @@
 
     // 显示延迟玩家
     "Config.ShowDelayedPlayer.Name": "显示延迟玩家",
-    "Config.ShowDelayedPlayer.Tooltip": "每隔游戏内的10分钟，显示延迟最高且超过100ms的玩家。该功能仅限主机端可用。",
+    "Config.ShowDelayedPlayer.Tooltip": "每隔一段时间，显示延迟最高且超过100ms的玩家。该功能仅限主机端可用。",
+    "Config.ShowInterval,Name": "显示间隔",
 
     // 模组限制
     "Config.ModLimit.Name": "模组限制",

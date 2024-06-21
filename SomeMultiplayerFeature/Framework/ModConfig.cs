@@ -10,6 +10,7 @@ public class ModConfig
 
     // 显示延迟玩家
     public bool ShowDelayedPlayer { get; set; } = true;
+    public int ShowInterval { get; set; } = 30;
 
     // 模组限制
     public bool ModLimit { get; set; } = true;

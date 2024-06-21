@@ -33,6 +33,11 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_ShowDelayedPlayer_Name,
                 I18n.Config_ShowDelayedPlayer_Tooltip
             )
+            .AddNumberOption(
+                config => config.ShowInterval,
+                (config, value) => config.ShowInterval = value,
+                I18n.Config_ShowIntervalName
+            )
             // 模组限制
             .AddSectionTitle(I18n.Config_ModLimit_Name)
             .AddBoolOption(

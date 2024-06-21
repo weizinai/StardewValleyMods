@@ -1,4 +1,6 @@
 ﻿using BetterCabin.Framework;
+using BetterCabin.Patches;
+using Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -18,13 +20,15 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += OnGameLaunched;
         helper.Events.Player.Warped += OnWarped;
+        // 注册Harmony补丁
+        HarmonyPatcher.Apply(this, new BuildingPatcher(config));
     }
 
     private void OnWarped(object? sender, WarpedEventArgs e)
     {
         if (config.VisitCabinInfo && e.NewLocation is Cabin cabin)
         {
-            var message = new HUDMessage(I18n.UI_AccessCabin(cabin.owner.displayName))
+            var message = new HUDMessage(cabin.HasOwner ? I18n.UI_VisitCabin_HasOwner(cabin.owner.displayName) : I18n.UI_VisitCabin_NoOwner())
             {
                 noIcon = true,
                 timeLeft = 500

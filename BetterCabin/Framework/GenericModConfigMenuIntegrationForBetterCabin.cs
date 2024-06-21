@@ -18,11 +18,19 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
 
         configMenu
             .Register()
+            .AddSectionTitle(I18n.Config_VisitCabinInfo_Name)
             .AddBoolOption(
                 config => config.VisitCabinInfo,
                 (config, value) => config.VisitCabinInfo = value,
                 I18n.Config_VisitCabinInfo_Name,
                 I18n.Config_VisitCabinInfo_Tooltip
+            )
+            .AddSectionTitle(I18n.Config_CabinOwnerNameTag_Name)
+            .AddBoolOption(
+                config => config.CabinOwnerNameTag,
+                (config, value) => config.CabinOwnerNameTag = value,
+                I18n.Config_CabinOwnerNameTag_Name,
+                I18n.Config_CabinOwnerNameTag_Tooltip
             )
             ;
     }

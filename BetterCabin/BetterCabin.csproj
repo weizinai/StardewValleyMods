@@ -4,6 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <EnableHarmony>true</EnableHarmony>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,5 +13,7 @@
     </ItemGroup>
 
     <Import Project="..\Common\Common.projitems" Label="Shared" />
+
+    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
 
 </Project>

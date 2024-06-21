@@ -2,5 +2,10 @@
     // 拜访小屋信息
     "Config.VisitCabinInfo.Name": "拜访小屋信息",
     "Config.VisitCabinInfo.Tooltip": "当你拜访一个小屋时，会显示一条小屋主人的信息。",
-    "UI.AccessCabin": "你访问了{{name}}的小屋"
+    "UI.VisitCabin.HasOwner": "你拜访了{{name}}的小屋",
+    "UI.VisitCabin.NoOwner": "这个小屋没有主人",
+
+    // Cabin Owner Name Tag
+    "Config.CabinOwnerNameTag.Name": "小屋主人名字标签",
+    "Config.CabinOwnerNameTag.Tooltip": "在小屋上显示小屋主人的名字。",
 }

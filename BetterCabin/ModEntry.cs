@@ -3,6 +3,7 @@ using BetterCabin.Patches;
 using Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Locations;
 
@@ -11,6 +12,7 @@ namespace BetterCabin;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
+    private KeybindList keybind = new(SButton.O);
 
     public override void Entry(IModHelper helper)
     {
@@ -28,7 +30,7 @@ internal class ModEntry : Mod
     {
         if (config.VisitCabinInfo && e.NewLocation is Cabin cabin)
         {
-            var message = new HUDMessage(cabin.HasOwner ? I18n.UI_VisitCabin_HasOwner(cabin.owner.displayName) : I18n.UI_VisitCabin_NoOwner())
+            var message = new HUDMessage(!cabin.owner.isUnclaimedFarmhand ? I18n.UI_VisitCabin_HasOwner(cabin.owner.displayName) : I18n.UI_VisitCabin_NoOwner())
             {
                 noIcon = true,
                 timeLeft = 500

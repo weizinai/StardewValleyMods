@@ -30,7 +30,7 @@ internal class BuildingPatcher : BasePatcher
     {
         if (!config.CabinOwnerNameTag) return;
         
-        if (__instance.GetIndoors() is Cabin {HasOwner: true} cabin)
+        if (__instance.GetIndoors() is Cabin cabin && !cabin.owner.isUnclaimedFarmhand)
         {
             box = new CabinOwnerNameBox(__instance, cabin, new Point(config.XOffset, config.YOffset));
             box.Draw(b);

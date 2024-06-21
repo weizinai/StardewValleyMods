@@ -13,6 +13,7 @@ internal class SpectatorMenu : IClickableMenu
 
 
     private bool followPlayer;
+
     private bool FollowPlayer
     {
         get => followPlayer;
@@ -22,6 +23,7 @@ internal class SpectatorMenu : IClickableMenu
             title = value ? new MenuTitle(I18n.UI_SpectatorMode_Title(targetFarmer.displayName)) : new MenuTitle(I18n.UI_SpectatorMode_Title(targetLocation.DisplayName));
         }
     }
+
     private readonly Farmer targetFarmer;
     private readonly GameLocation targetLocation;
     private MenuTitle title = null!;
@@ -57,6 +59,7 @@ internal class SpectatorMenu : IClickableMenu
 
             Game1.viewport.Location = GetViewportFromFarmer();
             Game1.clampViewportToGameMap();
+            return;
         }
 
         // 鼠标移动视角
@@ -67,33 +70,21 @@ internal class SpectatorMenu : IClickableMenu
 
         // 水平移动
         if (mouseX < moveThreshold)
-        {
-            FollowPlayer = false;
             Game1.panScreen(-moveSpeed, 0);
-        }
         else if (mouseX - Game1.viewport.Width >= -moveThreshold)
-        {
-            FollowPlayer = false;
             Game1.panScreen(moveSpeed, 0);
-        }
 
         // 垂直移动
         if (mouseY < moveThreshold)
-        {
-            FollowPlayer = false;
             Game1.panScreen(0, -moveSpeed);
-        }
         else if (mouseY - Game1.viewport.Height >= -moveThreshold)
-        {
-            FollowPlayer = false;
             Game1.panScreen(0, moveSpeed);
-        }
     }
 
     public override void draw(SpriteBatch b)
     {
         title.Draw(b);
-        
+
         drawMouse(b);
     }
 
@@ -101,28 +92,18 @@ internal class SpectatorMenu : IClickableMenu
     {
         base.receiveKeyPress(key);
 
-        var moveSpeed = config.MoveSpeed;
+        if (config.ToggleStateKeybind.JustPressed()) FollowPlayer = !FollowPlayer;
 
+        if (FollowPlayer) return;
+
+        var moveSpeed = config.MoveSpeed;
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
-        {
-            FollowPlayer = false;
             Game1.panScreen(0, moveSpeed);
-        }
         else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
-        {
-            FollowPlayer = false;
             Game1.panScreen(moveSpeed, 0);
-        }
         else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
-        {
-            FollowPlayer = false;
             Game1.panScreen(0, -moveSpeed);
-        }
-        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
-        {
-            FollowPlayer = false;
-            Game1.panScreen(-moveSpeed, 0);
-        }
+        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key)) Game1.panScreen(-moveSpeed, 0);
     }
 
     protected override void cleanupBeforeExit()

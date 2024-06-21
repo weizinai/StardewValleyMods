@@ -30,6 +30,11 @@ internal class GenericModConfigMenuForSpectatorMode
                 (config, value) => config.SpectatePlayerKeybind = value,
                 I18n.Config_SpectatePlayerKeybind_Name
             )
+            .AddKeybindList(
+                config => config.ToggleStateKeybind,
+                (config, value) => config.ToggleStateKeybind = value,
+                I18n.Config_ToggleStateKeybind_Name
+            )
             .AddNumberOption(
                 config => config.MoveSpeed,
                 (config, value) => config.MoveSpeed = value,

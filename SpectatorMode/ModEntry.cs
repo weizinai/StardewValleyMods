@@ -62,8 +62,8 @@ internal class ModEntry : Mod
         // 旁观地点
         if (config.SpectateLocationKeybind.JustPressed() && Context.IsPlayerFree)
         {
-            var locations = Game1.locations.Where(location => location.IsOutdoors).
-                Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
+            var locations = Game1.locations.Where(location => location.IsOutdoors)
+                .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
             Game1.currentLocation.ShowPagedResponses("", locations, value => SpectateLocation("spectate_location", new[] { value }),
                 false, true, 10);
         }

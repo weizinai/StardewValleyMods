@@ -9,7 +9,7 @@ internal class MenuTitle
 {
     private readonly string text;
     private readonly Vector2 position;
-    
+
     private readonly SpriteFont font = Game1.dialogueFont;
 
     public MenuTitle(string text)

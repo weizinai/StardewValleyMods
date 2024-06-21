@@ -16,6 +16,14 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
     {
         if (!configMenu.IsLoaded) return;
 
-        configMenu.Register();
+        configMenu
+            .Register()
+            .AddBoolOption(
+                config => config.VisitCabinInfo,
+                (config, value) => config.VisitCabinInfo = value,
+                I18n.Config_VisitCabinInfo_Name,
+                I18n.Config_VisitCabinInfo_Tooltip
+            )
+            ;
     }
 }

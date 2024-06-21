@@ -1,3 +1,6 @@
 {
-
+    // Visit Cabin Info
+    "Config.VisitCabinInfo.Name": "Visit Cabin Info",
+    "Config.VisitCabinInfo.Tooltip": "When you visit a cabin, a message about the owner of the cabin is displayed.",
+    "UI.AccessCabin": "You access {{name}}'s cabin."
 }

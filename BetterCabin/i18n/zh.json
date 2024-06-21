@@ -1,3 +1,6 @@
 {
-
+    // 拜访小屋信息
+    "Config.VisitCabinInfo.Name": "拜访小屋信息",
+    "Config.VisitCabinInfo.Tooltip": "当你拜访一个小屋时，会显示一条小屋主人的信息。",
+    "UI.AccessCabin": "你访问了{{name}}的小屋"
 }

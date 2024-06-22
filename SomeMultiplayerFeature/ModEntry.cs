@@ -1,4 +1,4 @@
-﻿using weizinai.StardewValleyMod.Common;
+﻿using weizinai.StardewValleyMod.Common.Log;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;

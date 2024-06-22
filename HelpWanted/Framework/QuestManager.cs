@@ -1,4 +1,4 @@
-﻿using weizinai.StardewValleyMod.Common;
+﻿using weizinai.StardewValleyMod.Common.Log;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;

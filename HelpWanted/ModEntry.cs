@@ -1,4 +1,4 @@
-﻿using weizinai.StardewValleyMod.Common;
+﻿using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;

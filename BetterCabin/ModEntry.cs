@@ -101,7 +101,7 @@ internal class ModEntry : Mod
     // 删除小屋主人
     private void DeleteFarmhand()
     {
-        if (!Context.IsMainPlayer) return;
+        if (!Context.IsMainPlayer || !Context.IsPlayerFree) return;
         
         if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
         {

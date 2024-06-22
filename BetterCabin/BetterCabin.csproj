@@ -17,8 +17,8 @@
       <Folder Include="Docs\Screenshots\" />
     </ItemGroup>
 
-    <Import Project="..\Common\Common.projitems" Label="Shared" />
-
     <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
+
+    <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared" />
 
 </Project>

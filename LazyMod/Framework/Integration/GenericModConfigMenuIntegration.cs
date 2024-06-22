@@ -2,7 +2,7 @@ using weizinai.StardewValleyMod.LazyMod;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 // ReSharper disable once CheckNamespace
-namespace weizinai.StardewValleyMod.Common.Integrations;
+namespace weizinai.StardewValleyMod.Common.Integration;
 
 /// <summary>Handles the other logic for integrating with the Generic Mod Config Menu mod.</summary>
 /// <typeparam name="TConfig">The mod config type.</typeparam>

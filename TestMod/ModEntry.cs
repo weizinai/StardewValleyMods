@@ -1,5 +1,5 @@
 ﻿using weizinai.StardewValleyMod.Common;
-using weizinai.StardewValleyMod.Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;

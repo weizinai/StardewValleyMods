@@ -1,5 +1,4 @@
-using System.Runtime.CompilerServices;
-using weizinai.StardewValleyMod.Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integration;
 using StardewModdingAPI;
 
 namespace weizinai.StardewValleyMod.FastControlInput.Framework;

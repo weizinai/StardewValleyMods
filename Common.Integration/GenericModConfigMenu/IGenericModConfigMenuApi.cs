@@ -4,9 +4,9 @@ using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.Common.Integrations;
+namespace weizinai.StardewValleyMod.Common.Integration;
 
-public interface IGenericModConfigMenuApi
+internal interface IGenericModConfigMenuApi
 {
     /// <summary>Register a mod whose config can be edited through the UI.</summary>
     /// <param name="mod">The mod's manifest.</param>

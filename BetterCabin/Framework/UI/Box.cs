@@ -10,15 +10,15 @@ namespace BetterCabin.Framework.UI;
 
 internal abstract class Box
 {
-    protected readonly Building building;
-    protected readonly Cabin cabin;
-    protected readonly ModConfig config;
-    
-    protected SpriteFont Font => Game1.smallFont;
+    private readonly Building building;
+    protected readonly Cabin Cabin;
+    protected readonly ModConfig Config;
+
+    private SpriteFont Font => Game1.smallFont;
     protected abstract Color TextColor { get; }
     protected abstract string Text { get; }
-    protected Point Size => Font.MeasureString(Text).ToPoint() + new Point(32, 32);
-    protected Point Position
+    private Point Size => Font.MeasureString(Text).ToPoint() + new Point(32, 32);
+    private Point Position
     {
         get
         {
@@ -31,8 +31,8 @@ internal abstract class Box
     protected Box(Building building, Cabin cabin, ModConfig config)
     {
         this.building = building;
-        this.cabin = cabin;
-        this.config = config;
+        Cabin = cabin;
+        Config = config;
     }
     
     public void Draw(SpriteBatch spriteBatch)

@@ -1,17 +1,17 @@
 ﻿using System.Reflection;
 using System.Reflection.Emit;
-using weizinai.StardewValleyMod.Common.Log;
-using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using Netcode;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Locations;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.Common.Log;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using SObject = StardewValley.Object;
 
-namespace weizinai.StardewValleyMod.HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class ItemDeliveryQuestPatcher : BasePatcher
 {

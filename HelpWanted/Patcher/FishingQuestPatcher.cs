@@ -1,10 +1,10 @@
 ﻿using System.Reflection.Emit;
-using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 
-namespace weizinai.StardewValleyMod.HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class FishingQuestPatcher : BasePatcher
 {

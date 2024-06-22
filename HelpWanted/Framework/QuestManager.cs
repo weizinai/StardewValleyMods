@@ -8,7 +8,7 @@ using StardewValley.Extensions;
 using StardewValley.Locations;
 using StardewValley.Quests;
 using weizinai.StardewValleyMod.HelpWanted.Framework.Data;
-using weizinai.StardewValleyMod.HelpWanted.Patches;
+using weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 

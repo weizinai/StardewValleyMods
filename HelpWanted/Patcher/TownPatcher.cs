@@ -1,13 +1,13 @@
-using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Locations;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Framework.Menu;
 
-namespace weizinai.StardewValleyMod.HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class TownPatcher : BasePatcher
 {

@@ -35,13 +35,13 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 I18n.Config_CabinOwnerNameTag_Tooltip
             )
             .AddNumberOption(
-                config => config.XOffset,
-                (config, value) => config.XOffset = value,
+                config => config.NameTagXOffset,
+                (config, value) => config.NameTagXOffset = value,
                 I18n.Config_XOffset_Name
             )
             .AddNumberOption(
-                config => config.YOffset,
-                (config, value) => config.YOffset = value,
+                config => config.NameTagYOffset,
+                (config, value) => config.NameTagYOffset = value,
                 I18n.Config_YOffset_Name
             )
             // 删除小屋主人

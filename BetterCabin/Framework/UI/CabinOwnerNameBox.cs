@@ -20,7 +20,7 @@ internal class CabinOwnerNameBox : Box
         }
     }
     protected override string Text => cabin.owner.displayName;
-    protected override Point Offset => new(config.XOffset, config.YOffset);
+    protected override Point Offset => new(config.NameTagXOffset, config.NameTagYOffset);
 
     public CabinOwnerNameBox(Building building, Cabin cabin, ModConfig config) 
         : base(building, cabin, config)

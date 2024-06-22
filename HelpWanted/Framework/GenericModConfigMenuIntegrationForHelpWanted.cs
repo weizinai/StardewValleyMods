@@ -1,8 +1,8 @@
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
-namespace HelpWanted.Framework;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 internal class GenericModConfigMenuIntegrationForHelpWanted
 {

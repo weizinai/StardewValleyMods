@@ -1,7 +1,7 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Framework;
 
 public class ModConfig
 {

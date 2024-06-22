@@ -1,9 +1,9 @@
-using Common;
-using SomeMultiplayerFeature.Framework;
+using weizinai.StardewValleyMod.Common;
 using StardewModdingAPI;
 using StardewValley;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-namespace SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class ItemCheatHandler : BaseHandler
 {

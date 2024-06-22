@@ -3,7 +3,7 @@
     <PropertyGroup Label="Globals">
         <ProjectGuid>56d39247-83b2-4abf-8873-1e51b84f6472</ProjectGuid>
         <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-        <RootNamespace>Common</RootNamespace>
+        <RootNamespace>weizinai.StardewValleyMod.Common</RootNamespace>
     </PropertyGroup>
     <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
     <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.Default.props"/>

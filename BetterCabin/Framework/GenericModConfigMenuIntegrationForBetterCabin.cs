@@ -1,8 +1,8 @@
-using BetterCabin.Framework.Config;
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
+using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 
-namespace BetterCabin.Framework;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework;
 
 internal class GenericModConfigMenuIntegrationForBetterCabin
 {

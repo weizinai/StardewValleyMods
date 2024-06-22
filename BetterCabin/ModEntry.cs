@@ -1,14 +1,14 @@
 ﻿using System.Text;
-using BetterCabin.Framework;
-using BetterCabin.Framework.Config;
-using BetterCabin.Patches;
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
+using weizinai.StardewValleyMod.BetterCabin.Framework;
+using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Patches;
 
-namespace BetterCabin;
+namespace weizinai.StardewValleyMod.BetterCabin;
 
 internal class ModEntry : Mod
 {

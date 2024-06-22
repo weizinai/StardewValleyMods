@@ -1,4 +1,4 @@
-namespace TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Framework;
 
 public class ClayDetect
 {

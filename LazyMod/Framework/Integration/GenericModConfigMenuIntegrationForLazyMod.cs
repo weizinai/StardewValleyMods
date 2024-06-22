@@ -1,10 +1,10 @@
-using Common.Integrations;
-using LazyMod.Automation;
-using LazyMod.Framework.Config;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.LazyMod.Automation;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace LazyMod.Framework.Integration;
+namespace weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 
 internal class GenericModConfigMenuIntegrationForLazyMod
 {

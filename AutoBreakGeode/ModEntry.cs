@@ -1,12 +1,12 @@
-﻿using AutoBreakGeode.Framework;
-using AutoBreakGeode.Patches;
-using Common.Patcher;
+﻿using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.AutoBreakGeode.Framework;
+using weizinai.StardewValleyMod.AutoBreakGeode.Patches;
 
-namespace AutoBreakGeode;
+namespace weizinai.StardewValleyMod.AutoBreakGeode;
 
 internal class ModEntry : Mod
 {

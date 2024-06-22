@@ -1,10 +1,10 @@
-﻿using Common.Patcher;
-using FriendshipDecayModify.Framework;
-using FriendshipDecayModify.Patches;
+﻿using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
+using weizinai.StardewValleyMod.FriendshipDecayModify.Patches;
 
-namespace FriendshipDecayModify;
+namespace weizinai.StardewValleyMod.FriendshipDecayModify;
 
 internal class ModEntry : Mod
 {

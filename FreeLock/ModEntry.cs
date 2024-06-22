@@ -1,10 +1,10 @@
-﻿using Common;
-using FreeLock.Framework;
+﻿using weizinai.StardewValleyMod.Common;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.FreeLock.Framework;
 
-namespace FreeLock;
+namespace weizinai.StardewValleyMod.FreeLock;
 
 internal class ModEntry : Mod
 {

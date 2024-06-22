@@ -1,7 +1,7 @@
 using HarmonyLib;
 using StardewModdingAPI;
 
-namespace Common.Patcher;
+namespace weizinai.StardewValleyMod.Common.Patcher;
 
 /// <summary>Simplifies applying <see cref="IPatcher"/> instances to the game.</summary>
 internal static class HarmonyPatcher

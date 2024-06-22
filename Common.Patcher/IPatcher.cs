@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace Common.Patcher;
+namespace weizinai.StardewValleyMod.Common.Patcher;
 
 internal interface IPatcher
 {

@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace Common.Integrations;
+namespace weizinai.StardewValleyMod.Common.Integrations;
 
 /// <summary>Handles the logic for integrating with the Generic Mod Config Menu mod.</summary>
 /// <typeparam name="TConfig">The mod config type.</typeparam>

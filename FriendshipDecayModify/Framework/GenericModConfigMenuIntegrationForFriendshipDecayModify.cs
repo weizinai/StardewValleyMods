@@ -1,8 +1,8 @@
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
-namespace FriendshipDecayModify.Framework;
+namespace weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 
 internal class GenericModConfigMenuIntegrationForFriendshipDecayModify
 {

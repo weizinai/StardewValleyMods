@@ -1,4 +1,4 @@
-namespace Common;
+namespace weizinai.StardewValleyMod.Common;
 
 public class ItemRepository
 {

@@ -4,7 +4,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Extensions;
 
-namespace HelpWanted.Framework;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 internal class AppearanceManager
 {

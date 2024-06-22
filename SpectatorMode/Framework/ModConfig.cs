@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace SpectatorMode.Framework;
+namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 internal class ModConfig
 {

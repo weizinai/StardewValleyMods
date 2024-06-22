@@ -1,8 +1,8 @@
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
-namespace AutoBreakGeode.Framework;
+namespace weizinai.StardewValleyMod.AutoBreakGeode.Framework;
 
 internal class GenericModConfigMenuIntegrationForAutoBreakGeode
 {

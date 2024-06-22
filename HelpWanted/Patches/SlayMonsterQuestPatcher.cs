@@ -1,13 +1,13 @@
-﻿using Common.Patcher;
+﻿using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
-using HelpWanted.Framework;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Monsters;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.HelpWanted.Framework;
 
-namespace HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patches;
 
 internal class SlayMonsterQuestPatcher : BasePatcher
 {

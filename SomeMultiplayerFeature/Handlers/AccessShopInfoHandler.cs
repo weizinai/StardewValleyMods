@@ -1,11 +1,11 @@
-using SomeMultiplayerFeature.Framework;
-using SomeMultiplayerFeature.Framework.Message;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.Message;
 
-namespace SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class AccessShopInfoHandler : BaseHandler
 {

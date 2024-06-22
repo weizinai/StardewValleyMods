@@ -3,7 +3,7 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Menus;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class QiSpecialOrderOption : BaseOption
 {

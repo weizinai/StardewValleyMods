@@ -2,7 +2,7 @@
 using StardewValley;
 using StardewValley.Locations;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class QiGemShopOption : BaseOption
 {

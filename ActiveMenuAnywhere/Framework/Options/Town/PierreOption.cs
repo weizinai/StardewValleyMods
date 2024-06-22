@@ -2,7 +2,7 @@
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class PierreOption : BaseOption
 {

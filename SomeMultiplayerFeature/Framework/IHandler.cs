@@ -1,4 +1,4 @@
-namespace SomeMultiplayerFeature.Framework;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 internal interface IHandler
 {

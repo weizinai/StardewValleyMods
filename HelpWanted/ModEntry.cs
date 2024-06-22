@@ -1,11 +1,11 @@
-﻿using Common;
-using Common.Patcher;
-using HelpWanted.Framework;
-using HelpWanted.Patches;
+﻿using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Patches;
 
-namespace HelpWanted;
+namespace weizinai.StardewValleyMod.HelpWanted;
 
 internal class ModEntry : Mod
 {

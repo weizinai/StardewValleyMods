@@ -1,12 +1,12 @@
-﻿using Common;
-using LazyMod.Framework;
-using LazyMod.Framework.Config;
-using LazyMod.Framework.Hud;
-using LazyMod.Framework.Integration;
+﻿using weizinai.StardewValleyMod.Common;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.LazyMod.Framework;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
+using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
+using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 
-namespace LazyMod;
+namespace weizinai.StardewValleyMod.LazyMod;
 
 internal class ModEntry : Mod
 {

@@ -1,10 +1,10 @@
-﻿using LazyMod.Framework.Config;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Characters;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace LazyMod.Automation;
+namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoAnimal : Automate
 {

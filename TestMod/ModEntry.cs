@@ -1,13 +1,13 @@
-﻿using Common;
-using Common.Integrations;
-using Common.Patcher;
+﻿using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.Common.Integrations;
+using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
-using TestMod.Framework;
+using weizinai.StardewValleyMod.TestMod.Framework;
 
-namespace TestMod;
+namespace weizinai.StardewValleyMod.TestMod;
 
 internal class ModEntry : Mod
 {

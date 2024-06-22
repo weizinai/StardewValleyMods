@@ -1,8 +1,8 @@
-using Common.UI;
+using weizinai.StardewValleyMod.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Framework;
 
 public class TestUI
 {

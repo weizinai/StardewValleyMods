@@ -1,9 +1,9 @@
 using System.Reflection.Emit;
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley;
 
-namespace TestMod.Patches;
+namespace weizinai.StardewValleyMod.TestMod.Patches;
 
 internal class GameLocationPatcher : BasePatcher
 {

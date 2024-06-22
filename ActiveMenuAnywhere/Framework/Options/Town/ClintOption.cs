@@ -3,7 +3,7 @@ using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Tools;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class ClintOption : BaseOption
 {

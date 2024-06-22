@@ -1,11 +1,11 @@
-﻿using Common;
-using SpectatorMode.Framework;
+﻿using weizinai.StardewValleyMod.Common;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
+using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
-namespace SpectatorMode;
+namespace weizinai.StardewValleyMod.SpectatorMode;
 
 internal class ModEntry : Mod
 {

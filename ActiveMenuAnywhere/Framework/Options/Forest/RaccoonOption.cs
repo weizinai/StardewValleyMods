@@ -4,7 +4,7 @@ using StardewValley;
 using StardewValley.Characters;
 using StardewValley.Locations;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class RaccoonOption : BaseOption
 {

@@ -3,7 +3,7 @@ using StardewValley;
 using Microsoft.Xna.Framework;
 using StardewValley.Menus;
 
-namespace SpectatorMode.Framework;
+namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 internal class MenuTitle
 {

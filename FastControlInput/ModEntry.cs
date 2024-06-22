@@ -1,10 +1,10 @@
-﻿using Common.Patcher;
-using FastControlInput.Framework;
-using FastControlInput.Patches;
+﻿using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.FastControlInput.Framework;
+using weizinai.StardewValleyMod.FastControlInput.Patches;
 
-namespace FastControlInput;
+namespace weizinai.StardewValleyMod.FastControlInput;
 
 internal class ModEntry : Mod
 {

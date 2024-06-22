@@ -1,11 +1,11 @@
-﻿using LazyMod.Automation;
-using LazyMod.Framework.Config;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.LazyMod.Automation;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace LazyMod.Framework;
+namespace weizinai.StardewValleyMod.LazyMod.Framework;
 
 internal class AutomationManger
 {

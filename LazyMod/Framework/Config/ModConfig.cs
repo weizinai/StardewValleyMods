@@ -1,8 +1,8 @@
-﻿using LazyMod.Automation;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.LazyMod.Automation;
 
-namespace LazyMod.Framework.Config;
+namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 internal class ModConfig
 {

@@ -1,9 +1,9 @@
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley.Locations;
-using TestMod.Framework;
+using weizinai.StardewValleyMod.TestMod.Framework;
 
-namespace TestMod.Patches;
+namespace weizinai.StardewValleyMod.TestMod.Patches;
 
 internal class VolcanoDungeonPatcher : BasePatcher
 {

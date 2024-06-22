@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class PaulaOption : BaseOption
 {

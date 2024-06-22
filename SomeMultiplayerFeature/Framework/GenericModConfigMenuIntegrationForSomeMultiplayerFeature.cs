@@ -1,7 +1,7 @@
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 
-namespace SomeMultiplayerFeature.Framework;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
 {

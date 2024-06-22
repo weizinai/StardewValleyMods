@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace SomeMultiplayerFeature.Framework;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class ModConfig
 {

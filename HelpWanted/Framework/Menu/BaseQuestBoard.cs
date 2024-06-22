@@ -1,10 +1,10 @@
-using Common.UI;
+using weizinai.StardewValleyMod.Common.UI;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework.Menu;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework.Menu;
 
 internal abstract class BaseQuestBoard : IClickableMenu
 {

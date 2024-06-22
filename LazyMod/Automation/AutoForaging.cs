@@ -1,12 +1,12 @@
-﻿using LazyMod.Framework.Config;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Monsters;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
-namespace LazyMod.Automation;
+namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoForaging : Automate
 {

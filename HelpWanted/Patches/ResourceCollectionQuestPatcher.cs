@@ -1,11 +1,11 @@
 ﻿using System.Reflection.Emit;
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
-using HelpWanted.Framework;
 using Netcode;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.HelpWanted.Framework;
 
-namespace HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patches;
 
 internal class ResourceCollectionQuestPatcher : BasePatcher
 {

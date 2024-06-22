@@ -1,10 +1,10 @@
 using System.Reflection.Emit;
-using Common.Patcher;
-using FriendshipDecayModify.Framework;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley;
+using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 
-namespace FriendshipDecayModify.Patches;
+namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patches;
 
 internal class GameLocationPatcher : BasePatcher
 {

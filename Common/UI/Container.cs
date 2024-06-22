@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Common.UI;
+namespace weizinai.StardewValleyMod.Common.UI;
 
 public abstract class Container : Element
 {

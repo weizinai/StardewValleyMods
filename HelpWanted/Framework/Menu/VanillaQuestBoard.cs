@@ -1,10 +1,10 @@
-﻿using Common;
+﻿using weizinai.StardewValleyMod.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 
-namespace HelpWanted.Framework.Menu;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework.Menu;
 
 internal sealed class VanillaQuestBoard : BaseQuestBoard
 {

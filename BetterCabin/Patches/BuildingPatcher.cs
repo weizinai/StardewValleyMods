@@ -1,13 +1,13 @@
-using BetterCabin.Framework.Config;
-using BetterCabin.Framework.UI;
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Locations;
+using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Framework.UI;
 
-namespace BetterCabin.Patches;
+namespace weizinai.StardewValleyMod.BetterCabin.Patches;
 
 internal class BuildingPatcher : BasePatcher
 {

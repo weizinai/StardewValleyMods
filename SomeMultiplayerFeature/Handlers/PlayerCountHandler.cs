@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
-using SomeMultiplayerFeature.Framework;
-using SomeMultiplayerFeature.Framework.UI;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.UI;
 
-namespace SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class PlayerCountHandler : BaseHandler
 {

@@ -1,6 +1,6 @@
 using StardewModdingAPI;
 
-namespace SomeMultiplayerFeature.Framework;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 internal abstract class BaseHandler : IHandler
 {

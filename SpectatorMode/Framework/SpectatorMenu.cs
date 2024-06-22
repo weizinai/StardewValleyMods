@@ -5,7 +5,7 @@ using StardewValley;
 using StardewValley.Menus;
 using xTile.Dimensions;
 
-namespace SpectatorMode.Framework;
+namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 internal class SpectatorMenu : IClickableMenu
 {

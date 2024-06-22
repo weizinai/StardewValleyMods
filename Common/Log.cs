@@ -1,6 +1,6 @@
 using StardewModdingAPI;
 
-namespace Common;
+namespace weizinai.StardewValleyMod.Common;
 
 internal class Log
 {

@@ -4,7 +4,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 
-namespace Common.Integrations;
+namespace weizinai.StardewValleyMod.Common.Integrations;
 
 public interface IGenericModConfigMenuApi
 {

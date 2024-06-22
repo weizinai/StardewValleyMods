@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace Common.UI;
+namespace weizinai.StardewValleyMod.Common.UI;
 
 public sealed class Text : Element
 {

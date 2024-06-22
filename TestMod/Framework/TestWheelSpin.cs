@@ -1,7 +1,7 @@
 using StardewValley;
 using StardewValley.Extensions;
 
-namespace TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Framework;
 
 public class TestWheelSpin
 {

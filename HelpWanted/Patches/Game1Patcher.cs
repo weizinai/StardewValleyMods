@@ -1,8 +1,8 @@
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley;
 
-namespace HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patches;
 
 internal class Game1Patcher : BasePatcher
 {

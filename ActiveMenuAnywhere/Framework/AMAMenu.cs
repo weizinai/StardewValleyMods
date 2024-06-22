@@ -1,12 +1,12 @@
-﻿using ActiveMenuAnywhere.Framework.Options;
-using Common;
+﻿using weizinai.StardewValleyMod.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
-namespace ActiveMenuAnywhere.Framework;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 internal class AMAMenu : IClickableMenu
 {

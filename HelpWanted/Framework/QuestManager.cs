@@ -1,7 +1,5 @@
-﻿using Common;
+﻿using weizinai.StardewValleyMod.Common;
 using HarmonyLib;
-using HelpWanted.Framework.Data;
-using HelpWanted.Patches;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -9,8 +7,10 @@ using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Locations;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.HelpWanted.Framework.Data;
+using weizinai.StardewValleyMod.HelpWanted.Patches;
 
-namespace HelpWanted.Framework;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 internal class QuestManager
 {

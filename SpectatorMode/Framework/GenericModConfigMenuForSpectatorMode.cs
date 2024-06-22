@@ -1,7 +1,7 @@
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 
-namespace SpectatorMode.Framework;
+namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 internal class GenericModConfigMenuForSpectatorMode
 {

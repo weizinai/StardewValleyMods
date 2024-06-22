@@ -2,7 +2,7 @@
 using StardewValley;
 using StardewValley.Menus;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class TailoringOption : BaseOption
 {

@@ -1,4 +1,4 @@
-namespace HelpWanted.Framework.Data;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework.Data;
 
 internal enum QuestType
 {

@@ -1,10 +1,10 @@
-using Common.Patcher;
+using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley;
 using StardewValley.Menus;
-using TestMod.Framework;
+using weizinai.StardewValleyMod.TestMod.Framework;
 
-namespace TestMod.Patches;
+namespace weizinai.StardewValleyMod.TestMod.Patches;
 
 public class WheelSpinGamePatcher : BasePatcher
 {

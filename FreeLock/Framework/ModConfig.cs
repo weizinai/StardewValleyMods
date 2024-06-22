@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace FreeLock.Framework;
+namespace weizinai.StardewValleyMod.FreeLock.Framework;
 
 internal class ModConfig
 {

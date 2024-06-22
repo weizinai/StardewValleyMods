@@ -1,13 +1,13 @@
-﻿using Common;
-using LazyMod.Framework.Config;
+﻿using weizinai.StardewValleyMod.Common;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace LazyMod.Automation;
+namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoMining : Automate
 {

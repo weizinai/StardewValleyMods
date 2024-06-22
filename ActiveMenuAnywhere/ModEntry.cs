@@ -1,11 +1,11 @@
-﻿using ActiveMenuAnywhere.Framework;
-using Common.Integrations;
+﻿using weizinai.StardewValleyMod.Common.Integrations;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-namespace ActiveMenuAnywhere;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
 
 internal class ModEntry : Mod
 {

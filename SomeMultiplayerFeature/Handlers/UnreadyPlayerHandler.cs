@@ -1,11 +1,11 @@
-using Common;
-using SomeMultiplayerFeature.Framework;
+using weizinai.StardewValleyMod.Common;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-namespace SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 /// <summary>
 /// 实现与踢出未准备玩家功能相关的逻辑

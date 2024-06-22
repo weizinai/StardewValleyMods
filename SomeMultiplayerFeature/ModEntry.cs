@@ -1,10 +1,10 @@
-﻿using Common;
-using SomeMultiplayerFeature.Framework;
-using SomeMultiplayerFeature.Handlers;
+﻿using weizinai.StardewValleyMod.Common;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-namespace SomeMultiplayerFeature;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;
 
 public class ModEntry : Mod
 {

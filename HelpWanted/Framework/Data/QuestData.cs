@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Quests;
 
-namespace HelpWanted.Framework.Data;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework.Data;
 
 internal class QuestData
 {

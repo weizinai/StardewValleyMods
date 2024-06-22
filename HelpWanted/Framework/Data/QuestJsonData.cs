@@ -1,6 +1,6 @@
 using StardewValley;
 
-namespace HelpWanted.Framework.Data;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework.Data;
 
 internal class QuestJsonData
 {

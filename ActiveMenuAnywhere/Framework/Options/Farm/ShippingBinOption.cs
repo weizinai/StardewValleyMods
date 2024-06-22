@@ -5,7 +5,7 @@ using StardewValley.Buildings;
 using StardewValley.Menus;
 using Object = StardewValley.Object;
 
-namespace ActiveMenuAnywhere.Framework.Options;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
 
 internal class ShippingBinOption : BaseOption
 {

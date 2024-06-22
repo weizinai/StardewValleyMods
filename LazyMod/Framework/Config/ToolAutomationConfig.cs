@@ -1,4 +1,4 @@
-namespace LazyMod.Framework.Config;
+namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 internal class ToolAutomationConfig : BaseAutomationConfig
 {

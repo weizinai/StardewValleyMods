@@ -1,11 +1,11 @@
-﻿using LazyMod.Framework.Config;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewValley;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using SObject = StardewValley.Object;
 
-namespace LazyMod.Automation;
+namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal abstract class Automate
 {

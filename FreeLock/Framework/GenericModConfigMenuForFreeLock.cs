@@ -1,7 +1,7 @@
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 
-namespace FreeLock.Framework;
+namespace weizinai.StardewValleyMod.FreeLock.Framework;
 
 internal class GenericModConfigMenuForFreeLock
 {

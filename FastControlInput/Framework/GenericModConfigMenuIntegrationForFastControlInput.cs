@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
-using Common.Integrations;
+using weizinai.StardewValleyMod.Common.Integrations;
 using StardewModdingAPI;
 
-namespace FastControlInput.Framework;
+namespace weizinai.StardewValleyMod.FastControlInput.Framework;
 
 internal class GenericModConfigMenuIntegrationForFastControlInput
 {

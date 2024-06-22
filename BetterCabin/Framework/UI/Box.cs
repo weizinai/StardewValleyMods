@@ -1,12 +1,12 @@
-using BetterCabin.Framework.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Locations;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 
-namespace BetterCabin.Framework.UI;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework.UI;
 
 internal abstract class Box
 {

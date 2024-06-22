@@ -2,9 +2,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
-using static Common.Align;
+using static weizinai.StardewValleyMod.Common.Align;
 
-namespace Common;
+namespace weizinai.StardewValleyMod.Common;
 
 public static class DrawHelper
 {

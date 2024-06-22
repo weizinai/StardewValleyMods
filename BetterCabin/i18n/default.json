@@ -30,5 +30,5 @@
     "Config.DeleteFarmhandKeybind.Name": "Delete Farmhand Keybind",
     "UI.DeleteFarmhand.Success": "{{name}}'s association to the cabin has been deleted, and the cabin can now create new farmer.",
     "UI.DeleteFarmhand.NoOwner": "The current cabin has no owner and cannot initiate a deletion.",
-    "UI.DeleteFarmhand.Location": "You are not inside the cabin and cannot initiate a deletion.",
+    "UI.DeleteFarmhand.ChooseFarmhand": "Please choose the player you want to delete:",
 }

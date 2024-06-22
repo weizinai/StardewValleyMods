@@ -33,22 +33,24 @@ internal class ModEntry : Mod
 
         if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
         {
-            if (Game1.player.currentLocation is Cabin cabin)
+            var location = Game1.player.currentLocation;
+            if (location is Cabin cabin)
             {
                 if (!cabin.owner.isUnclaimedFarmhand)
-                {
-                    Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_Success(cabin.owner.displayName)) { noIcon = true });
-                    cabin.DeleteFarmhand();
-                    cabin.CreateFarmhand();
-                }
+                    DeleteFarmhand(cabin);
                 else
-                {
                     Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_NoOwner()) { noIcon = true });
-                }
             }
             else
             {
-                Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_Location()) { noIcon = true });
+                var farmhands = Game1.getAllFarmhands()
+                    .Where(farmer => !farmer.isUnclaimedFarmhand)
+                    .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.displayName));
+                location.ShowPagedResponses(I18n.UI_DeleteFarmhand_ChooseFarmhand(), farmhands.ToList(), value =>
+                {
+                    var farmer = Game1.getFarmer(long.Parse(value));
+                    DeleteFarmhand((Utility.getHomeOfFarmer(farmer) as Cabin)!);
+                });
             }
         }
     }
@@ -97,5 +99,12 @@ internal class ModEntry : Mod
             () => config = new ModConfig(),
             () => Helper.WriteConfig(config)
         ).Register();
+    }
+
+    private void DeleteFarmhand(Cabin cabin)
+    {
+        Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_Success(cabin.owner.displayName)) { noIcon = true });
+        cabin.DeleteFarmhand();
+        cabin.CreateFarmhand();
     }
 }

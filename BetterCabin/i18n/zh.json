@@ -30,5 +30,5 @@
     "Config.DeleteFarmhandKeybind.Name": "删除小屋主人快捷键",
     "UI.DeleteFarmhand.Success": "{{name}}与小屋的联系已删除，现在小屋可以新建角色。",
     "UI.DeleteFarmhand.NoOwner": "当前小屋没有主人，无法发起删除。",
-    "UI.DeleteFarmhand.Location": "你不在小屋内部，无法发起删除。",
+    "UI.DeleteFarmhand.ChooseFarmhand": "请选择你要删除的玩家：",
 }

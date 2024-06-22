@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using BetterCabin.Framework;
+using BetterCabin.Framework.Config;
 using BetterCabin.Patches;
 using Common.Patcher;
 using StardewModdingAPI;

@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace BetterCabin.Framework;
+namespace BetterCabin.Framework.Config;
 
 internal class ModConfig
 {

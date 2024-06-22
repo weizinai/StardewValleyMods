@@ -1,4 +1,5 @@
 using BetterCabin.Framework;
+using BetterCabin.Framework.Config;
 using BetterCabin.Framework.UI;
 using Common.Patcher;
 using HarmonyLib;

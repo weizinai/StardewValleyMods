@@ -1,3 +1,4 @@
+using BetterCabin.Framework.Config;
 using Common.Integrations;
 using StardewModdingAPI;
 

@@ -6,21 +6,21 @@
     "UI.VisitCabin.NoOwner": "这个小屋没有主人",
     "UI.VisitCabin.Online": "小屋主人状态：在线",
     "UI.VisitCabin.Offline": "小屋主人状态：离线",
-    "UI.VisitCabin.TotalOnlineTime": "总联机时间：{{time}}",
-    "UI.VisitCabin.LastOnlineTime": "上次联机时间：{{time}}",
+    "UI.VisitCabin.TotalOnlineTime": "总在线时间：{{time}}",
+    "UI.VisitCabin.LastOnlineTime": "上次在线时间：{{time}}",
 
-    // Cabin Owner Name Tag
+    // 小屋主人名字标签
     "Config.CabinOwnerNameTag.Name": "小屋主人名字标签",
     "Config.CabinOwnerNameTag.Tooltip": "在小屋上显示小屋主人的名字。",
 
-    // Total Online Time Tag
-    "Config.TotalOnlineTimeTag.Name": "总在线时长标签",
-    "Config.TotalOnlineTimeTag.Tooltip": "在小屋上显示小屋主人的总在线时长。",
+    // 总在线时间标签
+    "Config.TotalOnlineTimeTag.Name": "总在线时间标签",
+    "Config.TotalOnlineTimeTag.Tooltip": "在小屋上显示小屋主人的总在线时间。",
     
     "Config.XOffset.Name": "水平偏移",
     "Config.YOffset.Name": "垂直偏移",
 
-    // Delete Farmhand
+    // 删除小屋主人
     "Config.DeleteFarmhand.Name": "删除小屋主人",
     "Config.DeleteFarmhand.Tooltip": "当你在小屋内部的时候，按下绑定的快捷键，会删除小屋主人与小屋的联系。",
     "Config.DeleteFarmhandKeybind.Name": "删除小屋主人快捷键",

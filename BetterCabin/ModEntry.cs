@@ -29,15 +29,37 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsMainPlayer) return;
+        DeleteFarmhand();
+    }
 
+    private void OnWarped(object? sender, WarpedEventArgs e)
+    {
+        VisitCabinInfo(e);
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        new GenericModConfigMenuIntegrationForBetterCabin(
+            Helper,
+            ModManifest,
+            () => config,
+            () => config = new ModConfig(),
+            () => Helper.WriteConfig(config)
+        ).Register();
+    }
+
+    // 删除小屋主人
+    private void DeleteFarmhand()
+    {
+        if (!Context.IsMainPlayer) return;
+        
         if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
         {
             var location = Game1.player.currentLocation;
             if (location is Cabin cabin)
             {
                 if (!cabin.owner.isUnclaimedFarmhand)
-                    DeleteFarmhand(cabin);
+                    ResetCabinPlayer(cabin);
                 else
                     Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_NoOwner()) { noIcon = true });
             }
@@ -49,13 +71,14 @@ internal class ModEntry : Mod
                 location.ShowPagedResponses(I18n.UI_DeleteFarmhand_ChooseFarmhand(), farmhands.ToList(), value =>
                 {
                     var farmer = Game1.getFarmer(long.Parse(value));
-                    DeleteFarmhand((Utility.getHomeOfFarmer(farmer) as Cabin)!);
+                    ResetCabinPlayer((Utility.getHomeOfFarmer(farmer) as Cabin)!);
                 });
             }
         }
     }
 
-    private void OnWarped(object? sender, WarpedEventArgs e)
+    // 拜访小屋信息
+    private void VisitCabinInfo(WarpedEventArgs e)
     {
         if (config.VisitCabinInfo && e.NewLocation is Cabin cabin)
         {
@@ -90,18 +113,7 @@ internal class ModEntry : Mod
         }
     }
 
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        new GenericModConfigMenuIntegrationForBetterCabin(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
-        ).Register();
-    }
-
-    private void DeleteFarmhand(Cabin cabin)
+    private void ResetCabinPlayer(Cabin cabin)
     {
         Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_Success(cabin.owner.displayName)) { noIcon = true });
         cabin.DeleteFarmhand();

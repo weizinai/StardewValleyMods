@@ -63,6 +63,24 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.TotalOnlineTime.YOffset = value,
                 I18n.Config_YOffset_Name
             )
+            // 上次在线时间标签
+            .AddSectionTitle(I18n.Config_LastOnlineTimeTag_Name)
+            .AddBoolOption(
+                config => config.LastOnlineTime.Enable,
+                (config, value) => config.LastOnlineTime.Enable = value,
+                I18n.Config_LastOnlineTimeTag_Name,
+                I18n.Config_LastOnlineTimeTag_Tooltip
+            )
+            .AddNumberOption(
+                config => config.LastOnlineTime.XOffset,
+                (config, value) => config.LastOnlineTime.XOffset = value,
+                I18n.Config_XOffset_Name
+            )
+            .AddNumberOption(
+                config => config.LastOnlineTime.YOffset,
+                (config, value) => config.LastOnlineTime.YOffset = value,
+                I18n.Config_YOffset_Name
+            )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_DeleteFarmhand_Name)
             .AddBoolOption(

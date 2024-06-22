@@ -18,7 +18,10 @@ internal class ModConfig
     public Color OwnerColor { get; set; } = Color.Red;
     
     // 总在线时间
-    public OnlineTimeConfig TotalOnlineTime { get; set; } = new(true, 0, -80, Color.Black);
+    public OnlineTimeConfig TotalOnlineTime { get; set; } = new(false, 0, -80, Color.Black);
+    
+    // 上次在线时间
+    public OnlineTimeConfig LastOnlineTime { get; set; } = new(true, 0, 80, Color.Black);
     
     // 删除小屋主人
     public bool DeleteFarmhand { get; set; } = true;

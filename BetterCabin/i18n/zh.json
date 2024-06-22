@@ -16,6 +16,10 @@
     // 总在线时间标签
     "Config.TotalOnlineTimeTag.Name": "总在线时间标签",
     "Config.TotalOnlineTimeTag.Tooltip": "在小屋上显示小屋主人的总在线时间。",
+
+    // 上次在线时间标签
+    "Config.LastOnlineTimeTag.Name": "上次在线时间标签",
+    "Config.LastOnlineTimeTag.Tooltip": "在小屋上显示小屋主人的上次在线时间",
     
     "Config.XOffset.Name": "水平偏移",
     "Config.YOffset.Name": "垂直偏移",

@@ -13,6 +13,7 @@ internal class BuildingPatcher : BasePatcher
     private static ModConfig config = null!;
     private static CabinOwnerNameBox nameTag = null!;
     private static TotalOnlineTimeBox totalOnlineTimeTag = null!;
+    private static LastOnlineTimeBox lastOnlineTimeTag = null!;
 
     public BuildingPatcher(ModConfig config)
     {
@@ -41,6 +42,12 @@ internal class BuildingPatcher : BasePatcher
             {
                 totalOnlineTimeTag = new TotalOnlineTimeBox(__instance, cabin, config);
                 totalOnlineTimeTag.Draw(b);
+            }
+
+            if (config.LastOnlineTime.Enable)
+            {
+                lastOnlineTimeTag = new LastOnlineTimeBox(__instance, cabin, config);
+                lastOnlineTimeTag.Draw(b);
             }
         }
     }

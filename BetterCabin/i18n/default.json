@@ -17,6 +17,10 @@
     "Config.TotalOnlineTimeTag.Name": "Total Online Time Tag",
     "Config.TotalOnlineTimeTag.Tooltip": "Displays the total online time of the owner of the cabin on the cabin.",
     
+    // Last Online Time Tag
+    "Config.LastOnlineTimeTag.Name": "Last Online Time Tag",
+    "Config.LastOnlineTimeTag.Tooltip": "Displays the last online time of the owner of the cabin on the cabin.",
+    
     "Config.XOffset.Name": "X Offset",
     "Config.YOffset.Name": "Y Offset",
     

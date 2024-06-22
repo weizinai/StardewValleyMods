@@ -14,6 +14,18 @@ internal class CabinOwnerNameBox
     private readonly ModConfig config;
 
     private SpriteFont Font => Game1.smallFont;
+    private Color TextColor
+    {
+        get
+        {
+            if (Game1.player.Equals(cabin.owner))
+            {
+                return config.OwnerColor;
+            }
+
+            return Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID) ? config.OnlineFarmerColor : config.OfflineFarmerColor;
+        }
+    }
     private string Name => cabin.owner.displayName;
     private Point Size => Font.MeasureString(Name).ToPoint() + new Point(32, 32);
     private Point Position
@@ -37,7 +49,6 @@ internal class CabinOwnerNameBox
     public void Draw(SpriteBatch spriteBatch)
     {
         IClickableMenu.drawTextureBox(spriteBatch, Position.X, Position.Y, Size.X, Size.Y, Color.White);
-        Utility.drawTextWithShadow(spriteBatch, Name, Font, new Vector2(Position.X + 16, Position.Y + 16),
-            Game1.player.Equals(cabin.owner) ? Color.Red : Color.Black, 1f, 1f);
+        Utility.drawTextWithShadow(spriteBatch, Name, Font, new Vector2(Position.X + 16, Position.Y + 16), TextColor, 1f, 1f);
     }
 }

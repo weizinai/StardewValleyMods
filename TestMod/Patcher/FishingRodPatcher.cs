@@ -1,9 +1,9 @@
 using System.Reflection.Emit;
-using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.Common.Patcher;
 
-namespace weizinai.StardewValleyMod.TestMod.Patches;
+namespace weizinai.StardewValleyMod.TestMod.Patcher;
 
 public class FishingRodPatcher : BasePatcher
 {

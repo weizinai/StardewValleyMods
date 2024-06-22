@@ -1,11 +1,11 @@
 using System.Reflection;
 using System.Reflection.Emit;
-using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 
-namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patches;
+namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 internal class FarmAnimalPatcher : BasePatcher
 {

@@ -2,7 +2,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
-using weizinai.StardewValleyMod.FriendshipDecayModify.Patches;
+using weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 namespace weizinai.StardewValleyMod.FriendshipDecayModify;
 

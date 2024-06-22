@@ -1,12 +1,12 @@
-﻿using weizinai.StardewValleyMod.Common.Patcher;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Framework.Menu;
 
-namespace weizinai.StardewValleyMod.HelpWanted.Patches;
+namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class BillboardPatcher : BasePatcher
 {

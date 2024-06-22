@@ -1,10 +1,10 @@
-using weizinai.StardewValleyMod.Common.Patcher;
 using HarmonyLib;
 using StardewValley;
 using StardewValley.Mods;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.FastControlInput.Framework;
 
-namespace weizinai.StardewValleyMod.FastControlInput.Patches;
+namespace weizinai.StardewValleyMod.FastControlInput.Patcher;
 
 internal class ModHooksPatcher : BasePatcher
 {

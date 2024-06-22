@@ -2,7 +2,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.FastControlInput.Framework;
-using weizinai.StardewValleyMod.FastControlInput.Patches;
+using weizinai.StardewValleyMod.FastControlInput.Patcher;
 
 namespace weizinai.StardewValleyMod.FastControlInput;
 

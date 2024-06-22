@@ -3,6 +3,7 @@ using weizinai.StardewValleyMod.Common.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Patcher;
 using weizinai.StardewValleyMod.HelpWanted.Patches;
 
 namespace weizinai.StardewValleyMod.HelpWanted;

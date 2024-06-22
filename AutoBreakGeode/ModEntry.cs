@@ -4,7 +4,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.AutoBreakGeode.Framework;
-using weizinai.StardewValleyMod.AutoBreakGeode.Patches;
+using weizinai.StardewValleyMod.AutoBreakGeode.Patcher;
 
 namespace weizinai.StardewValleyMod.AutoBreakGeode;
 

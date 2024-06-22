@@ -1,13 +1,13 @@
 using System.Reflection.Emit;
-using weizinai.StardewValleyMod.Common.Patcher;
-using weizinai.StardewValleyMod.Common.UI;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.AutoBreakGeode.Framework;
+using weizinai.StardewValleyMod.Common.Patcher;
+using weizinai.StardewValleyMod.Common.UI;
 
-namespace weizinai.StardewValleyMod.AutoBreakGeode.Patches;
+namespace weizinai.StardewValleyMod.AutoBreakGeode.Patcher;
 
 internal class GeodeMenuPatcher : BasePatcher
 {

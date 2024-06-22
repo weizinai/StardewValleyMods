@@ -3,6 +3,7 @@ using BetterCabin.Framework.UI;
 using Common.Patcher;
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
+using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Locations;
 
@@ -44,7 +45,7 @@ internal class BuildingPatcher : BasePatcher
                 totalOnlineTimeTag.Draw(b);
             }
 
-            if (config.LastOnlineTime.Enable)
+            if (config.LastOnlineTime.Enable && !Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID))
             {
                 lastOnlineTimeTag = new LastOnlineTimeBox(__instance, cabin, config);
                 lastOnlineTimeTag.Draw(b);

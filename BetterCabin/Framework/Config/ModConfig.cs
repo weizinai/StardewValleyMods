@@ -17,6 +17,9 @@ internal class ModConfig
     public Color OfflineFarmerColor { get; set; } = Color.White;
     public Color OwnerColor { get; set; } = Color.Red;
     
+    // 总在线时间
+    public OnlineTimeConfig TotalOnlineTime { get; set; } = new(true, 0, -80, Color.Black);
+    
     // 删除小屋主人
     public bool DeleteFarmhand { get; set; } = true;
     public KeybindList DeleteFarmhandKeybind { get; set; } = new(SButton.Delete);

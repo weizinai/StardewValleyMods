@@ -45,6 +45,24 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.NameTagYOffset = value,
                 I18n.Config_YOffset_Name
             )
+            // 总在线时间标签
+            .AddSectionTitle(I18n.Config_TotalOnlineTimeTag_Name)
+            .AddBoolOption(
+                config => config.TotalOnlineTime.Enable,
+                (config, value) => config.TotalOnlineTime.Enable = value,
+                I18n.Config_TotalOnlineTimeTag_Name,
+                I18n.Config_TotalOnlineTimeTag_Tooltip
+            )
+            .AddNumberOption(
+                config => config.TotalOnlineTime.XOffset,
+                (config, value) => config.TotalOnlineTime.XOffset = value,
+                I18n.Config_XOffset_Name
+            )
+            .AddNumberOption(
+                config => config.TotalOnlineTime.YOffset,
+                (config, value) => config.TotalOnlineTime.YOffset = value,
+                I18n.Config_YOffset_Name
+            )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_DeleteFarmhand_Name)
             .AddBoolOption(

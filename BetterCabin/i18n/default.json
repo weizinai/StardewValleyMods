@@ -4,6 +4,10 @@
     "Config.VisitCabinInfo.Tooltip": "When you visit a cabin, a message about the owner of the cabin is displayed.",
     "UI.VisitCabin.HasOwner": "You visit {{name}}'s cabin.",
     "UI.VisitCabin.NoOwner": "The cabin has no owner.",
+    "UI.VisitCabin.Online": "Cabin Owner Status: Online.",
+    "UI.VisitCabin.Offline": "Cabin Owner Status: Offline.",
+    "UI.VisitCabin.TotalOnlineTime": "Total Online Time: {{time}}",
+    "UI.VisitCabin.LastOnlineTime": "Last Online Time: {{time}}",
     
     // Cabin Owner Name Tag
     "Config.CabinOwnerNameTag.Name": "Cabin Owner Name Tag",

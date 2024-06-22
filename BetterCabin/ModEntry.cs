@@ -1,4 +1,5 @@
-﻿using BetterCabin.Framework;
+﻿using System.Text;
+using BetterCabin.Framework;
 using BetterCabin.Patches;
 using Common.Patcher;
 using StardewModdingAPI;
@@ -55,10 +56,32 @@ internal class ModEntry : Mod
     {
         if (config.VisitCabinInfo && e.NewLocation is Cabin cabin)
         {
-            var message = new HUDMessage(!cabin.owner.isUnclaimedFarmhand ? I18n.UI_VisitCabin_HasOwner(cabin.owner.displayName) : I18n.UI_VisitCabin_NoOwner())
+            var owner = cabin.owner;
+            var messageContent = new StringBuilder();
+
+            if (owner.isUnclaimedFarmhand)
+            {
+                messageContent.Append(I18n.UI_VisitCabin_NoOwner());
+            }
+            else
+            {
+                var isOnline = Game1.player.team.playerIsOnline(owner.UniqueMultiplayerID);
+                messageContent.Append(I18n.UI_VisitCabin_HasOwner(owner.displayName));
+                messageContent.Append('\n');
+                messageContent.Append(isOnline ? I18n.UI_VisitCabin_Online() : I18n.UI_VisitCabin_Offline());
+                messageContent.Append('\n');
+                messageContent.Append(I18n.UI_VisitCabin_TotalOnlineTime(Utility.getHoursMinutesStringFromMilliseconds(owner.millisecondsPlayed)));
+                if (!isOnline)
+                {
+                    messageContent.Append('\n');
+                    messageContent.Append(I18n.UI_VisitCabin_LastOnlineTime(Utility.getDateString((int)(Game1.stats.DaysPlayed - owner.disconnectDay.Value))));
+                }
+            }
+            
+            var message = new HUDMessage(messageContent.ToString())
             {
                 noIcon = true,
-                timeLeft = 500
+                timeLeft = 1000
             };
             Game1.addHUDMessage(message);
         }

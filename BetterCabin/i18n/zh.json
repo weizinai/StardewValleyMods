@@ -4,6 +4,10 @@
     "Config.VisitCabinInfo.Tooltip": "当你拜访一个小屋时，会显示一条小屋主人的信息。",
     "UI.VisitCabin.HasOwner": "你拜访了{{name}}的小屋",
     "UI.VisitCabin.NoOwner": "这个小屋没有主人",
+    "UI.VisitCabin.Online": "小屋主人状态：在线",
+    "UI.VisitCabin.Offline": "小屋主人状态：离线",
+    "UI.VisitCabin.TotalOnlineTime": "总联机时间：{{time}}",
+    "UI.VisitCabin.LastOnlineTime": "上次联机时间：{{time}}",
 
     // Cabin Owner Name Tag
     "Config.CabinOwnerNameTag.Name": "小屋主人名字标签",

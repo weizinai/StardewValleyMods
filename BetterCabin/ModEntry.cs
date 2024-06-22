@@ -49,7 +49,7 @@ internal class ModEntry : Mod
             () => Helper.WriteConfig(config)
         ).Register();
     }
-    
+
     // 拜访小屋信息
     private void VisitCabinInfo(WarpedEventArgs e)
     {
@@ -76,7 +76,7 @@ internal class ModEntry : Mod
                     messageContent.Append(I18n.UI_VisitCabin_LastOnlineTime(Utility.getDateString((int)(Game1.stats.DaysPlayed - owner.disconnectDay.Value))));
                 }
             }
-            
+
             var message = new HUDMessage(messageContent.ToString())
             {
                 noIcon = true,
@@ -85,7 +85,7 @@ internal class ModEntry : Mod
             Game1.addHUDMessage(message);
         }
     }
-    
+
     // 设置小屋皮肤
     public void SetCabinSkin()
     {
@@ -93,8 +93,16 @@ internal class ModEntry : Mod
 
         if (config.SetCabinSkin && config.SetCabinSkinKeybind.JustPressed())
         {
-            var cabin =  Game1.getFarm().getBuildingByName(Utility.getHomeOfFarmer(Game1.player).NameOrUniqueName);
-            if (cabin is not null) Game1.activeClickableMenu = new BuildingSkinMenu(cabin, true);
+            Utility.ForEachBuilding(building =>
+            {
+                if (building.GetIndoors() is Cabin cabin && cabin.owner.Equals(Game1.player))
+                {
+                    Game1.activeClickableMenu = new BuildingSkinMenu(building, true);
+                    return false;
+                }
+
+                return true;
+            });
         }
     }
 
@@ -102,7 +110,7 @@ internal class ModEntry : Mod
     private void DeleteFarmhand()
     {
         if (!Context.IsMainPlayer || !Context.IsPlayerFree) return;
-        
+
         if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
         {
             var location = Game1.player.currentLocation;

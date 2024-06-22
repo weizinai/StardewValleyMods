@@ -23,6 +23,10 @@ internal class ModConfig
     // 上次在线时间
     public OnlineTimeConfig LastOnlineTime { get; set; } = new(true, 0, 64, Color.Black);
     
+    // 重设小屋外观
+    public bool SetCabinSkin { get; set; } = true;
+    public KeybindList SetCabinSkinKeybind { get; set; } = new(SButton.O);
+    
     // 删除小屋主人
     public bool DeleteFarmhand { get; set; } = true;
     public KeybindList DeleteFarmhandKeybind { get; set; } = new(SButton.Delete);

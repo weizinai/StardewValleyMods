@@ -81,6 +81,19 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.LastOnlineTime.YOffset = value,
                 I18n.Config_YOffset_Name
             )
+            // 设置小屋外观
+            .AddSectionTitle(I18n.Config_SetCabinSkin_Name)
+            .AddBoolOption(
+                config => config.SetCabinSkin,
+                (config, value) => config.SetCabinSkin = value,
+                I18n.Config_SetCabinSkin_Name,
+                I18n.Config_SetCabinSkin_Tooltip
+            )
+            .AddKeybindList(
+                config => config.SetCabinSkinKeybind,
+                (config, value) => config.SetCabinSkinKeybind = value,
+                I18n.Config_SetCabinSkinKeybind_Name
+            )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_DeleteFarmhand_Name)
             .AddBoolOption(

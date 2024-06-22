@@ -31,4 +31,9 @@
     "UI.DeleteFarmhand.Success": "{{name}}与小屋的联系已删除，现在小屋可以新建角色。",
     "UI.DeleteFarmhand.NoOwner": "当前小屋没有主人，无法发起删除。",
     "UI.DeleteFarmhand.ChooseFarmhand": "请选择你要删除的玩家：",
+
+    // 设置小屋外观
+    "Config.SetCabinSkin.Name": "设置小屋外观",
+    "Config.SetCabinSkin.Tooltip": "让玩家可以随时随地设置小屋的外观。",
+    "Config.SetCabinSkinKeybind.Name": "设置小屋外观快捷键"
 }

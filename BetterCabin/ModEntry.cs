@@ -4,6 +4,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
+using StardewValley.Menus;
 using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.BetterCabin.Patcher;
@@ -29,6 +30,7 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
+        SetCabinSkin();
         DeleteFarmhand();
     }
 
@@ -47,36 +49,7 @@ internal class ModEntry : Mod
             () => Helper.WriteConfig(config)
         ).Register();
     }
-
-    // 删除小屋主人
-    private void DeleteFarmhand()
-    {
-        if (!Context.IsMainPlayer) return;
-        
-        if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
-        {
-            var location = Game1.player.currentLocation;
-            if (location is Cabin cabin)
-            {
-                if (!cabin.owner.isUnclaimedFarmhand)
-                    ResetCabinPlayer(cabin);
-                else
-                    Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_NoOwner()) { noIcon = true });
-            }
-            else
-            {
-                var farmhands = Game1.getAllFarmhands()
-                    .Where(farmer => !farmer.isUnclaimedFarmhand)
-                    .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.displayName));
-                location.ShowPagedResponses(I18n.UI_DeleteFarmhand_ChooseFarmhand(), farmhands.ToList(), value =>
-                {
-                    var farmer = Game1.getFarmer(long.Parse(value));
-                    ResetCabinPlayer((Utility.getHomeOfFarmer(farmer) as Cabin)!);
-                });
-            }
-        }
-    }
-
+    
     // 拜访小屋信息
     private void VisitCabinInfo(WarpedEventArgs e)
     {
@@ -110,6 +83,47 @@ internal class ModEntry : Mod
                 timeLeft = 1000
             };
             Game1.addHUDMessage(message);
+        }
+    }
+    
+    // 设置小屋皮肤
+    public void SetCabinSkin()
+    {
+        if (Context.IsMainPlayer || !Context.IsPlayerFree) return;
+
+        if (config.SetCabinSkin && config.SetCabinSkinKeybind.JustPressed())
+        {
+            var cabin =  Game1.getFarm().getBuildingByName(Utility.getHomeOfFarmer(Game1.player).NameOrUniqueName);
+            if (cabin is not null) Game1.activeClickableMenu = new BuildingSkinMenu(cabin, true);
+        }
+    }
+
+    // 删除小屋主人
+    private void DeleteFarmhand()
+    {
+        if (!Context.IsMainPlayer) return;
+        
+        if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
+        {
+            var location = Game1.player.currentLocation;
+            if (location is Cabin cabin)
+            {
+                if (!cabin.owner.isUnclaimedFarmhand)
+                    ResetCabinPlayer(cabin);
+                else
+                    Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_NoOwner()) { noIcon = true });
+            }
+            else
+            {
+                var farmhands = Game1.getAllFarmhands()
+                    .Where(farmer => !farmer.isUnclaimedFarmhand)
+                    .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.displayName));
+                location.ShowPagedResponses(I18n.UI_DeleteFarmhand_ChooseFarmhand(), farmhands.ToList(), value =>
+                {
+                    var farmer = Game1.getFarmer(long.Parse(value));
+                    ResetCabinPlayer((Utility.getHomeOfFarmer(farmer) as Cabin)!);
+                });
+            }
         }
     }
 

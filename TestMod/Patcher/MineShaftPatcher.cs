@@ -19,7 +19,7 @@ internal class MineShaftPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(RequireMethod<MineShaft>(nameof(MineShaft.loadLevel)), transpiler: GetHarmonyMethod(nameof(LoadLevelTranspiler)));
+        harmony.Patch(this.RequireMethod<MineShaft>(nameof(MineShaft.loadLevel)), transpiler: this.GetHarmonyMethod(nameof(LoadLevelTranspiler)));
     }
 
     private static IEnumerable<CodeInstruction> LoadLevelTranspiler(IEnumerable<CodeInstruction> instructions)

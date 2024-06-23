@@ -21,17 +21,14 @@ internal class GeodeMenuPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireConstructor<GeodeMenu>(),
-            postfix: GetHarmonyMethod(nameof(GeodeMenuPostfix))
+        harmony.Patch(this.RequireConstructor<GeodeMenu>(),
+            postfix: this.GetHarmonyMethod(nameof(GeodeMenuPostfix))
         );
-        harmony.Patch(
-            RequireMethod<GeodeMenu>(nameof(GeodeMenu.update)),
-            postfix: GetHarmonyMethod(nameof(UpdatePostfix))
+        harmony.Patch(this.RequireMethod<GeodeMenu>(nameof(GeodeMenu.update)),
+            postfix: this.GetHarmonyMethod(nameof(UpdatePostfix))
         );
-        harmony.Patch(
-            RequireMethod<GeodeMenu>(nameof(GeodeMenu.draw), new[] { typeof(SpriteBatch) }),
-            transpiler: GetHarmonyMethod(nameof(DrawTranspiler))
+        harmony.Patch(this.RequireMethod<GeodeMenu>(nameof(GeodeMenu.draw), new[] { typeof(SpriteBatch) }),
+            transpiler: this.GetHarmonyMethod(nameof(DrawTranspiler))
         );
     }
 

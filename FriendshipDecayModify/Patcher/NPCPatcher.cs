@@ -18,9 +18,8 @@ internal class NPCPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<NPC>(nameof(NPC.receiveGift)),
-            transpiler: GetHarmonyMethod(nameof(ReceiveGiftTranspiler))
+        harmony.Patch(this.RequireMethod<NPC>(nameof(NPC.receiveGift)),
+            transpiler: this.GetHarmonyMethod(nameof(ReceiveGiftTranspiler))
         );
     }
 

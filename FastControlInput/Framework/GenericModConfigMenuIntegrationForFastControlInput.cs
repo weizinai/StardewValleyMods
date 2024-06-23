@@ -9,14 +9,14 @@ internal class GenericModConfigMenuIntegrationForFastControlInput
 
     public GenericModConfigMenuIntegrationForFastControlInput(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
     }
 
     public void Register()
     {
-        if (!configMenu.IsLoaded) return;
+        if (!this.configMenu.IsLoaded) return;
 
-        configMenu
+        this.configMenu
             .Register()
             .AddNumberOption(
                 config => config.ActionButton,

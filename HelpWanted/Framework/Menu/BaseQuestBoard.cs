@@ -23,22 +23,22 @@ internal abstract class BaseQuestBoard : IClickableMenu
     protected BaseQuestBoard(ModConfig config) : base(0,0,0,0,true)
     {
         // 位置和大小逻辑
-        width = 338 * 4;
-        height = 198 * 4;
-        var center = Utility.getTopLeftPositionForCenteringOnScreen(width, height);
-        xPositionOnScreen = (int)center.X;
-        yPositionOnScreen = (int)center.Y;
+        this.width = 338 * 4;
+        this.height = 198 * 4;
+        var center = Utility.getTopLeftPositionForCenteringOnScreen(this.width, this.height);
+        this.xPositionOnScreen = (int)center.X;
+        this.yPositionOnScreen = (int)center.Y;
         
         // 接受任务按钮逻辑
         var stringSize = Game1.dialogueFont.MeasureString(Game1.content.LoadString("Strings\\UI:AcceptQuest"));
-        AcceptQuestButton = new ClickableComponent(new Rectangle(xPositionOnScreen + width / 2 - 128, yPositionOnScreen + height - 128,
+        this.AcceptQuestButton = new ClickableComponent(new Rectangle(this.xPositionOnScreen + this.width / 2 - 128, this.yPositionOnScreen + this.height - 128,
             (int)stringSize.X + 24, (int)stringSize.Y + 24), "");
         
         // 关闭按钮逻辑
-        upperRightCloseButton = new ClickableTextureComponent(new Rectangle(xPositionOnScreen + width - 20, yPositionOnScreen, 48, 48),
+        this.upperRightCloseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen + this.width - 20, this.yPositionOnScreen, 48, 48),
             Game1.mouseCursors, CommonImage.CloseButton, 4f);
         
         // 初始化
-        Config = config;
+        this.Config = config;
     }
 }

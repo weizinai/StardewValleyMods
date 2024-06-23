@@ -18,7 +18,7 @@ internal class MonsterOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Game1.player.mailReceived.Contains("guildMember"))
-            helper.Reflection.GetMethod(new AdventureGuild(), "showMonsterKillList").Invoke();
+            this.helper.Reflection.GetMethod(new AdventureGuild(), "showMonsterKillList").Invoke();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

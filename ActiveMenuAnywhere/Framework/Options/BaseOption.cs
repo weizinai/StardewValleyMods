@@ -6,8 +6,8 @@ internal abstract class BaseOption
 {
     protected BaseOption(string name, Rectangle sourceRect)
     {
-        Name = name;
-        SourceRect = sourceRect;
+        this.Name = name;
+        this.SourceRect = sourceRect;
     }
 
     public Rectangle SourceRect { get; }

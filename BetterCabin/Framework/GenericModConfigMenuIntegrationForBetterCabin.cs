@@ -10,14 +10,14 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
 
     public GenericModConfigMenuIntegrationForBetterCabin(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
     }
 
     public void Register()
     {
-        if (!configMenu.IsLoaded) return;
+        if (!this.configMenu.IsLoaded) return;
 
-        configMenu
+        this.configMenu
             .Register()
             // 拜访小屋信息
             .AddSectionTitle(I18n.Config_VisitCabinInfo_Name)

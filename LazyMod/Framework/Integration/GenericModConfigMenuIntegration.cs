@@ -10,13 +10,13 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
 {
     public GenericModConfigMenuIntegration<TConfig> AddBaseAutomationConfig(Func<TConfig, BaseAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange)
     {
-        AddSectionTitle(text, tooltip);
-        AddBoolOption(
+        this.AddSectionTitle(text, tooltip);
+        this.AddBoolOption(
             config => get(config).IsEnable,
             (config, value) => get(config).IsEnable = value,
             I18n.Config_Enable_Name
         );
-        AddNumberOption(
+        this.AddNumberOption(
             config => get(config).Range,
             (config, value) => get(config).Range = value,
             I18n.Config_Range_Name,
@@ -30,8 +30,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     
     public GenericModConfigMenuIntegration<TConfig> AddToolAutomationConfig(Func<TConfig, ToolAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange)
     {
-        AddBaseAutomationConfig(get, text, tooltip, minRange);
-        AddBoolOption(
+        this.AddBaseAutomationConfig(get, text, tooltip, minRange);
+        this.AddBoolOption(
             config => get(config).FindToolFromInventory,
             (config, value) => get(config).FindToolFromInventory = value,
             I18n.Config_FindToolFromInventory_Name,
@@ -44,13 +44,13 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     public GenericModConfigMenuIntegration<TConfig> AddStaminaToolAutomationConfig(Func<TConfig, StaminaToolAutomationConfig> get, 
         Func<string> text, Func<string>? tooltip, int minRange)
     {
-        AddBaseAutomationConfig(get, text, tooltip, minRange);
-        AddNumberOption(
+        this.AddBaseAutomationConfig(get, text, tooltip, minRange);
+        this.AddNumberOption(
             config => get(config).StopStamina,
             (config, value) => get(config).StopStamina = value,
             I18n.Config_StopStamina_Name
         );
-        AddBoolOption(
+        this.AddBoolOption(
             config => get(config).FindToolFromInventory,
             (config, value) => get(config).FindToolFromInventory = value,
             I18n.Config_FindToolFromInventory_Name,

@@ -19,10 +19,8 @@ internal class FarmAnimalPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<FarmAnimal>(nameof(FarmAnimal.dayUpdate)),
-            GetHarmonyMethod(nameof(DayUpdatePrefix)),
-            transpiler: GetHarmonyMethod(nameof(DayUpdateTranspiler))
+        harmony.Patch(this.RequireMethod<FarmAnimal>(nameof(FarmAnimal.dayUpdate)), this.GetHarmonyMethod(nameof(DayUpdatePrefix)),
+            transpiler: this.GetHarmonyMethod(nameof(DayUpdateTranspiler))
         );
     }
 

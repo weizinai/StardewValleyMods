@@ -10,21 +10,20 @@ internal class GenericModConfigMenuIntegrationForAutoBreakGeode
 
     public GenericModConfigMenuIntegrationForAutoBreakGeode(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
-            configMenu.OpenMenu();
+        if (this.configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree) this.configMenu.OpenMenu();
     }
 
     public void Register()
     {
-        if (!configMenu.IsLoaded) return;
+        if (!this.configMenu.IsLoaded) return;
 
-        configMenu
+        this.configMenu
             .Register()
             .AddKeybindList(
                 config => config.OpenConfigMenuKeybind,

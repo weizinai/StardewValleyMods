@@ -18,7 +18,7 @@ internal class PikaOption : BaseOption
             new("RecipeShop", I18n.PikaOption_RecipeShop()),
             new("Leave", I18n.BaseOption_Leave())
         };
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
+        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }
 
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)

@@ -13,7 +13,7 @@ internal class MarlonOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Game1.player.mailReceived.Contains("guildMember"))
-            Marlon();
+            this.Marlon();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

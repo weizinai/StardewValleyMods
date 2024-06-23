@@ -21,7 +21,7 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     private readonly IGenericModConfigMenuApi? configMenu;
 
     /// <summary>Whether the mod is available.</summary>
-    public bool IsLoaded => configMenu != null;
+    public bool IsLoaded => this.configMenu != null;
 
 
     /// <summary>Construct an instance.</summary>
@@ -33,17 +33,17 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     public GenericModConfigMenuIntegration(IModRegistry modRegistry, IManifest consumerManifest, Func<TConfig> getConfig, Action reset, Action save)
     {
         this.consumerManifest = consumerManifest;
-        GetConfig = getConfig;
+        this.GetConfig = getConfig;
         this.reset = reset;
         this.save = save;
-        configMenu = modRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
+        this.configMenu = modRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
     }
 
     /// <summary>Register a mod whose config can be edited through the UI.</summary>
     /// <param name="titleScreenOnly">Whether the options can only be edited from the title screen.</param>
     public GenericModConfigMenuIntegration<TConfig> Register(bool titleScreenOnly = false)
     {
-        configMenu?.Register(consumerManifest, reset, save, titleScreenOnly);
+        this.configMenu?.Register(this.consumerManifest, this.reset, this.save, titleScreenOnly);
         return this;
     }
 
@@ -53,7 +53,7 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddSectionTitle(Func<string> text, Func<string>? tooltip = null, bool enable = true)
     {
-        if (enable) configMenu?.AddSectionTitle(consumerManifest, text, tooltip);
+        if (enable) this.configMenu?.AddSectionTitle(this.consumerManifest, text, tooltip);
         return this;
     }
 
@@ -62,7 +62,7 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddParagraph(Func<string> text, bool enable = true)
     {
-        if (enable) configMenu?.AddParagraph(consumerManifest, text);
+        if (enable) this.configMenu?.AddParagraph(this.consumerManifest, text);
         return this;
     }
 
@@ -77,10 +77,9 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            configMenu?.AddBoolOption(
-                consumerManifest,
-                () => get(GetConfig()),
-                value => set(GetConfig(), value),
+            this.configMenu?.AddBoolOption(this.consumerManifest,
+                () => get(this.GetConfig()),
+                value => set(this.GetConfig(), value),
                 name,
                 tooltip
             );
@@ -104,10 +103,9 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            configMenu?.AddNumberOption(
-                consumerManifest,
-                () => get(GetConfig()),
-                value => set(GetConfig(), value),
+            this.configMenu?.AddNumberOption(this.consumerManifest,
+                () => get(this.GetConfig()),
+                value => set(this.GetConfig(), value),
                 name,
                 tooltip,
                 min,
@@ -135,10 +133,9 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            configMenu?.AddNumberOption(
-                consumerManifest,
-                () => get(GetConfig()),
-                value => set(GetConfig(), value),
+            this.configMenu?.AddNumberOption(this.consumerManifest,
+                () => get(this.GetConfig()),
+                value => set(this.GetConfig(), value),
                 name,
                 tooltip,
                 min,
@@ -164,10 +161,9 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            configMenu?.AddTextOption(
-                consumerManifest,
-                () => get(GetConfig()),
-                value => set(GetConfig(), value),
+            this.configMenu?.AddTextOption(this.consumerManifest,
+                () => get(this.GetConfig()),
+                value => set(this.GetConfig(), value),
                 name,
                 tooltip,
                 allowedValues,
@@ -189,10 +185,9 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            configMenu?.AddKeybindList(
-                consumerManifest,
-                () => get(GetConfig()),
-                value => set(GetConfig(), value),
+            this.configMenu?.AddKeybindList(this.consumerManifest,
+                () => get(this.GetConfig()),
+                value => set(this.GetConfig(), value),
                 name,
                 tooltip
             );
@@ -210,7 +205,7 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     /// </remarks>
     public GenericModConfigMenuIntegration<TConfig> AddPage(string pageId, Func<string>? pageTitle = null)
     {
-        configMenu?.AddPage(consumerManifest, pageId, pageTitle);
+        this.configMenu?.AddPage(this.consumerManifest, pageId, pageTitle);
         return this;
     }
 
@@ -221,13 +216,13 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     /// <param name="enable">Whether the option is enabled.</param>
     public GenericModConfigMenuIntegration<TConfig> AddPageLink(string pageId, Func<string> text, Func<string>? tooltip = null, bool enable = true)
     {
-        if (enable) configMenu?.AddPageLink(consumerManifest, pageId, text, tooltip);
+        if (enable) this.configMenu?.AddPageLink(this.consumerManifest, pageId, text, tooltip);
         return this;
     }
 
     /// <summary>Open the config UI for a specific mod.</summary>
     public void OpenMenu()
     {
-        configMenu?.OpenModMenu(consumerManifest);
+        this.configMenu?.OpenModMenu(this.consumerManifest);
     }
 }

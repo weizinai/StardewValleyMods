@@ -16,7 +16,7 @@ internal class VolcanoDungeonPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(RequireMethod<VolcanoDungeon>(nameof(VolcanoDungeon.GenerateLevel)), GetHarmonyMethod(nameof(GenerateLevelPrefix)));
+        harmony.Patch(this.RequireMethod<VolcanoDungeon>(nameof(VolcanoDungeon.GenerateLevel)), this.GetHarmonyMethod(nameof(GenerateLevelPrefix)));
     }
 
     private static bool GenerateLevelPrefix(VolcanoDungeon __instance)

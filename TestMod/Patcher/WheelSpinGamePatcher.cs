@@ -17,9 +17,8 @@ public class WheelSpinGamePatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireConstructor<WheelSpinGame>(),
-            postfix: GetHarmonyMethod(nameof(WheelSpinGamePostfix))
+        harmony.Patch(this.RequireConstructor<WheelSpinGame>(),
+            postfix: this.GetHarmonyMethod(nameof(WheelSpinGamePostfix))
         );
     }
 

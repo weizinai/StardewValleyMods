@@ -16,10 +16,10 @@ internal class Button : ClickableComponent
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        var size = Game1.dialogueFont.MeasureString(name).ToPoint();
+        var size = Game1.dialogueFont.MeasureString(this.name).ToPoint();
 
-        bounds = new Rectangle(position, size + new Point(32, 32));
-        IClickableMenu.drawTextureBox(spriteBatch, bounds.X, bounds.Y, bounds.Width, bounds.Height, Color.White);
-        Utility.drawTextWithShadow(spriteBatch, name, Game1.dialogueFont, new Vector2(position.X + 16, position.Y + 16), Game1.textColor);
+        this.bounds = new Rectangle(this.position, size + new Point(32, 32));
+        IClickableMenu.drawTextureBox(spriteBatch, this.bounds.X, this.bounds.Y, this.bounds.Width, this.bounds.Height, Color.White);
+        Utility.drawTextWithShadow(spriteBatch, this.name, Game1.dialogueFont, new Vector2(this.position.X + 16, this.position.Y + 16), Game1.textColor);
     }
 }

@@ -13,7 +13,7 @@ internal class BooksellerOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Utility.getDaysOfBooksellerThisSeason().Contains(Game1.dayOfMonth))
-            BookSeller();
+            this.BookSeller();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

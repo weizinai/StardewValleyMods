@@ -18,41 +18,41 @@ internal class AutoMining : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动清理石头
-        if (Config.AutoClearStone.IsEnable && (tool is Pickaxe || Config.AutoClearStone.FindToolFromInventory)) AutoClearStone(location, player);
+        if (this.Config.AutoClearStone.IsEnable && (tool is Pickaxe || this.Config.AutoClearStone.FindToolFromInventory)) this.AutoClearStone(location, player);
         // 自动收集煤炭
-        if (Config.AutoCollectCoal.IsEnable) AutoCollectCoal(location, player);
+        if (this.Config.AutoCollectCoal.IsEnable) this.AutoCollectCoal(location, player);
         // 自动破坏容器
-        if (Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || Config.AutoBreakContainer.FindToolFromInventory)) AutoBreakContainer(location);
+        if (this.Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || this.Config.AutoBreakContainer.FindToolFromInventory)) this.AutoBreakContainer(location);
         // 自动打开宝藏
-        if (Config.AutoOpenTreasure.IsEnable) AutoOpenTreasure(location, player);
+        if (this.Config.AutoOpenTreasure.IsEnable) this.AutoOpenTreasure(location, player);
         // 自动清理水晶
-        if (Config.AutoClearCrystal.IsEnable) AutoClearCrystal(location);
+        if (this.Config.AutoClearCrystal.IsEnable) this.AutoClearCrystal(location);
         // 自动冷却岩浆
-        if (Config.AutoCoolLava.IsEnable && (tool is WateringCan || Config.AutoCoolLava.FindToolFromInventory)) AutoCoolLava(location, player);
+        if (this.Config.AutoCoolLava.IsEnable && (tool is WateringCan || this.Config.AutoCoolLava.FindToolFromInventory)) this.AutoCoolLava(location, player);
     }
 
     // 自动清理石头
     private void AutoClearStone(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.AutoClearStone.StopStamina) return;
-        if (!Config.ClearStoneOnMineShaft && location is MineShaft) return;
-        if (!Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
+        if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return;
+        if (!this.Config.ClearStoneOnMineShaft && location is MineShaft) return;
+        if (!this.Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
 
-        var pickaxe = FindToolFromInventory<Pickaxe>();
+        var pickaxe = this.FindToolFromInventory<Pickaxe>();
         if (pickaxe is null) return;
 
         var stoneTypes = new Dictionary<HashSet<string>, bool>
         {
-            { ItemRepository.FarmStone, Config.ClearFarmStone },
-            { ItemRepository.OtherStone, Config.ClearOtherStone },
-            { ItemRepository.IslandStone, Config.ClearIslandStone },
-            { ItemRepository.OreStone, Config.ClearOreStone },
-            { ItemRepository.GemStone, Config.ClearGemStone },
-            { ItemRepository.GeodeStone, Config.ClearGeodeStone },
-            { ItemRepository.CalicoEggStone, Config.ClearCalicoEggStone }
+            { ItemRepository.FarmStone, this.Config.ClearFarmStone },
+            { ItemRepository.OtherStone, this.Config.ClearOtherStone },
+            { ItemRepository.IslandStone, this.Config.ClearIslandStone },
+            { ItemRepository.OreStone, this.Config.ClearOreStone },
+            { ItemRepository.GemStone, this.Config.ClearGemStone },
+            { ItemRepository.GeodeStone, this.Config.ClearGeodeStone },
+            { ItemRepository.CalicoEggStone, this.Config.ClearCalicoEggStone }
         };
 
-        var grid = GetTileGrid(Config.AutoClearStone.Range);
+        var grid = this.GetTileGrid(this.Config.AutoClearStone.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -62,7 +62,7 @@ internal class AutoMining : Automate
                 {
                     if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
                     {
-                        UseToolOnTile(location, player, pickaxe, tile);
+                        this.UseToolOnTile(location, player, pickaxe, tile);
                         break;
                     }
                 }
@@ -70,18 +70,18 @@ internal class AutoMining : Automate
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
 
                 var clear = false;
                 var requiredUpgradeLevel = Tool.stone;
 
-                if (Config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex)
+                if (this.Config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.gold;
                 }
                 else
-                    switch (Config.ClearBoulder)
+                    switch (this.Config.ClearBoulder)
                     {
                         case true when clump.parentSheetIndex.Value == ResourceClump.boulderIndex:
                             clear = true;
@@ -95,7 +95,7 @@ internal class AutoMining : Automate
 
                 if (clear && pickaxe.UpgradeLevel >= requiredUpgradeLevel)
                 {
-                    UseToolOnTile(location, player, pickaxe, tile);
+                    this.UseToolOnTile(location, player, pickaxe, tile);
                     break;
                 }
             }
@@ -107,19 +107,19 @@ internal class AutoMining : Automate
     {
         if (location is not MineShaft) return;
         
-        var grid = GetTileGrid(Config.AutoCollectCoal.Range);
+        var grid = this.GetTileGrid(this.Config.AutoCollectCoal.Range);
         foreach (var tile in grid)
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
-                CheckTileAction(location, player, tile);
+                this.CheckTileAction(location, player, tile);
     }
 
     // 自动破坏容器
     private void AutoBreakContainer(GameLocation location)
     {
-        var weapon = FindToolFromInventory<MeleeWeapon>();
+        var weapon = this.FindToolFromInventory<MeleeWeapon>();
         if (weapon is null) return;
 
-        var grid = GetTileGrid(Config.AutoBreakContainer.Range);
+        var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -131,7 +131,7 @@ internal class AutoMining : Automate
     // 自动打开宝藏
     private void AutoOpenTreasure(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoBreakContainer.Range);
+        var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -143,10 +143,10 @@ internal class AutoMining : Automate
     // 自动清理水晶
     private void AutoClearCrystal(GameLocation location)
     {
-        var tool = FindToolFromInventory<MeleeWeapon>();
+        var tool = this.FindToolFromInventory<MeleeWeapon>();
         if (tool is null) return;
 
-        var grid = GetTileGrid(Config.AutoClearCrystal.Range);
+        var grid = this.GetTileGrid(this.Config.AutoClearCrystal.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -161,11 +161,11 @@ internal class AutoMining : Automate
     private void AutoCoolLava(GameLocation location, Farmer player)
     {
         if (location is not VolcanoDungeon dungeon) return;
-        var wateringCan = FindToolFromInventory<WateringCan>();
+        var wateringCan = this.FindToolFromInventory<WateringCan>();
         if (wateringCan is null) return;
 
         var hasAddWaterMessage = true;
-        var grid = GetTileGrid(Config.AutoCoolLava.Range);
+        var grid = this.GetTileGrid(this.Config.AutoCoolLava.Range);
         foreach (var tile in grid)
         {
             if (wateringCan.WaterLeft <= 0)
@@ -176,9 +176,9 @@ internal class AutoMining : Automate
 
             hasAddWaterMessage = false;
 
-            if (player.Stamina <= Config.AutoCoolLava.StopStamina) return;
-            if (!CanCoolLave(dungeon, tile)) continue;
-            UseToolOnTile(location, player, wateringCan, tile);
+            if (player.Stamina <= this.Config.AutoCoolLava.StopStamina) return;
+            if (!this.CanCoolLave(dungeon, tile)) continue;
+            this.UseToolOnTile(location, player, wateringCan, tile);
             if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
                 player.playNearbySoundLocal("wateringCan");
         }

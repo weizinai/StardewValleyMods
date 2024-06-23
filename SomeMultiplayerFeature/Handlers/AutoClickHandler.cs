@@ -17,21 +17,21 @@ internal class AutoClickHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
-        Helper.Events.GameLoop.Saving += OnSaving;
-        Helper.Events.Display.MenuChanged += OnMenuChanged;
+        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
+        this.Helper.Events.GameLoop.Saving += this.OnSaving;
+        this.Helper.Events.Display.MenuChanged += this.OnMenuChanged;
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (Game1.activeClickableMenu is LevelUpMenu levelUpMenu)
         {
-            cooldown++;
-            if (cooldown > 2)
+            this.cooldown++;
+            if (this.cooldown > 2)
             {
                 if (levelUpMenu.isProfessionChooser)
                 {
-                    var professionToChoose = Helper.Reflection.GetField<List<int>>(levelUpMenu, "professionsToChoose").GetValue()[0];
+                    var professionToChoose = this.Helper.Reflection.GetField<List<int>>(levelUpMenu, "professionsToChoose").GetValue()[0];
                     Game1.player.professions.Add(professionToChoose);
                     levelUpMenu.getImmediateProfessionPerk(professionToChoose);
                     levelUpMenu.isActive = false;
@@ -53,13 +53,13 @@ internal class AutoClickHandler : BaseHandler
     {
         if (Game1.activeClickableMenu is ShippingMenu menu)
         {
-            Helper.Reflection.GetMethod(menu, "okClicked").Invoke();
+            this.Helper.Reflection.GetMethod(menu, "okClicked").Invoke();
             Log.Info("已自动为你确认出货结算。");
         }
     }
 
     private void OnMenuChanged(object? sender, MenuChangedEventArgs e)
     {
-        if (e.NewMenu is LevelUpMenu) cooldown = 0;
+        if (e.NewMenu is LevelUpMenu) this.cooldown = 0;
     }
 }

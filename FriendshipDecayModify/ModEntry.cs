@@ -13,22 +13,20 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        config = helper.ReadConfig<ModConfig>();
+        this.config = helper.ReadConfig<ModConfig>();
         I18n.Init(helper.Translation);
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new GameLocationPatcher(config), new FarmerPatcher(config), new NPCPatcher(config), new FarmAnimalPatcher(config));
+        HarmonyPatcher.Apply(this, new GameLocationPatcher(this.config), new FarmerPatcher(this.config), new NPCPatcher(this.config), new FarmAnimalPatcher(this.config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForFriendshipDecayModify(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
+        new GenericModConfigMenuIntegrationForFriendshipDecayModify(this.Helper, this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 }

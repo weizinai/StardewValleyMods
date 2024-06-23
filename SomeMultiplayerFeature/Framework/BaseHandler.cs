@@ -9,8 +9,8 @@ internal abstract class BaseHandler : IHandler
 
     protected BaseHandler(IModHelper helper, ModConfig config)
     {
-        Helper = helper;
-        Config = config;
+        this.Helper = helper;
+        this.Config = config;
     }
 
     public abstract void Init();

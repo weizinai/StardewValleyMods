@@ -18,9 +18,8 @@ internal class FarmerPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<Farmer>(nameof(Farmer.resetFriendshipsForNewDay)),
-            transpiler: GetHarmonyMethod(nameof(ResetFriendshipsForNewDayTranspiler))
+        harmony.Patch(this.RequireMethod<Farmer>(nameof(Farmer.resetFriendshipsForNewDay)),
+            transpiler: this.GetHarmonyMethod(nameof(ResetFriendshipsForNewDayTranspiler))
         );
     }
 

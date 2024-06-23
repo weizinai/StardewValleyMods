@@ -13,22 +13,22 @@ internal class TipHandler : BaseHandler
     public TipHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
-        tipButton = new Button(new Point(64, 144), config.TipText);
+        this.tipButton = new Button(new Point(64, 144), config.TipText);
     }
 
     public override void Init()
     {
-        Helper.Events.Display.RenderingHud += OnRenderingHud;
+        this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
     }
 
     private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.ShowTip) return;
+        if (!this.Config.ShowTip) return;
 
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 
-        tipButton.Draw(e.SpriteBatch);
+        this.tipButton.Draw(e.SpriteBatch);
     }
 }

@@ -28,7 +28,7 @@ internal class RaccoonOption : BaseOption
             if (mrsRaccoon != null)
                 options.Add(new Response("MrsRaccoonShop", "MrsRaccoonShop"));
             options.Add(new Response("Leave", "Leave"));
-            Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
+            Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
         }
         else
         {
@@ -41,7 +41,7 @@ internal class RaccoonOption : BaseOption
         switch (whichAnswer)
         {
             case "RaccoonBundle":
-                helper.Reflection.GetMethod(new Raccoon(), "_activateMrRaccoon").Invoke();
+                this.helper.Reflection.GetMethod(new Raccoon(), "_activateMrRaccoon").Invoke();
                 break;
             case "MrsRaccoonShop":
                 Utility.TryOpenShopMenu("Raccoon", "Raccoon");

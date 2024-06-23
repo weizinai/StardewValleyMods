@@ -21,34 +21,34 @@ internal class AutoOther : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 增加磁力范围
-        MagneticRadiusIncrease(player);
+        this.MagneticRadiusIncrease(player);
         // 自动清理杂草
-        if (Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || Config.AutoClearWeeds.FindToolFromInventory)) AutoClearWeeds(location);
+        if (this.Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || this.Config.AutoClearWeeds.FindToolFromInventory)) this.AutoClearWeeds(location);
         // 自动挖掘斑点
-        if (Config.AutoDigSpots.IsEnable && (tool is Hoe || Config.AutoDigSpots.FindToolFromInventory)) AutoDigSpots(location, player);
+        if (this.Config.AutoDigSpots.IsEnable && (tool is Hoe || this.Config.AutoDigSpots.FindToolFromInventory)) this.AutoDigSpots(location, player);
         // 自动收获机器
-        if (Config.AutoHarvestMachine.IsEnable) AutoHarvestMachine(location, player);
+        if (this.Config.AutoHarvestMachine.IsEnable) this.AutoHarvestMachine(location, player);
         // 自动触发机器
-        if (Config.AutoTriggerMachine.IsEnable && item is not null) AutoTriggerMachine(location, player, item);
+        if (this.Config.AutoTriggerMachine.IsEnable && item is not null) this.AutoTriggerMachine(location, player, item);
         // 自动使用仙尘
-        if (Config.AutoUseFairyDust.IsEnable && item?.QualifiedItemId is "(O)872") AutoUseFairyDust(location, player);
+        if (this.Config.AutoUseFairyDust.IsEnable && item?.QualifiedItemId is "(O)872") this.AutoUseFairyDust(location, player);
         // 自动翻垃圾桶
-        if (Config.AutoGarbageCan.IsEnable) AutoGarbageCan(location, player);
+        if (this.Config.AutoGarbageCan.IsEnable) this.AutoGarbageCan(location, player);
         // 自动放置地板
-        if (Config.AutoPlaceFloor.IsEnable && item is SObject floor && floor.IsFloorPathItem()) AutoPlaceFloor(location, player, floor);
+        if (this.Config.AutoPlaceFloor.IsEnable && item is SObject floor && floor.IsFloorPathItem()) this.AutoPlaceFloor(location, player, floor);
     }
 
     // 增加磁力范围
     private void MagneticRadiusIncrease(Farmer player)
     {
-        if (Config.MagneticRadiusIncrease == 0)
+        if (this.Config.MagneticRadiusIncrease == 0)
         {
             player.buffs.Remove(UniqueBuffId);
             return;
         }
 
         player.buffs.AppliedBuffs.TryGetValue(UniqueBuffId, out var buff);
-        if (buff is null || buff.millisecondsDuration <= 5000 || Math.Abs(buff.effects.MagneticRadius.Value - Config.MagneticRadiusIncrease) > 0.1f)
+        if (buff is null || buff.millisecondsDuration <= 5000 || Math.Abs(buff.effects.MagneticRadius.Value - this.Config.MagneticRadiusIncrease) > 0.1f)
         {
             buff = new Buff(
                 id: UniqueBuffId,
@@ -56,7 +56,7 @@ internal class AutoOther : Automate
                 duration: 60000,
                 effects: new BuffEffects
                 {
-                    MagneticRadius = { Value = Config.MagneticRadiusIncrease * 64 }
+                    MagneticRadius = { Value = this.Config.MagneticRadiusIncrease * 64 }
                 });
             player.applyBuff(buff);
         }
@@ -65,10 +65,10 @@ internal class AutoOther : Automate
     // 自动清理杂草
     private void AutoClearWeeds(GameLocation location)
     {
-        var scythe = FindToolFromInventory<MeleeWeapon>();
+        var scythe = this.FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(Config.AutoClearWeeds.Range);
+        var grid = this.GetTileGrid(this.Config.AutoClearWeeds.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -80,9 +80,9 @@ internal class AutoOther : Automate
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
 
-                if (Config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
+                if (this.Config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
                 {
                     scythe.swingTicker++;
                     if (clump.performToolAction(scythe, 1, tile))
@@ -98,37 +98,37 @@ internal class AutoOther : Automate
     // 自动挖掘斑点
     private void AutoDigSpots(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.AutoDigSpots.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return;
 
-        var hoe = FindToolFromInventory<Hoe>();
+        var hoe = this.FindToolFromInventory<Hoe>();
         if (hoe is null)
             return;
 
-        var grid = GetTileGrid(Config.AutoDigSpots.Range);
+        var grid = this.GetTileGrid(this.Config.AutoDigSpots.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is not ("(O)590" or "(O)SeedSpot")) continue;
-            UseToolOnTile(location, player, hoe, tile);
+            this.UseToolOnTile(location, player, hoe, tile);
         }
     }
 
     // 自动收获机器
     private void AutoHarvestMachine(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoHarvestMachine.Range);
+        var grid = this.GetTileGrid(this.Config.AutoHarvestMachine.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is CrabPot) continue;
-            HarvestMachine(player, obj);
+            this.HarvestMachine(player, obj);
         }
     }
 
     // 自动触发机器
     private void AutoTriggerMachine(GameLocation location, Farmer player, Item item)
     {
-        var grid = GetTileGrid(Config.AutoTriggerMachine.Range);
+        var grid = this.GetTileGrid(this.Config.AutoTriggerMachine.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -152,7 +152,7 @@ internal class AutoOther : Automate
     // 自动使用仙尘
     private void AutoUseFairyDust(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoUseFairyDust.Range);
+        var grid = this.GetTileGrid(this.Config.AutoUseFairyDust.Range);
 
         foreach (var tile in grid)
         {
@@ -164,14 +164,14 @@ internal class AutoOther : Automate
     // 自动翻垃圾桶
     private void AutoGarbageCan(GameLocation location, Farmer player)
     {
-        if (CheckNPCNearTile(location, player) && Config.StopGarbageCanNearVillager) return;
-        var grid = GetTileGrid(Config.AutoGarbageCan.Range);
+        if (this.CheckNPCNearTile(location, player) && this.Config.StopGarbageCanNearVillager) return;
+        var grid = this.GetTileGrid(this.Config.AutoGarbageCan.Range);
         foreach (var tile in grid)
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
             {
                 var action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
-                if (action?.StartsWith("Garbage") ?? false) CheckTileAction(location, player, tile);
+                if (action?.StartsWith("Garbage") ?? false) this.CheckTileAction(location, player, tile);
             }
         }
     }
@@ -179,10 +179,10 @@ internal class AutoOther : Automate
     // 自动放置地板
     private void AutoPlaceFloor(GameLocation location, Farmer player, SObject floor)
     {
-        var grid = GetTileGrid(Config.AutoPlaceFloor.Range);
+        var grid = this.GetTileGrid(this.Config.AutoPlaceFloor.Range);
         foreach (var tile in grid)
         {
-            var tilePixelPosition = GetTilePixelPosition(tile);
+            var tilePixelPosition = this.GetTilePixelPosition(tile);
             if (floor.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
         }
     }

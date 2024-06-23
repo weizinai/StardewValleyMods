@@ -17,22 +17,22 @@ internal class DelayedPlayerHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
+        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         // 如果功能未启用，则返回
-        if (!Config.ShowDelayedPlayer) return;
+        if (!this.Config.ShowDelayedPlayer) return;
 
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
-        cooldown++;
+        this.cooldown++;
         
-        if (cooldown >= Config.ShowInterval)
+        if (this.cooldown >= this.Config.ShowInterval)
         {
-            cooldown = 0;
+            this.cooldown = 0;
             
             var playerPing = new Dictionary<string, float>();
             foreach (var farmer in Game1.getOnlineFarmers())

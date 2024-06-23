@@ -33,7 +33,7 @@ internal class ClintOption : BaseOption
         // 离开
         options.Add(new Response("Leave", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Leave")));
 
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
+        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }
 
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)

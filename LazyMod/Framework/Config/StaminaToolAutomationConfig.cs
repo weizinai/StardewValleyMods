@@ -7,6 +7,6 @@ internal class StaminaToolAutomationConfig : ToolAutomationConfig
     public StaminaToolAutomationConfig(int range, float stopStamina, bool findToolFromInventory) 
         : base(range, findToolFromInventory)
     {
-        StopStamina = stopStamina;
+        this.StopStamina = stopStamina;
     }
 }

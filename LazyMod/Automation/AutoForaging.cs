@@ -17,34 +17,34 @@ internal class AutoForaging : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动觅食
-        if (Config.AutoForage.IsEnable) AutoForage(location, player);
+        if (this.Config.AutoForage.IsEnable) this.AutoForage(location, player);
         // 自动砍树
-        if (Config.AutoChopTree.IsEnable && tool is Axe) AutoChopTree(location, player, tool);
+        if (this.Config.AutoChopTree.IsEnable && tool is Axe) this.AutoChopTree(location, player, tool);
         // 自动收获姜
-        if (Config.AutoHarvestGinger.IsEnable && (tool is Hoe || Config.AutoHarvestGinger.FindToolFromInventory)) AutoHarvestGinger(location, player);
+        if (this.Config.AutoHarvestGinger.IsEnable && (tool is Hoe || this.Config.AutoHarvestGinger.FindToolFromInventory)) this.AutoHarvestGinger(location, player);
         // 自动摇树
-        if (Config.AutoShakeTree.IsEnable) AutoShakeTree(location);
+        if (this.Config.AutoShakeTree.IsEnable) this.AutoShakeTree(location);
         // 自动装备采集器
-        if (Config.AutoPlaceTapper.IsEnable && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) AutoPlaceTapper(location, player, tapper);
+        if (this.Config.AutoPlaceTapper.IsEnable && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) this.AutoPlaceTapper(location, player, tapper);
         // 自动收获苔藓
-        if (Config.AutoHarvestMoss.IsEnable && (tool is MeleeWeapon || Config.AutoHarvestMoss.FindToolFromInventory)) AutoHarvestMoss(location);
+        if (this.Config.AutoHarvestMoss.IsEnable && (tool is MeleeWeapon || this.Config.AutoHarvestMoss.FindToolFromInventory)) this.AutoHarvestMoss(location);
         // 自动在树上浇醋
-        if (Config.AutoPlaceVinegar.IsEnable && item is SObject { QualifiedItemId: "(O)419" } vinegar) AutoPlaceVinegar(location, player, vinegar);
+        if (this.Config.AutoPlaceVinegar.IsEnable && item is SObject { QualifiedItemId: "(O)419" } vinegar) this.AutoPlaceVinegar(location, player, vinegar);
         // 自动清理木头
-        if (Config.AutoClearWood.IsEnable && (tool is Axe || Config.AutoClearWeeds.FindToolFromInventory)) AutoClearWood(location, player);
+        if (this.Config.AutoClearWood.IsEnable && (tool is Axe || this.Config.AutoClearWeeds.FindToolFromInventory)) this.AutoClearWood(location, player);
     }
 
     // 自动觅食
     private void AutoForage(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoForage.Range);
+        var grid = this.GetTileGrid(this.Config.AutoForage.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is not null && obj.IsSpawnedObject) CollectSpawnedObject(location, player, tile, obj);
+            if (obj is not null && obj.IsSpawnedObject) this.CollectSpawnedObject(location, player, tile, obj);
 
             foreach (var terrainFeature in location.largeTerrainFeatures)
-                if (terrainFeature is Bush bush && CanForageBerry(tile, bush))
+                if (terrainFeature is Bush bush && this.CanForageBerry(tile, bush))
                     bush.performUseAction(tile);
         }
     }
@@ -52,12 +52,12 @@ internal class AutoForaging : Automate
     // 自动收获姜
     private void AutoHarvestGinger(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.AutoHarvestGinger.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoHarvestGinger.StopStamina) return;
 
-        var hoe = FindToolFromInventory<Hoe>();
+        var hoe = this.FindToolFromInventory<Hoe>();
         if (hoe is null) return;
 
-        var grid = GetTileGrid(Config.AutoHarvestGinger.Range);
+        var grid = this.GetTileGrid(this.Config.AutoHarvestGinger.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -71,31 +71,31 @@ internal class AutoForaging : Automate
     // 自动砍树
     private void AutoChopTree(GameLocation location, Farmer player, Tool tool)
     {
-        if (player.Stamina <= Config.AutoChopTree.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return;
 
         var treeType = new Dictionary<string, Dictionary<int, bool>>
         {
-            { Tree.bushyTree, Config.ChopOakTree },
-            { Tree.leafyTree, Config.ChopMapleTree },
-            { Tree.pineTree, Config.ChopPineTree },
-            { Tree.mahoganyTree, Config.ChopMahoganyTree },
-            { Tree.palmTree, Config.ChopPalmTree },
-            { Tree.palmTree2, Config.ChopPalmTree },
-            { Tree.mushroomTree, Config.ChopMushroomTree },
-            { Tree.greenRainTreeBushy, Config.ChopGreenRainTree },
-            { Tree.greenRainTreeLeafy, Config.ChopGreenRainTree },
-            { Tree.greenRainTreeFern, Config.ChopGreenRainTree },
-            { Tree.mysticTree, Config.ChopMysticTree }
+            { Tree.bushyTree, this.Config.ChopOakTree },
+            { Tree.leafyTree, this.Config.ChopMapleTree },
+            { Tree.pineTree, this.Config.ChopPineTree },
+            { Tree.mahoganyTree, this.Config.ChopMahoganyTree },
+            { Tree.palmTree, this.Config.ChopPalmTree },
+            { Tree.palmTree2, this.Config.ChopPalmTree },
+            { Tree.mushroomTree, this.Config.ChopMushroomTree },
+            { Tree.greenRainTreeBushy, this.Config.ChopGreenRainTree },
+            { Tree.greenRainTreeLeafy, this.Config.ChopGreenRainTree },
+            { Tree.greenRainTreeFern, this.Config.ChopGreenRainTree },
+            { Tree.mysticTree, this.Config.ChopMysticTree }
         };
 
-        var grid = GetTileGrid(Config.AutoChopTree.Range);
+        var grid = this.GetTileGrid(this.Config.AutoChopTree.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree)
             {
-                if (tree.tapped.Value && !Config.ChopTapperTree) continue;
-                if (tree.stopGrowingMoss.Value && !Config.ChopVinegarTree) continue;
+                if (tree.tapped.Value && !this.Config.ChopTapperTree) continue;
+                if (tree.stopGrowingMoss.Value && !this.Config.ChopVinegarTree) continue;
 
                 foreach (var (key, value) in treeType)
                 {
@@ -107,7 +107,7 @@ internal class AutoForaging : Automate
                             if (tree.growthStage.Value < 5 && tree.growthStage.Value == stage && chopTree ||
                                 tree.growthStage.Value >= 5 && !tree.stump.Value && value[5])
                             {
-                                UseToolOnTile(location, player, tool, tile);
+                                this.UseToolOnTile(location, player, tool, tile);
                                 break;
                             }
                         }
@@ -118,7 +118,7 @@ internal class AutoForaging : Automate
                     // 树桩逻辑
                     if (tree.stump.Value && value[-1])
                     {
-                        UseToolOnTile(location, player, tool, tile);
+                        this.UseToolOnTile(location, player, tool, tile);
                         break;
                     }
                 }
@@ -129,7 +129,7 @@ internal class AutoForaging : Automate
     // 自动摇树
     private void AutoShakeTree(GameLocation location)
     {
-        var grid = GetTileGrid(Config.AutoShakeTree.Range);
+        var grid = this.GetTileGrid(this.Config.AutoShakeTree.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -141,10 +141,10 @@ internal class AutoForaging : Automate
     // 自动收获苔藓
     private void AutoHarvestMoss(GameLocation location)
     {
-        var scythe = FindToolFromInventory<MeleeWeapon>();
+        var scythe = this.FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(Config.AutoHarvestMoss.Range);
+        var grid = this.GetTileGrid(this.Config.AutoHarvestMoss.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -156,13 +156,13 @@ internal class AutoForaging : Automate
     // 自动放置采集器
     private void AutoPlaceTapper(GameLocation location, Farmer player, SObject tapper)
     {
-        var grid = GetTileGrid(Config.AutoPlaceVinegar.Range);
+        var grid = this.GetTileGrid(this.Config.AutoPlaceVinegar.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree && !tree.tapped.Value)
             {
-                var tilePixelPosition = GetTilePixelPosition(tile);
+                var tilePixelPosition = this.GetTilePixelPosition(tile);
                 if (tapper.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
             }
         }
@@ -171,13 +171,13 @@ internal class AutoForaging : Automate
     // 自动在树上浇醋
     private void AutoPlaceVinegar(GameLocation location, Farmer player, SObject vinegar)
     {
-        var grid = GetTileGrid(Config.AutoPlaceVinegar.Range);
+        var grid = this.GetTileGrid(this.Config.AutoPlaceVinegar.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree && !tree.stopGrowingMoss.Value)
             {
-                var tilePixelPosition = GetTilePixelPosition(tile);
+                var tilePixelPosition = this.GetTilePixelPosition(tile);
                 if (vinegar.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
             }
         }
@@ -186,37 +186,37 @@ internal class AutoForaging : Automate
     // 自动清理木头
     private void AutoClearWood(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.AutoClearWood.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;
 
-        var axe = FindToolFromInventory<Axe>();
+        var axe = this.FindToolFromInventory<Axe>();
         if (axe is null) return;
 
-        var grid = GetTileGrid(Config.AutoClearWood.Range);
+        var grid = this.GetTileGrid(this.Config.AutoClearWood.Range);
         foreach (var tile in grid)
         {
-            if (Config.ClearTwig)
+            if (this.Config.ClearTwig)
             {
                 location.objects.TryGetValue(tile, out var obj);
                 if (obj is not null && obj.IsTwig())
                 {
-                    UseToolOnTile(location, player, axe, tile);
+                    this.UseToolOnTile(location, player, axe, tile);
                 }
             }
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(GetTileBoundingBox(tile))) continue;
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
 
                 var clear = false;
                 var requiredUpgradeLevel = Tool.stone;
 
-                if (Config.ClearStump && clump.parentSheetIndex.Value == ResourceClump.stumpIndex)
+                if (this.Config.ClearStump && clump.parentSheetIndex.Value == ResourceClump.stumpIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.copper;
                 }
 
-                if (Config.ClearHollowLog && clump.parentSheetIndex.Value == ResourceClump.hollowLogIndex)
+                if (this.Config.ClearHollowLog && clump.parentSheetIndex.Value == ResourceClump.hollowLogIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.steel;
@@ -224,7 +224,7 @@ internal class AutoForaging : Automate
 
                 if (clear && axe.UpgradeLevel >= requiredUpgradeLevel)
                 {
-                    UseToolOnTile(location, player, axe, tile);
+                    this.UseToolOnTile(location, player, axe, tile);
                     break;
                 }
             }
@@ -315,7 +315,7 @@ internal class AutoForaging : Automate
     private bool CanForageBerry(Vector2 tile, Bush bush)
     {
         return (Game1.season is Season.Spring || Game1.season is Season.Fall) &&
-               bush.getBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+               bush.getBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
                bush.tileSheetOffset.Value == 1 &&
                bush.size.Value == Bush.mediumBush &&
                !bush.townBush.Value;

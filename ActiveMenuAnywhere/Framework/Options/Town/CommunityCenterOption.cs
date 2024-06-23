@@ -12,8 +12,8 @@ internal class CommunityCenterOption : BaseOption
     public CommunityCenterOption(Rectangle sourceRect) :
         base(I18n.Option_CommunityCenter(), sourceRect)
     {
-        keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
-        texts = new List<string>
+        this.keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
+        this.texts = new List<string>
         {
             Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_Pantry"),
             Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_CraftsRoom"),
@@ -27,7 +27,7 @@ internal class CommunityCenterOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (!Game1.player.mailReceived.Contains("JojaMember") && Game1.player.mailReceived.Contains("canReadJunimoText"))
-            CheckBundle();
+            this.CheckBundle();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }
@@ -38,11 +38,11 @@ internal class CommunityCenterOption : BaseOption
         var options = new List<Response>();
         for (var i = 0; i < 6; i++)
             if (communityCenter.shouldNoteAppearInArea(i))
-                options.Add(new Response(keys[i], texts[i]));
+                options.Add(new Response(this.keys[i], this.texts[i]));
 
         options.Add(new Response("Leave", I18n.BaseOption_Leave()));
 
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
+        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }
 
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)
@@ -55,7 +55,7 @@ internal class CommunityCenterOption : BaseOption
         else
         {
             var communityCenter = Game1.RequireLocation<CommunityCenter>("CommunityCenter");
-            communityCenter.checkBundle(keys.IndexOf(whichAnswer));
+            communityCenter.checkBundle(this.keys.IndexOf(whichAnswer));
         }
     }
 }

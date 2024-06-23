@@ -14,7 +14,7 @@ internal class ItemCheatHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.ConsoleCommands.Add("inventory", "", AccessInventory);
+        this.Helper.ConsoleCommands.Add("inventory", "", this.AccessInventory);
     }
 
     private void AccessInventory(string command, string[] args)

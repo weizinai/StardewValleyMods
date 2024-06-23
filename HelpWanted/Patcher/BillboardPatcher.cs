@@ -19,9 +19,7 @@ internal class BillboardPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<Billboard>(nameof(Billboard.draw), new[] { typeof(SpriteBatch) }),
-            GetHarmonyMethod(nameof(DrawPrefix))
+        harmony.Patch(this.RequireMethod<Billboard>(nameof(Billboard.draw), new[] { typeof(SpriteBatch) }), this.GetHarmonyMethod(nameof(DrawPrefix))
         );
     }
 

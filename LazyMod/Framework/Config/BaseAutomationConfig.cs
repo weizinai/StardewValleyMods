@@ -7,6 +7,6 @@ internal class BaseAutomationConfig
 
     public BaseAutomationConfig(int range)
     {
-        Range = range;
+        this.Range = range;
     }
 }

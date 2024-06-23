@@ -12,13 +12,13 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        config = helper.ReadConfig<ModConfig>();
-        Log.Init(Monitor);
+        this.config = helper.ReadConfig<ModConfig>();
+        Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -27,8 +27,8 @@ internal class ModEntry : Mod
         
         var mouseX = Game1.getOldMouseX(false);
         var mouseY = Game1.getOldMouseY(false);
-        var moveSpeed = config.MoveSpeed;
-        var moveThreshold = config.MoveThreshold;
+        var moveSpeed = this.config.MoveSpeed;
+        var moveThreshold = this.config.MoveThreshold;
         
         // 水平移动
         if (mouseX < moveThreshold)
@@ -47,7 +47,7 @@ internal class ModEntry : Mod
     {
         if (!Context.IsPlayerFree) return;
 
-        if (config.FreeLockKeybind.JustPressed())
+        if (this.config.FreeLockKeybind.JustPressed())
         {
             Game1.viewportFreeze = !Game1.viewportFreeze;
             var message = new HUDMessage(Game1.viewportFreeze ? I18n.UI_ViewportUnlocked() : I18n.UI_ViewportLocked())
@@ -60,12 +60,10 @@ internal class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuForFreeLock(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
+        new GenericModConfigMenuForFreeLock(this.Helper, this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 }

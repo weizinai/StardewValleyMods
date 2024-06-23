@@ -14,9 +14,8 @@ public class FishingRodPatcher : BasePatcher
     
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<FishingRod>(nameof(FishingRod.startMinigameEndFunction)),
-            transpiler: GetHarmonyMethod(nameof(StartMinigameEndFunctionTranspiler))
+        harmony.Patch(this.RequireMethod<FishingRod>(nameof(FishingRod.startMinigameEndFunction)),
+            transpiler: this.GetHarmonyMethod(nameof(StartMinigameEndFunctionTranspiler))
         );
     }
 

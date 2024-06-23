@@ -14,15 +14,15 @@ internal abstract class Automate
 
     protected Automate(ModConfig config, Func<int, List<Vector2>> getTileGrid)
     {
-        Config = config;
-        GetTileGrid = getTileGrid;
+        this.Config = config;
+        this.GetTileGrid = getTileGrid;
     }
 
     public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
     
     public void UpdateConfig(ModConfig config)
     {
-        Config = config;
+        this.Config = config;
     }
 
     protected T? FindToolFromInventory<T>() where T : Tool
@@ -34,7 +34,7 @@ internal abstract class Automate
 
     protected void UseToolOnTile(GameLocation location, Farmer player, Tool tool, Vector2 tile)
     {
-        var tilePixelPosition = GetTilePixelPosition(tile);
+        var tilePixelPosition = this.GetTilePixelPosition(tile);
         tool.swingTicker++;
         tool.DoFunction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, 1, player);
     }
@@ -53,7 +53,7 @@ internal abstract class Automate
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)
     {
-        var tilePixelPosition = GetTilePixelPosition(tile, false);
+        var tilePixelPosition = this.GetTilePixelPosition(tile, false);
         return new Rectangle((int)tilePixelPosition.X, (int)tilePixelPosition.Y, Game1.tileSize, Game1.tileSize);
     }
 

@@ -9,13 +9,13 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
 
     public GenericModConfigMenuIntegrationForSomeMultiplayerFeature(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
     }
 
     public void Register()
     {
-        if (!configMenu.IsLoaded) return;
-        configMenu
+        if (!this.configMenu.IsLoaded) return;
+        this.configMenu
             .Register()
             // 显示商店信息
             .AddSectionTitle(I18n.Config_ShowAccessShopInfo_Name)

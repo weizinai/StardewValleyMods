@@ -11,9 +11,9 @@ internal class OnlineTimeConfig
 
     public OnlineTimeConfig(bool enable, int xOffset, int yOffset, Color textColor)
     {
-        Enable = enable;
-        XOffset = xOffset;
-        YOffset = yOffset;
-        TextColor = textColor;
+        this.Enable = enable;
+        this.XOffset = xOffset;
+        this.YOffset = yOffset;
+        this.TextColor = textColor;
     }
 }

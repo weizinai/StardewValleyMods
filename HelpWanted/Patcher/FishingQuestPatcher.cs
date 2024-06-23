@@ -17,9 +17,8 @@ internal class FishingQuestPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<FishingQuest>(nameof(FishingQuest.loadQuestInfo)),
-            transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
+        harmony.Patch(this.RequireMethod<FishingQuest>(nameof(FishingQuest.loadQuestInfo)),
+            transpiler: this.GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
     }
 

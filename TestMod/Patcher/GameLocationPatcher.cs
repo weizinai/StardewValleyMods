@@ -9,9 +9,8 @@ internal class GameLocationPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<GameLocation>(nameof(GameLocation.performTenMinuteUpdate)),
-            transpiler: GetHarmonyMethod(nameof(PerformTenMinuteUpdateTranspiler))
+        harmony.Patch(this.RequireMethod<GameLocation>(nameof(GameLocation.performTenMinuteUpdate)),
+            transpiler: this.GetHarmonyMethod(nameof(PerformTenMinuteUpdateTranspiler))
         );
     }
 

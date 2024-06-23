@@ -17,9 +17,8 @@ internal class GameLocationPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<GameLocation>(nameof(GameLocation.CheckGarbage)),
-            transpiler: GetHarmonyMethod(nameof(CheckGarbageTranspiler))
+        harmony.Patch(this.RequireMethod<GameLocation>(nameof(GameLocation.CheckGarbage)),
+            transpiler: this.GetHarmonyMethod(nameof(CheckGarbageTranspiler))
         );
     }
 

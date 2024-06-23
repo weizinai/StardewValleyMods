@@ -14,7 +14,7 @@ internal class ClubSellerOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
-            ClubSeller();
+            this.ClubSeller();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

@@ -11,7 +11,7 @@ public abstract class Container : Element
         foreach (var element in elements)
         {
             element.Parent?.RemoveChild(element);
-            Children.Add(element);
+            this.Children.Add(element);
             element.Parent = this;
         }
     }
@@ -19,31 +19,31 @@ public abstract class Container : Element
     private void RemoveChild(Element element)
     {
         if (element.Parent != this) throw new ArgumentException("Element must be a child of this container.");
-        Children.Remove(element);
+        this.Children.Remove(element);
         element.Parent = null;
     }
 
     public override void Update()
     {
         base.Update();
-        foreach (var element in Children) element.Update();
+        foreach (var element in this.Children) element.Update();
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        if (IsHidden()) return;
-        foreach (var element in Children) element.Draw(spriteBatch);
+        if (this.IsHidden()) return;
+        foreach (var element in this.Children) element.Draw(spriteBatch);
     }
 
     public override void PerformHoverAction(SpriteBatch spriteBatch)
     {
-        if (IsHidden()) return;
-        foreach (var element in Children) element.PerformHoverAction(spriteBatch);
+        if (this.IsHidden()) return;
+        foreach (var element in this.Children) element.PerformHoverAction(spriteBatch);
     }
 
     public override void ReceiveLeftClick()
     {
-        if (IsHidden()) return;
-        foreach (var element in Children) element.ReceiveLeftClick();
+        if (this.IsHidden()) return;
+        foreach (var element in this.Children) element.ReceiveLeftClick();
     }
 }

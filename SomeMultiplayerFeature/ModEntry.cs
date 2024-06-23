@@ -13,13 +13,13 @@ public class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        Log.Init(Monitor);
+        Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
-        config = helper.ReadConfig<ModConfig>();
-        InitHandler();
+        this.config = helper.ReadConfig<ModConfig>();
+        this.InitHandler();
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -29,12 +29,10 @@ public class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
+        new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(this.Helper, this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 
@@ -42,17 +40,17 @@ public class ModEntry : Mod
     {
         var handlers = new IHandler[]
         {
-            new AccessShopInfoHandler(Helper, config),
-            new AutoClickHandler(Helper, config),
-            new CustomCommandHandler(Helper, config),
-            new DelayedPlayerHandler(Helper, config),
-            new IpConnectionHandler(Helper, config),
-            new ItemCheatHandler(Helper, config),
-            new ModLimitHandler(Helper, config),
-            new PlayerCountHandler(Helper, config),
-            new TipHandler(Helper, config),
-            new UnreadyPlayerHandler(Helper, config),
-            new VersionLimitHandler(Helper, config)
+            new AccessShopInfoHandler(this.Helper, this.config),
+            new AutoClickHandler(this.Helper, this.config),
+            new CustomCommandHandler(this.Helper, this.config),
+            new DelayedPlayerHandler(this.Helper, this.config),
+            new IpConnectionHandler(this.Helper, this.config),
+            new ItemCheatHandler(this.Helper, this.config),
+            new ModLimitHandler(this.Helper, this.config),
+            new PlayerCountHandler(this.Helper, this.config),
+            new TipHandler(this.Helper, this.config),
+            new UnreadyPlayerHandler(this.Helper, this.config),
+            new VersionLimitHandler(this.Helper, this.config)
         };
 
         foreach (var handler in handlers) handler.Init();

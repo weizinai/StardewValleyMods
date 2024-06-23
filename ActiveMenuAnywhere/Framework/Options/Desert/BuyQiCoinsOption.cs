@@ -14,7 +14,7 @@ internal class BuyQiCoinsOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
-            BuyQiCoins();
+            this.BuyQiCoins();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

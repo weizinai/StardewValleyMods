@@ -20,9 +20,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)),
-            GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
+        harmony.Patch(this.RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)), this.GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
         );
     }
 

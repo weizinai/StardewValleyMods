@@ -14,20 +14,20 @@ internal class CustomCommandHandler : BaseHandler
     public CustomCommandHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
-        bannedPlayers = helper.Data.ReadJsonFile<Dictionary<string, string>>(BannedPlayerPath);
-        if (bannedPlayers is null)
+        this.bannedPlayers = helper.Data.ReadJsonFile<Dictionary<string, string>>(BannedPlayerPath);
+        if (this.bannedPlayers is null)
             Log.Error($"无法找到Json文件: {BannedPlayerPath}，如果你不是主机玩家，则可以忽略该条消息。");
     }
 
     public override void Init()
     {
-        Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
-        Helper.ConsoleCommands.Add("ban", "", BanPlayer);
-        Helper.ConsoleCommands.Add("unban", "", UnbanPlayer);
-        Helper.ConsoleCommands.Add("ping", "", PingPlayer);
-        Helper.ConsoleCommands.Add("list", "", ListPlayer);
-        Helper.ConsoleCommands.Add("kick", "", KickPlayer);
-        Helper.ConsoleCommands.Add("kickall", "", KickAllPlayer);
+        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
+        this.Helper.ConsoleCommands.Add("ban", "", this.BanPlayer);
+        this.Helper.ConsoleCommands.Add("unban", "", this.UnbanPlayer);
+        this.Helper.ConsoleCommands.Add("ping", "", this.PingPlayer);
+        this.Helper.ConsoleCommands.Add("list", "", this.ListPlayer);
+        this.Helper.ConsoleCommands.Add("kick", "", this.KickPlayer);
+        this.Helper.ConsoleCommands.Add("kickall", "", this.KickAllPlayer);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -38,7 +38,7 @@ internal class CustomCommandHandler : BaseHandler
         var id = e.Peer.PlayerID;
         var name = Game1.getFarmer(id).Name;
 
-        if (bannedPlayers!.ContainsKey(id.ToString()))
+        if (this.bannedPlayers!.ContainsKey(id.ToString()))
         {
             Game1.server.kick(id);
             Log.Alert($"{name}在黑名单中，已被踢出。");
@@ -56,19 +56,19 @@ internal class CustomCommandHandler : BaseHandler
             var id = farmer.UniqueMultiplayerID;
             var name = farmer.Name;
 
-            if (bannedPlayers!.ContainsKey(id.ToString()))
+            if (this.bannedPlayers!.ContainsKey(id.ToString()))
             {
                 Log.Info($"{name}已经在黑名单中。");
             }
             else
             {
-                bannedPlayers.Add(id.ToString(), name);
+                this.bannedPlayers.Add(id.ToString(), name);
                 Game1.server.kick(id);
                 Log.Info($"{name}被加入黑名单。");
             }
         }
 
-        Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
+        this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
     }
 
     private void UnbanPlayer(string command, string[] args)
@@ -76,16 +76,16 @@ internal class CustomCommandHandler : BaseHandler
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
         if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
-        var target = bannedPlayers!.Where(x => x.Value == args[0]).ToList();
+        var target = this.bannedPlayers!.Where(x => x.Value == args[0]).ToList();
 
         if (!target.Any()) Log.Info($"{args[0]}不在黑名单中。");
         foreach (var (id, name) in target)
         {
-            bannedPlayers!.Remove(id);
+            this.bannedPlayers!.Remove(id);
             Log.Info($"{name}被移出黑名单。");
         }
 
-        Helper.Data.WriteJsonFile(BannedPlayerPath, bannedPlayers);
+        this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
     }
 
     private void PingPlayer(string command, string[] args)

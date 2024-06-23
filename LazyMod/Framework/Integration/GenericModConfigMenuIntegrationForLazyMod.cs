@@ -15,21 +15,20 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     public GenericModConfigMenuIntegrationForLazyMod(IModHelper helper, IManifest consumerManifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, consumerManifest, getConfig, reset, save);
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, consumerManifest, getConfig, reset, save);
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
-            configMenu.OpenMenu();
+        if (this.configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree) this.configMenu.OpenMenu();
     }
 
     public void Register()
     {
-        if (!configMenu.IsLoaded) return;
+        if (!this.configMenu.IsLoaded) return;
 
-        configMenu
+        this.configMenu
             .Register()
             .AddKeybindList(
                 config => config.OpenConfigMenuKeybind,
@@ -59,19 +58,19 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             .AddPageLink("Food", I18n.Config_FoodPage_Name)
             .AddPageLink("Other", I18n.Config_OtherPage_Name);
 
-        AddFarmingPage();
-        AddAnimalPage();
-        AddMiningPage();
-        AddForagingPage();
-        AddFishingPage();
-        AddFoodPage();
-        AddOtherPage();
-        AddTreeSettingsPage();
+        this.AddFarmingPage();
+        this.AddAnimalPage();
+        this.AddMiningPage();
+        this.AddForagingPage();
+        this.AddFishingPage();
+        this.AddFoodPage();
+        this.AddOtherPage();
+        this.AddTreeSettingsPage();
     }
 
     private void AddFarmingPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Farming", I18n.Config_FarmingPage_Name)
             // 自动耕地
             .AddStaminaToolAutomationConfig(config => config.AutoTillDirt, I18n.Config_AutoTillDirt_Name, I18n.Config_AutoTillDirt_Tooltip, 0)
@@ -100,7 +99,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     private void AddAnimalPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Animal", I18n.Config_AnimalPage_Name)
             // 自动抚摸动物
             .AddBaseAutomationConfig(config => config.AutoPetAnimal, I18n.Config_AutoPetAnimal_Name, null, 1)
@@ -126,7 +125,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     private void AddMiningPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Mining", I18n.Config_MiningPage_Name)
             // 自动清理石头
             .AddStaminaToolAutomationConfig(config => config.AutoClearStone, I18n.Config_AutoClearStone_Name, I18n.Config_AutoClearStone_Tooltip, 1)
@@ -232,7 +231,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     private void AddForagingPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Foraging", I18n.Config_ForagingPage_Name)
             // 自动觅食
             .AddBaseAutomationConfig(config => config.AutoForage, I18n.Config_AutoForage_Name, null, 1)
@@ -280,7 +279,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     private void AddFishingPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Fishing", I18n.Config_FishingPage_Name)
             // 自动抓取宝箱物品
             .AddBoolOption(
@@ -304,7 +303,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     private void AddFoodPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Food", I18n.Config_FoodPage_Name)
             // 自动吃食物-体力
             .AddSectionTitle(I18n.Config_AutoEatFoodForStamina_Name)
@@ -380,16 +379,14 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 config => config.FoodBuffMaintain1.ToString(),
                 (config, value) => config.FoodBuffMaintain1 = AutoFood.GetBuffType(value),
                 I18n.Config_FoodBuffMaintain1_Name,
-                I18n.Config_FoodBuffMaintain_Tooltip,
-                buffMaintainAllowValues,
+                I18n.Config_FoodBuffMaintain_Tooltip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
             )
             .AddTextOption(
                 config => config.FoodBuffMaintain2.ToString(),
                 (config, value) => config.FoodBuffMaintain2 = AutoFood.GetBuffType(value),
                 I18n.Config_FoodBuffMaintain2_Name,
-                I18n.Config_FoodBuffMaintain_Tooltip,
-                buffMaintainAllowValues,
+                I18n.Config_FoodBuffMaintain_Tooltip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
             )
             // 自动喝增益饮料
@@ -404,23 +401,21 @@ internal class GenericModConfigMenuIntegrationForLazyMod
                 config => config.DrinkBuffMaintain1.ToString(),
                 (config, value) => config.DrinkBuffMaintain1 = AutoFood.GetBuffType(value),
                 I18n.Config_DrinkBuffMaintain1_Name,
-                I18n.Config_DrinkBuffMaintain_ToolTip,
-                buffMaintainAllowValues,
+                I18n.Config_DrinkBuffMaintain_ToolTip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
             )
             .AddTextOption(
                 config => config.DrinkBuffMaintain2.ToString(),
                 (config, value) => config.DrinkBuffMaintain2 = AutoFood.GetBuffType(value),
                 I18n.Config_DrinkBuffMaintain2_Name,
-                I18n.Config_DrinkBuffMaintain_ToolTip,
-                buffMaintainAllowValues,
+                I18n.Config_DrinkBuffMaintain_ToolTip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
             );
     }
 
     private void AddOtherPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("Other", I18n.Config_OtherPage_Name)
             // 磁力范围增加
             .AddSectionTitle(I18n.Config_MagneticRadiusIncrease_Name)
@@ -460,7 +455,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
 
     private void AddTreeSettingsPage()
     {
-        configMenu
+        this.configMenu
             .AddPage("TreeSettings", I18n.Config_TreeSettingsPage_Name)
             // 橡树
             .AddSectionTitle(I18n.Config_OakTreeTitle_Name)

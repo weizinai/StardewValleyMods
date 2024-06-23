@@ -18,35 +18,35 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        Log.Init(Monitor);
+        Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
-        config = helper.ReadConfig<ModConfig>();
+        this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.OneSecondUpdateTicked += OnOneSecondUpdateTicked;
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 自定义命令
-        helper.ConsoleCommands.Add("spectate_location", "", SpectateLocation);
-        helper.ConsoleCommands.Add("spectate_player", "", SpectateFarmer);
+        helper.ConsoleCommands.Add("spectate_location", "", this.SpectateLocation);
+        helper.ConsoleCommands.Add("spectate_player", "", this.SpectateFarmer);
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         // 轮播玩家
-        if (isRotatingPlayers)
+        if (this.isRotatingPlayers)
         {
-            if (cooldown >= config.RotationInterval)
+            if (this.cooldown >= this.config.RotationInterval)
             {
-                cooldown = 0;
+                this.cooldown = 0;
                 var farmer = Game1.random.ChooseFrom(Game1.otherFarmers.Values.ToList());
-                Game1.activeClickableMenu = new SpectatorMenu(config, farmer.currentLocation, farmer, true);
+                Game1.activeClickableMenu = new SpectatorMenu(this.config, farmer.currentLocation, farmer, true);
             }
             else
             {
-                cooldown++;
+                this.cooldown++;
                 if (Game1.activeClickableMenu is not SpectatorMenu)
                 {
-                    isRotatingPlayers = false;
+                    this.isRotatingPlayers = false;
                     var message = new HUDMessage(I18n.UI_StopRotatePlayer())
                     {
                         noIcon = true
@@ -60,23 +60,23 @@ internal class ModEntry : Mod
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         // 旁观地点
-        if (config.SpectateLocationKeybind.JustPressed() && Context.IsPlayerFree)
+        if (this.config.SpectateLocationKeybind.JustPressed() && Context.IsPlayerFree)
         {
             var locations = Game1.locations.Where(location => location.IsOutdoors)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
-            Game1.currentLocation.ShowPagedResponses("", locations, value => SpectateLocation("spectate_location", new[] { value }),
+            Game1.currentLocation.ShowPagedResponses("", locations, value => this.SpectateLocation("spectate_location", new[] { value }),
                 false, true, 10);
         }
 
         // 旁观玩家
-        if (config.SpectatePlayerKeybind.JustPressed() && Context.IsPlayerFree)
+        if (this.config.SpectatePlayerKeybind.JustPressed() && Context.IsPlayerFree)
         {
             if (Context.HasRemotePlayers)
             {
                 var players = new List<KeyValuePair<string, string>>();
                 foreach (var (_, farmer) in Game1.otherFarmers)
                     players.Add(new KeyValuePair<string, string>(farmer.Name, farmer.displayName));
-                Game1.currentLocation.ShowPagedResponses("", players, value => SpectateFarmer("spectate_player", new[] { value }),
+                Game1.currentLocation.ShowPagedResponses("", players, value => this.SpectateFarmer("spectate_player", new[] { value }),
                     false, true, 10);
             }
             else
@@ -90,17 +90,17 @@ internal class ModEntry : Mod
         }
 
         // 轮播玩家
-        if (config.RotatePlayerKeybind.JustPressed())
+        if (this.config.RotatePlayerKeybind.JustPressed())
         {
             if (Context.HasRemotePlayers)
             {
-                if (isRotatingPlayers)
+                if (this.isRotatingPlayers)
                     Game1.activeClickableMenu.exitThisMenu();
                 else
-                    cooldown = config.RotationInterval;
+                    this.cooldown = this.config.RotationInterval;
 
-                isRotatingPlayers = !isRotatingPlayers;
-                var message = new HUDMessage(isRotatingPlayers ? I18n.UI_StartRotatePlayer() : I18n.UI_StopRotatePlayer())
+                this.isRotatingPlayers = !this.isRotatingPlayers;
+                var message = new HUDMessage(this.isRotatingPlayers ? I18n.UI_StartRotatePlayer() : I18n.UI_StopRotatePlayer())
                 {
                     noIcon = true
                 };
@@ -128,7 +128,7 @@ internal class ModEntry : Mod
             return;
         }
 
-        Game1.activeClickableMenu = new SpectatorMenu(config, location);
+        Game1.activeClickableMenu = new SpectatorMenu(this.config, location);
         Log.Info(I18n.UI_SpectateLocation_Success(location.DisplayName));
     }
 
@@ -149,18 +149,16 @@ internal class ModEntry : Mod
             return;
         }
 
-        Game1.activeClickableMenu = new SpectatorMenu(config, farmer.currentLocation, farmer, true);
+        Game1.activeClickableMenu = new SpectatorMenu(this.config, farmer.currentLocation, farmer, true);
         Log.Info(I18n.UI_SpectatePlayer_Success(farmer.Name));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuForSpectatorMode(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
+        new GenericModConfigMenuForSpectatorMode(this.Helper, this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 }

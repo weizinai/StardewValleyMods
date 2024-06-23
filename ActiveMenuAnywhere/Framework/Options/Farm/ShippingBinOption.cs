@@ -19,8 +19,7 @@ internal class ShippingBinOption : BaseOption
 
     public override void ReceiveLeftClick()
     {
-        var itemGrabMenu = new ItemGrabMenu(null, true, false, Utility.highlightShippableObjects,
-            ShipItem, "", null, true, true, false,
+        var itemGrabMenu = new ItemGrabMenu(null, true, false, Utility.highlightShippableObjects, this.ShipItem, "", null, true, true, false,
             true, false, 0, null, -1, this);
         itemGrabMenu.initializeUpperRightCloseButton();
         itemGrabMenu.setBackgroundTransparency(false);
@@ -37,8 +36,7 @@ internal class ShippingBinOption : BaseOption
         {
             who.removeItemFromInventory(i);
             farm?.getShippingBin(who).Add(i);
-            if (i is Object obj && farm != null)
-                helper.Reflection.GetMethod(new ShippingBin(), "showShipment").Invoke(obj, false);
+            if (i is Object obj && farm != null) this.helper.Reflection.GetMethod(new ShippingBin(), "showShipment").Invoke(obj, false);
             if (farm != null)
                 farm.lastItemShipped = i;
             if (Game1.player.ActiveObject == null)

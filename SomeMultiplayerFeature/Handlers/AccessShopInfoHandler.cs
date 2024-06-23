@@ -19,32 +19,32 @@ internal class AccessShopInfoHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        Helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
+        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
     // 检测当前玩家是否正在访问商店并向其他玩家发送消息
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (Game1.activeClickableMenu is ShopMenu shopMenu1 && lastShopMenu is not ShopMenu)
+        if (Game1.activeClickableMenu is ShopMenu shopMenu1 && this.lastShopMenu is not ShopMenu)
         {
             var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu1.ShopId);
-            Helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
+            this.Helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
-        else if (lastShopMenu is ShopMenu shopMenu2 && Game1.activeClickableMenu is not ShopMenu)
+        else if (this.lastShopMenu is ShopMenu shopMenu2 && Game1.activeClickableMenu is not ShopMenu)
         {
             var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu2.ShopId, true);
-            Helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
+            this.Helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
 
-        lastShopMenu = Game1.activeClickableMenu;
+        this.lastShopMenu = Game1.activeClickableMenu;
     }
 
     // 当收到来自其他玩家的商店访问信息时，显示HUD信息
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.ShowAccessShopInfo) return;
+        if (!this.Config.ShowAccessShopInfo) return;
 
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;

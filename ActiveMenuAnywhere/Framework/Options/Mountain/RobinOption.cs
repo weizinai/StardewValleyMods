@@ -26,7 +26,7 @@ internal class RobinOption : BaseOption
                         Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_UpgradeHouse")));
                 }
                 // 社区升级
-                else if (CommunityUpgrade())
+                else if (this.CommunityUpgrade())
                 {
                     // 拖车
                     if (!Game1.MasterPlayer.mailReceived.Contains("pamHouseUpgrade"))

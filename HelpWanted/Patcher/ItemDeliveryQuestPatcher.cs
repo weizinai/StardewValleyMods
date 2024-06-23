@@ -29,17 +29,14 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.loadQuestInfo)),
-            transpiler: GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
+        harmony.Patch(this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.loadQuestInfo)),
+            transpiler: this.GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
-        harmony.Patch(
-            RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
-            postfix: GetHarmonyMethod(nameof(GetGoldRewardPerItemPostfix))
+        harmony.Patch(this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
+            postfix: this.GetHarmonyMethod(nameof(GetGoldRewardPerItemPostfix))
         );
-        harmony.Patch(
-            RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.checkIfComplete)),
-            transpiler: GetHarmonyMethod(nameof(CheckIfCompleteTranspiler))
+        harmony.Patch(this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.checkIfComplete)),
+            transpiler: this.GetHarmonyMethod(nameof(CheckIfCompleteTranspiler))
         );
     }
 

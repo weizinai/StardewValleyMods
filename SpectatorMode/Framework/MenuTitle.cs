@@ -15,17 +15,17 @@ internal class MenuTitle
     public MenuTitle(string text)
     {
         this.text = text;
-        position = new Vector2((Game1.uiViewport.Width - GetActualSize().X) / 2, 32);
+        this.position = new Vector2((Game1.uiViewport.Width - this.GetActualSize().X) / 2, 32);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        IClickableMenu.drawTextureBox(spriteBatch, (int)position.X, (int)position.Y, (int)GetActualSize().X, (int)GetActualSize().Y, Color.White);
-        Utility.drawTextWithShadow(spriteBatch, text, font, position + new Vector2(16, 16), Game1.textColor);
+        IClickableMenu.drawTextureBox(spriteBatch, (int)this.position.X, (int)this.position.Y, (int)this.GetActualSize().X, (int)this.GetActualSize().Y, Color.White);
+        Utility.drawTextWithShadow(spriteBatch, this.text, this.font, this.position + new Vector2(16, 16), Game1.textColor);
     }
 
     private Vector2 GetActualSize()
     {
-        return font.MeasureString(text) + new Vector2(32, 32);
+        return this.font.MeasureString(this.text) + new Vector2(32, 32);
     }
 }

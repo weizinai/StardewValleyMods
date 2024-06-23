@@ -12,16 +12,16 @@ internal class CabinOwnerNameBox : Box
     {
         get
         {
-            if (Game1.player.Equals(Cabin.owner))
+            if (Game1.player.Equals(this.Cabin.owner))
             {
-                return Config.OwnerColor;
+                return this.Config.OwnerColor;
             }
 
-            return Game1.player.team.playerIsOnline(Cabin.owner.UniqueMultiplayerID) ? Config.OnlineFarmerColor : Config.OfflineFarmerColor;
+            return Game1.player.team.playerIsOnline(this.Cabin.owner.UniqueMultiplayerID) ? this.Config.OnlineFarmerColor : this.Config.OfflineFarmerColor;
         }
     }
-    protected override string Text => Cabin.owner.displayName;
-    protected override Point Offset => new(Config.NameTagXOffset, Config.NameTagYOffset);
+    protected override string Text => this.Cabin.owner.displayName;
+    protected override Point Offset => new(this.Config.NameTagXOffset, this.Config.NameTagYOffset);
 
     public CabinOwnerNameBox(Building building, Cabin cabin, ModConfig config) 
         : base(building, cabin, config)

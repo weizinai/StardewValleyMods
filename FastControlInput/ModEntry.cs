@@ -14,21 +14,19 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        config = helper.ReadConfig<ModConfig>();
+        this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new ModHooksPatcher(() => config));
+        HarmonyPatcher.Apply(this, new ModHooksPatcher(() => this.config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForFastControlInput(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
+        new GenericModConfigMenuIntegrationForFastControlInput(this.Helper, this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 }

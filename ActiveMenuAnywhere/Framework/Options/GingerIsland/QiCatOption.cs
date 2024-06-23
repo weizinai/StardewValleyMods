@@ -19,7 +19,7 @@ internal class QiCatOption : BaseOption
     {
         var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
         if (isQiWalnutRoomDoorUnlocked)
-            helper.Reflection.GetMethod(new GameLocation(), "ShowQiCat").Invoke();
+            this.helper.Reflection.GetMethod(new GameLocation(), "ShowQiCat").Invoke();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

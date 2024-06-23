@@ -18,42 +18,40 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        config = helper.ReadConfig<ModConfig>();
+        this.config = helper.ReadConfig<ModConfig>();
         I18n.Init(helper.Translation);
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
-        helper.Events.Player.Warped += OnWarped;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        helper.Events.Player.Warped += this.OnWarped;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new BuildingPatcher(config));
+        HarmonyPatcher.Apply(this, new BuildingPatcher(this.config));
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        SetCabinSkin();
-        DeleteFarmhand();
+        this.SetCabinSkin();
+        this.DeleteFarmhand();
     }
 
     private void OnWarped(object? sender, WarpedEventArgs e)
     {
-        VisitCabinInfo(e);
+        this.VisitCabinInfo(e);
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForBetterCabin(
-            Helper,
-            ModManifest,
-            () => config,
-            () => config = new ModConfig(),
-            () => Helper.WriteConfig(config)
+        new GenericModConfigMenuIntegrationForBetterCabin(this.Helper, this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 
     // 拜访小屋信息
     private void VisitCabinInfo(WarpedEventArgs e)
     {
-        if (config.VisitCabinInfo && e.NewLocation is Cabin cabin)
+        if (this.config.VisitCabinInfo && e.NewLocation is Cabin cabin)
         {
             var owner = cabin.owner;
             var messageContent = new StringBuilder();
@@ -86,7 +84,7 @@ internal class ModEntry : Mod
     {
         if (Context.IsMainPlayer || !Context.IsPlayerFree) return;
 
-        if (config.SetCabinSkin && config.SetCabinSkinKeybind.JustPressed())
+        if (this.config.SetCabinSkin && this.config.SetCabinSkinKeybind.JustPressed())
         {
             Utility.ForEachBuilding(building =>
             {
@@ -106,13 +104,13 @@ internal class ModEntry : Mod
     {
         if (!Context.IsMainPlayer || !Context.IsPlayerFree) return;
 
-        if (config.DeleteFarmhand && config.DeleteFarmhandKeybind.JustPressed())
+        if (this.config.DeleteFarmhand && this.config.DeleteFarmhandKeybind.JustPressed())
         {
             var location = Game1.player.currentLocation;
             if (location is Cabin cabin)
             {
                 if (!cabin.owner.isUnclaimedFarmhand)
-                    ResetCabinPlayer(cabin);
+                    this.ResetCabinPlayer(cabin);
                 else
                     Game1.addHUDMessage(new HUDMessage(I18n.UI_DeleteFarmhand_NoOwner()) { noIcon = true });
             }
@@ -124,7 +122,7 @@ internal class ModEntry : Mod
                 location.ShowPagedResponses(I18n.UI_DeleteFarmhand_ChooseFarmhand(), farmhands.ToList(), value =>
                 {
                     var farmer = Game1.getFarmer(long.Parse(value));
-                    ResetCabinPlayer((Utility.getHomeOfFarmer(farmer) as Cabin)!);
+                    this.ResetCabinPlayer((Utility.getHomeOfFarmer(farmer) as Cabin)!);
                 });
             }
         }

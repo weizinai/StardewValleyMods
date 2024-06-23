@@ -19,7 +19,7 @@ internal class PierreOption : BaseOption
             new("BuyBackpack", I18n.PierreOption_BuyBackpack()),
             new("Leave", I18n.BaseOption_Leave())
         };
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterQuestionBehavior);
+        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterQuestionBehavior);
     }
 
     private void AfterQuestionBehavior(Farmer who, string whichAnswer)

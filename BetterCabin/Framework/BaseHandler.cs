@@ -8,7 +8,7 @@ internal abstract class BaseHandler : IHandler
 
     protected BaseHandler(ModConfig config)
     {
-        Config = config;
+        this.Config = config;
     }
 
     public abstract void Init();

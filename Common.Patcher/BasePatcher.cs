@@ -34,8 +34,8 @@ public abstract class BasePatcher : IPatcher
     /// <param name="name">The method name.</param>
     protected HarmonyMethod GetHarmonyMethod(string name)
     {
-        return new HarmonyMethod(AccessTools.Method(GetType(), name)) ??
-               throw new InvalidOperationException($"Can't find patcher method {GetMethodString(GetType(), name)}.");
+        return new HarmonyMethod(AccessTools.Method(this.GetType(), name)) ??
+               throw new InvalidOperationException($"Can't find patcher method {GetMethodString(this.GetType(), name)}.");
     }
 
     /// <summary>Get a human-readable representation of a method target.</summary>

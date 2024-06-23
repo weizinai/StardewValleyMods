@@ -17,55 +17,54 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        Log.Init(Monitor);
+        Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
         try
         {
-            config = helper.ReadConfig<ModConfig>();
+            this.config = helper.ReadConfig<ModConfig>();
         }
         catch (Exception)
         {
             helper.WriteConfig(new ModConfig());
-            config = helper.ReadConfig<ModConfig>();
+            this.config = helper.ReadConfig<ModConfig>();
             Log.Info("Read config.json file failed and was automatically fixed. Please reset the features you want to turn on.");
         }
-        automationManger = new AutomationManger(helper, config);
+
+        this.automationManger = new AutomationManger(helper, this.config);
 
         // 注册事件
-        helper.Events.Display.RenderedHud += OnRenderedHud;
-        helper.Events.GameLoop.GameLaunched += OnGameLaunched;
-        helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
+        helper.Events.Display.RenderedHud += this.OnRenderedHud;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        miningHud.Update();
+        this.miningHud.Update();
     }
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
-        miningHud.Draw(e.SpriteBatch);
+        this.miningHud.Draw(e.SpriteBatch);
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        miningHud = new MiningHud(Helper, config);
+        this.miningHud = new MiningHud(this.Helper, this.config);
         
-        new GenericModConfigMenuIntegrationForLazyMod(
-            Helper,
-            ModManifest,
-            () => config,
+        new GenericModConfigMenuIntegrationForLazyMod(this.Helper, this.ModManifest,
+            () => this.config,
             () =>
             {
-                config = new ModConfig();
-                UpdateConfig();
+                this.config = new ModConfig();
+                this.UpdateConfig();
             },
-            () => Helper.WriteConfig(config)
+            () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 
     private void UpdateConfig()
     {
-        automationManger.UpdateConfig(config);
+        this.automationManger.UpdateConfig(this.config);
     }
 }

@@ -15,42 +15,42 @@ internal class AutoAnimal : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动抚摸动物
-        if (Config.AutoPetAnimal.IsEnable) AutoPetAnimal(location, player);
+        if (this.Config.AutoPetAnimal.IsEnable) this.AutoPetAnimal(location, player);
         // 自动抚摸宠物
-        if (Config.AutoPetPet.IsEnable) AutoPetPet(location, player);
+        if (this.Config.AutoPetPet.IsEnable) this.AutoPetPet(location, player);
         // 自动挤奶
-        if (Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || Config.AutoMilkAnimal.FindToolFromInventory)) AutoMilkAnimal(location, player);
+        if (this.Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || this.Config.AutoMilkAnimal.FindToolFromInventory)) this.AutoMilkAnimal(location, player);
         // 自动剪毛
-        if (Config.AutoShearsAnimal.IsEnable && (tool is Shears || Config.AutoShearsAnimal.FindToolFromInventory)) AutoShearsAnimal(location, player);
+        if (this.Config.AutoShearsAnimal.IsEnable && (tool is Shears || this.Config.AutoShearsAnimal.FindToolFromInventory)) this.AutoShearsAnimal(location, player);
         // 自动喂食动物饼干
-        if (Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") AutoFeedAnimalCracker(location, player);
+        if (this.Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") this.AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
-        if (Config.AutoOpenFenceGate.IsEnable) AutoOpenFenceGate(location, player);
+        if (this.Config.AutoOpenFenceGate.IsEnable) this.AutoOpenFenceGate(location, player);
     }
 
     // 自动抚摸动物
     private void AutoPetAnimal(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoPetAnimal.Range);
+        var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
 
         var animals = location.animals.Values;
         foreach (var animal in animals)
             foreach (var tile in grid)
-                if (CanPetAnimal(tile, animal))
-                    PetAnimal(player, animal);
+                if (this.CanPetAnimal(tile, animal))
+                    this.PetAnimal(player, animal);
     }
 
     // 自动抚摸宠物
     private void AutoPetPet(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoPetAnimal.Range);
+        var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
 
         var pets = location.characters.OfType<Pet>();
         foreach (var pet in pets)
         {
             foreach (var tile in grid)
             {
-                if (pet.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+                if (pet.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
                     (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays))
                     pet.checkAction(player, location);
             }
@@ -60,51 +60,51 @@ internal class AutoAnimal : Automate
     // 自动挤奶
     private void AutoMilkAnimal(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.AutoMilkAnimal.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
-        var milkPail = FindToolFromInventory<MilkPail>();
+        var milkPail = this.FindToolFromInventory<MilkPail>();
         if (milkPail is null) return;
 
-        var grid = GetTileGrid(Config.AutoMilkAnimal.Range);
+        var grid = this.GetTileGrid(this.Config.AutoMilkAnimal.Range);
         foreach (var tile in grid)
         {
-            var animal = GetBestHarvestableFarmAnimal(location, milkPail, tile);
+            var animal = this.GetBestHarvestableFarmAnimal(location, milkPail, tile);
             if (animal is null) continue;
             milkPail.animal = animal;
-            UseToolOnTile(location, player, milkPail, tile);
+            this.UseToolOnTile(location, player, milkPail, tile);
         }
     }
 
     // 自动剪毛
     private void AutoShearsAnimal(GameLocation location, Farmer player)
     {
-        if (player.Stamina <= Config.AutoShearsAnimal.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
-        var shears = FindToolFromInventory<Shears>();
+        var shears = this.FindToolFromInventory<Shears>();
         if (shears is null)
             return;
 
-        var grid = GetTileGrid(Config.AutoShearsAnimal.Range);
+        var grid = this.GetTileGrid(this.Config.AutoShearsAnimal.Range);
         foreach (var tile in grid)
         {
-            var animal = GetBestHarvestableFarmAnimal(location, shears, tile);
+            var animal = this.GetBestHarvestableFarmAnimal(location, shears, tile);
             if (animal is null) continue;
             shears.animal = animal;
-            UseToolOnTile(location, player, shears, tile);
+            this.UseToolOnTile(location, player, shears, tile);
         }
     }
 
     // 自动喂食动物饼干
     private void AutoFeedAnimalCracker(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoFeedAnimalCracker.Range);
+        var grid = this.GetTileGrid(this.Config.AutoFeedAnimalCracker.Range);
         var animals = location.animals.Values;
         foreach (var animal in animals)
             foreach (var tile in grid)
-                if (CanFeedAnimalCracker(tile, animal))
-                    FeedAnimalCracker(player, animal);
+                if (this.CanFeedAnimalCracker(tile, animal))
+                    this.FeedAnimalCracker(player, animal);
     }
 
     // 自动打开动物门
@@ -131,19 +131,19 @@ internal class AutoAnimal : Automate
     // 自动打开栅栏门
     private void AutoOpenFenceGate(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoOpenFenceGate.Range + 2);
+        var grid = this.GetTileGrid(this.Config.AutoOpenFenceGate.Range + 2);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not Fence fence || !fence.isGate.Value)
                 continue;
 
-            var distance = GetDistance(player.Tile, tile);
-            if (distance <= Config.AutoOpenFenceGate.Range && fence.gatePosition.Value == 0)
+            var distance = this.GetDistance(player.Tile, tile);
+            if (distance <= this.Config.AutoOpenFenceGate.Range && fence.gatePosition.Value == 0)
             {
                 fence.toggleGate(player, true);
             }
-            else if (distance > Config.AutoOpenFenceGate.Range + 1 && fence.gatePosition.Value != 0)
+            else if (distance > this.Config.AutoOpenFenceGate.Range + 1 && fence.gatePosition.Value != 0)
             {
                 fence.toggleGate(player, false);
             }
@@ -152,7 +152,7 @@ internal class AutoAnimal : Automate
 
     private FarmAnimal? GetBestHarvestableFarmAnimal(GameLocation location, Tool tool, Vector2 tile)
     {
-        var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool, GetTileBoundingBox(tile));
+        var animal = Utility.GetBestHarvestableFarmAnimal(location.Animals.Values, tool, this.GetTileBoundingBox(tile));
         if (animal?.currentProduce.Value is null || animal.isBaby() || !animal.CanGetProduceWithTool(tool))
             return null;
 
@@ -171,7 +171,7 @@ internal class AutoAnimal : Automate
 
     private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)
     {
-        return animal.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
                !animal.wasPet.Value &&
                (animal.isMoving() || Game1.timeOfDay < 1900) &&
                !animal.Name.StartsWith("DH.MEEP.SpawnedAnimal_");
@@ -208,7 +208,7 @@ internal class AutoAnimal : Automate
 
     private bool CanFeedAnimalCracker(Vector2 tile, FarmAnimal animal)
     {
-        return animal.GetBoundingBox().Intersects(GetTileBoundingBox(tile)) &&
+        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
                !animal.hasEatenAnimalCracker.Value &&
                (animal.GetAnimalData()?.CanEatGoldenCrackers ?? false);
     }

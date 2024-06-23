@@ -19,96 +19,96 @@ internal class AutoFood : Automate
     {
         if (tool is FishingRod && player.UsingTool) return;
 
-        FindFoodFromInventory(player);
-        if (!foodData.Any()) return;
+        this.FindFoodFromInventory(player);
+        if (!this.foodData.Any()) return;
 
         // 自动吃食物-体力
-        if (Config.AutoEatFoodForStamina) AutoEatFoodForStamina(player);
+        if (this.Config.AutoEatFoodForStamina) this.AutoEatFoodForStamina(player);
         // 自动吃食物-生命值
-        if (Config.AutoEatFoodForHealth) AutoEatFoodForHealth(player);
+        if (this.Config.AutoEatFoodForHealth) this.AutoEatFoodForHealth(player);
         // 自动吃食物-Buff
-        if (Config.AutoEatBuffFood) AutoEatBuffFood(player);
+        if (this.Config.AutoEatBuffFood) this.AutoEatBuffFood(player);
         // 自动喝饮料-Buff
-        if (Config.AutoDrinkBuffDrink) AutoDrinkBuffDrink(player);
+        if (this.Config.AutoDrinkBuffDrink) this.AutoDrinkBuffDrink(player);
     }
 
     // 自动吃食物-体力
     private void AutoEatFoodForStamina(Farmer player)
     {
-        if (player.Stamina > player.MaxStamina * Config.AutoEatFoodStaminaRate) return;
+        if (player.Stamina > player.MaxStamina * this.Config.AutoEatFoodStaminaRate) return;
 
-        if (!Config.IntelligentFoodSelectionForStamina)
+        if (!this.Config.IntelligentFoodSelectionForStamina)
         {
-            EatFirstFood(player, foodData.Keys.First());
+            this.EatFirstFood(player, this.foodData.Keys.First());
             return;
         }
 
-        if (foodData.Count > 1)
+        if (this.foodData.Count > 1)
         {
-            var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
-            if (allFood[0].Stack - allFood[1].Stack > Config.RedundantStaminaFoodCount)
+            var allFood = this.foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
+            if (allFood[0].Stack - allFood[1].Stack > this.Config.RedundantStaminaFoodCount)
             {
-                EatFirstFood(player, allFood[0]);
+                this.EatFirstFood(player, allFood[0]);
                 return;
             }
         }
 
-        var food = foodData.Keys.OrderBy(food => (food.Price / food.Edibility, -food.Stack)).First();
-        EatFirstFood(player, food);
+        var food = this.foodData.Keys.OrderBy(food => (food.Price / food.Edibility, -food.Stack)).First();
+        this.EatFirstFood(player, food);
     }
 
     // 自动吃食物-生命值
     private void AutoEatFoodForHealth(Farmer player)
     {
-        if (player.health > player.maxHealth * Config.AutoEatFoodHealthRate) return;
+        if (player.health > player.maxHealth * this.Config.AutoEatFoodHealthRate) return;
 
-        if (!Config.IntelligentFoodSelectionForHealth)
+        if (!this.Config.IntelligentFoodSelectionForHealth)
         {
-            EatFirstFood(player, foodData.Keys.First());
+            this.EatFirstFood(player, this.foodData.Keys.First());
             return;
         }
 
-        if (foodData.Count > 1)
+        if (this.foodData.Count > 1)
         {
-            var allFood = foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
-            if (allFood[0].Stack - allFood[1].Stack > Config.RedundantHealthFoodCount)
+            var allFood = this.foodData.Keys.OrderBy(food => (-food.Stack, food.Price / food.Edibility)).ToList();
+            if (allFood[0].Stack - allFood[1].Stack > this.Config.RedundantHealthFoodCount)
             {
-                EatFirstFood(player, allFood[0]);
+                this.EatFirstFood(player, allFood[0]);
                 return;
             }
         }
 
-        var food = foodData.Keys.OrderBy(food => (food.Price / food.Edibility, -food.Stack)).First();
-        EatFirstFood(player, food);
+        var food = this.foodData.Keys.OrderBy(food => (food.Price / food.Edibility, -food.Stack)).First();
+        this.EatFirstFood(player, food);
     }
 
     // 自动吃增益食物
     private void AutoEatBuffFood(Farmer player)
     {
         if (player.buffs.AppliedBuffs.Values.Any(buff => buff.id is "food")) return;
-        var foodList = GetBuffFoodList("food", Config.FoodBuffMaintain1, Config.FoodBuffMaintain2);
-        if (!foodList.Any()) foodList = GetBuffFoodList("food", Config.FoodBuffMaintain1);
-        if (!foodList.Any()) foodList = GetBuffFoodList("food", Config.FoodBuffMaintain2);
+        var foodList = this.GetBuffFoodList("food", this.Config.FoodBuffMaintain1, this.Config.FoodBuffMaintain2);
+        if (!foodList.Any()) foodList = this.GetBuffFoodList("food", this.Config.FoodBuffMaintain1);
+        if (!foodList.Any()) foodList = this.GetBuffFoodList("food", this.Config.FoodBuffMaintain2);
         if (!foodList.Any()) return;
-        EatFirstFood(player, foodList.First());
+        this.EatFirstFood(player, foodList.First());
     }
 
     // 自动喝增益饮料
     private void AutoDrinkBuffDrink(Farmer player)
     {
         if (player.buffs.AppliedBuffs.Values.Any(buff => buff.id is "drink")) return;
-        var foodList = GetBuffFoodList("drink", Config.DrinkBuffMaintain1, Config.DrinkBuffMaintain2);
-        if (!foodList.Any()) foodList = GetBuffFoodList("drink", Config.DrinkBuffMaintain1);
-        if (!foodList.Any()) foodList = GetBuffFoodList("drink", Config.DrinkBuffMaintain2);
+        var foodList = this.GetBuffFoodList("drink", this.Config.DrinkBuffMaintain1, this.Config.DrinkBuffMaintain2);
+        if (!foodList.Any()) foodList = this.GetBuffFoodList("drink", this.Config.DrinkBuffMaintain1);
+        if (!foodList.Any()) foodList = this.GetBuffFoodList("drink", this.Config.DrinkBuffMaintain2);
         if (!foodList.Any()) return;
-        EatFirstFood(player, foodList.First());
+        this.EatFirstFood(player, foodList.First());
     }
 
     private List<SObject> GetBuffFoodList(string buffId, params BuffType[] buffTypes)
     {
         var foodList = new List<SObject>();
         var buffEffectsData = new Dictionary<BuffType, float>();
-        foreach (var (food, foodBuffId) in foodData)
+        foreach (var (food, foodBuffId) in this.foodData)
         {
             if (foodBuffId == buffId)
             {
@@ -116,7 +116,7 @@ internal class AutoFood : Automate
                 buffEffectsData.Clear();
                 foreach (var buff in buffs)
                 {
-                    InitBuffEffectsData(buffEffectsData, buff.effects);
+                    this.InitBuffEffectsData(buffEffectsData, buff.effects);
                     var buffType = buffEffectsData.Keys;
                     if (buffTypes.All(buffType.Contains))
                         foodList.Add(food);
@@ -145,26 +145,26 @@ internal class AutoFood : Automate
 
     private void FindFoodFromInventory(Farmer player)
     {
-        foodData.Clear();
+        this.foodData.Clear();
         foreach (var item in player.Items)
         {
             if (item is not SObject { Edibility: > 0 } obj) continue;
             var buffs = obj.GetFoodOrDrinkBuffs().ToList();
             if (!buffs.Any())
             {
-                foodData.TryAdd(obj, null);
+                this.foodData.TryAdd(obj, null);
                 continue;
             }
 
             if (buffs.Any(buff => buff.id == "food"))
             {
-                foodData.TryAdd(obj, "food");
+                this.foodData.TryAdd(obj, "food");
                 continue;
             }
 
             if (buffs.Any(buff => buff.id == "drink"))
             {
-                foodData.TryAdd(obj, "drink");
+                this.foodData.TryAdd(obj, "drink");
             }
         }
     }
@@ -178,9 +178,9 @@ internal class AutoFood : Automate
     {
         if (player.isEating) return;
         var direction = player.FacingDirection;
-        player.eatObject(food, CheckFoodOverrideStamina(food));
+        player.eatObject(food, this.CheckFoodOverrideStamina(food));
         player.FacingDirection = direction;
-        ConsumeItem(player, food);
+        this.ConsumeItem(player, food);
     }
 
     public static BuffType GetBuffType(string name)

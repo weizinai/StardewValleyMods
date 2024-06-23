@@ -17,13 +17,13 @@ internal abstract class Box
     private SpriteFont Font => Game1.smallFont;
     protected abstract Color TextColor { get; }
     protected abstract string Text { get; }
-    private Point Size => Font.MeasureString(Text).ToPoint() + new Point(32, 32);
+    private Point Size => this.Font.MeasureString(this.Text).ToPoint() + new Point(32, 32);
     private Point Position
     {
         get
         {
-            var buildingPosition = new Point(building.tileX.Value * 64 - Game1.viewport.X, building.tileY.Value * 64 - Game1.viewport.Y);
-            return new Point(buildingPosition.X - Size.X / 2 + Offset.X, buildingPosition.Y - Size.Y / 2 + Offset.Y);
+            var buildingPosition = new Point(this.building.tileX.Value * 64 - Game1.viewport.X, this.building.tileY.Value * 64 - Game1.viewport.Y);
+            return new Point(buildingPosition.X - this.Size.X / 2 + this.Offset.X, buildingPosition.Y - this.Size.Y / 2 + this.Offset.Y);
         }
     }
     protected abstract Point Offset { get; }
@@ -31,13 +31,13 @@ internal abstract class Box
     protected Box(Building building, Cabin cabin, ModConfig config)
     {
         this.building = building;
-        Cabin = cabin;
-        Config = config;
+        this.Cabin = cabin;
+        this.Config = config;
     }
     
     public void Draw(SpriteBatch spriteBatch)
     {
-        IClickableMenu.drawTextureBox(spriteBatch, Position.X, Position.Y, Size.X, Size.Y, Color.White);
-        Utility.drawTextWithShadow(spriteBatch, Text, Font, new Vector2(Position.X + 16, Position.Y + 16), TextColor, 1f, 1f);
+        IClickableMenu.drawTextureBox(spriteBatch, this.Position.X, this.Position.Y, this.Size.X, this.Size.Y, Color.White);
+        Utility.drawTextWithShadow(spriteBatch, this.Text, this.Font, new Vector2(this.Position.X + 16, this.Position.Y + 16), this.TextColor, 1f, 1f);
     }
 }

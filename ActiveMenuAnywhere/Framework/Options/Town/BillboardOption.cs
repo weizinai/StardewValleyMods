@@ -19,7 +19,7 @@ internal class BillboardOption : BaseOption
             new("DailyQuest", I18n.BillboardOption_DailyQuest()),
             new("Leave", I18n.BaseOption_Leave())
         };
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), AfterDialogueBehavior);
+        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }
 
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)

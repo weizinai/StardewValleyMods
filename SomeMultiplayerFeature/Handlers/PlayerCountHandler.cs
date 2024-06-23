@@ -18,31 +18,31 @@ internal class PlayerCountHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.OneSecondUpdateTicked += OnSecondUpdateTicked;
-        Helper.Events.Display.RenderingHud += OnRenderingHud;
+        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnSecondUpdateTicked;
+        this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
     }
 
     // 每秒检测当前在线玩家的数量
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.ShowPlayerCount) return;
+        if (!this.Config.ShowPlayerCount) return;
 
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 
-        playerCountButton.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
+        this.playerCountButton.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
     }
 
     // 绘制玩家数量按钮
     private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.ShowPlayerCount) return;
+        if (!this.Config.ShowPlayerCount) return;
 
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 
-        playerCountButton.Draw(e.SpriteBatch);
+        this.playerCountButton.Draw(e.SpriteBatch);
     }
 }

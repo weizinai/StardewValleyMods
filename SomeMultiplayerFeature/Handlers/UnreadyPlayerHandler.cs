@@ -22,10 +22,10 @@ internal class UnreadyPlayerHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.UpdateTicked += OnUpdateTicked;
-        Helper.Events.Input.ButtonsChanged += OnButtonChanged;
-        Helper.Events.Multiplayer.PeerDisconnected += OnPeerDisconnected;
-        Helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
+        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        this.Helper.Events.Multiplayer.PeerDisconnected += this.OnPeerDisconnected;
+        this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
     // 如果当前玩家不是房主，则检测该玩家是否准备好，若未准备好，则向房主发送消息
@@ -34,7 +34,7 @@ internal class UnreadyPlayerHandler : BaseHandler
         // 如果当前没有玩家在线或者当前玩家是主机端，则返回
         if (!Context.HasRemotePlayers || Context.IsMainPlayer) return;
 
-        Helper.Multiplayer.SendMessage(Game1.activeClickableMenu is not ReadyCheckDialog ? "Unready" : "Ready", "ReadyCheck",
+        this.Helper.Multiplayer.SendMessage(Game1.activeClickableMenu is not ReadyCheckDialog ? "Unready" : "Ready", "ReadyCheck",
             new[] { "weizinai.SomeMultiplayerFeature" }, new[] { Game1.MasterPlayer.UniqueMultiplayerID });
     }
 
@@ -42,12 +42,12 @@ internal class UnreadyPlayerHandler : BaseHandler
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         // 如果该功能未启用，则放回
-        if (!Config.KickUnreadyPlayer) return;
+        if (!this.Config.KickUnreadyPlayer) return;
 
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
-        if (Config.KickUnreadyPlayerKey.JustPressed())
+        if (this.Config.KickUnreadyPlayerKey.JustPressed())
         {
             Log.Info("-- 开始踢出玩家 --");
             foreach (var farmer in Game1.getOnlineFarmers())
@@ -56,18 +56,18 @@ internal class UnreadyPlayerHandler : BaseHandler
                 if (Game1.Multiplayer.isDisconnecting(id))
                 {
                     Game1.otherFarmers.Remove(id);
-                    unreadyPlayers.Remove(id);
+                    this.unreadyPlayers.Remove(id);
                     Log.Alert($"{farmer.Name}已断开连接，但游戏内依然存在，已被移除。");
                 }
             }
 
-            foreach (var player in unreadyPlayers)
+            foreach (var player in this.unreadyPlayers)
             {
                 Game1.server.kick(player);
                 Log.Info($"{Game1.getFarmer(player).Name}未断开连接，但其未准备好，已被踢出。");
             }
 
-            unreadyPlayers.Clear();
+            this.unreadyPlayers.Clear();
             Log.Info("-- 结束踢出玩家 --");
         }
     }
@@ -78,14 +78,14 @@ internal class UnreadyPlayerHandler : BaseHandler
         // 如果当前玩家不是主机端，则返回
         if (!Context.IsMainPlayer) return;
 
-        unreadyPlayers.Remove(e.Peer.PlayerID);
+        this.unreadyPlayers.Remove(e.Peer.PlayerID);
     }
 
     // 如果当前玩家是主机端，则接受来自其他玩家的消息，若该玩家未准备好，则将其加入'unreadyPlayers'
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.KickUnreadyPlayer) return;
+        if (!this.Config.KickUnreadyPlayer) return;
 
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
@@ -94,9 +94,9 @@ internal class UnreadyPlayerHandler : BaseHandler
         {
             var message = e.ReadAs<string>();
             if (message is "Unready")
-                unreadyPlayers.Add(e.FromPlayerID);
+                this.unreadyPlayers.Add(e.FromPlayerID);
             else
-                unreadyPlayers.Remove(e.FromPlayerID);
+                this.unreadyPlayers.Remove(e.FromPlayerID);
         }
     }
 }

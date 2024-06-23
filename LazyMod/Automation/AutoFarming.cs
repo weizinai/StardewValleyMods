@@ -17,50 +17,50 @@ internal class AutoFarming : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动耕地
-        if (Config.AutoTillDirt.IsEnable && tool is Hoe) AutoTillDirt(location, player, tool);
+        if (this.Config.AutoTillDirt.IsEnable && tool is Hoe) this.AutoTillDirt(location, player, tool);
         // 自动清理耕地
-        if (Config.AutoClearTilledDirt.IsEnable && tool is Pickaxe) AutoClearTilledDirt(location, player, tool);
+        if (this.Config.AutoClearTilledDirt.IsEnable && tool is Pickaxe) this.AutoClearTilledDirt(location, player, tool);
         // 自动浇水
-        if (Config.AutoWaterDirt.IsEnable && tool is WateringCan wateringCan) AutoWaterDirt(location, player, wateringCan);
+        if (this.Config.AutoWaterDirt.IsEnable && tool is WateringCan wateringCan) this.AutoWaterDirt(location, player, wateringCan);
         // 自动填充水壶
-        if (Config.AutoRefillWateringCan.IsEnable && (tool is WateringCan || Config.AutoRefillWateringCan.FindToolFromInventory)) AutoRefillWateringCan(location, player);
+        if (this.Config.AutoRefillWateringCan.IsEnable && (tool is WateringCan || this.Config.AutoRefillWateringCan.FindToolFromInventory)) this.AutoRefillWateringCan(location, player);
         // 自动播种
-        if (Config.AutoSeed.IsEnable && item?.Category == SObject.SeedsCategory) AutoSeed(location, player, item);
+        if (this.Config.AutoSeed.IsEnable && item?.Category == SObject.SeedsCategory) this.AutoSeed(location, player, item);
         // 自动施肥
-        if (Config.AutoFertilize.IsEnable && item?.Category == SObject.fertilizerCategory) AutoFertilize(location, player, item);
+        if (this.Config.AutoFertilize.IsEnable && item?.Category == SObject.fertilizerCategory) this.AutoFertilize(location, player, item);
         // 自动收获作物
-        if (Config.AutoHarvestCrop.IsEnable) AutoHarvestCrop(location, player);
+        if (this.Config.AutoHarvestCrop.IsEnable) this.AutoHarvestCrop(location, player);
         // 自动摇晃果树
-        if (Config.AutoShakeFruitTree.IsEnable) AutoShakeFruitTree(location);
+        if (this.Config.AutoShakeFruitTree.IsEnable) this.AutoShakeFruitTree(location);
         // 自动清理枯萎作物
-        if (Config.AutoClearDeadCrop.IsEnable && (tool is MeleeWeapon || Config.AutoClearDeadCrop.FindToolFromInventory)) AutoClearDeadCrop(location);
+        if (this.Config.AutoClearDeadCrop.IsEnable && (tool is MeleeWeapon || this.Config.AutoClearDeadCrop.FindToolFromInventory)) this.AutoClearDeadCrop(location);
     }
 
     // 自动耕地
     private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
     {
-        if (player.Stamina <= Config.AutoTillDirt.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoTillDirt.StopStamina) return;
 
-        var grid = GetTileGrid(Config.AutoTillDirt.Range);
+        var grid = this.GetTileGrid(this.Config.AutoTillDirt.Range);
         foreach (var tile in grid)
         {
-            if (!CanTillDirt(location, tile)) continue;
-            UseToolOnTile(location, player, tool, tile);
+            if (!this.CanTillDirt(location, tile)) continue;
+            this.UseToolOnTile(location, player, tool, tile);
         }
     }
 
     // 自动清理耕地
     private void AutoClearTilledDirt(GameLocation location, Farmer player, Tool tool)
     {
-        if (player.Stamina <= Config.AutoClearTilledDirt.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoClearTilledDirt.StopStamina) return;
 
-        var grid = GetTileGrid(Config.AutoClearTilledDirt.Range);
+        var grid = this.GetTileGrid(this.Config.AutoClearTilledDirt.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
-                UseToolOnTile(location, player, tool, tile);
+                this.UseToolOnTile(location, player, tool, tile);
             }
         }
     }
@@ -68,10 +68,10 @@ internal class AutoFarming : Automate
     // 自动浇水
     private void AutoWaterDirt(GameLocation location, Farmer player, WateringCan wateringCan)
     {
-        if (player.Stamina <= Config.AutoWaterDirt.StopStamina) return;
+        if (player.Stamina <= this.Config.AutoWaterDirt.StopStamina) return;
 
         var hasAddWaterMessage = true;
-        var grid = GetTileGrid(Config.AutoWaterDirt.Range);
+        var grid = this.GetTileGrid(this.Config.AutoWaterDirt.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
@@ -85,7 +85,7 @@ internal class AutoFarming : Automate
 
                 hasAddWaterMessage = false;
 
-                UseToolOnTile(location, player, wateringCan, tile);
+                this.UseToolOnTile(location, player, wateringCan, tile);
                 if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
                 {
                     player.playNearbySoundLocal("wateringCan");
@@ -97,14 +97,14 @@ internal class AutoFarming : Automate
     // 自动填充水壶
     private void AutoRefillWateringCan(GameLocation location, Farmer player)
     {
-        var wateringCan = FindToolFromInventory<WateringCan>();
+        var wateringCan = this.FindToolFromInventory<WateringCan>();
         if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
             return;
 
-        var grid = GetTileGrid(Config.AutoRefillWateringCan.Range);
+        var grid = this.GetTileGrid(this.Config.AutoRefillWateringCan.Range);
         foreach (var tile in grid.Where(tile => location.CanRefillWateringCanOnTile((int)tile.X, (int)tile.Y)))
         {
-            UseToolOnTile(location, player, wateringCan, tile);
+            this.UseToolOnTile(location, player, wateringCan, tile);
             break;
         }
     }
@@ -112,7 +112,7 @@ internal class AutoFarming : Automate
     // 自动播种
     private void AutoSeed(GameLocation location, Farmer player, Item item)
     {
-        var grid = GetTileGrid(Config.AutoSeed.Range);
+        var grid = this.GetTileGrid(this.Config.AutoSeed.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -132,7 +132,7 @@ internal class AutoFarming : Automate
     // 自动施肥
     private void AutoFertilize(GameLocation location, Farmer player, Item item)
     {
-        var grid = GetTileGrid(Config.AutoFertilize.Range);
+        var grid = this.GetTileGrid(this.Config.AutoFertilize.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -157,7 +157,7 @@ internal class AutoFarming : Automate
     // 自动收获作物
     private void AutoHarvestCrop(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoHarvestCrop.Range);
+        var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -165,7 +165,7 @@ internal class AutoFarming : Automate
             {
                 var crop = hoeDirt.crop;
                 // 自动收获花逻辑
-                if (!Config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory)
+                if (!this.Config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory)
                     continue;
                 if (crop.harvest((int)tile.X, (int)tile.Y, hoeDirt))
                 {
@@ -181,7 +181,7 @@ internal class AutoFarming : Automate
     // 自动摇晃果树
     private void AutoShakeFruitTree(GameLocation location)
     {
-        var grid = GetTileGrid(Config.AutoShakeFruitTree.Range);
+        var grid = this.GetTileGrid(this.Config.AutoShakeFruitTree.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
@@ -193,10 +193,10 @@ internal class AutoFarming : Automate
     // 自动清理枯萎作物
     private void AutoClearDeadCrop(GameLocation location)
     {
-        var scythe = FindToolFromInventory<MeleeWeapon>();
+        var scythe = this.FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
-        var grid = GetTileGrid(Config.AutoHarvestCrop.Range);
+        var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

@@ -16,19 +16,19 @@ internal class AutoFishing : Automate
     public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动放置蟹笼
-        if (Config.AutoPlaceCarbPot.IsEnable && item is SObject { QualifiedItemId: "(O)710" } crabPot) AutoPlaceCrabPot(location, player, crabPot);
+        if (this.Config.AutoPlaceCarbPot.IsEnable && item is SObject { QualifiedItemId: "(O)710" } crabPot) this.AutoPlaceCrabPot(location, player, crabPot);
         // 自动添加蟹笼鱼饵
-        if (Config.AutoAddBaitForCarbPot.IsEnable && item is SObject { Category: SObject.baitCategory } bait) AutoAddBaitForCrabPot(location, player, bait);
+        if (this.Config.AutoAddBaitForCarbPot.IsEnable && item is SObject { Category: SObject.baitCategory } bait) this.AutoAddBaitForCrabPot(location, player, bait);
         // 自动收获蟹笼
-        if (Config.AutoHarvestCarbPot.IsEnable) AutoHarvestCarbPot(location, player);
+        if (this.Config.AutoHarvestCarbPot.IsEnable) this.AutoHarvestCarbPot(location, player);
     }
 
     public void AutoMenuFunction()
     {
         if (Game1.activeClickableMenu is ItemGrabMenu { source: ItemGrabMenu.source_fishingChest } menu)
         {
-            if (Config.AutoGrabTreasureItem) AutoGrabTreasureItem(menu);
-            if (Config.AutoExitTreasureMenu) AutoExitTreasureMenu(menu);
+            if (this.Config.AutoGrabTreasureItem) this.AutoGrabTreasureItem(menu);
+            if (this.Config.AutoExitTreasureMenu) this.AutoExitTreasureMenu(menu);
         }
     }
 
@@ -39,7 +39,7 @@ internal class AutoFishing : Automate
         for (var i = 0; i < items.Count; i++)
         {
             if (items[i] is null) continue;
-            if (!CanAddItemToInventory(items[i])) break;
+            if (!this.CanAddItemToInventory(items[i])) break;
 
             var center = menu.ItemsToGrabMenu.inventory[i].bounds.Center;
             menu.receiveLeftClick(center.X, center.Y);
@@ -56,8 +56,8 @@ internal class AutoFishing : Automate
     // 自动放置蟹笼
     private void AutoPlaceCrabPot(GameLocation location, Farmer player, SObject crabPot)
     {
-        var grid = GetTileGrid(Config.AutoPlaceCarbPot.Range);
-        foreach (var _ in grid.Select(tile => GetTilePixelPosition(tile))
+        var grid = this.GetTileGrid(this.Config.AutoPlaceCarbPot.Range);
+        foreach (var _ in grid.Select(tile => this.GetTilePixelPosition(tile))
                      .Where(tilePixelPosition => crabPot.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)))
         {
             player.reduceActiveItemByOne();
@@ -67,23 +67,23 @@ internal class AutoFishing : Automate
     // 自动添加蟹笼鱼饵
     private void AutoAddBaitForCrabPot(GameLocation location, Farmer player, SObject bait)
     {
-        var grid = GetTileGrid(Config.AutoAddBaitForCarbPot.Range);
+        var grid = this.GetTileGrid(this.Config.AutoAddBaitForCarbPot.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not CrabPot crabPot || crabPot.bait.Value is not null) continue;
-            if (obj.performObjectDropInAction(bait, false, player)) ConsumeItem(player, bait);
+            if (obj.performObjectDropInAction(bait, false, player)) this.ConsumeItem(player, bait);
         }
     }
 
     // 自动收获蟹笼
     private void AutoHarvestCarbPot(GameLocation location, Farmer player)
     {
-        var grid = GetTileGrid(Config.AutoHarvestCarbPot.Range);
+        var grid = this.GetTileGrid(this.Config.AutoHarvestCarbPot.Range);
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is CrabPot) HarvestMachine(player, obj);
+            if (obj is CrabPot) this.HarvestMachine(player, obj);
         }
     }
 }

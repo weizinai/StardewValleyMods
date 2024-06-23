@@ -11,22 +11,21 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
 
     public GenericModConfigMenuIntegrationForHelpWanted(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
     {
-        configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
-        isRSVLoaded = helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage");
-        helper.Events.Input.ButtonsChanged += OnButtonChanged;
+        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.isRSVLoaded = helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage");
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree)
-            configMenu.OpenMenu();
+        if (this.configMenu.GetConfig().OpenConfigMenuKeybind.JustPressed() && Context.IsPlayerFree) this.configMenu.OpenMenu();
     }
 
     public void Register()
     {
-        if (!configMenu.IsLoaded) return;
+        if (!this.configMenu.IsLoaded) return;
 
-        configMenu
+        this.configMenu
             .Register()
             // 一般设置
             .AddSectionTitle(I18n.Config_GeneralSettingsTitle_Name)
@@ -90,13 +89,13 @@ internal class GenericModConfigMenuIntegrationForHelpWanted
                 config => config.EnableRSVQuestBoard,
                 (config, value) => config.EnableRSVQuestBoard = value,
                 I18n.Config_EnableRSVQuestBoard_Name,
-                enable: isRSVLoaded
+                enable: this.isRSVLoaded
             )
             .AddNumberOption(
                 config => config.MaxRSVQuests,
                 (config, value) => config.MaxRSVQuests = value,
                 I18n.Config_MaxRSVQuests_Name,
-                enable: isRSVLoaded
+                enable: this.isRSVLoaded
             )
             .AddPageLink("ItemDeliveryQuest", I18n.Config_ItemDeliveryPage_Name)
             .AddPageLink("ResourceCollectionQuest", I18n.Config_ResourceCollectionPage_Name)

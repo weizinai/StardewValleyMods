@@ -13,7 +13,7 @@ internal class StatueOption : BaseOption
     public override void ReceiveLeftClick()
     {
         if (Game1.player.hasRustyKey)
-            Statue();
+            this.Statue();
         else
             Game1.drawObjectDialogue(I18n.Tip_Unavailable());
     }

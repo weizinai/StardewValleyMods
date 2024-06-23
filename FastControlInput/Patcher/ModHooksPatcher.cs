@@ -21,9 +21,8 @@ internal class ModHooksPatcher : BasePatcher
     
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            RequireMethod<ModHooks>(nameof(ModHooks.OnGame1_UpdateControlInput)),
-            postfix: GetHarmonyMethod(nameof(UpdateControlInputPostfix))
+        harmony.Patch(this.RequireMethod<ModHooks>(nameof(ModHooks.OnGame1_UpdateControlInput)),
+            postfix: this.GetHarmonyMethod(nameof(UpdateControlInputPostfix))
         );
     }
 

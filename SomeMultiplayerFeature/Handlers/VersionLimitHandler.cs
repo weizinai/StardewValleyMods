@@ -19,33 +19,33 @@ internal class VersionLimitHandler : BaseHandler
 
     public override void Init()
     {
-        Helper.Events.GameLoop.TimeChanged += OnTimeChanged;
-        Helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
-        Helper.Events.Multiplayer.PeerConnected += OnPeerConnected;
-        Helper.Events.Multiplayer.ModMessageReceived += OnModMessageReceived;
+        this.Helper.Events.GameLoop.TimeChanged += this.OnTimeChanged;
+        this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
+        this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
     private void OnTimeChanged(object? sender, TimeChangedEventArgs e)
     {
         // 如果该功能未启用，则返回
-        if (!Config.VersionLimit) return;
+        if (!this.Config.VersionLimit) return;
 
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
-        if (actionCount > 0)
+        if (this.actionCount > 0)
         {
             foreach (var (id, farmer) in Game1.otherFarmers)
             {
                 if (!farmer.modData.ContainsKey(ModKey) || farmer.modData[ModKey] != "0.6.0")
                 {
-                    Helper.Multiplayer.SendMessage($"{farmer.Name}已被踢出，因为其SomeMultiplayerFeature模组不是最新版。", "VersionLimit",
+                    this.Helper.Multiplayer.SendMessage($"{farmer.Name}已被踢出，因为其SomeMultiplayerFeature模组不是最新版。", "VersionLimit",
                         new[] { "weizinai.SomeMultiplayerFeature" }, new[] { id });
                     Game1.server.kick(id);
                 }
             }
 
-            actionCount--;
+            this.actionCount--;
         }
     }
 
@@ -67,7 +67,7 @@ internal class VersionLimitHandler : BaseHandler
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
         if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
-        actionCount++;
+        this.actionCount++;
     }
 
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)

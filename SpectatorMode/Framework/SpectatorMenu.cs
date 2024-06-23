@@ -16,11 +16,11 @@ internal class SpectatorMenu : IClickableMenu
 
     private bool FollowPlayer
     {
-        get => followPlayer;
+        get => this.followPlayer;
         set
         {
-            followPlayer = value;
-            title = value ? new MenuTitle(I18n.UI_SpectatorMode_Title(targetFarmer.displayName)) : new MenuTitle(I18n.UI_SpectatorMode_Title(targetLocation.DisplayName));
+            this.followPlayer = value;
+            this.title = value ? new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName)) : new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName));
         }
     }
 
@@ -37,7 +37,7 @@ internal class SpectatorMenu : IClickableMenu
         this.config = config;
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
-        FollowPlayer = followPlayer;
+        this.FollowPlayer = followPlayer;
 
         // 储存原始数据
         if (firstActive)
@@ -47,17 +47,17 @@ internal class SpectatorMenu : IClickableMenu
         }
 
         // 切换视角
-        Game1.globalFadeToBlack(Init);
+        Game1.globalFadeToBlack(this.Init);
     }
 
     public override void update(GameTime time)
     {
-        if (FollowPlayer)
+        if (this.FollowPlayer)
         {
-            if (!targetLocation.Equals(targetFarmer.currentLocation))
-                Game1.activeClickableMenu = new SpectatorMenu(config, targetFarmer.currentLocation, targetFarmer, true, false);
+            if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
+                Game1.activeClickableMenu = new SpectatorMenu(this.config, this.targetFarmer.currentLocation, this.targetFarmer, true, false);
 
-            Game1.viewport.Location = GetViewportFromFarmer();
+            Game1.viewport.Location = this.GetViewportFromFarmer();
             Game1.clampViewportToGameMap();
             return;
         }
@@ -65,8 +65,8 @@ internal class SpectatorMenu : IClickableMenu
         // 鼠标移动视角
         var mouseX = Game1.getOldMouseX(false);
         var mouseY = Game1.getOldMouseY(false);
-        var moveSpeed = config.MoveSpeed;
-        var moveThreshold = config.MoveThreshold;
+        var moveSpeed = this.config.MoveSpeed;
+        var moveThreshold = this.config.MoveThreshold;
 
         // 水平移动
         if (mouseX < moveThreshold)
@@ -83,20 +83,20 @@ internal class SpectatorMenu : IClickableMenu
 
     public override void draw(SpriteBatch b)
     {
-        title.Draw(b);
+        this.title.Draw(b);
 
-        drawMouse(b);
+        this.drawMouse(b);
     }
 
     public override void receiveKeyPress(Keys key)
     {
         base.receiveKeyPress(key);
 
-        if (config.ToggleStateKeybind.JustPressed()) FollowPlayer = !FollowPlayer;
+        if (this.config.ToggleStateKeybind.JustPressed()) this.FollowPlayer = !this.FollowPlayer;
 
-        if (FollowPlayer) return;
+        if (this.FollowPlayer) return;
 
-        var moveSpeed = config.MoveSpeed;
+        var moveSpeed = this.config.MoveSpeed;
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
             Game1.panScreen(0, moveSpeed);
         else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
@@ -121,10 +121,10 @@ internal class SpectatorMenu : IClickableMenu
 
     private void Init()
     {
-        InitLocationData(Game1.currentLocation, targetLocation);
+        this.InitLocationData(Game1.currentLocation, this.targetLocation);
         Game1.globalFadeToClear();
         Game1.viewportFreeze = true;
-        Game1.viewport.Location = GetInitialViewport();
+        Game1.viewport.Location = this.GetInitialViewport();
         Game1.displayFarmer = false;
     }
 
@@ -138,19 +138,19 @@ internal class SpectatorMenu : IClickableMenu
 
     private Location GetInitialViewport()
     {
-        if (FollowPlayer)
+        if (this.FollowPlayer)
         {
-            return GetViewportFromFarmer();
+            return this.GetViewportFromFarmer();
         }
 
-        var layer = targetLocation.Map.Layers[0];
+        var layer = this.targetLocation.Map.Layers[0];
         return new Location(layer.LayerWidth / 2, layer.LayerHeight / 2);
     }
 
     private Location GetViewportFromFarmer()
     {
-        var x = (int)targetFarmer.Position.X - Game1.viewport.Width / 2;
-        var y = (int)targetFarmer.Position.Y - Game1.viewport.Height / 2;
+        var x = (int)this.targetFarmer.Position.X - Game1.viewport.Width / 2;
+        var y = (int)this.targetFarmer.Position.Y - Game1.viewport.Height / 2;
         return new Location(x, y);
     }
 }

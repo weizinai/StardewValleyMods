@@ -25,12 +25,12 @@
     "Config.YOffset.Name": "垂直偏移",
 
     // 删除小屋主人
-    "Config.DeleteFarmhand.Name": "删除小屋主人",
-    "Config.DeleteFarmhand.Tooltip": "当你在小屋内部的时候，按下绑定的快捷键，会删除小屋主人与小屋的联系。",
-    "Config.DeleteFarmhandKeybind.Name": "删除小屋主人快捷键",
-    "UI.DeleteFarmhand.Success": "{{name}}与小屋的联系已删除，现在小屋可以新建角色。",
-    "UI.DeleteFarmhand.NoOwner": "当前小屋没有主人，无法发起删除。",
-    "UI.DeleteFarmhand.ChooseFarmhand": "请选择你要删除的玩家：",
+    "Config.ResetCabin.Name": "重置小屋",
+    "Config.ResetCabin.Tooltip": "当你在小屋内部的时候，按下绑定的快捷键，会重置小屋主人的相关信息，让该小屋能创建新玩家。",
+    "Config.ResetCabinKeybind.Name": "重置小屋快捷键",
+    "UI.ResetCabin.Success": "{{name}}的小屋已重置，现在小屋可以新建玩家。",
+    "UI.ResetCabin.NoOwner": "当前小屋是初始状态，无法发起重置。",
+    "UI.ResetCabin.ChooseFarmhand": "请选择你要重置的小屋：",
 
     // 设置小屋外观
     "Config.SetCabinSkin.Name": "设置小屋外观",

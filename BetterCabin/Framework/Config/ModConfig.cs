@@ -28,6 +28,6 @@ internal class ModConfig
     public KeybindList SetCabinSkinKeybind { get; set; } = new(SButton.O);
     
     // 删除小屋主人
-    public bool DeleteFarmhand { get; set; } = true;
-    public KeybindList DeleteFarmhandKeybind { get; set; } = new(SButton.Delete);
+    public bool ResetCabinPlayer { get; set; } = true;
+    public KeybindList ResetCabinPlayerKeybind { get; set; } = new(SButton.Delete);
 }

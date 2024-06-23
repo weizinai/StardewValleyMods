@@ -42,8 +42,8 @@ internal class ModEntry : Mod
         foreach (var handler in this.handlers) handler.Clear();
         this.handlers.Clear();
 
-        if (this.config.DeleteFarmhand)
-            this.handlers.Add(new ResetCabinPlayerHandler(this.config, this.Helper));
+        if (this.config.ResetCabinPlayer)
+            this.handlers.Add(new ResetCabinHandler(this.config, this.Helper));
         if (this.config.SetCabinSkin)
             this.handlers.Add(new SetCabinSkinHandler(this.config, this.Helper));
         if (this.config.VisitCabinInfo)

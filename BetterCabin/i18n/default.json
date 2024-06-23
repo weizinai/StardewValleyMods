@@ -24,13 +24,13 @@
     "Config.XOffset.Name": "X Offset",
     "Config.YOffset.Name": "Y Offset",
     
-    // Delete Farmhand
-    "Config.DeleteFarmhand.Name": "Delete Farmhand",
-    "Config.DeleteFarmhand.Tooltip": "When you are inside a cabin, pressing the keybind will delete the cabin owner's association to the cabin.",
-    "Config.DeleteFarmhandKeybind.Name": "Delete Farmhand Keybind",
-    "UI.DeleteFarmhand.Success": "{{name}}'s association to the cabin has been deleted, and the cabin can now create new farmer.",
-    "UI.DeleteFarmhand.NoOwner": "The current cabin has no owner and cannot initiate a deletion.",
-    "UI.DeleteFarmhand.ChooseFarmhand": "Please choose the player you want to delete:",
+    // Reset Cabin
+    "Config.ResetCabin.Name": "Reset Cabin",
+    "Config.ResetCabin.Tooltip": "When you're inside a cabin, pressing the keybind will reset the information about the cabin's owner, allowing the cabin to create new players.",
+    "Config.ResetCabinKeybind.Name": "Reset Cabin Keybind",
+    "UI.ResetCabin.Success": "The {{name}}'s cabin has been reset, and new players can now be created in the cabin.",
+    "UI.ResetCabin.NoOwner": "The current cabin is the initial state and cannot be reset.",
+    "UI.ResetCabin.ChooseFarmhand": "Please choose the cabin you want to reset:",
     
     // Reset Cabin Skin
     "Config.SetCabinSkin.Name": "Set Cabin Skin",

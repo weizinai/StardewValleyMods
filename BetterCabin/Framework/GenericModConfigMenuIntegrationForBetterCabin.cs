@@ -95,17 +95,17 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 I18n.Config_SetCabinSkinKeybind_Name
             )
             // 删除小屋主人
-            .AddSectionTitle(I18n.Config_DeleteFarmhand_Name)
+            .AddSectionTitle(I18n.Config_ResetCabin_Name)
             .AddBoolOption(
-                config => config.DeleteFarmhand,
-                (config, value) => config.DeleteFarmhand = value,
-                I18n.Config_DeleteFarmhand_Name,
-                I18n.Config_DeleteFarmhand_Tooltip
+                config => config.ResetCabinPlayer,
+                (config, value) => config.ResetCabinPlayer = value,
+                I18n.Config_ResetCabin_Name,
+                I18n.Config_ResetCabin_Tooltip
             )
             .AddKeybindList(
-                config => config.DeleteFarmhandKeybind,
-                (config, value) => config.DeleteFarmhandKeybind = value,
-                I18n.Config_DeleteFarmhandKeybind_Name
+                config => config.ResetCabinPlayerKeybind,
+                (config, value) => config.ResetCabinPlayerKeybind = value,
+                I18n.Config_ResetCabinKeybind_Name
             )
             ;
     }

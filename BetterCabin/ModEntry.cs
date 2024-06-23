@@ -77,12 +77,7 @@ internal class ModEntry : Mod
                 }
             }
 
-            var message = new HUDMessage(messageContent.ToString())
-            {
-                noIcon = true,
-                timeLeft = 1000
-            };
-            Game1.addHUDMessage(message);
+            Game1.addHUDMessage(new HUDMessage(messageContent.ToString()) { noIcon = true });
         }
     }
 

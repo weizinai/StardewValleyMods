@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <Folder Include="Docs\Screenshots\" />
+      <Folder Include="Handler\" />
     </ItemGroup>
 
     <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />

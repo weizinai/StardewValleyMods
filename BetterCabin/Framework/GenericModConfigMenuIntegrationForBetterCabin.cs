@@ -1,6 +1,6 @@
-using weizinai.StardewValleyMod.Common.Integration;
 using StardewModdingAPI;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Framework;
 

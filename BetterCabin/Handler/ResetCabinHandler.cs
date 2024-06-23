@@ -17,7 +17,7 @@ internal class ResetCabinHandler : BaseHandler
     {
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
-    
+
     public override void Clear()
     {
         this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
@@ -50,7 +50,7 @@ internal class ResetCabinHandler : BaseHandler
             }
         }
     }
-    
+
     private void ResetCabin(Cabin cabin)
     {
         Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_Success(cabin.owner.displayName)) { noIcon = true });

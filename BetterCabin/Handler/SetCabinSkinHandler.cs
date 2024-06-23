@@ -18,7 +18,7 @@ internal class SetCabinSkinHandler : BaseHandler
     {
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
-    
+
     public override void Clear()
     {
         this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
@@ -29,7 +29,6 @@ internal class SetCabinSkinHandler : BaseHandler
         if (Context.IsMainPlayer || !Context.IsPlayerFree) return;
 
         if (this.Config.SetCabinSkinKeybind.JustPressed())
-        {
             Utility.ForEachBuilding(building =>
             {
                 if (building.GetIndoors() is Cabin cabin && cabin.owner.Equals(Game1.player))
@@ -40,6 +39,5 @@ internal class SetCabinSkinHandler : BaseHandler
 
                 return true;
             });
-        }
     }
 }

@@ -40,7 +40,7 @@ internal class ModEntry : Mod
             }
         }
 
-        this.playersToKick.Clear();
+        this.playersToKick.RemoveAll(player => player.Cooldown < 0);
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -89,7 +89,7 @@ internal class ModEntry : Mod
             {
                 this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
                 this.Helper.Multiplayer.SendMessage(unAllowedMods, "ModLimit",
-                    new[] { "weizinai.MultiplayerModLimit" }, new[] { Game1.MasterPlayer.UniqueMultiplayerID });
+                    new[] { "weizinai.MultiplayerModLimit" }, new[] { e.Peer.PlayerID });
             }
         }
     }
@@ -100,21 +100,9 @@ internal class ModEntry : Mod
         
         if (e is { Type: "ModLimit", FromModID: "weizinai.MultiplayerModLimit" })
         {
-            Log.Alert(I18n.UI_KickPlayerTooltip(Game1.player.displayName));
-
             var message = e.ReadAs<Dictionary<string, List<string>>>();
-            foreach (var (key, value) in message)
-            {
-                switch (key)
-                {
-                    case "Required":
-                        Log.Info(I18n.UI_ModLimit_Required(value));
-                        break;
-                    case "Banned":
-                        Log.Info(I18n.UI_ModLimit_Banned(value));
-                        break;
-                }
-            }
+            foreach (var id in message["Required"]) Log.Info(I18n.UI_ModLimit_Required(id));
+            foreach (var id in message["Banned"]) Log.Info(I18n.UI_ModLimit_Banned(id));
         }
     }
 

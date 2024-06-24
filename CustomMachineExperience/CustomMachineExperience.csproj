@@ -16,6 +16,10 @@
       <AdditionalFiles Remove="i18n\default.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Docs\Screenshots\" />
+    </ItemGroup>
+
     <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared" />
 
     <Import Project="..\Common.Log\Common.Log.projitems" Label="Shared" />

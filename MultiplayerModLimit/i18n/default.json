@@ -4,12 +4,13 @@
     
     // Require SMAPI 
     "Config.RequireSMAPI.Name": "Require SMAPI",
+    "UI.RequireSMAPI": "{{name}} will be kicked because he doesn't have SMAPI installed.",
     
     // Limit Mode
     "Config.LimitMode.Name": "Limit Mode",
     "Config.LimitMode.WhiteListMode": "White List Mode",
     "Config.LimitMode.BlackListMode": "Black List Mode",
-    "UI.KickPlayerTooltip": "{{name}} has been kicked because he doesn't meet the mod requirements.",
+    "UI.KickPlayerTooltip": "{{name}} will be kicked because he doesn't meet the mod requirements.",
     "UI.ModLimit.Required": "{{id}} is required.",
     "UI.ModLimit.Banned": "{{id}} is banned.",
     

@@ -27,17 +27,14 @@ internal class ModEntry : Mod
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
+        if (!this.config.EnableMod) return;
+        
         if (!Game1.IsServer) return;
 
         foreach (var player in this.playersToKick)
         {
             player.Cooldown--;
-            if (player.Cooldown < 0)
-            {
-                var name = Game1.getFarmer(player.ID).displayName;
-                Game1.server.kick(player.ID);
-                Game1.chatBox.addInfoMessage(I18n.UI_KickPlayerTooltip(name));
-            }
+            if (player.Cooldown < 0) Game1.server.kick(player.ID);
         }
 
         this.playersToKick.RemoveAll(player => player.Cooldown < 0);
@@ -52,10 +49,16 @@ internal class ModEntry : Mod
     {
         // 如果玩家不是多人模式的房主，则返回
         if (!Game1.IsServer) return;
+        
+        // 如果模组未启用，则返回
+        if (!this.config.EnableMod) return;
 
+        var name = Game1.getFarmer(e.Peer.PlayerID).displayName;
+        
         if (this.config.RequireSMAPI && !e.Peer.HasSmapi)
         {
             this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
+            Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI(name));
             return;
         }
 
@@ -73,7 +76,7 @@ internal class ModEntry : Mod
             var requiredModList = this.config.RequiredModList[this.config.RequiredModListSelected];
             var bannedModList = this.config.BannedModList[this.config.BannedModListSelected];
 
-            foreach (var id in allowedModList.Where(id => !detectedMods.Contains(id))) unAllowedMods["Required"].Add(id);
+            foreach (var id in requiredModList.Where(id => !detectedMods.Contains(id))) unAllowedMods["Required"].Add(id);
 
             switch (this.config.LimitMode)
             {
@@ -85,11 +88,12 @@ internal class ModEntry : Mod
                     break;
             }
 
-            if (unAllowedMods.Any())
+            if (unAllowedMods["Required"].Any() || unAllowedMods["Banned"].Any())
             {
                 this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
                 this.Helper.Multiplayer.SendMessage(unAllowedMods, "ModLimit",
                     new[] { "weizinai.MultiplayerModLimit" }, new[] { e.Peer.PlayerID });
+                Game1.chatBox.addInfoMessage(I18n.UI_KickPlayerTooltip(name));
             }
         }
     }

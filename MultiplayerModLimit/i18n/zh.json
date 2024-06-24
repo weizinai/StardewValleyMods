@@ -4,12 +4,13 @@
     
     // 要求SMAPI
     "Config.RequireSMAPI.Name": "要求SMAPI",
+    "UI.RequireSMAPI": "{{name}}将被踢出，因为他未安装SMAPI。",
     
     // 限制模式
     "Config.LimitMode.Name": "限制模式",
     "Config.LimitMode.WhiteListMode": "白名单模式",
     "Config.LimitMode.BlackListMode": "黑名单模式",
-    "UI.KickPlayerTooltip": "{{name}}已被踢出，因为他不满足模组要求。",
+    "UI.KickPlayerTooltip": "{{name}}将被踢出，因为他不满足模组要求。",
     "UI.ModLimit.Required": "{{id}}被要求",
     "UI.ModLimit.Banned": "{{id}}被禁止",
     

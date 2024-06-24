@@ -45,7 +45,7 @@ internal class ModEntry : Mod
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        Log.Alert(I18n.UI_ClientTooltip());
+        if (Game1.IsClient) Log.Alert(I18n.UI_ClientTooltip());
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

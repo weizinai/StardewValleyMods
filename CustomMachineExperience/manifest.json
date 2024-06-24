@@ -2,7 +2,7 @@
     "Name": "Custom Machine Experience",
     "Author": "weizinai",
     "Version": "0.1.0",
-    "Description": "",
+    "Description": "This mod allows you to customize the experience gained from harvesting machines.",
     "UniqueID": "weizinai.CustomMachineExperience",
     "EntryDll": "CustomMachineExperience.dll",
     "Dependencies": [

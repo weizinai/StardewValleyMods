@@ -29,11 +29,7 @@ internal class ModEntry : Mod
             e.Edit(asset =>
                 {
                     var machineData = asset.AsDictionary<string, MachineData>().Data;
-                    foreach (var (id, data) in machineData)
-                    {
-                        data.ExperienceGainOnHarvest = this.config.MachineExperienceData[id].ToString();
-                    }
-                    
+                    foreach (var (id, data) in machineData) data.ExperienceGainOnHarvest = this.config.MachineExperienceData[id].ToString();
                 }
             );
         }
@@ -47,20 +43,19 @@ internal class ModEntry : Mod
             this.Helper,
             this.ModManifest,
             () => this.config,
-            () => this.config = new ModConfig(),
+            () =>
+            {
+                this.config = new ModConfig();
+                this.InitConfig();
+            },
             () => this.Helper.WriteConfig(this.config)
         ).Register();
     }
 
     private void InitConfig()
     {
-        var machineData = Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines");
-
-        foreach (var (id, _) in machineData)
-        {
-            this.config.MachineExperienceData.TryAdd(id, new ExperienceData());
-        }
-        
+        var machineData = Game1.content.Load<Dictionary<string, MachineData>>("Data/Machines");
+        foreach (var (id, _) in machineData) this.config.MachineExperienceData.TryAdd(id, new ExperienceData());
         this.Helper.WriteConfig(this.config);
     }
 }

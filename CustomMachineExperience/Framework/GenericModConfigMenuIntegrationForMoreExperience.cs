@@ -1,4 +1,5 @@
 using StardewModdingAPI;
+using StardewValley;
 using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.CustomMachineExperience.Framework;
@@ -16,13 +17,12 @@ internal class GenericModConfigMenuIntegrationForMoreExperience
     {
         if (!this.configMenu.IsLoaded) return;
         
-        this.configMenu
-            .Register();
+        this.configMenu.Register();
 
         foreach (var (id, _) in this.configMenu.GetConfig().MachineExperienceData)
         {
             this.configMenu
-                .AddSectionTitle(() => id)
+                .AddSectionTitle(() => ItemRegistry.GetData(id).DisplayName)
                 .AddNumberOption(
                     config => config.MachineExperienceData[id].FarmingExperience,
                     (config, value) => config.MachineExperienceData[id].FarmingExperience = value,

@@ -22,6 +22,10 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
         helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
         helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
+        // 注册命令
+        helper.ConsoleCommands.Add("generate_allow", "", this.GenerateModList);
+        helper.ConsoleCommands.Add("generate_require", "", this.GenerateModList);
+        helper.ConsoleCommands.Add("generate_ban", "", this.GenerateModList);
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
@@ -114,5 +118,25 @@ internal class ModEntry : Mod
             () => this.config = new ModConfig(),
             () => this.Helper.WriteConfig(this.config)
         ).Register();
+    }
+
+    private void GenerateModList(string command, string[] args)
+    {
+        var targetModList = command switch
+        {
+            "generate_allow" => this.config.AllowedModList,
+            "generate_require" => this.config.RequiredModList,
+            "generate_ban" => this.config.BannedModList,
+            _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
+        };
+        targetModList.Add(args[0], this.GetAllMods());
+        this.Helper.WriteConfig(this.config);
+        
+        Log.Info(I18n.UI_GenerateModList());
+    }
+
+    private List<string> GetAllMods()
+    {
+        return this.Helper.ModRegistry.GetAll().Select(x => x.Manifest.UniqueID).ToList();
     }
 }

@@ -1,14 +1,26 @@
 {
+    // 启用模组
     "Config.EnableMod.Name": "启用模组",
+    
+    // 要求SMAPI
     "Config.RequireSMAPI.Name": "要求SMAPI",
+    
+    // 限制模式
     "Config.LimitMode.Name": "限制模式",
-    "Config.AllowedModListSelected.Name": "选择的允许模组列表",
-    "Config.RequireModListSelected.Name": "选择的要求模组列表",
-    "Config.BannedModListSelected.Name": "选择的禁止模组列表",
-    "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
-
-    "UI.ClientTooltip": "该模组仅在主机端有效",
+    "Config.LimitMode.WhiteListMode": "白名单模式",
+    "Config.LimitMode.BlackListMode": "黑名单模式",
     "UI.KickPlayerTooltip": "{{name}}已被踢出，因为他不满足模组要求。",
     "UI.ModLimit.Required": "{{id}}被要求",
-    "UI.ModLimit.Banned": "{{id}}被禁止"
+    "UI.ModLimit.Banned": "{{id}}被禁止",
+    
+    // 选择的模组列表
+    "Config.AllowedModListSelected.Name": "选择的允许模组列表",
+    "Config.RequiredModListSelected.Name": "选择的要求模组列表",
+    "Config.BannedModListSelected.Name": "选择的禁止模组列表",
+    
+    // 踢出玩家延迟时间
+    "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
+
+    // UI
+    "UI.ClientTooltip": "该模组仅在主机端有效",
 }

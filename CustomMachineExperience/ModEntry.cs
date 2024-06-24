@@ -24,15 +24,16 @@ internal class ModEntry : Mod
 
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
     {
-        if (e.Name.IsEquivalentTo("Data/Building"))
+        if (e.Name.IsEquivalentTo("Data/Machines"))
         {
             e.Edit(asset =>
                 {
                     var machineData = asset.AsDictionary<string, MachineData>().Data;
                     foreach (var (id, data) in machineData)
                     {
-                        data.ExperienceGainOnHarvest = this.config.MachineExperience[id].ToString();
+                        data.ExperienceGainOnHarvest = this.config.MachineExperienceData[id].ToString();
                     }
+                    
                 }
             );
         }
@@ -55,9 +56,9 @@ internal class ModEntry : Mod
     {
         var machineData = Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines");
 
-        foreach (var (id, data) in machineData)
+        foreach (var (id, _) in machineData)
         {
-            this.config.MachineExperience.TryAdd(id, new ExperienceData());
+            this.config.MachineExperienceData.TryAdd(id, new ExperienceData());
         }
         
         this.Helper.WriteConfig(this.config);

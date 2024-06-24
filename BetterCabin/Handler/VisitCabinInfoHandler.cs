@@ -46,7 +46,7 @@ internal class VisitCabinInfoHandler : BaseHandler
                 if (!isOnline)
                 {
                     messageContent.Append('\n');
-                    messageContent.Append(I18n.UI_VisitCabin_LastOnlineTime(Utility.getDateString((int)(Game1.stats.DaysPlayed - owner.disconnectDay.Value))));
+                    messageContent.Append(I18n.UI_VisitCabin_LastOnlineTime(Utility.getDateString(-((int)Game1.stats.DaysPlayed - owner.disconnectDay.Value))));
                 }
             }
 

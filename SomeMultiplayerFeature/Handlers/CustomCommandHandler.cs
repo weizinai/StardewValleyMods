@@ -94,7 +94,7 @@ internal class CustomCommandHandler : BaseHandler
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         foreach (var (id, farmer) in Game1.otherFarmers)
-            Log.Info($"Ping({farmer.Name})\t\t{(int)Game1.server.getPingToClient(id)}ms ");
+            Log.Info($"{Game1.Multiplayer.getUserName(farmer.UniqueMultiplayerID)} {farmer.Name}\t{(int)Game1.server.getPingToClient(id)}ms ");
     }
 
     private void ListPlayer(string command, string[] args)

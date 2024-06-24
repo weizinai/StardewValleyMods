@@ -4,4 +4,6 @@
     "Config.AllowedModListSelected.Name": "选择的允许模组列表",
     "Config.RequireModListSelected.Name": "选择的要求模组列表",
     "Config.BannedModListSelected.Name": "选择的禁止模组列表",
+
+    "UI.ClientTooltip": "该模组仅在主机端有效",
 }

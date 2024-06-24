@@ -1,6 +1,7 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit;
@@ -13,6 +14,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         this.config = helper.ReadConfig<ModConfig>();
+        Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
@@ -22,10 +24,7 @@ internal class ModEntry : Mod
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        if (Game1.IsClient)
-        {
-            
-        }
+        if (Game1.IsClient) Log.Info(I18n.UI_ClientTooltip());
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

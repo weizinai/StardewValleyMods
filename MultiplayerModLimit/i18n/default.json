@@ -4,4 +4,6 @@
     "Config.AllowedModListSelected.Name": "Allowed Mod List Selected",
     "Config.RequireModListSelected.Name": "Require Mod List Selected",
     "Config.BannedModListSelected.Name": "Banned Mod List Selected",
+    
+    "UI.ClientTooltip": "This mod is only available on the host side",
 }

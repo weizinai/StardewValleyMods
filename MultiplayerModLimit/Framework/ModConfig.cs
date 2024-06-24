@@ -8,6 +8,7 @@ internal class ModConfig
     public string AllowedModListSelected { get; set; } = "Default";
     public string RequiredModListSelected { get; set; } = "Default";
     public string BannedModListSelected { get; set; } = "Default";
+    public int KickPlayerDelayTime { get; set; } = 1;
 
     public Dictionary<string, List<string>> AllowedModList { get; set; } = new() { { "Default", new List<string>() } };
     public Dictionary<string, List<string>> RequiredModList { get; set; } = new() { { "Default", new List<string>() } };

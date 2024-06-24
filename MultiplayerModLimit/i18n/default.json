@@ -1,9 +1,11 @@
 {
     "Config.EnableMod.Name": "Enable Mod",
+    "Config.RequireSMAPI.Name": "Require SMAPI",
     "Config.LimitMode.Name": "Limit Mode",
     "Config.AllowedModListSelected.Name": "Allowed Mod List Selected",
     "Config.RequireModListSelected.Name": "Require Mod List Selected",
     "Config.BannedModListSelected.Name": "Banned Mod List Selected",
+    "Config.KickPlayerDelayTime.Name": "Kick Player Delay Time",
     
     "UI.ClientTooltip": "This mod is only available on the host side",
     "UI.KickPlayerTooltip": "{{name}} has been kicked because he doesn't meet the mod requirements.",

@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.MultiplayerModLimit;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private readonly List<long> playersToKick = new();
+    private readonly List<PlayerSlot> playersToKick = new();
 
     public override void Entry(IModHelper helper)
     {
@@ -28,17 +28,19 @@ internal class ModEntry : Mod
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (!Game1.IsServer) return;
-        
-        if (this.playersToKick.Any())
+
+        foreach (var player in this.playersToKick)
         {
-            foreach (var id in this.playersToKick)
+            player.Cooldown--;
+            if (player.Cooldown < 0)
             {
-                var name = Game1.getFarmer(id).displayName;
-                Game1.server.kick(id);
+                var name = Game1.getFarmer(player.ID).displayName;
+                Game1.server.kick(player.ID);
                 Game1.chatBox.addInfoMessage(I18n.UI_KickPlayerTooltip(name));
             }
-            this.playersToKick.Clear();
         }
+
+        this.playersToKick.Clear();
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -53,7 +55,7 @@ internal class ModEntry : Mod
 
         if (this.config.RequireSMAPI && !e.Peer.HasSmapi)
         {
-            this.playersToKick.Add(e.Peer.PlayerID);
+            this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
             return;
         }
 
@@ -85,7 +87,7 @@ internal class ModEntry : Mod
 
             if (unAllowedMods.Any())
             {
-                this.playersToKick.Add(e.Peer.PlayerID);
+                this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
                 this.Helper.Multiplayer.SendMessage(unAllowedMods, "ModLimit",
                     new[] { "weizinai.MultiplayerModLimit" }, new[] { Game1.MasterPlayer.UniqueMultiplayerID });
             }
@@ -94,10 +96,12 @@ internal class ModEntry : Mod
 
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
+        if (!Game1.IsClient) return;
+        
         if (e is { Type: "ModLimit", FromModID: "weizinai.MultiplayerModLimit" })
         {
             Log.Alert(I18n.UI_KickPlayerTooltip(Game1.player.displayName));
-            
+
             var message = e.ReadAs<Dictionary<string, List<string>>>();
             foreach (var (key, value) in message)
             {

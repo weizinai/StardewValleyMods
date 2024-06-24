@@ -22,6 +22,17 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
                 config => config.EnableMod,
                 (config, value) => config.EnableMod = value,
                 I18n.Config_EnableMod_Name
-            );
+            )
+            .AddBoolOption(
+                config => config.RequireSMAPI,
+                (config, value) => config.RequireSMAPI = value,
+                I18n.Config_RequireSMAPI_Name
+            )
+            .AddNumberOption(
+                config => config.KickPlayerDelayTime,
+                (config, value) => config.KickPlayerDelayTime = value,
+                I18n.Config_KickPlayerDelayTime_Name
+            )
+            ;
     }
 }

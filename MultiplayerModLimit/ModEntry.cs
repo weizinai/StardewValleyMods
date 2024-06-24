@@ -45,7 +45,7 @@ internal class ModEntry : Mod
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        if (Game1.IsClient) Log.Info(I18n.UI_ClientTooltip());
+        Log.Alert(I18n.UI_ClientTooltip());
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -100,6 +100,7 @@ internal class ModEntry : Mod
         
         if (e is { Type: "ModLimit", FromModID: "weizinai.MultiplayerModLimit" })
         {
+            Log.Alert(I18n.UI_KickPlayerTooltip(Game1.player.displayName));
             var message = e.ReadAs<Dictionary<string, List<string>>>();
             foreach (var id in message["Required"]) Log.Info(I18n.UI_ModLimit_Required(id));
             foreach (var id in message["Banned"]) Log.Info(I18n.UI_ModLimit_Banned(id));

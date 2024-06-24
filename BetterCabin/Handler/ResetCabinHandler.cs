@@ -32,6 +32,12 @@ internal class ResetCabinHandler : BaseHandler
             var location = Game1.player.currentLocation;
             if (location is Cabin cabin)
             {
+                if (Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID))
+                {
+                    Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_Online()){ noIcon = true});
+                    return;
+                }
+                
                 if (!cabin.owner.isUnclaimedFarmhand)
                     this.ResetCabin(cabin);
                 else
@@ -39,7 +45,7 @@ internal class ResetCabinHandler : BaseHandler
             }
             else
             {
-                var farmhands = Game1.getAllFarmhands()
+                var farmhands = Game1.getOfflineFarmhands()
                     .Where(farmer => !farmer.isUnclaimedFarmhand)
                     .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.displayName));
                 location.ShowPagedResponses(I18n.UI_ResetCabin_ChooseFarmhand(), farmhands.ToList(), value =>

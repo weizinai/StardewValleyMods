@@ -31,6 +31,7 @@
     "UI.ResetCabin.Success": "The {{name}}'s cabin has been reset, and new players can now be created in the cabin.",
     "UI.ResetCabin.NoOwner": "The current cabin is the initial state and cannot be reset.",
     "UI.ResetCabin.ChooseFarmhand": "Please choose the cabin you want to reset:",
+    "UI.ResetCabin.Online": "The owner of the current cabin is online and cannot be reset.",
     
     // Reset Cabin Skin
     "Config.SetCabinSkin.Name": "Set Cabin Skin",

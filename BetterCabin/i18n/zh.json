@@ -31,6 +31,7 @@
     "UI.ResetCabin.Success": "{{name}}的小屋已重置，现在小屋可以新建玩家。",
     "UI.ResetCabin.NoOwner": "当前小屋是初始状态，无法发起重置。",
     "UI.ResetCabin.ChooseFarmhand": "请选择你要重置的小屋：",
+    "UI.ResetCabin.Online": "当前小屋的主人在线，无法发起重置。",
 
     // 设置小屋外观
     "Config.SetCabinSkin.Name": "设置小屋外观",

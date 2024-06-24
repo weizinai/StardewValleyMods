@@ -45,12 +45,14 @@ internal class ResetCabinHandler : BaseHandler
             }
             else
             {
-                var farmhands = Game1.getOfflineFarmhands()
+                var farmhands = Game1.getAllFarmhands()
                     .Where(farmer => !farmer.isUnclaimedFarmhand)
                     .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.displayName));
                 location.ShowPagedResponses(I18n.UI_ResetCabin_ChooseFarmhand(), farmhands.ToList(), value =>
                 {
-                    var farmer = Game1.getFarmer(long.Parse(value));
+                    var id = long.Parse(value);
+                    if (Game1.player.team.playerIsOnline(id)) Game1.server.kick(id);
+                    var farmer = Game1.getFarmer(id);
                     this.ResetCabin((Utility.getHomeOfFarmer(farmer) as Cabin)!);
                 });
             }

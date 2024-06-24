@@ -1,3 +1,7 @@
 {
-
+    "Config.EnableMod.Name": "Enable Mod",
+    "Config.LimitMode.Name": "Limit Mode",
+    "Config.AllowedModListSelected.Name": "Allowed Mod List Selected",
+    "Config.RequireModListSelected.Name": "Require Mod List Selected",
+    "Config.BannedModListSelected.Name": "Banned Mod List Selected",
 }

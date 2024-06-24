@@ -17,6 +17,11 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
         if (!this.configMenu.IsLoaded) return;
 
         this.configMenu
-            .Register();
+            .Register()
+            .AddBoolOption(
+                config => config.EnableMod,
+                (config, value) => config.EnableMod = value,
+                I18n.Config_EnableMod_Name
+            );
     }
 }

@@ -38,14 +38,6 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.ShowInterval = value,
                 I18n.Config_ShowIntervalName
             )
-            // 模组限制
-            .AddSectionTitle(I18n.Config_ModLimit_Name)
-            .AddBoolOption(
-                config => config.ModLimit,
-                (config, value) => config.ModLimit = value,
-                I18n.Config_ModLimit_Name,
-                I18n.Config_ModLimit_Tooltip
-            )
             .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
             // 自动设置Ip连接
             .AddBoolOption(

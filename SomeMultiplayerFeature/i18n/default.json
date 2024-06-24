@@ -9,10 +9,6 @@
     "Config.ShowDelayedPlayer.Name": "Show Delayed Player",
     "Config.ShowDelayedPlayer.Tooltip": "Every once in a while, the player with the highest latency of more than 100ms is displayed. This feature is only available on the host side.",
     "Config.ShowInterval,Name": "Show Interval",
-    
-    // Mod Limit
-    "Config.ModLimit.Name": "Mod Limit",
-    "Config.ModLimit.Tooltip": "Detect if the client player's mod meets the requirements. This feature is only available on the host side.",
 
     // Auto Set Ip Connection
     "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",

@@ -46,7 +46,6 @@ public class ModEntry : Mod
             new DelayedPlayerHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new ItemCheatHandler(this.Helper, this.config),
-            new ModLimitHandler(this.Helper, this.config),
             new PlayerCountHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),
             new UnreadyPlayerHandler(this.Helper, this.config),

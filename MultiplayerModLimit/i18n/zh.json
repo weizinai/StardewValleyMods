@@ -6,4 +6,7 @@
     "Config.BannedModListSelected.Name": "选择的禁止模组列表",
 
     "UI.ClientTooltip": "该模组仅在主机端有效",
+    "UI.KickPlayerTooltip": "{{name}}已被踢出，因为他不满足模组要求。",
+    "UI.ModLimit.Required": "{{id}}被要求",
+    "UI.ModLimit.Banned": "{{id}}被禁止"
 }

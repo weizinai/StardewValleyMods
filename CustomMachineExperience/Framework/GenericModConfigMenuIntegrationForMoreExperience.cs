@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using weizinai.StardewValleyMod.Common.Integration;
 
-namespace MoreExperience.Framework;
+namespace weizinai.StardewValleyMod.CustomMachineExperience.Framework;
 
 internal class GenericModConfigMenuIntegrationForMoreExperience
 {

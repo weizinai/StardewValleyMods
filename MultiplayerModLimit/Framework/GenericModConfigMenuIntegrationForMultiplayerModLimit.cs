@@ -18,12 +18,20 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
 
         this.configMenu
             .Register()
+            .AddSectionTitle(I18n.Config_GeneralSettingTitle_Name)
             // 启用模组
             .AddBoolOption(
                 config => config.EnableMod,
                 (config, value) => config.EnableMod = value,
                 I18n.Config_EnableMod_Name
             )
+            // 踢出玩家延迟时间
+            .AddNumberOption(
+                config => config.KickPlayerDelayTime,
+                (config, value) => config.KickPlayerDelayTime = value,
+                I18n.Config_KickPlayerDelayTime_Name
+            )
+            .AddSectionTitle(I18n.Config_LimitSettingTitle_Name)
             // 要求SMAPI
             .AddBoolOption(
                 config => config.RequireSMAPI,
@@ -65,12 +73,6 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
                 I18n.Config_BannedModListSelected_Name,
                 null,
                 this.configMenu.GetConfig().BannedModList.Keys.ToArray()
-            )
-            // 踢出玩家延迟时间
-            .AddNumberOption(
-                config => config.KickPlayerDelayTime,
-                (config, value) => config.KickPlayerDelayTime = value,
-                I18n.Config_KickPlayerDelayTime_Name
             )
             ;
     }

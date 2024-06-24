@@ -1,6 +1,12 @@
 {
+    "Config.GeneralSettingTitle.Name": "常规设置",
+    
     // 启用模组
     "Config.EnableMod.Name": "启用模组",
+    // 踢出玩家延迟时间
+    "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
+    
+    "Config.LimitSettingTitle.Name": "限制设置",
     
     // 要求SMAPI
     "Config.RequireSMAPI.Name": "要求SMAPI",
@@ -18,7 +24,4 @@
     "Config.AllowedModListSelected.Name": "选择的允许模组列表",
     "Config.RequiredModListSelected.Name": "选择的要求模组列表",
     "Config.BannedModListSelected.Name": "选择的禁止模组列表",
-    
-    // 踢出玩家延迟时间
-    "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
 }

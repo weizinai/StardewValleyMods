@@ -1,6 +1,13 @@
 {
+    "Config.GeneralSettingTitle.Name": "General Setting",
+    
     // Enable Mod
     "Config.EnableMod.Name": "Enable Mod",
+
+    // Kick Player Delay Time
+    "Config.KickPlayerDelayTime.Name": "Kick Player Delay Time",
+    
+    "Config.LimitSettingTitle.Name": "Limit Setting",
     
     // Require SMAPI 
     "Config.RequireSMAPI.Name": "Require SMAPI",
@@ -18,7 +25,4 @@
     "Config.AllowedModListSelected.Name": "Allowed Mod List Selected",
     "Config.RequiredModListSelected.Name": "Required Mod List Selected",
     "Config.BannedModListSelected.Name": "Banned Mod List Selected",
-    
-    // Kick Player Delay Time
-    "Config.KickPlayerDelayTime.Name": "Kick Player Delay Time",
 }

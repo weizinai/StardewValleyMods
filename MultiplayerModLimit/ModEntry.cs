@@ -20,7 +20,6 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
-        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
         helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
@@ -38,11 +37,6 @@ internal class ModEntry : Mod
         }
 
         this.playersToKick.RemoveAll(player => player.Cooldown < 0);
-    }
-
-    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
-    {
-        if (Game1.IsClient) Log.Alert(I18n.UI_ClientTooltip());
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

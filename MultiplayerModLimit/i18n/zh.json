@@ -21,7 +21,4 @@
     
     // 踢出玩家延迟时间
     "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
-
-    // UI
-    "UI.ClientTooltip": "该模组仅在主机端有效",
 }

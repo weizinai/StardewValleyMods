@@ -21,7 +21,4 @@
     
     // Kick Player Delay Time
     "Config.KickPlayerDelayTime.Name": "Kick Player Delay Time",
-    
-    // UI
-    "UI.ClientTooltip": "This mod is only available on the host side"
 }

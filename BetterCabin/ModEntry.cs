@@ -17,6 +17,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         this.config = helper.ReadConfig<ModConfig>();
+        this.UpdateConfig();
         I18n.Init(helper.Translation);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;

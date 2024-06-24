@@ -1,0 +1,14 @@
+{
+    "Name": "More Experience",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "",
+    "UniqueID": "weizinai.MoreExperience",
+    "EntryDll": "MoreExperience.dll",
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

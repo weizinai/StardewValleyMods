@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplayerModLimit", "Mult
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMachineExperience", "CustomMachineExperience\CustomMachineExperience.csproj", "{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Common", ".Common", "{1AE0B9DF-93D1-4BFF-8A41-7E6B4079F8EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,5 +94,11 @@ Global
 		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56D39247-83B2-4ABF-8873-1E51B84F6472} = {1AE0B9DF-93D1-4BFF-8A41-7E6B4079F8EA}
+		{AD5764AC-761A-44A6-8B11-C788CA19292F} = {1AE0B9DF-93D1-4BFF-8A41-7E6B4079F8EA}
+		{A45B2A8E-7C14-4CAB-89EB-91AD916BB8D6} = {1AE0B9DF-93D1-4BFF-8A41-7E6B4079F8EA}
+		{D083D44E-25FA-48D4-B64F-B033461EAF28} = {1AE0B9DF-93D1-4BFF-8A41-7E6B4079F8EA}
 	EndGlobalSection
 EndGlobal

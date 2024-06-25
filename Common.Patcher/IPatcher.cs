@@ -2,6 +2,7 @@ using HarmonyLib;
 
 namespace weizinai.StardewValleyMod.Common.Patcher;
 
+/// <summary>A set of Harmony patches to apply.</summary>
 internal interface IPatcher
 {
     /// <summary>Apply the Harmony patches for this instance.</summary>

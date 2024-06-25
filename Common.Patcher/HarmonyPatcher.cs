@@ -19,9 +19,9 @@ internal static class HarmonyPatcher
             {
                 patcher.Apply(harmony);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                mod.Monitor.Log($"Failed to apply '{patcher.GetType().FullName}' patcher. Technical details:\n{ex}", LogLevel.Error);
+                mod.Monitor.Log($"Failed to apply '{patcher.GetType().FullName}' patcher. Technical details:\n{e}", LogLevel.Error);
             }
         }
     }

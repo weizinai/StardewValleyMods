@@ -2,7 +2,7 @@ using StardewModdingAPI;
 
 namespace weizinai.StardewValleyMod.Common.Log;
 
-internal class Log
+internal static class Log
 {
     private static IMonitor monitor = null!;
 

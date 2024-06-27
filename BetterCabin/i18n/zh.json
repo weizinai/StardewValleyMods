@@ -33,8 +33,8 @@
     "UI.ResetCabin.ChooseFarmhand": "请选择你要重置的小屋：",
     "UI.ResetCabin.Online": "当前小屋的主人在线，无法发起重置。",
 
-    // 设置小屋外观
-    "Config.SetCabinSkin.Name": "设置小屋外观",
-    "Config.SetCabinSkin.Tooltip": "让玩家可以随时随地设置小屋的外观。",
-    "Config.SetCabinSkinKeybind.Name": "设置小屋外观快捷键"
+    // 小屋面板
+    "Config.CabinMenu.Name": "小屋面板",
+    "Config.CabinMenu.Tooltip": "让玩家可以打开一个与小屋相关的面板。",
+    "Config.CabinMenuKeybind.Name": "小屋面板快捷键"
 }

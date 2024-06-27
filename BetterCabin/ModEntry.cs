@@ -45,8 +45,8 @@ internal class ModEntry : Mod
 
         if (this.config.ResetCabinPlayer)
             this.handlers.Add(new ResetCabinHandler(this.config, this.Helper));
-        if (this.config.SetCabinSkin)
-            this.handlers.Add(new SetCabinSkinHandler(this.config, this.Helper));
+        if (this.config.CabinMenu)
+            this.handlers.Add(new CabinMenuHandler(this.config, this.Helper));
         if (this.config.VisitCabinInfo)
             this.handlers.Add(new VisitCabinInfoHandler(this.config, this.Helper));
 

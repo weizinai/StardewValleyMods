@@ -23,9 +23,9 @@ internal class ModConfig
     // 上次在线时间
     public OnlineTimeConfig LastOnlineTime { get; set; } = new(true, 0, 64, Color.Black);
 
-    // 重设小屋外观
-    public bool SetCabinSkin { get; set; } = true;
-    public KeybindList SetCabinSkinKeybind { get; set; } = new(SButton.O);
+    // 小屋面板
+    public bool CabinMenu { get; set; } = true;
+    public KeybindList CabinMenuKeybind { get; set; } = new(SButton.O);
 
     // 删除小屋主人
     public bool ResetCabinPlayer { get; set; } = true;

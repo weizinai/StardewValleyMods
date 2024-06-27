@@ -82,17 +82,17 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 I18n.Config_YOffset_Name
             )
             // 设置小屋外观
-            .AddSectionTitle(I18n.Config_SetCabinSkin_Name)
+            .AddSectionTitle(I18n.Config_CabinMenu_Name)
             .AddBoolOption(
-                config => config.SetCabinSkin,
-                (config, value) => config.SetCabinSkin = value,
-                I18n.Config_SetCabinSkin_Name,
-                I18n.Config_SetCabinSkin_Tooltip
+                config => config.CabinMenu,
+                (config, value) => config.CabinMenu = value,
+                I18n.Config_CabinMenu_Name,
+                I18n.Config_CabinMenu_Tooltip
             )
             .AddKeybindList(
-                config => config.SetCabinSkinKeybind,
-                (config, value) => config.SetCabinSkinKeybind = value,
-                I18n.Config_SetCabinSkinKeybind_Name
+                config => config.CabinMenuKeybind,
+                (config, value) => config.CabinMenuKeybind = value,
+                I18n.Config_CabinMenuKeybind_Name
             )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_ResetCabin_Name)

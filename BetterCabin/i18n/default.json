@@ -33,8 +33,8 @@
     "UI.ResetCabin.ChooseFarmhand": "Please choose the cabin you want to reset:",
     "UI.ResetCabin.Online": "The owner of the current cabin is online and cannot be reset.",
     
-    // Reset Cabin Skin
-    "Config.SetCabinSkin.Name": "Set Cabin Skin",
-    "Config.SetCabinSkin.Tooltip": "Allows players to set the skin of the cabin anytime and anywhere.",
-    "Config.SetCabinSkinKeybind.Name": "Set Cabin Skin Keybind"
+    // Cabin Menu
+    "Config.CabinMenu.Name": "Cabin Menu",
+    "Config.CabinMenu.Tooltip": "",
+    "Config.CabinMenuKeybind.Name": "Cabin Menu Keybind"
 }

@@ -36,5 +36,6 @@
     // Cabin Menu
     "Config.CabinMenu.Name": "Cabin Menu",
     "Config.CabinMenu.Tooltip": "",
-    "Config.CabinMenuKeybind.Name": "Cabin Menu Keybind"
+    "Config.CabinMenuKeybind.Name": "Cabin Menu Keybind",
+    "UI.ClientCabinMenu.ChooseSkin": "Please select the skin of the cabin",
 }

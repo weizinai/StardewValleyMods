@@ -12,11 +12,11 @@ internal class ClientCabinMenu : IClickableMenu
 {
     private const int WindowWidth = 576;
     private const int WindowHeight = 576;
-    
+
     private readonly Building building;
     private SkinEntry currentSkin = null!;
     private readonly List<SkinEntry> skins = new();
-    
+
     private ClickableTextureComponent okButton = null!;
     private ClickableTextureComponent nextSkinButton = null!;
     private ClickableTextureComponent previousSkinButton = null!;
@@ -27,7 +27,7 @@ internal class ClientCabinMenu : IClickableMenu
         : base(Game1.uiViewport.Width / 2 - WindowWidth / 2, Game1.uiViewport.Height / 2 - WindowHeight / 2, WindowWidth, WindowHeight)
     {
         this.building = targetBuilding;
-        
+
         var buildingData = targetBuilding.GetData();
         var index = 0;
         this.skins.Add(new SkinEntry(index++, null, "", ""));
@@ -71,11 +71,7 @@ internal class ClientCabinMenu : IClickableMenu
     private void SetSkin(int index)
     {
         index %= this.skins.Count;
-        if (index < 0)
-        {
-            index = this.skins.Count + index;
-        }
-
+        if (index < 0) index = this.skins.Count + index;
         this.SetSkin(this.skins[index]);
     }
 
@@ -105,13 +101,13 @@ internal class ClientCabinMenu : IClickableMenu
 
     private void InitButton()
     {
-        this.previousSkinButton = new ClickableTextureComponent(new Rectangle(this.Bound.Left, this.Bound.Center.Y - 32, 64, 64), 
+        this.previousSkinButton = new ClickableTextureComponent(new Rectangle(this.Bound.Left, this.Bound.Center.Y - 32, 64, 64),
             Game1.mouseCursors, Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 44), 1f);
-        this.nextSkinButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64, this.Bound.Center.Y - 32, 64, 64), 
+        this.nextSkinButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64, this.Bound.Center.Y - 32, 64, 64),
             Game1.mouseCursors, Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 33), 1f);
-        this.okButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64, this.Bound.Bottom + 16, 64, 64), 
+        this.okButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64, this.Bound.Bottom + 16, 64, 64),
             Game1.mouseCursors, Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 46), 1f);
-        
+
         if (this.skins.Count == 0)
         {
             this.nextSkinButton.visible = false;
@@ -124,13 +120,16 @@ internal class ClientCabinMenu : IClickableMenu
         if (!Game1.options.showClearBackgrounds) b.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
 
         Game1.DrawBox(this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height);
+
         var sourceRect = this.building.getSourceRect();
         this.building.drawInMenu(b, this.Bound.Center.X - sourceRect.Width * 4 / 2, this.Bound.Center.Y - sourceRect.Height * 4 / 2 - 16);
-        SpriteText.drawStringWithScrollCenteredAt(b, Game1.content.LoadString("Strings\\Buildings:BuildingSkinMenu_ChooseAppearance", ""), 
-            this.Bound.Center.X, this.yPositionOnScreen - 96);
+
+        SpriteText.drawStringWithScrollCenteredAt(b, I18n.UI_ClientCabinMenu_ChooseSkin(), this.Bound.Center.X, this.yPositionOnScreen - 96);
+
         this.okButton.draw(b);
         this.nextSkinButton.draw(b);
         this.previousSkinButton.draw(b);
+
         this.drawMouse(b);
     }
 }

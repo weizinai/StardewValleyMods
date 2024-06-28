@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -26,28 +25,26 @@ internal class CabinMenuHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        // if (Context.IsMainPlayer || !Context.IsPlayerFree) return;
+        if (!Context.IsPlayerFree) return;
 
         if (this.Config.CabinMenuKeybind.JustPressed())
         {
-            var building = Game1.player.currentLocation.getBuildingAt(PositionHelper.GetTilePositionFromScreenPosition(
-                new Vector2(Game1.getMouseX(false), Game1.getMouseY(false))));
-            
-            if (building.GetIndoors() is Cabin)
+            if (Game1.IsServer)
             {
-                Game1.activeClickableMenu = new ClientCabinMenu(building);
             }
-            
-            // Utility.ForEachBuilding(building =>
-            // {
-            //     if (building.GetIndoors() is Cabin cabin && cabin.owner.Equals(Game1.player))
-            //     {
-            //         Game1.activeClickableMenu = new ClientCabinMenu(building);
-            //         return false;
-            //     }
-            //
-            //     return true;
-            // });
+            else
+            {
+                Utility.ForEachBuilding(building =>
+                {
+                    if (building.GetIndoors() is Cabin cabin && cabin.owner.Equals(Game1.player))
+                    {
+                        Game1.activeClickableMenu = new ClientCabinMenu(building);
+                        return false;
+                    }
+
+                    return true;
+                });
+            }
         }
     }
 }

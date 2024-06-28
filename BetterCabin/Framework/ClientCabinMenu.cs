@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Buildings;
-using StardewValley.Extensions;
-using StardewValley.GameData.Buildings;
 using StardewValley.Menus;
 using xTile.Dimensions;
 using static StardewValley.Menus.BuildingSkinMenu;
@@ -17,6 +15,9 @@ internal class ClientCabinMenu : IClickableMenu
 {
     private const int WindowWidth = 576;
     private const int WindowHeight = 576;
+
+    private readonly GameLocation originLocation;
+    private readonly Location originViewport;
 
     private readonly Building building;
     private SkinEntry currentSkin = null!;
@@ -38,6 +39,9 @@ internal class ClientCabinMenu : IClickableMenu
     public ClientCabinMenu(Building targetBuilding)
         : base(Game1.uiViewport.Width / 2 - WindowWidth / 2, Game1.uiViewport.Height / 2 - WindowHeight / 2, WindowWidth, WindowHeight)
     {
+        this.originLocation = Game1.player.currentLocation;
+        this.originViewport = Game1.viewport.Location;
+        
         this.building = targetBuilding;
 
         var buildingData = targetBuilding.GetData();
@@ -206,7 +210,6 @@ internal class ClientCabinMenu : IClickableMenu
         }
         else
         {
-            SpriteText.drawStringWithScrollBackground(b, "12412412", Game1.uiViewport.Width / 2 - SpriteText.getWidthOfString("12412412") / 2, 16);
             Game1.StartWorldDrawInUI(b);
             if (this.buildingToMove is not null)
             {
@@ -215,38 +218,14 @@ internal class ClientCabinMenu : IClickableMenu
                 {
                     for (var x = 0; x < this.buildingToMove.tilesWide.Value; x++)
                     {
-                        int sheetIndex4 = this.buildingToMove.getTileSheetIndexForStructurePlacementTile(x, y);
-                        Vector2 currentGlobalTilePosition4 = new Vector2(mouseTilePosition.X + x, mouseTilePosition.Y + y);
-                        if (!Game1.currentLocation.isBuildable(currentGlobalTilePosition4))
-                        {
-                            sheetIndex4++;
-                        }
-
-                        b.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, currentGlobalTilePosition4 * 64f), new Rectangle(194 + sheetIndex4 * 16, 388, 16, 16),
-                            Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.999f);
-                    }
-                }
-
-                foreach (BuildingPlacementTile additionalPlacementTile2 in this.buildingToMove.GetAdditionalPlacementTiles())
-                {
-                    bool onlyNeedsToBePassable2 = additionalPlacementTile2.OnlyNeedsToBePassable;
-                    foreach (Point point2 in additionalPlacementTile2.TileArea.GetPoints())
-                    {
-                        int x4 = point2.X;
-                        int y4 = point2.Y;
-                        int sheetIndex3 = this.buildingToMove.getTileSheetIndexForStructurePlacementTile(x4, y4);
-                        Vector2 currentGlobalTilePosition3 = new Vector2(mouseTilePosition.X + x4, mouseTilePosition.Y + y4);
-                        if (!Game1.currentLocation.isBuildable(currentGlobalTilePosition3, onlyNeedsToBePassable2))
-                        {
-                            sheetIndex3++;
-                        }
-
-                        b.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, currentGlobalTilePosition3 * 64f), new Rectangle(194 + sheetIndex3 * 16, 388, 16, 16),
-                            Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.999f);
+                        var sheetIndex = this.buildingToMove.getTileSheetIndexForStructurePlacementTile(x, y);
+                        var currentGlobalTilePosition = new Vector2(mouseTilePosition.X + x, mouseTilePosition.Y + y);
+                        if (!Game1.currentLocation.isBuildable(currentGlobalTilePosition)) sheetIndex++;
+                        b.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, currentGlobalTilePosition * 64f), 
+                            new Rectangle(194 + sheetIndex * 16, 388, 16, 16), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.999f);
                     }
                 }
             }
-
             Game1.EndWorldDrawInUI(b);
         }
 
@@ -289,44 +268,42 @@ internal class ClientCabinMenu : IClickableMenu
             this.building.netBuildingPaintColor.Value.Color1Default.Value = true;
             this.building.netBuildingPaintColor.Value.Color2Default.Value = true;
             this.building.netBuildingPaintColor.Value.Color3Default.Value = true;
-            var buildingData = this.building.GetData();
-            if (buildingData != null && this.building.daysOfConstructionLeft.Value == buildingData.BuildDays)
-            {
-                this.building.daysOfConstructionLeft.Value = skin.Data?.BuildDays ?? buildingData.BuildDays;
-            }
         }
     }
 
     private void SetUpForBuildingPlacement()
     {
         this.hoverText = "";
+        
         Game1.currentLocation.cleanupBeforePlayerExit();
         Game1.currentLocation = this.TargetLocation;
-        Game1.player.viewingLocation.Value = this.TargetLocation.NameOrUniqueName;
         Game1.currentLocation.resetForPlayerEntry();
         Game1.globalFadeToClear();
-        // this.cancelButton.bounds.X = Game1.uiViewport.Width - 128;
-        // this.cancelButton.bounds.Y = Game1.uiViewport.Height - 128;
+        
         Game1.displayHUD = false;
-        Game1.viewportFreeze = true;
-        Game1.viewport.Location = new Location(this.building.tileX.Value * 64, this.building.tileY.Value * 64);
-        Game1.panScreen(0, 0);
         Game1.displayFarmer = false;
+        
+        Game1.player.viewingLocation.Value = this.TargetLocation.NameOrUniqueName;
+        Game1.viewportFreeze = true;
+        var position = PositionHelper.GetAbsolutePositionFromTilePosition(new Vector2(this.building.tileX.Value, this.building.tileY.Value));
+        Game1.viewport.Location = new Location((int)position.X - Game1.viewport.Width / 2, (int)position.Y - Game1.viewport.Height / 2);
+        Game1.panScreen(0, 0);
     }
 
     private void ReturnToCarpentryMenu()
     {
-        LocationRequest locationRequest = Game1.getLocationRequest(this.TargetLocation.NameOrUniqueName);
+        var locationRequest = Game1.getLocationRequest(this.originLocation.NameOrUniqueName);
         locationRequest.OnWarp += delegate
         {
-            Game1.player.viewingLocation.Value = null;
-            // this.resetBounds();
             this.isMoving = false;
             this.buildingToMove = null;
+            
             Game1.displayHUD = true;
-            Game1.viewportFreeze = false;
-            // Game1.viewport.Location = this.BuilderViewport;
             Game1.displayFarmer = true;
+            
+            Game1.player.viewingLocation.Value = null;
+            Game1.viewportFreeze = false;
+            Game1.viewport.Location = this.originViewport;
         };
         Game1.warpFarmer(locationRequest, Game1.player.TilePoint.X, Game1.player.TilePoint.Y, Game1.player.FacingDirection);
     }

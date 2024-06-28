@@ -71,7 +71,10 @@ internal class ClientCabinMenu : IClickableMenu
             this.previousSkinButton.tryHover(x, y);
             this.nextSkinButton.tryHover(x, y);
 
-            if (this.moveButton.containsPoint(x, y)) this.hoverText = Game1.content.LoadString("Strings\\UI:Carpenter_MoveBuildings");
+            if (this.moveButton.containsPoint(x, y)) 
+                this.hoverText = Game1.content.LoadString("Strings\\UI:Carpenter_MoveBuildings");
+            else
+                this.hoverText = "";
         }
         else
         {

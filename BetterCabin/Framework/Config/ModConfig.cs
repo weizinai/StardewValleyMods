@@ -26,6 +26,7 @@ internal class ModConfig
     // 小屋面板
     public bool CabinMenu { get; set; } = true;
     public KeybindList CabinMenuKeybind { get; set; } = new(SButton.O);
+    public bool BuildCabinContinually { get; set; } = true; 
 
     // 删除小屋主人
     public bool ResetCabinPlayer { get; set; } = true;

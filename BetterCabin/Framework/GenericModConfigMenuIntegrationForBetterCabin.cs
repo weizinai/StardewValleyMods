@@ -81,7 +81,7 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.LastOnlineTime.YOffset = value,
                 I18n.Config_YOffset_Name
             )
-            // 设置小屋外观
+            // 小屋面板
             .AddSectionTitle(I18n.Config_CabinMenu_Name)
             .AddBoolOption(
                 config => config.CabinMenu,
@@ -93,6 +93,11 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 config => config.CabinMenuKeybind,
                 (config, value) => config.CabinMenuKeybind = value,
                 I18n.Config_CabinMenuKeybind_Name
+            )
+            .AddBoolOption(
+                config => config.BuildCabinContinually,
+                (config, value) => config.BuildCabinContinually = value,
+                I18n.Config_BuildCabinContinually_Name
             )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_ResetCabin_Name)

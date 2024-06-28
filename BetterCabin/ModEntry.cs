@@ -22,7 +22,7 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new BuildingPatcher(this.config));
+        HarmonyPatcher.Apply(this, new BuildingPatcher(this.config), new CarpenterMenuPatcher(this.config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

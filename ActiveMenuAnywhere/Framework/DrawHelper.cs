@@ -2,11 +2,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
-using static weizinai.StardewValleyMod.Common.Align;
+using static weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Align;
 
-namespace weizinai.StardewValleyMod.Common;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-public static class DrawHelper
+internal class DrawHelper
 {
     public static void DrawShadow()
     {

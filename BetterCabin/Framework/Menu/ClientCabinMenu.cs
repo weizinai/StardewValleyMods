@@ -13,9 +13,6 @@ namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 
 internal class ClientCabinMenu : CabinMenu
 {
-    private readonly GameLocation originLocation;
-    private readonly Location originViewport;
-
     private readonly Building building;
     private SkinEntry currentSkin = null!;
     private readonly List<SkinEntry> skins = new();
@@ -35,9 +32,6 @@ internal class ClientCabinMenu : CabinMenu
 
     public ClientCabinMenu(Building targetBuilding)
     {
-        this.originLocation = Game1.player.currentLocation;
-        this.originViewport = Game1.viewport.Location;
-        
         this.building = targetBuilding;
 
         var buildingData = targetBuilding.GetData();
@@ -67,7 +61,7 @@ internal class ClientCabinMenu : CabinMenu
             this.previousSkinButton.tryHover(x, y);
             this.nextSkinButton.tryHover(x, y);
 
-            if (this.moveButton.containsPoint(x, y)) 
+            if (this.moveButton.containsPoint(x, y))
                 this.hoverText = Game1.content.LoadString("Strings\\UI:Carpenter_MoveBuildings");
             else
                 this.hoverText = "";
@@ -220,11 +214,12 @@ internal class ClientCabinMenu : CabinMenu
                         var sheetIndex = this.buildingToMove.getTileSheetIndexForStructurePlacementTile(x, y);
                         var currentGlobalTilePosition = new Vector2(mouseTilePosition.X + x, mouseTilePosition.Y + y);
                         if (!Game1.currentLocation.isBuildable(currentGlobalTilePosition)) sheetIndex++;
-                        b.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, currentGlobalTilePosition * 64f), 
+                        b.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, currentGlobalTilePosition * 64f),
                             new Rectangle(194 + sheetIndex * 16, 388, 16, 16), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.999f);
                     }
                 }
             }
+
             Game1.EndWorldDrawInUI(b);
         }
 
@@ -273,15 +268,15 @@ internal class ClientCabinMenu : CabinMenu
     private void SetUpForBuildingPlacement()
     {
         this.hoverText = "";
-        
+
         Game1.currentLocation.cleanupBeforePlayerExit();
         Game1.currentLocation = this.TargetLocation;
         Game1.currentLocation.resetForPlayerEntry();
         Game1.globalFadeToClear();
-        
+
         Game1.displayHUD = false;
         Game1.displayFarmer = false;
-        
+
         Game1.player.viewingLocation.Value = this.TargetLocation.NameOrUniqueName;
         Game1.viewportFreeze = true;
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(new Vector2(this.building.tileX.Value, this.building.tileY.Value));
@@ -291,18 +286,18 @@ internal class ClientCabinMenu : CabinMenu
 
     private void ReturnToCarpentryMenu()
     {
-        var locationRequest = Game1.getLocationRequest(this.originLocation.NameOrUniqueName);
+        var locationRequest = Game1.getLocationRequest(this.OriginLocation.NameOrUniqueName);
         locationRequest.OnWarp += delegate
         {
             this.isMoving = false;
             this.buildingToMove = null;
-            
+
             Game1.displayHUD = true;
             Game1.displayFarmer = true;
-            
+
             Game1.player.viewingLocation.Value = null;
             Game1.viewportFreeze = false;
-            Game1.viewport.Location = this.originViewport;
+            Game1.viewport.Location = this.OriginViewport;
         };
         Game1.warpFarmer(locationRequest, Game1.player.TilePoint.X, Game1.player.TilePoint.Y, Game1.player.FacingDirection);
     }

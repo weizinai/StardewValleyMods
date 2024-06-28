@@ -1,4 +1,5 @@
 using HarmonyLib;
+using StardewValley.Locations;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.Common.Patcher;
@@ -26,7 +27,7 @@ internal class CarpenterMenuPatcher : BasePatcher
     {
         if (!config.BuildCabinContinually) return true;
         
-        if (__instance.currentBuilding.isCabin && __instance.CanBuildCurrentBlueprint())
+        if (__instance.currentBuilding.GetIndoors() is Cabin && __instance.CanBuildCurrentBlueprint())
         {
             __instance.freeze = false;
             return false;

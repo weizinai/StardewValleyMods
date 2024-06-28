@@ -35,7 +35,7 @@
     
     // Cabin Menu
     "Config.CabinMenu.Name": "Cabin Menu",
-    "Config.CabinMenu.Tooltip": "",
+    "Config.CabinMenu.Tooltip": "Allows the player to open a menu related to the cabin.\nClient player can move the position of his cabin and set the appearance of his cabin.",
     "Config.CabinMenuKeybind.Name": "Cabin Menu Keybind",
     "UI.ClientCabinMenu.ChooseSkin": "Please select the appearance of the cabin",
 }

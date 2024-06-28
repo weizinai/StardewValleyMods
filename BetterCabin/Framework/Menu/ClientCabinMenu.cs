@@ -9,13 +9,10 @@ using xTile.Dimensions;
 using static StardewValley.Menus.BuildingSkinMenu;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Framework;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 
-internal class ClientCabinMenu : IClickableMenu
+internal class ClientCabinMenu : CabinMenu
 {
-    private const int WindowWidth = 576;
-    private const int WindowHeight = 576;
-
     private readonly GameLocation originLocation;
     private readonly Location originViewport;
 
@@ -37,7 +34,6 @@ internal class ClientCabinMenu : IClickableMenu
     private GameLocation TargetLocation => this.building.GetParentLocation();
 
     public ClientCabinMenu(Building targetBuilding)
-        : base(Game1.uiViewport.Width / 2 - WindowWidth / 2, Game1.uiViewport.Height / 2 - WindowHeight / 2, WindowWidth, WindowHeight)
     {
         this.originLocation = Game1.player.currentLocation;
         this.originViewport = Game1.viewport.Location;

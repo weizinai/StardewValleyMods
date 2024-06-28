@@ -4,6 +4,7 @@ using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 

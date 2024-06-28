@@ -11,8 +11,11 @@ using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 
-internal class ClientCabinMenu : CabinMenu
+internal class ClientCabinMenu : IClickableMenu
 {
+    private const int WindowWidth = 576;
+    private const int WindowHeight = 576;
+    
     private readonly Building building;
     private SkinEntry currentSkin = null!;
     private readonly List<SkinEntry> skins = new();
@@ -24,14 +27,20 @@ internal class ClientCabinMenu : CabinMenu
 
     private bool isMoving;
     private Building? buildingToMove;
-
     private string hoverText = "";
+
+    private readonly GameLocation originLocation;
+    private readonly Location originViewport;
 
     private Rectangle Bound => new(this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height);
     private GameLocation TargetLocation => this.building.GetParentLocation();
 
     public ClientCabinMenu(Building targetBuilding)
+        : base(Game1.uiViewport.Width / 2 - WindowWidth / 2, Game1.uiViewport.Height / 2 - WindowHeight / 2, WindowWidth, WindowHeight)
     {
+        this.originLocation = Game1.player.currentLocation;
+        this.originViewport = Game1.viewport.Location;
+        
         this.building = targetBuilding;
 
         var buildingData = targetBuilding.GetData();
@@ -286,7 +295,7 @@ internal class ClientCabinMenu : CabinMenu
 
     private void ReturnToCarpentryMenu()
     {
-        var locationRequest = Game1.getLocationRequest(this.OriginLocation.NameOrUniqueName);
+        var locationRequest = Game1.getLocationRequest(this.originLocation.NameOrUniqueName);
         locationRequest.OnWarp += delegate
         {
             this.isMoving = false;
@@ -297,7 +306,7 @@ internal class ClientCabinMenu : CabinMenu
 
             Game1.player.viewingLocation.Value = null;
             Game1.viewportFreeze = false;
-            Game1.viewport.Location = this.OriginViewport;
+            Game1.viewport.Location = this.originViewport;
         };
         Game1.warpFarmer(locationRequest, Game1.player.TilePoint.X, Game1.player.TilePoint.Y, Game1.player.FacingDirection);
     }

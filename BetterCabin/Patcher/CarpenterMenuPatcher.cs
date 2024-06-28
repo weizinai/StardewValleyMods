@@ -27,7 +27,7 @@ internal class CarpenterMenuPatcher : BasePatcher
     {
         if (!config.BuildCabinContinually) return true;
         
-        if (__instance.currentBuilding.GetIndoors() is Cabin && __instance.CanBuildCurrentBlueprint())
+        if (__instance.Blueprint.Data.IndoorMapType == "StardewValley.Locations.Cabin" && __instance.CanBuildCurrentBlueprint())
         {
             __instance.freeze = false;
             return false;

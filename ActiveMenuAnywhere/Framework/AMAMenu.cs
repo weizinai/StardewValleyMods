@@ -26,9 +26,9 @@ internal class AMAMenu : IClickableMenu
     private MenuTabID currentMenuTabID;
 
     private int currentPage;
-    private ClickableTextureComponent downArrow;
-    private ClickableComponent title;
-    private ClickableTextureComponent upArrow;
+    private ClickableTextureComponent downArrow = null!;
+    private ClickableComponent title = null!;
+    private ClickableTextureComponent upArrow = null!;
 
     public AMAMenu(MenuTabID menuTabID, IModHelper helper)
     {
@@ -166,10 +166,6 @@ internal class AMAMenu : IClickableMenu
 
     private void AddTabs()
     {
-        var tabOffset = (x: 4, y: 16);
-        var tabSize = (width: 100, height: 48);
-        var tabPosition = (x: this.xPositionOnScreen - tabSize.width, y: this.yPositionOnScreen + tabOffset.y);
-
         var i = 0;
         this.tabs.Clear();
         this.tabs.AddRange(new[]

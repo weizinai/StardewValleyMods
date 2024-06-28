@@ -9,7 +9,11 @@ internal static class PositionHelper
     
     public static Vector2 GetTilePositionFromScreenPosition(Vector2 screenPosition)
     {
-        return new Vector2((screenPosition.X + Game1.viewport.X) / TileSize, 
-            (screenPosition.Y + Game1.viewport.Y) / TileSize);
+        return new Vector2((int)((screenPosition.X + Game1.viewport.X) / TileSize), (int)((screenPosition.Y + Game1.viewport.Y) / TileSize));
+    }
+
+    public static Vector2 GetTilePositionFromMousePosition()
+    {
+        return GetTilePositionFromScreenPosition(new Vector2(Game1.getOldMouseX(false), Game1.getOldMouseY(false)));
     }
 }

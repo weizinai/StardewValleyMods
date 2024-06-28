@@ -37,5 +37,5 @@
     "Config.CabinMenu.Name": "小屋面板",
     "Config.CabinMenu.Tooltip": "让玩家可以打开一个与小屋相关的面板。",
     "Config.CabinMenuKeybind.Name": "小屋面板快捷键",
-    "UI.ClientCabinMenu.ChooseSkin": "请选择小屋的皮肤",
+    "UI.ClientCabinMenu.ChooseSkin": "请选择小屋的外观",
 }

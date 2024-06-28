@@ -28,7 +28,7 @@ internal class ModConfig
     public KeybindList CabinMenuKeybind { get; set; } = new(SButton.O);
     public bool BuildCabinContinually { get; set; } = true; 
 
-    // 删除小屋主人
+    // 重置小屋
     public bool ResetCabinPlayer { get; set; } = true;
     public KeybindList ResetCabinPlayerKeybind { get; set; } = new(SButton.Delete);
 }

@@ -32,6 +32,7 @@ internal class CabinMenuHandler : BaseHandler
         {
             if (Game1.IsServer)
             {
+                Game1.activeClickableMenu = new ServerCabinMenu();
             }
             else
             {

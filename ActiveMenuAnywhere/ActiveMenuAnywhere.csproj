@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Assets\"/>
+        <Folder Include="assets\" />
     </ItemGroup>
 
     <ItemGroup>

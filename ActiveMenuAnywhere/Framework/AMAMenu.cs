@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Options;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 

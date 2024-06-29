@@ -1,23 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Options;
 
 internal class RSVQuestBoardOption : BaseOption
 {
-    private readonly IModHelper helper;
-
-    public RSVQuestBoardOption(Rectangle sourceRect, IModHelper helper) :
+    public RSVQuestBoardOption(Rectangle sourceRect) :
         base(I18n.Option_RSVQuestBoard(), sourceRect)
     {
-        this.helper = helper;
     }
 
     public override void ReceiveLeftClick()
     {
-        // var questController = RSVIntegration.GetType("RidgesideVillage.Questing.QuestController");
-        // object[] parameters = { Game1.currentLocation, new[] { "VillageQuestBoard" }, Game1.player, new Point() };
-        // questController?.GetMethod("OpenQuestBoard", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, parameters);
+        var method = RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.Questing.QuestController", "OpenQuestBoard");
+        var parameters = new object[] { Game1.currentLocation, new[] { "VillageQuestBoard" }, Game1.player, new Point() };
+        method.Invoke(null, parameters);
     }
 }

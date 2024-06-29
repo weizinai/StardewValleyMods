@@ -1,21 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Options;
 
 internal class PaulaOption : BaseOption
 {
-    private readonly IModHelper helper;
-
-    public PaulaOption(Rectangle sourceRect, IModHelper helper) : base(I18n.Option_Paula(), sourceRect)
+    public PaulaOption(Rectangle sourceRect) : base(I18n.Option_Paula(), sourceRect)
     {
-        this.helper = helper;
     }
 
     public override void ReceiveLeftClick()
     {
-        // var lanHouse = RSVIntegration.GetType("RidgesideVillage.PaulaClinic");
-        // lanHouse?.GetMethod("ClinicChoices", BindingFlags.NonPublic | BindingFlags.Static)?.Invoke(null, null);
+        RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.PaulaClinic", "ClinicChoices").Invoke(null, null);
     }
 }

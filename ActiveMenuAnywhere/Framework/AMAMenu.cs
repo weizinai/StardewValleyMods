@@ -276,10 +276,10 @@ internal class AMAMenu : IClickableMenu
             case MenuTabID.RSV:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new RSVQuestBoardOption(this.GetSourceRectangle(0), this.helper),
-                    new RSVSpecialOrderOption(this.GetSourceRectangle(1), this.helper),
-                    new IanOption(this.GetSourceRectangle(2), this.helper),
-                    new PaulaOption(this.GetSourceRectangle(3), this.helper),
+                    new RSVQuestBoardOption(this.GetSourceRectangle(0)),
+                    new RSVSpecialOrderOption(this.GetSourceRectangle(1)),
+                    new IanOption(this.GetSourceRectangle(2)),
+                    new PaulaOption(this.GetSourceRectangle(3)),
                     new LorenzoOption(this.GetSourceRectangle(4)),
                     new JericOption(this.GetSourceRectangle(5)),
                     new KimpoiOption(this.GetSourceRectangle(6)),

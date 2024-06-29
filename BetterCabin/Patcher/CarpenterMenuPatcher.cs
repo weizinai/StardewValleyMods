@@ -27,6 +27,8 @@ internal class CarpenterMenuPatcher : BasePatcher
     {
         if (!config.BuildCabinContinually) return true;
         
+        // __instance.isCabin 无法判断自定义小屋
+        // __instance.GetIndoors() is Cabin 此时室内还未生成，无法判断是否为小屋
         if (__instance.Blueprint.Data.IndoorMapType == "StardewValley.Locations.Cabin" && __instance.CanBuildCurrentBlueprint())
         {
             __instance.freeze = false;

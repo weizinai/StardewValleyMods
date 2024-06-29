@@ -99,6 +99,19 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.BuildCabinContinually = value,
                 I18n.Config_BuildCabinContinually_Name
             )
+            // 上锁小屋
+            .AddSectionTitle(I18n.Config_LockCabin_Name)
+            .AddBoolOption(
+                config => config.LockCabin,
+                (config, value) => config.LockCabin = value,
+                I18n.Config_LockCabin_Name,
+                I18n.Config_LockCabin_Tooltip
+            )
+            .AddKeybindList(
+                config => config.LockCabinKeybind,
+                (config, value) => config.LockCabinKeybind = value,
+                I18n.Config_LockCabinKeybind_Name
+            )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_ResetCabin_Name)
             .AddBoolOption(

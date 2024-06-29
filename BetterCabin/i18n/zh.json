@@ -33,6 +33,16 @@
     "UI.ResetCabin.ChooseFarmhand": "请选择你要重置的小屋：",
     "UI.ResetCabin.Online": "当前小屋的主人在线，无法发起重置。",
 
+    // 上锁小屋
+    "Config.LockCabin.Name": "上锁小屋",
+    "Config.LockCabin.Tooltip": "是否允许客机端玩家上锁自己的小屋。该选项仅限主机端可用。",
+    "Config.LockCabinKeybind.Name": "上锁小屋快捷键",
+    "UI.LockCabin.Enable": "主机端玩家启用了小屋上锁功能",
+    "UI.LockCabin.Disable": "主机端玩家禁用了上锁小屋功能",
+    "UI.LockCabin.Lock": "你的小屋已上锁",
+    "UI.LockCabin.Unlock": "你的小屋已解锁",
+    "UI.LockCabin.VisitLockedCabin": "这个小屋被主人锁住了，你无法访问。",
+
     // 小屋面板
     "Config.CabinMenu.Name": "小屋面板",
     "Config.CabinMenu.Tooltip": "让玩家可以打开一个与小屋相关的面板。\n客户端玩家可以移动自己小屋的位置和设置自己小屋的外观。\n主机玩家可以移动小屋、拆除小屋和建造小屋。",

@@ -33,6 +33,16 @@
     "UI.ResetCabin.ChooseFarmhand": "Please choose the cabin you want to reset:",
     "UI.ResetCabin.Online": "The owner of the current cabin is online and cannot be reset.",
     
+    // Lock Cabin
+    "Config.LockCabin.Name": "Lock Cabin",
+    "Config.LockCabin.Tooltip": "Whether or not client players are allowed to lock their cabins. This option is only available on the host side.",
+    "Config.LockCabinKeybind.Name": "Lock Cabin Keybind",
+    "UI.LockCabin.Enable": "The host player enable the lock cabin feature.",
+    "UI.LockCabin.Disable": "The host player disable the lock cabin feature.",
+    "UI.LockCabin.Lock": "Your cabin is locked.",
+    "UI.LockCabin.Unlock": "Your cabin is unlocked.",
+    "UI.LockCabin.VisitLockedCabin": "The cabin is locked by the owner and you can't visit it.",
+    
     // Cabin Menu
     "Config.CabinMenu.Name": "Cabin Menu",
     "Config.CabinMenu.Tooltip": "Allows the player to open a menu related to the cabin.\nClient player can move the position of his cabin and set the appearance of his cabin.\nHost players can move cabins, demolish cabins, and build cabins.",

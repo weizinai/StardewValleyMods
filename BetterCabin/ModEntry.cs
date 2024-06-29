@@ -22,7 +22,7 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new BuildingPatcher(this.config), new CarpenterMenuPatcher(this.config));
+        HarmonyPatcher.Apply(this, new BuildingPatcher(this.config), new CarpenterMenuPatcher(this.config), new Game1Patcher());
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -49,7 +49,11 @@ internal class ModEntry : Mod
             this.handlers.Add(new CabinMenuHandler(this.config, this.Helper));
         if (this.config.VisitCabinInfo)
             this.handlers.Add(new VisitCabinInfoHandler(this.config, this.Helper));
+        if (this.config.LockCabin)
+            this.handlers.Add(new LockCabinHandler(this.config, this.Helper));
 
+        LockCabinHandler.InitLockCabinConfig(this.config);
+        
         foreach (var handler in this.handlers) handler.Init();
     }
 }

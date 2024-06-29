@@ -1,10 +1,9 @@
-﻿using weizinai.StardewValleyMod.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Options;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -27,9 +26,9 @@ internal class AMAMenu : IClickableMenu
     private MenuTabID currentMenuTabID;
 
     private int currentPage;
-    private ClickableTextureComponent downArrow;
-    private ClickableComponent title;
-    private ClickableTextureComponent upArrow;
+    private ClickableTextureComponent downArrow = null!;
+    private ClickableComponent title = null!;
+    private ClickableTextureComponent upArrow = null!;
 
     public AMAMenu(MenuTabID menuTabID, IModHelper helper)
     {
@@ -167,10 +166,6 @@ internal class AMAMenu : IClickableMenu
 
     private void AddTabs()
     {
-        var tabOffset = (x: 4, y: 16);
-        var tabSize = (width: 100, height: 48);
-        var tabPosition = (x: this.xPositionOnScreen - tabSize.width, y: this.yPositionOnScreen + tabOffset.y);
-
         var i = 0;
         this.tabs.Clear();
         this.tabs.AddRange(new[]
@@ -281,10 +276,10 @@ internal class AMAMenu : IClickableMenu
             case MenuTabID.RSV:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new RSVQuestBoardOption(this.GetSourceRectangle(0), this.helper),
-                    new RSVSpecialOrderOption(this.GetSourceRectangle(1), this.helper),
-                    new IanOption(this.GetSourceRectangle(2), this.helper),
-                    new PaulaOption(this.GetSourceRectangle(3), this.helper),
+                    new RSVQuestBoardOption(this.GetSourceRectangle(0)),
+                    new RSVSpecialOrderOption(this.GetSourceRectangle(1)),
+                    new IanOption(this.GetSourceRectangle(2)),
+                    new PaulaOption(this.GetSourceRectangle(3)),
                     new LorenzoOption(this.GetSourceRectangle(4)),
                     new JericOption(this.GetSourceRectangle(5)),
                     new KimpoiOption(this.GetSourceRectangle(6)),

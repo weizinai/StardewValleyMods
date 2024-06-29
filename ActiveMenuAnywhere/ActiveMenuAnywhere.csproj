@@ -13,7 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Assets\"/>
+        <Folder Include="assets\" />
+        <Folder Include="Docs\Screenshots\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -21,7 +22,5 @@
     </ItemGroup>
 
     <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared" />
-
-    <Import Project="..\Common\Common.projitems" Label="Shared" />
 
 </Project>

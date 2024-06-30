@@ -41,11 +41,12 @@ internal class SpectatorMenu : IClickableMenu
         {
             if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
             {
-                Game1.globalFadeToBlack(() => this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation));
+                this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation);
+                // Game1.globalFadeToBlack(() => this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation));
                 this.targetLocation = this.targetFarmer.currentLocation;
-                Game1.globalFadeToClear();
+                // Game1.globalFadeToClear();
             }
-
+            
             Game1.viewport.Location = this.GetViewportFromFarmer();
             Game1.panScreen(0, 0);
             return;

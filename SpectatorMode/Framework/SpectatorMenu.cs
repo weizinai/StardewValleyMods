@@ -131,10 +131,7 @@ internal class SpectatorMenu : IClickableMenu
 
     private Location GetInitialViewport()
     {
-        if (this.followPlayer)
-        {
-            return this.GetViewportFromFarmer();
-        }
+        if (this.followPlayer) return this.GetViewportFromFarmer();
 
         var layer = this.targetLocation.Map.Layers[0];
         return new Location(layer.LayerWidth / 2 * 64 - Game1.viewport.Width / 2, layer.LayerHeight / 2 * 64 - Game1.viewport.Height / 2);

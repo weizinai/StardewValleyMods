@@ -22,6 +22,17 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
     }
 
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        new GenericModConfigMenuForSpectatorMode(
+            this.Helper,
+            this.ModManifest,
+            () => this.config,
+            () => this.config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.config)
+        ).Register();
+    }
+
     private void InitHandler()
     {
         var handlers = new IHandler[]
@@ -33,14 +44,5 @@ internal class ModEntry : Mod
         };
 
         foreach (var handler in handlers) handler.Init();
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        new GenericModConfigMenuForSpectatorMode(this.Helper, this.ModManifest,
-            () => this.config,
-            () => this.config = new ModConfig(),
-            () => this.Helper.WriteConfig(this.config)
-        ).Register();
     }
 }

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StardewValley;
+using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using xTile.Dimensions;
 
@@ -13,21 +14,8 @@ internal class SpectatorMenu : IClickableMenu
 
     private bool followPlayer;
 
-    private bool FollowPlayer
-    {
-        get => this.followPlayer;
-        set
-        {
-            this.followPlayer = value;
-            this.title = value
-                ? new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName))
-                : new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName));
-        }
-    }
-
     private readonly Farmer targetFarmer;
     private GameLocation targetLocation;
-    private MenuTitle title = null!;
 
     private readonly GameLocation originLocation;
     private readonly Location originViewport;
@@ -38,7 +26,7 @@ internal class SpectatorMenu : IClickableMenu
         this.config = config;
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
-        this.FollowPlayer = followPlayer;
+        this.followPlayer = followPlayer;
     
         this.originLocation = Game1.currentLocation;
         this.originViewport = Game1.viewport.Location;
@@ -49,7 +37,7 @@ internal class SpectatorMenu : IClickableMenu
 
     public override void update(GameTime time)
     {
-        if (this.FollowPlayer)
+        if (this.followPlayer)
         {
             if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
             {
@@ -84,7 +72,10 @@ internal class SpectatorMenu : IClickableMenu
 
     public override void draw(SpriteBatch b)
     {
-        this.title.Draw(b);
+        var title = this.followPlayer
+            ? I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName)
+            : I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName);
+        SpriteText.drawStringWithScrollCenteredAt(b, title,Game1.uiViewport.Width / 2, 64);
 
         this.drawMouse(b);
     }
@@ -93,9 +84,9 @@ internal class SpectatorMenu : IClickableMenu
     {
         base.receiveKeyPress(key);
 
-        if (this.config.ToggleStateKey.JustPressed()) this.FollowPlayer = !this.FollowPlayer;
+        if (this.config.ToggleStateKey.JustPressed()) this.followPlayer = !this.followPlayer;
 
-        if (this.FollowPlayer) return;
+        if (this.followPlayer) return;
 
         var moveSpeed = this.config.MoveSpeed;
         if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
@@ -104,7 +95,8 @@ internal class SpectatorMenu : IClickableMenu
             Game1.panScreen(moveSpeed, 0);
         else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
             Game1.panScreen(0, -moveSpeed);
-        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key)) Game1.panScreen(-moveSpeed, 0);
+        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key)) 
+            Game1.panScreen(-moveSpeed, 0);
     }
 
     protected override void cleanupBeforeExit()
@@ -139,7 +131,7 @@ internal class SpectatorMenu : IClickableMenu
 
     private Location GetInitialViewport()
     {
-        if (this.FollowPlayer)
+        if (this.followPlayer)
         {
             return this.GetViewportFromFarmer();
         }

@@ -29,23 +29,19 @@ internal class SpectatorMenu : IClickableMenu
     private readonly GameLocation targetLocation;
     private MenuTitle title = null!;
 
-    private static GameLocation originLocation = null!;
-    private static Location originViewport;
+    private readonly GameLocation originLocation;
+    private readonly Location originViewport;
 
-    public SpectatorMenu(ModConfig config, GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false, bool firstActive = true)
+    public SpectatorMenu(ModConfig config, GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false)
     {
         // 初始化
         this.config = config;
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
         this.FollowPlayer = followPlayer;
-
-        // 储存原始数据
-        if (firstActive)
-        {
-            originLocation = Game1.player.currentLocation;
-            originViewport = Game1.viewport.Location;
-        }
+    
+        this.originLocation = Game1.player.currentLocation;
+        this.originViewport = Game1.viewport.Location;
 
         // 切换视角
         Game1.globalFadeToBlack(this.Init);
@@ -56,10 +52,13 @@ internal class SpectatorMenu : IClickableMenu
         if (this.FollowPlayer)
         {
             if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
-                Game1.activeClickableMenu = new SpectatorMenu(this.config, this.targetFarmer.currentLocation, this.targetFarmer, true, false);
+            {
+                Game1.globalFadeToBlack(() => this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation));
+                Game1.globalFadeToClear();
+            }
 
             Game1.viewport.Location = this.GetViewportFromFarmer();
-            Game1.clampViewportToGameMap();
+            Game1.panScreen(0, 0);
             return;
         }
 
@@ -109,12 +108,12 @@ internal class SpectatorMenu : IClickableMenu
 
     protected override void cleanupBeforeExit()
     {
-        var locationRequest = Game1.getLocationRequest(originLocation.NameOrUniqueName);
+        var locationRequest = Game1.getLocationRequest(this.originLocation.NameOrUniqueName);
         locationRequest.OnWarp += delegate
         {
             Game1.player.viewingLocation.Value = null;
             Game1.viewportFreeze = false;
-            Game1.viewport.Location = originViewport;
+            Game1.viewport.Location = this.originViewport;
             Game1.displayFarmer = true;
         };
         Game1.warpFarmer(locationRequest, Game1.player.TilePoint.X, Game1.player.TilePoint.Y, Game1.player.FacingDirection);

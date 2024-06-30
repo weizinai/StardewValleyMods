@@ -145,7 +145,7 @@ internal class SpectatorMenu : IClickableMenu
         }
 
         var layer = this.targetLocation.Map.Layers[0];
-        return new Location(layer.LayerWidth / 2, layer.LayerHeight / 2);
+        return new Location(layer.LayerWidth / 2 * 64 - Game1.viewport.Width / 2, layer.LayerHeight / 2 * 64 - Game1.viewport.Height / 2);
     }
 
     private Location GetViewportFromFarmer()

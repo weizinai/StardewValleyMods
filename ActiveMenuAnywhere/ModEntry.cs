@@ -30,7 +30,7 @@ internal class ModEntry : Mod
             if (Game1.activeClickableMenu is AMAMenu)
                 Game1.exitActiveMenu();
             else if (Context.IsPlayerFree)
-                Game1.activeClickableMenu = new AMAMenu(this.config.DefaultMeanTabID, this.Helper);
+                Game1.activeClickableMenu = new AMAMenu(this.config.DefaultMeanTabId, this.Helper);
         }
     }
 
@@ -65,11 +65,11 @@ internal class ModEntry : Mod
         );
 
         configMenu.AddTextOption(this.ModManifest,
-            () => this.config.DefaultMeanTabID.ToString(),
+            () => this.config.DefaultMeanTabId.ToString(),
             value =>
             {
                 if (!Enum.TryParse(value, out MenuTabID tabID)) throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
-                this.config.DefaultMeanTabID = tabID;
+                this.config.DefaultMeanTabId = tabID;
             },
             I18n.Config_DefaultMenuTabID,
             null,

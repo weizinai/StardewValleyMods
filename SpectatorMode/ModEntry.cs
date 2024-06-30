@@ -4,6 +4,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
+using weizinai.StardewValleyMod.SpectatorMode.Handler;
 
 namespace weizinai.StardewValleyMod.SpectatorMode;
 
@@ -21,13 +22,12 @@ internal class ModEntry : Mod
         Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
         this.config = helper.ReadConfig<ModConfig>();
+        SpectatorHelper.Init(this.config);
+        this.InitHandler();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-        // 自定义命令
-        helper.ConsoleCommands.Add("spectate_location", "", this.SpectateLocation);
-        helper.ConsoleCommands.Add("spectate_player", "", this.SpectateFarmer);
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
@@ -64,8 +64,7 @@ internal class ModEntry : Mod
         {
             var locations = Game1.locations.Where(location => location.IsOutdoors)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
-            Game1.currentLocation.ShowPagedResponses("", locations, value => this.SpectateLocation("spectate_location", new[] { value }),
-                false, true, 10);
+            Game1.currentLocation.ShowPagedResponses("", locations, SpectatorHelper.SpectateLocation, false, true, 10);
         }
 
         // 旁观玩家
@@ -76,8 +75,7 @@ internal class ModEntry : Mod
                 var players = new List<KeyValuePair<string, string>>();
                 foreach (var (_, farmer) in Game1.otherFarmers)
                     players.Add(new KeyValuePair<string, string>(farmer.Name, farmer.displayName));
-                Game1.currentLocation.ShowPagedResponses("", players, value => this.SpectateFarmer("spectate_player", new[] { value }),
-                    false, true, 10);
+                Game1.currentLocation.ShowPagedResponses("", players, SpectatorHelper.SpectateFarmer, false, true, 10);
             }
             else
             {
@@ -117,40 +115,14 @@ internal class ModEntry : Mod
         }
     }
 
-    // 旁观地点
-    private void SpectateLocation(string command, string[] args)
+    private void InitHandler()
     {
-        var location = Game1.getLocationFromName(args[0]);
-
-        if (location is null)
+        var handlers = new IHandler[]
         {
-            Log.Info(I18n.UI_SpectateLocation_Fail(args[0]));
-            return;
-        }
+            new CommandHandler(this.Helper, this.config)
+        };
 
-        Game1.activeClickableMenu = new SpectatorMenu(this.config, location);
-        Log.Info(I18n.UI_SpectateLocation_Success(location.DisplayName));
-    }
-
-    // 旁观玩家
-    private void SpectateFarmer(string command, string[] args)
-    {
-        if (!Context.HasRemotePlayers)
-        {
-            Log.Info(I18n.UI_NoPlayerOnline());
-            return;
-        }
-
-        var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.Name == args[0]).Value;
-
-        if (farmer is null)
-        {
-            Log.Info(I18n.UI_SpectatePlayer_Fail(args[0]));
-            return;
-        }
-
-        Game1.activeClickableMenu = new SpectatorMenu(this.config, farmer.currentLocation, farmer, true);
-        Log.Info(I18n.UI_SpectatePlayer_Success(farmer.Name));
+        foreach (var handler in handlers) handler.Init();
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

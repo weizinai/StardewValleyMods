@@ -26,7 +26,7 @@ internal class SpectatorMenu : IClickableMenu
     }
 
     private readonly Farmer targetFarmer;
-    private readonly GameLocation targetLocation;
+    private GameLocation targetLocation;
     private MenuTitle title = null!;
 
     private readonly GameLocation originLocation;
@@ -40,7 +40,7 @@ internal class SpectatorMenu : IClickableMenu
         this.targetLocation = targetLocation;
         this.FollowPlayer = followPlayer;
     
-        this.originLocation = Game1.player.currentLocation;
+        this.originLocation = Game1.currentLocation;
         this.originViewport = Game1.viewport.Location;
 
         // 切换视角
@@ -54,6 +54,7 @@ internal class SpectatorMenu : IClickableMenu
             if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
             {
                 Game1.globalFadeToBlack(() => this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation));
+                this.targetLocation = this.targetFarmer.currentLocation;
                 Game1.globalFadeToClear();
             }
 
@@ -122,10 +123,10 @@ internal class SpectatorMenu : IClickableMenu
     private void Init()
     {
         this.InitLocationData(Game1.currentLocation, this.targetLocation);
-        Game1.globalFadeToClear();
+        Game1.displayFarmer = false;
         Game1.viewportFreeze = true;
         Game1.viewport.Location = this.GetInitialViewport();
-        Game1.displayFarmer = false;
+        Game1.globalFadeToClear();
     }
 
     private void InitLocationData(GameLocation oldLocation, GameLocation newLocation)

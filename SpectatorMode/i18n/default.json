@@ -9,7 +9,7 @@
     "Config.SpectatePlayerKey.Name": "Spectate Player Key",
     "UI.SpectatePlayer.Fail": "{{playerName}} doesn't exist.",
     "UI.SpectatePlayer.Success": "{{playerName}} exists, start spectating.",
-    "UI.NoPlayerOnline": "No Player Online",
+    "UI.SpectatePlayer.Offline": "No Player Online",
 
     "Config.ToggleStateKey.Name": "Toggle State Key",
 
@@ -20,7 +20,7 @@
     "Config.RotatePlayerTitle.Name": "Rotate Player",
     "Config.RotatePlayerKey.Name": "Rotate Player Key",
     "Config.RotationInterval.Name": "Rotation Interval",
-    "UI.StartRotatePlayer": "Start Rotate Player",
-    "UI.StopRotatePlayer": "Stop Rotate Player"
+    "UI.RotatePlayer.Begin": "Begin Rotate Player",
+    "UI.RotatePlayer.End": "End Rotate Player"
 
 }

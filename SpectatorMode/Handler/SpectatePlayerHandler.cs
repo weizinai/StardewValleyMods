@@ -26,7 +26,7 @@ internal class SpectatePlayerHandler : BaseHandler
             }
             else
             {
-                var message = new HUDMessage(I18n.UI_NoPlayerOnline())
+                var message = new HUDMessage(I18n.UI_SpectatePlayer_Offline())
                 {
                     noIcon = true
                 };

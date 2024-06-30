@@ -33,7 +33,7 @@ internal static class SpectatorHelper
     {
         if (!Context.HasRemotePlayers)
         {
-            Log.Info(I18n.UI_NoPlayerOnline());
+            Log.Info(I18n.UI_SpectatePlayer_Offline());
             return;
         }
 

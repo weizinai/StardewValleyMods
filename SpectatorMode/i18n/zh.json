@@ -20,6 +20,6 @@
     "Config.RotatePlayerTitle.Name": "轮播玩家",
     "Config.RotatePlayerKey.Name": "轮播玩家快捷键",
     "Config.RotationInterval.Name": "轮播间隔",
-    "UI.StartRotatePlayer": "开始轮播玩家",
-    "UI.StopRotatePlayer": "结束轮播玩家"
+    "UI.RotatePlayer.Begin": "开始轮播玩家",
+    "UI.RotatePlayer.End": "结束轮播玩家"
 }

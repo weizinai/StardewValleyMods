@@ -92,7 +92,7 @@ internal class SpectatorMenu : IClickableMenu
     {
         base.receiveKeyPress(key);
 
-        if (this.config.ToggleStateKeybind.JustPressed()) this.FollowPlayer = !this.FollowPlayer;
+        if (this.config.ToggleStateKey.JustPressed()) this.FollowPlayer = !this.FollowPlayer;
 
         if (this.FollowPlayer) return;
 

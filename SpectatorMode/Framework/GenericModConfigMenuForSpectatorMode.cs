@@ -21,19 +21,19 @@ internal class GenericModConfigMenuForSpectatorMode
             // 旁观者模式
             .AddSectionTitle(I18n.Config_SpectatorModeTitle_Name)
             .AddKeybindList(
-                config => config.SpectateLocationKeybind,
-                (config, value) => config.SpectateLocationKeybind = value,
-                I18n.Config_SpectateLocationKeybind_Name
+                config => config.SpectateLocationKey,
+                (config, value) => config.SpectateLocationKey = value,
+                I18n.Config_SpectateLocationKey_Name
             )
             .AddKeybindList(
-                config => config.SpectatePlayerKeybind,
-                (config, value) => config.SpectatePlayerKeybind = value,
-                I18n.Config_SpectatePlayerKeybind_Name
+                config => config.SpectatePlayerKey,
+                (config, value) => config.SpectatePlayerKey = value,
+                I18n.Config_SpectatePlayerKey_Name
             )
             .AddKeybindList(
-                config => config.ToggleStateKeybind,
-                (config, value) => config.ToggleStateKeybind = value,
-                I18n.Config_ToggleStateKeybind_Name
+                config => config.ToggleStateKey,
+                (config, value) => config.ToggleStateKey = value,
+                I18n.Config_ToggleStateKey_Name
             )
             .AddNumberOption(
                 config => config.MoveSpeed,
@@ -48,9 +48,9 @@ internal class GenericModConfigMenuForSpectatorMode
             // 轮播玩家
             .AddSectionTitle(I18n.Config_RotatePlayerTitle_Name)
             .AddKeybindList(
-                config => config.RotatePlayerKeybind,
-                (config, value) => config.RotatePlayerKeybind = value,
-                I18n.Config_RotatePlayerKeybind_Name
+                config => config.RotatePlayerKey,
+                (config, value) => config.RotatePlayerKey = value,
+                I18n.Config_RotatePlayerKey_Name
             )
             .AddNumberOption(
                 config => config.RotationInterval,

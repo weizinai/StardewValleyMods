@@ -60,7 +60,7 @@ internal class ModEntry : Mod
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         // 旁观地点
-        if (this.config.SpectateLocationKeybind.JustPressed() && Context.IsPlayerFree)
+        if (this.config.SpectateLocationKey.JustPressed() && Context.IsPlayerFree)
         {
             var locations = Game1.locations.Where(location => location.IsOutdoors)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
@@ -69,7 +69,7 @@ internal class ModEntry : Mod
         }
 
         // 旁观玩家
-        if (this.config.SpectatePlayerKeybind.JustPressed() && Context.IsPlayerFree)
+        if (this.config.SpectatePlayerKey.JustPressed() && Context.IsPlayerFree)
         {
             if (Context.HasRemotePlayers)
             {
@@ -90,7 +90,7 @@ internal class ModEntry : Mod
         }
 
         // 轮播玩家
-        if (this.config.RotatePlayerKeybind.JustPressed())
+        if (this.config.RotatePlayerKey.JustPressed())
         {
             if (Context.HasRemotePlayers)
             {

@@ -4,10 +4,12 @@
     "UI.SpectatorMode.Title": "Spectating {{name}}",
     
     "Config.SpectateLocationKey.Name": "Spectate Location Key",
+    "UI.SpectateLocation.Title": "Please select the location where you would like to spectate",
     "UI.SpectateLocation.Fail": "{{locationName}} doesn't exist.",
     "UI.SpectateLocation.Success": "{{locationName}} exists, start spectating.",
 
     "Config.SpectatePlayerKey.Name": "Spectate Player Key",
+    "UI.SpectatePlayer.Title": "Please select the player you would like to spectate",
     "UI.SpectatePlayer.Fail": "{{playerName}} doesn't exist.",
     "UI.SpectatePlayer.Success": "{{playerName}} exists, start spectating.",
     "UI.SpectatePlayer.Offline": "No Player Online",

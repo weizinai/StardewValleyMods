@@ -22,8 +22,8 @@ internal class SpectateLocationHandler : BaseHandler
         {
             var locations = Game1.locations.Where(location => location.IsOutdoors)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();
-            Game1.currentLocation.ShowPagedResponses("", locations, value => SpectatorHelper.TrySpectateLocation(value), 
-                false, true, 10);
+            Game1.currentLocation.ShowPagedResponses(I18n.UI_SpectateLocation_Title(), locations, 
+                value => SpectatorHelper.TrySpectateLocation(value), false, true, 10);
         }
     }
 }

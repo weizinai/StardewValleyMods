@@ -23,7 +23,8 @@ internal class SpectatePlayerHandler : BaseHandler
                 var players = new List<KeyValuePair<string, string>>();
                 foreach (var (_, farmer) in Game1.otherFarmers)
                     players.Add(new KeyValuePair<string, string>(farmer.Name, farmer.displayName));
-                Game1.currentLocation.ShowPagedResponses("", players, SpectatorHelper.SpectateFarmer, false, true, 10);
+                Game1.currentLocation.ShowPagedResponses("", players, value => SpectatorHelper.TrySpectateFarmer(value), 
+                    false, true, 10);
             }
             else
             {

@@ -1,4 +1,5 @@
 using StardewModdingAPI;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
@@ -16,12 +17,22 @@ internal class CommandHandler : BaseHandler
     // 旁观地点
     private void SpectateLocation(string command, string[] args)
     {
-        SpectatorHelper.SpectateLocation(args[0]);
+        var locationName = args[0];
+
+        if (SpectatorHelper.TrySpectateLocation(locationName))
+            Log.Info(I18n.UI_SpectateLocation_Fail(locationName));
+        else
+            Log.Info(I18n.UI_SpectateLocation_Fail(locationName));
     }
 
     // 旁观玩家
     private void SpectateFarmer(string command, string[] args)
     {
-        SpectatorHelper.SpectateFarmer(args[0]);
+        var playerName = args[0];
+        
+        if (SpectatorHelper.TrySpectateFarmer(playerName))
+            Log.Info(I18n.UI_SpectatePlayer_Success(playerName));
+        else
+            Log.Info(I18n.UI_SpectatePlayer_Success(playerName));
     }
 }

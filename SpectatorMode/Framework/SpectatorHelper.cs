@@ -1,6 +1,4 @@
-using StardewModdingAPI;
 using StardewValley;
-using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
@@ -12,40 +10,24 @@ internal static class SpectatorHelper
     {
         config = _config;
     }
-
-    // 旁观地点
-    public static void SpectateLocation(string name)
+    
+    public static bool TrySpectateLocation(string name)
     {
         var location = Game1.getLocationFromName(name);
 
-        if (location is null)
-        {
-            Log.Info(I18n.UI_SpectateLocation_Fail(name));
-            return;
-        }
+        if (location is null) return false;
 
         Game1.activeClickableMenu = new SpectatorMenu(config, location);
-        Log.Info(I18n.UI_SpectateLocation_Success(location.DisplayName));
+        return true;
     }
-
-    // 旁观玩家
-    public static void SpectateFarmer(string name)
+    
+    public static bool TrySpectateFarmer(string name)
     {
-        if (!Context.HasRemotePlayers)
-        {
-            Log.Info(I18n.UI_SpectatePlayer_Offline());
-            return;
-        }
+        var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.displayName == name).Value;
 
-        var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.Name == name).Value;
-
-        if (farmer is null)
-        {
-            Log.Info(I18n.UI_SpectatePlayer_Fail(name));
-            return;
-        }
+        if (farmer is null) return false;
 
         Game1.activeClickableMenu = new SpectatorMenu(config, farmer.currentLocation, farmer, true);
-        Log.Info(I18n.UI_SpectatePlayer_Success(farmer.Name));
+        return true;
     }
 }

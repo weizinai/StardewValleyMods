@@ -2,6 +2,7 @@
     // Spectator Mode
     "Config.SpectatorModeTitle.Name": "Spectator Mode",
     "UI.SpectatorMode.Title": "Spectating {{name}}",
+    "UI.SpectatorMode.AutoStop": "It's late, automatically stop spectating.",
     
     "Config.SpectateLocationKey.Name": "Spectate Location Key",
     "Config.OnlyShowOutdoors.Name": "Only Show Outdoors",

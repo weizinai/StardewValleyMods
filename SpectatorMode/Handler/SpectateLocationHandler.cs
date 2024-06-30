@@ -16,7 +16,9 @@ internal class SpectateLocationHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (this.Config.SpectateLocationKey.JustPressed() && Context.IsPlayerFree)
+        if (!Context.IsPlayerFree) return;
+        
+        if (this.Config.SpectateLocationKey.JustPressed())
         {
             var locations = Game1.locations.Where(location => location.IsOutdoors)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName)).ToList();

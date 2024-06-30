@@ -2,6 +2,7 @@
     // 旁观者模式
     "Config.SpectatorModeTitle.Name": "旁观者模式",
     "UI.SpectatorMode.Title": "正在旁观 {{name}}",
+    
     "Config.SpectateLocationKey.Name": "旁观地点快捷键",
     "UI.SpectateLocation.Fail": "{{locationName}}不存在。",
     "UI.SpectateLocation.Success": "{{locationName}}存在，开始旁观。",

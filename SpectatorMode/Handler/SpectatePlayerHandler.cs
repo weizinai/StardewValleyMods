@@ -16,7 +16,9 @@ internal class SpectatePlayerHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (this.Config.SpectatePlayerKey.JustPressed() && Context.IsPlayerFree)
+        if (!Context.IsPlayerFree) return;
+        
+        if (this.Config.SpectatePlayerKey.JustPressed())
         {
             if (Context.HasRemotePlayers)
             {

@@ -7,12 +7,12 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 internal static class SpectatorHelper
 {
     private static ModConfig config = null!;
-    
+
     public static void Init(ModConfig _config)
     {
         config = _config;
     }
-    
+
     // 旁观地点
     public static void SpectateLocation(string name)
     {

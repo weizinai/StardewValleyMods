@@ -11,7 +11,6 @@ internal class SpectatorMenu : IClickableMenu
 {
     private readonly ModConfig config;
 
-
     private bool followPlayer;
 
     private bool FollowPlayer
@@ -20,7 +19,9 @@ internal class SpectatorMenu : IClickableMenu
         set
         {
             this.followPlayer = value;
-            this.title = value ? new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName)) : new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName));
+            this.title = value
+                ? new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName))
+                : new MenuTitle(I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName));
         }
     }
 

@@ -23,7 +23,6 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     /// <summary>Whether the mod is available.</summary>
     public bool IsLoaded => this.configMenu != null;
 
-
     /// <summary>Construct an instance.</summary>
     /// <param name="modRegistry">An API for fetching metadata about loaded mods.</param>
     /// <param name="consumerManifest">The manifest for the mod consuming the API.</param>

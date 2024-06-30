@@ -12,5 +12,6 @@ internal abstract class BaseHandler : IHandler
         this.Helper = helper;
         this.Config = config;
     }
+
     public abstract void Init();
 }

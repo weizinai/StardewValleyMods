@@ -6,13 +6,13 @@ using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
-internal class RotatePlayerHandler :  BaseHandler
+internal class RotatePlayerHandler : BaseHandler
 {
     private int cooldown;
     private bool isRotatingPlayers;
-    
+
     public RotatePlayerHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
-    
+
     public override void Init()
     {
         this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;

@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.SpectatorMode;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    
+
     public override void Entry(IModHelper helper)
     {
         // 初始化

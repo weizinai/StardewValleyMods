@@ -25,6 +25,11 @@ internal class GenericModConfigMenuForSpectatorMode
                 (config, value) => config.SpectateLocationKey = value,
                 I18n.Config_SpectateLocationKey_Name
             )
+            .AddBoolOption(
+                config => config.OnlyShowOutdoors,
+                (config, value) => config.OnlyShowOutdoors = value,
+                I18n.Config_OnlyShowOutdoors_Name
+            )
             .AddKeybindList(
                 config => config.SpectatePlayerKey,
                 (config, value) => config.SpectatePlayerKey = value,

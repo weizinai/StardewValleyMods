@@ -4,6 +4,7 @@
     "UI.SpectatorMode.Title": "Spectating {{name}}",
     
     "Config.SpectateLocationKey.Name": "Spectate Location Key",
+    "Config.OnlyShowOutdoors.Name": "Only Show Outdoors",
     "UI.SpectateLocation.Title": "Please select the location where you would like to spectate",
     "UI.SpectateLocation.Fail": "{{locationName}} doesn't exist.",
     "UI.SpectateLocation.Success": "{{locationName}} exists, start spectating.",

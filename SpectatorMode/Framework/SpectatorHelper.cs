@@ -11,9 +11,9 @@ internal static class SpectatorHelper
         config = _config;
     }
     
-    public static bool TrySpectateLocation(string name)
+    public static bool TrySpectateLocation(string locationName)
     {
-        var location = Game1.getLocationFromName(name);
+        var location = Game1.getLocationFromName(locationName);
 
         if (location is null) return false;
 
@@ -21,9 +21,9 @@ internal static class SpectatorHelper
         return true;
     }
     
-    public static bool TrySpectateFarmer(string name)
+    public static bool TrySpectateFarmer(string farmerName)
     {
-        var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.displayName == name).Value;
+        var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.displayName == farmerName).Value;
 
         if (farmer is null) return false;
 

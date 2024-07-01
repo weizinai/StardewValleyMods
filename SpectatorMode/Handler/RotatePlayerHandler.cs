@@ -2,6 +2,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
@@ -34,11 +35,7 @@ internal class RotatePlayerHandler : BaseHandler
                 if (Game1.activeClickableMenu is not SpectatorMenu)
                 {
                     this.isRotatingPlayers = false;
-                    var message = new HUDMessage(I18n.UI_RotatePlayer_End())
-                    {
-                        noIcon = true
-                    };
-                    Game1.addHUDMessage(message);
+                    Log.NoIconHUDMessage(I18n.UI_RotatePlayer_End());
                 }
             }
         }
@@ -56,19 +53,11 @@ internal class RotatePlayerHandler : BaseHandler
                     this.cooldown = this.Config.RotationInterval;
 
                 this.isRotatingPlayers = !this.isRotatingPlayers;
-                var message = new HUDMessage(this.isRotatingPlayers ? I18n.UI_RotatePlayer_Begin() : I18n.UI_RotatePlayer_End())
-                {
-                    noIcon = true
-                };
-                Game1.addHUDMessage(message);
+                Log.NoIconHUDMessage(this.isRotatingPlayers ? I18n.UI_RotatePlayer_Begin() : I18n.UI_RotatePlayer_End());
             }
             else
             {
-                var message = new HUDMessage(I18n.UI_SpectatePlayer_Offline())
-                {
-                    noIcon = false
-                };
-                Game1.addHUDMessage(message);
+                Log.ErrorHUDMessage(I18n.UI_SpectatePlayer_Offline());
             }
         }
     }

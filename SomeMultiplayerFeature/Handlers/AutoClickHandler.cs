@@ -27,7 +27,7 @@ internal class AutoClickHandler : BaseHandler
         if (Game1.activeClickableMenu is LevelUpMenu levelUpMenu)
         {
             this.cooldown++;
-            if (this.cooldown > 2)
+            if (this.cooldown > 20)
             {
                 if (levelUpMenu.isProfessionChooser)
                 {

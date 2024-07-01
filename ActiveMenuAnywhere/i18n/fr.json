@@ -1,0 +1,114 @@
+{
+    // Config
+    "Config.MenuKey_Name": "Raccourci de menu",
+    "Config.DefaultMenuTabID": "Onglet de menu par défaut",
+
+    // Tab
+    "Tab.Farm": "Ferme",
+    "Tab.Town": "Ville",
+    "Tab.Mountain": "Montagne",
+    "Tab.Forest": "Forêt",
+    "Tab.Beach": "Plage",
+    "Tab.Desert": "Désert",
+    "Tab.GingerIsland": "Île Gingembre",
+    "Tab.SVE": "SVE",
+    "Tab.RSV": "Ridgeside",
+
+    // Option
+    "Option.AbandonedJojaMart": "Joja Mart\nabandonné",
+    "Option.Billboard": "Panneau\nd'affichage",
+    "Option.Bobber": "Flotteur",
+    "Option.Bookseller": "Libraire",
+    "Option.BuyQiCoins": "Pièces Qi",
+    "Option.Casino": "Casino",
+    "Option.Clint": "Clint",
+    "Option.ClubSeller": "Vendeur\ndu club",
+    "Option.CommunityCenter": "Centre\ncommunautaire",
+    "Option.DesertTrade": "Marchande\ndu désert",
+    "Option.Dwarf": "Nain",
+    "Option.Dye": "Colorant",
+    "Option.FarmerFile": "Dossier\nAgriculteur",
+    "Option.Forge": "Forge",
+    "Option.Gus": "Gus",
+    "Option.Harvey": "Harvey",
+    "Option.HatMouse": "Souris à\nChapeaux",
+    "Option.IceCreamStand": "Stand de \ncrème glacée",
+    "Option.IslandResort": "Station\nbalnéaire",
+    "Option.IslandTrade": "Vendeur\nde l’île",
+    "Option.JojaShop": "Boutique Joja",
+    "Option.Krobus": "Krobus",
+    "Option.Marlon": "Marlon",
+    "Option.Marnie": "Marnie",
+    "Option.Monster": "Objectifs \nd'éradication \nde monstres",
+    "Option.Pierre": "Pierre",
+    "Option.PrizeTicket": "Machine\nà prix",
+    "Option.QiCat": "Chat Qi",
+    "Option.QiGemShop": "Boutique de\nGemmes Qi",
+    "Option.QiSpecialOrder": "Commande\nspéciale Qi",
+    "Option.Raccoon": "Raton laveur",
+    "Option.Robin": "Robine",
+    "Option.Sandy": "Sandy",
+    "Option.ShippingBin": "Bac d'expédition",
+    "Option.SpecialOrder": "Commande\nspéciale",
+    "Option.Statue": "Statue",
+    "Option.Tailoring": "Couture",
+    "Option.Traveler": "Marchande\nambulante",
+    "Option.TV": "Télé",
+    "Option.VolcanoShop": "Boutique\ndu volcan",
+    "Option.Willy": "Willie",
+    "Option.Wizard": "Sorcier",
+    /*
+    "Option.Category":"Category",
+    "Option.FurnitureCatalogue":"Furniture Catalogue",
+    "Option.JojaCatalogue":"Joja Catalogue",
+    "Option.JunimoCatalogue":"Junimo Catalogue",
+    "Option.RetroCatalogue":"Retro Catalogue",
+    "Option.TrashCatalogue":"Trash Catalogue",
+    "Option.WizardCatalogue":"Wizard Catalogue",
+    */
+    // RSVOptions
+    "Option.Ian": "Ian",
+    "Option.Jeric": "Jéric",
+    "Option.Joi": "Joi",
+    "Option.Kimpoi": "Kimpoi",
+    "Option.Lola": "Lola",
+    "Option.Lorenzo": "Lorenzo",
+    "Option.MysticFall1": "Automne \nmystique 1",
+    "Option.MysticFall2": "Automne \nmystique 2",
+    "Option.MysticFall3": "Automne \nmystique 3",
+    "Option.NinjaBoard": "Tableau Ninja",
+    "Option.Paula": "Paule",
+    "Option.RSVQuestBoard": "Tableau de \nquêtes RSV",
+    "Option.RSVSpecialOrder": "Commande \nspéciale RSV",
+    "Option.Pika": "Pika",
+
+    // Tip
+    "Tip.Unfinished": "Inachevé",
+    "Tip.Unavailable": "Actuellement \nindisponible",
+
+    // BaseOption
+    "BaseOption.Leave": "Quitter",
+
+    // BillboardOption
+    "BillboardOption.Calendar": "Calendrier",
+    "BillboardOption.DailyQuest": "Quête quotidienne",
+
+    // ClintOption
+    "ClintOption.Receive": "Récupérer l’outil",
+    "ClintOption.Unfinished": "L'outil n'est pas terminé",
+
+    // MarnieOption
+    "MarnieOption.Bug": "La boutique est normale mais acheter des animaux entraînera la téléportation du joueur, veuillez l'utiliser uniquement si vous avez un menu de triche CJB.",
+
+    // PierreOption
+    "PierreOption.SeedShop": "Magasin de graines",
+    "PierreOption.BuyBackpack": "Acheter un sac à dos",
+
+    // RaccoonOption
+    "RaccoonOption.RaccoonBundle": "Bundle de raton laveur",
+    "RaccoonOption.RaccoonShop": "Boutique de raton laveur",
+
+    // RSVPikaOption
+    "PikaOption.Shop": "Boutique",
+    "PikaOption.RecipeShop": "Boutique de recettes"
+}

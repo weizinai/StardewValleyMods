@@ -11,8 +11,6 @@ internal class RotatePlayerHandler : BaseHandler
     private int cooldown;
     private bool isRotatingPlayers;
 
-    public RotatePlayerHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
-
     public override void Init()
     {
         this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
@@ -28,7 +26,7 @@ internal class RotatePlayerHandler : BaseHandler
             {
                 this.cooldown = 0;
                 var farmer = Game1.random.ChooseFrom(Game1.otherFarmers.Values.ToList());
-                Game1.activeClickableMenu = new SpectatorMenu(this.Config, farmer.currentLocation, farmer, true);
+                Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
             }
             else
             {

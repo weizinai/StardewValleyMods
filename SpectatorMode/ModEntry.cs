@@ -9,15 +9,16 @@ namespace weizinai.StardewValleyMod.SpectatorMode;
 
 internal class ModEntry : Mod
 {
-    private ModConfig config = null!;
+    public ModConfig Config = null!;
+    public static ModEntry Instance { get; private set; } = null!;
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
-        this.config = helper.ReadConfig<ModConfig>();
-        SpectatorHelper.Init(this.config);
+        this.Config = helper.ReadConfig<ModConfig>();
+        Instance = this;
         this.InitHandler();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
@@ -34,9 +35,9 @@ internal class ModEntry : Mod
         new GenericModConfigMenuForSpectatorMode(
             this.Helper,
             this.ModManifest,
-            () => this.config,
-            () => this.config = new ModConfig(),
-            () => this.Helper.WriteConfig(this.config)
+            () => this.Config,
+            () => this.Config = new ModConfig(),
+            () => this.Helper.WriteConfig(this.Config)
         ).Register();
     }
 
@@ -44,10 +45,10 @@ internal class ModEntry : Mod
     {
         var handlers = new IHandler[]
         {
-            new CommandHandler(this.Helper, this.config),
-            new RotatePlayerHandler(this.Helper, this.config),
-            new SpectateLocationHandler(this.Helper, this.config),
-            new SpectatePlayerHandler(this.Helper, this.config)
+            new CommandHandler(),
+            new RotatePlayerHandler(),
+            new SpectateLocationHandler(),
+            new SpectatePlayerHandler()
         };
 
         foreach (var handler in handlers) handler.Init();

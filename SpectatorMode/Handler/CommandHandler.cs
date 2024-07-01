@@ -1,3 +1,4 @@
+using StardewModdingAPI;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
@@ -5,6 +6,8 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
 internal class CommandHandler : BaseHandler
 {
+    public CommandHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+
     public override void Init()
     {
         this.Helper.ConsoleCommands.Add("spectate_location", "", this.SpectateLocation);

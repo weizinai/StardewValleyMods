@@ -7,6 +7,8 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
 internal class SpectatePlayerHandler : BaseHandler
 {
+    public SpectatePlayerHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+
     public override void Init()
     {
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;

@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 internal class SpectatorMenu : IClickableMenu
 {
-    private readonly ModConfig config = ModEntry.Instance.Config;
+    private readonly ModConfig config;
 
     private bool followPlayer;
 
@@ -20,9 +20,10 @@ internal class SpectatorMenu : IClickableMenu
     private readonly GameLocation originLocation;
     private readonly Location originViewport;
 
-    public SpectatorMenu(GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false)
+    public SpectatorMenu(ModConfig config, GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false)
     {
         // 初始化
+        this.config = config;
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
         this.followPlayer = followPlayer;

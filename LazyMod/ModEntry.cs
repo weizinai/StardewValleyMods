@@ -5,14 +5,15 @@ using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
+using weizinai.StardewValleyMod.LazyMod.Handler;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private AutomationManger automationManger = null!;
     private MiningHud miningHud = null!;
+    private IAutomationHandler[] handlers = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -30,7 +31,7 @@ internal class ModEntry : Mod
             Log.Info("Read config.json file failed and was automatically fixed. Please reset the features you want to turn on.");
         }
 
-        this.automationManger = new AutomationManger(helper, this.config);
+        this.UpdateConfig();
 
         // 注册事件
         helper.Events.Display.RenderedHud += this.OnRenderedHud;
@@ -40,6 +41,17 @@ internal class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
+        if (!Context.IsPlayerFree) return;
+        
+        TileHelper.ClearTileCache();
+        foreach (var handler in this.handlers)
+        {
+            if (handler.IsEnable())
+            {
+                handler.Apply();
+            }
+        }
+        
         this.miningHud.Update();
     }
 
@@ -52,10 +64,32 @@ internal class ModEntry : Mod
     {
         this.miningHud = new MiningHud(this.Helper, this.config);
         
-        new GenericModConfigMenuIntegrationForLazyMod(this.Helper, this.ModManifest,
+        new GenericModConfigMenuIntegrationForLazyMod(
+            this.Helper, 
+            this.ModManifest,
             () => this.config,
-            () => this.config = new ModConfig(),
-            () => this.Helper.WriteConfig(this.config)
+            () =>
+            {
+                this.config = new ModConfig();
+                this.Helper.WriteConfig(this.config);
+                this.UpdateConfig();
+            },
+            () =>
+            {
+                this.Helper.WriteConfig(this.config);
+                this.UpdateConfig();
+            }
         ).Register();
+    }
+
+    private void UpdateConfig()
+    {
+        this.handlers = this.GetHandlers().ToArray();
+    }
+
+    private IEnumerable<IAutomationHandler> GetHandlers()
+    {
+        // Animal
+        if (this.config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(this.config);
     }
 }

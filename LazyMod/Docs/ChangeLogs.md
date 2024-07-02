@@ -2,6 +2,7 @@
 
 - 重构`Generic Mod Config Menu`，使其更加一致
 - 为所有使用工具的功能添加`FindToolFromInventory`选项
+- 修复`StopStamina`选项有时不生效的问题
 
 # 1.1.1
 

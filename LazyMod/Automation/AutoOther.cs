@@ -63,7 +63,7 @@ internal class AutoOther : Automate
     // 自动清理杂草
     private void AutoClearWeeds(GameLocation location)
     {
-        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);
+        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWeeds.Range);
@@ -98,7 +98,7 @@ internal class AutoOther : Automate
     {
         if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return;
 
-        var hoe = ToolHelper.FindToolFromInventory<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);
+        var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);
         if (hoe is null)
             return;
 

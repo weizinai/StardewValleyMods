@@ -28,7 +28,7 @@ internal class AutoAnimal : Automate
         if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
-        var shears = ToolHelper.FindToolFromInventory<Shears>(this.Config.AutoShearsAnimal.FindToolFromInventory);
+        var shears = ToolHelper.GetTool<Shears>(this.Config.AutoShearsAnimal.FindToolFromInventory);
         if (shears is null)
             return;
 

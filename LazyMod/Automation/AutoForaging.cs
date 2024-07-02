@@ -53,7 +53,7 @@ internal class AutoForaging : Automate
     {
         if (player.Stamina <= this.Config.AutoHarvestGinger.StopStamina) return;
 
-        var hoe = ToolHelper.FindToolFromInventory<Hoe>(this.Config.AutoHarvestGinger.FindToolFromInventory);
+        var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoHarvestGinger.FindToolFromInventory);
         if (hoe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestGinger.Range);
@@ -140,7 +140,7 @@ internal class AutoForaging : Automate
     // 自动收获苔藓
     private void AutoHarvestMoss(GameLocation location)
     {
-        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoHarvestMoss.FindToolFromInventory);
+        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoHarvestMoss.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestMoss.Range);
@@ -187,7 +187,7 @@ internal class AutoForaging : Automate
     {
         if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;
 
-        var axe = ToolHelper.FindToolFromInventory<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
+        var axe = ToolHelper.GetTool<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
         if (axe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWood.Range);

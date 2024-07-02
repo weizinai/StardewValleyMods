@@ -37,7 +37,7 @@ internal class AutoMining : Automate
         if (!this.Config.ClearStoneOnMineShaft && location is MineShaft) return;
         if (!this.Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
 
-        var pickaxe = ToolHelper.FindToolFromInventory<Pickaxe>(this.Config.AutoClearStone.FindToolFromInventory);
+        var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearStone.FindToolFromInventory);
         if (pickaxe is null) return;
 
         var stoneTypes = new Dictionary<HashSet<string>, bool>
@@ -115,7 +115,7 @@ internal class AutoMining : Automate
     // 自动破坏容器
     private void AutoBreakContainer(GameLocation location)
     {
-        var weapon = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoBreakContainer.FindToolFromInventory);
+        var weapon = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoBreakContainer.FindToolFromInventory);
         if (weapon is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);
@@ -142,7 +142,7 @@ internal class AutoMining : Automate
     // 自动清理水晶
     private void AutoClearCrystal(GameLocation location)
     {
-        var tool = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoClearCrystal.FindToolFromInventory);
+        var tool = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearCrystal.FindToolFromInventory);
         if (tool is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearCrystal.Range);
@@ -160,7 +160,7 @@ internal class AutoMining : Automate
     private void AutoCoolLava(GameLocation location, Farmer player)
     {
         if (location is not VolcanoDungeon dungeon) return;
-        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);
+        var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);
         if (wateringCan is null) return;
 
         var hasAddWaterMessage = true;

@@ -98,7 +98,7 @@ internal class AutoFarming : Automate
     // 自动填充水壶
     private void AutoRefillWateringCan(GameLocation location, Farmer player)
     {
-        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>(this.Config.AutoRefillWateringCan.FindToolFromInventory);
+        var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoRefillWateringCan.FindToolFromInventory);
         if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
             return;
 
@@ -194,7 +194,7 @@ internal class AutoFarming : Automate
     // 自动清理枯萎作物
     private void AutoClearDeadCrop(GameLocation location)
     {
-        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
+        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);

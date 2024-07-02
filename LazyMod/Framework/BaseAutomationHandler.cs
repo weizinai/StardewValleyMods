@@ -2,6 +2,8 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
+using xTile.Dimensions;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework;
 
@@ -50,4 +52,8 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
         if (item.Stack <= 0) player.removeItemFromInventory(item);
     }
 
+    protected void CheckTileAction(GameLocation location, Farmer player, Vector2 tile)
+    {
+        location.checkAction(new Location((int)tile.X, (int)tile.Y), Game1.viewport, player);
+    }
 }

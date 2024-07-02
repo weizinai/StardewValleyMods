@@ -16,7 +16,7 @@ internal class AutoOther : Automate
 
     public AutoOther(ModConfig config) : base(config) { }
 
-    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public virtual void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 增加磁力范围
         this.MagneticRadiusIncrease(player);

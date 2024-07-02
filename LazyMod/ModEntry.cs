@@ -9,6 +9,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
 using weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
+using weizinai.StardewValleyMod.LazyMod.Handler.Mining;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
@@ -148,6 +149,12 @@ internal class ModEntry : Mod
         if (_config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(_config);
         
         // Mining
+        if (_config.AutoClearStone.IsEnable) yield return new ClearStoneHandler(_config);
+        if (_config.AutoCollectCoal.IsEnable) yield return new CollectCoalHandler(_config);
+        if (_config.AutoBreakContainer.IsEnable) yield return new BreakContainerHandler(_config);
+        if (_config.AutoOpenTreasure.IsEnable) yield return new OpenTreasureHandler(_config);
+        if (_config.AutoClearCrystal.IsEnable) yield return new ClearCrystalHandler(_config);
+        if (_config.AutoCoolLava.IsEnable) yield return new CoolLavaHandler(_config);
         
         // Foraging
         if (_config.AutoForage.IsEnable) yield return new ForageHandler(_config);

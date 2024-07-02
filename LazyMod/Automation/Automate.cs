@@ -18,8 +18,6 @@ internal abstract class Automate
         this.Config = config;
     }
 
-    public abstract void Apply(GameLocation location, Farmer player, Tool? tool, Item? item);
-
     protected void UseToolOnTile(GameLocation location, Farmer player, Tool tool, Vector2 tile)
     {
         var tilePixelPosition = this.GetTilePixelPosition(tile);

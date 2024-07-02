@@ -34,9 +34,7 @@ internal class AutomationManger
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
     {
         if (!this.modEnable || !this.UpdateCooldown()) return;
-
-        (this.automations[4] as AutoFishing)!.AutoMenuFunction();
-
+        
         this.UpdateAutomate();
     }
 
@@ -81,7 +79,6 @@ internal class AutomationManger
         {
             new AutoMining(this.config),
             new AutoForaging(this.config),
-            new AutoFishing(this.config),
             new AutoFood(this.config),
             new AutoOther(this.config)
         });

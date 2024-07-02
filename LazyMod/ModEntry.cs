@@ -2,12 +2,14 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Menus;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
 using weizinai.StardewValleyMod.LazyMod.Handler.Farming;
+using weizinai.StardewValleyMod.LazyMod.Handler.Fishing;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
@@ -42,7 +44,9 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
         helper.Events.GameLoop.DayEnding += this.OnDayEnding;
+        
         helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
+        
         helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
@@ -63,12 +67,12 @@ internal class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
+        if (!Context.IsPlayerFree && Game1.activeClickableMenu is not ItemGrabMenu { source: ItemGrabMenu.source_fishingChest }) return;
 
         var player = Game1.player;
         var location = Game1.currentLocation;
         if (player is null || location is null) return;
-        
+
         TileHelper.ClearTileCache();
         foreach (var handler in this.handlers) handler.Apply(player, location);
 
@@ -125,6 +129,14 @@ internal class ModEntry : Mod
 
     private IEnumerable<IAutomationHandler> GetHandlers(ModConfig _config)
     {
+        // Animal
+        if (_config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(_config);
+        if (_config.AutoPetPet.IsEnable) yield return new PetPetHandler(_config);
+        if (_config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(_config);
+        if (_config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler(_config);
+        if (_config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler(_config);
+        if (_config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(_config);
+        
         // Farming
         if (_config.AutoTillDirt.IsEnable) yield return new TillDirtHandler(_config);
         if (_config.AutoClearTilledDirt.IsEnable) yield return new ClearTilledDirtHandler(_config);
@@ -136,12 +148,11 @@ internal class ModEntry : Mod
         if (_config.AutoShakeFruitTree.IsEnable) yield return new ShakeFruitTreeHandler(_config);
         if (_config.AutoClearDeadCrop.IsEnable) yield return new ClearDeadCropHandler(_config);
         
-        // Animal
-        if (_config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(_config);
-        if (_config.AutoPetPet.IsEnable) yield return new PetPetHandler(_config);
-        if (_config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(_config);
-        if (_config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler(_config);
-        if (_config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler(_config);
-        if (_config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(_config);
+        // Fishing
+        if (_config.AutoGrabTreasureItem) yield return new GrabTreasureItemHandler(_config);
+        if (_config.AutoExitTreasureMenu) yield return new ExitTreasureMenuHandler(_config);
+        if (_config.AutoPlaceCarbPot.IsEnable) yield return new PlaceCrabPotHandler(_config);
+        if (_config.AutoAddBaitForCarbPot.IsEnable) yield return new AddBaitForCrabPotHandler(_config);
+        if (_config.AutoHarvestCarbPot.IsEnable) yield return new HarvestCrabPotHandler(_config);
     }
 }

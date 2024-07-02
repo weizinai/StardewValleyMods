@@ -38,4 +38,9 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
 
         return animal;
     }
+    
+    protected bool CanAddItemToInventory(Item item)
+    {
+        return Game1.player.freeSpotsInInventory() > 1 || Game1.player.Items.Any(item.canStackWith);
+    }
 }

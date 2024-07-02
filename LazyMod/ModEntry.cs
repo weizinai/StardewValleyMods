@@ -1,6 +1,7 @@
 ﻿using weizinai.StardewValleyMod.Common.Log;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
@@ -42,16 +43,14 @@ internal class ModEntry : Mod
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!Context.IsPlayerFree) return;
+
+        var player = Game1.player;
+        var location = Game1.currentLocation;
+        if (player is null || location is null) return;
         
         TileHelper.ClearTileCache();
-        foreach (var handler in this.handlers)
-        {
-            if (handler.IsEnable())
-            {
-                handler.Apply();
-            }
-        }
-        
+        foreach (var handler in this.handlers) handler.Apply(player, location);
+
         this.miningHud.Update();
     }
 
@@ -63,9 +62,9 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.miningHud = new MiningHud(this.Helper, this.config);
-        
+
         new GenericModConfigMenuIntegrationForLazyMod(
-            this.Helper, 
+            this.Helper,
             this.ModManifest,
             () => this.config,
             () =>

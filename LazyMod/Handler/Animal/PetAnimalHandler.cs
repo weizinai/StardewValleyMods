@@ -7,12 +7,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class PetAnimalHandler : BaseAutomationHandler
 {
-    private readonly List<FarmAnimal> targetAnimals = new();
-
     public PetAnimalHandler(ModConfig config) : base(config) { }
 
-    public override bool IsEnable()
+    public override void Apply(Farmer player1, GameLocation location1)
     {
+        var player = Game1.player;
         var location = Game1.currentLocation;
         var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
 
@@ -22,24 +21,10 @@ internal class PetAnimalHandler : BaseAutomationHandler
             {
                 if (this.CanPetAnimal(tile, animal))
                 {
-                    this.targetAnimals.Add(animal);
+                    this.PetAnimal(player, animal);
                 }
             }
         }
-
-        return this.targetAnimals.Any();
-    }
-
-    public override void Apply()
-    {
-        var player = Game1.player;
-
-        foreach (var animal in this.targetAnimals)
-        {
-            this.PetAnimal(player, animal);
-        }
-        
-        this.targetAnimals.Clear();
     }
 
     private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)

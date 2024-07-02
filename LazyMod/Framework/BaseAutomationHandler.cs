@@ -14,10 +14,8 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     {
         this.Config = config;
     }
-
-    public abstract bool IsEnable();
-
-    public abstract void Apply();
+    
+    public abstract void Apply(Farmer player, GameLocation location);
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)
     {

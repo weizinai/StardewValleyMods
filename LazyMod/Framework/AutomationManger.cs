@@ -27,15 +27,8 @@ internal class AutomationManger
         this.ticksPerAction = config.Cooldown;
         this.InitAutomates();
         // 注册事件
-        helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
-        helper.Events.GameLoop.DayEnding += this.OnDayEnding;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-    }
-
-    private void OnDayStarted(object? sender, DayStartedEventArgs dayStartedEventArgs)
-    {
-        if (this.config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(true);
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
@@ -71,11 +64,6 @@ internal class AutomationManger
         foreach (var automate in this.automations) automate.Apply(this.location, this.player, this.tool, this.item);
     }
 
-    private void OnDayEnding(object? sender, DayEndingEventArgs dayEndingEventArgs)
-    {
-        if (this.config.AutoOpenAnimalDoor) AutoAnimal.AutoToggleAnimalDoor(false);
-    }
-
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         if (this.config.ToggleModStateKeybind.JustPressed() && Context.IsPlayerFree)
@@ -91,7 +79,6 @@ internal class AutomationManger
     {
         this.automations.AddRange(new Automate[]
         {
-            new AutoAnimal(this.config),
             new AutoMining(this.config),
             new AutoForaging(this.config),
             new AutoFishing(this.config),

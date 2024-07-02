@@ -16,6 +16,7 @@ internal class ModEntry : Mod
     private ModConfig config = null!;
     private MiningHud miningHud = null!;
     private IAutomationHandler[] handlers = null!;
+    private IAutomationHandlerWithDayChanged[] dayChangedHandlers = null!;
 
     public override void Entry(IModHelper helper)
     {
@@ -38,7 +39,9 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        helper.Events.GameLoop.DayEnding += this.OnDayEnding;
         helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
         helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
@@ -46,6 +49,16 @@ internal class ModEntry : Mod
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
         ToolHelper.UpdateToolCache();
+    }
+
+    private void OnDayStarted(object? sender, DayStartedEventArgs e)
+    {
+        if (!Context.IsPlayerFree) return;
+
+        foreach (var handler in this.dayChangedHandlers)
+        {
+            handler.OnDayStarted();
+        }
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -60,6 +73,16 @@ internal class ModEntry : Mod
         foreach (var handler in this.handlers) handler.Apply(player, location);
 
         this.miningHud.Update();
+    }
+
+    private void OnDayEnding(object? sender, DayEndingEventArgs e)
+    {
+        if (!Context.IsPlayerFree) return;
+
+        foreach (var handler in this.dayChangedHandlers)
+        {
+            handler.OnDayEnding();
+        }
     }
 
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
@@ -97,6 +120,7 @@ internal class ModEntry : Mod
     private void UpdateConfig()
     {
         this.handlers = this.GetHandlers(this.config).ToArray();
+        this.dayChangedHandlers = this.handlers.OfType<IAutomationHandlerWithDayChanged>().ToArray();
     }
 
     private IEnumerable<IAutomationHandler> GetHandlers(ModConfig _config)
@@ -116,5 +140,8 @@ internal class ModEntry : Mod
         if (_config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(_config);
         if (_config.AutoPetPet.IsEnable) yield return new PetPetHandler(_config);
         if (_config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(_config);
+        if (_config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler(_config);
+        if (_config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler(_config);
+        if (_config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(_config);
     }
 }

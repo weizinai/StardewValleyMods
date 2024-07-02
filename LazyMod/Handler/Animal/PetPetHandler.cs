@@ -31,7 +31,7 @@ internal class PetPetHandler : BaseAutomationHandler
 
     private bool CanPetPet(Vector2 tile, Farmer player, Pet pet)
     {
-        return pet.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile))
-               && (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays);
+        return pet.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) && 
+               (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays);
     }
 }

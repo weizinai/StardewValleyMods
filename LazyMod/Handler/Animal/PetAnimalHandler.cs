@@ -30,10 +30,10 @@ internal class PetAnimalHandler : BaseAutomationHandler
 
     private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)
     {
-        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile))
-               && !animal.wasPet.Value
-               && (animal.isMoving() || Game1.timeOfDay < 1900)
-               && !animal.Name.StartsWith("DH.MEEP.SpawnedAnimal_");
+        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) && 
+               !animal.wasPet.Value && 
+               (animal.isMoving() || Game1.timeOfDay < 1900) && 
+               !animal.Name.StartsWith("DH.MEEP.SpawnedAnimal_");
     }
 
     private void PetAnimal(Farmer player, FarmAnimal animal)

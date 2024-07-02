@@ -14,33 +14,12 @@ internal class AutoAnimal : Automate
 
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        // 自动挤奶
-        if (this.Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || this.Config.AutoMilkAnimal.FindToolFromInventory)) this.AutoMilkAnimal(location, player);
         // 自动剪毛
         if (this.Config.AutoShearsAnimal.IsEnable && (tool is Shears || this.Config.AutoShearsAnimal.FindToolFromInventory)) this.AutoShearsAnimal(location, player);
         // 自动喂食动物饼干
         if (this.Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") this.AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
         if (this.Config.AutoOpenFenceGate.IsEnable) this.AutoOpenFenceGate(location, player);
-    }
-
-    // 自动挤奶
-    private void AutoMilkAnimal(GameLocation location, Farmer player)
-    {
-        if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) return;
-        if (player.freeSpotsInInventory() < 1) return;
-
-        var milkPail = ToolHelper.FindToolFromInventory<MilkPail>();
-        if (milkPail is null) return;
-
-        var grid = this.GetTileGrid(this.Config.AutoMilkAnimal.Range);
-        foreach (var tile in grid)
-        {
-            var animal = this.GetBestHarvestableFarmAnimal(location, milkPail, tile);
-            if (animal is null) continue;
-            milkPail.animal = animal;
-            this.UseToolOnTile(location, player, milkPail, tile);
-        }
     }
 
     // 自动剪毛

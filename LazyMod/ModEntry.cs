@@ -95,6 +95,7 @@ internal class ModEntry : Mod
     private IEnumerable<IAutomationHandler> GetHandlers()
     {
         // Animal
+        if (this.config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(this.config);
         if (this.config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(this.config);
         if (this.config.AutoPetPet.IsEnable) yield return new PetPetHandler(this.config);
     }

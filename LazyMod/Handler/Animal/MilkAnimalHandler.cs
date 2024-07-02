@@ -1,0 +1,34 @@
+using StardewValley;
+using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
+
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
+
+internal class MilkAnimalHandler : BaseAutomationHandler
+{
+    public MilkAnimalHandler(ModConfig config) : base(config) { }
+    
+    public override void Apply(Farmer player, GameLocation location)
+    {
+        if (!this.Config.AutoMilkAnimal.FindToolFromInventory && player.CurrentTool is not MilkPail) return;
+        var milkPail = ToolHelper.FindToolFromInventory<MilkPail>();
+        if (milkPail is null) return;
+
+        var animals = location.animals.Values;
+        if (!animals.Any()) return;
+
+        var grid = this.GetTileGrid(this.Config.AutoMilkAnimal.Range);
+        foreach (var tile in grid)
+        {
+            if (player.freeSpotsInInventory() == 0) break;
+            if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) break;
+            
+            var animal = this.GetBestHarvestableFarmAnimal(milkPail, tile, animals);
+            if (animal is null) continue;
+            
+            milkPail.animal = animal;
+            this.UseToolOnTile(location, player, milkPail, tile);
+        }
+    }
+}

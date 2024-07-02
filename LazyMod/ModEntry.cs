@@ -90,5 +90,6 @@ internal class ModEntry : Mod
     {
         // Animal
         if (this.config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(this.config);
+        if (this.config.AutoPetPet.IsEnable) yield return new PetPetHandler(this.config);
     }
 }

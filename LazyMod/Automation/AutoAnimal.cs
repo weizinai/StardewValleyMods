@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
-using StardewValley.Characters;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
@@ -14,8 +13,6 @@ internal class AutoAnimal : Automate
 
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        // 自动抚摸宠物
-        if (this.Config.AutoPetPet.IsEnable) this.AutoPetPet(location, player);
         // 自动挤奶
         if (this.Config.AutoMilkAnimal.IsEnable && (tool is MilkPail || this.Config.AutoMilkAnimal.FindToolFromInventory)) this.AutoMilkAnimal(location, player);
         // 自动剪毛
@@ -24,23 +21,6 @@ internal class AutoAnimal : Automate
         if (this.Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") this.AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
         if (this.Config.AutoOpenFenceGate.IsEnable) this.AutoOpenFenceGate(location, player);
-    }
-
-    // 自动抚摸宠物
-    private void AutoPetPet(GameLocation location, Farmer player)
-    {
-        var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
-
-        var pets = location.characters.OfType<Pet>();
-        foreach (var pet in pets)
-        {
-            foreach (var tile in grid)
-            {
-                if (pet.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
-                    (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays))
-                    pet.checkAction(player, location);
-            }
-        }
     }
 
     // 自动挤奶

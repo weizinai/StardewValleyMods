@@ -1,6 +1,5 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
-using weizinai.StardewValleyMod.LazyMod.Automation;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 

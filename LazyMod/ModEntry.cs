@@ -10,6 +10,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
 using weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
 using weizinai.StardewValleyMod.LazyMod.Handler.Mining;
+using weizinai.StardewValleyMod.LazyMod.Handler.Other;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
@@ -177,5 +178,13 @@ internal class ModEntry : Mod
         yield return new FoodHandler(_config);
         
         // Other
+        yield return new MagneticRadiusHandler(_config);
+        if (_config.AutoClearWeeds.IsEnable) yield return new ClearWeedsHandler(_config);
+        if (_config.AutoDigSpots.IsEnable) yield return new DigSpotHandler(_config);
+        if (_config.AutoHarvestMachine.IsEnable) yield return new HarvestMachineHandler(_config);
+        if (_config.AutoTriggerMachine.IsEnable) yield return new TriggerMachineHandler(_config);
+        if (_config.AutoUseFairyDust.IsEnable) yield return new FairyDustHandler(_config);
+        if (_config.AutoGarbageCan.IsEnable) yield return new GarbageCanHandler(_config);
+        if (_config.AutoPlaceFloor.IsEnable) yield return new PlaceFloorHandler(_config);
     }
 }

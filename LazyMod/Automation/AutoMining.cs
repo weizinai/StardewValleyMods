@@ -12,24 +12,22 @@ namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoMining : Automate
 {
-    public AutoMining(ModConfig config): base(config)
-    {
-    }
+    public AutoMining(ModConfig config) : base(config) { }
 
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动清理石头
-        if (this.Config.AutoClearStone.IsEnable && (tool is Pickaxe || this.Config.AutoClearStone.FindToolFromInventory)) this.AutoClearStone(location, player);
+        if (this.Config.AutoClearStone.IsEnable) this.AutoClearStone(location, player);
         // 自动收集煤炭
         if (this.Config.AutoCollectCoal.IsEnable) this.AutoCollectCoal(location, player);
         // 自动破坏容器
-        if (this.Config.AutoBreakContainer.IsEnable && (tool is MeleeWeapon || this.Config.AutoBreakContainer.FindToolFromInventory)) this.AutoBreakContainer(location);
+        if (this.Config.AutoBreakContainer.IsEnable) this.AutoBreakContainer(location);
         // 自动打开宝藏
         if (this.Config.AutoOpenTreasure.IsEnable) this.AutoOpenTreasure(location, player);
         // 自动清理水晶
         if (this.Config.AutoClearCrystal.IsEnable) this.AutoClearCrystal(location);
         // 自动冷却岩浆
-        if (this.Config.AutoCoolLava.IsEnable && (tool is WateringCan || this.Config.AutoCoolLava.FindToolFromInventory)) this.AutoCoolLava(location, player);
+        if (this.Config.AutoCoolLava.IsEnable) this.AutoCoolLava(location, player);
     }
 
     // 自动清理石头
@@ -39,7 +37,7 @@ internal class AutoMining : Automate
         if (!this.Config.ClearStoneOnMineShaft && location is MineShaft) return;
         if (!this.Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
 
-        var pickaxe = ToolHelper.FindToolFromInventory<Pickaxe>();
+        var pickaxe = ToolHelper.FindToolFromInventory<Pickaxe>(this.Config.AutoClearStone.FindToolFromInventory);
         if (pickaxe is null) return;
 
         var stoneTypes = new Dictionary<HashSet<string>, bool>
@@ -107,7 +105,7 @@ internal class AutoMining : Automate
     private void AutoCollectCoal(GameLocation location, Farmer player)
     {
         if (location is not MineShaft) return;
-        
+
         var grid = this.GetTileGrid(this.Config.AutoCollectCoal.Range);
         foreach (var tile in grid)
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
@@ -117,7 +115,7 @@ internal class AutoMining : Automate
     // 自动破坏容器
     private void AutoBreakContainer(GameLocation location)
     {
-        var weapon = ToolHelper.FindToolFromInventory<MeleeWeapon>();
+        var weapon = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoBreakContainer.FindToolFromInventory);
         if (weapon is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);
@@ -144,7 +142,7 @@ internal class AutoMining : Automate
     // 自动清理水晶
     private void AutoClearCrystal(GameLocation location)
     {
-        var tool = ToolHelper.FindToolFromInventory<MeleeWeapon>();
+        var tool = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoClearCrystal.FindToolFromInventory);
         if (tool is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearCrystal.Range);
@@ -162,7 +160,7 @@ internal class AutoMining : Automate
     private void AutoCoolLava(GameLocation location, Farmer player)
     {
         if (location is not VolcanoDungeon dungeon) return;
-        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>();
+        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);
         if (wateringCan is null) return;
 
         var hasAddWaterMessage = true;

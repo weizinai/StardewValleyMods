@@ -11,9 +11,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoForaging : Automate
 {
-    public AutoForaging(ModConfig config): base(config)
-    {
-    }
+    public AutoForaging(ModConfig config) : base(config) { }
 
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
@@ -22,17 +20,17 @@ internal class AutoForaging : Automate
         // 自动砍树
         if (this.Config.AutoChopTree.IsEnable && tool is Axe) this.AutoChopTree(location, player, tool);
         // 自动收获姜
-        if (this.Config.AutoHarvestGinger.IsEnable && (tool is Hoe || this.Config.AutoHarvestGinger.FindToolFromInventory)) this.AutoHarvestGinger(location, player);
+        if (this.Config.AutoHarvestGinger.IsEnable) this.AutoHarvestGinger(location, player);
         // 自动摇树
         if (this.Config.AutoShakeTree.IsEnable) this.AutoShakeTree(location);
         // 自动装备采集器
         if (this.Config.AutoPlaceTapper.IsEnable && item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper) this.AutoPlaceTapper(location, player, tapper);
         // 自动收获苔藓
-        if (this.Config.AutoHarvestMoss.IsEnable && (tool is MeleeWeapon || this.Config.AutoHarvestMoss.FindToolFromInventory)) this.AutoHarvestMoss(location);
+        if (this.Config.AutoHarvestMoss.IsEnable) this.AutoHarvestMoss(location);
         // 自动在树上浇醋
         if (this.Config.AutoPlaceVinegar.IsEnable && item is SObject { QualifiedItemId: "(O)419" } vinegar) this.AutoPlaceVinegar(location, player, vinegar);
         // 自动清理木头
-        if (this.Config.AutoClearWood.IsEnable && (tool is Axe || this.Config.AutoClearWeeds.FindToolFromInventory)) this.AutoClearWood(location, player);
+        if (this.Config.AutoClearWood.IsEnable) this.AutoClearWood(location, player);
     }
 
     // 自动觅食
@@ -55,7 +53,7 @@ internal class AutoForaging : Automate
     {
         if (player.Stamina <= this.Config.AutoHarvestGinger.StopStamina) return;
 
-        var hoe = ToolHelper.FindToolFromInventory<Hoe>();
+        var hoe = ToolHelper.FindToolFromInventory<Hoe>(this.Config.AutoHarvestGinger.FindToolFromInventory);
         if (hoe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestGinger.Range);
@@ -142,7 +140,7 @@ internal class AutoForaging : Automate
     // 自动收获苔藓
     private void AutoHarvestMoss(GameLocation location)
     {
-        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>();
+        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoHarvestMoss.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestMoss.Range);
@@ -189,7 +187,7 @@ internal class AutoForaging : Automate
     {
         if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;
 
-        var axe = ToolHelper.FindToolFromInventory<Axe>();
+        var axe = ToolHelper.FindToolFromInventory<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
         if (axe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWood.Range);

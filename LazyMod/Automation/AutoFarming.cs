@@ -24,7 +24,7 @@ internal class AutoFarming : Automate
         // 自动浇水
         if (this.Config.AutoWaterDirt.IsEnable && tool is WateringCan wateringCan) this.AutoWaterDirt(location, player, wateringCan);
         // 自动填充水壶
-        if (this.Config.AutoRefillWateringCan.IsEnable && (tool is WateringCan || this.Config.AutoRefillWateringCan.FindToolFromInventory)) this.AutoRefillWateringCan(location, player);
+        if (this.Config.AutoRefillWateringCan.IsEnable) this.AutoRefillWateringCan(location, player);
         // 自动播种
         if (this.Config.AutoSeed.IsEnable && item?.Category == SObject.SeedsCategory) this.AutoSeed(location, player, item);
         // 自动施肥
@@ -34,7 +34,7 @@ internal class AutoFarming : Automate
         // 自动摇晃果树
         if (this.Config.AutoShakeFruitTree.IsEnable) this.AutoShakeFruitTree(location);
         // 自动清理枯萎作物
-        if (this.Config.AutoClearDeadCrop.IsEnable && (tool is MeleeWeapon || this.Config.AutoClearDeadCrop.FindToolFromInventory)) this.AutoClearDeadCrop(location);
+        if (this.Config.AutoClearDeadCrop.IsEnable) this.AutoClearDeadCrop(location);
     }
 
     // 自动耕地
@@ -98,7 +98,7 @@ internal class AutoFarming : Automate
     // 自动填充水壶
     private void AutoRefillWateringCan(GameLocation location, Farmer player)
     {
-        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>();
+        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>(this.Config.AutoRefillWateringCan.FindToolFromInventory);
         if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
             return;
 
@@ -194,7 +194,7 @@ internal class AutoFarming : Automate
     // 自动清理枯萎作物
     private void AutoClearDeadCrop(GameLocation location)
     {
-        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>();
+        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);

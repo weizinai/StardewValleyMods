@@ -11,8 +11,7 @@ internal class MilkAnimalHandler : BaseAutomationHandler
     
     public override void Apply(Farmer player, GameLocation location)
     {
-        if (!this.Config.AutoMilkAnimal.FindToolFromInventory && player.CurrentTool is not MilkPail) return;
-        var milkPail = ToolHelper.FindToolFromInventory<MilkPail>();
+        var milkPail = ToolHelper.FindToolFromInventory<MilkPail>(this.Config.AutoMilkAnimal.FindToolFromInventory);
         if (milkPail is null) return;
 
         var animals = location.animals.Values;

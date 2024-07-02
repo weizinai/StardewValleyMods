@@ -14,18 +14,16 @@ internal class AutoOther : Automate
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
 
-    public AutoOther(ModConfig config): base(config) 
-    {
-    }
+    public AutoOther(ModConfig config) : base(config) { }
 
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 增加磁力范围
         this.MagneticRadiusIncrease(player);
         // 自动清理杂草
-        if (this.Config.AutoClearWeeds.IsEnable && (tool is MeleeWeapon || this.Config.AutoClearWeeds.FindToolFromInventory)) this.AutoClearWeeds(location);
+        if (this.Config.AutoClearWeeds.IsEnable) this.AutoClearWeeds(location);
         // 自动挖掘斑点
-        if (this.Config.AutoDigSpots.IsEnable && (tool is Hoe || this.Config.AutoDigSpots.FindToolFromInventory)) this.AutoDigSpots(location, player);
+        if (this.Config.AutoDigSpots.IsEnable) this.AutoDigSpots(location, player);
         // 自动收获机器
         if (this.Config.AutoHarvestMachine.IsEnable) this.AutoHarvestMachine(location, player);
         // 自动触发机器
@@ -65,7 +63,7 @@ internal class AutoOther : Automate
     // 自动清理杂草
     private void AutoClearWeeds(GameLocation location)
     {
-        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>();
+        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWeeds.Range);
@@ -100,7 +98,7 @@ internal class AutoOther : Automate
     {
         if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return;
 
-        var hoe = ToolHelper.FindToolFromInventory<Hoe>();
+        var hoe = ToolHelper.FindToolFromInventory<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);
         if (hoe is null)
             return;
 

@@ -13,8 +13,8 @@ internal static class ToolHelper
         toolCache = Game1.player.Items.Where(item => item is Tool).Cast<Tool>().ToHashSet();
     }
 
-    public static T? FindToolFromInventory<T>() where T : Tool
+    public static T? FindToolFromInventory<T>(bool findToolFromInventory) where T : Tool
     {
-        return toolCache.FirstOrDefault(tool => tool is T) as T;
+        return findToolFromInventory ? toolCache.FirstOrDefault(tool => tool is T) as T : Game1.player.CurrentTool as T;
     }
 }

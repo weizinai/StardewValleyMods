@@ -15,7 +15,7 @@ internal class AutoAnimal : Automate
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动剪毛
-        if (this.Config.AutoShearsAnimal.IsEnable && (tool is Shears || this.Config.AutoShearsAnimal.FindToolFromInventory)) this.AutoShearsAnimal(location, player);
+        if (this.Config.AutoShearsAnimal.IsEnable) this.AutoShearsAnimal(location, player);
         // 自动喂食动物饼干
         if (this.Config.AutoFeedAnimalCracker.IsEnable && item?.QualifiedItemId is "(O)GoldenAnimalCracker") this.AutoFeedAnimalCracker(location, player);
         // 自动打开栅栏门
@@ -28,7 +28,7 @@ internal class AutoAnimal : Automate
         if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
-        var shears = ToolHelper.FindToolFromInventory<Shears>();
+        var shears = ToolHelper.FindToolFromInventory<Shears>(this.Config.AutoShearsAnimal.FindToolFromInventory);
         if (shears is null)
             return;
 

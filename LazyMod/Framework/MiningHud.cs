@@ -1,5 +1,4 @@
 using System.Text;
-using weizinai.StardewValleyMod.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -7,10 +6,11 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Menus;
 using StardewValley.Monsters;
+using weizinai.StardewValleyMod.Common.UI;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework.Hud;
+namespace weizinai.StardewValleyMod.LazyMod.Framework;
 
 internal class MiningHud
 {

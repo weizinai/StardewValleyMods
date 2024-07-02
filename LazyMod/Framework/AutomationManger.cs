@@ -100,15 +100,4 @@ internal class AutomationManger
             new AutoOther(this.config)
         });
     }
-
-    public void UpdateConfig(ModConfig newConfig)
-    {
-        foreach (var automation in this.automations)
-        {
-            automation.UpdateConfig(newConfig);
-        }
-
-        this.config = newConfig;
-        this.ticksPerAction = this.config.Cooldown;
-    }
 }

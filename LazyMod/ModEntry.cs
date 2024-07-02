@@ -54,17 +54,8 @@ internal class ModEntry : Mod
         
         new GenericModConfigMenuIntegrationForLazyMod(this.Helper, this.ModManifest,
             () => this.config,
-            () =>
-            {
-                this.config = new ModConfig();
-                this.UpdateConfig();
-            },
+            () => this.config = new ModConfig(),
             () => this.Helper.WriteConfig(this.config)
         ).Register();
-    }
-
-    private void UpdateConfig()
-    {
-        this.automationManger.UpdateConfig(this.config);
     }
 }

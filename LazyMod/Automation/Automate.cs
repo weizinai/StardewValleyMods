@@ -19,11 +19,6 @@ internal abstract class Automate
     }
 
     public abstract void Apply(GameLocation location, Farmer player, Tool? tool, Item? item);
-    
-    public void UpdateConfig(ModConfig config)
-    {
-        this.Config = config;
-    }
 
     protected T? FindToolFromInventory<T>() where T : Tool
     {

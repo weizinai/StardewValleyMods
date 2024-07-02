@@ -17,8 +17,6 @@ internal class AutoFarming : Automate
 
     public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
-        // 自动耕地
-        if (this.Config.AutoTillDirt.IsEnable && tool is Hoe) this.AutoTillDirt(location, player, tool);
         // 自动清理耕地
         if (this.Config.AutoClearTilledDirt.IsEnable && tool is Pickaxe) this.AutoClearTilledDirt(location, player, tool);
         // 自动浇水
@@ -35,19 +33,6 @@ internal class AutoFarming : Automate
         if (this.Config.AutoShakeFruitTree.IsEnable) this.AutoShakeFruitTree(location);
         // 自动清理枯萎作物
         if (this.Config.AutoClearDeadCrop.IsEnable) this.AutoClearDeadCrop(location);
-    }
-
-    // 自动耕地
-    private void AutoTillDirt(GameLocation location, Farmer player, Tool tool)
-    {
-        if (player.Stamina <= this.Config.AutoTillDirt.StopStamina) return;
-
-        var grid = this.GetTileGrid(this.Config.AutoTillDirt.Range);
-        foreach (var tile in grid)
-        {
-            if (!this.CanTillDirt(location, tile)) continue;
-            this.UseToolOnTile(location, player, tool, tile);
-        }
     }
 
     // 自动清理耕地
@@ -209,13 +194,5 @@ internal class AutoFarming : Automate
         }
     }
 
-    private bool CanTillDirt(GameLocation location, Vector2 tile)
-    {
-        location.terrainFeatures.TryGetValue(tile, out var tileFeature);
-        location.objects.TryGetValue(tile, out var obj);
-        return tileFeature is null && obj is null &&
-               !location.IsTileOccupiedBy(tile, CollisionMask.All, CollisionMask.Farmers) &&
-               location.isTilePassable(tile) &&
-               location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Diggable", "Back") is not null;
-    }
+
 }

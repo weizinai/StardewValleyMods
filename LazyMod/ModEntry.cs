@@ -7,6 +7,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
+using weizinai.StardewValleyMod.LazyMod.Handler.Farming;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
@@ -94,6 +95,9 @@ internal class ModEntry : Mod
 
     private IEnumerable<IAutomationHandler> GetHandlers()
     {
+        // Farming
+        if (this.config.AutoTillDirt.IsEnable) yield return new TillDirtHandler(this.config);
+        
         // Animal
         if (this.config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(this.config);
         if (this.config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(this.config);

@@ -1,7 +1,6 @@
-using weizinai.StardewValleyMod.Common.Integration;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.LazyMod.Automation;
+using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Integration;
@@ -377,14 +376,14 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             )
             .AddTextOption(
                 config => config.FoodBuffMaintain1.ToString(),
-                (config, value) => config.FoodBuffMaintain1 = AutoFood.GetBuffType(value),
+                (config, value) => config.FoodBuffMaintain1 = GetBuffType(value),
                 I18n.Config_FoodBuffMaintain1_Name,
                 I18n.Config_FoodBuffMaintain_Tooltip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
             )
             .AddTextOption(
                 config => config.FoodBuffMaintain2.ToString(),
-                (config, value) => config.FoodBuffMaintain2 = AutoFood.GetBuffType(value),
+                (config, value) => config.FoodBuffMaintain2 = GetBuffType(value),
                 I18n.Config_FoodBuffMaintain2_Name,
                 I18n.Config_FoodBuffMaintain_Tooltip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
@@ -399,14 +398,14 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             )
             .AddTextOption(
                 config => config.DrinkBuffMaintain1.ToString(),
-                (config, value) => config.DrinkBuffMaintain1 = AutoFood.GetBuffType(value),
+                (config, value) => config.DrinkBuffMaintain1 = GetBuffType(value),
                 I18n.Config_DrinkBuffMaintain1_Name,
                 I18n.Config_DrinkBuffMaintain_ToolTip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
             )
             .AddTextOption(
                 config => config.DrinkBuffMaintain2.ToString(),
-                (config, value) => config.DrinkBuffMaintain2 = AutoFood.GetBuffType(value),
+                (config, value) => config.DrinkBuffMaintain2 = GetBuffType(value),
                 I18n.Config_DrinkBuffMaintain2_Name,
                 I18n.Config_DrinkBuffMaintain_ToolTip, this.buffMaintainAllowValues,
                 GetStringFromBuffType
@@ -762,5 +761,10 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             "Attack" => I18n.BuffType_Attack_Name(),
             _ => I18n.BuffType_None_Name()
         };
+    }
+
+    public static BuffType GetBuffType(string name)
+    {
+        return Enum.TryParse<BuffType>(name, out var buffType) ? buffType : BuffType.None;
     }
 }

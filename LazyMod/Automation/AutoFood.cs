@@ -1,6 +1,7 @@
 ﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
@@ -181,25 +182,4 @@ internal class AutoFood : Automate
         player.FacingDirection = direction;
         this.ConsumeItem(player, food);
     }
-
-    public static BuffType GetBuffType(string name)
-    {
-        return Enum.TryParse<BuffType>(name, out var buffType) ? buffType : BuffType.None;
-    }
-}
-
-public enum BuffType
-{
-    Combat,
-    Farming,
-    Fishing,
-    Mining,
-    Luck,
-    Foraging,
-    MaxStamina,
-    MagneticRadius,
-    Speed,
-    Defense,
-    Attack,
-    None
 }

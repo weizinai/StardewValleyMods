@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
@@ -11,7 +10,7 @@ internal class AutoFood : Automate
 {
     private readonly Dictionary<SObject, string?> foodData = new();
 
-    public AutoFood(ModConfig config, Func<int, List<Vector2>> getTileGrid) : base(config, getTileGrid)
+    public AutoFood(ModConfig config) : base(config)
     {
     }
 

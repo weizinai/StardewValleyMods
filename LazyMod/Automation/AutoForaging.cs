@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoForaging : Automate
 {
-    public AutoForaging(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid)
+    public AutoForaging(ModConfig config): base(config)
     {
     }
 

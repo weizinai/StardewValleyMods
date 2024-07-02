@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Characters;
 using StardewValley.GameData.Machines;
@@ -14,7 +13,7 @@ internal class AutoOther : Automate
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
 
-    public AutoOther(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid) 
+    public AutoOther(ModConfig config): base(config) 
     {
     }
 

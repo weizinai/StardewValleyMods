@@ -11,7 +11,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoMining : Automate
 {
-    public AutoMining(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid)
+    public AutoMining(ModConfig config): base(config)
     {
     }
 

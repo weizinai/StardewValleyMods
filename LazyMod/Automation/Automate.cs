@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -10,12 +11,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Automation;
 internal abstract class Automate
 {
     protected ModConfig Config;
-    protected readonly Func<int, List<Vector2>> GetTileGrid;
+    protected readonly Func<int, List<Vector2>> GetTileGrid = TileHelper.GetTileGrid;
 
-    protected Automate(ModConfig config, Func<int, List<Vector2>> getTileGrid)
+    protected Automate(ModConfig config)
     {
         this.Config = config;
-        this.GetTileGrid = getTileGrid;
     }
 
     public abstract void Apply(GameLocation location, Farmer player, Tool? tool, Item? item);

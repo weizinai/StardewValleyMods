@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Objects;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
@@ -9,7 +8,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Automation;
 
 internal class AutoFishing : Automate
 {
-    public AutoFishing(ModConfig config, Func<int, List<Vector2>> getTileGrid): base(config, getTileGrid)
+    public AutoFishing(ModConfig config): base(config)
     {
     }
 

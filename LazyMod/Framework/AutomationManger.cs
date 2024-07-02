@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.LazyMod.Automation;
@@ -11,7 +10,6 @@ internal class AutomationManger
 {
     private ModConfig config;
     private readonly List<Automate> automations = new();
-    private readonly Dictionary<int, List<Vector2>> tileCache = new();
 
     private GameLocation? location;
     private Farmer? player;
@@ -69,9 +67,8 @@ internal class AutomationManger
 
         if (this.location is null || this.player is null) return;
 
-        this.tileCache.Clear();
+        TileHelper.ClearTileCache();
         foreach (var automate in this.automations) automate.Apply(this.location, this.player, this.tool, this.item);
-        this.tileCache.Clear();
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs dayEndingEventArgs)
@@ -94,13 +91,13 @@ internal class AutomationManger
     {
         this.automations.AddRange(new Automate[]
         {
-            new AutoFarming(this.config, this.GetTileGrid),
-            new AutoAnimal(this.config, this.GetTileGrid),
-            new AutoMining(this.config, this.GetTileGrid),
-            new AutoForaging(this.config, this.GetTileGrid),
-            new AutoFishing(this.config, this.GetTileGrid),
-            new AutoFood(this.config, this.GetTileGrid),
-            new AutoOther(this.config, this.GetTileGrid)
+            new AutoFarming(this.config),
+            new AutoAnimal(this.config),
+            new AutoMining(this.config),
+            new AutoForaging(this.config),
+            new AutoFishing(this.config),
+            new AutoFood(this.config),
+            new AutoOther(this.config)
         });
     }
 
@@ -113,19 +110,5 @@ internal class AutomationManger
 
         this.config = newConfig;
         this.ticksPerAction = this.config.Cooldown;
-    }
-
-    private List<Vector2> GetTileGrid(int range)
-    {
-        if (this.tileCache.TryGetValue(range, out var cache))
-            return cache;
-
-        var origin = this.player!.Tile;
-        var grid = new List<Vector2>();
-        for (var x = -range; x <= range; x++)
-            for (var y = -range; y <= range; y++)
-                grid.Add(new Vector2(origin.X + x, origin.Y + y));
-        this.tileCache.Add(range, grid);
-        return grid;
     }
 }

@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
 internal class SpectatePlayerHandler : BaseHandler
 {
-    public SpectatePlayerHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+    public SpectatePlayerHandler(IModHelper helper) : base(helper) { }
 
     public override void Init()
     {

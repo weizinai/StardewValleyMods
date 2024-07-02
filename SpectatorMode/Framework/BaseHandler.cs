@@ -5,12 +5,11 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 internal abstract class BaseHandler : IHandler
 {
     protected readonly IModHelper Helper;
-    protected readonly ModConfig Config;
+    protected readonly ModConfig Config = ModEntry.Config;
 
-    protected BaseHandler(IModHelper helper, ModConfig config)
+    protected BaseHandler(IModHelper helper)
     {
         this.Helper = helper;
-        this.Config = config;
     }
 
     public abstract void Init();

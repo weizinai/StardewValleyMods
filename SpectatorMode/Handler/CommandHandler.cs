@@ -6,7 +6,7 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
 internal class CommandHandler : BaseHandler
 {
-    public CommandHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+    public CommandHandler(IModHelper helper) : base(helper) { }
 
     public override void Init()
     {

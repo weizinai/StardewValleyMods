@@ -5,6 +5,7 @@ using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
+using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;

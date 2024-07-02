@@ -1,6 +1,6 @@
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework;
+namespace weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 
 internal static class ToolHelper
 {

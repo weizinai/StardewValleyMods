@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
+using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 

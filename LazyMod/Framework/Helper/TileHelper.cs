@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework;
+namespace weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 
 internal static class TileHelper
 {

@@ -70,7 +70,7 @@ internal class AutomationManger
         if (this.location is null || this.player is null) return;
 
         this.tileCache.Clear();
-        foreach (var automate in this.automations) automate.AutoDoFunction(this.location, this.player, this.tool, this.item);
+        foreach (var automate in this.automations) automate.Apply(this.location, this.player, this.tool, this.item);
         this.tileCache.Clear();
     }
 

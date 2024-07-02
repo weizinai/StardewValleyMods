@@ -13,7 +13,7 @@ internal class AutoFishing : Automate
     {
     }
 
-    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动放置蟹笼
         if (this.Config.AutoPlaceCarbPot.IsEnable && item is SObject { QualifiedItemId: "(O)710" } crabPot) this.AutoPlaceCrabPot(location, player, crabPot);

@@ -18,7 +18,7 @@ internal class AutoOther : Automate
     {
     }
 
-    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 增加磁力范围
         this.MagneticRadiusIncrease(player);

@@ -15,7 +15,7 @@ internal class AutoFood : Automate
     {
     }
 
-    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         if (tool is FishingRod && player.UsingTool) return;
 

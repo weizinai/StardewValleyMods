@@ -15,7 +15,7 @@ internal class AutoMining : Automate
     {
     }
 
-    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动清理石头
         if (this.Config.AutoClearStone.IsEnable && (tool is Pickaxe || this.Config.AutoClearStone.FindToolFromInventory)) this.AutoClearStone(location, player);

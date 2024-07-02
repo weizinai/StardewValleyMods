@@ -18,7 +18,7 @@ internal abstract class Automate
         this.GetTileGrid = getTileGrid;
     }
 
-    public abstract void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item);
+    public abstract void Apply(GameLocation location, Farmer player, Tool? tool, Item? item);
     
     public void UpdateConfig(ModConfig config)
     {

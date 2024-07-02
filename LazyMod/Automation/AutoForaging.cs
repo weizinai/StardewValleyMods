@@ -14,7 +14,7 @@ internal class AutoForaging : Automate
     {
     }
 
-    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动觅食
         if (this.Config.AutoForage.IsEnable) this.AutoForage(location, player);

@@ -12,7 +12,7 @@ internal class AutoAnimal : Automate
     {
     }
 
-    public override void AutoDoFunction(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
     {
         // 自动抚摸动物
         if (this.Config.AutoPetAnimal.IsEnable) this.AutoPetAnimal(location, player);

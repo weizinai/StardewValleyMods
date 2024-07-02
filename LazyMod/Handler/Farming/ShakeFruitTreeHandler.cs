@@ -3,7 +3,7 @@ using StardewValley.TerrainFeatures;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Farming;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class ShakeFruitTreeHandler : BaseAutomationHandler
 {

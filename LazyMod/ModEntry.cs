@@ -8,8 +8,6 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
-using weizinai.StardewValleyMod.LazyMod.Handler.Farming;
-using weizinai.StardewValleyMod.LazyMod.Handler.Fishing;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 

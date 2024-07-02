@@ -5,7 +5,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Farming;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class HarvestCropHandler : BaseAutomationHandler
 {

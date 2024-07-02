@@ -3,7 +3,7 @@ using StardewValley.Menus;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Fishing;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class ExitTreasureMenuHandler : BaseAutomationHandler
 {

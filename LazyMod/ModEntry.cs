@@ -6,7 +6,6 @@ using StardewValley.Menus;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
-using weizinai.StardewValleyMod.LazyMod.Framework.Hud;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
 using weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
@@ -18,7 +17,6 @@ namespace weizinai.StardewValleyMod.LazyMod;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private MiningHud miningHud = null!;
     private IAutomationHandler[] handlers = null!;
     private IAutomationHandlerWithDayChanged[] dayChangedHandlers = null!;
 
@@ -46,10 +44,8 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
         helper.Events.GameLoop.DayEnding += this.OnDayEnding;
-        
+
         helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
-        
-        helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -77,8 +73,6 @@ internal class ModEntry : Mod
 
         TileHelper.ClearTileCache();
         foreach (var handler in this.handlers) handler.Apply(player, location);
-
-        this.miningHud.Update();
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs e)
@@ -96,15 +90,8 @@ internal class ModEntry : Mod
         ToolHelper.UpdateToolCache();
     }
 
-    private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
-    {
-        this.miningHud.Draw(e.SpriteBatch);
-    }
-
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        this.miningHud = new MiningHud(this.Helper, this.config);
-
         new GenericModConfigMenuIntegrationForLazyMod(
             this.Helper,
             this.ModManifest,
@@ -141,7 +128,7 @@ internal class ModEntry : Mod
         if (_config.AutoHarvestCrop.IsEnable) yield return new HarvestCropHandler(_config);
         if (_config.AutoShakeFruitTree.IsEnable) yield return new ShakeFruitTreeHandler(_config);
         if (_config.AutoClearDeadCrop.IsEnable) yield return new ClearDeadCropHandler(_config);
-        
+
         // Animal
         if (_config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(_config);
         if (_config.AutoPetPet.IsEnable) yield return new PetPetHandler(_config);
@@ -149,7 +136,7 @@ internal class ModEntry : Mod
         if (_config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler(_config);
         if (_config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler(_config);
         if (_config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(_config);
-        
+
         // Mining
         if (_config.AutoClearStone.IsEnable) yield return new ClearStoneHandler(_config);
         if (_config.AutoCollectCoal.IsEnable) yield return new CollectCoalHandler(_config);
@@ -157,7 +144,7 @@ internal class ModEntry : Mod
         if (_config.AutoOpenTreasure.IsEnable) yield return new OpenTreasureHandler(_config);
         if (_config.AutoClearCrystal.IsEnable) yield return new ClearCrystalHandler(_config);
         if (_config.AutoCoolLava.IsEnable) yield return new CoolLavaHandler(_config);
-        
+
         // Foraging
         if (_config.AutoForage.IsEnable) yield return new ForageHandler(_config);
         if (_config.AutoHarvestGinger.IsEnable) yield return new HarvestGingerHandler(_config);
@@ -167,17 +154,17 @@ internal class ModEntry : Mod
         if (_config.AutoPlaceTapper.IsEnable) yield return new PlaceTapperHandler(_config);
         if (_config.AutoPlaceVinegar.IsEnable) yield return new PlaceVinegarHandler(_config);
         if (_config.AutoClearWood.IsEnable) yield return new ClearWoodHandler(_config);
-        
+
         // Fishing
         if (_config.AutoGrabTreasureItem) yield return new GrabTreasureItemHandler(_config);
         if (_config.AutoExitTreasureMenu) yield return new ExitTreasureMenuHandler(_config);
         if (_config.AutoPlaceCarbPot.IsEnable) yield return new PlaceCrabPotHandler(_config);
         if (_config.AutoAddBaitForCarbPot.IsEnable) yield return new AddBaitForCrabPotHandler(_config);
         if (_config.AutoHarvestCarbPot.IsEnable) yield return new HarvestCrabPotHandler(_config);
-        
+
         // Food
         yield return new FoodHandler(_config);
-        
+
         // Other
         yield return new MagneticRadiusHandler(_config);
         if (_config.AutoClearWeeds.IsEnable) yield return new ClearWeedsHandler(_config);

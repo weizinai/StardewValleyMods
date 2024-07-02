@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 

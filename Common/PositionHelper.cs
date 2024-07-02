@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Framework;
+namespace weizinai.StardewValleyMod.Common;
 
 internal static class PositionHelper
 {

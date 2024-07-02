@@ -10,6 +10,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="$(MSBuildThisFileDirectory)ItemRepository.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)PositionHelper.cs" />
         <Compile Include="$(MSBuildThisFileDirectory)ResourceClumpRepository.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs"/>
         <Compile Include="$(MSBuildThisFileDirectory)UI\Container.cs"/>

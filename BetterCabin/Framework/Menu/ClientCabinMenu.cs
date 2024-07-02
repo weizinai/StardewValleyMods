@@ -5,6 +5,7 @@ using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Buildings;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common;
 using xTile.Dimensions;
 using static StardewValley.Menus.BuildingSkinMenu;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;

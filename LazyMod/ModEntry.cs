@@ -37,9 +37,15 @@ internal class ModEntry : Mod
 
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
         helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
         helper.Events.Display.RenderedHud += this.OnRenderedHud;
+    }
+
+    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
+    {
+        ToolHelper.UpdateToolCache();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)

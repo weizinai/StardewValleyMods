@@ -78,7 +78,6 @@ internal class AutomationManger
         this.automations.AddRange(new Automate[]
         {
             new AutoMining(this.config),
-            new AutoForaging(this.config),
             new AutoOther(this.config)
         });
     }

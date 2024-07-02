@@ -27,8 +27,6 @@ internal abstract class Automate
         tool.DoFunction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, 1, player);
     }
 
-
-
     protected Vector2 GetTilePixelPosition(Vector2 tile, bool center = true)
     {
         return tile * Game1.tileSize + (center ? new Vector2(Game1.tileSize / 2f) : Vector2.Zero);

@@ -9,15 +9,16 @@ internal class PetAnimalHandler : BaseAutomationHandler
 {
     public PetAnimalHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player1, GameLocation location1)
+    public override void Apply(Farmer player, GameLocation location)
     {
-        var player = Game1.player;
-        var location = Game1.currentLocation;
+        var animals = location.animals.Values;
+        if (!animals.Any()) return;
+        
         var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
 
         foreach (var tile in grid)
         {
-            foreach (var animal in location.animals.Values)
+            foreach (var animal in animals)
             {
                 if (this.CanPetAnimal(tile, animal))
                 {

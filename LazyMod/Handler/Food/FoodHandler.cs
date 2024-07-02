@@ -5,19 +5,19 @@ using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
-namespace weizinai.StardewValleyMod.LazyMod.Automation;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class AutoFood : Automate
+internal class FoodHandler : BaseAutomationHandler
 {
     private readonly Dictionary<SObject, string?> foodData = new();
 
-    public AutoFood(ModConfig config) : base(config)
+    public FoodHandler(ModConfig config) : base(config)
     {
     }
 
-    public override void Apply(GameLocation location, Farmer player, Tool? tool, Item? item)
+    public override void Apply(Farmer player, GameLocation location)
     {
-        if (tool is FishingRod && player.UsingTool) return;
+        if (player is { CurrentTool: FishingRod, UsingTool: true }) return;
 
         this.FindFoodFromInventory(player);
         if (!this.foodData.Any()) return;

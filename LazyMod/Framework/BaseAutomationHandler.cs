@@ -43,4 +43,11 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     {
         return Game1.player.freeSpotsInInventory() > 1 || Game1.player.Items.Any(item.canStackWith);
     }
+    
+    protected void ConsumeItem(Farmer player, Item item)
+    {
+        item.Stack--;
+        if (item.Stack <= 0) player.removeItemFromInventory(item);
+    }
+
 }

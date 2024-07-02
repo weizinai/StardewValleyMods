@@ -27,11 +27,6 @@ internal abstract class Automate
         tool.DoFunction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, 1, player);
     }
 
-    protected void ConsumeItem(Farmer player, Item item)
-    {
-        item.Stack--;
-        if (item.Stack <= 0) player.removeItemFromInventory(item);
-    }
 
 
     protected Vector2 GetTilePixelPosition(Vector2 tile, bool center = true)

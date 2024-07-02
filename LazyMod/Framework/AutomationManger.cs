@@ -79,7 +79,6 @@ internal class AutomationManger
         {
             new AutoMining(this.config),
             new AutoForaging(this.config),
-            new AutoFood(this.config),
             new AutoOther(this.config)
         });
     }

@@ -68,6 +68,9 @@ internal class SpectatorMenu : IClickableMenu
             Game1.panScreen(0, -moveSpeed);
         else if (mouseY - Game1.viewport.Height >= -moveThreshold)
             Game1.panScreen(0, moveSpeed);
+        
+        var pressedKeys = Game1.oldKBState.GetPressedKeys();
+        foreach (var key in pressedKeys) this.receiveKeyPress(key);
     }
 
     public override void draw(SpriteBatch b)

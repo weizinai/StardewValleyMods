@@ -96,17 +96,25 @@ internal class ModEntry : Mod
 
     private void UpdateConfig()
     {
-        this.handlers = this.GetHandlers().ToArray();
+        this.handlers = this.GetHandlers(this.config).ToArray();
     }
 
-    private IEnumerable<IAutomationHandler> GetHandlers()
+    private IEnumerable<IAutomationHandler> GetHandlers(ModConfig _config)
     {
         // Farming
-        if (this.config.AutoTillDirt.IsEnable) yield return new TillDirtHandler(this.config);
+        if (_config.AutoTillDirt.IsEnable) yield return new TillDirtHandler(_config);
+        if (_config.AutoClearTilledDirt.IsEnable) yield return new ClearTilledDirtHandler(_config);
+        if (_config.AutoWaterDirt.IsEnable) yield return new WaterDirtHandler(_config);
+        if (_config.AutoRefillWateringCan.IsEnable) yield return new RefillWateringCanHandler(_config);
+        if (_config.AutoSeed.IsEnable) yield return new SeedHandler(_config);
+        if (_config.AutoFertilize.IsEnable) yield return new FertilizeHandler(_config);
+        if (_config.AutoHarvestCrop.IsEnable) yield return new HarvestCropHandler(_config);
+        if (_config.AutoShakeFruitTree.IsEnable) yield return new ShakeFruitTreeHandler(_config);
+        if (_config.AutoClearDeadCrop.IsEnable) yield return new ClearDeadCropHandler(_config);
         
         // Animal
-        if (this.config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(this.config);
-        if (this.config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(this.config);
-        if (this.config.AutoPetPet.IsEnable) yield return new PetPetHandler(this.config);
+        if (_config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(_config);
+        if (_config.AutoPetPet.IsEnable) yield return new PetPetHandler(_config);
+        if (_config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(_config);
     }
 }

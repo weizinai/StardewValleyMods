@@ -91,7 +91,6 @@ internal class AutomationManger
     {
         this.automations.AddRange(new Automate[]
         {
-            new AutoFarming(this.config),
             new AutoAnimal(this.config),
             new AutoMining(this.config),
             new AutoForaging(this.config),

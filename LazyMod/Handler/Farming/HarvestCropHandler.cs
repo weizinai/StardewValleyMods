@@ -1,0 +1,37 @@
+using StardewValley;
+using StardewValley.Locations;
+using StardewValley.TerrainFeatures;
+using weizinai.StardewValleyMod.LazyMod.Framework;
+using weizinai.StardewValleyMod.LazyMod.Framework.Config;
+using SObject = StardewValley.Object;
+
+namespace weizinai.StardewValleyMod.LazyMod.Handler.Farming;
+
+internal class HarvestCropHandler : BaseAutomationHandler
+{
+    public HarvestCropHandler(ModConfig config) : base(config) { }
+    
+    public override void Apply(Farmer player, GameLocation location)
+    {
+        var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
+        
+        foreach (var tile in grid)
+        {
+            location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+            if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
+            {
+                var crop = hoeDirt.crop;
+                // 自动收获花逻辑
+                if (!this.Config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory)
+                    continue;
+                if (crop.harvest((int)tile.X, (int)tile.Y, hoeDirt))
+                {
+                    hoeDirt.destroyCrop(true);
+                    // 姜岛金核桃逻辑
+                    if (location is IslandLocation && Game1.random.NextDouble() < 0.05)
+                        player.team.RequestLimitedNutDrops("IslandFarming", location, (int)tile.X * 64, (int)tile.Y * 64, 5);
+                }
+            }
+        }
+    }
+}

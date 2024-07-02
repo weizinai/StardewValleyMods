@@ -16,6 +16,7 @@ internal class TillDirtHandler : BaseAutomationHandler
         if (hoe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoTillDirt.Range);
+        
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoTillDirt.StopStamina) return;

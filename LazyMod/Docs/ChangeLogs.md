@@ -1,4 +1,4 @@
-# 1.1.2
+# 1.2.0
 
 - 修复`StopStamina`选项有时不生效的问题
 - 重构`Generic Mod Config Menu`，使其更加一致

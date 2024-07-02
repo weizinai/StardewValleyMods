@@ -3,6 +3,7 @@ using StardewValley;
 using StardewValley.Monsters;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
@@ -54,7 +55,7 @@ internal class AutoForaging : Automate
     {
         if (player.Stamina <= this.Config.AutoHarvestGinger.StopStamina) return;
 
-        var hoe = this.FindToolFromInventory<Hoe>();
+        var hoe = ToolHelper.FindToolFromInventory<Hoe>();
         if (hoe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestGinger.Range);
@@ -141,7 +142,7 @@ internal class AutoForaging : Automate
     // 自动收获苔藓
     private void AutoHarvestMoss(GameLocation location)
     {
-        var scythe = this.FindToolFromInventory<MeleeWeapon>();
+        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestMoss.Range);
@@ -188,7 +189,7 @@ internal class AutoForaging : Automate
     {
         if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;
 
-        var axe = this.FindToolFromInventory<Axe>();
+        var axe = ToolHelper.FindToolFromInventory<Axe>();
         if (axe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWood.Range);

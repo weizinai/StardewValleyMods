@@ -20,13 +20,6 @@ internal abstract class Automate
 
     public abstract void Apply(GameLocation location, Farmer player, Tool? tool, Item? item);
 
-    protected T? FindToolFromInventory<T>() where T : Tool
-    {
-        var player = Game1.player;
-        if (player.CurrentTool is T tool) return tool;
-        return player.Items.FirstOrDefault(item => item is T) as T;
-    }
-
     protected void UseToolOnTile(GameLocation location, Farmer player, Tool tool, Vector2 tile)
     {
         var tilePixelPosition = this.GetTilePixelPosition(tile);

@@ -4,6 +4,7 @@ using StardewValley.Characters;
 using StardewValley.GameData.Machines;
 using StardewValley.Objects;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
@@ -64,7 +65,7 @@ internal class AutoOther : Automate
     // 自动清理杂草
     private void AutoClearWeeds(GameLocation location)
     {
-        var scythe = this.FindToolFromInventory<MeleeWeapon>();
+        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWeeds.Range);
@@ -99,7 +100,7 @@ internal class AutoOther : Automate
     {
         if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return;
 
-        var hoe = this.FindToolFromInventory<Hoe>();
+        var hoe = ToolHelper.FindToolFromInventory<Hoe>();
         if (hoe is null)
             return;
 

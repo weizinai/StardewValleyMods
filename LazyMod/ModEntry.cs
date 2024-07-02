@@ -35,9 +35,10 @@ internal class ModEntry : Mod
         this.UpdateConfig();
 
         // 注册事件
-        helper.Events.Display.RenderedHud += this.OnRenderedHud;
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
+        helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -52,6 +53,11 @@ internal class ModEntry : Mod
         foreach (var handler in this.handlers) handler.Apply(player, location);
 
         this.miningHud.Update();
+    }
+
+    private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
+    {
+        ToolHelper.UpdateToolCache();
     }
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)

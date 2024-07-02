@@ -3,6 +3,7 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
@@ -97,7 +98,7 @@ internal class AutoFarming : Automate
     // 自动填充水壶
     private void AutoRefillWateringCan(GameLocation location, Farmer player)
     {
-        var wateringCan = this.FindToolFromInventory<WateringCan>();
+        var wateringCan = ToolHelper.FindToolFromInventory<WateringCan>();
         if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
             return;
 
@@ -193,7 +194,7 @@ internal class AutoFarming : Automate
     // 自动清理枯萎作物
     private void AutoClearDeadCrop(GameLocation location)
     {
-        var scythe = this.FindToolFromInventory<MeleeWeapon>();
+        var scythe = ToolHelper.FindToolFromInventory<MeleeWeapon>();
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);

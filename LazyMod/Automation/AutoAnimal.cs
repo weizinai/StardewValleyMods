@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Tools;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Automation;
@@ -29,7 +30,7 @@ internal class AutoAnimal : Automate
         if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
-        var milkPail = this.FindToolFromInventory<MilkPail>();
+        var milkPail = ToolHelper.FindToolFromInventory<MilkPail>();
         if (milkPail is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoMilkAnimal.Range);
@@ -48,7 +49,7 @@ internal class AutoAnimal : Automate
         if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina) return;
         if (player.freeSpotsInInventory() < 1) return;
 
-        var shears = this.FindToolFromInventory<Shears>();
+        var shears = ToolHelper.FindToolFromInventory<Shears>();
         if (shears is null)
             return;
 

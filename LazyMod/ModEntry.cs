@@ -16,6 +16,7 @@ internal class ModEntry : Mod
     private IAutomationHandler[] handlers = null!;
     private IAutomationHandlerWithDayChanged[] dayChangedHandlers = null!;
 
+    private bool modEnable = true;
     private int cooldownTimer;
 
     public override void Entry(IModHelper helper)
@@ -44,6 +45,8 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.DayEnding += this.OnDayEnding;
 
         helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
+
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -110,6 +113,17 @@ internal class ModEntry : Mod
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
     {
         ToolHelper.UpdateToolCache();
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (!Context.IsPlayerFree) return;
+        
+        if (this.config.ToggleModStateKeybind.JustPressed())
+        {
+            this.modEnable = !this.modEnable;
+            Log.NoIconHUDMessage(this.modEnable ? I18n.Message_ModEnable() : I18n.Message_ModDisable());
+        }
     }
 
     private bool UpdateCooldown()

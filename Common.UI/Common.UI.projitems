@@ -13,8 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)CombineImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Container.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Element.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Image.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RootElement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text.cs" />
   </ItemGroup>
 </Project>

@@ -230,7 +230,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动在树上浇醋
             .AddBaseAutomationConfig(config => config.AutoPlaceVinegar, I18n.Config_AutoPlaceVinegar_Name, I18n.Config_AutoPlaceVinegar_Tooltip, 1)
             // 自动清理木头
-            .AddStaminaToolAutomationConfig(config => config.AutoClearWood, I18n.Config_AutoPlaceVinegar_Name, I18n.Config_AutoPlaceVinegar_Tooltip, 1)
+            .AddStaminaToolAutomationConfig(config => config.AutoClearWood, I18n.Config_AutoClearWood_Name, I18n.Config_AutoClearWood_Tooltip, 1)
             .AddBoolOption(
                 config => config.ClearTwig,
                 (config, value) => config.ClearTwig = value,

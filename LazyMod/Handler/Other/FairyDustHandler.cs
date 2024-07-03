@@ -8,10 +8,9 @@ internal class FairyDustHandler : BaseAutomationHandler
 {
     public FairyDustHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var item = player.CurrentItem;
-        if (item?.QualifiedItemId == "(O)872")
+        if (item.QualifiedItemId == "(O)872")
         {
             var grid = this.GetTileGrid(this.Config.AutoUseFairyDust.Range);
 

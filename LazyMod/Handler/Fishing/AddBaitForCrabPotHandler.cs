@@ -10,9 +10,8 @@ internal class AddBaitForCrabPotHandler : BaseAutomationHandler
 {
     public AddBaitForCrabPotHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var item = player.CurrentItem;
         if (item is SObject { Category: SObject.baitCategory } bait)
         {
             var grid = this.GetTileGrid(this.Config.AutoAddBaitForCarbPot.Range);

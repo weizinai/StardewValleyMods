@@ -12,7 +12,7 @@ internal class CoolLavaHandler : BaseAutomationHandler
 {
     public CoolLavaHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         if (location is not VolcanoDungeon dungeon) return;
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);

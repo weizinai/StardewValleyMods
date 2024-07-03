@@ -8,7 +8,7 @@ internal class AnimalDoorHandler : BaseAutomationHandler, IAutomationHandlerWith
 {
     public AnimalDoorHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location) { }
+    public override void Apply(Item item, Farmer player, GameLocation location) { }
 
     public void OnDayStarted()
     {

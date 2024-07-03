@@ -10,7 +10,7 @@ internal class ShearsAnimalHandler : BaseAutomationHandler
 {
     public ShearsAnimalHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var shears = ToolHelper.GetTool<Shears>(this.Config.AutoShearsAnimal.FindToolFromInventory);
         if (shears is null) return;

@@ -10,16 +10,16 @@ internal class PlaceFloorHandler : BaseAutomationHandler
 {
     public PlaceFloorHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var item = player.CurrentItem;
         if (item is SObject floor && floor.IsFloorPathItem())
         {
             var grid = this.GetTileGrid(this.Config.AutoPlaceFloor.Range);
+            
             foreach (var tile in grid)
             {
-                var tilePixelPosition = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
-                if (floor.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
+                var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
+                if (floor.placementAction(location, (int)position.X, (int)position.Y, player)) player.reduceActiveItemByOne();
             }
         }
     }

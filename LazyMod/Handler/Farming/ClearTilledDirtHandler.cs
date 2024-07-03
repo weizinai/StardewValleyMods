@@ -11,7 +11,7 @@ internal class ClearTilledDirtHandler : BaseAutomationHandler
 {
     public ClearTilledDirtHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearTilledDirt.FindToolFromInventory);
         if (pickaxe is null) return;

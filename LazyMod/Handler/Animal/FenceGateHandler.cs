@@ -9,7 +9,7 @@ internal class FenceGateHandler : BaseAutomationHandler
 {
     public FenceGateHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoOpenFenceGate.Range + 2);
 

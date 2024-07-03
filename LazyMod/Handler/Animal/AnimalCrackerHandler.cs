@@ -9,10 +9,9 @@ internal class AnimalCrackerHandler : BaseAutomationHandler
 {
     public AnimalCrackerHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var item = player.CurrentItem;
-        if (item?.QualifiedItemId != "(O)GoldenAnimalCracker") return;
+        if (item.QualifiedItemId != "(O)GoldenAnimalCracker") return;
 
         var grid = this.GetTileGrid(this.Config.AutoFeedAnimalCracker.Range);
         var animals = location.animals.Values;

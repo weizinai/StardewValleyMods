@@ -10,7 +10,7 @@ internal class PetPetHandler : BaseAutomationHandler
 {
     public PetPetHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var pets = location.characters.OfType<Pet>().ToList();
         if (!pets.Any()) return;

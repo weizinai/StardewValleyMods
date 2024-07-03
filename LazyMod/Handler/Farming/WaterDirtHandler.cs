@@ -11,7 +11,7 @@ internal class WaterDirtHandler : BaseAutomationHandler
 {
     public WaterDirtHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoWaterDirt.FindToolFromInventory);
         if (wateringCan is null) return;

@@ -11,12 +11,13 @@ internal class ClearWoodHandler : BaseAutomationHandler
 {
     public ClearWoodHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var axe = ToolHelper.GetTool<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
         if (axe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoClearWood.Range);
+        
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;

@@ -69,8 +69,11 @@ internal class ModEntry : Mod
         var location = Game1.currentLocation;
         if (player is null || location is null) return;
 
+        var item = player.CurrentItem;
+        if (item is null) return;
+
         TileHelper.ClearTileCache();
-        foreach (var handler in this.handlers) handler.Apply(player, location);
+        foreach (var handler in this.handlers) handler.Apply(item, player, location);
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs e)

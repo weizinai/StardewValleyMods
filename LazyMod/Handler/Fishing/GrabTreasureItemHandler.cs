@@ -9,7 +9,7 @@ internal class GrabTreasureItemHandler : BaseAutomationHandler
 {
     public GrabTreasureItemHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         if (Game1.activeClickableMenu is ItemGrabMenu { source: ItemGrabMenu.source_fishingChest } menu)
         {

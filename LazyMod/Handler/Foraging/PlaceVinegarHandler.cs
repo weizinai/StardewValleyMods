@@ -11,12 +11,12 @@ internal class PlaceVinegarHandler : BaseAutomationHandler
 {
     public PlaceVinegarHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var item = player.CurrentItem;
         if (item is SObject { QualifiedItemId: "(O)419" } vinegar)
         {
             var grid = this.GetTileGrid(this.Config.AutoPlaceVinegar.Range);
+            
             foreach (var tile in grid)
             {
                 location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

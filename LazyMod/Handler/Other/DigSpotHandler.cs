@@ -10,7 +10,7 @@ internal class DigSpotHandler : BaseAutomationHandler
 {
     public DigSpotHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);
         if (hoe is null) return;

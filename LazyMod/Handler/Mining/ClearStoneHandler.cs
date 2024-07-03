@@ -43,7 +43,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
     public ClearStoneHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         if (!this.Config.ClearStoneOnMineShaft && location is MineShaft) return;
         if (!this.Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
@@ -63,6 +63,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
         };
 
         var grid = this.GetTileGrid(this.Config.AutoClearStone.Range);
+        
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return;

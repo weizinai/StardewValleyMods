@@ -11,7 +11,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
 {
     public ChopTreeHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
         var axe = ToolHelper.GetTool<Axe>(this.Config.AutoChopTree.FindToolFromInventory);
         if (axe is null) return;
@@ -32,6 +32,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
         };
 
         var grid = this.GetTileGrid(this.Config.AutoChopTree.Range);
+        
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return;

@@ -10,16 +10,15 @@ internal class TriggerMachineHandler : BaseAutomationHandler
 {
     public TriggerMachineHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Farmer player, GameLocation location)
+    public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var item = player.CurrentItem;
-        if (item is null) return;
-
         var grid = this.GetTileGrid(this.Config.AutoTriggerMachine.Range);
+        
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is null) continue;
+            
             var machineData = obj.GetMachineData();
             if (machineData is null) continue;
 

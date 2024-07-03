@@ -131,6 +131,7 @@ internal class ModEntry : Mod
         if (_config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(_config);
         if (_config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler(_config);
         if (_config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler(_config);
+        if (_config.AutoOpenAnimalDoor) yield return new AnimalDoorHandler(_config);
         if (_config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(_config);
 
         // Mining

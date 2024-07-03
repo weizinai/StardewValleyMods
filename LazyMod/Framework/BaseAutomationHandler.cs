@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using StardewModdingAPI;
 using StardewValley;
 using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
@@ -16,6 +17,11 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected BaseAutomationHandler(ModConfig config)
     {
         this.Config = config;
+    }
+
+    public virtual bool IsEnable()
+    {
+        return Context.IsPlayerFree;
     }
 
     public abstract void Apply(Item? item, Farmer player, GameLocation location);

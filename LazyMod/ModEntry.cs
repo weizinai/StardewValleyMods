@@ -2,7 +2,6 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Menus;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
@@ -82,8 +81,6 @@ internal class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (!Context.IsPlayerFree && Game1.activeClickableMenu is not ItemGrabMenu { source: ItemGrabMenu.source_fishingChest }) return;
-
         if (!this.UpdateCooldown()) return;
         
         var player = Game1.player;
@@ -91,10 +88,15 @@ internal class ModEntry : Mod
         if (player is null || location is null) return;
 
         var item = player.CurrentItem;
-        if (item is null) return;
 
         TileHelper.ClearTileCache();
-        foreach (var handler in this.handlers) handler.Apply(item, player, location);
+        foreach (var handler in this.handlers)
+        {
+            if (handler.IsEnable())
+            {
+                handler.Apply(item, player, location);
+            }
+        }
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs e)

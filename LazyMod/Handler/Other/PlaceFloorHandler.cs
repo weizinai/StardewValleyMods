@@ -13,9 +13,11 @@ internal class PlaceFloorHandler : BaseAutomationHandler
     {
         if (item is SObject floor && floor.IsFloorPathItem())
         {
-            var grid = this.GetTileGrid(this.Config.AutoPlaceFloor.Range);
-            
-            foreach (var tile in grid) this.PlaceObjectAction(floor, tile, player, location);
+            this.ForEachTile(this.Config.AutoPlaceFloor.Range, tile =>
+            {
+                this.PlaceObjectAction(floor, tile, player, location);
+                return true;
+            });
         }
     }
 }

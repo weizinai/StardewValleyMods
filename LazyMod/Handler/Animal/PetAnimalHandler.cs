@@ -14,18 +14,18 @@ internal class PetAnimalHandler : BaseAutomationHandler
         var animals = location.animals.Values;
         if (!animals.Any()) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoPetAnimal.Range, tile =>
         {
             foreach (var animal in animals)
             {
                 if (this.CanPetAnimal(tile, animal))
                 {
                     this.PetAnimal(player, animal);
+                    return true;
                 }
             }
-        }
+            return true;
+        });
     }
 
     private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)

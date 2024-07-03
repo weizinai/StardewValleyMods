@@ -11,13 +11,11 @@ internal class ShakeFruitTreeHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoShakeFruitTree.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoShakeFruitTree.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is FruitTree fruitTree && fruitTree.fruit.Count > 0)
-                fruitTree.performUseAction(tile);
-        }
+            if (terrainFeature is FruitTree fruitTree && fruitTree.fruit.Count > 0) fruitTree.performUseAction(tile);
+            return true;
+        });
     }
 }

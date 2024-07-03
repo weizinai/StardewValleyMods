@@ -16,18 +16,17 @@ internal class ClearWoodHandler : BaseAutomationHandler
         var axe = ToolHelper.GetTool<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
         if (axe is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoClearWood.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoClearWood.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;
+            if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return false;
 
             if (this.Config.ClearTwig)
             {
                 location.objects.TryGetValue(tile, out var obj);
-                if (obj is not null && obj.IsTwig())
+                if (obj?.IsTwig() == true)
                 {
                     this.UseToolOnTile(location, player, axe, tile);
+                    return true;
                 }
             }
 
@@ -56,6 +55,8 @@ internal class ClearWoodHandler : BaseAutomationHandler
                     break;
                 }
             }
-        }
+            
+            return true;
+        }); 
     }
 }

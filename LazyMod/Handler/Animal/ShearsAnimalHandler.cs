@@ -16,17 +16,19 @@ internal class ShearsAnimalHandler : BaseAutomationHandler
         if (shears is null) return;
 
         var animals = location.animals.Values;
-        var grid = this.GetTileGrid(this.Config.AutoShearsAnimal.Range);
 
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoShearsAnimal.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina || player.freeSpotsInInventory() < 1) return;
+            if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina || player.freeSpotsInInventory() < 1) return false;
 
             var animal = this.GetBestHarvestableFarmAnimal(shears, tile, animals);
-            if (animal is null) continue;
+            if (animal is not null)
+            {
+                shears.animal = animal;
+                this.UseToolOnTile(location, player, shears, tile);
+            }
 
-            shears.animal = animal;
-            this.UseToolOnTile(location, player, shears, tile);
-        }
+            return true;
+        });
     }
 }

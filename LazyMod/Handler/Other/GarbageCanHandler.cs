@@ -12,17 +12,16 @@ internal class GarbageCanHandler : BaseAutomationHandler
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
         if (this.CheckNPCNearTile(location, player) && this.Config.StopGarbageCanNearVillager) return;
-        
-        var grid = this.GetTileGrid(this.Config.AutoGarbageCan.Range);
-        
-        foreach (var tile in grid)
+
+        this.ForEachTile(this.Config.AutoGarbageCan.Range, tile =>
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 78)
             {
                 var action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
-                if (action?.StartsWith("Garbage") ?? false) this.CheckTileAction(location, player, tile);
+                if (action?.StartsWith("Garbage") == true) this.CheckTileAction(location, player, tile);
             }
-        }
+            return true;
+        });
     }
 
     /// <summary>

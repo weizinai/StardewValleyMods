@@ -14,17 +14,26 @@ internal class ForageHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoForage.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoForage.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is not null && obj.IsSpawnedObject) this.CollectSpawnedObject(location, player, tile, obj);
+            if (obj?.IsSpawnedObject == true)
+            {
+                this.CollectSpawnedObject(location, player, tile, obj);
+                return true;
+            }
 
             foreach (var terrainFeature in location.largeTerrainFeatures)
+            {
                 if (terrainFeature is Bush bush && this.CanForageBerry(tile, bush))
+                {
                     bush.performUseAction(tile);
-        }
+                    return true;
+                }
+            }
+
+            return true;
+        });
     }
 
     private void CollectSpawnedObject(GameLocation location, Farmer player, Vector2 tile, SObject obj)

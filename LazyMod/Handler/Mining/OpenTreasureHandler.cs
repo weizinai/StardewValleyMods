@@ -10,13 +10,11 @@ internal class OpenTreasureHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoOpenTreasure.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is null || obj.QualifiedItemId != "(O)-1") continue;
-            obj.checkForAction(player);
-        }
+            if (obj?.QualifiedItemId == "(O)-1") obj.checkForAction(player);
+            return true;
+        });
     }
 }

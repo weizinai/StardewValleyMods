@@ -14,20 +14,20 @@ internal class SeedHandler : BaseAutomationHandler
     {
         if (item.Category != SObject.SeedsCategory) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoSeed.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoSeed.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is HoeDirt { crop: null } hoeDirt)
             {
+                if (item.Stack <= 0) return false;
+                
                 location.objects.TryGetValue(tile, out var obj);
-                if (obj is not null) continue;
-
-                if (item.Stack <= 0) break;
+                if (obj is not null) return true;
 
                 if (hoeDirt.plant(item.ItemId, player, false)) player.reduceActiveItemByOne();
             }
-        }
+
+            return true;
+        });
     }
 }

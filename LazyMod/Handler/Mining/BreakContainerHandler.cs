@@ -16,13 +16,11 @@ internal class BreakContainerHandler : BaseAutomationHandler
         var weapon = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoBreakContainer.FindToolFromInventory);
         if (weapon is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoBreakContainer.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is BreakableContainer)
-                obj.performToolAction(weapon);
-        }
+            if (obj is BreakableContainer) obj.performToolAction(weapon);
+            return true;
+        });
     }
 }

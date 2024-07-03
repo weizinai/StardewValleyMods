@@ -11,12 +11,10 @@ internal class FenceGateHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoOpenFenceGate.Range + 2);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoOpenFenceGate.Range + 2, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is not Fence fence || !fence.isGate.Value) continue;
+            if (obj is not Fence fence || !fence.isGate.Value) return true;
 
             var distance = this.GetDistance(player.Tile, tile);
             if (distance <= this.Config.AutoOpenFenceGate.Range && fence.gatePosition.Value == 0)
@@ -27,7 +25,9 @@ internal class FenceGateHandler : BaseAutomationHandler
             {
                 fence.toggleGate(player, false);
             }
-        }
+
+            return true;
+        });
     }
 
     private int GetDistance(Vector2 origin, Vector2 tile)

@@ -12,26 +12,25 @@ internal class TriggerMachineHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoTriggerMachine.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoTriggerMachine.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is null) continue;
-            
-            var machineData = obj.GetMachineData();
-            if (machineData is null) continue;
 
-            if (machineData.AdditionalConsumedItems is not null &&
+            var machineData = obj?.GetMachineData();
+            if (machineData == null) return true;
+
+            if (machineData.AdditionalConsumedItems != null &&
                 !MachineDataUtility.HasAdditionalRequirements(SObject.autoLoadFrom ?? player.Items, machineData.AdditionalConsumedItems, out _))
-                continue;
+                return true;
 
-            if (obj.PlaceInMachine(machineData, item, false, player))
+            if (obj?.PlaceInMachine(machineData, item, false, player) == true)
             {
                 MachineDataUtility.TryGetMachineOutputRule(obj, machineData, MachineOutputTrigger.ItemPlacedInMachine, item, player, location,
                     out _, out var triggerRule, out _, out _);
-                if (item.Stack <= triggerRule?.RequiredCount) break;
+                if (item.Stack <= triggerRule?.RequiredCount) return false;
             }
-        }
+
+            return true;
+        });
     }
 }

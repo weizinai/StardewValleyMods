@@ -12,22 +12,20 @@ internal class HarvestMachineHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoHarvestMachine.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoHarvestMachine.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is CrabPot) continue;
-            this.HarvestMachine(player, obj);
-        }
+            if (obj is not CrabPot) this.HarvestMachine(player, obj);
+            return true;
+        });
     }
 
     private void HarvestMachine(Farmer player, SObject? machine)
     {
-        if (machine is null) return;
+        if (machine == null) return;
 
         var heldObject = machine.heldObject.Value;
-        if (machine.readyForHarvest.Value && heldObject is not null)
+        if (machine.readyForHarvest.Value && heldObject != null)
         {
             if (player.freeSpotsInInventory() == 0 && !player.Items.ContainsId(heldObject.ItemId)) return;
             machine.checkForAction(player);

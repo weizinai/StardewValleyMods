@@ -15,15 +15,14 @@ internal class ClearWeedsHandler : BaseAutomationHandler
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);
         if (scythe is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoClearWeeds.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoClearWeeds.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is not null && obj.IsWeeds() && obj.QualifiedItemId is not ("(O)319" or "(O)320" or "(O)321"))
+            if (obj != null && obj.IsWeeds() && obj.QualifiedItemId is not ("(O)319" or "(O)320" or "(O)321"))
             {
                 obj.performToolAction(scythe);
                 location.removeObject(tile, false);
+                return true;
             }
 
             foreach (var clump in location.resourceClumps)
@@ -40,6 +39,8 @@ internal class ClearWeedsHandler : BaseAutomationHandler
                     }
                 }
             }
-        }
+
+            return true;
+        });
     }
 }

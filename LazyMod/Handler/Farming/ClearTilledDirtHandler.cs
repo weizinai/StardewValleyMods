@@ -16,17 +16,17 @@ internal class ClearTilledDirtHandler : BaseAutomationHandler
         var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearTilledDirt.FindToolFromInventory);
         if (pickaxe is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoClearTilledDirt.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoClearTilledDirt.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoClearTilledDirt.StopStamina) break;
+            if (player.Stamina <= this.Config.AutoClearTilledDirt.StopStamina) return false;
 
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
                 this.UseToolOnTile(location, player, pickaxe, tile);
             }
-        }
+            
+            return true;
+        });
     }
 }

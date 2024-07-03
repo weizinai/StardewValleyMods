@@ -13,19 +13,21 @@ internal class AnimalCrackerHandler : BaseAutomationHandler
     {
         if (item.QualifiedItemId != "(O)GoldenAnimalCracker") return;
 
-        var grid = this.GetTileGrid(this.Config.AutoFeedAnimalCracker.Range);
         var animals = location.animals.Values;
-
-        foreach (var tile in grid)
+        
+        this.ForEachTile(this.Config.AutoFeedAnimalCracker.Range, tile =>
         {
             foreach (var animal in animals)
             {
                 if (this.CanFeedAnimalCracker(tile, animal))
                 {
                     this.FeedAnimalCracker(player, animal);
+                    return true;
                 }
             }
-        }
+            
+            return true;
+        });
     }
 
     private bool CanFeedAnimalCracker(Vector2 tile, FarmAnimal animal)

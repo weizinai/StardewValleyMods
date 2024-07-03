@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Locations;
@@ -15,20 +16,23 @@ internal class CoolLavaHandler : BaseAutomationHandler
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
         if (location is not VolcanoDungeon dungeon) return;
+        
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);
         if (wateringCan is null) return;
         
-        var grid = this.GetTileGrid(this.Config.AutoCoolLava.Range);
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoCoolLava.Range, tile =>
         {
-            if (wateringCan.WaterLeft <= 0) break;
-            if (player.Stamina <= this.Config.AutoCoolLava.StopStamina) return;
+            if (wateringCan.WaterLeft <= 0) return false;
+            if (player.Stamina <= this.Config.AutoCoolLava.StopStamina) return false;
+
+            if (this.CanCoolLave(dungeon, tile))
+            {
+                this.UseToolOnTile(location, player, wateringCan, tile);
+                if (player.ShouldHandleAnimationSound()) player.playNearbySoundLocal("wateringCan");
+            }
             
-            if (!this.CanCoolLave(dungeon, tile)) continue;
-            this.UseToolOnTile(location, player, wateringCan, tile);
-            if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
-                player.playNearbySoundLocal("wateringCan");
-        }
+            return true;
+        });
     }
 
     private bool CanCoolLave(VolcanoDungeon dungeon, Vector2 tile)

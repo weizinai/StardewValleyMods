@@ -13,17 +13,17 @@ internal class HarvestCropHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoHarvestCrop.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 var crop = hoeDirt.crop;
+
                 // 自动收获花逻辑
                 if (!this.Config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory)
-                    continue;
+                    return true;
+
                 if (crop.harvest((int)tile.X, (int)tile.Y, hoeDirt))
                 {
                     hoeDirt.destroyCrop(true);
@@ -32,6 +32,8 @@ internal class HarvestCropHandler : BaseAutomationHandler
                         player.team.RequestLimitedNutDrops("IslandFarming", location, (int)tile.X * 64, (int)tile.Y * 64, 5);
                 }
             }
-        }
+
+            return true;
+        });
     }
 }

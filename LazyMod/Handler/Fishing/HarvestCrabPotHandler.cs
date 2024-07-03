@@ -12,13 +12,12 @@ internal class HarvestCrabPotHandler : BaseAutomationHandler
 
     public override void Apply(Item item, Farmer player, GameLocation location)
     {
-        var grid = this.GetTileGrid(this.Config.AutoHarvestCarbPot.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoHarvestCarbPot.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj is CrabPot) this.HarvestMachine(player, obj);
-        }
+            return true;
+        });
     }
 
     protected void HarvestMachine(Farmer player, SObject? machine)

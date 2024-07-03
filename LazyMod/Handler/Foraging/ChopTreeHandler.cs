@@ -31,17 +31,15 @@ internal class ChopTreeHandler : BaseAutomationHandler
             { Tree.mysticTree, this.Config.ChopMysticTree }
         };
 
-        var grid = this.GetTileGrid(this.Config.AutoChopTree.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoChopTree.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return;
+            if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return false;
 
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree)
             {
-                if (tree.tapped.Value && !this.Config.ChopTapperTree) continue;
-                if (tree.stopGrowingMoss.Value && !this.Config.ChopVinegarTree) continue;
+                if (tree.tapped.Value && !this.Config.ChopTapperTree) return true;
+                if (tree.stopGrowingMoss.Value && !this.Config.ChopVinegarTree) return true;
 
                 foreach (var (key, value) in treeType)
                 {
@@ -69,6 +67,8 @@ internal class ChopTreeHandler : BaseAutomationHandler
                     }
                 }
             }
-        }
+
+            return true;
+        });
     }
 }

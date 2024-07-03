@@ -14,14 +14,18 @@ internal class AddBaitForCrabPotHandler : BaseAutomationHandler
     {
         if (item is SObject { Category: SObject.baitCategory } bait)
         {
-            var grid = this.GetTileGrid(this.Config.AutoAddBaitForCarbPot.Range);
-            foreach (var tile in grid)
+            this.ForEachTile(this.Config.AutoAddBaitForCarbPot.Range, tile =>
             {
                 location.objects.TryGetValue(tile, out var obj);
-                if (obj is not CrabPot crabPot || crabPot.bait.Value is not null) continue;
-                if (obj.performObjectDropInAction(bait, false, player))
-                    player.reduceActiveItemByOne();
-            }
+                if (obj is CrabPot crabPot && crabPot.bait.Value == null)
+                {
+                    if (obj.performObjectDropInAction(bait, false, player))
+                    {
+                        player.reduceActiveItemByOne();
+                    }
+                }
+                return true;
+            });
         }
     }
 }

@@ -16,21 +16,21 @@ internal class WaterDirtHandler : BaseAutomationHandler
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoWaterDirt.FindToolFromInventory);
         if (wateringCan is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoWaterDirt.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoWaterDirt.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoWaterDirt.StopStamina || wateringCan.WaterLeft <= 0) break;
+            if (player.Stamina <= this.Config.AutoWaterDirt.StopStamina || wateringCan.WaterLeft <= 0) return false;
 
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
                 this.UseToolOnTile(location, player, wateringCan, tile);
-                if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())
+                if (player.ShouldHandleAnimationSound())
                 {
                     player.playNearbySoundLocal("wateringCan");
                 }
             }
-        }
+
+            return true;
+        });
     }
 }

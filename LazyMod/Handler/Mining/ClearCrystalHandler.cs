@@ -15,15 +15,17 @@ internal class ClearCrystalHandler : BaseAutomationHandler
         var tool = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearCrystal.FindToolFromInventory);
         if (tool is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoClearCrystal.Range);
-        
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoClearCrystal.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
             if (obj?.QualifiedItemId is "(O)319" or "(O)320" or "(O)321")
             {
-                if (obj.performToolAction(tool)) location.removeObject(tile, false);
+                if (obj.performToolAction(tool))
+                {
+                    location.removeObject(tile, false);
+                }
             }
-        }
+            return true;
+        });
     }
 }

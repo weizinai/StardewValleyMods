@@ -12,7 +12,6 @@ namespace weizinai.StardewValleyMod.LazyMod.Framework;
 internal abstract class BaseAutomationHandler : IAutomationHandler
 {
     protected readonly ModConfig Config;
-    protected readonly Func<int, List<Vector2>> GetTileGrid = TileHelper.GetTileGrid;
 
     protected BaseAutomationHandler(ModConfig config)
     {
@@ -20,6 +19,12 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     }
 
     public abstract void Apply(Item item, Farmer player, GameLocation location);
+
+    protected void ForEachTile(int range, Func<Vector2, bool> action)
+    {
+        var grid = TileHelper.GetTileGrid(range);
+        foreach (var tile in grid) if (!action(tile)) break;
+    }
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)
     {

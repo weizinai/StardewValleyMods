@@ -61,12 +61,10 @@ internal class ClearStoneHandler : BaseAutomationHandler
             { this.geodeStone, this.Config.ClearGeodeStone },
             { this.calicoEggStone, this.Config.ClearCalicoEggStone }
         };
-
-        var grid = this.GetTileGrid(this.Config.AutoClearStone.Range);
         
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoClearStone.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return;
+            if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return false;
 
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null)
@@ -112,6 +110,8 @@ internal class ClearStoneHandler : BaseAutomationHandler
                     break;
                 }
             }
-        }
+
+            return true;
+        });
     }
 }

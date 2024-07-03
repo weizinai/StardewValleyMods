@@ -15,15 +15,13 @@ internal class DigSpotHandler : BaseAutomationHandler
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);
         if (hoe is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoDigSpots.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoDigSpots.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return;
+            if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return false;
 
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId is not ("(O)590" or "(O)SeedSpot")) continue;
-            this.UseToolOnTile(location, player, hoe, tile);
-        }
+            if (obj?.QualifiedItemId is "(O)590" or "(O)SeedSpot") this.UseToolOnTile(location, player, hoe, tile);
+            return true;
+        });
     }
 }

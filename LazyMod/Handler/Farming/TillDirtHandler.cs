@@ -16,14 +16,12 @@ internal class TillDirtHandler : BaseAutomationHandler
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoTillDirt.FindToolFromInventory);
         if (hoe is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoTillDirt.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoTillDirt.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoTillDirt.StopStamina) return;
-            if (!this.CanTillDirt(tile, location)) continue;
-            this.UseToolOnTile(location, player, hoe, tile);
-        }
+            if (player.Stamina <= this.Config.AutoTillDirt.StopStamina) return false;
+            if (this.CanTillDirt(tile, location)) this.UseToolOnTile(location, player, hoe, tile);
+            return true;
+        });
     }
 
     private bool CanTillDirt(Vector2 tile, GameLocation location)

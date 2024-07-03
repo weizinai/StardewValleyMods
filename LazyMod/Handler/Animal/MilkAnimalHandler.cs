@@ -17,18 +17,20 @@ internal class MilkAnimalHandler : BaseAutomationHandler
 
         var animals = location.animals.Values;
         if (!animals.Any()) return;
-
-        var grid = this.GetTileGrid(this.Config.AutoMilkAnimal.Range);
-        foreach (var tile in grid)
+        
+        this.ForEachTile(this.Config.AutoMilkAnimal.Range, tile =>
         {
-            if (player.freeSpotsInInventory() == 0) break;
-            if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) break;
+            if (player.freeSpotsInInventory() == 0) return false;
+            if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) return false;
 
             var animal = this.GetBestHarvestableFarmAnimal(milkPail, tile, animals);
-            if (animal is null) continue;
+            if (animal is not null)
+            {
+                milkPail.animal = animal;
+                this.UseToolOnTile(location, player, milkPail, tile);
+            }
 
-            milkPail.animal = animal;
-            this.UseToolOnTile(location, player, milkPail, tile);
-        }
+            return true;
+        });
     }
 }

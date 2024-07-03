@@ -13,9 +13,11 @@ internal class PlaceCrabPotHandler : BaseAutomationHandler
     {
         if (item is SObject { QualifiedItemId: "(O)710" } crabPot)
         {
-            var grid = this.GetTileGrid(this.Config.AutoPlaceCarbPot.Range);
-
-            foreach (var tile in grid) this.PlaceObjectAction(crabPot, tile, player, location);
+            this.ForEachTile(this.Config.AutoPlaceCarbPot.Range, tile =>
+            {
+                this.PlaceObjectAction(crabPot, tile, player, location);
+                return true;
+            });
         }
     }
 }

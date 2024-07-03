@@ -13,11 +13,10 @@ internal class CollectCoalHandler : BaseAutomationHandler
     {
         if (location is not MineShaft) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoCollectCoal.Range);
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoCollectCoal.Range, tile =>
         {
-            if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
-                this.CheckTileAction(location, player, tile);
-        }
+            if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194) this.CheckTileAction(location, player, tile);
+            return true;
+        });
     }
 }

@@ -16,16 +16,19 @@ internal class ClearDeadCropHandler : BaseAutomationHandler
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
         if (scythe is null) return;
 
-        var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
-
-        foreach (var tile in grid)
+        this.ForEachTile(this.Config.AutoClearDeadCrop.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 var crop = hoeDirt.crop;
-                if (crop.dead.Value) hoeDirt.performToolAction(scythe, 0, tile);
+                if (crop.dead.Value)
+                {
+                    hoeDirt.performToolAction(scythe, 0, tile);
+                }
             }
-        }
+            
+            return true;
+        });
     }
 }

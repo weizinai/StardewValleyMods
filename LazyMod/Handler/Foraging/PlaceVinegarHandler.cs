@@ -14,16 +14,12 @@ internal class PlaceVinegarHandler : BaseAutomationHandler
     {
         if (item is SObject { QualifiedItemId: "(O)419" } vinegar)
         {
-            var grid = this.GetTileGrid(this.Config.AutoPlaceVinegar.Range);
-            
-            foreach (var tile in grid)
+            this.ForEachTile(this.Config.AutoPlaceVinegar.Range, tile =>
             {
                 location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-                if (terrainFeature is Tree tree && !tree.stopGrowingMoss.Value)
-                {
-                    this.PlaceObjectAction(vinegar, tile, player, location);
-                }
-            }
+                if (terrainFeature is Tree tree && !tree.stopGrowingMoss.Value) this.PlaceObjectAction(vinegar, tile, player, location);
+                return true;
+            });
         }
     }
 }

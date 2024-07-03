@@ -122,7 +122,7 @@ internal class ModEntry : Mod
         if (this.config.ToggleModStateKeybind.JustPressed())
         {
             this.modEnable = !this.modEnable;
-            Log.NoIconHUDMessage(this.modEnable ? I18n.Message_ModEnable() : I18n.Message_ModDisable());
+            Log.NoIconHUDMessage(this.modEnable ? I18n.UI_ModState_Enable() : I18n.UI_ModState_Disable());
         }
     }
 

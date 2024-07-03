@@ -14,7 +14,7 @@
 
     <ItemGroup>
         <Folder Include="assets\" />
-        <Folder Include="Docs\Screenshots\" />
+        <Folder Include="docs\Screenshots\" />
     </ItemGroup>
 
     <ItemGroup>

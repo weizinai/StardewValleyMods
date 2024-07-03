@@ -19,8 +19,8 @@ internal class AppearanceManager
     public AppearanceManager(IModHelper helper, ModConfig config)
     {
         this.config = config;
-        this.defaultPadTexture = helper.ModContent.Load<Texture2D>("Assets/Pad.png");
-        this.defaultPinTexture = helper.ModContent.Load<Texture2D>("Assets/Pin.png");
+        this.defaultPadTexture = helper.ModContent.Load<Texture2D>("assets/Pad.png");
+        this.defaultPinTexture = helper.ModContent.Load<Texture2D>("assets/Pin.png");
     }
 
     public Texture2D GetPinTexture(string target, string questType)

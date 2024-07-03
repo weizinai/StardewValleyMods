@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Docs\Screenshots\"/>
+        <Folder Include="docs\Screenshots\" />
     </ItemGroup>
 
     <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared"/>

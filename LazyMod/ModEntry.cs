@@ -55,8 +55,6 @@ internal class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
-
         foreach (var handler in this.dayChangedHandlers)
         {
             handler.OnDayStarted();
@@ -77,8 +75,6 @@ internal class ModEntry : Mod
 
     private void OnDayEnding(object? sender, DayEndingEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
-
         foreach (var handler in this.dayChangedHandlers)
         {
             handler.OnDayEnding();

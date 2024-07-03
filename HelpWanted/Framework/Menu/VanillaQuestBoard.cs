@@ -64,7 +64,7 @@ internal sealed class VanillaQuestBoard : BaseQuestBoard
             {
                 this.HoverTitle = "";
                 this.HoverText = "";
-                this.ShowingQuestID = option.myID;
+                this.ShowingQuestId = option.myID;
                 this.ShowingQuest = option.QuestData.Quest;
                 this.AcceptQuestButton.visible = true;
                 return;
@@ -87,7 +87,7 @@ internal sealed class VanillaQuestBoard : BaseQuestBoard
                 Game1.playSound("newArtifact");
                 this.ShowingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
                 Game1.player.questLog.Add(this.ShowingQuest);
-                QuestNotes.RemoveAll(option => option.myID == this.ShowingQuestID);
+                QuestNotes.RemoveAll(option => option.myID == this.ShowingQuestId);
                 this.ShowingQuest = null;
                 this.AcceptQuestButton.visible = false;
             }

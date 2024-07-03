@@ -11,7 +11,7 @@ internal abstract class BaseQuestBoard : IClickableMenu
     protected string HoverTitle = "";
     protected string HoverText = "";
 
-    protected int ShowingQuestID;
+    protected int ShowingQuestId;
     protected Quest? ShowingQuest;
     protected readonly ModConfig Config;
 

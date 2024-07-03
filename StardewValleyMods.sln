@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInfo", "MoreInfo\MoreIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCabinFix", "CustomCabinFix\CustomCabinFix.csproj", "{75520E66-9892-4E4A-846E-F8E359BA2E4D}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = ".Common.UI", "Common.UI\.Common.UI.shproj", "{90DB9706-5ACB-4742-A7B2-AE4E21DDE908}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

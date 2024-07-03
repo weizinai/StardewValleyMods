@@ -28,6 +28,4 @@
 
     <Import Project="..\Common.Log\Common.Log.projitems" Label="Shared"/>
 
-    <Import Project="..\Common\Common.projitems" Label="Shared"/>
-
 </Project>

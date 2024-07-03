@@ -34,10 +34,3 @@ public class Image : Element
         return new Vector2(this.sourceRectangle.Width, this.sourceRectangle.Height) * this.Scale;
     }
 }
-
-/// <summary>Simplifies access to the game's sprite sheets.</summary>
-/// <remarks>Each sprite is represented by a rectangle, which specifies the coordinates and dimensions of the image in the sprite sheet.</remarks>
-internal static class CommonImage
-{
-    public static Rectangle CloseButton => new(337, 494, 12, 12);
-}

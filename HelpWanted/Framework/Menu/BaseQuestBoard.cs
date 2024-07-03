@@ -1,4 +1,3 @@
-using weizinai.StardewValleyMod.Common.UI;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Menus;
@@ -35,7 +34,7 @@ internal abstract class BaseQuestBoard : IClickableMenu
 
         // 关闭按钮逻辑
         this.upperRightCloseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen + this.width - 20, this.yPositionOnScreen, 48, 48),
-            Game1.mouseCursors, CommonImage.CloseButton, 4f);
+            Game1.mouseCursors, new Rectangle(337, 494, 12, 12), 4f);
 
         // 初始化
         this.Config = config;

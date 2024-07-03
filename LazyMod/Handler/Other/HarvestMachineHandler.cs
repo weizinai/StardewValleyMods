@@ -27,7 +27,7 @@ internal class HarvestMachineHandler : BaseAutomationHandler
         var heldObject = machine.heldObject.Value;
         if (machine.readyForHarvest.Value && heldObject != null)
         {
-            if (player.freeSpotsInInventory() == 0 && !player.Items.ContainsId(heldObject.ItemId)) return;
+            if (!player.couldInventoryAcceptThisItem(heldObject)) return;
             machine.checkForAction(player);
         }
     }

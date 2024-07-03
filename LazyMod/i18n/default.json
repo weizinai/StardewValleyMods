@@ -122,7 +122,6 @@
     "Config.AutoClearWood.Name": "Auto Clear Wood",
     "Config.AutoClearWood.Tooltip": "This feature only works when you hold the axe.",
     "Config.AutoClearWoodRange.Name": "Auto Clear Wood Range",
-    "Config.ClearTwig.Name": "Clear Twig",
     "Config.ClearStump.Name": "Clear Stump",
     "Config.ClearHollowLog.Name": "Clear Hollow Log",
 

@@ -137,7 +137,6 @@ internal class ModConfig
 
     // 自动清理木头
     public StaminaToolAutomationConfig AutoClearWood { get; set; } = new(1, 3, true);
-    public bool ClearTwig { get; set; } = true;
     public bool ClearStump { get; set; }
     public bool ClearHollowLog { get; set; }
 

@@ -122,7 +122,6 @@
     "Config.AutoClearWood.Name": "自动清理木头",
     "Config.AutoClearWood.Tooltip": "当你手持斧头时,该功能才有效果.",
     "Config.AutoClearWoodRange.Name": "自动清理木头范围",
-    "Config.ClearTwig.Name": "清理树枝",
     "Config.ClearStump.Name": "清理大树桩",
     "Config.ClearHollowLog.Name": "清理大圆木",
 

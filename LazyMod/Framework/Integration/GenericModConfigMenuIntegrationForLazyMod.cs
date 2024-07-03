@@ -232,11 +232,6 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理木头
             .AddStaminaToolAutomationConfig(config => config.AutoClearWood, I18n.Config_AutoClearWood_Name, I18n.Config_AutoClearWood_Tooltip, 1)
             .AddBoolOption(
-                config => config.ClearTwig,
-                (config, value) => config.ClearTwig = value,
-                I18n.Config_ClearTwig_Name
-            )
-            .AddBoolOption(
                 config => config.ClearStump,
                 (config, value) => config.ClearStump = value,
                 I18n.Config_ClearStump_Name

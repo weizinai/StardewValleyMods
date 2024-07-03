@@ -17,20 +17,13 @@ internal class CoolLavaHandler : BaseAutomationHandler
         if (location is not VolcanoDungeon dungeon) return;
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);
         if (wateringCan is null) return;
-
-        var hasAddWaterMessage = true;
+        
         var grid = this.GetTileGrid(this.Config.AutoCoolLava.Range);
         foreach (var tile in grid)
         {
-            if (wateringCan.WaterLeft <= 0)
-            {
-                if (!hasAddWaterMessage) Game1.showRedMessageUsingLoadString("Strings\\StringsFromCSFiles:WateringCan.cs.14335");
-                break;
-            }
-
-            hasAddWaterMessage = false;
-
+            if (wateringCan.WaterLeft <= 0) break;
             if (player.Stamina <= this.Config.AutoCoolLava.StopStamina) return;
+            
             if (!this.CanCoolLave(dungeon, tile)) continue;
             this.UseToolOnTile(location, player, wateringCan, tile);
             if (wateringCan.WaterLeft > 0 && player.ShouldHandleAnimationSound())

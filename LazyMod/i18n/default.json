@@ -102,14 +102,6 @@
     "Config.AutoCoolLava.Name": "Auto Cool Lava",
     "Config.AutoCoolLava.Tooltip": "This feature only works when you hold the watering can.",
     "Config.AutoCoolLavaRange.Name": "Auto Cool Lava Range",
-    "Config.StopCoolLavaStamina.Name": "Stop Cool Lava Stamina",
-    "Config.ShowMineShaftInfo.Name": "Show Mine Shaft Info",
-    "Config.ShowLadderInfo.Name": "Show Ladder Info",
-    "Config.ShowShaftInfo.Name": "Show Shaft Info",
-    "Config.ShowMonsterInfo.Name": "Show Monster Info",
-    "Config.ShowMonsterKillInfo.Name": "Show Monster Kill Info",
-    "Config.ShowMonsterKillInfo.Tooltip": "When this option is enabled, left-clicking on the monster info icon will open the list of monster kill targets.",
-    "Config.ShowMineralInfo.Name": "Show Mineral Info",
 
     // Foraging
     "Config.ForagingPage.Name": "Foraging",

@@ -77,12 +77,6 @@ internal class ModConfig
     public ToolAutomationConfig AutoClearCrystal { get; set; } = new(1, true);
     // 自动冷却岩浆
     public StaminaToolAutomationConfig AutoCoolLava { get; set; } = new(1, 3, true);
-    // 显示矿井信息
-    public bool ShowLadderInfo { get; set; } = true;
-    public bool ShowShaftInfo { get; set; } = true;
-    public bool ShowMonsterInfo { get; set; } = true;
-    public bool ShowMonsterKillInfo { get; set; } = true;
-    public bool ShowMineralInfo { get; set; } = true;
 
     #endregion
 

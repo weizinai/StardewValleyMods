@@ -197,35 +197,7 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             // 自动清理水晶
             .AddToolAutomationConfig(config => config.AutoClearCrystal, I18n.Config_AutoClearCrystal_Name, null, 1)
             // 自动冷却岩浆
-            .AddStaminaToolAutomationConfig(config => config.AutoCoolLava, I18n.Config_AutoCoolLava_Name, I18n.Config_AutoCoolLava_Tooltip, 1)
-            // 显示矿井信息
-            .AddSectionTitle(I18n.Config_ShowMineShaftInfo_Name)
-            .AddBoolOption(
-                config => config.ShowLadderInfo,
-                (config, value) => config.ShowLadderInfo = value,
-                I18n.Config_ShowLadderInfo_Name
-            )
-            .AddBoolOption(
-                config => config.ShowShaftInfo,
-                (config, value) => config.ShowShaftInfo = value,
-                I18n.Config_ShowShaftInfo_Name
-            )
-            .AddBoolOption(
-                config => config.ShowMonsterInfo,
-                (config, value) => config.ShowMonsterInfo = value,
-                I18n.Config_ShowMonsterInfo_Name
-            )
-            .AddBoolOption(
-                config => config.ShowMonsterKillInfo,
-                (config, value) => config.ShowMonsterKillInfo = value,
-                I18n.Config_ShowMonsterKillInfo_Name,
-                I18n.Config_ShowMonsterKillInfo_Tooltip
-            )
-            .AddBoolOption(
-                config => config.ShowMineralInfo,
-                (config, value) => config.ShowMineralInfo = value,
-                I18n.Config_ShowMineralInfo_Name
-            );
+            .AddStaminaToolAutomationConfig(config => config.AutoCoolLava, I18n.Config_AutoCoolLava_Name, I18n.Config_AutoCoolLava_Tooltip, 1);
     }
 
     private void AddForagingPage()

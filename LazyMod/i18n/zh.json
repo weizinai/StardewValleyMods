@@ -102,14 +102,6 @@
     "Config.AutoCoolLava.Name": "自动冷却岩浆",
     "Config.AutoCoolLava.Tooltip": "当你手持水壶时,该功能才有效果.",
     "Config.AutoCoolLavaRange.Name": "自动冷却岩浆范围",
-    "Config.StopCoolLavaStamina.Name": "停止自动冷却岩浆体力",
-    "Config.ShowMineShaftInfo.Name": "显示矿井信息",
-    "Config.ShowLadderInfo.Name": "显示梯子信息",
-    "Config.ShowShaftInfo.Name": "显示竖井信息",
-    "Config.ShowMonsterInfo.Name": "显示怪物信息",
-    "Config.ShowMonsterKillInfo.Name": "显示杀怪目标",
-    "Config.ShowMonsterKillInfo.Tooltip": "当该选项启用时,鼠标左键点击怪物信息图标会打开杀怪目标清单.",
-    "Config.ShowMineralInfo.Name": "显示矿物信息",
 
     // 采集
     "Config.ForagingPage.Name": "采集",

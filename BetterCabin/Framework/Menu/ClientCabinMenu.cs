@@ -16,7 +16,7 @@ internal class ClientCabinMenu : IClickableMenu
 {
     private const int WindowWidth = 576;
     private const int WindowHeight = 576;
-    
+
     private readonly Building building;
     private SkinEntry currentSkin = null!;
     private readonly List<SkinEntry> skins = new();
@@ -41,7 +41,7 @@ internal class ClientCabinMenu : IClickableMenu
     {
         this.originLocation = Game1.player.currentLocation;
         this.originViewport = Game1.viewport.Location;
-        
+
         this.building = targetBuilding;
 
         var buildingData = targetBuilding.GetData();

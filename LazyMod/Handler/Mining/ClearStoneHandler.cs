@@ -38,11 +38,11 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
     // 卡利三花蛋的QualifiedItemId
     private readonly HashSet<string> calicoEggStone = new() { "(O)CalicoEggStone_0", "(O)CalicoEggStone_1", "(O)CalicoEggStone_2" };
-    
+
     private readonly HashSet<int> mineBoulder = new() { 752, 754, 756, 758, 148 };
-    
+
     public ClearStoneHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         if (!this.Config.ClearStoneOnMineShaft && location is MineShaft) return;
@@ -66,7 +66,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return;
-            
+
             location.objects.TryGetValue(tile, out var obj);
             if (obj is not null)
             {

@@ -9,9 +9,7 @@ namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class ResetCabinHandler : BaseHandler
 {
-    public ResetCabinHandler(ModConfig config, IModHelper helper) : base(config, helper)
-    {
-    }
+    public ResetCabinHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
 
     public override void Init()
     {
@@ -34,10 +32,10 @@ internal class ResetCabinHandler : BaseHandler
             {
                 if (Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID))
                 {
-                    Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_Online()){ noIcon = true});
+                    Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_Online()) { noIcon = true });
                     return;
                 }
-                
+
                 if (!cabin.owner.isUnclaimedFarmhand)
                     this.ResetCabin(cabin);
                 else

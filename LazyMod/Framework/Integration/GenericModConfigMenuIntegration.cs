@@ -27,7 +27,7 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
 
         return this;
     }
-    
+
     public GenericModConfigMenuIntegration<TConfig> AddToolAutomationConfig(Func<TConfig, ToolAutomationConfig> get, Func<string> text, Func<string>? tooltip, int minRange)
     {
         this.AddBaseAutomationConfig(get, text, tooltip, minRange);
@@ -40,8 +40,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
 
         return this;
     }
-    
-    public GenericModConfigMenuIntegration<TConfig> AddStaminaToolAutomationConfig(Func<TConfig, StaminaToolAutomationConfig> get, 
+
+    public GenericModConfigMenuIntegration<TConfig> AddStaminaToolAutomationConfig(Func<TConfig, StaminaToolAutomationConfig> get,
         Func<string> text, Func<string>? tooltip, int minRange)
     {
         this.AddBaseAutomationConfig(get, text, tooltip, minRange);

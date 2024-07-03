@@ -7,10 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class SandyOption : BaseOption
 {
     public SandyOption(Rectangle sourceRect) :
-        base(I18n.Option_Sandy(), sourceRect)
-    {
-    }
-
+        base(I18n.Option_Sandy(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

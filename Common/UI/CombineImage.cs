@@ -18,9 +18,7 @@ public class CombineImage : Element
 
     public CombineImage(Texture2D content, Rectangle contentSourceRectangle, Vector2 localPosition, float scale = 1f) :
         this(Game1.menuTexture, new Rectangle(0, 256, 60, 60), Color.White,
-            content, contentSourceRectangle, Color.White, localPosition, scale)
-    {
-    }
+            content, contentSourceRectangle, Color.White, localPosition, scale) { }
 
     private CombineImage(Texture2D background, Rectangle backgroundSourceRectangle, Color backgroundColor,
         Texture2D content, Rectangle contentSourceRectangle, Color contentColor, Vector2 localPosition, float scale = 1f)
@@ -37,7 +35,6 @@ public class CombineImage : Element
 
     public override int Width => (int)this.GetImageSize().X;
     public override int Height => (int)this.GetImageSize().Y;
-
 
     public override void Draw(SpriteBatch spriteBatch)
     {

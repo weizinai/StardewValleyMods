@@ -13,7 +13,7 @@ internal class AnimalCrackerHandler : BaseAutomationHandler
     {
         var item = player.CurrentItem;
         if (item?.QualifiedItemId != "(O)GoldenAnimalCracker") return;
-        
+
         var grid = this.GetTileGrid(this.Config.AutoFeedAnimalCracker.Range);
         var animals = location.animals.Values;
 

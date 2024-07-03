@@ -10,7 +10,7 @@ internal static class RSVReflection
         if (type is null) throw new ArgumentException($"Could not find type {typeName} in RidgesideVillage assembly.");
         return type;
     }
-    
+
     public static MethodInfo GetRSVPrivateStaticMethod(string typeName, string methodName)
     {
         var type = GetRSVType(typeName);

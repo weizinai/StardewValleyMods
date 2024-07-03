@@ -9,20 +9,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
-      <PackageReference Include="Pathoschild.Stardew.ModTranslationClassBuilder" Version="2.1.0" />
+        <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1"/>
+        <PackageReference Include="Pathoschild.Stardew.ModTranslationClassBuilder" Version="2.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Remove="i18n\default.json" />
+        <AdditionalFiles Remove="i18n\default.json"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="docs\Screenshots\" />
+        <Folder Include="docs\Screenshots\"/>
     </ItemGroup>
 
-    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
+    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared"/>
 
-    <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared" />
+    <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared"/>
 
 </Project>

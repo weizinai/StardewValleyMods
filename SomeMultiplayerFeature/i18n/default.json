@@ -15,7 +15,7 @@
     "Config.EnableTime.Name": "Enable Time",
     "Config.DisableTime.Name": "Disable Time",
     "Config.DisableWhenFestival.Name": "Disable When Festival",
-    
+
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",
     "Config.ShowPlayerCount.Tooltip": "Displays the number of players currently online. This feature is available on both the host side and the client side.",

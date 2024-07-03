@@ -11,7 +11,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
 internal class CoolLavaHandler : BaseAutomationHandler
 {
     public CoolLavaHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         if (location is not VolcanoDungeon dungeon) return;
@@ -37,7 +37,7 @@ internal class CoolLavaHandler : BaseAutomationHandler
                 player.playNearbySoundLocal("wateringCan");
         }
     }
-    
+
     private bool CanCoolLave(VolcanoDungeon dungeon, Vector2 tile)
     {
         var x = (int)tile.X;

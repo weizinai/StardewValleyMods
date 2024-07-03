@@ -9,12 +9,12 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
 internal class TriggerMachineHandler : BaseAutomationHandler
 {
     public TriggerMachineHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var item = player.CurrentItem;
         if (item is null) return;
-        
+
         var grid = this.GetTileGrid(this.Config.AutoTriggerMachine.Range);
         foreach (var tile in grid)
         {

@@ -16,7 +16,7 @@ internal class GenericModConfigMenuIntegrationForMoreExperience
     public void Register()
     {
         if (!this.configMenu.IsLoaded) return;
-        
+
         this.configMenu.Register();
 
         foreach (var (id, _) in this.configMenu.GetConfig().MachineExperienceData)
@@ -32,7 +32,7 @@ internal class GenericModConfigMenuIntegrationForMoreExperience
                     config => config.MachineExperienceData[id].FishingExperience,
                     (config, value) => config.MachineExperienceData[id].FishingExperience = value,
                     I18n.Config_FishingSkill_Name
-                    )
+                )
                 .AddNumberOption(
                     config => config.MachineExperienceData[id].ForagingExperience,
                     (config, value) => config.MachineExperienceData[id].ForagingExperience = value,

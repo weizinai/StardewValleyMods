@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
 internal class CollectCoalHandler : BaseAutomationHandler
 {
     public CollectCoalHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         if (location is not MineShaft) return;

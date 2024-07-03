@@ -11,9 +11,7 @@ internal class DelayedPlayerHandler : BaseHandler
     private int cooldown;
 
     public DelayedPlayerHandler(IModHelper helper, ModConfig config)
-        : base(helper, config)
-    {
-    }
+        : base(helper, config) { }
 
     public override void Init()
     {
@@ -29,11 +27,11 @@ internal class DelayedPlayerHandler : BaseHandler
         if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         this.cooldown++;
-        
+
         if (this.cooldown >= this.Config.ShowInterval)
         {
             this.cooldown = 0;
-            
+
             var playerPing = new Dictionary<string, float>();
             foreach (var farmer in Game1.getOnlineFarmers())
             {

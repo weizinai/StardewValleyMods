@@ -6,9 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MysticFalls2Option : BaseOption
 {
-    public MysticFalls2Option(Rectangle sourceRect) : base(I18n.Option_MysticFall2(), sourceRect)
-    {
-    }
+    public MysticFalls2Option(Rectangle sourceRect) : base(I18n.Option_MysticFall2(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

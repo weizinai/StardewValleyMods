@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class MilkAnimalHandler : BaseAutomationHandler
 {
     public MilkAnimalHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var milkPail = ToolHelper.GetTool<MilkPail>(this.Config.AutoMilkAnimal.FindToolFromInventory);
@@ -23,10 +23,10 @@ internal class MilkAnimalHandler : BaseAutomationHandler
         {
             if (player.freeSpotsInInventory() == 0) break;
             if (player.Stamina <= this.Config.AutoMilkAnimal.StopStamina) break;
-            
+
             var animal = this.GetBestHarvestableFarmAnimal(milkPail, tile, animals);
             if (animal is null) continue;
-            
+
             milkPail.animal = animal;
             this.UseToolOnTile(location, player, milkPail, tile);
         }

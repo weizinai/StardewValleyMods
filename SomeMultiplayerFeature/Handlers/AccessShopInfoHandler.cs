@@ -12,10 +12,7 @@ internal class AccessShopInfoHandler : BaseHandler
     private IClickableMenu? lastShopMenu;
 
     public AccessShopInfoHandler(IModHelper helper, ModConfig config)
-        : base(helper, config)
-    {
-    }
-
+        : base(helper, config) { }
 
     public override void Init()
     {

@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class LolaOption : BaseOption
 {
     public LolaOption(Rectangle sourceRect) :
-        base(I18n.Option_Lola(), sourceRect)
-    {
-    }
+        base(I18n.Option_Lola(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

@@ -8,9 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class IslandResortOption : BaseOption
 {
     public IslandResortOption(Rectangle sourceRect) :
-        base(I18n.Option_IslandResort(), sourceRect)
-    {
-    }
+        base(I18n.Option_IslandResort(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

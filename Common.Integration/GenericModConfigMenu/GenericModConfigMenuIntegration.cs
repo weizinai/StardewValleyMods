@@ -76,7 +76,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            this.configMenu?.AddBoolOption(this.consumerManifest,
+            this.configMenu?.AddBoolOption(
+                this.consumerManifest,
                 () => get(this.GetConfig()),
                 value => set(this.GetConfig(), value),
                 name,
@@ -102,7 +103,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            this.configMenu?.AddNumberOption(this.consumerManifest,
+            this.configMenu?.AddNumberOption(
+                this.consumerManifest,
                 () => get(this.GetConfig()),
                 value => set(this.GetConfig(), value),
                 name,
@@ -132,7 +134,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            this.configMenu?.AddNumberOption(this.consumerManifest,
+            this.configMenu?.AddNumberOption(
+                this.consumerManifest,
                 () => get(this.GetConfig()),
                 value => set(this.GetConfig(), value),
                 name,
@@ -160,7 +163,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            this.configMenu?.AddTextOption(this.consumerManifest,
+            this.configMenu?.AddTextOption(
+                this.consumerManifest,
                 () => get(this.GetConfig()),
                 value => set(this.GetConfig(), value),
                 name,
@@ -184,7 +188,8 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         if (enable)
         {
-            this.configMenu?.AddKeybindList(this.consumerManifest,
+            this.configMenu?.AddKeybindList(
+                this.consumerManifest,
                 () => get(this.GetConfig()),
                 value => set(this.GetConfig(), value),
                 name,

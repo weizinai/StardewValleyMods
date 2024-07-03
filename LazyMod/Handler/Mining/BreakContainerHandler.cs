@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
 internal class BreakContainerHandler : BaseAutomationHandler
 {
     public BreakContainerHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var weapon = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoBreakContainer.FindToolFromInventory);

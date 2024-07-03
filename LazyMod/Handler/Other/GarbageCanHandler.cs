@@ -5,10 +5,10 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
 
-internal class GarbageCanHandler : BaseAutomationHandler 
+internal class GarbageCanHandler : BaseAutomationHandler
 {
     public GarbageCanHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         if (this.CheckNPCNearTile(location, player) && this.Config.StopGarbageCanNearVillager) return;
@@ -22,7 +22,7 @@ internal class GarbageCanHandler : BaseAutomationHandler
             }
         }
     }
-    
+
     /// <summary>
     /// 检测周围是否有NPC
     /// </summary>

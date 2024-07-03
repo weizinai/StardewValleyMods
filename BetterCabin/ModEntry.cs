@@ -53,7 +53,7 @@ internal class ModEntry : Mod
             this.handlers.Add(new LockCabinHandler(this.config, this.Helper));
 
         LockCabinHandler.InitLockCabinConfig(this.config);
-        
+
         foreach (var handler in this.handlers) handler.Init();
     }
 }

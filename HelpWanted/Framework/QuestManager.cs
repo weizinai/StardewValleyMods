@@ -117,11 +117,8 @@ internal class QuestManager
         foreach (var (id, questData) in this.rawCustomQuestData)
         {
             if (!GameStateQuery.CheckConditions(questData.Condition)) continue;
-            
-            
         }
     }
-    
 
     private NPC? GetNpcFromQuest(Quest quest)
     {
@@ -220,7 +217,8 @@ internal class QuestManager
             (this.config.ItemDeliveryWeight, () => new ItemDeliveryQuest())
         };
         var currentWeight = 0f;
-        var totalWeight = this.config.ResourceCollectionWeight + (slayMonsterQuest ? this.config.SlayMonstersWeight : 0) + this.config.FishingWeight + this.config.ItemDeliveryWeight;
+        var totalWeight = this.config.ResourceCollectionWeight + (slayMonsterQuest ? this.config.SlayMonstersWeight : 0) + this.config.FishingWeight +
+                          this.config.ItemDeliveryWeight;
         foreach (var (weight, createQuest) in questTypes)
         {
             Log.Trace($"{this.GetQuestType(createQuest())}的权重为{weight}");

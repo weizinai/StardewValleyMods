@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
 internal class OpenTreasureHandler : BaseAutomationHandler
 {
     public OpenTreasureHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoBreakContainer.Range);

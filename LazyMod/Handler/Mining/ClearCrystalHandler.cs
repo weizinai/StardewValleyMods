@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
 internal class ClearCrystalHandler : BaseAutomationHandler
 {
     public ClearCrystalHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var tool = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearCrystal.FindToolFromInventory);

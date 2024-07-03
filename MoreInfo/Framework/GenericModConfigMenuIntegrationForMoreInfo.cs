@@ -5,7 +5,7 @@ namespace MoreInfo.Framework;
 internal class GenericModConfigMenuIntegrationForMoreInfo
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
-    
+
     public GenericModConfigMenuIntegrationForMoreInfo(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {
         this.configMenu = configMenu;

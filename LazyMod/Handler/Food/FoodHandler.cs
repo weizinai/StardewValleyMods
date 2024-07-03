@@ -11,9 +11,7 @@ internal class FoodHandler : BaseAutomationHandler
 {
     private readonly Dictionary<SObject, string?> foodData = new();
 
-    public FoodHandler(ModConfig config) : base(config)
-    {
-    }
+    public FoodHandler(ModConfig config) : base(config) { }
 
     public override void Apply(Farmer player, GameLocation location)
     {

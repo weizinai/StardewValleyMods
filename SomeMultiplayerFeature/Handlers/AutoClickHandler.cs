@@ -11,9 +11,7 @@ internal class AutoClickHandler : BaseHandler
 {
     private int cooldown;
 
-    public AutoClickHandler(IModHelper helper, ModConfig config) : base(helper, config)
-    {
-    }
+    public AutoClickHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
     public override void Init()
     {

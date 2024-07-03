@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class PikaOption : BaseOption
 {
     public PikaOption(Rectangle sourceRect) :
-        base(I18n.Option_Pika(), sourceRect)
-    {
-    }
+        base(I18n.Option_Pika(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

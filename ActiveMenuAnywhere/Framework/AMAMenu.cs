@@ -85,7 +85,8 @@ internal class AMAMenu : IClickableMenu
         this.downArrow.draw(spriteBatch);
 
         // Draw tabs
-        this.tabs.ForEach(tab => DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right, this.GetTabID(tab) == this.currentMenuTabID ? 0.7f : 1f));
+        this.tabs.ForEach(tab => DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
+            this.GetTabID(tab) == this.currentMenuTabID ? 0.7f : 1f));
 
         // Draw options
         this.DrawOption();
@@ -179,7 +180,8 @@ internal class AMAMenu : IClickableMenu
             new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString())
         });
         if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null) this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_SVE(), MenuTabID.SVE.ToString()));
-        if (this.helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null) this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
+        if (this.helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
+            this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
     }
 
     private void SetOptions()

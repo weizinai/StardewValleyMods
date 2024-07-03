@@ -12,9 +12,7 @@ internal class PlayerCountHandler : BaseHandler
     private readonly Button playerCountButton = new(new Point(64, 64), "");
 
     public PlayerCountHandler(IModHelper helper, ModConfig config)
-        : base(helper, config)
-    {
-    }
+        : base(helper, config) { }
 
     public override void Init()
     {

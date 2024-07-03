@@ -9,6 +9,7 @@ namespace weizinai.StardewValleyMod.FreeLock;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
+
     public override void Entry(IModHelper helper)
     {
         // 初始化
@@ -24,22 +25,22 @@ internal class ModEntry : Mod
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!Context.IsWorldReady || !Game1.viewportFreeze) return;
-        
+
         var mouseX = Game1.getOldMouseX(false);
         var mouseY = Game1.getOldMouseY(false);
         var moveSpeed = this.config.MoveSpeed;
         var moveThreshold = this.config.MoveThreshold;
-        
+
         // 水平移动
         if (mouseX < moveThreshold)
             Game1.panScreen(-moveSpeed, 0);
-        else if (mouseX - Game1.viewport.Width >= -moveThreshold) 
+        else if (mouseX - Game1.viewport.Width >= -moveThreshold)
             Game1.panScreen(moveSpeed, 0);
-        
+
         // 垂直移动
         if (mouseY < moveThreshold)
             Game1.panScreen(0, -moveSpeed);
-        else if (mouseY - Game1.viewport.Height >= -moveThreshold) 
+        else if (mouseY - Game1.viewport.Height >= -moveThreshold)
             Game1.panScreen(0, moveSpeed);
     }
 

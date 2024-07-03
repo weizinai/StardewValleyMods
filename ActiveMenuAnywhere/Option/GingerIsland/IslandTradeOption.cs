@@ -8,9 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class IslandTradeOption : BaseOption
 {
     public IslandTradeOption(Rectangle sourceRect) :
-        base(I18n.Option_IslandTrade(), sourceRect)
-    {
-    }
+        base(I18n.Option_IslandTrade(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

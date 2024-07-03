@@ -17,14 +17,14 @@ internal class SpectateLocationHandler : BaseHandler
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         if (!Context.IsPlayerFree) return;
-        
+
         if (this.Config.SpectateLocationKey.JustPressed())
         {
             var locations = Game1.locations
                 .Where(location => !this.Config.OnlyShowOutdoors || location.IsOutdoors)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName));
-            
-            Game1.currentLocation.ShowPagedResponses(I18n.UI_SpectateLocation_Title(), locations.ToList(), 
+
+            Game1.currentLocation.ShowPagedResponses(I18n.UI_SpectateLocation_Title(), locations.ToList(),
                 value => SpectatorHelper.TrySpectateLocation(value), false, true, 10);
         }
     }

@@ -13,40 +13,55 @@ internal class ModConfig
 
     // 自动耕地
     public StaminaToolAutomationConfig AutoTillDirt { get; set; } = new(0, 3, false);
+
     // 自动清理耕地
     public StaminaToolAutomationConfig AutoClearTilledDirt { get; set; } = new(0, 3, false);
+
     // 自动浇水
     public StaminaToolAutomationConfig AutoWaterDirt { get; set; } = new(0, 3, false);
+
     // 自动补充水壶
     public ToolAutomationConfig AutoRefillWateringCan { get; set; } = new(1, true);
+
     // 自动播种
     public BaseAutomationConfig AutoSeed { get; set; } = new(0);
+
     // 自动施肥
     public BaseAutomationConfig AutoFertilize { get; set; } = new(0);
+
     // 自动收获作物
     public BaseAutomationConfig AutoHarvestCrop { get; set; } = new(0);
+
     public bool AutoHarvestFlower { get; set; }
+
     // 自动摇晃果树
     public BaseAutomationConfig AutoShakeFruitTree { get; set; } = new(1);
+
     // 自动清理枯萎作物
     public ToolAutomationConfig AutoClearDeadCrop { get; set; } = new(0, true);
-    
+
     #endregion
 
     #region 动物
 
     // 自动抚摸动物
     public BaseAutomationConfig AutoPetAnimal { get; set; } = new(1);
+
     // 自动抚摸宠物
     public BaseAutomationConfig AutoPetPet { get; set; } = new(1);
+
     // 自动挤奶
     public StaminaToolAutomationConfig AutoMilkAnimal { get; set; } = new(1, 3, true);
+
     // 自动剪毛
     public StaminaToolAutomationConfig AutoShearsAnimal { get; set; } = new(1, 3, true);
+
     // 自动喂食动物饼干
     public BaseAutomationConfig AutoFeedAnimalCracker { get; set; } = new(1);
+
     // 自动打开动物门
     public bool AutoOpenAnimalDoor { get; set; }
+
     // 自动打开栅栏门
     public BaseAutomationConfig AutoOpenFenceGate { get; set; } = new(1);
 
@@ -66,15 +81,21 @@ internal class ModConfig
     public bool ClearGeodeStone { get; set; }
     public bool ClearCalicoEggStone { get; set; }
     public bool ClearBoulder { get; set; }
+
     public bool ClearMeteorite { get; set; }
+
     // 自动收集煤炭
     public BaseAutomationConfig AutoCollectCoal { get; set; } = new(1);
+
     // 自动破坏容器
     public ToolAutomationConfig AutoBreakContainer { get; set; } = new(1, true);
+
     // 自动打开宝藏
     public BaseAutomationConfig AutoOpenTreasure { get; set; } = new(1);
+
     // 自动清理水晶
     public ToolAutomationConfig AutoClearCrystal { get; set; } = new(1, true);
+
     // 自动冷却岩浆
     public StaminaToolAutomationConfig AutoCoolLava { get; set; } = new(1, 3, true);
 
@@ -84,8 +105,10 @@ internal class ModConfig
 
     // 自动觅食
     public BaseAutomationConfig AutoForage { get; set; } = new(1);
+
     // 自动收获姜
     public StaminaToolAutomationConfig AutoHarvestGinger { get; set; } = new(0, 3, true);
+
     // 自动砍树
     public StaminaToolAutomationConfig AutoChopTree { get; set; } = new(1, 3, false);
     public bool ChopTapperTree { get; set; }
@@ -97,15 +120,21 @@ internal class ModConfig
     public Dictionary<int, bool> ChopPalmTree { get; set; } = new() { { 2, true }, { 3, true }, { 4, false }, { 5, false }, { -1, false } };
     public Dictionary<int, bool> ChopMushroomTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
     public Dictionary<int, bool> ChopGreenRainTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+
     public Dictionary<int, bool> ChopMysticTree { get; set; } = new() { { 0, true }, { 1, false }, { 2, false }, { 3, false }, { 4, false }, { 5, false }, { -1, false } };
+
     // 自动摇树
     public BaseAutomationConfig AutoShakeTree { get; set; } = new(1);
+
     // 自动收获苔藓
     public ToolAutomationConfig AutoHarvestMoss { get; set; } = new(1, true);
+
     // 自动放置采集器
     public BaseAutomationConfig AutoPlaceTapper { get; set; } = new(1);
+
     // 自动浇醋
     public BaseAutomationConfig AutoPlaceVinegar { get; set; } = new(1);
+
     // 自动清理木头
     public StaminaToolAutomationConfig AutoClearWood { get; set; } = new(1, 3, true);
     public bool ClearTwig { get; set; } = true;
@@ -118,7 +147,7 @@ internal class ModConfig
 
     // 自动抓取宝箱物品
     public bool AutoGrabTreasureItem;
-    
+
     // 自动关闭宝箱菜单
     public bool AutoExitTreasureMenu;
 
@@ -176,7 +205,7 @@ internal class ModConfig
 
     // 自动触发机器
     public BaseAutomationConfig AutoTriggerMachine { get; set; } = new(1);
-    
+
     // 自动使用仙尘
     public BaseAutomationConfig AutoUseFairyDust { get; set; } = new(1);
 

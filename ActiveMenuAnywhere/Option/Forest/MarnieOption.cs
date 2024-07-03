@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class MarnieOption : BaseOption
 {
     public MarnieOption(Rectangle sourceRect) :
-        base(I18n.Option_Marnie(), sourceRect)
-    {
-    }
+        base(I18n.Option_Marnie(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

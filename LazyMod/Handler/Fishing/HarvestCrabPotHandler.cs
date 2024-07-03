@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class HarvestCrabPotHandler : BaseAutomationHandler
 {
     public HarvestCrabPotHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoHarvestCarbPot.Range);
@@ -19,7 +19,7 @@ internal class HarvestCrabPotHandler : BaseAutomationHandler
             if (obj is CrabPot) this.HarvestMachine(player, obj);
         }
     }
-    
+
     protected void HarvestMachine(Farmer player, SObject? machine)
     {
         if (machine is null) return;

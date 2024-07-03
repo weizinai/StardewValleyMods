@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class GusOption : BaseOption
 {
     public GusOption(Rectangle sourceRect) :
-        base(I18n.Option_Gus(), sourceRect)
-    {
-    }
+        base(I18n.Option_Gus(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

@@ -10,6 +10,7 @@ internal class ExperienceData
 
     public override string ToString()
     {
-        return $"Farming {this.FarmingExperience} Fishing {this.FishingExperience} Foraging {this.ForagingExperience} Mining {this.MiningExperience} Combat {this.CombatExperience}";
+        return
+            $"Farming {this.FarmingExperience} Fishing {this.FishingExperience} Foraging {this.ForagingExperience} Mining {this.MiningExperience} Combat {this.CombatExperience}";
     }
 }

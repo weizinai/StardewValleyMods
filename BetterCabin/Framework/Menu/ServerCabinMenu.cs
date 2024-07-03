@@ -29,9 +29,9 @@ internal class ServerCabinMenu : CarpenterMenu
         {
             var tile = PositionHelper.GetTilePositionFromMousePosition();
             var building = this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y))
-                ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 1))
-                ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 2))
-                ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 3));
+                           ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 1))
+                           ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 2))
+                           ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 3));
             if (building?.isCabin == false) building.color = Color.White;
         }
     }
@@ -43,7 +43,7 @@ internal class ServerCabinMenu : CarpenterMenu
             var building = this.TargetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
             if (building?.isCabin == false) return;
         }
-        
+
         base.receiveLeftClick(x, y, playSound);
 
         if (this.moving && this.buildingToMove?.isCabin == false)

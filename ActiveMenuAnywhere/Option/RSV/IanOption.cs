@@ -5,9 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class IanOption : BaseOption
 {
-    public IanOption(Rectangle sourceRect) : base(I18n.Option_Ian(), sourceRect)
-    {
-    }
+    public IanOption(Rectangle sourceRect) : base(I18n.Option_Ian(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

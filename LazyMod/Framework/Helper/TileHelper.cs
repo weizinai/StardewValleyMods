@@ -6,7 +6,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 internal static class TileHelper
 {
     private static readonly Dictionary<int, List<Vector2>> TileCache = new();
-    
+
     public static List<Vector2> GetTileGrid(int range)
     {
         if (TileCache.TryGetValue(range, out var cache)) return cache;

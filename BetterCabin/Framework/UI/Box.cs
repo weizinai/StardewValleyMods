@@ -18,6 +18,7 @@ internal abstract class Box
     protected abstract Color TextColor { get; }
     protected abstract string Text { get; }
     private Point Size => this.Font.MeasureString(this.Text).ToPoint() + new Point(32, 32);
+
     private Point Position
     {
         get
@@ -26,6 +27,7 @@ internal abstract class Box
             return new Point(buildingPosition.X - this.Size.X / 2 + this.Offset.X, buildingPosition.Y - this.Size.Y / 2 + this.Offset.Y);
         }
     }
+
     protected abstract Point Offset { get; }
 
     protected Box(Building building, Cabin cabin, ModConfig config)
@@ -34,7 +36,7 @@ internal abstract class Box
         this.Cabin = cabin;
         this.Config = config;
     }
-    
+
     public void Draw(SpriteBatch spriteBatch)
     {
         IClickableMenu.drawTextureBox(spriteBatch, this.Position.X, this.Position.Y, this.Size.X, this.Size.Y, Color.White);

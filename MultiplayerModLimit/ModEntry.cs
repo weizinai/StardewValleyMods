@@ -31,7 +31,7 @@ internal class ModEntry : Mod
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (!this.config.EnableMod) return;
-        
+
         if (!Game1.IsServer) return;
 
         foreach (var player in this.playersToKick)
@@ -47,12 +47,12 @@ internal class ModEntry : Mod
     {
         // 如果玩家不是多人模式的房主，则返回
         if (!Game1.IsServer) return;
-        
+
         // 如果模组未启用，则返回
         if (!this.config.EnableMod) return;
 
         var name = Game1.getFarmer(e.Peer.PlayerID).displayName;
-        
+
         if (this.config.RequireSMAPI && !e.Peer.HasSmapi)
         {
             this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
@@ -99,7 +99,7 @@ internal class ModEntry : Mod
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         if (!Game1.IsClient) return;
-        
+
         if (e is { Type: "ModLimit", FromModID: "weizinai.MultiplayerModLimit" })
         {
             Log.Alert(I18n.UI_KickPlayerTooltip(Game1.player.displayName));
@@ -131,7 +131,7 @@ internal class ModEntry : Mod
         };
         targetModList.Add(args[0], this.GetAllMods());
         this.Helper.WriteConfig(this.config);
-        
+
         Log.Info(I18n.UI_GenerateModList());
     }
 

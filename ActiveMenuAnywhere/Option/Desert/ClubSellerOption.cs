@@ -7,10 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class ClubSellerOption : BaseOption
 {
     public ClubSellerOption(Rectangle sourceRect) :
-        base(I18n.Option_ClubSeller(), sourceRect)
-    {
-    }
-
+        base(I18n.Option_ClubSeller(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

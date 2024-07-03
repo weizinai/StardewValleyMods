@@ -5,13 +5,12 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
 
-internal class MagneticRadiusHandler : BaseAutomationHandler 
+internal class MagneticRadiusHandler : BaseAutomationHandler
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
 
-    
     public MagneticRadiusHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         if (this.Config.MagneticRadiusIncrease == 0)

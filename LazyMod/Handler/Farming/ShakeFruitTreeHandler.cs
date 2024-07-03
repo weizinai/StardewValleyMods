@@ -8,11 +8,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class ShakeFruitTreeHandler : BaseAutomationHandler
 {
     public ShakeFruitTreeHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoShakeFruitTree.Range);
-        
+
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

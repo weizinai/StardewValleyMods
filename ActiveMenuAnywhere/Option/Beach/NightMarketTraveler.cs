@@ -6,9 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class NightMarketTraveler : BaseOption
 {
-    public NightMarketTraveler(Rectangle sourceRect) : base("NightMarketTraveler", sourceRect)
-    {
-    }
+    public NightMarketTraveler(Rectangle sourceRect) : base("NightMarketTraveler", sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

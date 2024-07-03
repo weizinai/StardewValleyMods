@@ -10,10 +10,8 @@ namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 internal class LockCabinHandler : BaseHandler
 {
     private static string LockCabinKey => "weizinai.BetterCabin_LockCabin";
-    
-    public LockCabinHandler(ModConfig config, IModHelper helper) : base(config, helper)
-    {
-    }
+
+    public LockCabinHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
 
     public override void Init()
     {
@@ -43,7 +41,7 @@ internal class LockCabinHandler : BaseHandler
                 Game1.addHUDMessage(new HUDMessage(I18n.UI_LockCabin_Disable(), 3));
                 return;
             }
-            
+
             var cabin = Utility.getHomeOfFarmer(Game1.player) as Cabin;
             if (CheckCabinLock(cabin!))
             {

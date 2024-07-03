@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class IceCreamStandOption : BaseOption
 {
     public IceCreamStandOption(Rectangle sourceRect) :
-        base(I18n.Option_IceCreamStand(), sourceRect)
-    {
-    }
+        base(I18n.Option_IceCreamStand(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

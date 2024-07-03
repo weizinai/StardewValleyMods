@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
 internal class ClearWoodHandler : BaseAutomationHandler
 {
     public ClearWoodHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var axe = ToolHelper.GetTool<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
@@ -20,7 +20,7 @@ internal class ClearWoodHandler : BaseAutomationHandler
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return;
-            
+
             if (this.Config.ClearTwig)
             {
                 location.objects.TryGetValue(tile, out var obj);

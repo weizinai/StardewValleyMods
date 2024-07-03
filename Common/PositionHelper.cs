@@ -6,7 +6,7 @@ namespace weizinai.StardewValleyMod.Common;
 internal static class PositionHelper
 {
     private const int TileSize = 64;
-    
+
     public static Vector2 GetTilePositionFromScreenPosition(Vector2 screenPosition)
     {
         return new Vector2((int)((screenPosition.X + Game1.viewport.X) / TileSize), (int)((screenPosition.Y + Game1.viewport.Y) / TileSize));

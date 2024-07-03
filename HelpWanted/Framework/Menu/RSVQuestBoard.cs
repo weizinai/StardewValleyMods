@@ -141,7 +141,8 @@ internal class RSVQuestBoard : BaseQuestBoard
         while (tries > 0)
         {
             // 随机生成一个矩形区域
-            var rectangle = new Rectangle(this.xPositionOnScreen + Game1.random.Next(this.BoardRect.X, this.BoardRect.Right - width1), this.yPositionOnScreen + Game1.random.Next(this.BoardRect.Y, this.BoardRect.Bottom - height1), width1, height1);
+            var rectangle = new Rectangle(this.xPositionOnScreen + Game1.random.Next(this.BoardRect.X, this.BoardRect.Right - width1),
+                this.yPositionOnScreen + Game1.random.Next(this.BoardRect.Y, this.BoardRect.Bottom - height1), width1, height1);
             // 遍历所有的可点击组件,计算是否有碰撞发生
             var collision = QuestNotes.Any(cc =>
                 Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * this.Config.XOverlapBoundary ||
@@ -165,7 +166,9 @@ internal class RSVQuestBoard : BaseQuestBoard
         Utility.drawTextWithShadow(spriteBatch, description, font, new Vector2(this.xPositionOnScreen + 320 + 32, this.yPositionOnScreen + 256), Game1.textColor, 1f, -1f,
             -1, -1, 0.5f);
         // 接受任务按钮逻辑
-        drawTextureBox(spriteBatch, Game1.mouseCursors, new Rectangle(403, 373, 9, 9), this.AcceptQuestButton.bounds.X, this.AcceptQuestButton.bounds.Y, this.AcceptQuestButton.bounds.Width, this.AcceptQuestButton.bounds.Height, this.AcceptQuestButton.scale > 1f ? Color.LightPink : Color.White, 4f * this.AcceptQuestButton.scale);
+        drawTextureBox(spriteBatch, Game1.mouseCursors, new Rectangle(403, 373, 9, 9), this.AcceptQuestButton.bounds.X, this.AcceptQuestButton.bounds.Y,
+            this.AcceptQuestButton.bounds.Width, this.AcceptQuestButton.bounds.Height, this.AcceptQuestButton.scale > 1f ? Color.LightPink : Color.White,
+            4f * this.AcceptQuestButton.scale);
         Utility.drawTextWithShadow(spriteBatch, Game1.content.LoadString("Strings\\UI:AcceptQuest"), Game1.dialogueFont,
             new Vector2(this.AcceptQuestButton.bounds.X + 12, this.AcceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)), Game1.textColor);
     }

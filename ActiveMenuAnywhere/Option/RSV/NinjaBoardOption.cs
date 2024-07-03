@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class NinjaBoardOption : BaseOption
 {
     public NinjaBoardOption(Rectangle sourceRect) :
-        base(I18n.Option_NinjaBoard(), sourceRect)
-    {
-    }
+        base(I18n.Option_NinjaBoard(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

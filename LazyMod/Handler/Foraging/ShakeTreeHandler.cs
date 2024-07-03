@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
 internal class ShakeTreeHandler : BaseAutomationHandler
 {
     public ShakeTreeHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoShakeTree.Range);

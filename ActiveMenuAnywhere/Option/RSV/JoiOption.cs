@@ -6,9 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JoiOption : BaseOption
 {
-    public JoiOption(Rectangle sourceRect) : base(I18n.Option_Joi(), sourceRect)
-    {
-    }
+    public JoiOption(Rectangle sourceRect) : base(I18n.Option_Joi(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

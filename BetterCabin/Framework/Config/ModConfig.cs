@@ -27,7 +27,7 @@ internal class ModConfig
     public bool CabinMenu { get; set; } = true;
     public KeybindList CabinMenuKeybind { get; set; } = new(SButton.O);
     public bool BuildCabinContinually { get; set; } = true;
-    
+
     // 上锁小屋
     public bool LockCabin { get; set; } = true;
     public KeybindList LockCabinKeybind { get; set; } = new(SButton.L);

@@ -18,7 +18,7 @@ internal class ModHooksPatcher : BasePatcher
     {
         ModHooksPatcher.getConfig = getConfig;
     }
-    
+
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(this.RequireMethod<ModHooks>(nameof(ModHooks.OnGame1_UpdateControlInput)),
@@ -29,11 +29,11 @@ internal class ModHooksPatcher : BasePatcher
     private static void UpdateControlInputPostfix()
     {
         var gameTime = Game1.currentGameTime;
-         
-        for (var i = 0; i < GetSkipsThisTick(Config.ActionButton,ref actionButtonRemainder); i++)
+
+        for (var i = 0; i < GetSkipsThisTick(Config.ActionButton, ref actionButtonRemainder); i++)
             Game1.rightClickPolling -= gameTime.ElapsedGameTime.Milliseconds;
-        
-        for (var i = 0; i < GetSkipsThisTick(Config.UseToolButton,ref useToolButtonRemainder); i++) 
+
+        for (var i = 0; i < GetSkipsThisTick(Config.UseToolButton, ref useToolButtonRemainder); i++)
             Game1.mouseClickPolling += gameTime.ElapsedGameTime.Milliseconds;
     }
 

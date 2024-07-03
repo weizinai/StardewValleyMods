@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class KimpoiOption : BaseOption
 {
     public KimpoiOption(Rectangle sourceRect) :
-        base(I18n.Option_Kimpoi(), sourceRect)
-    {
-    }
+        base(I18n.Option_Kimpoi(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

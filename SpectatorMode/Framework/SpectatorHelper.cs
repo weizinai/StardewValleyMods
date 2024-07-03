@@ -13,7 +13,7 @@ internal static class SpectatorHelper
         Game1.activeClickableMenu = new SpectatorMenu(location);
         return true;
     }
-    
+
     public static bool TrySpectateFarmer(string farmerName)
     {
         var farmer = Game1.otherFarmers.FirstOrDefault(x => x.Value.displayName == farmerName).Value;

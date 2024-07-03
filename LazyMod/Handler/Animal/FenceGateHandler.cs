@@ -8,11 +8,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class FenceGateHandler : BaseAutomationHandler
 {
     public FenceGateHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoOpenFenceGate.Range + 2);
-        
+
         foreach (var tile in grid)
         {
             location.objects.TryGetValue(tile, out var obj);
@@ -29,7 +29,7 @@ internal class FenceGateHandler : BaseAutomationHandler
             }
         }
     }
-    
+
     private int GetDistance(Vector2 origin, Vector2 tile)
     {
         return Math.Max(Math.Abs((int)(origin.X - tile.X)), Math.Abs((int)(origin.Y - tile.Y)));

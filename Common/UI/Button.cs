@@ -19,10 +19,7 @@ public class Button : Element
 
     public Button(string text, Vector2 localPosition, float scale = 1f) :
         this(Game1.menuTexture, new Rectangle(0, 256, 60, 60), Color.White,
-            text, Game1.smallFont, Game1.textColor, localPosition, scale)
-    {
-    }
-
+            text, Game1.smallFont, Game1.textColor, localPosition, scale) { }
 
     public Button(Texture2D texture, Rectangle sourceRectangle, Color textureColor, string text, SpriteFont font, Color textColor, Vector2 localPosition,
         float scale = 1f)
@@ -42,7 +39,8 @@ public class Button : Element
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        IClickableMenu.drawTextureBox(spriteBatch, this.texture, this.sourceRectangle, (int)this.Position.X, (int)this.Position.Y, this.Width, this.Height, this.TextureColor, 1f, false);
+        IClickableMenu.drawTextureBox(spriteBatch, this.texture, this.sourceRectangle, (int)this.Position.X, (int)this.Position.Y, this.Width, this.Height, this.TextureColor, 1f,
+            false);
         spriteBatch.DrawString(this.font, this.text, this.Position + new Vector2(this.ContentPadding, this.ContentPadding), this.textColor,
             0f, Vector2.Zero, this.scale, SpriteEffects.None, 0f);
     }

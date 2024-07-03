@@ -8,9 +8,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 internal class ItemCheatHandler : BaseHandler
 {
     public ItemCheatHandler(IModHelper helper, ModConfig config)
-        : base(helper, config)
-    {
-    }
+        : base(helper, config) { }
 
     public override void Init()
     {

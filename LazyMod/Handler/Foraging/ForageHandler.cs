@@ -11,7 +11,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
 internal class ForageHandler : BaseAutomationHandler
 {
     public ForageHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoForage.Range);
@@ -25,7 +25,7 @@ internal class ForageHandler : BaseAutomationHandler
                     bush.performUseAction(tile);
         }
     }
-    
+
     private void CollectSpawnedObject(GameLocation location, Farmer player, Vector2 tile, SObject obj)
     {
         var oldQuality = obj.Quality;

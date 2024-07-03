@@ -10,14 +10,14 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class ClearDeadCropHandler : BaseAutomationHandler
 {
     public ClearDeadCropHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
         if (scythe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
-        
+
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

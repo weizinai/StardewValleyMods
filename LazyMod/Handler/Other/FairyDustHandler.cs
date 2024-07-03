@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
 internal class FairyDustHandler : BaseAutomationHandler
 {
     public FairyDustHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var item = player.CurrentItem;

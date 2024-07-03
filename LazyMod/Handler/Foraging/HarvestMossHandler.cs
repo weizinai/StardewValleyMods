@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
 internal class HarvestMossHandler : BaseAutomationHandler
 {
     public HarvestMossHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoHarvestMoss.FindToolFromInventory);

@@ -38,7 +38,7 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.InitConfig();
-        
+
         new GenericModConfigMenuIntegrationForMoreExperience(
             this.Helper,
             this.ModManifest,

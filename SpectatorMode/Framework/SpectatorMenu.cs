@@ -26,7 +26,7 @@ internal class SpectatorMenu : IClickableMenu
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
         this.followPlayer = followPlayer;
-    
+
         this.originLocation = Game1.currentLocation;
         this.originViewport = Game1.viewport.Location;
 
@@ -45,7 +45,7 @@ internal class SpectatorMenu : IClickableMenu
                 this.targetLocation = this.targetFarmer.currentLocation;
                 // Game1.globalFadeToClear();
             }
-            
+
             Game1.viewport.Location = this.GetViewportFromFarmer();
             Game1.panScreen(0, 0);
             return;
@@ -68,7 +68,7 @@ internal class SpectatorMenu : IClickableMenu
             Game1.panScreen(0, -moveSpeed);
         else if (mouseY - Game1.viewport.Height >= -moveThreshold)
             Game1.panScreen(0, moveSpeed);
-        
+
         var pressedKeys = Game1.oldKBState.GetPressedKeys();
         foreach (var key in pressedKeys) this.receiveKeyPress(key);
     }
@@ -78,7 +78,7 @@ internal class SpectatorMenu : IClickableMenu
         var title = this.followPlayer
             ? I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName)
             : I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName);
-        SpriteText.drawStringWithScrollCenteredAt(b, title,Game1.uiViewport.Width / 2, 64);
+        SpriteText.drawStringWithScrollCenteredAt(b, title, Game1.uiViewport.Width / 2, 64);
 
         this.drawMouse(b);
     }
@@ -98,7 +98,7 @@ internal class SpectatorMenu : IClickableMenu
             Game1.panScreen(moveSpeed, 0);
         else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
             Game1.panScreen(0, -moveSpeed);
-        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key)) 
+        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
             Game1.panScreen(-moveSpeed, 0);
     }
 

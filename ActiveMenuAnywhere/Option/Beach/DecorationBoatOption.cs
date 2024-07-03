@@ -6,9 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DecorationBoatOption : BaseOption
 {
-    public DecorationBoatOption(Rectangle sourceRect) : base("DecorationBoat", sourceRect)
-    {
-    }
+    public DecorationBoatOption(Rectangle sourceRect) : base("DecorationBoat", sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

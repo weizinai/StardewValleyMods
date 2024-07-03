@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
 internal class HarvestMachineHandler : BaseAutomationHandler
 {
     public HarvestMachineHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoHarvestMachine.Range);

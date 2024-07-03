@@ -179,7 +179,6 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
                 break;
         }
 
-
         foreach (var recipe in allUnlockedCookingRecipes)
         {
             if (Random.NextDouble() < 0.4)

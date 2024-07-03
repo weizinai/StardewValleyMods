@@ -8,9 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class PierreOption : BaseOption
 {
     public PierreOption(Rectangle sourceRect) :
-        base(I18n.Option_Pierre(), sourceRect)
-    {
-    }
+        base(I18n.Option_Pierre(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

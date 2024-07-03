@@ -18,7 +18,8 @@ internal class QuestNote : ClickableComponent
     {
         spriteBatch.Draw(this.QuestData.Pad, this.bounds, this.QuestData.PadSource, this.QuestData.PadColor);
         spriteBatch.Draw(this.QuestData.Pin, this.bounds, this.QuestData.PinSource, this.QuestData.PinColor);
-        spriteBatch.Draw(this.QuestData.Icon, new Vector2(this.bounds.X + this.QuestData.IconOffset.X, this.bounds.Y + this.QuestData.IconOffset.Y), this.QuestData.IconSource, this.QuestData.IconColor,
+        spriteBatch.Draw(this.QuestData.Icon, new Vector2(this.bounds.X + this.QuestData.IconOffset.X, this.bounds.Y + this.QuestData.IconOffset.Y), this.QuestData.IconSource,
+            this.QuestData.IconColor,
             0, Vector2.Zero, this.QuestData.IconScale, SpriteEffects.None, 0);
     }
 }

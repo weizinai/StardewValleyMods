@@ -13,7 +13,7 @@ internal class PetAnimalHandler : BaseAutomationHandler
     {
         var animals = location.animals.Values;
         if (!animals.Any()) return;
-        
+
         var grid = this.GetTileGrid(this.Config.AutoPetAnimal.Range);
 
         foreach (var tile in grid)
@@ -30,9 +30,9 @@ internal class PetAnimalHandler : BaseAutomationHandler
 
     private bool CanPetAnimal(Vector2 tile, FarmAnimal animal)
     {
-        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) && 
-               !animal.wasPet.Value && 
-               (animal.isMoving() || Game1.timeOfDay < 1900) && 
+        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
+               !animal.wasPet.Value &&
+               (animal.isMoving() || Game1.timeOfDay < 1900) &&
                !animal.Name.StartsWith("DH.MEEP.SpawnedAnimal_");
     }
 

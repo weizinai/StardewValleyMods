@@ -9,9 +9,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class QiSpecialOrderOption : BaseOption
 {
     public QiSpecialOrderOption(Rectangle sourceRect) :
-        base(I18n.Option_QiSpecialOrder(), sourceRect)
-    {
-    }
+        base(I18n.Option_QiSpecialOrder(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

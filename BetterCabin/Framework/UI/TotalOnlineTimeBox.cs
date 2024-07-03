@@ -12,8 +12,6 @@ internal class TotalOnlineTimeBox : Box
     protected override string Text => Utility.getHoursMinutesStringFromMilliseconds(this.Cabin.owner.millisecondsPlayed);
     protected override Point Offset => new(this.Config.TotalOnlineTime.XOffset, this.Config.TotalOnlineTime.YOffset);
 
-    public TotalOnlineTimeBox(Building building, Cabin cabin, ModConfig config) 
-        : base(building, cabin, config)
-    {
-    }
+    public TotalOnlineTimeBox(Building building, Cabin cabin, ModConfig config)
+        : base(building, cabin, config) { }
 }

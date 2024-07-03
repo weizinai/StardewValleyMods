@@ -13,7 +13,5 @@ internal abstract class BaseOption
     public Rectangle SourceRect { get; }
     public string Name { get; }
 
-    public virtual void ReceiveLeftClick()
-    {
-    }
+    public virtual void ReceiveLeftClick() { }
 }

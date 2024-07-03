@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
 internal class PlaceFloorHandler : BaseAutomationHandler
 {
     public PlaceFloorHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var item = player.CurrentItem;

@@ -9,18 +9,18 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class FertilizeHandler : BaseAutomationHandler
 {
     public FertilizeHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var item = player.CurrentItem;
         if (item is null || item.Category != SObject.fertilizerCategory) return;
-        
+
         var grid = this.GetTileGrid(this.Config.AutoFertilize.Range);
-        
+
         foreach (var tile in grid)
         {
             if (item.Stack <= 0) break;
-            
+
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             switch (item.QualifiedItemId)
             {

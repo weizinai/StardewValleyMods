@@ -16,9 +16,7 @@ internal class UnreadyPlayerHandler : BaseHandler
     private readonly HashSet<long> unreadyPlayers = new();
 
     public UnreadyPlayerHandler(IModHelper helper, ModConfig config)
-        : base(helper, config)
-    {
-    }
+        : base(helper, config) { }
 
     public override void Init()
     {

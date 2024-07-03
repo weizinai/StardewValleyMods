@@ -10,9 +10,7 @@ namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class VisitCabinInfoHandler : BaseHandler
 {
-    public VisitCabinInfoHandler(ModConfig config, IModHelper helper) : base(config, helper)
-    {
-    }
+    public VisitCabinInfoHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
 
     public override void Init()
     {

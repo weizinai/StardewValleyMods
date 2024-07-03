@@ -8,9 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class RobinOption : BaseOption
 {
     public RobinOption(Rectangle sourceRect) :
-        base(I18n.Option_Robin(), sourceRect)
-    {
-    }
+        base(I18n.Option_Robin(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

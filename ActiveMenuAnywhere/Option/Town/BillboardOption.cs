@@ -8,9 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class BillboardOption : BaseOption
 {
     public BillboardOption(Rectangle sourceRect) :
-        base(I18n.Option_Billboard(), sourceRect)
-    {
-    }
+        base(I18n.Option_Billboard(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

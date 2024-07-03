@@ -3,7 +3,7 @@
     "Config.SpectatorModeTitle.Name": "旁观者模式",
     "UI.SpectatorMode.Title": "正在旁观 {{name}}",
     "UI.SpectatorMode.AutoStop": "已经很晚了，自动停止旁观。",
-    
+
     "Config.SpectateLocationKey.Name": "旁观地点快捷键",
     "Config.OnlyShowOutdoors.Name": "仅显示户外地点",
     "UI.SpectateLocation.Title": "请选择你要旁观的地点",

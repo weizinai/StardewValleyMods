@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class IpConnectionHandler : BaseHandler
 {
-    public IpConnectionHandler(IModHelper helper, ModConfig config) : base(helper, config)
-    {
-    }
+    public IpConnectionHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
     public override void Init()
     {
@@ -20,7 +18,7 @@ internal class IpConnectionHandler : BaseHandler
     {
         // 如果该功能为启用，则返回
         if (!this.Config.AutoSetIpConnection) return;
-        
+
         // 如果当前不是多人模式或者当前玩家不是主玩家，则返回
         if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
@@ -31,12 +29,12 @@ internal class IpConnectionHandler : BaseHandler
                 Game1.addHUDMessage(new HUDMessage("今天是节日，不打开Ip连接。") { noIcon = true });
                 return;
             }
-            Game1.addHUDMessage(new HUDMessage("Ip连接已打开"){ noIcon = true});
+            Game1.addHUDMessage(new HUDMessage("Ip连接已打开") { noIcon = true });
             Game1.options.ipConnectionsEnabled = true;
         }
         else if (Game1.timeOfDay == this.Config.DisableTime * 100)
         {
-            Game1.addHUDMessage(new HUDMessage("Ip连接已关闭"){ noIcon = true});
+            Game1.addHUDMessage(new HUDMessage("Ip连接已关闭") { noIcon = true });
             Game1.options.ipConnectionsEnabled = false;
         }
     }

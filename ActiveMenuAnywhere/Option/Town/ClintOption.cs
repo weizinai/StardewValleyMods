@@ -9,9 +9,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class ClintOption : BaseOption
 {
     public ClintOption(Rectangle sourceRect) :
-        base(I18n.Option_Clint(), sourceRect)
-    {
-    }
+        base(I18n.Option_Clint(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

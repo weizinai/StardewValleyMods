@@ -6,9 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MagicBoatOption : BaseOption
 {
-    public MagicBoatOption(Rectangle sourceRect) : base("MagicBoat", sourceRect)
-    {
-    }
+    public MagicBoatOption(Rectangle sourceRect) : base("MagicBoat", sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

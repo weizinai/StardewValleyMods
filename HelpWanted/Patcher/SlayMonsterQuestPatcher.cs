@@ -327,7 +327,5 @@ internal class SlayMonsterQuestPatcher : BasePatcher
     }
 
     // 初始化火山怪物请单
-    private static void InitPossibleVolcanoDungeonMonsters(List<string> possibleMonsters)
-    {
-    }
+    private static void InitPossibleVolcanoDungeonMonsters(List<string> possibleMonsters) { }
 }

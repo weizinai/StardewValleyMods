@@ -20,11 +20,10 @@ internal class CabinOwnerNameBox : Box
             return Game1.player.team.playerIsOnline(this.Cabin.owner.UniqueMultiplayerID) ? this.Config.OnlineFarmerColor : this.Config.OfflineFarmerColor;
         }
     }
+
     protected override string Text => this.Cabin.owner.displayName;
     protected override Point Offset => new(this.Config.NameTagXOffset, this.Config.NameTagYOffset);
 
-    public CabinOwnerNameBox(Building building, Cabin cabin, ModConfig config) 
-        : base(building, cabin, config)
-    {
-    }
+    public CabinOwnerNameBox(Building building, Cabin cabin, ModConfig config)
+        : base(building, cabin, config) { }
 }

@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class KrobusOption : BaseOption
 {
     public KrobusOption(Rectangle sourceRect) :
-        base(I18n.Option_Krobus(), sourceRect)
-    {
-    }
+        base(I18n.Option_Krobus(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

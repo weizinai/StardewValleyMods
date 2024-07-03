@@ -9,14 +9,14 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class SeedHandler : BaseAutomationHandler
 {
     public SeedHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var item = player.CurrentItem;
         if (item is null || item.Category != SObject.SeedsCategory) return;
-        
+
         var grid = this.GetTileGrid(this.Config.AutoSeed.Range);
-        
+
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

@@ -10,14 +10,14 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class TillDirtHandler : BaseAutomationHandler
 {
     public TillDirtHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoTillDirt.FindToolFromInventory);
         if (hoe is null) return;
 
         var grid = this.GetTileGrid(this.Config.AutoTillDirt.Range);
-        
+
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoTillDirt.StopStamina) return;
@@ -25,7 +25,7 @@ internal class TillDirtHandler : BaseAutomationHandler
             this.UseToolOnTile(location, player, hoe, tile);
         }
     }
-    
+
     private bool CanTillDirt(Vector2 tile, GameLocation location)
     {
         location.terrainFeatures.TryGetValue(tile, out var tileFeature);

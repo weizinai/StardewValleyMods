@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
 internal class ChopTreeHandler : BaseAutomationHandler
 {
     public ChopTreeHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var axe = ToolHelper.GetTool<Axe>(this.Config.AutoChopTree.FindToolFromInventory);
@@ -35,7 +35,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
         foreach (var tile in grid)
         {
             if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return;
-            
+
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree)
             {

@@ -27,7 +27,6 @@ internal class AutomationManger
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
     {
         if (!this.modEnable || !this.UpdateCooldown()) return;
-        
     }
 
     private bool UpdateCooldown()

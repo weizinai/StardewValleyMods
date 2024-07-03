@@ -7,9 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class HatMouseOption : BaseOption
 {
     public HatMouseOption(Rectangle sourceRect) :
-        base(I18n.Option_HatMouse(), sourceRect)
-    {
-    }
+        base(I18n.Option_HatMouse(), sourceRect) { }
 
     public override void ReceiveLeftClick()
     {

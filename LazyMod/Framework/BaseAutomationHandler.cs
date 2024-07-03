@@ -17,7 +17,7 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     {
         this.Config = config;
     }
-    
+
     public abstract void Apply(Farmer player, GameLocation location);
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)
@@ -25,14 +25,14 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile);
         return new Rectangle((int)position.X, (int)position.Y, Game1.tileSize, Game1.tileSize);
     }
-    
+
     protected void UseToolOnTile(GameLocation location, Farmer player, Tool tool, Vector2 tile)
     {
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
         tool.swingTicker++;
         tool.DoFunction(location, (int)position.X, (int)position.Y, 1, player);
     }
-    
+
     protected FarmAnimal? GetBestHarvestableFarmAnimal(Tool tool, Vector2 tile, IEnumerable<FarmAnimal> animals)
     {
         var animal = Utility.GetBestHarvestableFarmAnimal(animals, tool, this.GetTileBoundingBox(tile));
@@ -41,12 +41,12 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
 
         return animal;
     }
-    
+
     protected bool CanAddItemToInventory(Item item)
     {
         return Game1.player.freeSpotsInInventory() > 1 || Game1.player.Items.Any(item.canStackWith);
     }
-    
+
     protected void ConsumeItem(Farmer player, Item item)
     {
         item.Stack--;

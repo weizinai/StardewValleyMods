@@ -13,9 +13,7 @@ internal class VersionLimitHandler : BaseHandler
     private int actionCount;
 
     public VersionLimitHandler(IModHelper helper, ModConfig config)
-        : base(helper, config)
-    {
-    }
+        : base(helper, config) { }
 
     public override void Init()
     {
@@ -73,7 +71,7 @@ internal class VersionLimitHandler : BaseHandler
     private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
     {
         if (Context.IsMainPlayer) return;
-        
+
         if (e is { Type: "VersionLimit", FromModID: "weizinai.SomeMultiplayerFeature" })
         {
             var message = e.ReadAs<string>();

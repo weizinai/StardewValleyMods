@@ -14,7 +14,7 @@ internal class CarpenterMenuPatcher : BasePatcher
     {
         CarpenterMenuPatcher.config = config;
     }
-    
+
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -26,7 +26,7 @@ internal class CarpenterMenuPatcher : BasePatcher
     private static bool ReturnToCarpentryMenuAfterSuccessfulBuildPrefix(CarpenterMenu __instance)
     {
         if (!config.BuildCabinContinually) return true;
-        
+
         // __instance.isCabin 无法判断自定义小屋
         // __instance.GetIndoors() is Cabin 此时室内还未生成，无法判断是否为小屋
         if (__instance.Blueprint.Data.IndoorMapType == "StardewValley.Locations.Cabin" && __instance.CanBuildCurrentBlueprint())
@@ -34,7 +34,7 @@ internal class CarpenterMenuPatcher : BasePatcher
             __instance.freeze = false;
             return false;
         }
-        
+
         return true;
     }
 }

@@ -10,11 +10,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class HarvestCropHandler : BaseAutomationHandler
 {
     public HarvestCropHandler(ModConfig config) : base(config) { }
-    
+
     public override void Apply(Farmer player, GameLocation location)
     {
         var grid = this.GetTileGrid(this.Config.AutoHarvestCrop.Range);
-        
+
         foreach (var tile in grid)
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);

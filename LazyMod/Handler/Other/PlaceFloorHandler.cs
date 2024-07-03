@@ -9,7 +9,7 @@ internal class PlaceFloorHandler : BaseAutomationHandler
 {
     public PlaceFloorHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (item is SObject floor && floor.IsFloorPathItem())
         {

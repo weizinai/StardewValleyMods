@@ -10,24 +10,25 @@ internal class SeedHandler : BaseAutomationHandler
 {
     public SeedHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (item.Category != SObject.SeedsCategory) return;
-
-        this.ForEachTile(this.Config.AutoSeed.Range, tile =>
+        if (item?.Category == SObject.SeedsCategory)
         {
-            location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is HoeDirt { crop: null } hoeDirt)
+            this.ForEachTile(this.Config.AutoSeed.Range, tile =>
             {
-                if (item.Stack <= 0) return false;
-                
-                location.objects.TryGetValue(tile, out var obj);
-                if (obj is not null) return true;
+                location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+                if (terrainFeature is HoeDirt { crop: null } hoeDirt)
+                {
+                    if (item.Stack <= 0) return false;
 
-                if (hoeDirt.plant(item.ItemId, player, false)) player.reduceActiveItemByOne();
-            }
+                    location.objects.TryGetValue(tile, out var obj);
+                    if (obj is not null) return true;
 
-            return true;
-        });
+                    if (hoeDirt.plant(item.ItemId, player, false)) player.reduceActiveItemByOne();
+                }
+
+                return true;
+            });
+        }
     }
 }

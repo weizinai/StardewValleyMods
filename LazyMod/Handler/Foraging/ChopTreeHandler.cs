@@ -11,7 +11,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
 {
     public ChopTreeHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var axe = ToolHelper.GetTool<Axe>(this.Config.AutoChopTree.FindToolFromInventory);
         if (axe is null) return;

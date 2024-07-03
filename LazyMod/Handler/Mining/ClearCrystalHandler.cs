@@ -10,7 +10,7 @@ internal class ClearCrystalHandler : BaseAutomationHandler
 {
     public ClearCrystalHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var tool = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearCrystal.FindToolFromInventory);
         if (tool is null) return;

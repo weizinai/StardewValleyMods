@@ -9,7 +9,7 @@ internal class GarbageCanHandler : BaseAutomationHandler
 {
     public GarbageCanHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (this.CheckNPCNearTile(location, player) && this.Config.StopGarbageCanNearVillager) return;
 

@@ -9,7 +9,7 @@ internal class PlaceCrabPotHandler : BaseAutomationHandler
 {
     public PlaceCrabPotHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (item is SObject { QualifiedItemId: "(O)710" } crabPot)
         {

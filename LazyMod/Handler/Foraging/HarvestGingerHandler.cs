@@ -11,7 +11,7 @@ internal class HarvestGingerHandler : BaseAutomationHandler
 {
     public HarvestGingerHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoHarvestGinger.FindToolFromInventory);
         if (hoe is null) return;

@@ -10,7 +10,7 @@ internal class ClearWeedsHandler : BaseAutomationHandler
 {
     public ClearWeedsHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);
         if (scythe is null) return;

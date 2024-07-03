@@ -11,7 +11,7 @@ internal class MagneticRadiusHandler : BaseAutomationHandler
 
     public MagneticRadiusHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (this.Config.MagneticRadiusIncrease == 0)
         {

@@ -11,7 +11,7 @@ internal class BreakContainerHandler : BaseAutomationHandler
 {
     public BreakContainerHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var weapon = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoBreakContainer.FindToolFromInventory);
         if (weapon is null) return;

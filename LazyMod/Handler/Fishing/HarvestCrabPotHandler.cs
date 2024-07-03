@@ -10,7 +10,7 @@ internal class HarvestCrabPotHandler : BaseAutomationHandler
 {
     public HarvestCrabPotHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         this.ForEachTile(this.Config.AutoHarvestCarbPot.Range, tile =>
         {

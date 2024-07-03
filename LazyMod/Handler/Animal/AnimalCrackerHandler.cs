@@ -9,25 +9,26 @@ internal class AnimalCrackerHandler : BaseAutomationHandler
 {
     public AnimalCrackerHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (item.QualifiedItemId != "(O)GoldenAnimalCracker") return;
-
-        var animals = location.animals.Values;
-        
-        this.ForEachTile(this.Config.AutoFeedAnimalCracker.Range, tile =>
+        if (item?.QualifiedItemId == "(O)GoldenAnimalCracker")
         {
-            foreach (var animal in animals)
+            var animals = location.animals.Values;
+
+            this.ForEachTile(this.Config.AutoFeedAnimalCracker.Range, tile =>
             {
-                if (this.CanFeedAnimalCracker(tile, animal))
+                foreach (var animal in animals)
                 {
-                    this.FeedAnimalCracker(player, animal);
-                    return true;
+                    if (this.CanFeedAnimalCracker(tile, animal))
+                    {
+                        this.FeedAnimalCracker(player, animal);
+                        return true;
+                    }
                 }
-            }
-            
-            return true;
-        });
+
+                return true;
+            });
+        }
     }
 
     private bool CanFeedAnimalCracker(Vector2 tile, FarmAnimal animal)

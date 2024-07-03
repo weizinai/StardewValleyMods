@@ -11,7 +11,7 @@ internal class HarvestMossHandler : BaseAutomationHandler
 {
     public HarvestMossHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoHarvestMoss.FindToolFromInventory);
         if (scythe is null) return;

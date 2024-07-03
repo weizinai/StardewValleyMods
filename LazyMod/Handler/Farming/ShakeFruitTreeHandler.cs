@@ -9,7 +9,7 @@ internal class ShakeFruitTreeHandler : BaseAutomationHandler
 {
     public ShakeFruitTreeHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         this.ForEachTile(this.Config.AutoShakeFruitTree.Range, tile =>
         {

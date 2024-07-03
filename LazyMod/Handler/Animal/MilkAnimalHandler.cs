@@ -10,7 +10,7 @@ internal class MilkAnimalHandler : BaseAutomationHandler
 {
     public MilkAnimalHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var milkPail = ToolHelper.GetTool<MilkPail>(this.Config.AutoMilkAnimal.FindToolFromInventory);
         if (milkPail is null) return;

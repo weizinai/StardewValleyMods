@@ -12,7 +12,7 @@ internal class ForageHandler : BaseAutomationHandler
 {
     public ForageHandler(ModConfig config) : base(config) { }
 
-    public override void Apply(Item item, Farmer player, GameLocation location)
+    public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         this.ForEachTile(this.Config.AutoForage.Range, tile =>
         {

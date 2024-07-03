@@ -45,6 +45,26 @@ internal class ModEntry : Mod
         helper.Events.Player.InventoryChanged += this.OnInventoryChanged;
     }
 
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        new GenericModConfigMenuIntegrationForLazyMod(
+            this.Helper,
+            this.ModManifest,
+            () => this.config,
+            () =>
+            {
+                this.config = new ModConfig();
+                this.Helper.WriteConfig(this.config);
+                this.UpdateConfig();
+            },
+            () =>
+            {
+                this.Helper.WriteConfig(this.config);
+                this.UpdateConfig();
+            }
+        ).Register();
+    }
+
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
         ToolHelper.UpdateToolCache();
@@ -84,26 +104,6 @@ internal class ModEntry : Mod
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
     {
         ToolHelper.UpdateToolCache();
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        new GenericModConfigMenuIntegrationForLazyMod(
-            this.Helper,
-            this.ModManifest,
-            () => this.config,
-            () =>
-            {
-                this.config = new ModConfig();
-                this.Helper.WriteConfig(this.config);
-                this.UpdateConfig();
-            },
-            () =>
-            {
-                this.Helper.WriteConfig(this.config);
-                this.UpdateConfig();
-            }
-        ).Register();
     }
 
     private void UpdateConfig()

@@ -1,0 +1,17 @@
+{
+    "Name": "Custom Cabin Fix",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "This mod fixes some issues that would occur when adding custom cabins.",
+    "UniqueID": "weizinai.CustomCabinFix",
+    "EntryDll": "CustomCabinFix.dll",
+    "UpdateKeys": [
+        "Nexus:"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

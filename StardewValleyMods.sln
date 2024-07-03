@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMachineExperience", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInfo", "MoreInfo\MoreInfo.csproj", "{BEDAA0CC-C00E-4426-9FC2-5A7769F9A342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCabinFix", "CustomCabinFix\CustomCabinFix.csproj", "{75520E66-9892-4E4A-846E-F8E359BA2E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{BEDAA0CC-C00E-4426-9FC2-5A7769F9A342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEDAA0CC-C00E-4426-9FC2-5A7769F9A342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEDAA0CC-C00E-4426-9FC2-5A7769F9A342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

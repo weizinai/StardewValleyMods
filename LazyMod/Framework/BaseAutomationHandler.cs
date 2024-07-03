@@ -5,6 +5,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
+using SObject = StardewValley.Object;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework;
 
@@ -56,5 +57,12 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected void CheckTileAction(GameLocation location, Farmer player, Vector2 tile)
     {
         location.checkAction(new Location((int)tile.X, (int)tile.Y), Game1.viewport, player);
+    }
+
+    protected void PlaceObjectAction(SObject obj, Vector2 tile, Farmer player, GameLocation location)
+    {
+        var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
+        if (obj.placementAction(location, (int)position.X, (int)position.Y, player))
+            player.reduceActiveItemByOne();
     }
 }

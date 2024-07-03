@@ -1,5 +1,4 @@
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
@@ -16,14 +15,7 @@ internal class PlaceCrabPotHandler : BaseAutomationHandler
         {
             var grid = this.GetTileGrid(this.Config.AutoPlaceCarbPot.Range);
 
-            foreach (var tile in grid)
-            {
-                var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
-                if (crabPot.placementAction(location, (int)position.X, (int)position.Y, player))
-                {
-                    player.reduceActiveItemByOne();
-                }
-            }
+            foreach (var tile in grid) this.PlaceObjectAction(crabPot, tile, player, location);
         }
     }
 }

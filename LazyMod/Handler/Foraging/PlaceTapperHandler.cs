@@ -1,6 +1,5 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
@@ -21,8 +20,7 @@ internal class PlaceTapperHandler : BaseAutomationHandler
                 location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
                 if (terrainFeature is Tree tree && !tree.tapped.Value)
                 {
-                    var tilePixelPosition = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
-                    if (tapper.placementAction(location, (int)tilePixelPosition.X, (int)tilePixelPosition.Y, player)) player.reduceActiveItemByOne();
+                    this.PlaceObjectAction(tapper, tile, player, location);
                 }
             }
         }

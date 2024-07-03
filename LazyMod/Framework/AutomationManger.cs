@@ -11,14 +11,10 @@ internal class AutomationManger
 
     private bool modEnable = true;
 
-    private int ticksPerAction;
-    private int skippedActionTicks;
-
     public AutomationManger(IModHelper helper, ModConfig config)
     {
         // 初始化
         this.config = config;
-        this.ticksPerAction = config.Cooldown;
         // 注册事件
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
@@ -26,18 +22,8 @@ internal class AutomationManger
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs updateTickedEventArgs)
     {
-        if (!this.modEnable || !this.UpdateCooldown()) return;
+        if (!this.modEnable) return;
     }
-
-    private bool UpdateCooldown()
-    {
-        this.skippedActionTicks++;
-        if (this.skippedActionTicks < this.ticksPerAction) return false;
-
-        this.skippedActionTicks = 0;
-        return true;
-    }
-
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         if (this.config.ToggleModStateKeybind.JustPressed() && Context.IsPlayerFree)

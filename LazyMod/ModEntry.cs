@@ -17,6 +17,8 @@ internal class ModEntry : Mod
     private IAutomationHandler[] handlers = null!;
     private IAutomationHandlerWithDayChanged[] dayChangedHandlers = null!;
 
+    private int cooldownTimer;
+
     public override void Entry(IModHelper helper)
     {
         // 初始化
@@ -82,6 +84,8 @@ internal class ModEntry : Mod
     {
         if (!Context.IsPlayerFree && Game1.activeClickableMenu is not ItemGrabMenu { source: ItemGrabMenu.source_fishingChest }) return;
 
+        if (!this.UpdateCooldown()) return;
+        
         var player = Game1.player;
         var location = Game1.currentLocation;
         if (player is null || location is null) return;
@@ -104,6 +108,14 @@ internal class ModEntry : Mod
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
     {
         ToolHelper.UpdateToolCache();
+    }
+
+    private bool UpdateCooldown()
+    {
+        this.cooldownTimer++;
+        if (this.cooldownTimer < this.config.Cooldown) return false;
+        this.cooldownTimer = 0;
+        return true;
     }
 
     private void UpdateConfig()

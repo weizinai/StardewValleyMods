@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class CoolLavaHandler : BaseAutomationHandler
 {

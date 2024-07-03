@@ -3,7 +3,7 @@ using StardewValley.TerrainFeatures;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class ShakeTreeHandler : BaseAutomationHandler
 {

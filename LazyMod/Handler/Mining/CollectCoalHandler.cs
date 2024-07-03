@@ -3,7 +3,7 @@ using StardewValley.Locations;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Mining;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class CollectCoalHandler : BaseAutomationHandler
 {

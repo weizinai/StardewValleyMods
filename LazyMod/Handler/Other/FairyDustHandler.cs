@@ -2,7 +2,7 @@ using StardewValley;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class FairyDustHandler : BaseAutomationHandler
 {

@@ -8,9 +8,6 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
-using weizinai.StardewValleyMod.LazyMod.Handler.Foraging;
-using weizinai.StardewValleyMod.LazyMod.Handler.Mining;
-using weizinai.StardewValleyMod.LazyMod.Handler.Other;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 

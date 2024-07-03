@@ -3,7 +3,7 @@ using StardewValley.Characters;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class GarbageCanHandler : BaseAutomationHandler
 {

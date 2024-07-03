@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using SObject = StardewValley.Object;
 
-namespace weizinai.StardewValleyMod.LazyMod.Handler.Other;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 internal class TriggerMachineHandler : BaseAutomationHandler
 {

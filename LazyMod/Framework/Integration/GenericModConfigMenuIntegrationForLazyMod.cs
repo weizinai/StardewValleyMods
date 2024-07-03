@@ -208,16 +208,6 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             .AddBaseAutomationConfig(config => config.AutoForage, I18n.Config_AutoForage_Name, null, 1)
             // 自动砍树
             .AddStaminaToolAutomationConfig(config => config.AutoChopTree, I18n.Config_AutoChopTree_Name, I18n.Config_AutoChopTree_Tooltip, 1)
-            .AddBoolOption(
-                config => config.ChopTapperTree,
-                (config, value) => config.ChopTapperTree = value,
-                I18n.Config_ChopTapperTree_Name
-            )
-            .AddBoolOption(
-                config => config.ChopVinegarTree,
-                (config, value) => config.ChopVinegarTree = value,
-                I18n.Config_ChopVinegarTree_Name
-            )
             .AddPageLink("TreeSettings", I18n.Config_TreeSettingsPage_Name)
             // 自动收获姜
             .AddStaminaToolAutomationConfig(config => config.AutoHarvestGinger, I18n.Config_AutoHarvestGinger_Name, I18n.Config_AutoHarvestGinger_Tooltip, 0)

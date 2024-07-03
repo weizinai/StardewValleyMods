@@ -4,6 +4,7 @@
 - 重构`Generic Mod Config Menu`，使其更加一致
 - 为所有使用工具的功能添加`FindToolFromInventory`选项
 - 移除`ShowMineShaftInfo`功能
+- 移除`ChopTapperTree`和`ChopVinegarTree`选项
 
 # 1.1.1
 

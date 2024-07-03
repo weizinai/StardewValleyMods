@@ -38,8 +38,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree)
             {
-                if (tree.tapped.Value && !this.Config.ChopTapperTree) return true;
-                if (tree.stopGrowingMoss.Value && !this.Config.ChopVinegarTree) return true;
+                if (tree.tapped.Value && tree.stopGrowingMoss.Value) return true;
 
                 foreach (var (key, value) in treeType)
                 {

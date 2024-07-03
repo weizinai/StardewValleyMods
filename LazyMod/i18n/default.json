@@ -109,8 +109,6 @@
     
     "Config.AutoChopTree.Name": "Auto Chop Tree",
     "Config.AutoChopTree.Tooltip": "This feature only works when you hold the axe.",
-    "Config.ChopTapperTree.Name": "Chop Tapper Tree",
-    "Config.ChopVinegarTree.Name": "Chop Vinegar Tree",
     
     "Config.AutoShakeTree.Name": "Auto Shake Tree",
     

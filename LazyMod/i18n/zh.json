@@ -109,8 +109,6 @@
     
     "Config.AutoChopTree.Name": "自动砍树",
     "Config.AutoChopTree.Tooltip": "当你手持斧头时,该功能才有效果.",
-    "Config.ChopTapperTree.Name": "砍树液采集器树",
-    "Config.ChopVinegarTree.Name": "砍醋树",
     
     "Config.AutoShakeTree.Name": "自动摇树",
     

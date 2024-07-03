@@ -1,0 +1,17 @@
+{
+    "Name": "More Info",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "",
+    "UniqueID": "weizinai.MoreInfo",
+    "EntryDll": "MoreInfo.dll",
+    "UpdateKeys": [
+        "Nexus:"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

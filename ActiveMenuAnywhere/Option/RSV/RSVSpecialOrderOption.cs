@@ -13,7 +13,7 @@ internal class RSVSpecialOrderOption : BaseOption
     {
         if (Game1.MasterPlayer.eventsSeen.Contains("75160207"))
         {
-            var method = RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.Questing.QuestController", "OpenSpecialOrderBoard");
+            var method = RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.Questing.QuestController", "OpenSOBoard");
             var parameters = new object[] { Game1.currentLocation, new[] { "RSVTownSO" }, Game1.player, Point.Zero };
             method.Invoke(null, parameters);
         }

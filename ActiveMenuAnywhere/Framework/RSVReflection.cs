@@ -4,7 +4,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 internal static class RSVReflection
 {
-    public static Type GetRSVType(string typeName)
+    private static Type GetRSVType(string typeName)
     {
         var type = Type.GetType($"{typeName}, RidgesideVillage");
         if (type is null) throw new ArgumentException($"Could not find type {typeName} in RidgesideVillage assembly.");

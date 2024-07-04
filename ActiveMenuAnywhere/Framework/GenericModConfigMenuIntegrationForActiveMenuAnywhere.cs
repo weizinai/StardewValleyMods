@@ -38,15 +38,15 @@ internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere
                 {
                     var formatValue = value switch
                     {
-                        "Farm" => I18n.Tab_Farm(),
-                        "Town" => I18n.Tab_Town(),
-                        "Mountain" => I18n.Tab_Mountain(),
-                        "Forest" => I18n.Tab_Forest(),
-                        "Beach" => I18n.Tab_Beach(),
-                        "Desert" => I18n.Tab_Desert(),
-                        "GingerIsland" => I18n.Tab_GingerIsland(),
-                        "RSV" => I18n.Tab_RSV(),
-                        "SVE" => I18n.Tab_SVE(),
+                        "Farm" => I18n.UI_Tab_Farm(),
+                        "Town" => I18n.UI_Tab_Town(),
+                        "Mountain" => I18n.UI_Tab_Mountain(),
+                        "Forest" => I18n.UI_Tab_Forest(),
+                        "Beach" => I18n.UI_Tab_Beach(),
+                        "Desert" => I18n.UI_Tab_Desert(),
+                        "GingerIsland" => I18n.UI_Tab_GingerIsland(),
+                        "RSV" => I18n.UI_Tab_RSV(),
+                        "SVE" => I18n.UI_Tab_SVE(),
                         _ => ""
                     };
                     return formatValue;

@@ -7,15 +7,15 @@
     "Config.ProgressionMode.Name": "进度模式",
 
     // Tab
-    "Tab.Farm": "农场",
-    "Tab.Town": "鹈鹕镇",
-    "Tab.Mountain": "深山",
-    "Tab.Forest": "煤炭森林",
-    "Tab.Beach": "沙滩",
-    "Tab.Desert": "沙漠",
-    "Tab.GingerIsland": "姜岛",
-    "Tab.SVE": "SVE",
-    "Tab.RSV": "RSV",
+    "UI.Tab.Farm": "农场",
+    "UI.Tab.Town": "鹈鹕镇",
+    "UI.Tab.Mountain": "深山",
+    "UI.Tab.Forest": "煤炭森林",
+    "UI.Tab.Beach": "沙滩",
+    "UI.Tab.Desert": "沙漠",
+    "UI.Tab.GingerIsland": "姜岛",
+    "UI.Tab.SVE": "SVE",
+    "UI.Tab.RSV": "RSV",
 
     // Option
     "Option.AbandonedJojaMart": "废弃Joja超市",

@@ -7,15 +7,15 @@
     "Config.ProgressionMode.Name": "Progress Mode", // TODO
 
     // Tab
-    "Tab.Farm": "Ferme",
-    "Tab.Town": "Ville",
-    "Tab.Mountain": "Montagne",
-    "Tab.Forest": "Forêt",
-    "Tab.Beach": "Plage",
-    "Tab.Desert": "Désert",
-    "Tab.GingerIsland": "Île Gingembre",
-    "Tab.SVE": "SVE",
-    "Tab.RSV": "Ridgeside",
+    "UI.Tab.Farm": "Ferme",
+    "UI.Tab.Town": "Ville",
+    "UI.Tab.Mountain": "Montagne",
+    "UI.Tab.Forest": "Forêt",
+    "UI.Tab.Beach": "Plage",
+    "UI.Tab.Desert": "Désert",
+    "UI.Tab.GingerIsland": "Île Gingembre",
+    "UI.Tab.SVE": "SVE",
+    "UI.Tab.RSV": "Ridgeside",
 
     // Option
     "Option.AbandonedJojaMart": "Joja Mart\nabandonné",

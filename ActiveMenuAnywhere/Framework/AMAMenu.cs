@@ -125,9 +125,7 @@ internal class AMAMenu : IClickableMenu
 
     private MenuTabId GetTabId(ClickableComponent tab)
     {
-        if (!Enum.TryParse(tab.label, out MenuTabId tabId))
-            throw new InvalidOperationException($"Couldn't parse tab name '{tab.label}'.");
-        return tabId;
+        return Enum.Parse<MenuTabId>(tab.label);
     }
 
     private Rectangle GetBoundsRectangle(int index)
@@ -162,8 +160,7 @@ internal class AMAMenu : IClickableMenu
             Game1.mouseCursors, new Rectangle(421, 459, 11, 12), scale);
         this.downArrow = new ClickableTextureComponent(
             new Rectangle(this.xPositionOnScreen + this.width + offset.x, this.yPositionOnScreen + this.height - offset.y, (int)(11 * scale),
-                (int)(12 * scale)),
-            Game1.mouseCursors, new Rectangle(421, 472, 11, 12), scale);
+                (int)(12 * scale)), Game1.mouseCursors, new Rectangle(421, 472, 11, 12), scale);
     }
 
     private void AddTabs()
@@ -172,17 +169,18 @@ internal class AMAMenu : IClickableMenu
         this.tabs.Clear();
         this.tabs.AddRange(new[]
         {
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Farm(), MenuTabId.Farm.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Town(), MenuTabId.Town.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Mountain(), MenuTabId.Mountain.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Forest(), MenuTabId.Forest.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Beach(), MenuTabId.Beach.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Desert(), MenuTabId.Desert.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_GingerIsland(), MenuTabId.GingerIsland.ToString())
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Farm(), MenuTabId.Farm.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Town(), MenuTabId.Town.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Mountain(), MenuTabId.Mountain.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Forest(), MenuTabId.Forest.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Beach(), MenuTabId.Beach.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Desert(), MenuTabId.Desert.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_GingerIsland(), MenuTabId.GingerIsland.ToString())
         });
-        if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null) this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_SVE(), MenuTabId.SVE.ToString()));
+        if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null) 
+            this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_SVE(), MenuTabId.SVE.ToString()));
         if (this.helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
-            this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.Tab_RSV(), MenuTabId.RSV.ToString()));
+            this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.UI_Tab_RSV(), MenuTabId.RSV.ToString()));
     }
 
     private void SetOptions()

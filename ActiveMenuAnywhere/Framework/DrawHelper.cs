@@ -8,11 +8,6 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 internal class DrawHelper
 {
-    public static void DrawTitle(int x, int y, string text, Align align)
-    {
-        DrawTab(x, y, Game1.dialogueFont, text, align);
-    }
-
     public static void DrawTab(int x, int y, SpriteFont font, string text, Align align, float alpha = 1)
     {
         var spriteBatch = Game1.spriteBatch;

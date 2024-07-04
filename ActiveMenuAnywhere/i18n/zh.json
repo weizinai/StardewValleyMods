@@ -1,6 +1,8 @@
 ﻿{
     // Config
     "Config.MenuKey_Name": "菜单快捷键",
+    "Config.OpenMenuByTelephone.Name": "通过电话打开菜单",
+    "Config.OpenMenuByTelephone.Tooltip": "当该选项启用后，你将只能通过电话打开菜单。",
     "Config.DefaultMenuTabID": "默认菜单标签",
 
     // Tab

@@ -4,6 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <EnableHarmony>true</EnableHarmony>
         <RootNamespace>weizinai.StardewValleyMod.ActiveMenuAnywhere</RootNamespace>
     </PropertyGroup>
 
@@ -22,5 +23,7 @@
     </ItemGroup>
 
     <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared"/>
+
+    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
 
 </Project>

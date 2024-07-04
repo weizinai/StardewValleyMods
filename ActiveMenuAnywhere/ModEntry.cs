@@ -27,6 +27,23 @@ internal class ModEntry : Mod
         HarmonyPatcher.Apply(this, new Game1Patcher(this.config, helper));
     }
 
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        new GenericModConfigMenuIntegrationForActiveMenuAnywhere(
+            new GenericModConfigMenuIntegration<ModConfig>(
+                this.Helper.ModRegistry,
+                this.ModManifest,
+                () => this.config,
+                () =>
+                {
+                    this.config = new ModConfig();
+                    this.Helper.WriteConfig(this.config);
+                },
+                () => this.Helper.WriteConfig(this.config)
+            )
+        ).Register();
+    }
+
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         if (this.config.OpenMenuByTelephone) return;
@@ -51,63 +68,5 @@ internal class ModEntry : Mod
         Textures.Add(MenuTabId.GingerIsland, this.Helper.ModContent.Load<Texture2D>("Assets/GingerIsland.png"));
         Textures.Add(MenuTabId.RSV, this.Helper.ModContent.Load<Texture2D>("Assets/RSV.png"));
         Textures.Add(MenuTabId.SVE, this.Helper.ModContent.Load<Texture2D>("Assets/SVE.png"));
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        var configMenu = this.Helper.ModRegistry.GetApi<IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
-
-        if (configMenu is null) return;
-
-        configMenu.Register(
-            this.ModManifest,
-            () => this.config = new ModConfig(),
-            () => this.Helper.WriteConfig(this.config)
-        );
-
-        configMenu.AddKeybindList(
-            this.ModManifest,
-            () => this.config.MenuKey,
-            value => this.config.MenuKey = value,
-            I18n.Config_MenuKeyName
-        );
-
-        configMenu.AddBoolOption(
-            this.ModManifest,
-            () => this.config.OpenMenuByTelephone,
-            value => this.config.OpenMenuByTelephone = value,
-            I18n.Config_OpenMenuByTelephone_Name,
-            I18n.Config_OpenMenuByTelephone_Tooltip
-        );
-
-        configMenu.AddTextOption(
-            this.ModManifest,
-            () => this.config.DefaultMeanTabId.ToString(),
-            value =>
-            {
-                if (!Enum.TryParse(value, out MenuTabId tabId)) throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
-                this.config.DefaultMeanTabId = tabId;
-            },
-            I18n.Config_DefaultMenuTabID,
-            null,
-            new[] { "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland", "RSV", "SVE" },
-            value =>
-            {
-                var formatValue = value switch
-                {
-                    "Farm" => I18n.Tab_Farm(),
-                    "Town" => I18n.Tab_Town(),
-                    "Mountain" => I18n.Tab_Mountain(),
-                    "Forest" => I18n.Tab_Forest(),
-                    "Beach" => I18n.Tab_Beach(),
-                    "Desert" => I18n.Tab_Desert(),
-                    "GingerIsland" => I18n.Tab_GingerIsland(),
-                    "RSV" => I18n.Tab_RSV(),
-                    "SVE" => I18n.Tab_SVE(),
-                    _ => ""
-                };
-                return formatValue;
-            }
-        );
     }
 }

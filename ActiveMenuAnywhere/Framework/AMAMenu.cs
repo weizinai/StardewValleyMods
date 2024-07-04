@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewValley;
+using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
@@ -27,7 +28,6 @@ internal class AMAMenu : IClickableMenu
 
     private int currentPage;
     private ClickableTextureComponent downArrow = null!;
-    private ClickableComponent title = null!;
     private ClickableTextureComponent upArrow = null!;
 
     public AMAMenu(MenuTabId menuTabId, IModHelper helper)
@@ -78,7 +78,7 @@ internal class AMAMenu : IClickableMenu
         drawTextureBox(spriteBatch, this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height, Color.White);
 
         // Draw title
-        DrawHelper.DrawTitle(this.title.bounds.X, this.title.bounds.Y, this.title.name, Align.Center);
+        SpriteText.drawStringWithScrollCenteredAt(spriteBatch, "Active Menu Anywhere", this.xPositionOnScreen + this.width / 2, this.yPositionOnScreen - 64);
 
         // Draw arrows
         this.upArrow.draw(spriteBatch);
@@ -107,11 +107,6 @@ internal class AMAMenu : IClickableMenu
 
     private void ResetComponents()
     {
-        // Add title
-        const int titleOffsetY = -64;
-        this.title = new ClickableComponent(new Rectangle(this.xPositionOnScreen + this.width / 2, this.yPositionOnScreen + titleOffsetY, 0, 0),
-            "ActiveMenuAnywhere");
-
         // Add arrows
         this.AddArrows();
 

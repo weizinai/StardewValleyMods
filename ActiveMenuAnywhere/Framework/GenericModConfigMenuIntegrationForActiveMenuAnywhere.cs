@@ -51,6 +51,11 @@ internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere
                     };
                     return formatValue;
                 }
+            )
+            .AddBoolOption(
+                config => config.ProgressMode,
+                (config, value) => config.ProgressMode = value,
+                I18n.Config_ProgressionMode_Name
             );
     }
 }

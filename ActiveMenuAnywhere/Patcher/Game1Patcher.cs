@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using StardewModdingAPI;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -29,7 +30,7 @@ internal class Game1Patcher : BasePatcher
     {
         if (!config.OpenMenuByTelephone) return true;
 
-        Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabId, helper);
+        Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabId, config, helper);
 
         return false;
     }

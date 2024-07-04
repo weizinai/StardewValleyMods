@@ -14,6 +14,7 @@ internal class AMAMenu : IClickableMenu
     private const int InnerHeight = 600;
 
     private const int OptionsPerPage = 9;
+    private readonly ModConfig config;
     private readonly IModHelper helper;
 
     private readonly (int x, int y) innerDrawPosition =
@@ -30,8 +31,9 @@ internal class AMAMenu : IClickableMenu
     private ClickableTextureComponent downArrow = null!;
     private ClickableTextureComponent upArrow = null!;
 
-    public AMAMenu(MenuTabId menuTabId, IModHelper helper)
+    public AMAMenu(MenuTabId menuTabId, ModConfig config, IModHelper helper)
     {
+        this.config = config;
         this.helper = helper;
         this.Init(menuTabId);
         this.ResetComponents();
@@ -46,7 +48,7 @@ internal class AMAMenu : IClickableMenu
 
         // tab
         var tab = this.tabs.FirstOrDefault(tab => tab.containsPoint(x, y));
-        if (tab != null) Game1.activeClickableMenu = new AMAMenu(this.GetTabId(tab), this.helper);
+        if (tab != null) Game1.activeClickableMenu = new AMAMenu(this.GetTabId(tab), this.config, this.helper);
 
         // option
         for (var i = 0; i < OptionsPerPage; i++)
@@ -55,7 +57,7 @@ internal class AMAMenu : IClickableMenu
             if (this.optionSlots[i].containsPoint(x, y) && optionsIndex < this.options.Count)
             {
                 var option = this.options[optionsIndex];
-                if (option.IsEnable())
+                if (option.IsEnable() || !this.config.ProgressMode)
                     option.Apply();
                 else
                     Game1.drawObjectDialogue(I18n.Tip_Unavailable());

@@ -23,17 +23,17 @@ internal class AMAMenu : IClickableMenu
     private readonly List<ClickableComponent> optionSlots = new();
     private readonly List<ClickableComponent> tabs = new();
 
-    private MenuTabID currentMenuTabID;
+    private MenuTabId currentMenuTabId;
 
     private int currentPage;
     private ClickableTextureComponent downArrow = null!;
     private ClickableComponent title = null!;
     private ClickableTextureComponent upArrow = null!;
 
-    public AMAMenu(MenuTabID menuTabID, IModHelper helper)
+    public AMAMenu(MenuTabId menuTabId, IModHelper helper)
     {
         this.helper = helper;
-        this.Init(menuTabID);
+        this.Init(menuTabId);
         this.ResetComponents();
         this.SetOptions();
     }
@@ -46,7 +46,7 @@ internal class AMAMenu : IClickableMenu
 
         // tab
         var tab = this.tabs.FirstOrDefault(tab => tab.containsPoint(x, y));
-        if (tab != null) Game1.activeClickableMenu = new AMAMenu(this.GetTabID(tab), this.helper);
+        if (tab != null) Game1.activeClickableMenu = new AMAMenu(this.GetTabId(tab), this.helper);
 
         // option
         for (var i = 0; i < OptionsPerPage; i++)
@@ -86,7 +86,7 @@ internal class AMAMenu : IClickableMenu
 
         // Draw tabs
         this.tabs.ForEach(tab => DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
-            this.GetTabID(tab) == this.currentMenuTabID ? 0.7f : 1f));
+            this.GetTabId(tab) == this.currentMenuTabId ? 0.7f : 1f));
 
         // Draw options
         this.DrawOption();
@@ -95,14 +95,14 @@ internal class AMAMenu : IClickableMenu
         this.drawMouse(spriteBatch);
     }
 
-    private void Init(MenuTabID menuTabID)
+    private void Init(MenuTabId menuTabId)
     {
         this.width = InnerWidth + borderWidth * 2;
         this.height = InnerHeight + borderWidth * 2;
         this.xPositionOnScreen = Game1.uiViewport.Width / 2 - this.width / 2;
         this.yPositionOnScreen = Game1.uiViewport.Height / 2 - this.height / 2;
 
-        this.currentMenuTabID = menuTabID;
+        this.currentMenuTabId = menuTabId;
     }
 
     private void ResetComponents()
@@ -122,11 +122,11 @@ internal class AMAMenu : IClickableMenu
         this.AddOptionSlots();
     }
 
-    private MenuTabID GetTabID(ClickableComponent tab)
+    private MenuTabId GetTabId(ClickableComponent tab)
     {
-        if (!Enum.TryParse(tab.label, out MenuTabID tabID))
+        if (!Enum.TryParse(tab.label, out MenuTabId tabId))
             throw new InvalidOperationException($"Couldn't parse tab name '{tab.label}'.");
-        return tabID;
+        return tabId;
     }
 
     private Rectangle GetBoundsRectangle(int index)
@@ -171,32 +171,32 @@ internal class AMAMenu : IClickableMenu
         this.tabs.Clear();
         this.tabs.AddRange(new[]
         {
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Farm(), MenuTabID.Farm.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Town(), MenuTabID.Town.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Mountain(), MenuTabID.Mountain.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Forest(), MenuTabID.Forest.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Beach(), MenuTabID.Beach.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Desert(), MenuTabID.Desert.ToString()),
-            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_GingerIsland(), MenuTabID.GingerIsland.ToString())
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Farm(), MenuTabId.Farm.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Town(), MenuTabId.Town.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Mountain(), MenuTabId.Mountain.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Forest(), MenuTabId.Forest.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Beach(), MenuTabId.Beach.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_Desert(), MenuTabId.Desert.ToString()),
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_GingerIsland(), MenuTabId.GingerIsland.ToString())
         });
-        if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null) this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_SVE(), MenuTabID.SVE.ToString()));
+        if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null) this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.Tab_SVE(), MenuTabId.SVE.ToString()));
         if (this.helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
-            this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.Tab_RSV(), MenuTabID.RSV.ToString()));
+            this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.Tab_RSV(), MenuTabId.RSV.ToString()));
     }
 
     private void SetOptions()
     {
         this.options.Clear();
-        switch (this.currentMenuTabID)
+        switch (this.currentMenuTabId)
         {
-            case MenuTabID.Farm:
+            case MenuTabId.Farm:
                 this.options.AddRange(new BaseOption[]
                 {
                     new TVOption(this.GetSourceRectangle(0), this.helper),
                     new ShippingBinOption(this.GetSourceRectangle(1), this.helper)
                 });
                 break;
-            case MenuTabID.Town:
+            case MenuTabId.Town:
                 this.options.AddRange(new BaseOption[]
                 {
                     new BillboardOption(this.GetSourceRectangle(0)),
@@ -217,7 +217,7 @@ internal class AMAMenu : IClickableMenu
                     new AbandonedJojaMartOption(this.GetSourceRectangle(15))
                 });
                 break;
-            case MenuTabID.Mountain:
+            case MenuTabId.Mountain:
                 this.options.AddRange(new BaseOption[]
                 {
                     new RobinOption(this.GetSourceRectangle(0)),
@@ -226,7 +226,7 @@ internal class AMAMenu : IClickableMenu
                     new MarlonOption(this.GetSourceRectangle(3))
                 });
                 break;
-            case MenuTabID.Forest:
+            case MenuTabId.Forest:
                 this.options.AddRange(new BaseOption[]
                 {
                     new MarnieOption(this.GetSourceRectangle(0)),
@@ -236,7 +236,7 @@ internal class AMAMenu : IClickableMenu
                     new RaccoonOption(this.GetSourceRectangle(4), this.helper)
                 });
                 break;
-            case MenuTabID.Beach:
+            case MenuTabId.Beach:
                 this.options.AddRange(new BaseOption[]
                 {
                     new WillyOption(this.GetSourceRectangle(0)),
@@ -246,7 +246,7 @@ internal class AMAMenu : IClickableMenu
                     new MagicBoatOption(this.GetSourceRectangle(4))
                 });
                 break;
-            case MenuTabID.Desert:
+            case MenuTabId.Desert:
                 this.options.AddRange(new BaseOption[]
                 {
                     new SandyOption(this.GetSourceRectangle(0)),
@@ -257,7 +257,7 @@ internal class AMAMenu : IClickableMenu
                     new ClubSellerOption(this.GetSourceRectangle(5))
                 });
                 break;
-            case MenuTabID.GingerIsland:
+            case MenuTabId.GingerIsland:
                 this.options.AddRange(new BaseOption[]
                 {
                     new QiSpecialOrderOption(this.GetSourceRectangle(0)),
@@ -269,13 +269,13 @@ internal class AMAMenu : IClickableMenu
                     new ForgeOption(this.GetSourceRectangle(6))
                 });
                 break;
-            case MenuTabID.SVE:
+            case MenuTabId.SVE:
                 this.options.AddRange(new BaseOption[]
                 {
                     new SophiaOption(this.GetSourceRectangle(0))
                 });
                 break;
-            case MenuTabID.RSV:
+            case MenuTabId.RSV:
                 this.options.AddRange(new BaseOption[]
                 {
                     new RSVQuestBoardOption(this.GetSourceRectangle(0)),
@@ -318,7 +318,7 @@ internal class AMAMenu : IClickableMenu
             // 如果选项绘制完成,则停止绘制
             if (optionsIndex >= this.options.Count) break;
             // 绘制纹理
-            drawTextureBox(spriteBatch, ModEntry.Textures[this.currentMenuTabID], this.options[optionsIndex].SourceRect,
+            drawTextureBox(spriteBatch, ModEntry.Textures[this.currentMenuTabId], this.options[optionsIndex].SourceRect,
                 position.x, position.y, size.width, size.height, Color.White);
             // 绘制标签
             var x = bounds.X + bounds.Width / 2;

@@ -6,5 +6,5 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 internal class ModConfig
 {
     public KeybindList MenuKey { get; set; } = new(SButton.L);
-    public MenuTabID DefaultMeanTabId { get; set; } = MenuTabID.Town;
+    public MenuTabId DefaultMeanTabId { get; set; } = MenuTabId.Town;
 }

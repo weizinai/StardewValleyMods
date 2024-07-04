@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    public static readonly Dictionary<MenuTabID, Texture2D> Textures = new();
+    public static readonly Dictionary<MenuTabId, Texture2D> Textures = new();
 
     public override void Entry(IModHelper helper)
     {
@@ -36,15 +36,15 @@ internal class ModEntry : Mod
 
     private void LoadTexture()
     {
-        Textures.Add(MenuTabID.Farm, this.Helper.ModContent.Load<Texture2D>("Assets/Farm.png"));
-        Textures.Add(MenuTabID.Town, this.Helper.ModContent.Load<Texture2D>("Assets/Town.png"));
-        Textures.Add(MenuTabID.Mountain, this.Helper.ModContent.Load<Texture2D>("Assets/Mountain.png"));
-        Textures.Add(MenuTabID.Forest, this.Helper.ModContent.Load<Texture2D>("Assets/Forest.png"));
-        Textures.Add(MenuTabID.Beach, this.Helper.ModContent.Load<Texture2D>("Assets/Beach.png"));
-        Textures.Add(MenuTabID.Desert, this.Helper.ModContent.Load<Texture2D>("Assets/Desert"));
-        Textures.Add(MenuTabID.GingerIsland, this.Helper.ModContent.Load<Texture2D>("Assets/GingerIsland.png"));
-        Textures.Add(MenuTabID.RSV, this.Helper.ModContent.Load<Texture2D>("Assets/RSV.png"));
-        Textures.Add(MenuTabID.SVE, this.Helper.ModContent.Load<Texture2D>("Assets/SVE.png"));
+        Textures.Add(MenuTabId.Farm, this.Helper.ModContent.Load<Texture2D>("Assets/Farm.png"));
+        Textures.Add(MenuTabId.Town, this.Helper.ModContent.Load<Texture2D>("Assets/Town.png"));
+        Textures.Add(MenuTabId.Mountain, this.Helper.ModContent.Load<Texture2D>("Assets/Mountain.png"));
+        Textures.Add(MenuTabId.Forest, this.Helper.ModContent.Load<Texture2D>("Assets/Forest.png"));
+        Textures.Add(MenuTabId.Beach, this.Helper.ModContent.Load<Texture2D>("Assets/Beach.png"));
+        Textures.Add(MenuTabId.Desert, this.Helper.ModContent.Load<Texture2D>("Assets/Desert"));
+        Textures.Add(MenuTabId.GingerIsland, this.Helper.ModContent.Load<Texture2D>("Assets/GingerIsland.png"));
+        Textures.Add(MenuTabId.RSV, this.Helper.ModContent.Load<Texture2D>("Assets/RSV.png"));
+        Textures.Add(MenuTabId.SVE, this.Helper.ModContent.Load<Texture2D>("Assets/SVE.png"));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -68,8 +68,8 @@ internal class ModEntry : Mod
             () => this.config.DefaultMeanTabId.ToString(),
             value =>
             {
-                if (!Enum.TryParse(value, out MenuTabID tabID)) throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
-                this.config.DefaultMeanTabId = tabID;
+                if (!Enum.TryParse(value, out MenuTabId tabId)) throw new InvalidOperationException($"Couldn't parse tab name '{value}'.");
+                this.config.DefaultMeanTabId = tabId;
             },
             I18n.Config_DefaultMenuTabID,
             null,

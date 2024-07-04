@@ -72,7 +72,7 @@ internal class AMAMenu : IClickableMenu
     public override void draw(SpriteBatch spriteBatch)
     {
         // Draw shadow
-        DrawHelper.DrawShadow();
+        spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.4f);
 
         // Draw background
         drawTextureBox(spriteBatch, this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height, Color.White);

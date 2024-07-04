@@ -8,12 +8,6 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 internal class DrawHelper
 {
-    public static void DrawShadow()
-    {
-        var spriteBatch = Game1.spriteBatch;
-        spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.4f);
-    }
-
     public static void DrawTitle(int x, int y, string text, Align align)
     {
         DrawTab(x, y, Game1.dialogueFont, text, align);

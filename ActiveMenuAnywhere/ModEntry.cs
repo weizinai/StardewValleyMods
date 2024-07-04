@@ -59,12 +59,14 @@ internal class ModEntry : Mod
 
         if (configMenu is null) return;
 
-        configMenu.Register(this.ModManifest,
+        configMenu.Register(
+            this.ModManifest,
             () => this.config = new ModConfig(),
             () => this.Helper.WriteConfig(this.config)
         );
 
-        configMenu.AddKeybindList(this.ModManifest,
+        configMenu.AddKeybindList(
+            this.ModManifest,
             () => this.config.MenuKey,
             value => this.config.MenuKey = value,
             I18n.Config_MenuKeyName
@@ -78,7 +80,8 @@ internal class ModEntry : Mod
             I18n.Config_OpenMenuByTelephone_Tooltip
         );
 
-        configMenu.AddTextOption(this.ModManifest,
+        configMenu.AddTextOption(
+            this.ModManifest,
             () => this.config.DefaultMeanTabId.ToString(),
             value =>
             {

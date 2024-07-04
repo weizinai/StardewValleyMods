@@ -11,7 +11,7 @@ internal class ClintOption : BaseOption
     public ClintOption(Rectangle sourceRect) :
         base(I18n.Option_Clint(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         var options = new List<Response>
         {

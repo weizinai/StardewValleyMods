@@ -9,11 +9,13 @@ internal class WizardOption : BaseOption
     public WizardOption(Rectangle sourceRect) :
         base(I18n.Option_Wizard(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("hasPickedUpMagicInk") || Game1.player.hasMagicInk)
-            Game1.currentLocation.ShowConstructOptions("Wizard");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("hasPickedUpMagicInk") || Game1.player.hasMagicInk;
+    }
+
+    public override void Apply()
+    {
+        Game1.currentLocation.ShowConstructOptions("Wizard");
     }
 }

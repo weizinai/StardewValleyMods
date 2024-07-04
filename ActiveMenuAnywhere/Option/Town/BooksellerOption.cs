@@ -9,15 +9,12 @@ internal class BooksellerOption : BaseOption
     public BooksellerOption(Rectangle sourceRect) :
         base(I18n.Option_Bookseller(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Utility.getDaysOfBooksellerThisSeason().Contains(Game1.dayOfMonth))
-            this.BookSeller();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Utility.getDaysOfBooksellerThisSeason().Contains(Game1.dayOfMonth);
     }
 
-    private void BookSeller()
+    public override void Apply()
     {
         if (Game1.player.mailReceived.Contains("read_a_book"))
         {

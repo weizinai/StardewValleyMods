@@ -18,7 +18,7 @@ internal class ShippingBinOption : BaseOption
         this.helper = helper;
     }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         var itemGrabMenu = new ItemGrabMenu(null, true, false, Utility.highlightShippableObjects, this.ShipItem, "", null, true, true, false,
             true, false, 0, null, -1, this);

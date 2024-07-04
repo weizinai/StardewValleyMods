@@ -9,7 +9,7 @@ internal class HarveyOption : BaseOption
     public HarveyOption(Rectangle sourceRect) :
         base(I18n.Option_Harvey(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         Utility.TryOpenShopMenu("Hospital", "Harvey");
     }

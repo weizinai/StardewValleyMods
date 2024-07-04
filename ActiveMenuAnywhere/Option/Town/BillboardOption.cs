@@ -10,7 +10,7 @@ internal class BillboardOption : BaseOption
     public BillboardOption(Rectangle sourceRect) :
         base(I18n.Option_Billboard(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         var options = new List<Response>
         {

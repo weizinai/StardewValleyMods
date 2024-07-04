@@ -9,11 +9,13 @@ internal class DesertTradeOption : BaseOption
     public DesertTradeOption(Rectangle sourceRect) :
         base(I18n.Option_DesertTrade(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("ccVault"))
-            Utility.TryOpenShopMenu("DesertTrade", null, true);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("ccVault");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("DesertTrade", null, true);
     }
 }

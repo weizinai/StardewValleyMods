@@ -16,11 +16,13 @@ internal class MonsterOption : BaseOption
         this.helper = helper;
     }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("guildMember"))
-            this.helper.Reflection.GetMethod(new AdventureGuild(), "showMonsterKillList").Invoke();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("guildMember");
+    }
+
+    public override void Apply()
+    {
+        this.helper.Reflection.GetMethod(new AdventureGuild(), "showMonsterKillList").Invoke();
     }
 }

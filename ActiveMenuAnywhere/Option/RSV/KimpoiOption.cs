@@ -9,11 +9,13 @@ internal class KimpoiOption : BaseOption
     public KimpoiOption(Rectangle sourceRect) :
         base(I18n.Option_Kimpoi(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.MasterPlayer.eventsSeen.Contains("75160252"))
-            Utility.TryOpenShopMenu("RSVKimpoiShop", "Kimpoi");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.MasterPlayer.eventsSeen.Contains("75160252");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("RSVKimpoiShop", "Kimpoi");
     }
 }

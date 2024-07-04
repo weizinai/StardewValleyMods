@@ -10,13 +10,14 @@ internal class QiSpecialOrderOption : BaseOption
 {
     public QiSpecialOrderOption(Rectangle sourceRect) :
         base(I18n.Option_QiSpecialOrder(), sourceRect) { }
-
-    public override void ReceiveLeftClick()
+    
+    public override bool IsEnable()
     {
-        var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
-        if (isQiWalnutRoomDoorUnlocked)
-            Game1.activeClickableMenu = new SpecialOrdersBoard("Qi");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
+    }
+
+    public override void Apply()
+    {
+        Game1.activeClickableMenu = new SpecialOrdersBoard("Qi");
     }
 }

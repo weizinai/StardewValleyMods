@@ -9,11 +9,13 @@ internal class FarmerFileOption : BaseOption
     public FarmerFileOption(Rectangle sourceRect) :
         base(I18n.Option_FarmerFile(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
-            Game1.currentLocation.farmerFile();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard;
+    }
+
+    public override void Apply()
+    {
+        Game1.currentLocation.farmerFile();
     }
 }

@@ -4,14 +4,19 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 internal abstract class BaseOption
 {
+    public string Name { get; }
+    public Rectangle SourceRect { get; }
+
     protected BaseOption(string name, Rectangle sourceRect)
     {
         this.Name = name;
         this.SourceRect = sourceRect;
     }
 
-    public Rectangle SourceRect { get; }
-    public string Name { get; }
+    public virtual bool IsEnable()
+    {
+        return true;
+    }
 
-    public virtual void ReceiveLeftClick() { }
+    public abstract void Apply();
 }

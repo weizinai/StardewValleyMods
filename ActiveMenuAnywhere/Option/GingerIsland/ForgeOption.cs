@@ -10,11 +10,13 @@ internal class ForgeOption : BaseOption
     public ForgeOption(Rectangle sourceRect) :
         base(I18n.Option_Forge(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("willyHours"))
-            Game1.activeClickableMenu = new ForgeMenu();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("willyHours");
+    }
+
+    public override void Apply()
+    {
+        Game1.activeClickableMenu = new ForgeMenu();
     }
 }

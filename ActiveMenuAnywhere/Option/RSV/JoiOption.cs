@@ -6,13 +6,16 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JoiOption : BaseOption
 {
-    public JoiOption(Rectangle sourceRect) : base(I18n.Option_Joi(), sourceRect) { }
+    public JoiOption(Rectangle sourceRect) 
+        : base(I18n.Option_Joi(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.eventsSeen.Contains("75160254"))
-            Utility.TryOpenShopMenu("RSVJioShop", null, false);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.eventsSeen.Contains("75160254");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("RSVJioShop", null, false);
     }
 }

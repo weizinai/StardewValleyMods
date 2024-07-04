@@ -9,15 +9,12 @@ internal class ClubSellerOption : BaseOption
     public ClubSellerOption(Rectangle sourceRect) :
         base(I18n.Option_ClubSeller(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
-            this.ClubSeller();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard;
     }
 
-    private void ClubSeller()
+    public override void Apply()
     {
         var options = new List<Response>
         {

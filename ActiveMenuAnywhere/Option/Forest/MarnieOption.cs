@@ -9,7 +9,7 @@ internal class MarnieOption : BaseOption
     public MarnieOption(Rectangle sourceRect) :
         base(I18n.Option_Marnie(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         var options = new List<Response>
         {

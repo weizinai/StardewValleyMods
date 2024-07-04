@@ -9,11 +9,13 @@ internal class CasinoOption : BaseOption
     public CasinoOption(Rectangle sourceRect) :
         base(I18n.Option_Casino(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
-            Utility.TryOpenShopMenu("Casino", null, true);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard;
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Casino", null, true);
     }
 }

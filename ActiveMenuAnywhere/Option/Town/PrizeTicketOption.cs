@@ -10,7 +10,7 @@ internal class PrizeTicketOption : BaseOption
     public PrizeTicketOption(Rectangle sourceRect) :
         base(I18n.Option_PrizeTicket(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         Game1.activeClickableMenu = new PrizeTicketMenu();
     }

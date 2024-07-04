@@ -9,15 +9,12 @@ internal class StatueOption : BaseOption
     public StatueOption(Rectangle sourceRect) :
         base(I18n.Option_Statue(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.hasRustyKey)
-            this.Statue();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.hasRustyKey;
     }
 
-    private void Statue()
+    public override void Apply()
     {
         var location = Game1.currentLocation;
         location.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Sewer_DogStatue"),

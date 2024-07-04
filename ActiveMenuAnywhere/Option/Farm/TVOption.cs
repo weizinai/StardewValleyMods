@@ -16,7 +16,7 @@ internal class TVOption : BaseOption
         this.helper = helper;
     }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         this.helper.Reflection.GetMethod(new TV(), "checkForAction").Invoke(Game1.player, false);
     }

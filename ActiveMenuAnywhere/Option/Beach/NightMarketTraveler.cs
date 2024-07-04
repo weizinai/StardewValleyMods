@@ -6,13 +6,16 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class NightMarketTraveler : BaseOption
 {
-    public NightMarketTraveler(Rectangle sourceRect) : base("NightMarketTraveler", sourceRect) { }
+    public NightMarketTraveler(Rectangle sourceRect) 
+        : base("NightMarketTraveler", sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Utility.IsPassiveFestivalDay("NightMarket"))
-            Utility.TryOpenShopMenu("Traveler", null, false);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Utility.IsPassiveFestivalDay("NightMarket");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Traveler", null, false);
     }
 }

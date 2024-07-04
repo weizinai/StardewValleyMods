@@ -8,11 +8,13 @@ internal class MysticFalls3Option : BaseOption
 {
     public MysticFalls3Option(Rectangle sourceRect) : base(I18n.Option_MysticFall3(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.eventsSeen.Contains("75160187"))
-            Utility.TryOpenShopMenu("RSVMysticFalls3", null, false);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.eventsSeen.Contains("75160187");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("RSVMysticFalls3", null, false);
     }
 }

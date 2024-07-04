@@ -16,12 +16,13 @@ internal class QiCatOption : BaseOption
         this.helper = helper;
     }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        var isQiWalnutRoomDoorUnlocked = IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
-        if (isQiWalnutRoomDoorUnlocked)
-            this.helper.Reflection.GetMethod(new GameLocation(), "ShowQiCat").Invoke();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return IslandWest.IsQiWalnutRoomDoorUnlocked(out _);
+    }
+
+    public override void Apply()
+    {
+        this.helper.Reflection.GetMethod(new GameLocation(), "ShowQiCat").Invoke();
     }
 }

@@ -6,13 +6,16 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DecorationBoatOption : BaseOption
 {
-    public DecorationBoatOption(Rectangle sourceRect) : base("DecorationBoat", sourceRect) { }
+    public DecorationBoatOption(Rectangle sourceRect) 
+        : base("DecorationBoat", sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Utility.IsPassiveFestivalDay("NightMarket"))
-            Utility.TryOpenShopMenu("Festival_NightMarket_DecorationBoat", null, false);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Utility.IsPassiveFestivalDay("NightMarket");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Festival_NightMarket_DecorationBoat", null, false);
     }
 }

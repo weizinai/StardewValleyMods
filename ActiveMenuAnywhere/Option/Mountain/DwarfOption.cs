@@ -9,11 +9,13 @@ internal class DwarfOption : BaseOption
     public DwarfOption(Rectangle sourceRect) :
         base(I18n.Option_Dwarf(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.canUnderstandDwarves)
-            Utility.TryOpenShopMenu("Dwarf", "Dwarf");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.canUnderstandDwarves;
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Dwarf", "Dwarf");
     }
 }

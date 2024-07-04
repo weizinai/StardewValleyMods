@@ -9,7 +9,7 @@ internal class GusOption : BaseOption
     public GusOption(Rectangle sourceRect) :
         base(I18n.Option_Gus(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         Utility.TryOpenShopMenu("Saloon", "Gus");
     }

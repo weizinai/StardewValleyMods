@@ -9,11 +9,13 @@ internal class KrobusOption : BaseOption
     public KrobusOption(Rectangle sourceRect) :
         base(I18n.Option_Krobus(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.hasRustyKey)
-            Utility.TryOpenShopMenu("ShadowShop", "Krobus");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.hasRustyKey;
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("ShadowShop", "Krobus");
     }
 }

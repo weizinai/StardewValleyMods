@@ -25,15 +25,12 @@ internal class CommunityCenterOption : BaseOption
         };
     }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (!Game1.player.mailReceived.Contains("JojaMember") && Game1.player.mailReceived.Contains("canReadJunimoText"))
-            this.CheckBundle();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return !Game1.player.mailReceived.Contains("JojaMember") && Game1.player.mailReceived.Contains("canReadJunimoText");
     }
 
-    private void CheckBundle()
+    public override void Apply()
     {
         var communityCenter = Game1.RequireLocation<CommunityCenter>("CommunityCenter");
         var options = new List<Response>();

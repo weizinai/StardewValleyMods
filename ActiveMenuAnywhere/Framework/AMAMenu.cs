@@ -54,7 +54,11 @@ internal class AMAMenu : IClickableMenu
             var optionsIndex = i + this.currentPage * OptionsPerPage;
             if (this.optionSlots[i].containsPoint(x, y) && optionsIndex < this.options.Count)
             {
-                this.options[optionsIndex].ReceiveLeftClick();
+                var option = this.options[optionsIndex];
+                if (option.IsEnable())
+                    option.Apply();
+                else
+                    Game1.drawObjectDialogue(I18n.Tip_Unavailable());
                 break;
             }
         }

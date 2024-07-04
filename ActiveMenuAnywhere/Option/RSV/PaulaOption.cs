@@ -7,7 +7,7 @@ internal class PaulaOption : BaseOption
 {
     public PaulaOption(Rectangle sourceRect) : base(I18n.Option_Paula(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.PaulaClinic", "ClinicChoices").Invoke(null, null);
     }

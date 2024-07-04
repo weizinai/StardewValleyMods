@@ -9,11 +9,13 @@ internal class WillyOption : BaseOption
     public WillyOption(Rectangle sourceRect) :
         base(I18n.Option_Willy(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("spring_2_1"))
-            Utility.TryOpenShopMenu("FishShop", "Willy");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("spring_2_1");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("FishShop", "Willy");
     }
 }

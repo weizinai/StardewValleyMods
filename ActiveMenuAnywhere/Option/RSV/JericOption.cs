@@ -9,7 +9,7 @@ internal class JericOption : BaseOption
     public JericOption(Rectangle sourceRect) :
         base(I18n.Option_Jeric(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         Utility.TryOpenShopMenu("RSVJericShop", "Jeric");
     }

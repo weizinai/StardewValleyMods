@@ -10,7 +10,7 @@ internal class RobinOption : BaseOption
     public RobinOption(Rectangle sourceRect) :
         base(I18n.Option_Robin(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         if (Game1.player.daysUntilHouseUpgrade.Value < 0 && !Game1.IsThereABuildingUnderConstruction())
         {

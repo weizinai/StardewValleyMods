@@ -9,12 +9,13 @@ internal class TravelerOption : BaseOption
     public TravelerOption(Rectangle sourceRect) :
         base(I18n.Option_Traveler(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        var shouldTravelingMerchantVisitToday = Game1.dayOfMonth % 7 % 5 == 0;
-        if (shouldTravelingMerchantVisitToday)
-            Utility.TryOpenShopMenu("Traveler", null, true);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.dayOfMonth % 7 % 5 == 0;
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Traveler", null, true);
     }
 }

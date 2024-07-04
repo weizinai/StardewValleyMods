@@ -7,7 +7,7 @@ internal class IanOption : BaseOption
 {
     public IanOption(Rectangle sourceRect) : base(I18n.Option_Ian(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.IanShop", "IanCounterMenu").Invoke(null, null);
     }

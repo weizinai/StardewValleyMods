@@ -9,11 +9,13 @@ internal class JojaShopOption : BaseOption
     public JojaShopOption(Rectangle sourceRect) :
         base(I18n.Option_JojaShop(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (!Game1.MasterPlayer.hasCompletedCommunityCenter())
-            Utility.TryOpenShopMenu("Joja", "Claire");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return !Game1.MasterPlayer.hasCompletedCommunityCenter();
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Joja", "Claire");
     }
 }

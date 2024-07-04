@@ -9,15 +9,12 @@ internal class MarlonOption : BaseOption
     public MarlonOption(Rectangle sourceRect) :
         base(I18n.Option_Marlon(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("guildMember"))
-            this.Marlon();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("guildMember");
     }
 
-    private void Marlon()
+    public override void Apply()
     {
         if (Game1.player.itemsLostLastDeath.Count > 0)
         {

@@ -9,18 +9,14 @@ internal class BuyQiCoinsOption : BaseOption
     public BuyQiCoinsOption(Rectangle sourceRect) :
         base(I18n.Option_BuyQiCoins(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard)
-            this.BuyQiCoins();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard;
     }
 
-    private void BuyQiCoins()
+    public override void Apply()
     {
         var location = Game1.currentLocation;
-        location.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Club_Buy100Coins"),
-            location.createYesNoResponses(), "BuyQiCoins");
+        location.createQuestionDialogue(Game1.content.LoadString("Strings\\Locations:Club_Buy100Coins"), location.createYesNoResponses(), "BuyQiCoins");
     }
 }

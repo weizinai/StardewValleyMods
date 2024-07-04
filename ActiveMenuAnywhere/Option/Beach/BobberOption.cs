@@ -10,11 +10,13 @@ internal class BobberOption : BaseOption
     public BobberOption(Rectangle sourceRect) :
         base(I18n.Option_Bobber(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("spring_2_1"))
-            Game1.activeClickableMenu = new ChooseFromIconsMenu("bobbers");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("spring_2_1");
+    }
+
+    public override void Apply()
+    {
+        Game1.activeClickableMenu = new ChooseFromIconsMenu("bobbers");
     }
 }

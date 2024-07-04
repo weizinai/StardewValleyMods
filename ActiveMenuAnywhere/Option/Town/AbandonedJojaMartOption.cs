@@ -10,16 +10,14 @@ internal class AbandonedJojaMartOption : BaseOption
     public AbandonedJojaMartOption(Rectangle sourceRect) :
         base(I18n.Option_AbandonedJojaMart(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.MasterPlayer.mailReceived.Contains("abandonedJojaMartAccessible"))
-        {
-            var abandonedJojaMart = Game1.RequireLocation<AbandonedJojaMart>("AbandonedJojaMart");
-            abandonedJojaMart.checkBundle();
-        }
-        else
-        {
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
-        }
+        return Game1.MasterPlayer.mailReceived.Contains("abandonedJojaMartAccessible");
+    }
+
+    public override void Apply()
+    {
+        var abandonedJojaMart = Game1.RequireLocation<AbandonedJojaMart>("AbandonedJojaMart");
+        abandonedJojaMart.checkBundle();
     }
 }

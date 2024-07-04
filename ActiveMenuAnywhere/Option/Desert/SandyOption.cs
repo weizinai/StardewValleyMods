@@ -9,11 +9,13 @@ internal class SandyOption : BaseOption
     public SandyOption(Rectangle sourceRect) :
         base(I18n.Option_Sandy(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.player.mailReceived.Contains("ccVault"))
-            Utility.TryOpenShopMenu("Sandy", "Sandy");
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.player.mailReceived.Contains("ccVault");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Sandy", "Sandy");
     }
 }

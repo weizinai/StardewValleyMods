@@ -9,7 +9,7 @@ internal class RSVQuestBoardOption : BaseOption
     public RSVQuestBoardOption(Rectangle sourceRect) :
         base(I18n.Option_RSVQuestBoard(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         var method = RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.Questing.QuestController", "OpenQuestBoard");
         var parameters = new object[] { Game1.currentLocation, new[] { "VillageQuestBoard" }, Game1.player, new Point() };

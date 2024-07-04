@@ -10,11 +10,13 @@ internal class SpecialOrderOption : BaseOption
     public SpecialOrderOption(Rectangle sourceRect) :
         base(I18n.Option_SpecialOrder(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Game1.MasterPlayer.eventsSeen.Contains("15389722"))
-            Game1.activeClickableMenu = new SpecialOrdersBoard();
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Game1.MasterPlayer.eventsSeen.Contains("15389722");
+    }
+
+    public override void Apply()
+    {
+        Game1.activeClickableMenu = new SpecialOrdersBoard();
     }
 }

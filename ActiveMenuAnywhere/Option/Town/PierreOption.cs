@@ -10,7 +10,7 @@ internal class PierreOption : BaseOption
     public PierreOption(Rectangle sourceRect) :
         base(I18n.Option_Pierre(), sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override void Apply()
     {
         var options = new List<Response>
         {

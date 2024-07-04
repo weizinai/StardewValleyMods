@@ -6,13 +6,16 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MagicBoatOption : BaseOption
 {
-    public MagicBoatOption(Rectangle sourceRect) : base("MagicBoat", sourceRect) { }
+    public MagicBoatOption(Rectangle sourceRect)
+        : base("MagicBoat", sourceRect) { }
 
-    public override void ReceiveLeftClick()
+    public override bool IsEnable()
     {
-        if (Utility.IsPassiveFestivalDay("NightMarket"))
-            Utility.TryOpenShopMenu("Festival_NightMarket_MagicBoat_Day" + Utility.GetDayOfPassiveFestival("NightMarket"), null, false);
-        else
-            Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+        return Utility.IsPassiveFestivalDay("NightMarket");
+    }
+
+    public override void Apply()
+    {
+        Utility.TryOpenShopMenu("Festival_NightMarket_MagicBoat_Day" + Utility.GetDayOfPassiveFestival("NightMarket"), null, false);
     }
 }

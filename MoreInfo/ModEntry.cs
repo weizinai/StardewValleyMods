@@ -95,14 +95,15 @@ internal class ModEntry : Mod
 
         foreach (var handler in this.handlers) handler.Init(this.Helper.Events);
 
-        foreach (var handler in this.handlers)
+        for (var i = 0; i < this.handlers.Length; i++)
         {
-            handler.Position = new Vector2(0, Game1.uiViewport.Height / 2f - this.handlers.Length * 64 / 2f);
+            this.handlers[i].Position = new Vector2(64 + 80 * i, 0);
         }
     }
 
     private IEnumerable<IInfoHandler> GetHandlers()
     {
         if (this.config.ShowObjectInfo) yield return new ObjectInfoHandler();
+        if (this.config.ShowMonsterInfo) yield return new MonsterInfoHandler();
     }
 }

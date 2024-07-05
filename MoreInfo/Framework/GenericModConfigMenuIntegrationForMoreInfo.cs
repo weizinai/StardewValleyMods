@@ -21,6 +21,11 @@ internal class GenericModConfigMenuIntegrationForMoreInfo
                 config => config.ShowObjectInfo,
                 (config, value) => config.ShowObjectInfo = value,
                 I18n.Config_ShowObjectInfo_Name
+            )
+            .AddBoolOption(
+                config => config.ShowMonsterInfo,
+                (config, value) => config.ShowMonsterInfo = value,
+                I18n.Config_ShowMonsterInfo_Name
             );
     }
 }

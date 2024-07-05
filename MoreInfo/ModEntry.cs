@@ -1,7 +1,9 @@
-﻿using MoreInfo.Framework;
+﻿using Microsoft.Xna.Framework;
+using MoreInfo.Framework;
 using MoreInfo.Handler;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 using weizinai.StardewValleyMod.Common.Integration;
 
 namespace MoreInfo;
@@ -92,6 +94,11 @@ internal class ModEntry : Mod
         this.handlers = this.GetHandlers().ToArray();
 
         foreach (var handler in this.handlers) handler.Init(this.Helper.Events);
+
+        foreach (var handler in this.handlers)
+        {
+            handler.Position = new Vector2(Game1.uiViewport.Width / 2f - this.handlers.Length * 64 / 2f, 0);
+        }
     }
 
     private IEnumerable<IInfoHandler> GetHandlers()

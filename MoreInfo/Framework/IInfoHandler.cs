@@ -6,6 +6,8 @@ namespace MoreInfo.Framework;
 
 internal interface IInfoHandler
 {
+    public Vector2 Position { get; set; }
+    
     public void Init(IModEvents modEvents);
 
     public void Clear(IModEvents modEvents);

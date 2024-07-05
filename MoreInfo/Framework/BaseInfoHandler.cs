@@ -7,6 +7,8 @@ namespace MoreInfo.Framework;
 internal abstract class BaseInfoHandler : IInfoHandler
 {
     protected bool IsHover;
+
+    public Vector2 Position { get; set; }
     
     public abstract void Init(IModEvents modEvents);
     

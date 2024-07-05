@@ -11,7 +11,6 @@ namespace MoreInfo.Handler;
 internal class ObjectInfoHandler : BaseInfoHandler
 {
     private readonly Dictionary<string, int> objectInfo = new();
-    private readonly Vector2 position = Vector2.Zero;
     
     private Rectangle sourceRectangle;
     private Texture2D texture = null!;
@@ -21,7 +20,7 @@ internal class ObjectInfoHandler : BaseInfoHandler
         this.UpdateObjectInfo();
     }
 
-    private Rectangle Bound => new((int)this.position.X, (int)this.position.Y, 64, 64);
+    private Rectangle Bound => new((int)this.Position.X, (int)this.Position.Y, 64, 64);
 
     public override void Init(IModEvents modEvents)
     {
@@ -43,7 +42,7 @@ internal class ObjectInfoHandler : BaseInfoHandler
     public override void Draw(SpriteBatch b)
     {
         IClickableMenu.drawTextureBox(b, this.Bound.X, this.Bound.Y, this.Bound.Width, this.Bound.Height, Color.White);
-        b.Draw(this.texture, new Rectangle((int)this.position.X + 16, (int)this.position.Y + 16, 32, 32), this.sourceRectangle, Color.White,
+        b.Draw(this.texture, new Rectangle((int)this.Position.X + 16, (int)this.Position.Y + 16, 32, 32), this.sourceRectangle, Color.White,
             0f, Vector2.Zero, SpriteEffects.None, 0f);
     }
 

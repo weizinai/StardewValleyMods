@@ -35,14 +35,4 @@ internal abstract class BaseInfoHandler : IInfoHandler
     {
         if (this.isHover) IClickableMenu.drawHoverText(b, this.HoverText, Game1.smallFont);
     }
-
-    protected string GetStringFromDictionary(Dictionary<string, int> info)
-    {
-        var stringBuilder = new StringBuilder();
-        foreach (var (key, value) in info)
-            stringBuilder.AppendLine($"{key}: {value}");
-        stringBuilder.Length--;
-
-        return stringBuilder.ToString();
-    }
 }

@@ -1,18 +1,11 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MoreInfo.Framework;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.Menus;
 
 namespace MoreInfo.Handler;
 
-internal class ObjectInfoHandler : BaseInfoHandler
+internal class ObjectInfoHandler : LocationInfoHandler
 {
-    private readonly Dictionary<string, int> objectInfo = new();
-
-    protected override string HoverText => this.GetStringFromDictionary(this.objectInfo);
-    
     public ObjectInfoHandler()
     {
         this.UpdateObjectInfo();
@@ -29,17 +22,6 @@ internal class ObjectInfoHandler : BaseInfoHandler
         modEvents.Player.Warped -= this.OnWarp;
         modEvents.World.ObjectListChanged -= this.OnObjectListChanged;
     }
-
-    public override bool IsEnable()
-    {
-        return this.objectInfo.Any();
-    }
-
-    public override void Draw(SpriteBatch b)
-    {
-        IClickableMenu.drawTextureBox(b, this.Bound.X, this.Bound.Y, this.Bound.Width, this.Bound.Height, Color.White);
-        b.Draw(this.Texture, new Rectangle((int)this.Position.X + 16, (int)this.Position.Y + 16, 32, 32), this.SourceRectangle, Color.White);
-    }
     
     private void OnWarp(object? sender, WarpedEventArgs e)
     {
@@ -53,7 +35,7 @@ internal class ObjectInfoHandler : BaseInfoHandler
 
     private void UpdateObjectInfo()
     {
-        this.objectInfo.Clear();
+        this.LocationInfo.Clear();
 
         var objects = Game1.currentLocation.Objects.Values;
 
@@ -61,9 +43,9 @@ internal class ObjectInfoHandler : BaseInfoHandler
 
         foreach (var obj in objects)
         {
-            if (!this.objectInfo.TryAdd(obj.DisplayName, 1))
+            if (!this.LocationInfo.TryAdd(obj.DisplayName, 1))
             {
-                this.objectInfo[obj.DisplayName]++;
+                this.LocationInfo[obj.DisplayName]++;
             }
         }
         

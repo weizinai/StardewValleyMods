@@ -1,20 +1,13 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MoreInfo.Framework;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
-using StardewValley.Menus;
 using StardewValley.Monsters;
 
 namespace MoreInfo.Handler;
 
-internal class MonsterInfoHandler : BaseInfoHandler
+internal class MonsterInfoHandler : LocationInfoHandler
 {
-    private readonly Dictionary<string, int> monsterInfo = new();
-
-    protected override string HoverText => this.GetStringFromDictionary(this.monsterInfo);
-
     public MonsterInfoHandler()
     {
         this.UpdateMonsterInfo();
@@ -32,17 +25,6 @@ internal class MonsterInfoHandler : BaseInfoHandler
         modEvents.World.NpcListChanged -= this.OnNpcListChanged;
     }
 
-    public override bool IsEnable()
-    {
-        return this.monsterInfo.Any();
-    }
-
-    public override void Draw(SpriteBatch b)
-    {
-        IClickableMenu.drawTextureBox(b, this.Bound.X, this.Bound.Y, this.Bound.Width, this.Bound.Height, Color.White);
-        b.Draw(this.Texture, new Rectangle(this.Bound.X + 16, this.Bound.Y + 16, 32, 32), this.SourceRectangle, Color.White);
-    }
-
     private void OnWarped(object? sender, WarpedEventArgs e)
     {
         this.UpdateMonsterInfo();
@@ -55,7 +37,7 @@ internal class MonsterInfoHandler : BaseInfoHandler
 
     private void UpdateMonsterInfo()
     {
-        this.monsterInfo.Clear();
+        this.LocationInfo.Clear();
 
         var monsters = Game1.currentLocation.characters.OfType<Monster>().ToArray();
         
@@ -63,9 +45,9 @@ internal class MonsterInfoHandler : BaseInfoHandler
 
         foreach (var monster in monsters)
         {
-            if (!this.monsterInfo.TryAdd(monster.displayName, 1))
+            if (!this.LocationInfo.TryAdd(monster.displayName, 1))
             {
-                this.monsterInfo[monster.displayName]++;
+                this.LocationInfo[monster.displayName]++;
             }
         }
 

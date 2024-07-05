@@ -12,6 +12,7 @@ internal class ModEntry : Mod
 {
     private ModConfig config = null!;
     private IInfoHandler[] handlers = Array.Empty<IInfoHandler>();
+    private LocationInfoHandler[] locationInfoHandlers = Array.Empty<LocationInfoHandler>();
 
     public override void Entry(IModHelper helper)
     {
@@ -21,6 +22,7 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
 
         helper.Events.Display.RenderingHud += this.RenderingHud;
         helper.Events.Display.RenderedHud += this.RenderedHud;
@@ -52,6 +54,18 @@ internal class ModEntry : Mod
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
         this.UpdateConfig();
+    }
+
+    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    {
+        var index = 0;
+        foreach (var handler in this.locationInfoHandlers)
+        {
+            if (handler.IsEnable())
+            {
+                handler.Position = new Vector2(64 + 80 * index++, 0);
+            }
+        }
     }
 
     private void RenderedHud(object? sender, RenderedHudEventArgs e)
@@ -92,13 +106,9 @@ internal class ModEntry : Mod
         foreach (var handler in this.handlers) handler.Clear(this.Helper.Events);
 
         this.handlers = this.GetHandlers().ToArray();
+        this.locationInfoHandlers = this.handlers.OfType<LocationInfoHandler>().ToArray();
 
         foreach (var handler in this.handlers) handler.Init(this.Helper.Events);
-
-        for (var i = 0; i < this.handlers.Length; i++)
-        {
-            this.handlers[i].Position = new Vector2(64 + 80 * i, 0);
-        }
     }
 
     private IEnumerable<IInfoHandler> GetHandlers()

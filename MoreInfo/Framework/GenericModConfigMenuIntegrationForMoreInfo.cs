@@ -16,6 +16,11 @@ internal class GenericModConfigMenuIntegrationForMoreInfo
         if (!this.configMenu.IsLoaded) return;
 
         this.configMenu
-            .Register();
+            .Register()
+            .AddBoolOption(
+                config => config.ShowObjectInfo,
+                (config, value) => config.ShowObjectInfo = value,
+                I18n.Config_ShowObjectInfo_Name
+            );
     }
 }

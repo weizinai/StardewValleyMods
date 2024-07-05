@@ -228,7 +228,7 @@ internal class AMAMenu : IClickableMenu
             case MenuTabId.Forest:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new MarnieOption(this.GetSourceRectangle(0)),
+                    new MarnieOption(this.GetSourceRectangle(0), this.helper),
                     new TravelerOption(this.GetSourceRectangle(1)),
                     new HatMouseOption(this.GetSourceRectangle(2)),
                     new WizardOption(this.GetSourceRectangle(3)),

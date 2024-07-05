@@ -100,9 +100,6 @@
     "ClintOption.Receive": "Récupérer l’outil",
     "ClintOption.Unfinished": "L'outil n'est pas terminé",
 
-    // MarnieOption
-    "MarnieOption.Bug": "La boutique est normale mais acheter des animaux entraînera la téléportation du joueur, veuillez l'utiliser uniquement si vous avez un menu de triche CJB.",
-
     // PierreOption
     "PierreOption.SeedShop": "Magasin de graines",
     "PierreOption.BuyBackpack": "Acheter un sac à dos",

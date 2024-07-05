@@ -100,9 +100,6 @@
     "ClintOption.Receive": "取回工具",
     "ClintOption.Unfinished": "工具还未升级完成",
 
-    // MarnieOption
-    "MarnieOption.Bug": "商店是正常的，但购买动物会导致玩家瞬移，请在有CJB作弊菜单的情况下使用它。",
-
     // PierreOption
     "PierreOption.SeedShop": "种子商店",
     "PierreOption.BuyBackpack": "购买背包",

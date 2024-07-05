@@ -1,6 +1,7 @@
 # 1.5.0
 
 - 修复`RSVSpecialOrder`无法使用的问题
+- 修复购买动物后，玩家被传送到玛妮的牧场的问题
 - 添加`OpenMenuByTelephone`功能，让玩家可以选择是否能只通过电话打开菜单
 - 添加`ProgressMode`功能，让玩家可以无视要求打开任意菜单
 

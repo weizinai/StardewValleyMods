@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class JericOption : BaseOption
 {
     public JericOption(Rectangle sourceRect) :
-        base(I18n.Option_Jeric(), sourceRect) { }
+        base(I18n.UI_Option_Jeric(), sourceRect) { }
 
     public override void Apply()
     {

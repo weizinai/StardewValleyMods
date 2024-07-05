@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class ForgeOption : BaseOption
 {
     public ForgeOption(Rectangle sourceRect) :
-        base(I18n.Option_Forge(), sourceRect) { }
+        base(I18n.UI_Option_Forge(), sourceRect) { }
 
     public override bool IsEnable()
     {

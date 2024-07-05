@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class CasinoOption : BaseOption
 {
     public CasinoOption(Rectangle sourceRect) :
-        base(I18n.Option_Casino(), sourceRect) { }
+        base(I18n.UI_Option_Casino(), sourceRect) { }
 
     public override bool IsEnable()
     {

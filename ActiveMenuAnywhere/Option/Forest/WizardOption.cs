@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class WizardOption : BaseOption
 {
     public WizardOption(Rectangle sourceRect) :
-        base(I18n.Option_Wizard(), sourceRect) { }
+        base(I18n.UI_Option_Wizard(), sourceRect) { }
 
     public override bool IsEnable()
     {

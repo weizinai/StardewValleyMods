@@ -17,97 +17,114 @@
     "UI.Tab.SVE": "SVE",
     "UI.Tab.RSV": "Ridgeside",
 
-    // Option
-    "Option.AbandonedJojaMart": "Joja Mart\nabandonné",
-    "Option.Billboard": "Panneau\nd'affichage",
-    "Option.Bobber": "Flotteur",
-    "Option.Bookseller": "Libraire",
-    "Option.BuyQiCoins": "Pièces Qi",
-    "Option.Casino": "Casino",
-    "Option.Clint": "Clint",
-    "Option.ClubSeller": "Vendeur\ndu club",
-    "Option.CommunityCenter": "Centre\ncommunautaire",
-    "Option.DesertTrade": "Marchande\ndu désert",
-    "Option.Dwarf": "Nain",
-    "Option.Dye": "Colorant",
-    "Option.FarmerFile": "Dossier\nAgriculteur",
-    "Option.Forge": "Forge",
-    "Option.Gus": "Gus",
-    "Option.Harvey": "Harvey",
-    "Option.HatMouse": "Souris à\nChapeaux",
-    "Option.IceCreamStand": "Stand de \ncrème glacée",
-    "Option.IslandResort": "Station\nbalnéaire",
-    "Option.IslandTrade": "Vendeur\nde l’île",
-    "Option.JojaShop": "Boutique Joja",
-    "Option.Krobus": "Krobus",
-    "Option.Marlon": "Marlon",
-    "Option.Marnie": "Marnie",
-    "Option.Monster": "Objectifs \nd'éradication \nde monstres",
-    "Option.Pierre": "Pierre",
-    "Option.PrizeTicket": "Machine\nà prix",
-    "Option.QiCat": "Chat Qi",
-    "Option.QiGemShop": "Boutique de\nGemmes Qi",
-    "Option.QiSpecialOrder": "Commande\nspéciale Qi",
-    "Option.Raccoon": "Raton laveur",
-    "Option.Robin": "Robine",
-    "Option.Sandy": "Sandy",
-    "Option.ShippingBin": "Bac d'expédition",
-    "Option.SpecialOrder": "Commande\nspéciale",
-    "Option.Statue": "Statue",
-    "Option.Tailoring": "Couture",
-    "Option.Traveler": "Marchande\nambulante",
-    "Option.TV": "Télé",
-    "Option.VolcanoShop": "Boutique\ndu volcan",
-    "Option.Willy": "Willie",
-    "Option.Wizard": "Sorcier",
-    /*
-    "Option.Category":"Category",
-    "Option.FurnitureCatalogue":"Furniture Catalogue",
-    "Option.JojaCatalogue":"Joja Catalogue",
-    "Option.JunimoCatalogue":"Junimo Catalogue",
-    "Option.RetroCatalogue":"Retro Catalogue",
-    "Option.TrashCatalogue":"Trash Catalogue",
-    "Option.WizardCatalogue":"Wizard Catalogue",
-    */
-    // RSVOptions
-    "Option.Ian": "Ian",
-    "Option.Jeric": "Jéric",
-    "Option.Joi": "Joi",
-    "Option.Kimpoi": "Kimpoi",
-    "Option.Lola": "Lola",
-    "Option.Lorenzo": "Lorenzo",
-    "Option.MysticFall1": "Automne \nmystique 1",
-    "Option.MysticFall2": "Automne \nmystique 2",
-    "Option.MysticFall3": "Automne \nmystique 3",
-    "Option.NinjaBoard": "Tableau Ninja",
-    "Option.Paula": "Paule",
-    "Option.RSVQuestBoard": "Tableau de \nquêtes RSV",
-    "Option.RSVSpecialOrder": "Commande \nspéciale RSV",
-    "Option.Pika": "Pika",
+    // Beach
+    "UI.Option.Bobber": "Flotteur",
+    "UI.Option.DecorationBoat": "Decoration Boat", // TODO 
+    "UI.Option.MagicBoat": "Magic Boat", // TODO
+    "UI.Option.NightMarketTraveler": "Night Market Traveler", // TODO
+    "UI.Option.Willy": "Willie",
+    
+    // Desert
+    "UI.Option.BuyQiCoins": "Pièces Qi",
+    "UI.Option.Casino": "Casino",
+    "UI.Option.ClubSeller": "Vendeur\ndu club",
+    "UI.Option.DesertTrade": "Marchande\ndu désert",
+    "UI.Option.FarmerFile": "Dossier\nAgriculteur",
+    "UI.Option.Sandy": "Sandy",
+    
+    // Farm
+    "UI.Option.ShippingBin": "Bac d'expédition",
+    "UI.Option.TV": "Télé",
+    // "UI.Option.Category":"Category",
+    // "UI.Option.FurnitureCatalogue":"Furniture Catalogue",
+    // "UI.Option.JojaCatalogue":"Joja Catalogue",
+    // "UI.Option.JunimoCatalogue":"Junimo Catalogue",
+    // "UI.Option.RetroCatalogue":"Retro Catalogue",
+    // "UI.Option.TrashCatalogue":"Trash Catalogue",
+    // "UI.Option.WizardCatalogue":"Wizard Catalogue",
+    
+    // Forest
+    "UI.Option.HatMouse": "Souris à\nChapeaux",
+    "UI.Option.Marnie": "Marnie",
+    "UI.Option.Raccoon": "Raton laveur",
+    "UI.Option.Traveler": "Marchande\nambulante",
+    "UI.Option.Wizard": "Sorcier",
+    
+    // GingerIsland
+    "UI.Option.Forge": "Forge",
+    "UI.Option.IslandResort": "Station\nbalnéaire",
+    "UI.Option.IslandTrade": "Vendeur\nde l’île",
+    "UI.Option.QiCat": "Chat Qi",
+    "UI.Option.QiGemShop": "Boutique de\nGemmes Qi",
+    "UI.Option.QiSpecialOrder": "Commande\nspéciale Qi",
+    "UI.Option.VolcanoShop": "Boutique\ndu volcan",
+    
+    // Mountain
+    "UI.Option.Dwarf": "Nain",
+    "UI.Option.Marlon": "Marlon",
+    "UI.Option.Monster": "Objectifs \nd'éradication \nde monstres",
+    "UI.Option.Robin": "Robine",
+    
+    // RSV
+    "UI.Option.Ian": "Ian",
+    "UI.Option.Jeric": "Jéric",
+    "UI.Option.Joi": "Joi",
+    "UI.Option.Kimpoi": "Kimpoi",
+    "UI.Option.Lola": "Lola",
+    "UI.Option.Lorenzo": "Lorenzo",
+    "UI.Option.MysticFall1": "Automne \nmystique 1",
+    "UI.Option.MysticFall2": "Automne \nmystique 2",
+    "UI.Option.MysticFall3": "Automne \nmystique 3",
+    "UI.Option.NinjaBoard": "Tableau Ninja",
+    "UI.Option.Paula": "Paule",
+    "UI.Option.Pika": "Pika",
+    "UI.Option.RSVQuestBoard": "Tableau de \nquêtes RSV",
+    "UI.Option.RSVSpecialOrder": "Commande \nspéciale RSV",
+    
+    // SVE
+    "UI.Option.Sophia": "Sophia", // TODO
+    
+    // Town
+    "UI.Option.AbandonedJojaMart": "Joja Mart\nabandonné",
+    "UI.Option.Billboard": "Panneau\nd'affichage",
+    "UI.Option.Bookseller": "Libraire",
+    "UI.Option.Clint": "Clint",
+    "UI.Option.CommunityCenter": "Centre\ncommunautaire",
+    "UI.Option.Dye": "Colorant",
+    "UI.Option.Gus": "Gus",
+    "UI.Option.Harvey": "Harvey",
+    "UI.Option.IceCreamStand": "Stand de \ncrème glacée",
+    "UI.Option.JojaShop": "Boutique Joja",
+    "UI.Option.Krobus": "Krobus",
+    "UI.Option.Pierre": "Pierre",
+    "UI.Option.PrizeTicket": "Machine\nà prix",
+    "UI.Option.SpecialOrder": "Commande\nspéciale",
+    "UI.Option.Statue": "Statue",
+    "UI.Option.Tailoring": "Couture",
 
     // Tip
-    "Tip.Unavailable": "Actuellement \nindisponible",
+    "UI.Tip.Unavailable": "Actuellement \nindisponible",
 
     // BaseOption
-    "BaseOption.Leave": "Quitter",
+    "UI.BaseOption.Leave": "Quitter",
 
     // BillboardOption
-    "BillboardOption.Calendar": "Calendrier",
-    "BillboardOption.DailyQuest": "Quête quotidienne",
+    "UI.BillboardOption.Calendar": "Calendrier",
+    "UI.BillboardOption.DailyQuest": "Quête quotidienne",
 
     // ClintOption
-    "ClintOption.Receive": "Récupérer l’outil",
-    "ClintOption.Unfinished": "L'outil n'est pas terminé",
+    "UI.ClintOption.Receive": "Récupérer l’outil",
+    "UI.ClintOption.Unfinished": "L'outil n'est pas terminé",
 
     // PierreOption
-    "PierreOption.SeedShop": "Magasin de graines",
-    "PierreOption.BuyBackpack": "Acheter un sac à dos",
+    "UI.PierreOption.SeedShop": "Magasin de graines",
+    "UI.PierreOption.BuyBackpack": "Acheter un sac à dos",
 
     // RaccoonOption
-    "RaccoonOption.RaccoonBundle": "Bundle de raton laveur",
-    "RaccoonOption.RaccoonShop": "Boutique de raton laveur",
+    "UI.RaccoonOption.RaccoonBundle": "Bundle de raton laveur",
+    "UI.RaccoonOption.RaccoonShop": "Boutique de raton laveur",
 
     // RSVPikaOption
-    "PikaOption.Shop": "Boutique",
-    "PikaOption.RecipeShop": "Boutique de recettes"
+    "UI.PikaOption.Shop": "Boutique",
+    "UI.PikaOption.RecipeShop": "Boutique de recettes"
 }

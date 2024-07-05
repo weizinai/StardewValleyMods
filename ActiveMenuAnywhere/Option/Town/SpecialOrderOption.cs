@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class SpecialOrderOption : BaseOption
 {
     public SpecialOrderOption(Rectangle sourceRect) :
-        base(I18n.Option_SpecialOrder(), sourceRect) { }
+        base(I18n.UI_Option_SpecialOrder(), sourceRect) { }
 
     public override bool IsEnable()
     {

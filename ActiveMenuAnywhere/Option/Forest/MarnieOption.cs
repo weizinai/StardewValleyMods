@@ -16,7 +16,7 @@ internal class MarnieOption : BaseOption
     private Location originViewport;
 
     public MarnieOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_Marnie(), sourceRect)
+        base(I18n.UI_Option_Marnie(), sourceRect)
     {
         this.helper = helper;
     }

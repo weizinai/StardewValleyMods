@@ -11,7 +11,7 @@ internal class QiCatOption : BaseOption
     private readonly IModHelper helper;
 
     public QiCatOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_QiCat(), sourceRect)
+        base(I18n.UI_Option_QiCat(), sourceRect)
     {
         this.helper = helper;
     }

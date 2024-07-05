@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class QiGemShopOption : BaseOption
 {
     public QiGemShopOption(Rectangle sourceRect) :
-        base(I18n.Option_QiGemShop(), sourceRect) { }
+        base(I18n.UI_Option_QiGemShop(), sourceRect) { }
     
     public override bool IsEnable()
     {

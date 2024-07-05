@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class DwarfOption : BaseOption
 {
     public DwarfOption(Rectangle sourceRect) :
-        base(I18n.Option_Dwarf(), sourceRect) { }
+        base(I18n.UI_Option_Dwarf(), sourceRect) { }
 
     public override bool IsEnable()
     {

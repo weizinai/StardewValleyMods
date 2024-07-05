@@ -8,15 +8,15 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class BillboardOption : BaseOption
 {
     public BillboardOption(Rectangle sourceRect) :
-        base(I18n.Option_Billboard(), sourceRect) { }
+        base(I18n.UI_Option_Billboard(), sourceRect) { }
 
     public override void Apply()
     {
         var options = new List<Response>
         {
-            new("Calendar", I18n.BillboardOption_Calendar()),
-            new("DailyQuest", I18n.BillboardOption_DailyQuest()),
-            new("Leave", I18n.BaseOption_Leave())
+            new("Calendar", I18n.UI_BillboardOption_Calendar()),
+            new("DailyQuest", I18n.UI_BillboardOption_DailyQuest()),
+            new("Leave", I18n.UI_BaseOption_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }

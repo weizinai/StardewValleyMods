@@ -7,15 +7,15 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class PikaOption : BaseOption
 {
     public PikaOption(Rectangle sourceRect) :
-        base(I18n.Option_Pika(), sourceRect) { }
+        base(I18n.UI_Option_Pika(), sourceRect) { }
 
     public override void Apply()
     {
         var options = new List<Response>
         {
-            new("Shop", I18n.PikaOption_Shop()),
-            new("RecipeShop", I18n.PikaOption_RecipeShop()),
-            new("Leave", I18n.BaseOption_Leave())
+            new("Shop", I18n.UI_PikaOption_Shop()),
+            new("RecipeShop", I18n.UI_PikaOption_RecipeShop()),
+            new("Leave", I18n.UI_BaseOption_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }

@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class DesertTradeOption : BaseOption
 {
     public DesertTradeOption(Rectangle sourceRect) :
-        base(I18n.Option_DesertTrade(), sourceRect) { }
+        base(I18n.UI_Option_DesertTrade(), sourceRect) { }
 
     public override bool IsEnable()
     {

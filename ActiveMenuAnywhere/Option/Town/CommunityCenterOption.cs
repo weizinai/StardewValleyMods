@@ -11,7 +11,7 @@ internal class CommunityCenterOption : BaseOption
     private readonly List<string> texts;
 
     public CommunityCenterOption(Rectangle sourceRect) :
-        base(I18n.Option_CommunityCenter(), sourceRect)
+        base(I18n.UI_Option_CommunityCenter(), sourceRect)
     {
         this.keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
         this.texts = new List<string>
@@ -38,7 +38,7 @@ internal class CommunityCenterOption : BaseOption
             if (communityCenter.shouldNoteAppearInArea(i))
                 options.Add(new Response(this.keys[i], this.texts[i]));
 
-        options.Add(new Response("Leave", I18n.BaseOption_Leave()));
+        options.Add(new Response("Leave", I18n.UI_BaseOption_Leave()));
 
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }

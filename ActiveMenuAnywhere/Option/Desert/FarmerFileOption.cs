@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class FarmerFileOption : BaseOption
 {
     public FarmerFileOption(Rectangle sourceRect) :
-        base(I18n.Option_FarmerFile(), sourceRect) { }
+        base(I18n.UI_Option_FarmerFile(), sourceRect) { }
 
     public override bool IsEnable()
     {

@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class BobberOption : BaseOption
 {
     public BobberOption(Rectangle sourceRect) :
-        base(I18n.Option_Bobber(), sourceRect) { }
+        base(I18n.UI_Option_Bobber(), sourceRect) { }
 
     public override bool IsEnable()
     {

@@ -8,15 +8,15 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class PierreOption : BaseOption
 {
     public PierreOption(Rectangle sourceRect) :
-        base(I18n.Option_Pierre(), sourceRect) { }
+        base(I18n.UI_Option_Pierre(), sourceRect) { }
 
     public override void Apply()
     {
         var options = new List<Response>
         {
-            new("SeedShop", I18n.PierreOption_SeedShop()),
-            new("BuyBackpack", I18n.PierreOption_BuyBackpack()),
-            new("Leave", I18n.BaseOption_Leave())
+            new("SeedShop", I18n.UI_PierreOption_SeedShop()),
+            new("BuyBackpack", I18n.UI_PierreOption_BuyBackpack()),
+            new("Leave", I18n.UI_BaseOption_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterQuestionBehavior);
     }

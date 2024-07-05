@@ -11,7 +11,7 @@ internal class MonsterOption : BaseOption
     private readonly IModHelper helper;
 
     public MonsterOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_Monster(), sourceRect)
+        base(I18n.UI_Option_Monster(), sourceRect)
     {
         this.helper = helper;
     }

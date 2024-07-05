@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class WillyOption : BaseOption
 {
     public WillyOption(Rectangle sourceRect) :
-        base(I18n.Option_Willy(), sourceRect) { }
+        base(I18n.UI_Option_Willy(), sourceRect) { }
 
     public override bool IsEnable()
     {

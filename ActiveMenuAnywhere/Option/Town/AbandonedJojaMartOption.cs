@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class AbandonedJojaMartOption : BaseOption
 {
     public AbandonedJojaMartOption(Rectangle sourceRect) :
-        base(I18n.Option_AbandonedJojaMart(), sourceRect) { }
+        base(I18n.UI_Option_AbandonedJojaMart(), sourceRect) { }
 
     public override bool IsEnable()
     {

@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class DyeOption : BaseOption
 {
     public DyeOption(Rectangle sourceRect) :
-        base(I18n.Option_Dye(), sourceRect) { }
+        base(I18n.UI_Option_Dye(), sourceRect) { }
 
     public override bool IsEnable()
     {

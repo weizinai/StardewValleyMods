@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class VolcanoShopOption : BaseOption
 {
     public VolcanoShopOption(Rectangle sourceRect) :
-        base(I18n.Option_VolcanoShop(), sourceRect) { }
+        base(I18n.UI_Option_VolcanoShop(), sourceRect) { }
 
     public override bool IsEnable()
     {

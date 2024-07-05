@@ -12,7 +12,7 @@ internal class RaccoonOption : BaseOption
     private readonly IModHelper helper;
 
     public RaccoonOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_Raccoon(), sourceRect)
+        base(I18n.UI_Option_Raccoon(), sourceRect)
     {
         this.helper = helper;
     }

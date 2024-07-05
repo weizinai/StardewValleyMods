@@ -13,7 +13,7 @@ internal class ShippingBinOption : BaseOption
     private readonly IModHelper helper;
 
     public ShippingBinOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_ShippingBin(), sourceRect)
+        base(I18n.UI_Option_ShippingBin(), sourceRect)
     {
         this.helper = helper;
     }

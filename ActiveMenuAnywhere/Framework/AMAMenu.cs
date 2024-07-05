@@ -60,7 +60,7 @@ internal class AMAMenu : IClickableMenu
                 if (option.IsEnable() || !this.config.ProgressMode)
                     option.Apply();
                 else
-                    Game1.drawObjectDialogue(I18n.Tip_Unavailable());
+                    Game1.drawObjectDialogue(I18n.UI_Tip_Unavailable());
                 break;
             }
         }

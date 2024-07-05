@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class BuyQiCoinsOption : BaseOption
 {
     public BuyQiCoinsOption(Rectangle sourceRect) :
-        base(I18n.Option_BuyQiCoins(), sourceRect) { }
+        base(I18n.UI_Option_BuyQiCoins(), sourceRect) { }
 
     public override bool IsEnable()
     {

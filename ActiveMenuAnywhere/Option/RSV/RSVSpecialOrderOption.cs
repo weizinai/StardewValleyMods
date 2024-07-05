@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class RSVSpecialOrderOption : BaseOption
 {
     public RSVSpecialOrderOption(Rectangle sourceRect) :
-        base(I18n.Option_RSVSpecialOrder(), sourceRect) { }
+        base(I18n.UI_Option_RSVSpecialOrder(), sourceRect) { }
 
     public override bool IsEnable()
     {

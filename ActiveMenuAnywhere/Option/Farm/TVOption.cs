@@ -11,7 +11,7 @@ internal class TVOption : BaseOption
     private readonly IModHelper helper;
 
     public TVOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.Option_TV(), sourceRect)
+        base(I18n.UI_Option_TV(), sourceRect)
     {
         this.helper = helper;
     }

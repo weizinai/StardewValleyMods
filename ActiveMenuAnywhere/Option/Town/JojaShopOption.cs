@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class JojaShopOption : BaseOption
 {
     public JojaShopOption(Rectangle sourceRect) :
-        base(I18n.Option_JojaShop(), sourceRect) { }
+        base(I18n.UI_Option_JojaShop(), sourceRect) { }
 
     public override bool IsEnable()
     {

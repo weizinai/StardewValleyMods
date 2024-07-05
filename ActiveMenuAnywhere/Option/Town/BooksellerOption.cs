@@ -7,7 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class BooksellerOption : BaseOption
 {
     public BooksellerOption(Rectangle sourceRect) :
-        base(I18n.Option_Bookseller(), sourceRect) { }
+        base(I18n.UI_Option_Bookseller(), sourceRect) { }
 
     public override bool IsEnable()
     {

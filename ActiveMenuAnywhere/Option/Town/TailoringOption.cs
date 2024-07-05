@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class TailoringOption : BaseOption
 {
     public TailoringOption(Rectangle sourceRect) :
-        base(I18n.Option_Tailoring(), sourceRect) { }
+        base(I18n.UI_Option_Tailoring(), sourceRect) { }
 
     public override bool IsEnable()
     {

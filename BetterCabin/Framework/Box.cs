@@ -6,7 +6,7 @@ using StardewValley.Locations;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Framework.UI;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework;
 
 internal abstract class Box
 {

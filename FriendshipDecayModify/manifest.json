@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.FriendshipDecayModify",
     "EntryDll": "FriendshipDecayModify.dll",
     "UpdateKeys": [
-        "Nexus:23862"
+        "Nexus: 23862"
     ],
     "Dependencies": [
         {

@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.FreeLock",
     "EntryDll": "FreeLock.dll",
     "UpdateKeys": [
-        "Nexus:25329"
+        "Nexus: 25329"
     ],
     "Dependencies": [
         {

@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.MultiplayerModLimit",
     "EntryDll": "MultiplayerModLimit.dll",
     "UpdateKeys": [
-        "Nexus:25446"
+        "Nexus: 25446"
     ],
     "Dependencies": [
         {

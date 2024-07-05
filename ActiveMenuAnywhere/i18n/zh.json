@@ -4,7 +4,7 @@
     "Config.OpenMenuByTelephone.Name": "通过电话打开菜单",
     "Config.OpenMenuByTelephone.Tooltip": "当该选项启用后，你将只能通过电话打开菜单。",
     "Config.DefaultMenuTabID": "默认菜单标签",
-    "Config.ProgressionMode.Name": "进度模式",
+    "Config.ProgressMode.Name": "进度模式",
 
     // Tab
     "UI.Tab.Farm": "农场",

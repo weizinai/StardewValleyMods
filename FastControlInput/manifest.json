@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.FastControlInput",
     "EntryDll": "FastControlInput.dll",
     "UpdateKeys": [
-        "Nexus:24324"
+        "Nexus: 24324"
     ],
     "Dependencies": [
         {

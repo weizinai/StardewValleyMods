@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.BetterCabin",
     "EntryDll": "BetterCabin.dll",
     "UpdateKeys": [
-        "Nexus:25368"
+        "Nexus: 25368"
     ],
     "Dependencies": [
         {

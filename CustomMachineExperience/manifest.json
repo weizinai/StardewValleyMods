@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.CustomMachineExperience",
     "EntryDll": "CustomMachineExperience.dll",
     "UpdateKeys": [
-        "Nexus:25455"
+        "Nexus: 25455"
     ],
     "Dependencies": [
         {

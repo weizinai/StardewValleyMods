@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.ActiveMenuAnywhere",
     "EntryDll": "ActiveMenuAnywhere.dll",
     "UpdateKeys": [
-        "Nexus:21093"
+        "Nexus: 21093"
     ],
     "Dependencies": [
         {

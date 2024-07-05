@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.MoreInfo",
     "EntryDll": "MoreInfo.dll",
     "UpdateKeys": [
-        "Nexus:"
+        "Nexus: "
     ],
     "Dependencies": [
         {

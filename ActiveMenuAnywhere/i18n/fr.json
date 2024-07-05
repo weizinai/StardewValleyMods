@@ -4,7 +4,7 @@
     "Config.OpenMenuByTelephone.Name": "Open Menu By Telephone", // TODO
     "Config.OpenMenuByTelephone.Tooltip": "When this option is enabled, you will only be able to open the menu by telephone.", // TODO
     "Config.DefaultMenuTabID": "Onglet de menu par défaut",
-    "Config.ProgressionMode.Name": "Progress Mode", // TODO
+    "Config.ProgressMode.Name": "Progress Mode", // TODO
 
     // Tab
     "UI.Tab.Farm": "Ferme",

@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.HelpWanted",
     "EntryDll": "HelpWanted.dll",
     "UpdateKeys": [
-        "Nexus:21766"
+        "Nexus: 21766"
     ],
     "Dependencies": [
         {

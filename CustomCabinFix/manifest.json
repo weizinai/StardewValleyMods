@@ -6,7 +6,7 @@
     "UniqueID": "weizinai.CustomCabinFix",
     "EntryDll": "CustomCabinFix.dll",
     "UpdateKeys": [
-        "Nexus:"
+        "Nexus: "
     ],
     "Dependencies": [
         {

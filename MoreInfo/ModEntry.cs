@@ -82,7 +82,7 @@ internal class ModEntry : Mod
         {
             if (handler.IsEnable())
             {
-                handler.UpdateHover(e.NewPosition.ScreenPixels);
+                handler.UpdateHover(Utility.ModifyCoordinatesForUIScale(e.NewPosition.ScreenPixels));
             }
         }
     }
@@ -97,7 +97,7 @@ internal class ModEntry : Mod
 
         foreach (var handler in this.handlers)
         {
-            handler.Position = new Vector2(Game1.uiViewport.Width / 2f - this.handlers.Length * 64 / 2f, 0);
+            handler.Position = new Vector2(0, Game1.uiViewport.Height / 2f - this.handlers.Length * 64 / 2f);
         }
     }
 

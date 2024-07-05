@@ -81,8 +81,8 @@ internal class ObjectInfoHandler : BaseInfoHandler
                 this.objectInfo[obj.DisplayName]++;
             }
         }
-
-        var data = ItemRegistry.GetData(objects.FirstOrDefault()?.QualifiedItemId);
+        
+        var data = ItemRegistry.GetDataOrErrorItem(objects.First().QualifiedItemId);
         this.texture = data.GetTexture();
         this.sourceRectangle = data.GetSourceRect();
     }

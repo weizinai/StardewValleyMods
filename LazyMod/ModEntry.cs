@@ -1,7 +1,7 @@
-﻿using weizinai.StardewValleyMod.Common.Log;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
@@ -13,11 +13,11 @@ namespace weizinai.StardewValleyMod.LazyMod;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
-    private IAutomationHandler[] handlers = null!;
+    private int cooldownTimer;
     private IAutomationHandlerWithDayChanged[] dayChangedHandlers = null!;
+    private IAutomationHandler[] handlers = null!;
 
     private bool modEnable = true;
-    private int cooldownTimer;
 
     public override void Entry(IModHelper helper)
     {
@@ -76,16 +76,13 @@ internal class ModEntry : Mod
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        foreach (var handler in this.dayChangedHandlers)
-        {
-            handler.OnDayStarted();
-        }
+        foreach (var handler in this.dayChangedHandlers) handler.OnDayStarted();
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
         if (!this.UpdateCooldown()) return;
-        
+
         var player = Game1.player;
         var location = Game1.currentLocation;
         if (player is null || location is null) return;
@@ -99,26 +96,25 @@ internal class ModEntry : Mod
             {
                 handler.Apply(item, player, location);
             }
+            
         }
     }
 
     private void OnDayEnding(object? sender, DayEndingEventArgs e)
     {
-        foreach (var handler in this.dayChangedHandlers)
-        {
-            handler.OnDayEnding();
-        }
+        foreach (var handler in this.dayChangedHandlers) handler.OnDayEnding();
     }
 
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
     {
-        ToolHelper.UpdateToolCache();
+        if (e.Added.Any(item => item is Tool) || e.Removed.Any(item => item is Tool))
+            ToolHelper.UpdateToolCache();
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         if (!Context.IsPlayerFree) return;
-        
+
         if (this.config.ToggleModStateKeybind.JustPressed())
         {
             this.modEnable = !this.modEnable;

@@ -19,6 +19,9 @@ internal abstract class LocationInfoHandler : BaseInfoHandler
         }
     }
 
+    protected override Rectangle Bound => new((int)this.Position.X, (int)this.Position.Y, 64, 64);
+
+
     protected readonly Dictionary<string, int> LocationInfo = new();
 
     public override bool IsEnable()

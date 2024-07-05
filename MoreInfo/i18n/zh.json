@@ -1,4 +1,5 @@
 {
     "Config.ShowObjectInfo.Name": "显示物品信息",
-    "Config.ShowMonsterInfo.Name": "显示怪物信息"
+    "Config.ShowMonsterInfo.Name": "显示怪物信息",
+    "Config.ShowBooksellerInfo.Name": "显示书商信息",
 }

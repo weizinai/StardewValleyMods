@@ -1,4 +1,7 @@
 {
     "Config.ShowObjectInfo.Name": "Show Object Info",
-    "Config.ShowMonsterInfo.Name": "Show Monster Info"
+    "Config.ShowMonsterInfo.Name": "Show Monster Info",
+    "Config.ShowBooksellerInfo.Name": "Show Bookseller Info",
+    
+    "UI.BooksellerInfo.HoverText": "",
 }

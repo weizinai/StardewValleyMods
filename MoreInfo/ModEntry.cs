@@ -115,5 +115,6 @@ internal class ModEntry : Mod
     {
         if (this.config.ShowObjectInfo) yield return new ObjectInfoHandler();
         if (this.config.ShowMonsterInfo) yield return new MonsterInfoHandler();
+        if (this.config.ShowBooksellerInfo) yield return new BooksellerInfoHandler();
     }
 }

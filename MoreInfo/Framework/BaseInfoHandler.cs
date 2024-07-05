@@ -1,4 +1,3 @@
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI.Events;
@@ -13,14 +12,14 @@ internal abstract class BaseInfoHandler : IInfoHandler
     
     protected Texture2D Texture = null!;
     protected Rectangle SourceRectangle;
-    protected Rectangle Bound => new((int)this.Position.X, (int)this.Position.Y, 64, 64);
+    protected abstract Rectangle Bound { get; }
     protected abstract string HoverText { get; }
     
     public Vector2 Position { get; set; }
 
-    public abstract void Init(IModEvents modEvents);
+    public virtual void Init(IModEvents modEvents) { }
 
-    public abstract void Clear(IModEvents modEvents);
+    public virtual void Clear(IModEvents modEvents) { }
 
     public abstract bool IsEnable();
 

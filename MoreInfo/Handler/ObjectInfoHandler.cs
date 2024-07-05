@@ -42,8 +42,7 @@ internal class ObjectInfoHandler : BaseInfoHandler
     public override void Draw(SpriteBatch b)
     {
         IClickableMenu.drawTextureBox(b, this.Bound.X, this.Bound.Y, this.Bound.Width, this.Bound.Height, Color.White);
-        b.Draw(this.texture, new Rectangle((int)this.Position.X + 16, (int)this.Position.Y + 16, 32, 32), this.sourceRectangle, Color.White,
-            0f, Vector2.Zero, SpriteEffects.None, 0f);
+        b.Draw(this.texture, new Rectangle((int)this.Position.X + 16, (int)this.Position.Y + 16, 32, 32), this.sourceRectangle, Color.White);
     }
 
     public override void UpdateHover(Vector2 mousePosition)

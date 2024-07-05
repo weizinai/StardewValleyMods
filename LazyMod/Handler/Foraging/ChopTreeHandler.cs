@@ -30,7 +30,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
             { Tree.greenRainTreeFern, this.Config.ChopGreenRainTree },
             { Tree.mysticTree, this.Config.ChopMysticTree }
         };
-
+        
         this.ForEachTile(this.Config.AutoChopTree.Range, tile =>
         {
             if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return false;
@@ -42,26 +42,19 @@ internal class ChopTreeHandler : BaseAutomationHandler
 
                 foreach (var (key, value) in treeType)
                 {
-                    // 树逻辑
-                    if (tree.treeType.Value.Equals(key))
+                    if (tree.treeType.Value == key)
                     {
                         foreach (var (stage, chopTree) in value)
                         {
                             if (tree.growthStage.Value < 5 && tree.growthStage.Value == stage && chopTree ||
-                                tree.growthStage.Value >= 5 && !tree.stump.Value && value[5])
+                                tree.growthStage.Value >= 5 && !tree.stump.Value && value[5] ||
+                                tree.stump.Value && value[-1])
                             {
                                 this.UseToolOnTile(location, player, axe, tile);
                                 break;
                             }
                         }
-
-                        break;
-                    }
-
-                    // 树桩逻辑
-                    if (tree.stump.Value && value[-1])
-                    {
-                        this.UseToolOnTile(location, player, axe, tile);
+                        
                         break;
                     }
                 }

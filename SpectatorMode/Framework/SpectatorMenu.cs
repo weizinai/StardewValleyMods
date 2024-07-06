@@ -51,26 +51,7 @@ internal class SpectatorMenu : IClickableMenu
             return;
         }
 
-        // 鼠标移动视角
-        var mouseX = Game1.getOldMouseX(false);
-        var mouseY = Game1.getOldMouseY(false);
-        var moveSpeed = this.config.MoveSpeed;
-        var moveThreshold = this.config.MoveThreshold;
-
-        // 水平移动
-        if (mouseX < moveThreshold)
-            Game1.panScreen(-moveSpeed, 0);
-        else if (mouseX - Game1.viewport.Width >= -moveThreshold)
-            Game1.panScreen(moveSpeed, 0);
-
-        // 垂直移动
-        if (mouseY < moveThreshold)
-            Game1.panScreen(0, -moveSpeed);
-        else if (mouseY - Game1.viewport.Height >= -moveThreshold)
-            Game1.panScreen(0, moveSpeed);
-
-        var pressedKeys = Game1.oldKBState.GetPressedKeys();
-        foreach (var key in pressedKeys) this.receiveKeyPress(key);
+        PanScreenHelper.PanScreen(this.config.MoveSpeed, this.config.MoveThreshold);
     }
 
     public override void draw(SpriteBatch b)
@@ -88,18 +69,6 @@ internal class SpectatorMenu : IClickableMenu
         base.receiveKeyPress(key);
 
         if (this.config.ToggleStateKey.JustPressed()) this.followPlayer = !this.followPlayer;
-
-        if (this.followPlayer) return;
-
-        var moveSpeed = this.config.MoveSpeed;
-        if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
-            Game1.panScreen(0, moveSpeed);
-        else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
-            Game1.panScreen(moveSpeed, 0);
-        else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
-            Game1.panScreen(0, -moveSpeed);
-        else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
-            Game1.panScreen(-moveSpeed, 0);
     }
 
     protected override void cleanupBeforeExit()

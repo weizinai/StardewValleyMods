@@ -21,6 +21,9 @@
     "Config.MoveSpeed.Name": "移动速度",
     "Config.MoveThreshold.Name": "移动阈值",
 
+    "Config.ShowTimeAndMoney.Name": "显示时间和金钱",
+    "Config.ShowTimeAndMoney.Tooltip": "在旁观模式下是否显示右上角的时间和金钱。",
+
     // 轮播玩家
     "Config.RotatePlayerTitle.Name": "轮播玩家",
     "Config.RotatePlayerKey.Name": "轮播玩家快捷键",

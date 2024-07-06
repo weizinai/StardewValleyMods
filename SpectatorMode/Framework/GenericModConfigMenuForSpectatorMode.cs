@@ -50,6 +50,12 @@ internal class GenericModConfigMenuForSpectatorMode
                 (config, value) => config.MoveThreshold = value,
                 I18n.Config_MoveThreshold_Name
             )
+            .AddBoolOption(
+                config => config.ShowTimeAndMoney,
+                (config, value) => config.ShowTimeAndMoney = value,
+                I18n.Config_ShowTimeAndMoney_Name,
+                I18n.Config_ShowTimeAndMoney_Tooltip
+            )
             // 轮播玩家
             .AddSectionTitle(I18n.Config_RotatePlayerTitle_Name)
             .AddKeybindList(

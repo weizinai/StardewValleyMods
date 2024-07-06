@@ -12,6 +12,7 @@ internal class ModConfig
     public KeybindList ToggleStateKey { get; set; } = new(SButton.K);
     public int MoveSpeed { get; set; } = 32;
     public int MoveThreshold { get; set; } = 64;
+    public bool ShowTimeAndMoney { get; set; } = true;
 
     // 轮播玩家
     public KeybindList RotatePlayerKey { get; set; } = new(SButton.F8);

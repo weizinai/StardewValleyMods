@@ -20,6 +20,9 @@
 
     "Config.MoveSpeed.Name": "Move Speed",
     "Config.MoveThreshold.Name": "Move Threshold",
+    
+    "Config.ShowTimeAndMoney.Name": "Show Time and Money",
+    "Config.ShowTimeAndMoney.Tooltip": "Whether or not time and money are displayed in the upper right corner in spectator mode.",
 
     // Rotate Player
     "Config.RotatePlayerTitle.Name": "Rotate Player",

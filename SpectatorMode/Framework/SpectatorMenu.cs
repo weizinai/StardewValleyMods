@@ -60,6 +60,8 @@ internal class SpectatorMenu : IClickableMenu
             ? I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName)
             : I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName);
         SpriteText.drawStringWithScrollCenteredAt(b, title, Game1.uiViewport.Width / 2, 64);
+        
+        if (this.config.ShowTimeAndMoney) Game1.dayTimeMoneyBox.draw(b);
 
         this.drawMouse(b);
     }
@@ -80,6 +82,7 @@ internal class SpectatorMenu : IClickableMenu
             Game1.viewportFreeze = false;
             Game1.viewport.Location = this.originViewport;
             Game1.displayFarmer = true;
+            Game1.displayHUD = true;
         };
         Game1.warpFarmer(locationRequest, Game1.player.TilePoint.X, Game1.player.TilePoint.Y, Game1.player.FacingDirection);
     }
@@ -88,6 +91,7 @@ internal class SpectatorMenu : IClickableMenu
     {
         this.InitLocationData(Game1.currentLocation, this.targetLocation);
         Game1.displayFarmer = false;
+        Game1.displayHUD = false;
         Game1.viewportFreeze = true;
         Game1.viewport.Location = this.GetInitialViewport();
         Game1.globalFadeToClear();

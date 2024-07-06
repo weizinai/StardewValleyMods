@@ -25,6 +25,9 @@ public class ModEntry : Mod
         {
             this.DeserializeSave();
             
+            this.ChangeHostPlayer();
+            
+            this.SerializeSave();
         }
     }
 
@@ -44,7 +47,32 @@ public class ModEntry : Mod
 
     private void ChangeHostPlayer()
     {
-        (this.saveGame.player, this.saveGame.farmhands[0]) = 
-            (this.saveGame.farmhands[0], this.saveGame.player);
+        Log.Alert("开始更换主机：");
+
+        var originPlayer = this.saveGame.player;
+        var targetPlayer = this.saveGame.farmhands[0];
+        
+        (originPlayer.HouseUpgradeLevel, targetPlayer.HouseUpgradeLevel) =
+            (targetPlayer.HouseUpgradeLevel, originPlayer.HouseUpgradeLevel);
+        Log.Info("成功交换玩家房屋等级信息");
+        
+        (this.saveGame.player, this.saveGame.farmhands[0]) = (targetPlayer, originPlayer);
+        Log.Info("成功交换玩家信息");
+
+        foreach (var location in this.saveGame.locations)
+        {
+            foreach (var building in location.buildings)
+            {
+                if (building.owner.Value == originPlayer.UniqueMultiplayerID)
+                {
+                    building.owner.Value = targetPlayer.UniqueMultiplayerID;
+                }
+                else if (building.owner.Value == targetPlayer.UniqueMultiplayerID)
+                {
+                    building.owner.Value = originPlayer.UniqueMultiplayerID;
+                }
+            }
+        }
+        Log.Info("成功交换建筑主人信息");
     }
 }

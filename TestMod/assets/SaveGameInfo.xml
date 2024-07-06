@@ -1,1 +1,1100 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Farmer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><name>联机测试</name><forceOneTileWide>false</forceOneTileWide><isEmoting>true</isEmoting><isCharging>false</isCharging><isGlowing>false</isGlowing><coloredBorder>false</coloredBorder><flip>false</flip><drawOnTop>false</drawOnTop><faceTowardFarmer>false</faceTowardFarmer><ignoreMovementAnimation>false</ignoreMovementAnimation><faceAwayFromFarmer>false</faceAwayFromFarmer><scale><float>1</float></scale><glowingTransparency>0</glowingTransparency><glowRate>0</glowRate><Gender>Male</Gender><willDestroyObjectsUnderfoot>true</willDestroyObjectsUnderfoot><Position><X>1344</X><Y>288</Y></Position><Speed>5</Speed><FacingDirection>1</FacingDirection><IsEmoting>true</IsEmoting><CurrentEmote>24</CurrentEmote><Scale>1</Scale><modData><item><key><string>DLX.PIF_PersonalFarmID_Vanilla.DecorativeDoor1</string></key><value><string>DLX.Standard</string></value></item><item><key><string>DLX.PIF_LastDoorLocation</string></key><value><string>FarmHouse;3;4</string></value></item><item><key><string>DLX.PIF_PersonalFarmID_WoodStep_Cellar</string></key><value><string>DLX.VintnerVault</string></value></item></modData><questLog><Quest xsi:type="ItemDeliveryQuest"><_currentObjective>带给乔迪一株花椰菜。</_currentObjective><_questDescription>乔迪需要用一株新鲜的花椰菜做菜。她让你带给她一株。</_questDescription><_questTitle>乔迪的请求</_questTitle><rewardDescription>-1</rewardDescription><accepted>false</accepted><completed>false</completed><dailyQuest>false</dailyQuest><showNew>true</showNew><canBeCancelled>true</canBeCancelled><destroy>false</destroy><id>101</id><moneyReward>350</moneyReward><questType>3</questType><daysLeft>0</daysLeft><dayQuestAccepted>-1</dayQuestAccepted><nextQuests><int>-1</int></nextQuests><questTitle>乔迪的请求</questTitle><targetMessage>哦，看起来很美味！谢谢你，我正需要这个。用它来做黄咖喱简直完美。</targetMessage><target>Jodi</target><item>(O)190</item><number>1</number><parts /><dialogueparts /></Quest></questLog><professions /><newLevels /><experiencePoints><int>0</int><int>0</int><int>0</int><int>61</int><int>0</int><int>0</int></experiencePoints><items><Item xsi:type="Axe"><isLostItem>false</isLostItem><category>-99</category><hasBeenInInventory>true</hasBeenInInventory><name>Axe</name><itemId>Axe</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><initialParentTileIndex>189</initialParentTileIndex><currentParentTileIndex>189</currentParentTileIndex><indexOfMenuItemView>215</indexOfMenuItemView><instantUse>false</instantUse><isEfficient>false</isEfficient><animationSpeedModifier>1</animationSpeedModifier><swingTicker>150361</swingTicker><upgradeLevel>0</upgradeLevel><numAttachmentSlots>0</numAttachmentSlots><attachments /><InitialParentTileIndex>189</InitialParentTileIndex><IndexOfMenuItemView>215</IndexOfMenuItemView><InstantUse>false</InstantUse><IsEfficient>false</IsEfficient><AnimationSpeedModifier>1</AnimationSpeedModifier><additionalPower><int>0</int></additionalPower></Item><Item xsi:type="Hoe"><isLostItem>false</isLostItem><category>-99</category><hasBeenInInventory>true</hasBeenInInventory><name>Hoe</name><itemId>Hoe</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><initialParentTileIndex>21</initialParentTileIndex><currentParentTileIndex>21</currentParentTileIndex><indexOfMenuItemView>47</indexOfMenuItemView><instantUse>false</instantUse><isEfficient>false</isEfficient><animationSpeedModifier>1</animationSpeedModifier><swingTicker>876304</swingTicker><upgradeLevel>0</upgradeLevel><numAttachmentSlots>0</numAttachmentSlots><attachments /><InitialParentTileIndex>21</InitialParentTileIndex><IndexOfMenuItemView>47</IndexOfMenuItemView><InstantUse>false</InstantUse><IsEfficient>false</IsEfficient><AnimationSpeedModifier>1</AnimationSpeedModifier></Item><Item xsi:type="WateringCan"><isLostItem>false</isLostItem><category>-99</category><hasBeenInInventory>true</hasBeenInInventory><name>Watering Can</name><itemId>WateringCan</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><initialParentTileIndex>273</initialParentTileIndex><currentParentTileIndex>273</currentParentTileIndex><indexOfMenuItemView>296</indexOfMenuItemView><instantUse>false</instantUse><isEfficient>false</isEfficient><animationSpeedModifier>1</animationSpeedModifier><swingTicker>539730</swingTicker><upgradeLevel>0</upgradeLevel><numAttachmentSlots>0</numAttachmentSlots><attachments /><InitialParentTileIndex>273</InitialParentTileIndex><IndexOfMenuItemView>296</IndexOfMenuItemView><InstantUse>false</InstantUse><IsEfficient>false</IsEfficient><AnimationSpeedModifier>1</AnimationSpeedModifier><isBottomless>false</isBottomless><WaterLeft>40</WaterLeft><IsBottomless>false</IsBottomless></Item><Item xsi:type="Pickaxe"><isLostItem>false</isLostItem><category>-99</category><hasBeenInInventory>true</hasBeenInInventory><name>Pickaxe</name><itemId>Pickaxe</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><initialParentTileIndex>105</initialParentTileIndex><currentParentTileIndex>105</currentParentTileIndex><indexOfMenuItemView>131</indexOfMenuItemView><instantUse>false</instantUse><isEfficient>false</isEfficient><animationSpeedModifier>1</animationSpeedModifier><swingTicker>733720</swingTicker><upgradeLevel>0</upgradeLevel><numAttachmentSlots>0</numAttachmentSlots><attachments /><InitialParentTileIndex>105</InitialParentTileIndex><IndexOfMenuItemView>131</IndexOfMenuItemView><InstantUse>false</InstantUse><IsEfficient>false</IsEfficient><AnimationSpeedModifier>1</AnimationSpeedModifier><additionalPower><int>0</int></additionalPower></Item><Item xsi:type="MeleeWeapon"><isLostItem>false</isLostItem><category>-99</category><hasBeenInInventory>true</hasBeenInInventory><name>Scythe</name><itemId>47</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><initialParentTileIndex>47</initialParentTileIndex><currentParentTileIndex>47</currentParentTileIndex><indexOfMenuItemView>47</indexOfMenuItemView><instantUse>false</instantUse><isEfficient>false</isEfficient><animationSpeedModifier>1</animationSpeedModifier><swingTicker>631736</swingTicker><upgradeLevel>0</upgradeLevel><numAttachmentSlots>0</numAttachmentSlots><attachments /><InitialParentTileIndex>47</InitialParentTileIndex><IndexOfMenuItemView>47</IndexOfMenuItemView><InstantUse>false</InstantUse><IsEfficient>false</IsEfficient><AnimationSpeedModifier>1</AnimationSpeedModifier><type>3</type><minDamage>1</minDamage><maxDamage>3</maxDamage><speed>0</speed><addedPrecision>0</addedPrecision><addedDefense>0</addedDefense><addedAreaOfEffect>0</addedAreaOfEffect><knockback>1</knockback><critChance>0.02</critChance><critMultiplier>3</critMultiplier><isOnSpecial>false</isOnSpecial></Item><Item xsi:type="Object"><isLostItem>false</isLostItem><category>-16</category><hasBeenInInventory>true</hasBeenInInventory><name>Wood</name><parentSheetIndex>388</parentSheetIndex><itemId>388</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>549</stack><SpecialVariable>0</SpecialVariable><tileLocation><X>0</X><Y>0</Y></tileLocation><owner>0</owner><type>Basic</type><canBeSetDown>true</canBeSetDown><canBeGrabbed>true</canBeGrabbed><isSpawnedObject>false</isSpawnedObject><questItem>false</questItem><isOn>true</isOn><fragility>0</fragility><price>2</price><edibility>-300</edibility><bigCraftable>false</bigCraftable><setOutdoors>false</setOutdoors><setIndoors>false</setIndoors><readyForHarvest>false</readyForHarvest><showNextIndex>false</showNextIndex><flipped>false</flipped><isLamp>false</isLamp><minutesUntilReady>0</minutesUntilReady><boundingBox><X>0</X><Y>0</Y><Width>0</Width><Height>0</Height><Location><X>0</X><Y>0</Y></Location><Size><X>0</X><Y>0</Y></Size></boundingBox><scale><X>0</X><Y>0</Y></scale><uses>0</uses><destroyOvernight>false</destroyOvernight></Item><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /><Item xsi:nil="true" /></items><dialogueQuestionsAnswered /><cookingRecipes><item><key><string>Fried Egg</string></key><value><int>0</int></value></item></cookingRecipes><craftingRecipes><item><key><string>Wood Fence</string></key><value><int>0</int></value></item><item><key><string>Gate</string></key><value><int>0</int></value></item><item><key><string>Chest</string></key><value><int>0</int></value></item><item><key><string>Torch</string></key><value><int>0</int></value></item><item><key><string>Wood Sign</string></key><value><int>0</int></value></item><item><key><string>Stone Sign</string></key><value><int>0</int></value></item><item><key><string>Text Sign</string></key><value><int>0</int></value></item><item><key><string>Wood Path</string></key><value><int>0</int></value></item><item><key><string>Gravel Path</string></key><value><int>0</int></value></item><item><key><string>Cobblestone Path</string></key><value><int>0</int></value></item><item><key><string>Campfire</string></key><value><int>0</int></value></item></craftingRecipes><activeDialogueEvents><item><key><string>achievement_18</string></key><value><int>0</int></value></item><item><key><string>houseUpgrade_1</string></key><value><int>0</int></value></item><item><key><string>eventSeen_65_memory_twoweeks</string></key><value><int>1</int></value></item><item><key><string>achievement_18_memory_oneday</string></key><value><int>1</int></value></item><item><key><string>houseUpgrade_1_memory_oneday</string></key><value><int>1</int></value></item></activeDialogueEvents><previousActiveDialogueEvents><item><key><string>Introduction</string></key><value><int>48</int></value></item><item><key><string>firstVisit_Farm</string></key><value><int>47</int></value></item><item><key><string>firstVisit_FarmHouse</string></key><value><int>47</int></value></item><item><key><string>firstVisit_BusStop</string></key><value><int>45</int></value></item><item><key><string>eventSeen_festival_spring13</string></key><value><int>45</int></value></item><item><key><string>firstVisit_Town</string></key><value><int>45</int></value></item><item><key><string>firstVisit_Mountain</string></key><value><int>27</int></value></item><item><key><string>firstVisit_ScienceHouse</string></key><value><int>27</int></value></item><item><key><string>firstVisit_SebastianRoom</string></key><value><int>27</int></value></item><item><key><string>firstVisit_Cabin</string></key><value><int>27</int></value></item><item><key><string>eventSeen_1590166</string></key><value><int>21</int></value></item><item><key><string>gotPet</string></key><value><int>21</int></value></item><item><key><string>achievement_3</string></key><value><int>19</int></value></item><item><key><string>achievement_2</string></key><value><int>19</int></value></item><item><key><string>achievement_1</string></key><value><int>19</int></value></item><item><key><string>achievement_0</string></key><value><int>19</int></value></item><item><key><string>eventSeen_65</string></key><value><int>17</int></value></item><item><key><string>firstVisit_DLX.PIF_MINE_DLX.Standard_-6329526885278194029_Vanilla.DecorativeDoor1</string></key><value><int>6</int></value></item><item><key><string>firstVisit_DLX.PIF_MINE_DLX.VintnerVault_-6329526885278194029_WoodStep_Cellar</string></key><value><int>6</int></value></item><item><key><string>achievement_18</string></key><value><int>4</int></value></item><item><key><string>houseUpgrade_1</string></key><value><int>4</int></value></item></previousActiveDialogueEvents><triggerActionsRun><string>WuWo2</string><string>Mail_Pierre_Fertilizers</string><string>Mail_Mom_5K</string><string>Mail_Mom_15K</string><string>Mail_Mom_32K</string><string>Mail_Mom_120K</string><string>Mail_Tribune_UpAndComing</string></triggerActionsRun><eventsSeen><int>60367</int><int>festival_spring13</int><int>1590166</int><int>65</int></eventsSeen><secretNotesSeen /><songsHeard><string>title_day</string><string>title_night</string><string>CloudCountry</string><string>spring1</string><string>spring2</string><string>spring3</string><string>fallFest</string><string>spring_night_ambient</string><string>marnieShop</string><string>spring_day_ambient</string><string>summer1</string><string>summer2</string><string>summer_day_ambient</string><string>summer3</string></songsHeard><achievements><int>3</int><int>2</int><int>1</int><int>0</int><int>18</int></achievements><specialItems /><specialBigCraftables /><mailReceived><string>button_tut_1</string><string>button_tut_2</string><string>spring_2_1</string><string>sawSecretSanta1</string><string>checkedBulletinOnce</string><string>landslideDone</string><string>spring_15_1</string><string>fertilizers</string><string>spring_19_1</string><string>spring_23</string><string>hatter</string><string>mom1</string><string>mom2</string><string>mom3</string><string>mom4</string><string>newsstory</string></mailReceived><mailForTomorrow /><mailbox><string>summer_3_1</string></mailbox><locationsVisited><string>Farm</string><string>FarmHouse</string><string>BusStop</string><string>Town</string><string>Temp</string><string>Mountain</string><string>ScienceHouse</string><string>SebastianRoom</string><string>Cabin</string><string>DLX.PIF_MINE_DLX.Standard_-6329526885278194029_Vanilla.DecorativeDoor1</string><string>DLX.PIF_MINE_DLX.VintnerVault_-6329526885278194029_WoodStep_Cellar</string></locationsVisited><timeWentToBed><int>0</int></timeWentToBed><sleptInTemporaryBed><boolean>false</boolean></sleptInTemporaryBed><stats><specificMonstersKilled /><Values><item><key><string>averageBedtime</string></key><value><unsignedInt>800</unsignedInt></value></item><item><key><string>daysPlayed</string></key><value><unsignedInt>13</unsignedInt></value></item><item><key><string>stepsTaken</string></key><value><unsignedInt>902</unsignedInt></value></item><item><key><string>rocksCrushed</string></key><value><unsignedInt>46</unsignedInt></value></item><item><key><string>weedsEliminated</string></key><value><unsignedInt>163</unsignedInt></value></item><item><key><string>stoneGathered</string></key><value><unsignedInt>47</unsignedInt></value></item><item><key><string>ArtifactSpotsDug</string></key><value><unsignedInt>2</unsignedInt></value></item><item><key><string>dirtHoed</string></key><value><unsignedInt>2</unsignedInt></value></item><item><key><string>itemsShipped</string></key><value><unsignedInt>1010</unsignedInt></value></item></Values><averageBedtime xsi:nil="true" /><beveragesMade xsi:nil="true" /><caveCarrotsFound xsi:nil="true" /><cheeseMade xsi:nil="true" /><chickenEggsLayed xsi:nil="true" /><copperFound xsi:nil="true" /><cowMilkProduced xsi:nil="true" /><cropsShipped xsi:nil="true" /><daysPlayed xsi:nil="true" /><diamondsFound xsi:nil="true" /><dirtHoed xsi:nil="true" /><duckEggsLayed xsi:nil="true" /><fishCaught xsi:nil="true" /><geodesCracked xsi:nil="true" /><giftsGiven xsi:nil="true" /><goatCheeseMade xsi:nil="true" /><goatMilkProduced xsi:nil="true" /><goldFound xsi:nil="true" /><goodFriends xsi:nil="true" /><individualMoneyEarned xsi:nil="true" /><iridiumFound xsi:nil="true" /><ironFound xsi:nil="true" /><itemsCooked xsi:nil="true" /><itemsCrafted xsi:nil="true" /><itemsForaged xsi:nil="true" /><itemsShipped xsi:nil="true" /><monstersKilled xsi:nil="true" /><mysticStonesCrushed xsi:nil="true" /><notesFound xsi:nil="true" /><otherPreciousGemsFound xsi:nil="true" /><piecesOfTrashRecycled xsi:nil="true" /><preservesMade xsi:nil="true" /><prismaticShardsFound xsi:nil="true" /><questsCompleted xsi:nil="true" /><rabbitWoolProduced xsi:nil="true" /><rocksCrushed xsi:nil="true" /><sheepWoolProduced xsi:nil="true" /><slimesKilled xsi:nil="true" /><stepsTaken xsi:nil="true" /><stoneGathered xsi:nil="true" /><stumpsChopped xsi:nil="true" /><timesFished xsi:nil="true" /><timesUnconscious xsi:nil="true" /><totalMoneyGifted xsi:nil="true" /><trufflesFound xsi:nil="true" /><weedsEliminated xsi:nil="true" /><seedsSown xsi:nil="true" /></stats><biteChime>-1</biteChime><itemsLostLastDeath /><movementDirections /><farmName>联机测试</farmName><favoriteThing>联机调试</favoriteThing><slotCanHost>true</slotCanHost><userID /><catPerson xsi:nil="true" /><canUnderstandDwarves xsi:nil="true" /><hasClubCard xsi:nil="true" /><hasDarkTalisman xsi:nil="true" /><hasMagicInk xsi:nil="true" /><hasMagnifyingGlass xsi:nil="true" /><hasRustyKey xsi:nil="true" /><hasSkullKey xsi:nil="true" /><hasSpecialCharm xsi:nil="true" /><HasTownKey xsi:nil="true" /><hasUnlockedSkullDoor xsi:nil="true" /><daysMarried xsi:nil="true" /><whichPetType>Cat</whichPetType><whichPetBreed>0</whichPetBreed><acceptedDailyQuest>false</acceptedDailyQuest><mostRecentBed><X>1407.3599</X><Y>288</Y></mostRecentBed><shirt>-1</shirt><hair>0</hair><skin>0</skin><shoes>2</shoes><accessory>-1</accessory><facialHair>-1</facialHair><pants>-1</pants><lastGotPrizeFromGil><WorldDate xsi:nil="true" /></lastGotPrizeFromGil><hairstyleColor><B>50</B><G>90</G><R>193</R><A>255</A><PackedValue>4281490113</PackedValue></hairstyleColor><pantsColor><B>183</B><G>85</G><R>46</R><A>255</A><PackedValue>4290204974</PackedValue></pantsColor><newEyeColor><B>52</B><G>68</G><R>122</R><A>255</A><PackedValue>4281615482</PackedValue></newEyeColor><shirtItem><isLostItem>false</isLostItem><category>-100</category><hasBeenInInventory>true</hasBeenInInventory><name>Classic Overalls</name><itemId>1000</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><price>50</price><indexInTileSheet>0</indexInTileSheet><indexInTileSheetFemale xsi:nil="true" /><clothesType>SHIRT</clothesType><dyeable>false</dyeable><clothesColor><B>255</B><G>255</G><R>255</R><A>255</A><PackedValue>4294967295</PackedValue></clothesColor><isPrismatic>false</isPrismatic><Price>50</Price></shirtItem><pantsItem><isLostItem>false</isLostItem><category>-100</category><hasBeenInInventory>true</hasBeenInInventory><name>Farmer Pants</name><itemId>0</itemId><specialItem>false</specialItem><isRecipe>false</isRecipe><quality>0</quality><stack>1</stack><SpecialVariable>0</SpecialVariable><price>50</price><indexInTileSheet>0</indexInTileSheet><indexInTileSheetFemale xsi:nil="true" /><clothesType>PANTS</clothesType><dyeable>true</dyeable><clothesColor><B>183</B><G>85</G><R>46</R><A>255</A><PackedValue>4290204974</PackedValue></clothesColor><isPrismatic>false</isPrismatic><Price>50</Price></pantsItem><divorceTonight>false</divorceTonight><changeWalletTypeTonight>false</changeWalletTypeTonight><gameVersion>1.6.8</gameVersion><bibberstyke>0</bibberstyke><usingRandomizedBobber>false</usingRandomizedBobber><caveChoice>2</caveChoice><farmingLevel>0</farmingLevel><miningLevel>0</miningLevel><combatLevel>0</combatLevel><foragingLevel>0</foragingLevel><fishingLevel>0</fishingLevel><luckLevel>0</luckLevel><maxStamina>270</maxStamina><maxItems>36</maxItems><lastSeenMovieWeek>-1</lastSeenMovieWeek><clubCoins>0</clubCoins><trashCanLevel>0</trashCanLevel><daysLeftForToolUpgrade>0</daysLeftForToolUpgrade><houseUpgradeLevel>1</houseUpgradeLevel><daysUntilHouseUpgrade>-1</daysUntilHouseUpgrade><showChestColorPicker>true</showChestColorPicker><hasWateringCanEnchantment>false</hasWateringCanEnchantment><temporaryInvincibilityTimer>0</temporaryInvincibilityTimer><currentTemporaryInvincibilityDuration>1200</currentTemporaryInvincibilityDuration><health>100</health><maxHealth>100</maxHealth><difficultyModifier>1</difficultyModifier><gender>Male</gender><basicShipped><item><key><string>PurpleBook</string></key><value><int>990</int></value></item><item><key><string>390</string></key><value><int>3</int></value></item></basicShipped><mineralsFound /><recipesCooked /><fishCaught /><archaeologyFound /><callsReceived /><giftedItems /><tailoredItems /><friendshipData><item><key><string>Lewis</string></key><value><Friendship><Points>0</Points><GiftsThisWeek>0</GiftsThisWeek><GiftsToday>0</GiftsToday><TalkedToToday>false</TalkedToToday><ProposalRejected>false</ProposalRejected><Status>Friendly</Status><Proposer>0</Proposer><RoommateMarriage>false</RoommateMarriage></Friendship></value></item><item><key><string>Robin</string></key><value><Friendship><Points>0</Points><GiftsThisWeek>0</GiftsThisWeek><GiftsToday>0</GiftsToday><TalkedToToday>false</TalkedToToday><ProposalRejected>false</ProposalRejected><Status>Friendly</Status><Proposer>0</Proposer><RoommateMarriage>false</RoommateMarriage></Friendship></value></item><item><key><string>Demetrius</string></key><value><Friendship><Points>0</Points><GiftsThisWeek>0</GiftsThisWeek><GiftsToday>0</GiftsToday><TalkedToToday>false</TalkedToToday><ProposalRejected>false</ProposalRejected><Status>Friendly</Status><Proposer>0</Proposer><RoommateMarriage>false</RoommateMarriage></Friendship></value></item></friendshipData><dayOfMonthForSaveGame>13</dayOfMonthForSaveGame><seasonForSaveGame>0</seasonForSaveGame><yearForSaveGame>1</yearForSaveGame><qiGems>0</qiGems><chestConsumedLevels /><saveTime>6320936</saveTime><isCustomized>true</isCustomized><homeLocation>FarmHouse</homeLocation><lastSleepLocation>FarmHouse</lastSleepLocation><lastSleepPoint><X>22</X><Y>4</Y></lastSleepPoint><disconnectDay>-1</disconnectDay><disconnectPosition><X>0</X><Y>0</Y></disconnectPosition><movementMultiplier>0.066</movementMultiplier><isMale xsi:nil="true" /><deepestMineLevel>0</deepestMineLevel><stamina>270</stamina><totalMoneyEarned>2475686</totalMoneyEarned><millisecondsPlayed>4180976</millisecondsPlayed><useSeparateWallets>false</useSeparateWallets><theaterBuildDate>-1</theaterBuildDate><timesReachedMineBottom>0</timesReachedMineBottom><UniqueMultiplayerID>-6329526885278194029</UniqueMultiplayerID><money>2466086</money></Farmer>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Farmer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <name>联机测试</name>
+    <forceOneTileWide>false</forceOneTileWide>
+    <isEmoting>true</isEmoting>
+    <isCharging>false</isCharging>
+    <isGlowing>false</isGlowing>
+    <coloredBorder>false</coloredBorder>
+    <flip>false</flip>
+    <drawOnTop>false</drawOnTop>
+    <faceTowardFarmer>false</faceTowardFarmer>
+    <ignoreMovementAnimation>false</ignoreMovementAnimation>
+    <faceAwayFromFarmer>false</faceAwayFromFarmer>
+    <scale>
+        <float>1</float>
+    </scale>
+    <glowingTransparency>0</glowingTransparency>
+    <glowRate>0</glowRate>
+    <Gender>Male</Gender>
+    <willDestroyObjectsUnderfoot>true</willDestroyObjectsUnderfoot>
+    <Position>
+        <X>1344</X>
+        <Y>288</Y>
+    </Position>
+    <Speed>5</Speed>
+    <FacingDirection>1</FacingDirection>
+    <IsEmoting>true</IsEmoting>
+    <CurrentEmote>24</CurrentEmote>
+    <Scale>1</Scale>
+    <modData>
+        <item>
+            <key>
+                <string>DLX.PIF_PersonalFarmID_Vanilla.DecorativeDoor1</string>
+            </key>
+            <value>
+                <string>DLX.Standard</string>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>DLX.PIF_LastDoorLocation</string>
+            </key>
+            <value>
+                <string>FarmHouse;3;4</string>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>DLX.PIF_PersonalFarmID_WoodStep_Cellar</string>
+            </key>
+            <value>
+                <string>DLX.VintnerVault</string>
+            </value>
+        </item>
+    </modData>
+    <questLog>
+        <Quest xsi:type="ItemDeliveryQuest">
+            <_currentObjective>带给乔迪一株花椰菜。</_currentObjective>
+            <_questDescription>乔迪需要用一株新鲜的花椰菜做菜。她让你带给她一株。</_questDescription>
+            <_questTitle>乔迪的请求</_questTitle>
+            <rewardDescription>-1</rewardDescription>
+            <accepted>false</accepted>
+            <completed>false</completed>
+            <dailyQuest>false</dailyQuest>
+            <showNew>true</showNew>
+            <canBeCancelled>true</canBeCancelled>
+            <destroy>false</destroy>
+            <id>101</id>
+            <moneyReward>350</moneyReward>
+            <questType>3</questType>
+            <daysLeft>0</daysLeft>
+            <dayQuestAccepted>-1</dayQuestAccepted>
+            <nextQuests>
+                <int>-1</int>
+            </nextQuests>
+            <questTitle>乔迪的请求</questTitle>
+            <targetMessage>哦，看起来很美味！谢谢你，我正需要这个。用它来做黄咖喱简直完美。</targetMessage>
+            <target>Jodi</target>
+            <item>(O)190</item>
+            <number>1</number>
+            <parts/>
+            <dialogueparts/>
+        </Quest>
+    </questLog>
+    <professions/>
+    <newLevels/>
+    <experiencePoints>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>61</int>
+        <int>0</int>
+        <int>0</int>
+    </experiencePoints>
+    <items>
+        <Item xsi:type="Axe">
+            <isLostItem>false</isLostItem>
+            <category>-99</category>
+            <hasBeenInInventory>true</hasBeenInInventory>
+            <name>Axe</name>
+            <itemId>Axe</itemId>
+            <specialItem>false</specialItem>
+            <isRecipe>false</isRecipe>
+            <quality>0</quality>
+            <stack>1</stack>
+            <SpecialVariable>0</SpecialVariable>
+            <initialParentTileIndex>189</initialParentTileIndex>
+            <currentParentTileIndex>189</currentParentTileIndex>
+            <indexOfMenuItemView>215</indexOfMenuItemView>
+            <instantUse>false</instantUse>
+            <isEfficient>false</isEfficient>
+            <animationSpeedModifier>1</animationSpeedModifier>
+            <swingTicker>150361</swingTicker>
+            <upgradeLevel>0</upgradeLevel>
+            <numAttachmentSlots>0</numAttachmentSlots>
+            <attachments/>
+            <InitialParentTileIndex>189</InitialParentTileIndex>
+            <IndexOfMenuItemView>215</IndexOfMenuItemView>
+            <InstantUse>false</InstantUse>
+            <IsEfficient>false</IsEfficient>
+            <AnimationSpeedModifier>1</AnimationSpeedModifier>
+            <additionalPower>
+                <int>0</int>
+            </additionalPower>
+        </Item>
+        <Item xsi:type="Hoe">
+            <isLostItem>false</isLostItem>
+            <category>-99</category>
+            <hasBeenInInventory>true</hasBeenInInventory>
+            <name>Hoe</name>
+            <itemId>Hoe</itemId>
+            <specialItem>false</specialItem>
+            <isRecipe>false</isRecipe>
+            <quality>0</quality>
+            <stack>1</stack>
+            <SpecialVariable>0</SpecialVariable>
+            <initialParentTileIndex>21</initialParentTileIndex>
+            <currentParentTileIndex>21</currentParentTileIndex>
+            <indexOfMenuItemView>47</indexOfMenuItemView>
+            <instantUse>false</instantUse>
+            <isEfficient>false</isEfficient>
+            <animationSpeedModifier>1</animationSpeedModifier>
+            <swingTicker>876304</swingTicker>
+            <upgradeLevel>0</upgradeLevel>
+            <numAttachmentSlots>0</numAttachmentSlots>
+            <attachments/>
+            <InitialParentTileIndex>21</InitialParentTileIndex>
+            <IndexOfMenuItemView>47</IndexOfMenuItemView>
+            <InstantUse>false</InstantUse>
+            <IsEfficient>false</IsEfficient>
+            <AnimationSpeedModifier>1</AnimationSpeedModifier>
+        </Item>
+        <Item xsi:type="WateringCan">
+            <isLostItem>false</isLostItem>
+            <category>-99</category>
+            <hasBeenInInventory>true</hasBeenInInventory>
+            <name>Watering Can</name>
+            <itemId>WateringCan</itemId>
+            <specialItem>false</specialItem>
+            <isRecipe>false</isRecipe>
+            <quality>0</quality>
+            <stack>1</stack>
+            <SpecialVariable>0</SpecialVariable>
+            <initialParentTileIndex>273</initialParentTileIndex>
+            <currentParentTileIndex>273</currentParentTileIndex>
+            <indexOfMenuItemView>296</indexOfMenuItemView>
+            <instantUse>false</instantUse>
+            <isEfficient>false</isEfficient>
+            <animationSpeedModifier>1</animationSpeedModifier>
+            <swingTicker>539730</swingTicker>
+            <upgradeLevel>0</upgradeLevel>
+            <numAttachmentSlots>0</numAttachmentSlots>
+            <attachments/>
+            <InitialParentTileIndex>273</InitialParentTileIndex>
+            <IndexOfMenuItemView>296</IndexOfMenuItemView>
+            <InstantUse>false</InstantUse>
+            <IsEfficient>false</IsEfficient>
+            <AnimationSpeedModifier>1</AnimationSpeedModifier>
+            <isBottomless>false</isBottomless>
+            <WaterLeft>40</WaterLeft>
+            <IsBottomless>false</IsBottomless>
+        </Item>
+        <Item xsi:type="Pickaxe">
+            <isLostItem>false</isLostItem>
+            <category>-99</category>
+            <hasBeenInInventory>true</hasBeenInInventory>
+            <name>Pickaxe</name>
+            <itemId>Pickaxe</itemId>
+            <specialItem>false</specialItem>
+            <isRecipe>false</isRecipe>
+            <quality>0</quality>
+            <stack>1</stack>
+            <SpecialVariable>0</SpecialVariable>
+            <initialParentTileIndex>105</initialParentTileIndex>
+            <currentParentTileIndex>105</currentParentTileIndex>
+            <indexOfMenuItemView>131</indexOfMenuItemView>
+            <instantUse>false</instantUse>
+            <isEfficient>false</isEfficient>
+            <animationSpeedModifier>1</animationSpeedModifier>
+            <swingTicker>733720</swingTicker>
+            <upgradeLevel>0</upgradeLevel>
+            <numAttachmentSlots>0</numAttachmentSlots>
+            <attachments/>
+            <InitialParentTileIndex>105</InitialParentTileIndex>
+            <IndexOfMenuItemView>131</IndexOfMenuItemView>
+            <InstantUse>false</InstantUse>
+            <IsEfficient>false</IsEfficient>
+            <AnimationSpeedModifier>1</AnimationSpeedModifier>
+            <additionalPower>
+                <int>0</int>
+            </additionalPower>
+        </Item>
+        <Item xsi:type="MeleeWeapon">
+            <isLostItem>false</isLostItem>
+            <category>-99</category>
+            <hasBeenInInventory>true</hasBeenInInventory>
+            <name>Scythe</name>
+            <itemId>47</itemId>
+            <specialItem>false</specialItem>
+            <isRecipe>false</isRecipe>
+            <quality>0</quality>
+            <stack>1</stack>
+            <SpecialVariable>0</SpecialVariable>
+            <initialParentTileIndex>47</initialParentTileIndex>
+            <currentParentTileIndex>47</currentParentTileIndex>
+            <indexOfMenuItemView>47</indexOfMenuItemView>
+            <instantUse>false</instantUse>
+            <isEfficient>false</isEfficient>
+            <animationSpeedModifier>1</animationSpeedModifier>
+            <swingTicker>631736</swingTicker>
+            <upgradeLevel>0</upgradeLevel>
+            <numAttachmentSlots>0</numAttachmentSlots>
+            <attachments/>
+            <InitialParentTileIndex>47</InitialParentTileIndex>
+            <IndexOfMenuItemView>47</IndexOfMenuItemView>
+            <InstantUse>false</InstantUse>
+            <IsEfficient>false</IsEfficient>
+            <AnimationSpeedModifier>1</AnimationSpeedModifier>
+            <type>3</type>
+            <minDamage>1</minDamage>
+            <maxDamage>3</maxDamage>
+            <speed>0</speed>
+            <addedPrecision>0</addedPrecision>
+            <addedDefense>0</addedDefense>
+            <addedAreaOfEffect>0</addedAreaOfEffect>
+            <knockback>1</knockback>
+            <critChance>0.02</critChance>
+            <critMultiplier>3</critMultiplier>
+            <isOnSpecial>false</isOnSpecial>
+        </Item>
+        <Item xsi:type="Object">
+            <isLostItem>false</isLostItem>
+            <category>-16</category>
+            <hasBeenInInventory>true</hasBeenInInventory>
+            <name>Wood</name>
+            <parentSheetIndex>388</parentSheetIndex>
+            <itemId>388</itemId>
+            <specialItem>false</specialItem>
+            <isRecipe>false</isRecipe>
+            <quality>0</quality>
+            <stack>549</stack>
+            <SpecialVariable>0</SpecialVariable>
+            <tileLocation>
+                <X>0</X>
+                <Y>0</Y>
+            </tileLocation>
+            <owner>0</owner>
+            <type>Basic</type>
+            <canBeSetDown>true</canBeSetDown>
+            <canBeGrabbed>true</canBeGrabbed>
+            <isSpawnedObject>false</isSpawnedObject>
+            <questItem>false</questItem>
+            <isOn>true</isOn>
+            <fragility>0</fragility>
+            <price>2</price>
+            <edibility>-300</edibility>
+            <bigCraftable>false</bigCraftable>
+            <setOutdoors>false</setOutdoors>
+            <setIndoors>false</setIndoors>
+            <readyForHarvest>false</readyForHarvest>
+            <showNextIndex>false</showNextIndex>
+            <flipped>false</flipped>
+            <isLamp>false</isLamp>
+            <minutesUntilReady>0</minutesUntilReady>
+            <boundingBox>
+                <X>0</X>
+                <Y>0</Y>
+                <Width>0</Width>
+                <Height>0</Height>
+                <Location>
+                    <X>0</X>
+                    <Y>0</Y>
+                </Location>
+                <Size>
+                    <X>0</X>
+                    <Y>0</Y>
+                </Size>
+            </boundingBox>
+            <scale>
+                <X>0</X>
+                <Y>0</Y>
+            </scale>
+            <uses>0</uses>
+            <destroyOvernight>false</destroyOvernight>
+        </Item>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+        <Item xsi:nil="true"/>
+    </items>
+    <dialogueQuestionsAnswered/>
+    <cookingRecipes>
+        <item>
+            <key>
+                <string>Fried Egg</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+    </cookingRecipes>
+    <craftingRecipes>
+        <item>
+            <key>
+                <string>Wood Fence</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Gate</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Chest</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Torch</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Wood Sign</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Stone Sign</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Text Sign</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Wood Path</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Gravel Path</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Cobblestone Path</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Campfire</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+    </craftingRecipes>
+    <activeDialogueEvents>
+        <item>
+            <key>
+                <string>achievement_18</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>houseUpgrade_1</string>
+            </key>
+            <value>
+                <int>0</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>eventSeen_65_memory_twoweeks</string>
+            </key>
+            <value>
+                <int>1</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>achievement_18_memory_oneday</string>
+            </key>
+            <value>
+                <int>1</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>houseUpgrade_1_memory_oneday</string>
+            </key>
+            <value>
+                <int>1</int>
+            </value>
+        </item>
+    </activeDialogueEvents>
+    <previousActiveDialogueEvents>
+        <item>
+            <key>
+                <string>Introduction</string>
+            </key>
+            <value>
+                <int>48</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_Farm</string>
+            </key>
+            <value>
+                <int>47</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_FarmHouse</string>
+            </key>
+            <value>
+                <int>47</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_BusStop</string>
+            </key>
+            <value>
+                <int>45</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>eventSeen_festival_spring13</string>
+            </key>
+            <value>
+                <int>45</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_Town</string>
+            </key>
+            <value>
+                <int>45</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_Mountain</string>
+            </key>
+            <value>
+                <int>27</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_ScienceHouse</string>
+            </key>
+            <value>
+                <int>27</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_SebastianRoom</string>
+            </key>
+            <value>
+                <int>27</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_Cabin</string>
+            </key>
+            <value>
+                <int>27</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>eventSeen_1590166</string>
+            </key>
+            <value>
+                <int>21</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>gotPet</string>
+            </key>
+            <value>
+                <int>21</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>achievement_3</string>
+            </key>
+            <value>
+                <int>19</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>achievement_2</string>
+            </key>
+            <value>
+                <int>19</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>achievement_1</string>
+            </key>
+            <value>
+                <int>19</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>achievement_0</string>
+            </key>
+            <value>
+                <int>19</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>eventSeen_65</string>
+            </key>
+            <value>
+                <int>17</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_DLX.PIF_MINE_DLX.Standard_-6329526885278194029_Vanilla.DecorativeDoor1</string>
+            </key>
+            <value>
+                <int>6</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>firstVisit_DLX.PIF_MINE_DLX.VintnerVault_-6329526885278194029_WoodStep_Cellar</string>
+            </key>
+            <value>
+                <int>6</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>achievement_18</string>
+            </key>
+            <value>
+                <int>4</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>houseUpgrade_1</string>
+            </key>
+            <value>
+                <int>4</int>
+            </value>
+        </item>
+    </previousActiveDialogueEvents>
+    <triggerActionsRun>
+        <string>WuWo2</string>
+        <string>Mail_Pierre_Fertilizers</string>
+        <string>Mail_Mom_5K</string>
+        <string>Mail_Mom_15K</string>
+        <string>Mail_Mom_32K</string>
+        <string>Mail_Mom_120K</string>
+        <string>Mail_Tribune_UpAndComing</string>
+    </triggerActionsRun>
+    <eventsSeen>
+        <int>60367</int>
+        <int>festival_spring13</int>
+        <int>1590166</int>
+        <int>65</int>
+    </eventsSeen>
+    <secretNotesSeen/>
+    <songsHeard>
+        <string>title_day</string>
+        <string>title_night</string>
+        <string>CloudCountry</string>
+        <string>spring1</string>
+        <string>spring2</string>
+        <string>spring3</string>
+        <string>fallFest</string>
+        <string>spring_night_ambient</string>
+        <string>marnieShop</string>
+        <string>spring_day_ambient</string>
+        <string>summer1</string>
+        <string>summer2</string>
+        <string>summer_day_ambient</string>
+        <string>summer3</string>
+    </songsHeard>
+    <achievements>
+        <int>3</int>
+        <int>2</int>
+        <int>1</int>
+        <int>0</int>
+        <int>18</int>
+    </achievements>
+    <specialItems/>
+    <specialBigCraftables/>
+    <mailReceived>
+        <string>button_tut_1</string>
+        <string>button_tut_2</string>
+        <string>spring_2_1</string>
+        <string>sawSecretSanta1</string>
+        <string>checkedBulletinOnce</string>
+        <string>landslideDone</string>
+        <string>spring_15_1</string>
+        <string>fertilizers</string>
+        <string>spring_19_1</string>
+        <string>spring_23</string>
+        <string>hatter</string>
+        <string>mom1</string>
+        <string>mom2</string>
+        <string>mom3</string>
+        <string>mom4</string>
+        <string>newsstory</string>
+    </mailReceived>
+    <mailForTomorrow/>
+    <mailbox>
+        <string>summer_3_1</string>
+    </mailbox>
+    <locationsVisited>
+        <string>Farm</string>
+        <string>FarmHouse</string>
+        <string>BusStop</string>
+        <string>Town</string>
+        <string>Temp</string>
+        <string>Mountain</string>
+        <string>ScienceHouse</string>
+        <string>SebastianRoom</string>
+        <string>Cabin</string>
+        <string>DLX.PIF_MINE_DLX.Standard_-6329526885278194029_Vanilla.DecorativeDoor1</string>
+        <string>DLX.PIF_MINE_DLX.VintnerVault_-6329526885278194029_WoodStep_Cellar</string>
+    </locationsVisited>
+    <timeWentToBed>
+        <int>0</int>
+    </timeWentToBed>
+    <sleptInTemporaryBed>
+        <boolean>false</boolean>
+    </sleptInTemporaryBed>
+    <stats>
+        <specificMonstersKilled/>
+        <Values>
+            <item>
+                <key>
+                    <string>averageBedtime</string>
+                </key>
+                <value>
+                    <unsignedInt>800</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>daysPlayed</string>
+                </key>
+                <value>
+                    <unsignedInt>13</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>stepsTaken</string>
+                </key>
+                <value>
+                    <unsignedInt>902</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>rocksCrushed</string>
+                </key>
+                <value>
+                    <unsignedInt>46</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>weedsEliminated</string>
+                </key>
+                <value>
+                    <unsignedInt>163</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>stoneGathered</string>
+                </key>
+                <value>
+                    <unsignedInt>47</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>ArtifactSpotsDug</string>
+                </key>
+                <value>
+                    <unsignedInt>2</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>dirtHoed</string>
+                </key>
+                <value>
+                    <unsignedInt>2</unsignedInt>
+                </value>
+            </item>
+            <item>
+                <key>
+                    <string>itemsShipped</string>
+                </key>
+                <value>
+                    <unsignedInt>1010</unsignedInt>
+                </value>
+            </item>
+        </Values>
+        <averageBedtime xsi:nil="true"/>
+        <beveragesMade xsi:nil="true"/>
+        <caveCarrotsFound xsi:nil="true"/>
+        <cheeseMade xsi:nil="true"/>
+        <chickenEggsLayed xsi:nil="true"/>
+        <copperFound xsi:nil="true"/>
+        <cowMilkProduced xsi:nil="true"/>
+        <cropsShipped xsi:nil="true"/>
+        <daysPlayed xsi:nil="true"/>
+        <diamondsFound xsi:nil="true"/>
+        <dirtHoed xsi:nil="true"/>
+        <duckEggsLayed xsi:nil="true"/>
+        <fishCaught xsi:nil="true"/>
+        <geodesCracked xsi:nil="true"/>
+        <giftsGiven xsi:nil="true"/>
+        <goatCheeseMade xsi:nil="true"/>
+        <goatMilkProduced xsi:nil="true"/>
+        <goldFound xsi:nil="true"/>
+        <goodFriends xsi:nil="true"/>
+        <individualMoneyEarned xsi:nil="true"/>
+        <iridiumFound xsi:nil="true"/>
+        <ironFound xsi:nil="true"/>
+        <itemsCooked xsi:nil="true"/>
+        <itemsCrafted xsi:nil="true"/>
+        <itemsForaged xsi:nil="true"/>
+        <itemsShipped xsi:nil="true"/>
+        <monstersKilled xsi:nil="true"/>
+        <mysticStonesCrushed xsi:nil="true"/>
+        <notesFound xsi:nil="true"/>
+        <otherPreciousGemsFound xsi:nil="true"/>
+        <piecesOfTrashRecycled xsi:nil="true"/>
+        <preservesMade xsi:nil="true"/>
+        <prismaticShardsFound xsi:nil="true"/>
+        <questsCompleted xsi:nil="true"/>
+        <rabbitWoolProduced xsi:nil="true"/>
+        <rocksCrushed xsi:nil="true"/>
+        <sheepWoolProduced xsi:nil="true"/>
+        <slimesKilled xsi:nil="true"/>
+        <stepsTaken xsi:nil="true"/>
+        <stoneGathered xsi:nil="true"/>
+        <stumpsChopped xsi:nil="true"/>
+        <timesFished xsi:nil="true"/>
+        <timesUnconscious xsi:nil="true"/>
+        <totalMoneyGifted xsi:nil="true"/>
+        <trufflesFound xsi:nil="true"/>
+        <weedsEliminated xsi:nil="true"/>
+        <seedsSown xsi:nil="true"/>
+    </stats>
+    <biteChime>-1</biteChime>
+    <itemsLostLastDeath/>
+    <movementDirections/>
+    <farmName>联机测试</farmName>
+    <favoriteThing>联机调试</favoriteThing>
+    <slotCanHost>true</slotCanHost>
+    <userID/>
+    <catPerson xsi:nil="true"/>
+    <canUnderstandDwarves xsi:nil="true"/>
+    <hasClubCard xsi:nil="true"/>
+    <hasDarkTalisman xsi:nil="true"/>
+    <hasMagicInk xsi:nil="true"/>
+    <hasMagnifyingGlass xsi:nil="true"/>
+    <hasRustyKey xsi:nil="true"/>
+    <hasSkullKey xsi:nil="true"/>
+    <hasSpecialCharm xsi:nil="true"/>
+    <HasTownKey xsi:nil="true"/>
+    <hasUnlockedSkullDoor xsi:nil="true"/>
+    <daysMarried xsi:nil="true"/>
+    <whichPetType>Cat</whichPetType>
+    <whichPetBreed>0</whichPetBreed>
+    <acceptedDailyQuest>false</acceptedDailyQuest>
+    <mostRecentBed>
+        <X>1407.3599</X>
+        <Y>288</Y>
+    </mostRecentBed>
+    <shirt>-1</shirt>
+    <hair>0</hair>
+    <skin>0</skin>
+    <shoes>2</shoes>
+    <accessory>-1</accessory>
+    <facialHair>-1</facialHair>
+    <pants>-1</pants>
+    <lastGotPrizeFromGil>
+        <WorldDate xsi:nil="true"/>
+    </lastGotPrizeFromGil>
+    <hairstyleColor>
+        <B>50</B>
+        <G>90</G>
+        <R>193</R>
+        <A>255</A>
+        <PackedValue>4281490113</PackedValue>
+    </hairstyleColor>
+    <pantsColor>
+        <B>183</B>
+        <G>85</G>
+        <R>46</R>
+        <A>255</A>
+        <PackedValue>4290204974</PackedValue>
+    </pantsColor>
+    <newEyeColor>
+        <B>52</B>
+        <G>68</G>
+        <R>122</R>
+        <A>255</A>
+        <PackedValue>4281615482</PackedValue>
+    </newEyeColor>
+    <shirtItem>
+        <isLostItem>false</isLostItem>
+        <category>-100</category>
+        <hasBeenInInventory>true</hasBeenInInventory>
+        <name>Classic Overalls</name>
+        <itemId>1000</itemId>
+        <specialItem>false</specialItem>
+        <isRecipe>false</isRecipe>
+        <quality>0</quality>
+        <stack>1</stack>
+        <SpecialVariable>0</SpecialVariable>
+        <price>50</price>
+        <indexInTileSheet>0</indexInTileSheet>
+        <indexInTileSheetFemale xsi:nil="true"/>
+        <clothesType>SHIRT</clothesType>
+        <dyeable>false</dyeable>
+        <clothesColor>
+            <B>255</B>
+            <G>255</G>
+            <R>255</R>
+            <A>255</A>
+            <PackedValue>4294967295</PackedValue>
+        </clothesColor>
+        <isPrismatic>false</isPrismatic>
+        <Price>50</Price>
+    </shirtItem>
+    <pantsItem>
+        <isLostItem>false</isLostItem>
+        <category>-100</category>
+        <hasBeenInInventory>true</hasBeenInInventory>
+        <name>Farmer Pants</name>
+        <itemId>0</itemId>
+        <specialItem>false</specialItem>
+        <isRecipe>false</isRecipe>
+        <quality>0</quality>
+        <stack>1</stack>
+        <SpecialVariable>0</SpecialVariable>
+        <price>50</price>
+        <indexInTileSheet>0</indexInTileSheet>
+        <indexInTileSheetFemale xsi:nil="true"/>
+        <clothesType>PANTS</clothesType>
+        <dyeable>true</dyeable>
+        <clothesColor>
+            <B>183</B>
+            <G>85</G>
+            <R>46</R>
+            <A>255</A>
+            <PackedValue>4290204974</PackedValue>
+        </clothesColor>
+        <isPrismatic>false</isPrismatic>
+        <Price>50</Price>
+    </pantsItem>
+    <divorceTonight>false</divorceTonight>
+    <changeWalletTypeTonight>false</changeWalletTypeTonight>
+    <gameVersion>1.6.8</gameVersion>
+    <bibberstyke>0</bibberstyke>
+    <usingRandomizedBobber>false</usingRandomizedBobber>
+    <caveChoice>2</caveChoice>
+    <farmingLevel>0</farmingLevel>
+    <miningLevel>0</miningLevel>
+    <combatLevel>0</combatLevel>
+    <foragingLevel>0</foragingLevel>
+    <fishingLevel>0</fishingLevel>
+    <luckLevel>0</luckLevel>
+    <maxStamina>270</maxStamina>
+    <maxItems>36</maxItems>
+    <lastSeenMovieWeek>-1</lastSeenMovieWeek>
+    <clubCoins>0</clubCoins>
+    <trashCanLevel>0</trashCanLevel>
+    <daysLeftForToolUpgrade>0</daysLeftForToolUpgrade>
+    <houseUpgradeLevel>1</houseUpgradeLevel>
+    <daysUntilHouseUpgrade>-1</daysUntilHouseUpgrade>
+    <showChestColorPicker>true</showChestColorPicker>
+    <hasWateringCanEnchantment>false</hasWateringCanEnchantment>
+    <temporaryInvincibilityTimer>0</temporaryInvincibilityTimer>
+    <currentTemporaryInvincibilityDuration>1200</currentTemporaryInvincibilityDuration>
+    <health>100</health>
+    <maxHealth>100</maxHealth>
+    <difficultyModifier>1</difficultyModifier>
+    <gender>Male</gender>
+    <basicShipped>
+        <item>
+            <key>
+                <string>PurpleBook</string>
+            </key>
+            <value>
+                <int>990</int>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>390</string>
+            </key>
+            <value>
+                <int>3</int>
+            </value>
+        </item>
+    </basicShipped>
+    <mineralsFound/>
+    <recipesCooked/>
+    <fishCaught/>
+    <archaeologyFound/>
+    <callsReceived/>
+    <giftedItems/>
+    <tailoredItems/>
+    <friendshipData>
+        <item>
+            <key>
+                <string>Lewis</string>
+            </key>
+            <value>
+                <Friendship>
+                    <Points>0</Points>
+                    <GiftsThisWeek>0</GiftsThisWeek>
+                    <GiftsToday>0</GiftsToday>
+                    <TalkedToToday>false</TalkedToToday>
+                    <ProposalRejected>false</ProposalRejected>
+                    <Status>Friendly</Status>
+                    <Proposer>0</Proposer>
+                    <RoommateMarriage>false</RoommateMarriage>
+                </Friendship>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Robin</string>
+            </key>
+            <value>
+                <Friendship>
+                    <Points>0</Points>
+                    <GiftsThisWeek>0</GiftsThisWeek>
+                    <GiftsToday>0</GiftsToday>
+                    <TalkedToToday>false</TalkedToToday>
+                    <ProposalRejected>false</ProposalRejected>
+                    <Status>Friendly</Status>
+                    <Proposer>0</Proposer>
+                    <RoommateMarriage>false</RoommateMarriage>
+                </Friendship>
+            </value>
+        </item>
+        <item>
+            <key>
+                <string>Demetrius</string>
+            </key>
+            <value>
+                <Friendship>
+                    <Points>0</Points>
+                    <GiftsThisWeek>0</GiftsThisWeek>
+                    <GiftsToday>0</GiftsToday>
+                    <TalkedToToday>false</TalkedToToday>
+                    <ProposalRejected>false</ProposalRejected>
+                    <Status>Friendly</Status>
+                    <Proposer>0</Proposer>
+                    <RoommateMarriage>false</RoommateMarriage>
+                </Friendship>
+            </value>
+        </item>
+    </friendshipData>
+    <dayOfMonthForSaveGame>13</dayOfMonthForSaveGame>
+    <seasonForSaveGame>0</seasonForSaveGame>
+    <yearForSaveGame>1</yearForSaveGame>
+    <qiGems>0</qiGems>
+    <chestConsumedLevels/>
+    <saveTime>6320936</saveTime>
+    <isCustomized>true</isCustomized>
+    <homeLocation>FarmHouse</homeLocation>
+    <lastSleepLocation>FarmHouse</lastSleepLocation>
+    <lastSleepPoint>
+        <X>22</X>
+        <Y>4</Y>
+    </lastSleepPoint>
+    <disconnectDay>-1</disconnectDay>
+    <disconnectPosition>
+        <X>0</X>
+        <Y>0</Y>
+    </disconnectPosition>
+    <movementMultiplier>0.066</movementMultiplier>
+    <isMale xsi:nil="true"/>
+    <deepestMineLevel>0</deepestMineLevel>
+    <stamina>270</stamina>
+    <totalMoneyEarned>2475686</totalMoneyEarned>
+    <millisecondsPlayed>4180976</millisecondsPlayed>
+    <useSeparateWallets>false</useSeparateWallets>
+    <theaterBuildDate>-1</theaterBuildDate>
+    <timesReachedMineBottom>0</timesReachedMineBottom>
+    <UniqueMultiplayerID>-6329526885278194029</UniqueMultiplayerID>
+    <money>2466086</money>
+</Farmer>

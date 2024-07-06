@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
+using StardewValley.Extensions;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common.Log;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
@@ -14,19 +16,32 @@ internal class SpectatorMenu : IClickableMenu
     private readonly ModConfig config = ModEntry.Config;
 
     private bool followPlayer;
+    private bool randomSpectate;
+    private bool RandomSpectate
+    {
+        get => this.randomSpectate;
+        set
+        {
+            this.intervalTimer = 0;
+            this.randomSpectate = value;
+            Log.NoIconHUDMessage(value ? I18n.UI_RandomSpectate_Begin() : I18n.UI_RandomSpectate_End());
+        } 
+    }
 
-    private readonly Farmer targetFarmer;
+    private int intervalTimer;
+
+    private Farmer targetFarmer;
     private GameLocation targetLocation;
 
     private readonly GameLocation originLocation;
     private readonly Location originViewport;
 
-    public SpectatorMenu(GameLocation targetLocation, Farmer? targetFarmer = null, bool followPlayer = false)
+    public SpectatorMenu(GameLocation targetLocation, Farmer? targetFarmer = null)
     {
         // 初始化
         this.targetFarmer = targetFarmer ?? Game1.player;
         this.targetLocation = targetLocation;
-        this.followPlayer = followPlayer;
+        this.followPlayer = this.targetFarmer != Game1.player;
 
         this.originLocation = Game1.currentLocation;
         this.originViewport = Game1.viewport.Location;
@@ -37,14 +52,34 @@ internal class SpectatorMenu : IClickableMenu
 
     public override void update(GameTime time)
     {
+        if (this.RandomSpectate)
+        {
+            this.intervalTimer++;
+            if (this.intervalTimer > this.config.RandomSpectateInterval * 60)
+            {
+                if (this.targetFarmer != Game1.player)
+                {
+                    this.targetFarmer = Game1.random.ChooseFrom(Game1.otherFarmers.Values.ToArray());
+                    this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation);
+                    this.targetLocation = this.targetFarmer.currentLocation;
+                }
+                else
+                {
+                    var newLocation = Game1.random.ChooseFrom(Game1.locations.Where(location => Game1.player.locationsVisited.Contains(location.NameOrUniqueName)).ToList());
+                    this.InitLocationData(this.targetLocation, newLocation);
+                    this.targetLocation = newLocation;
+                    Game1.viewport.Location = this.GetInitialViewport();
+                }
+                this.intervalTimer = 0;
+            }
+        }
+        
         if (this.followPlayer)
         {
             if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
             {
                 this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation);
-                // Game1.globalFadeToBlack(() => this.InitLocationData(this.targetLocation, this.targetFarmer.currentLocation));
                 this.targetLocation = this.targetFarmer.currentLocation;
-                // Game1.globalFadeToClear();
             }
 
             Game1.viewport.Location = this.GetViewportFromFarmer();
@@ -62,6 +97,12 @@ internal class SpectatorMenu : IClickableMenu
             : I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName);
         SpriteText.drawStringWithScrollCenteredAt(b, title, Game1.uiViewport.Width / 2, 64);
 
+        if (this.RandomSpectate)
+        {
+            SpriteText.drawStringWithScrollCenteredAt(b, I18n.UI_RandomSpectate_Title(this.intervalTimer, this.config.RandomSpectateInterval),
+                Game1.uiViewport.Width / 2, 144);
+        }
+
         if (this.config.ShowTimeAndMoney) Game1.dayTimeMoneyBox.draw(b);
 
         if (this.config.ShowToolbar) this.DrawToolBar(b);
@@ -74,6 +115,8 @@ internal class SpectatorMenu : IClickableMenu
         base.receiveKeyPress(key);
 
         if (this.config.ToggleStateKey.JustPressed()) this.followPlayer = !this.followPlayer;
+
+        if (this.config.RandomSpectateKey.JustPressed()) this.RandomSpectate = !this.RandomSpectate;
     }
 
     protected override void cleanupBeforeExit()

@@ -44,7 +44,6 @@ internal class ModEntry : Mod
         var handlers = new IHandler[]
         {
             new CommandHandler(this.Helper),
-            new RotatePlayerHandler(this.Helper),
             new SpectateLocationHandler(this.Helper),
             new SpectatePlayerHandler(this.Helper)
         };

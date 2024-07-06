@@ -24,10 +24,11 @@
     "Config.ShowTimeAndMoney.Name": "显示时间和金钱",
     "Config.ShowToolbar.Name": "显示工具栏",
 
-    // 轮播玩家
-    "Config.RotatePlayerTitle.Name": "轮播玩家",
-    "Config.RotatePlayerKey.Name": "轮播玩家快捷键",
-    "Config.RotationInterval.Name": "轮播间隔",
-    "UI.RotatePlayer.Begin": "开始轮播玩家",
-    "UI.RotatePlayer.End": "结束轮播玩家"
+    // 随机旁观
+    "Config.RandomSpectateTitle.Name": "随机旁观",
+    "Config.RandomSpectateKey.Name": "随机旁观快捷键",
+    "Config.RandomSpectateInterval.Name": "随机旁观间隔",
+    "UI.RandomSpectate.Begin": "开始随机旁观",
+    "UI.RandomSpectate.End": "结束随机旁观",
+    "UI.RandomSpectate.Title": "正在随机旁观 {{currentTime}}/{{totalTime}}"
 }

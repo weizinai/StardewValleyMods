@@ -61,17 +61,16 @@ internal class GenericModConfigMenuForSpectatorMode
                 I18n.Config_ShowToolbar_Name
             )
             // 轮播玩家
-            .AddSectionTitle(I18n.Config_RotatePlayerTitle_Name)
+            .AddSectionTitle(I18n.Config_RandomSpectateTitle_Name)
             .AddKeybindList(
-                config => config.RotatePlayerKey,
-                (config, value) => config.RotatePlayerKey = value,
-                I18n.Config_RotatePlayerKey_Name
+                config => config.RandomSpectateKey,
+                (config, value) => config.RandomSpectateKey = value,
+                I18n.Config_RandomSpectateKey_Name
             )
             .AddNumberOption(
-                config => config.RotationInterval,
-                (config, value) => config.RotationInterval = value,
-                I18n.Config_RotationInterval_Name
-            )
-            ;
+                config => config.RandomSpectateInterval,
+                (config, value) => config.RandomSpectateInterval = value,
+                I18n.Config_RandomSpectateInterval_Name
+            );
     }
 }

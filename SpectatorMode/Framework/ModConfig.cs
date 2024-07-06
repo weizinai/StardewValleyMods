@@ -16,6 +16,6 @@ internal class ModConfig
     public bool ShowToolbar { get; set; } = true;
 
     // 轮播玩家
-    public KeybindList RotatePlayerKey { get; set; } = new(SButton.F8);
-    public int RotationInterval { get; set; } = 30;
+    public KeybindList RandomSpectateKey { get; set; } = new(SButton.F8);
+    public int RandomSpectateInterval { get; set; } = 30;
 }

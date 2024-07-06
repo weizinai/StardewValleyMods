@@ -24,11 +24,12 @@
     "Config.ShowTimeAndMoney.Name": "Show Time and Money",
     "Config.ShowToolbar.Name": "Show Toolbar",
     
-    // Rotate Player
-    "Config.RotatePlayerTitle.Name": "Rotate Player",
-    "Config.RotatePlayerKey.Name": "Rotate Player Key",
-    "Config.RotationInterval.Name": "Rotation Interval",
-    "UI.RotatePlayer.Begin": "Begin Rotate Player",
-    "UI.RotatePlayer.End": "End Rotate Player"
+    // Random Spectate
+    "Config.RandomSpectateTitle.Name": "Random Spectate",
+    "Config.RandomSpectateKey.Name": "Random Spectate Key",
+    "Config.RandomSpectateInterval.Name": "Random Spectate Interval",
+    "UI.RandomSpectate.Begin": "Begin Random Spectate",
+    "UI.RandomSpectate.End": "End Random Spectate",
+    "UI.RandomSpectate.Title": "Random Spectating {{currentTime}}/{{totalTime}}",
 
 }

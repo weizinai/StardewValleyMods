@@ -20,7 +20,7 @@ internal static class SpectatorHelper
 
         if (farmer is null) return false;
 
-        Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer, true);
+        Game1.activeClickableMenu = new SpectatorMenu(farmer.currentLocation, farmer);
         return true;
     }
 }

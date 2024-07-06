@@ -9,7 +9,7 @@ namespace TestMod;
 public class ModEntry : Mod
 {
     private readonly KeybindList testKet = new(SButton.O);
-    private const string SavePath = @"C:\Projects\StardewValleyMods\TestMod\assets\联机测试_374061236.xml";
+    private const string SavePath = @"C:\Projects\StardewValleyMods\TestMod\assets\会员6月25日_378995366.xml";
 
     public override void Entry(IModHelper helper)
     {

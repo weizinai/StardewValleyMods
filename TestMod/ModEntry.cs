@@ -10,7 +10,9 @@ public class ModEntry : Mod
 {
     private readonly KeybindList testKet = new(SButton.O);
     private SaveGame saveGame = null!;
+    private Farmer saveGameInfo = null!;
     private const string SavePath = @"C:\Projects\StardewValleyMods\TestMod\assets\会员6月25日_378995366.xml";
+    private const string SaveInfoPath = @"C:\Projects\StardewValleyMods\TestMod\assets\SaveGameInfo.xml";
 
     public override void Entry(IModHelper helper)
     {
@@ -33,15 +35,27 @@ public class ModEntry : Mod
 
     private void DeserializeSave()
     {
-        using var fileStream = new FileStream(SavePath, FileMode.Open);
-        this.saveGame = (SaveGame)SaveGame.serializer.Deserialize(fileStream)!;
+        using (var fileStream = new FileStream(SavePath, FileMode.Open))
+        {
+            this.saveGame = (SaveGame)SaveGame.serializer.Deserialize(fileStream)!;
+        }
+        using (var fileStream = new FileStream(SaveInfoPath, FileMode.Open))
+        {
+            this.saveGameInfo = (Farmer)SaveGame.farmerSerializer.Deserialize(fileStream)!;
+        }
         Log.Info("成功反序列化存档");
     }
 
     private void SerializeSave()
     {
-        using var streamWriter = new StreamWriter(SavePath);
-        SaveGame.serializer.Serialize(streamWriter, this.saveGame);
+        using (var streamWriter = new StreamWriter(SavePath))
+        {
+            SaveGame.serializer.Serialize(streamWriter, this.saveGame);
+        }
+        using (var streamWriter = new StreamWriter(SaveInfoPath))
+        {
+            SaveGame.farmerSerializer.Serialize(streamWriter, this.saveGameInfo);
+        }
         Log.Info("成功序列化存档");
     }
 
@@ -55,6 +69,8 @@ public class ModEntry : Mod
         (originPlayer.HouseUpgradeLevel, targetPlayer.HouseUpgradeLevel) =
             (targetPlayer.HouseUpgradeLevel, originPlayer.HouseUpgradeLevel);
         Log.Info("成功交换玩家房屋等级信息");
+
+        this.saveGameInfo = targetPlayer;
         
         (this.saveGame.player, this.saveGame.farmhands[0]) = (targetPlayer, originPlayer);
         Log.Info("成功交换玩家信息");

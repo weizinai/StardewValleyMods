@@ -1,10 +1,10 @@
-using MoreInfo.Framework;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Monsters;
+using weizinai.StardewValleyMod.MoreInfo.Framework;
 
-namespace MoreInfo.Handler;
+namespace weizinai.StardewValleyMod.MoreInfo.Handler;
 
 internal class MonsterInfoHandler : LocationInfoHandler
 {

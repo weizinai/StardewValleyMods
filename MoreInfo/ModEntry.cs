@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using MoreInfo.Framework;
-using MoreInfo.Handler;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Integration;
+using weizinai.StardewValleyMod.MoreInfo.Framework;
+using weizinai.StardewValleyMod.MoreInfo.Handler;
 
-namespace MoreInfo;
+namespace weizinai.StardewValleyMod.MoreInfo;
 
 internal class ModEntry : Mod
 {

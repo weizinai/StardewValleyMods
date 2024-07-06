@@ -9,7 +9,7 @@ using StardewValley.Monsters;
 using weizinai.StardewValleyMod.Common.UI;
 using SObject = StardewValley.Object;
 
-namespace MoreInfo.Framework;
+namespace weizinai.StardewValleyMod.MoreInfo.Framework;
 
 internal class MiningHud
 {

@@ -4,7 +4,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace MoreInfo.Framework;
+namespace weizinai.StardewValleyMod.MoreInfo.Framework;
 
 internal abstract class BaseInfoHandler : IInfoHandler
 {

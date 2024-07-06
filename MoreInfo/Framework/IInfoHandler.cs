@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI.Events;
 
-namespace MoreInfo.Framework;
+namespace weizinai.StardewValleyMod.MoreInfo.Framework;
 
 internal interface IInfoHandler
 {

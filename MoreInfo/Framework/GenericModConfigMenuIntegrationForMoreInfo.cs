@@ -1,6 +1,6 @@
 using weizinai.StardewValleyMod.Common.Integration;
 
-namespace MoreInfo.Framework;
+namespace weizinai.StardewValleyMod.MoreInfo.Framework;
 
 internal class GenericModConfigMenuIntegrationForMoreInfo
 {

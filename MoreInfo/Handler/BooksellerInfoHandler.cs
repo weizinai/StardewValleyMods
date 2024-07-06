@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MoreInfo.Framework;
 using StardewValley;
+using weizinai.StardewValleyMod.MoreInfo.Framework;
 
-namespace MoreInfo.Handler;
+namespace weizinai.StardewValleyMod.MoreInfo.Handler;
 
 internal class BooksellerInfoHandler : BaseInfoHandler
 {

@@ -1,4 +1,4 @@
-namespace MoreInfo.Framework;
+namespace weizinai.StardewValleyMod.MoreInfo.Framework;
 
 internal class ModConfig
 {

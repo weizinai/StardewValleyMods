@@ -9,6 +9,7 @@ namespace TestMod;
 public class ModEntry : Mod
 {
     private readonly KeybindList testKet = new(SButton.O);
+    private SaveGame saveGame = null!;
     private const string SavePath = @"C:\Projects\StardewValleyMods\TestMod\assets\会员6月25日_378995366.xml";
 
     public override void Entry(IModHelper helper)
@@ -22,19 +23,28 @@ public class ModEntry : Mod
     {
         if (this.testKet.JustPressed())
         {
-            SaveGame saveGame;
-            using (var fileStream = new FileStream(SavePath, FileMode.Open))
-            {
-                saveGame = (SaveGame)SaveGame.serializer.Deserialize(fileStream)!;
-                Log.Info(saveGame.player.UniqueMultiplayerID.ToString());
-            }
-
-            (saveGame.player, saveGame.farmhands[0]) = (saveGame.farmhands[0], saveGame.player);
-
-            using (var streamWriter = new StreamWriter(SavePath))
-            {
-                SaveGame.serializer.Serialize(streamWriter, saveGame);
-            }
+            this.DeserializeSave();
+            
         }
+    }
+
+    private void DeserializeSave()
+    {
+        using var fileStream = new FileStream(SavePath, FileMode.Open);
+        this.saveGame = (SaveGame)SaveGame.serializer.Deserialize(fileStream)!;
+        Log.Info("成功反序列化存档");
+    }
+
+    private void SerializeSave()
+    {
+        using var streamWriter = new StreamWriter(SavePath);
+        SaveGame.serializer.Serialize(streamWriter, this.saveGame);
+        Log.Info("成功序列化存档");
+    }
+
+    private void ChangeHostPlayer()
+    {
+        (this.saveGame.player, this.saveGame.farmhands[0]) = 
+            (this.saveGame.farmhands[0], this.saveGame.player);
     }
 }

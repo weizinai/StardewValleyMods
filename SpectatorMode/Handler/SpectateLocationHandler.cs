@@ -20,12 +20,17 @@ internal class SpectateLocationHandler : BaseHandler
 
         if (this.Config.SpectateLocationKey.JustPressed())
         {
-            var locations = Game1.locations
-                .Where(location => !this.Config.OnlyShowOutdoors || location.IsOutdoors)
+            var locations = Game1.locations.Where(this.CheckLocationAvailable)
                 .Select(location => new KeyValuePair<string, string>(location.NameOrUniqueName, location.DisplayName));
 
             Game1.currentLocation.ShowPagedResponses(I18n.UI_SpectateLocation_Title(), locations.ToList(),
                 value => SpectatorHelper.TrySpectateLocation(value), false, true, 10);
         }
+    }
+
+    private bool CheckLocationAvailable(GameLocation location)
+    {
+        return Game1.player.locationsVisited.Contains(location.NameOrUniqueName) &&
+               (!this.Config.OnlyShowOutdoors || location.IsOutdoors);
     }
 }

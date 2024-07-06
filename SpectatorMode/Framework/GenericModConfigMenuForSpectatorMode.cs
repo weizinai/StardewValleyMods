@@ -53,8 +53,12 @@ internal class GenericModConfigMenuForSpectatorMode
             .AddBoolOption(
                 config => config.ShowTimeAndMoney,
                 (config, value) => config.ShowTimeAndMoney = value,
-                I18n.Config_ShowTimeAndMoney_Name,
-                I18n.Config_ShowTimeAndMoney_Tooltip
+                I18n.Config_ShowTimeAndMoney_Name
+            )
+            .AddBoolOption(
+                config => config.ShowToolbar,
+                (config, value) => config.ShowToolbar = value,
+                I18n.Config_ShowToolbar_Name
             )
             // 轮播玩家
             .AddSectionTitle(I18n.Config_RotatePlayerTitle_Name)

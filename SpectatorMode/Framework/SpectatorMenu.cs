@@ -5,6 +5,7 @@ using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using xTile.Dimensions;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
@@ -60,8 +61,10 @@ internal class SpectatorMenu : IClickableMenu
             ? I18n.UI_SpectatorMode_Title(this.targetFarmer.displayName)
             : I18n.UI_SpectatorMode_Title(this.targetLocation.DisplayName);
         SpriteText.drawStringWithScrollCenteredAt(b, title, Game1.uiViewport.Width / 2, 64);
-        
+
         if (this.config.ShowTimeAndMoney) Game1.dayTimeMoneyBox.draw(b);
+
+        if (this.config.ShowToolbar) this.DrawToolBar(b);
 
         this.drawMouse(b);
     }
@@ -118,5 +121,28 @@ internal class SpectatorMenu : IClickableMenu
         var x = (int)this.targetFarmer.Position.X - Game1.viewport.Width / 2;
         var y = (int)this.targetFarmer.Position.Y - Game1.viewport.Height / 2;
         return new Location(x, y);
+    }
+
+    private void DrawToolBar(SpriteBatch b)
+    {
+        var bound = new Rectangle(Game1.uiViewport.Width / 2 - 400, Game1.uiViewport.Height - 96 - 8, 800, 96);
+        
+        drawTextureBox(b, Game1.menuTexture, new Rectangle(0, 256, 60, 60),
+            bound.X, bound.Y, bound.Width, bound.Height, Color.White, 1f, false);
+
+        for (var i = 0; i < 12; i++)
+        {
+            b.Draw(Game1.menuTexture, new Vector2(bound.X + 16 + i * 64, bound.Y + 16), 
+                Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, this.targetFarmer.CurrentToolIndex == i ? 56 : 10), Color.White);
+        }
+        
+        for (var i = 0; i < 12; i++)
+        {
+            if (this.targetFarmer.Items.Count > i && this.targetFarmer.Items[i] != null)
+            {
+                this.targetFarmer.Items[i].drawInMenu(b, new Vector2(bound.X + 16 + i * 64, bound.Y + 16), 
+                    this.targetFarmer.CurrentToolIndex == i ? 0.9f : 0.8f);
+            }
+        }
     }
 }

@@ -99,7 +99,7 @@ internal class SpectatorMenu : IClickableMenu
 
         if (this.RandomSpectate)
         {
-            SpriteText.drawStringWithScrollCenteredAt(b, I18n.UI_RandomSpectate_Title(this.intervalTimer, this.config.RandomSpectateInterval),
+            SpriteText.drawStringWithScrollCenteredAt(b, I18n.UI_RandomSpectate_Title(this.intervalTimer / 60, this.config.RandomSpectateInterval),
                 Game1.uiViewport.Width / 2, 144);
         }
 

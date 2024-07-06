@@ -1,0 +1,17 @@
+{
+    "Name": "Test Mod",
+    "Author": "weizinai",
+    "Version": "0.1.0",
+    "Description": "",
+    "UniqueID": "weizinai.TestMod",
+    "EntryDll": "TestMod.dll",
+    "UpdateKeys": [
+        "Nexus:"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

@@ -7,11 +7,5 @@
     "EntryDll": "SaveModInfo.dll",
     "UpdateKeys": [
         "Nexus:"
-    ],
-    "Dependencies": [
-        {
-            "UniqueID": "spacechase0.GenericModConfigMenu",
-            "IsRequired": false
-        }
     ]
 }

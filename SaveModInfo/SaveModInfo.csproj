@@ -16,11 +16,9 @@
       <AdditionalFiles Remove="i18n\default.json" />
     </ItemGroup>
 
-    <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared" />
+    <Import Project="..\Common.Handler\Common.Handler.projitems" Label="Shared" />
 
     <Import Project="..\Common.Log\Common.Log.projitems" Label="Shared" />
-
-    <Import Project="..\Common.Handler\Common.Handler.projitems" Label="Shared" />
 
     <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
 

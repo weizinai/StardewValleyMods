@@ -149,7 +149,9 @@ internal class SpectatorMenu : IClickableMenu
         oldLocation.cleanupBeforePlayerExit();
         Game1.currentLocation = newLocation;
         Game1.player.viewingLocation.Value = newLocation.NameOrUniqueName;
-        newLocation.resetForPlayerEntry();
+        // 不知道有啥用，原版罗宾建造建筑时有这段代码，就copy了
+        // 注释掉这段代码可以修复当旁观地点为小屋时，结束旁观玩家位置错误的问题
+        // newLocation.resetForPlayerEntry();
     }
 
     private Location GetInitialViewport()

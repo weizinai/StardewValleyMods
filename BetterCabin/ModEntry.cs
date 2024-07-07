@@ -4,6 +4,7 @@ using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.BetterCabin.Handler;
 using weizinai.StardewValleyMod.BetterCabin.Patcher;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin;
@@ -44,13 +45,13 @@ internal class ModEntry : Mod
         this.handlers.Clear();
 
         if (this.config.ResetCabinPlayer)
-            this.handlers.Add(new ResetCabinHandler(this.config, this.Helper));
+            this.handlers.Add(new ResetCabinHandler(this.Helper, this.config));
         if (this.config.CabinMenu)
-            this.handlers.Add(new CabinMenuHandler(this.config, this.Helper));
+            this.handlers.Add(new CabinMenuHandler(this.Helper, this.config));
         if (this.config.VisitCabinInfo)
-            this.handlers.Add(new VisitCabinInfoHandler(this.config, this.Helper));
+            this.handlers.Add(new VisitCabinInfoHandler(this.Helper, this.config));
         if (this.config.LockCabin)
-            this.handlers.Add(new LockCabinHandler(this.config, this.Helper));
+            this.handlers.Add(new LockCabinHandler(this.Helper, this.config));
 
         LockCabinHandler.InitLockCabinConfig(this.config);
 

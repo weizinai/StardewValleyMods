@@ -1,11 +1,12 @@
 using StardewModdingAPI;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class ItemCheatHandler : BaseHandler
+internal class ItemCheatHandler : BaseHandlerWithConfig<ModConfig>
 {
     public ItemCheatHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }

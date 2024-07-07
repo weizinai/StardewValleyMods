@@ -1,13 +1,14 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
-internal class SpectatePlayerHandler : BaseHandler
+internal class SpectatePlayerHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public SpectatePlayerHandler(IModHelper helper) : base(helper) { }
+    public SpectatePlayerHandler(IModHelper helper) : base(helper, ModEntry.Config) { }
 
     public override void Init()
     {

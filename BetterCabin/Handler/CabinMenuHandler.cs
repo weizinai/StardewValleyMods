@@ -2,15 +2,15 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.BetterCabin.Menu;
+using weizinai.StardewValleyMod.Common.Handler;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
-internal class CabinMenuHandler : BaseHandler
+internal class CabinMenuHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public CabinMenuHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
+    public CabinMenuHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
     public override void Init()
     {

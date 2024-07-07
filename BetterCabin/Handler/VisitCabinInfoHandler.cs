@@ -5,12 +5,13 @@ using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.Common.Handler;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
-internal class VisitCabinInfoHandler : BaseHandler
+internal class VisitCabinInfoHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public VisitCabinInfoHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
+    public VisitCabinInfoHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
     public override void Init()
     {

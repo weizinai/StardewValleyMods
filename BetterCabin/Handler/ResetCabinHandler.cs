@@ -2,14 +2,14 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.Common.Handler;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
-internal class ResetCabinHandler : BaseHandler
+internal class ResetCabinHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public ResetCabinHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
+    public ResetCabinHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
     public override void Init()
     {

@@ -1,12 +1,13 @@
 using StardewModdingAPI;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
 
-internal class CommandHandler : BaseHandler
+internal class CommandHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public CommandHandler(IModHelper helper) : base(helper) { }
+    public CommandHandler(IModHelper helper) : base(helper, ModEntry.Config) { }
 
     public override void Init()
     {

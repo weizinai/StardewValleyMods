@@ -3,11 +3,12 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class AutoClickHandler : BaseHandler
+internal class AutoClickHandler : BaseHandlerWithConfig<ModConfig>
 {
     private int cooldown;
 

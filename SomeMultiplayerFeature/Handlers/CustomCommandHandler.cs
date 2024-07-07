@@ -1,12 +1,13 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class CustomCommandHandler : BaseHandler
+internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
 {
     private const string BannedPlayerPath = "assets/BannedPlayer.json";
     private readonly Dictionary<string, string>? bannedPlayers;

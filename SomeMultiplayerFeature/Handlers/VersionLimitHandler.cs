@@ -1,12 +1,13 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class VersionLimitHandler : BaseHandler
+internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     private const string ModKey = "SomeMultiplayerFeature_Version";
 

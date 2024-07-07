@@ -2,16 +2,16 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.Common.Handler;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
-internal class LockCabinHandler : BaseHandler
+internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
 {
     private static string LockCabinKey => "weizinai.BetterCabin_LockCabin";
 
-    public LockCabinHandler(ModConfig config, IModHelper helper) : base(config, helper) { }
+    public LockCabinHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
     public override void Init()
     {

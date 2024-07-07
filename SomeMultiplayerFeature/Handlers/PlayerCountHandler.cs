@@ -2,12 +2,13 @@ using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.UI;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class PlayerCountHandler : BaseHandler
+internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
 {
     private readonly Button playerCountButton = new(new Point(64, 64), "");
 

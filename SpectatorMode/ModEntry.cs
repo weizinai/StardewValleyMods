@@ -2,6 +2,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 using weizinai.StardewValleyMod.SpectatorMode.Handler;
 

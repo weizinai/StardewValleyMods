@@ -1,11 +1,12 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class IpConnectionHandler : BaseHandler
+internal class IpConnectionHandler : BaseHandlerWithConfig<ModConfig>
 {
     public IpConnectionHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 

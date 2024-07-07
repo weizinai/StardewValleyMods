@@ -2,6 +2,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
@@ -11,7 +12,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 /// 实现与踢出未准备玩家功能相关的逻辑
 /// </summary>
 /// <remarks>该功能仅主机端可用</remarks>
-internal class UnreadyPlayerHandler : BaseHandler
+internal class UnreadyPlayerHandler : BaseHandlerWithConfig<ModConfig>
 {
     private readonly HashSet<long> unreadyPlayers = new();
 

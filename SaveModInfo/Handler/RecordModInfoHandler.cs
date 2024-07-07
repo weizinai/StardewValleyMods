@@ -1,4 +1,3 @@
-using SaveModInfo.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -13,25 +12,22 @@ internal class RecordModInfoHandler : BaseHandler
 
     public override void Init()
     {
-        this.Helper.Events.GameLoop.SaveCreated += this.OnSaveCreated;
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
     }
     
-    private void OnSaveCreated(object? sender, SaveCreatedEventArgs e)
-    {
-        this.RecordModInfo();
-    }
-
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        this.Helper.Events.GameLoop.Saved += this.OnSaved;
+        if (Game1.dayOfMonth == 1)
+            this.RecordModInfo();
+        else
+            this.Helper.Events.GameLoop.Saved += this.OnSaved;
     }
 
     private void OnSaved(object? sender, SavedEventArgs e)
     {
-        this.Helper.Events.GameLoop.Saved -= this.OnSaved;
-
         this.RecordModInfo();
+        
+        this.Helper.Events.GameLoop.Saved -= this.OnSaved;
     }
     
     private void RecordModInfo()

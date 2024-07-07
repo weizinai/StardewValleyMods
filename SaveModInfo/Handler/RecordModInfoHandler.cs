@@ -34,8 +34,7 @@ internal class RecordModInfoHandler : BaseHandler
     {
         var modInfo = this.Helper.ModRegistry.GetAll().ToDictionary(mod => mod.Manifest.UniqueID, mod => mod.Manifest.Name);
 
-        var player = Game1.MasterPlayer;
-        this.Helper.Data.WriteJsonFile($"data/{player.displayName}_{player.UniqueMultiplayerID}.json", modInfo);
+        this.Helper.Data.WriteJsonFile($"data/{Constants.SaveFolderName}.json", modInfo);
         
         Log.Info(I18n.UI_RecordModInfo_Tooltip());
     }

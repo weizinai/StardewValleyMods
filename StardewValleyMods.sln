@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveModInfo", "SaveModInfo\SaveModInfo.csproj", "{4C92FAA6-BC01-4E41-805E-C34DBD7857B5}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = ".Common.Handler", "Common.Handler\.Common.Handler.shproj", "{F7611E8B-4022-4681-83EE-1EA0F4FD5A10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

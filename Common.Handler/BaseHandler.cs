@@ -1,6 +1,6 @@
 using StardewModdingAPI;
 
-namespace SaveModInfo.Framework;
+namespace weizinai.StardewValleyMod.Common.Handler;
 
 internal abstract class BaseHandler : IHandler
 {
@@ -12,4 +12,5 @@ internal abstract class BaseHandler : IHandler
     }
 
     public abstract void Init();
+    public virtual void Clear() { }
 }

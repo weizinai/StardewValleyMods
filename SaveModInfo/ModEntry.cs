@@ -1,10 +1,12 @@
 ﻿using SaveModInfo.Framework;
 using SaveModInfo.Handler;
+using SaveModInfo.Patcher;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
+using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace SaveModInfo;
 
@@ -21,6 +23,8 @@ internal class ModEntry : Mod
         this.InitHandler();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        // 注册Harmony补丁
+        HarmonyPatcher.Apply(this, new LoadGameMenuPatcher(), new SaveFileSlotPatcher());
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -44,7 +48,8 @@ internal class ModEntry : Mod
     {
         var handlers = new IHandler[]
         {
-            new RecordModInfoHandler(this.Helper)
+            new RecordModInfoHandler(this.Helper),
+            new CheckModInfoHandler(this.Helper)
         };
         
         foreach (var handler in handlers) handler.Init();

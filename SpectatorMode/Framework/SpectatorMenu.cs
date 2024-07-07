@@ -17,6 +17,7 @@ internal class SpectatorMenu : IClickableMenu
 
     private bool followPlayer;
     private bool randomSpectate;
+
     private bool RandomSpectate
     {
         get => this.randomSpectate;
@@ -25,7 +26,7 @@ internal class SpectatorMenu : IClickableMenu
             this.intervalTimer = 0;
             this.randomSpectate = value;
             Log.NoIconHUDMessage(value ? I18n.UI_RandomSpectate_Begin() : I18n.UI_RandomSpectate_End());
-        } 
+        }
     }
 
     private int intervalTimer;
@@ -73,7 +74,7 @@ internal class SpectatorMenu : IClickableMenu
                 this.intervalTimer = 0;
             }
         }
-        
+
         if (this.followPlayer)
         {
             if (!this.targetLocation.Equals(this.targetFarmer.currentLocation))
@@ -169,21 +170,21 @@ internal class SpectatorMenu : IClickableMenu
     private void DrawToolBar(SpriteBatch b)
     {
         var bound = new Rectangle(Game1.uiViewport.Width / 2 - 400, Game1.uiViewport.Height - 96 - 8, 800, 96);
-        
+
         drawTextureBox(b, Game1.menuTexture, new Rectangle(0, 256, 60, 60),
             bound.X, bound.Y, bound.Width, bound.Height, Color.White, 1f, false);
 
         for (var i = 0; i < 12; i++)
         {
-            b.Draw(Game1.menuTexture, new Vector2(bound.X + 16 + i * 64, bound.Y + 16), 
+            b.Draw(Game1.menuTexture, new Vector2(bound.X + 16 + i * 64, bound.Y + 16),
                 Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, this.targetFarmer.CurrentToolIndex == i ? 56 : 10), Color.White);
         }
-        
+
         for (var i = 0; i < 12; i++)
         {
             if (this.targetFarmer.Items.Count > i && this.targetFarmer.Items[i] != null)
             {
-                this.targetFarmer.Items[i].drawInMenu(b, new Vector2(bound.X + 16 + i * 64, bound.Y + 16), 
+                this.targetFarmer.Items[i].drawInMenu(b, new Vector2(bound.X + 16 + i * 64, bound.Y + 16),
                     this.targetFarmer.CurrentToolIndex == i ? 0.9f : 0.8f);
             }
         }

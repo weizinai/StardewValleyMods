@@ -21,8 +21,7 @@ internal class SpectatePlayerHandler : BaseHandlerWithConfig<ModConfig>
 
         if (this.Config.SpectatePlayerKey.JustPressed())
         {
-            var players = Game1.otherFarmers.Where(x => x.Key != Game1.player.UniqueMultiplayerID).
-                Select(x => new KeyValuePair<string, string>(x.Value.Name, x.Value.displayName));
+            var players = Game1.otherFarmers.Where(x => x.Key != Game1.player.UniqueMultiplayerID).Select(x => new KeyValuePair<string, string>(x.Value.Name, x.Value.displayName));
 
             Game1.currentLocation.ShowPagedResponses(I18n.UI_SpectatePlayer_Title(), players.ToList(),
                 value => SpectatorHelper.TrySpectateFarmer(value), false, true, 10);

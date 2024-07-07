@@ -40,6 +40,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = ".Common.UI", "Common.UI\.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{FF5F4769-163A-406D-9F61-806E7601181F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveModInfo", "SaveModInfo\SaveModInfo.csproj", "{4C92FAA6-BC01-4E41-805E-C34DBD7857B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{FF5F4769-163A-406D-9F61-806E7601181F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF5F4769-163A-406D-9F61-806E7601181F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF5F4769-163A-406D-9F61-806E7601181F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C92FAA6-BC01-4E41-805E-C34DBD7857B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C92FAA6-BC01-4E41-805E-C34DBD7857B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C92FAA6-BC01-4E41-805E-C34DBD7857B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C92FAA6-BC01-4E41-805E-C34DBD7857B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

@@ -21,4 +21,6 @@
 
     <Import Project="..\Common.Handler\Common.Handler.projitems" Label="Shared" />
 
+    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
+
 </Project>

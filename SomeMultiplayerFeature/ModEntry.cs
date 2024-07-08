@@ -2,8 +2,10 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;
 
@@ -21,6 +23,8 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        // 注册Harmony补丁
+        HarmonyPatcher.Apply(this, new HoeDirtPatcher());
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)

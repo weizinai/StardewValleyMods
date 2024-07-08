@@ -22,6 +22,7 @@ internal class MachineExperienceHandler : BaseHandler
                 {
                     var machineData = asset.AsDictionary<string, MachineData>().Data;
                     machineData["(BC)12"].ExperienceGainOnHarvest = "farming 20";
+                    machineData["(BC)13"].ExperienceGainOnHarvest = "mining 7";
                 }
             );
         }

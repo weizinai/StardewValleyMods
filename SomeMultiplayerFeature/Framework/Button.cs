@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.UI;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 internal class Button : ClickableComponent
 {

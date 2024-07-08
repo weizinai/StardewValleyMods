@@ -4,7 +4,6 @@ using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
-using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.Message;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 

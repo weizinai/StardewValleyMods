@@ -4,7 +4,6 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
-using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.UI;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 

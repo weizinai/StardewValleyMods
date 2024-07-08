@@ -1,6 +1,6 @@
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework.Message;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class AccessShopInfoMessage
 {

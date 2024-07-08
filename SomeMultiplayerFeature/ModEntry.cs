@@ -24,7 +24,7 @@ public class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new HoeDirtPatcher());
+        HarmonyPatcher.Apply(this, new FarmAnimalPatcher(), new HoeDirtPatcher());
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)

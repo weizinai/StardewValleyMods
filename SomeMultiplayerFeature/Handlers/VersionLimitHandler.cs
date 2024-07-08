@@ -36,7 +36,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
         {
             foreach (var (id, farmer) in Game1.otherFarmers)
             {
-                if (!farmer.modData.ContainsKey(ModKey) || farmer.modData[ModKey] != "0.6.0")
+                if (!farmer.modData.ContainsKey(ModKey) || farmer.modData[ModKey] != "0.9.0")
                 {
                     this.Helper.Multiplayer.SendMessage($"{farmer.Name}已被踢出，因为其SomeMultiplayerFeature模组不是最新版。", "VersionLimit",
                         new[] { "weizinai.SomeMultiplayerFeature" }, new[] { id });
@@ -56,9 +56,9 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
         var farmer = Game1.player;
         if (farmer.modData.ContainsKey(ModKey))
-            farmer.modData[ModKey] = "0.6.0";
+            farmer.modData[ModKey] = "0.9.0";
         else
-            farmer.modData.Add(ModKey, "0.6.0");
+            farmer.modData.Add(ModKey, "0.9.0");
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

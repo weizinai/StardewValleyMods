@@ -14,6 +14,7 @@ internal class FarmAnimalPatcher : BasePatcher
         );
     }
 
+    // 修改抚摸动物获得的经验为50点
     private static void PetPrefix(Farmer who, bool is_auto_pet, FarmAnimal __instance)
     {
         if (!__instance.wasPet.Value && !is_auto_pet)

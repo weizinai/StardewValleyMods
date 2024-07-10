@@ -16,6 +16,7 @@ internal class HoeDirtPatcher : BasePatcher
         );
     }
 
+    // 浇水获得4点耕种经验
     private static void PerformToolActionPrefix(Tool t, HoeDirt __instance)
     {
         if (t is WateringCan && __instance.state.Value == HoeDirt.dry && __instance.crop != null)

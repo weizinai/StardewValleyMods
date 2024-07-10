@@ -16,6 +16,8 @@ internal class TreePatcher : BasePatcher
         );
     }
 
+    // 修改砍树获得的经验为20点
+    // 修改砍树桩获得的经验为10点
     private static void PerformTreeFallPostfix(Tool t, Tree __instance)
     {
         if (t is Axe)

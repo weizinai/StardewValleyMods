@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveModInfo", "SaveModInfo\
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = ".Common.Handler", "Common.Handler\.Common.Handler.shproj", "{F7611E8B-4022-4681-83EE-1EA0F4FD5A10}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = ".Common.Extension", "Common.Extension\.Common.Extension.shproj", "{462B48E5-EAAE-4CB1-9F3C-BDEA6C2D808B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

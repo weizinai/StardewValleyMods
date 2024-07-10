@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
 {
-    private readonly Button playerCountButton = new(new Point(64, 64), "");
+    private readonly TextBox playerCountTextBox = new(new Point(64, 64), "");
 
     public PlayerCountHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
@@ -29,7 +29,7 @@ internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 
-        this.playerCountButton.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
+        this.playerCountTextBox.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
     }
 
     // 绘制玩家数量按钮
@@ -41,6 +41,6 @@ internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 
-        this.playerCountButton.Draw(e.SpriteBatch);
+        this.playerCountTextBox.Draw(e.SpriteBatch);
     }
 }

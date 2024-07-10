@@ -5,11 +5,11 @@ using StardewValley.Menus;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-internal class Button : ClickableComponent
+internal class TextBox : ClickableComponent
 {
     private readonly Point position;
 
-    public Button(Point position, string name) : base(Rectangle.Empty, name)
+    public TextBox(Point position, string name) : base(Rectangle.Empty, name)
     {
         this.position = position;
     }

@@ -8,12 +8,12 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class TipHandler : BaseHandlerWithConfig<ModConfig>
 {
-    private readonly Button tipButton;
+    private readonly TextBox tipTextBox;
 
     public TipHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
-        this.tipButton = new Button(new Point(64, 144), config.TipText);
+        this.tipTextBox = new TextBox(new Point(64, 144), config.TipText);
     }
 
     public override void Init()
@@ -29,6 +29,6 @@ internal class TipHandler : BaseHandlerWithConfig<ModConfig>
         // 如果当前没有玩家在线，则返回
         if (!Context.HasRemotePlayers) return;
 
-        this.tipButton.Draw(e.SpriteBatch);
+        this.tipTextBox.Draw(e.SpriteBatch);
     }
 }

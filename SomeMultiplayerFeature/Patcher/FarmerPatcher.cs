@@ -14,9 +14,17 @@ internal class FarmerPatcher : BasePatcher
         );
     }
 
-    // 精通后钓鱼经验翻倍
+
     private static void GainExperiencePrefix(int which, ref int howMuch)
     {
+        // 修改铱矿获得的经验为20点
+        if (which == Farmer.miningSkill && howMuch == 50)
+        {
+            howMuch = 20;
+            return;
+        }
+
+        // 精通后钓鱼经验翻倍
         if (Game1.player.locationsVisited.Contains("MasteryCave") && which == Farmer.fishingSkill) howMuch *= 2;
     }
 }

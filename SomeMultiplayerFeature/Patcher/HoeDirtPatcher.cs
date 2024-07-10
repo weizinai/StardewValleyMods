@@ -18,7 +18,7 @@ internal class HoeDirtPatcher : BasePatcher
 
     private static void PerformToolActionPrefix(Tool t, HoeDirt __instance)
     {
-        if (t is WateringCan && __instance.state.Value == HoeDirt.dry)
+        if (t is WateringCan && __instance.state.Value == HoeDirt.dry && __instance.crop != null)
         {
             t.getLastFarmerToUse().gainExperience(Farmer.farmingSkill, 4);
         }

@@ -1,9 +1,4 @@
 {
-    // Show Delayed Player
-    "Config.ShowDelayedPlayer.Name": "Show Delayed Player",
-    "Config.ShowDelayedPlayer.Tooltip": "Every once in a while, the player with the highest latency of more than 100ms is displayed. This feature is only available on the host side.",
-    "Config.ShowInterval,Name": "Show Interval",
-
     // Auto Set Ip Connection
     "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",
     "Config.EnableTime.Name": "Enable Time",

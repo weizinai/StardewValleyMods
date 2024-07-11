@@ -5,10 +5,6 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class ModConfig
 {
-    // 显示延迟玩家
-    public bool ShowDelayedPlayer { get; set; } = true;
-    public int ShowInterval { get; set; } = 30;
-
     // 自动设置IP连接
     public bool AutoSetIpConnection { get; set; } = true;
     public int EnableTime { get; set; } = 6;

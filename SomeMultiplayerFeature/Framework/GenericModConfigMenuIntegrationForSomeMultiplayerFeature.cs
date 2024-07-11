@@ -17,19 +17,6 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
         if (!this.configMenu.IsLoaded) return;
         this.configMenu
             .Register()
-            // 显示延迟玩家
-            .AddSectionTitle(I18n.Config_ShowDelayedPlayer_Name)
-            .AddBoolOption(
-                config => config.ShowDelayedPlayer,
-                (config, value) => config.ShowDelayedPlayer = value,
-                I18n.Config_ShowDelayedPlayer_Name,
-                I18n.Config_ShowDelayedPlayer_Tooltip
-            )
-            .AddNumberOption(
-                config => config.ShowInterval,
-                (config, value) => config.ShowInterval = value,
-                I18n.Config_ShowIntervalName
-            )
             .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
             // 自动设置Ip连接
             .AddBoolOption(

@@ -1,9 +1,4 @@
 {
-    // 显示延迟玩家
-    "Config.ShowDelayedPlayer.Name": "显示延迟玩家",
-    "Config.ShowDelayedPlayer.Tooltip": "每隔一段时间，显示延迟最高且超过100ms的玩家。该功能仅限主机端可用。",
-    "Config.ShowInterval,Name": "显示间隔",
-
     // 自动设置Ip连接
     "Config.AutoSetIpConnection.Name": "自动设置Ip连接",
     "Config.EnableTime.Name": "启用时间",

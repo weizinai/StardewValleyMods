@@ -58,6 +58,7 @@ public class ModEntry : Mod
             new CustomCommandHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MachineExperienceHandler(this.Helper),
+            new MoneyManagementHandler(this.Helper, this.config),
             new PlayerCountHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),
             new UnreadyPlayerHandler(this.Helper, this.config),

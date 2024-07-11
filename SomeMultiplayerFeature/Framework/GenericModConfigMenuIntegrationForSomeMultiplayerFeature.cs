@@ -40,6 +40,13 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 6,
                 26
             )
+            // 金钱管理
+            .AddSectionTitle(I18n.Config_MoneyManagement_Name)
+            .AddBoolOption(
+                config => config.MoneyManagement,
+                (config, value) => config.MoneyManagement = value,
+                I18n.Config_MoneyManagement_Name
+            )
             // 显示玩家数量
             .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
             .AddBoolOption(

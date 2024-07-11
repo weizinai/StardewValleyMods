@@ -4,6 +4,9 @@
     "Config.EnableTime.Name": "Enable Time",
     "Config.DisableTime.Name": "Disable Time",
 
+    // Money Management
+    "Config.MoneyManagement.Name": "Money Management",
+
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",
     "Config.ShowPlayerCount.Tooltip": "Displays the number of players currently online. This feature is available on both the host side and the client side.",

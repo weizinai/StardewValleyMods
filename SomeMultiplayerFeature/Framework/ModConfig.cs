@@ -5,9 +5,6 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class ModConfig
 {
-    // 访问商店信息
-    public bool ShowAccessShopInfo { get; set; } = true;
-
     // 显示延迟玩家
     public bool ShowDelayedPlayer { get; set; } = true;
     public int ShowInterval { get; set; } = 30;

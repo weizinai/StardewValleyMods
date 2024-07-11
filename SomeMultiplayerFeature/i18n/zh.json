@@ -1,10 +1,4 @@
 {
-    // 访问商店信息
-    "Config.ShowAccessShopInfo.Name": "显示访问商店信息",
-    "Config.ShowAccessShopInfo.Tooltip": "显示某个玩家目前是否正在访问商店。该功能主机端和客户端均可用。",
-    "UI.AccessShop": "{{playerName}}访问了{{shopName}}",
-    "UI.ExitShop": "{{playerName}}离开了{{shopName}}",
-
     // 显示延迟玩家
     "Config.ShowDelayedPlayer.Name": "显示延迟玩家",
     "Config.ShowDelayedPlayer.Tooltip": "每隔一段时间，显示延迟最高且超过100ms的玩家。该功能仅限主机端可用。",

@@ -45,7 +45,6 @@ public class ModEntry : Mod
     {
         var handlers = new IHandler[]
         {
-            new AccessShopInfoHandler(this.Helper, this.config),
             new AutoClickHandler(this.Helper, this.config),
             new CustomCommandHandler(this.Helper, this.config),
             new DelayedPlayerHandler(this.Helper, this.config),

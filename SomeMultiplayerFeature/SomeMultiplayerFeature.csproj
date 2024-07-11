@@ -13,12 +13,12 @@
         <PackageReference Include="Pathoschild.Stardew.ModTranslationClassBuilder" Version="2.1.0"/>
     </ItemGroup>
 
-    <Import Project="..\Common.Handler\Common.Handler.projitems" Label="Shared" />
+    <Import Project="..\Common.Handler\Common.Handler.projitems" Label="Shared"/>
 
-    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
+    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared"/>
 
-    <Import Project="..\Common.Log\Common.Log.projitems" Label="Shared" />
+    <Import Project="..\Common.Log\Common.Log.projitems" Label="Shared"/>
 
-    <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared" />
+    <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared"/>
 
 </Project>

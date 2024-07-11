@@ -1,7 +1,8 @@
-﻿using weizinai.StardewValleyMod.Common.Log;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Integration;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
@@ -34,10 +35,18 @@ public class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(this.Helper, this.ModManifest,
-            () => this.config,
-            () => this.config = new ModConfig(),
-            () => this.Helper.WriteConfig(this.config)
+        new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(
+            new GenericModConfigMenuIntegration<ModConfig>(
+                this.Helper.ModRegistry,
+                this.ModManifest,
+                () => this.config,
+                () =>
+                {
+                    this.config = new ModConfig();
+                    this.Helper.WriteConfig(this.config);
+                },
+                () => this.Helper.WriteConfig(this.config)
+            )
         ).Register();
     }
 

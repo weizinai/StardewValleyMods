@@ -14,7 +14,6 @@ internal class FarmerPatcher : BasePatcher
         );
     }
 
-
     private static void GainExperiencePrefix(int which, ref int howMuch)
     {
         // 修改铱矿获得的经验为20点

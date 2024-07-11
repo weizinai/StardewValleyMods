@@ -1,24 +1,24 @@
 using weizinai.StardewValleyMod.Common.Integration;
-using StardewModdingAPI;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
+internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 
-    public GenericModConfigMenuIntegrationForSomeMultiplayerFeature(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
+    public GenericModConfigMenuIntegrationForSomeMultiplayerFeature(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {
-        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.configMenu = configMenu;
     }
 
     public void Register()
     {
         if (!this.configMenu.IsLoaded) return;
+
         this.configMenu
             .Register()
-            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
             // 自动设置Ip连接
+            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
             .AddBoolOption(
                 config => config.AutoSetIpConnection,
                 (config, value) => config.AutoSetIpConnection = value,

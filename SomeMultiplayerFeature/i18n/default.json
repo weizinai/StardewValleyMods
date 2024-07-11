@@ -14,7 +14,6 @@
     "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",
     "Config.EnableTime.Name": "Enable Time",
     "Config.DisableTime.Name": "Disable Time",
-    "Config.DisableWhenFestival.Name": "Disable When Festival",
 
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",

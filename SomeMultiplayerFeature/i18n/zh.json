@@ -14,7 +14,6 @@
     "Config.AutoSetIpConnection.Name": "自动设置Ip连接",
     "Config.EnableTime.Name": "启用时间",
     "Config.DisableTime.Name": "禁用时间",
-    "Config.DisableWhenFestival.Name": "在节日禁用",
 
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",

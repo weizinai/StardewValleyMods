@@ -61,11 +61,6 @@ public class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 6,
                 26
             )
-            .AddBoolOption(
-                config => config.DisableWhenFestival,
-                (config, value) => config.DisableWhenFestival = value,
-                I18n.Config_DisableWhenFestival_Name
-            )
             // 显示玩家数量
             .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
             .AddBoolOption(

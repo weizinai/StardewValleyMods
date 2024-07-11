@@ -9,32 +9,27 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class AccessShopInfoHandler : BaseHandlerWithConfig<ModConfig>
 {
-    private IClickableMenu? lastShopMenu;
-
     public AccessShopInfoHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
 
     public override void Init()
     {
-        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.Helper.Events.Display.MenuChanged += this.OnMenuChanged;
         this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
-    // 检测当前玩家是否正在访问商店并向其他玩家发送消息
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
+    private void OnMenuChanged(object? sender, MenuChangedEventArgs e)
     {
-        if (Game1.activeClickableMenu is ShopMenu shopMenu1 && this.lastShopMenu is not ShopMenu)
+        if (e.NewMenu is ShopMenu shopMenu1)
         {
             var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu1.ShopId);
             this.Helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
-        else if (this.lastShopMenu is ShopMenu shopMenu2 && Game1.activeClickableMenu is not ShopMenu)
+        else if (e.OldMenu is ShopMenu shopMenu2)
         {
             var message = new AccessShopInfoMessage(Game1.player.Name, shopMenu2.ShopId, true);
             this.Helper.Multiplayer.SendMessage(message, "AccessShopInfoMessage", new[] { "weizinai.SomeMultiplayerFeature" });
         }
-
-        this.lastShopMenu = Game1.activeClickableMenu;
     }
 
     // 当收到来自其他玩家的商店访问信息时，显示HUD信息

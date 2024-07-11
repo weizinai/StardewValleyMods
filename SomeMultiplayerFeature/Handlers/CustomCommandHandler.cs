@@ -29,6 +29,8 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.ConsoleCommands.Add("list", "", this.ListPlayer);
         this.Helper.ConsoleCommands.Add("kick", "", this.KickPlayer);
         this.Helper.ConsoleCommands.Add("kickall", "", this.KickAllPlayer);
+
+        this.Helper.ConsoleCommands.Add("inventory", "", this.AccessInventory);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -138,6 +140,27 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
         {
             Game1.server.kick(id);
             Log.Info($"{farmer.Name}已被踢出。");
+        }
+    }
+
+    private void AccessInventory(string command, string[] args)
+    {
+        // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+
+        var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
+        if (farmer is null)
+        {
+            Log.Info($"{args[0]}不存在，无法访问该玩家的背包。");
+        }
+        else
+        {
+            Log.Alert($"{farmer.Name}的背包中有：");
+            foreach (var item in farmer.Items)
+            {
+                if (item is null) continue;
+                Log.Info($"{item.Stack}\t{item.DisplayName}");
+            }
         }
     }
 }

@@ -44,6 +44,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
             if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
             {
                 this.Helper.Multiplayer.SendMessage("", "VersionLimit", new[] { "weizinai.SomeMultiplayerFeature" }, new[] { id });
+                Game1.chatBox.addInfoMessage($"{farmer.Name}的<SomeMultiplayerFeature>模组不是最新版，已被踢出。");
                 Game1.server.kick(id);
             }
         }, 5000);

@@ -1,4 +1,7 @@
 {
+    // 打开配置菜单
+    "Config.OpenConfigMenuKey.Name": "打开配置菜单快捷键",
+
     // 冻结金钱
     "Config.FreezeMoney.Name": "冻结金钱",
     "Config.FreezeMoneyAmount.Name": "冻结金钱数量",

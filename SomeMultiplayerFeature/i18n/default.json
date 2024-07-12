@@ -1,4 +1,7 @@
 {
+    // Open Config Menu
+    "Config.OpenConfigMenuKey.Name": "Open Config Menu Key",
+
     // Freeze Money
     "Config.FreezeMoney.Name": "Freeze Money",
     "Config.FreezeMoneyAmount.Name": "Freeze Money Amount",

@@ -5,6 +5,9 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class ModConfig
 {
+    // 打开设置菜单
+    public KeybindList OpenConfigMenuKey { get; set; } = new(SButton.R);
+
     // 冻结金钱
     public bool FreezeMoney { get; set; } = true;
     public int FreezeMoneyAmount { get; set; }

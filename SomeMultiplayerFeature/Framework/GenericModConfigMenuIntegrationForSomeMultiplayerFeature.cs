@@ -1,3 +1,5 @@
+using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Integration;
 
@@ -7,9 +9,18 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 
-    public GenericModConfigMenuIntegrationForSomeMultiplayerFeature(GenericModConfigMenuIntegration<ModConfig> configMenu)
+    public GenericModConfigMenuIntegrationForSomeMultiplayerFeature(GenericModConfigMenuIntegration<ModConfig> configMenu, IInputEvents inputEvents)
     {
         this.configMenu = configMenu;
+        inputEvents.ButtonsChanged += this.OnButtonChanged;
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (!Context.IsPlayerFree) return;
+
+        if (this.configMenu.GetConfig().OpenConfigMenuKey.JustPressed())
+            this.configMenu.OpenMenu();
     }
 
     public void Register()
@@ -20,6 +31,11 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
 
         this.configMenu
             .Register()
+            .AddKeybindList(
+                config => config.OpenConfigMenuKey,
+                (config, value) => config.OpenConfigMenuKey = value,
+                I18n.Config_OpenConfigMenuKey_Name
+            )
             // 冻结金钱
             .AddSectionTitle(I18n.Config_FreezeMoney_Name, enable: Game1.IsServer)
             .AddBoolOption(

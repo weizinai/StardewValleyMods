@@ -21,17 +21,18 @@ internal class MoneyManagementHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        if (!this.Config.MoneyManagement) return;
+        if (!this.IsEnable()) return;
 
-        ManorHouse.SeparateWallets();
-        Log.Info("已自动转化为独立金钱");
+        if (!Game1.player.useSeparateWallets)
+        {
+            ManorHouse.SeparateWallets();
+            Log.Info("当前存档不是独立资金，已自动转化为独立资金");
+        }
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (!this.Config.MoneyManagement) return;
-
-        if (Game1.IsClient) return;
+        if (!this.IsEnable()) return;
 
         Log.Alert("开始转移金钱");
 
@@ -43,5 +44,10 @@ internal class MoneyManagementHandler : BaseHandlerWithConfig<ModConfig>
             farmer.team.AddIndividualMoney(Game1.MasterPlayer, money);
             farmer.team.SetIndividualMoney(farmer, 0);
         }
+    }
+
+    private bool IsEnable()
+    {
+        return this.Config.MoneyManagement && Game1.IsServer;
     }
 }

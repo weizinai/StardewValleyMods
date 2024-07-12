@@ -16,6 +16,8 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
     {
         if (!this.configMenu.IsLoaded) return;
 
+        this.configMenu.Unregister();
+
         this.configMenu
             .Register()
             // 自动设置Ip连接

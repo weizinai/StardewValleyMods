@@ -229,4 +229,10 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
     {
         this.configMenu?.OpenModMenu(this.consumerManifest);
     }
+
+    /// <summary>Remove a mod from the config UI and delete all its options and pages.</summary>
+    public void Unregister()
+    {
+        this.configMenu?.Unregister(this.consumerManifest);
+    }
 }

@@ -10,11 +10,6 @@ public class ModConfig
     public int EnableTime { get; set; } = 6;
     public int DisableTime { get; set; } = 20;
 
-    // 金钱管理
-    public bool MoneyManagement { get; set; }
-    public KeybindList ApplyForMoneyKey { get; set; } = new(SButton.L);
-    public int DayMoneyLimit { get; set; } = 2000;
-
     // 显示玩家数量
     public bool ShowPlayerCount { get; set; } = true;
 

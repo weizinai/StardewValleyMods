@@ -1,7 +1,7 @@
-﻿using weizinai.StardewValleyMod.Common.Log;
-using weizinai.StardewValleyMod.Common.Patcher;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.Common.Log;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Patcher;
 

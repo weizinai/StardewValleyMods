@@ -23,7 +23,7 @@
     "UI.Option.MagicBoat": "Magic Boat",
     "UI.Option.NightMarketTraveler": "Night Market Traveler",
     "UI.Option.Willy": "Willy",
-    
+
     // Desert
     "UI.Option.BuyQiCoins": "Buy Qi Coins",
     "UI.Option.Casino": "Casino",
@@ -31,7 +31,7 @@
     "UI.Option.DesertTrade": "Desert Trade",
     "UI.Option.FarmerFile": "Farmer File",
     "UI.Option.Sandy": "Sandy",
-    
+
     // Farm
     "UI.Option.ShippingBin": "Shipping Bin",
     "UI.Option.TV": "TV",
@@ -42,14 +42,14 @@
     // "UI.Option.RetroCatalogue":"Retro Catalogue",
     // "UI.Option.TrashCatalogue":"Trash Catalogue",
     // "UI.Option.WizardCatalogue":"Wizard Catalogue",
-    
+
     // Forest
     "UI.Option.HatMouse": "Hat Mouse",
     "UI.Option.Marnie": "Marnie",
     "UI.Option.Raccoon": "Raccoon",
     "UI.Option.Traveler": "Traveler",
     "UI.Option.Wizard": "Wizard",
-    
+
     // GingerIsland
     "UI.Option.Forge": "Forge",
     "UI.Option.IslandResort": "Island Resort",
@@ -58,13 +58,13 @@
     "UI.Option.QiGemShop": "Qi Gem Shop",
     "UI.Option.QiSpecialOrder": "Qi Special Order",
     "UI.Option.VolcanoShop": "Volcano Shop",
-    
+
     // Mountain
     "UI.Option.Dwarf": "Dwarf",
     "UI.Option.Marlon": "Marlon",
     "UI.Option.Monster": "Monster",
     "UI.Option.Robin": "Robin",
-    
+
     // RSV
     "UI.Option.Ian": "Ian",
     "UI.Option.Jeric": "Jeric",
@@ -80,10 +80,10 @@
     "UI.Option.Pika": "Pika",
     "UI.Option.RSVQuestBoard": "RSV Quest Board",
     "UI.Option.RSVSpecialOrder": "RSV Special Order",
-    
+
     // SVE
     "UI.Option.Sophia": "Sophia",
-    
+
     // Town
     "UI.Option.AbandonedJojaMart": "Abandoned Joja Mart",
     "UI.Option.Billboard": "Billboard",

@@ -20,7 +20,7 @@ internal class CheckModInfoHandler : BaseHandler
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         var savesPath = Constants.SavesPath;
-        
+
         if (Directory.Exists(savesPath))
         {
             var currentModInfo = this.Helper.ModRegistry.GetAll()

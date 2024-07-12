@@ -96,7 +96,6 @@ internal class ModEntry : Mod
             {
                 handler.Apply(item, player, location);
             }
-            
         }
     }
 

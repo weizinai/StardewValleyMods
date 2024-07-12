@@ -1,5 +1,3 @@
-using StardewValley;
-
 namespace weizinai.StardewValleyMod.HelpWanted.Framework.Data;
 
 internal class QuestJsonData

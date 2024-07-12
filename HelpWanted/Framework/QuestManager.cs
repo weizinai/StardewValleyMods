@@ -1,5 +1,4 @@
-﻿using weizinai.StardewValleyMod.Common.Log;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -7,6 +6,7 @@ using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Locations;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.HelpWanted.Framework.Data;
 using weizinai.StardewValleyMod.HelpWanted.Patcher;
 

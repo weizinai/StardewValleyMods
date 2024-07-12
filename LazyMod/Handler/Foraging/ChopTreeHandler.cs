@@ -30,7 +30,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
             { Tree.greenRainTreeFern, this.Config.ChopGreenRainTree },
             { Tree.mysticTree, this.Config.ChopMysticTree }
         };
-        
+
         this.ForEachTile(this.Config.AutoChopTree.Range, tile =>
         {
             if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return false;
@@ -54,7 +54,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
                                 break;
                             }
                         }
-                        
+
                         break;
                     }
                 }

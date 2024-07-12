@@ -11,7 +11,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 internal class MarnieOption : BaseOption
 {
     private readonly IModHelper helper;
-    
+
     private GameLocation originLocation = null!;
     private Location originViewport;
 
@@ -31,7 +31,7 @@ internal class MarnieOption : BaseOption
         };
         if (Game1.player.mailReceived.Contains("MarniePetAdoption") || Game1.player.mailReceived.Contains("MarniePetRejectedAdoption"))
             options.Insert(2, new Response("Adopt", Game1.content.LoadString("Strings\\1_6_Strings:AdoptPets")));
-        Game1.currentLocation.createQuestionDialogue("",options.ToArray(), this.AfterDialogueBehavior);
+        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }
 
     private void AfterDialogueBehavior(Farmer who, string whichAnswer)

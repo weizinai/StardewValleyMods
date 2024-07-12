@@ -1,5 +1,5 @@
-using weizinai.StardewValleyMod.Common.Integration;
 using StardewModdingAPI;
+using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 

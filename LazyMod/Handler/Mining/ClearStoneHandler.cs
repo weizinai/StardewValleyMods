@@ -61,7 +61,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
             { this.geodeStone, this.Config.ClearGeodeStone },
             { this.calicoEggStone, this.Config.ClearCalicoEggStone }
         };
-        
+
         this.ForEachTile(this.Config.AutoClearStone.Range, tile =>
         {
             if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return false;

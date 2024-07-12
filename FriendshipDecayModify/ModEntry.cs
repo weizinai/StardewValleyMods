@@ -1,6 +1,6 @@
-﻿using weizinai.StardewValleyMod.Common.Patcher;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 

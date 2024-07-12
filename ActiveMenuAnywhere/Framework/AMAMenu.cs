@@ -177,7 +177,7 @@ internal class AMAMenu : IClickableMenu
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Desert(), MenuTabId.Desert.ToString()),
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_GingerIsland(), MenuTabId.GingerIsland.ToString())
         });
-        if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null) 
+        if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null)
             this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_SVE(), MenuTabId.SVE.ToString()));
         if (this.helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
             this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.UI_Tab_RSV(), MenuTabId.RSV.ToString()));

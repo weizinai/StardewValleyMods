@@ -25,7 +25,7 @@ internal class ClearTilledDirtHandler : BaseAutomationHandler
             {
                 this.UseToolOnTile(location, player, pickaxe, tile);
             }
-            
+
             return true;
         });
     }

@@ -20,8 +20,8 @@ internal class LoadGameMenuPatcher : BasePatcher
 
     private static void PerformHoverActionPostfix(int x, int y, LoadGameMenu __instance, ref string ___hoverText)
     {
-        if(__instance.GetType() != typeof(LoadGameMenu)) return;
-        
+        if (__instance.GetType() != typeof(LoadGameMenu)) return;
+
         for (var i = 0; i < __instance.slotButtons.Count; i++)
         {
             if (__instance.currentItemIndex + i < __instance.MenuSlots.Count)
@@ -29,7 +29,7 @@ internal class LoadGameMenuPatcher : BasePatcher
                 var farmer = (__instance.MenuSlots[__instance.currentItemIndex + i] as SaveFileSlot)!.Farmer;
                 var bound = new Rectangle(__instance.slotButtons[i].bounds.X + 128 + 36 + SpriteText.getWidthOfString(farmer.Name),
                     __instance.slotButtons[i].bounds.Y + 36 - 4, 44, 48);
-                
+
                 if (bound.Contains(x, y))
                 {
                     ___hoverText = CheckModInfoHandler.CheckResult[farmer.slotName];

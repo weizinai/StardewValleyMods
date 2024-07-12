@@ -8,14 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
+        <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Remove="i18n\default.json" />
-      <AdditionalFiles Remove="i18n\default.json" />
+        <AdditionalFiles Remove="i18n\default.json"/>
+        <AdditionalFiles Remove="i18n\default.json"/>
     </ItemGroup>
 
-    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared" />
+    <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared"/>
 
 </Project>

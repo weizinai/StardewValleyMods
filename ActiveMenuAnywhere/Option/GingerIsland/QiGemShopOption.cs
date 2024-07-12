@@ -9,7 +9,7 @@ internal class QiGemShopOption : BaseOption
 {
     public QiGemShopOption(Rectangle sourceRect) :
         base(I18n.UI_Option_QiGemShop(), sourceRect) { }
-    
+
     public override bool IsEnable()
     {
         return IslandWest.IsQiWalnutRoomDoorUnlocked(out _);

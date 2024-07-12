@@ -6,7 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class SophiaOption : BaseOption
 {
-    public SophiaOption(Rectangle sourceRect) 
+    public SophiaOption(Rectangle sourceRect)
         : base(I18n.UI_Option_Sophia(), sourceRect) { }
 
     public override void Apply()

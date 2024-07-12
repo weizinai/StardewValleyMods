@@ -22,7 +22,7 @@ internal class RefillWateringCanHandler : BaseAutomationHandler
                 this.UseToolOnTile(location, player, wateringCan, tile);
                 return false;
             }
-            
+
             return true;
         });
     }

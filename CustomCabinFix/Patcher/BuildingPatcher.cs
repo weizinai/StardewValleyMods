@@ -20,7 +20,7 @@ internal class BuildingPatcher : BasePatcher
     {
         if (__instance.GetIndoors() is Cabin)
         {
-            __result = new Point(__instance.tileX.Value + __instance.humanDoor.Value.X, 
+            __result = new Point(__instance.tileX.Value + __instance.humanDoor.Value.X,
                 __instance.tileY.Value + __instance.humanDoor.Value.Y + 1);
         }
     }

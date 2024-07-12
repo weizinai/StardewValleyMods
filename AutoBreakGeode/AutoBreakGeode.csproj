@@ -21,6 +21,6 @@
 
     <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared"/>
 
-    <Import Project="..\Common.UI\Common.UI.projitems" Label="Shared" />
+    <Import Project="..\Common.UI\Common.UI.projitems" Label="Shared"/>
 
 </Project>

@@ -40,7 +40,7 @@ internal class MonsterInfoHandler : LocationInfoHandler
         this.LocationInfo.Clear();
 
         var monsters = Game1.currentLocation.characters.OfType<Monster>().ToArray();
-        
+
         if (!monsters.Any()) return;
 
         foreach (var monster in monsters)

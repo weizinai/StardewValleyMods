@@ -1,5 +1,4 @@
 using HarmonyLib;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using StardewModdingAPI;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -17,11 +16,11 @@ internal class Game1Patcher : BasePatcher
         Game1Patcher.config = config;
         Game1Patcher.helper = helper;
     }
-    
+
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
-            this.RequireMethod<Game1>(nameof(Game1.ShowTelephoneMenu)), 
+            this.RequireMethod<Game1>(nameof(Game1.ShowTelephoneMenu)),
             this.GetHarmonyMethod(nameof(ShowTelephoneMenuPrefix))
         );
     }

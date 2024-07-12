@@ -9,12 +9,12 @@ namespace weizinai.StardewValleyMod.MoreInfo.Framework;
 internal abstract class BaseInfoHandler : IInfoHandler
 {
     private bool isHover;
-    
+
     protected Texture2D Texture = null!;
     protected Rectangle SourceRectangle;
     protected abstract Rectangle Bound { get; }
     protected abstract string HoverText { get; }
-    
+
     public Vector2 Position { get; set; }
 
     public virtual void Init(IModEvents modEvents) { }

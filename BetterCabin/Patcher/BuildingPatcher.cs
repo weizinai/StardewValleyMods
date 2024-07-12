@@ -4,7 +4,6 @@ using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
-using weizinai.StardewValleyMod.BetterCabin.Menu;
 using weizinai.StardewValleyMod.BetterCabin.UI;
 using weizinai.StardewValleyMod.Common.Patcher;
 

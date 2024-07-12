@@ -1,8 +1,8 @@
-﻿using weizinai.StardewValleyMod.Common.Log;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Framework.Menu;
 

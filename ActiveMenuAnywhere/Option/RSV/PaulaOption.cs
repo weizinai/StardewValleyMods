@@ -5,7 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PaulaOption : BaseOption
 {
-    public PaulaOption(Rectangle sourceRect) 
+    public PaulaOption(Rectangle sourceRect)
         : base(I18n.UI_Option_Paula(), sourceRect) { }
 
     public override void Apply()

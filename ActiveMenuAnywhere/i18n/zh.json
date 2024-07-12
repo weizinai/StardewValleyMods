@@ -23,7 +23,7 @@
     "UI.Option.MagicBoat": "魔法船",
     "UI.Option.NightMarketTraveler": "夜市商人",
     "UI.Option.Willy": "威利",
-    
+
     // Desert
     "UI.Option.BuyQiCoins": "购买Qi币",
     "UI.Option.Casino": "赌场商店",
@@ -31,7 +31,7 @@
     "UI.Option.DesertTrade": "沙漠商人",
     "UI.Option.FarmerFile": "Farmer File",
     "UI.Option.Sandy": "桑迪",
-    
+
     // Farm
     "UI.Option.ShippingBin": "出货箱",
     "UI.Option.TV": "电视机",
@@ -42,14 +42,14 @@
     // "UI.Option.RetroCatalogue":"复古目录",
     // "UI.Option.TrashCatalogue":"垃圾目录",
     // "UI.Option.WizardCatalogue":"法师目录",
-    
+
     // Forest
     "UI.Option.HatMouse": "帽子商店",
     "UI.Option.Marnie": "玛妮",
     "UI.Option.Raccoon": "小碗熊",
     "UI.Option.Traveler": "旅游商人",
     "UI.Option.Wizard": "魔法建筑",
-    
+
     // GingerIsland
     "UI.Option.Forge": "锻造",
     "UI.Option.IslandResort": "姜岛度假村",
@@ -58,13 +58,13 @@
     "UI.Option.QiGemShop": "Qi钻商店",
     "UI.Option.QiSpecialOrder": "Qi特别订单",
     "UI.Option.VolcanoShop": "火山商店",
-    
+
     // Mountain
     "UI.Option.Dwarf": "矮人",
     "UI.Option.Marlon": "马龙",
     "UI.Option.Monster": "怪物清单",
     "UI.Option.Robin": "罗宾",
-    
+
     // RSV
     "UI.Option.Ian": "Ian",
     "UI.Option.Jeric": "Jeric",
@@ -80,10 +80,10 @@
     "UI.Option.Paula": "Paula",
     "UI.Option.RSVQuestBoard": "RSV每日任务",
     "UI.Option.RSVSpecialOrder": "RSV特别订单",
-    
+
     // SVE
     "UI.Option.Sophia": "索菲亚",
-    
+
     // Town
     "UI.Option.AbandonedJojaMart": "废弃Joja超市",
     "UI.Option.Billboard": "日历和任务",

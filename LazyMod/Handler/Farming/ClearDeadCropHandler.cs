@@ -27,7 +27,7 @@ internal class ClearDeadCropHandler : BaseAutomationHandler
                     hoeDirt.performToolAction(scythe, 0, tile);
                 }
             }
-            
+
             return true;
         });
     }

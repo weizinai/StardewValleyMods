@@ -17,7 +17,7 @@ internal class MilkAnimalHandler : BaseAutomationHandler
 
         var animals = location.animals.Values;
         if (!animals.Any()) return;
-        
+
         this.ForEachTile(this.Config.AutoMilkAnimal.Range, tile =>
         {
             if (player.freeSpotsInInventory() == 0) return false;

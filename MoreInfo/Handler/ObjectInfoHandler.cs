@@ -22,7 +22,7 @@ internal class ObjectInfoHandler : LocationInfoHandler
         modEvents.Player.Warped -= this.OnWarp;
         modEvents.World.ObjectListChanged -= this.OnObjectListChanged;
     }
-    
+
     private void OnWarp(object? sender, WarpedEventArgs e)
     {
         this.UpdateObjectInfo();
@@ -48,10 +48,9 @@ internal class ObjectInfoHandler : LocationInfoHandler
                 this.LocationInfo[obj.DisplayName]++;
             }
         }
-        
+
         var data = ItemRegistry.GetDataOrErrorItem(objects.First().QualifiedItemId);
         this.Texture = data.GetTexture();
         this.SourceRectangle = data.GetSourceRect();
     }
-
 }

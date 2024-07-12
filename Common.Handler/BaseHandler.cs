@@ -12,5 +12,6 @@ internal abstract class BaseHandler : IHandler
     }
 
     public abstract void Apply();
+
     public virtual void Clear() { }
 }

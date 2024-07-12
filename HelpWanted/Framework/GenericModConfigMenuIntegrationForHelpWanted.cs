@@ -1,6 +1,6 @@
-using weizinai.StardewValleyMod.Common.Integration;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 

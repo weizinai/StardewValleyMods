@@ -1,5 +1,4 @@
 using HarmonyLib;
-using StardewValley.Locations;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.Common.Patcher;

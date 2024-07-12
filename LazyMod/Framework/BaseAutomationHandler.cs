@@ -29,7 +29,9 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected void ForEachTile(int range, Func<Vector2, bool> action)
     {
         var grid = TileHelper.GetTileGrid(range);
-        foreach (var tile in grid) if (!action(tile)) break;
+        foreach (var tile in grid)
+            if (!action(tile))
+                break;
     }
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)

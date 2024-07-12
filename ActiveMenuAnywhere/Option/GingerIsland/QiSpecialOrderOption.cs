@@ -10,7 +10,7 @@ internal class QiSpecialOrderOption : BaseOption
 {
     public QiSpecialOrderOption(Rectangle sourceRect) :
         base(I18n.UI_Option_QiSpecialOrder(), sourceRect) { }
-    
+
     public override bool IsEnable()
     {
         return IslandWest.IsQiWalnutRoomDoorUnlocked(out _);

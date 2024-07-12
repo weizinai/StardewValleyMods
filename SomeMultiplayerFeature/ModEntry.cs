@@ -1,6 +1,8 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewModdingAPI.Utilities;
 using StardewValley;
+using StardewValley.Locations;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
@@ -26,6 +28,7 @@ public class ModEntry : Mod
         this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this,
             new FarmAnimalPatcher(),
@@ -33,9 +36,23 @@ public class ModEntry : Mod
             new Game1Patcher(),
             new GameLocationPatcher(),
             new HoeDirtPatcher(),
+            new MineShaftPatcher(),
             new ShopMenuPatcher(),
             new TreePatcher()
         );
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        var testKey = new KeybindList(SButton.Z);
+        if (testKey.JustPressed())
+        {
+            Log.Info("----------");
+            foreach (var mine in MineShaft.activeMines)
+            {
+                Log.Info(mine.DisplayName);
+            }
+        }
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)

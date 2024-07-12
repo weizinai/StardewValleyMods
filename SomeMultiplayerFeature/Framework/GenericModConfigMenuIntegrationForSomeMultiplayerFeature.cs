@@ -47,6 +47,16 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.MoneyManagement = value,
                 I18n.Config_MoneyManagement_Name
             )
+            .AddKeybindList(
+                config => config.ApplyForMoneyKey,
+                (config, value) => config.ApplyForMoneyKey = value,
+                I18n.Config_ApplyForMoneyKey_Name
+            )
+            .AddNumberOption(
+                config => config.DayMoneyLimit,
+                (config, value) => config.DayMoneyLimit = value,
+                I18n.Config_DayMoneyLimit_Name
+            )
             // 显示玩家数量
             .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
             .AddBoolOption(

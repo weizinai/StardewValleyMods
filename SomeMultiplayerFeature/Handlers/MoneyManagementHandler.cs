@@ -10,6 +10,9 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class MoneyManagementHandler : BaseHandlerWithConfig<ModConfig>
 {
+    private const string MoneyManagementKey = "weizinai.SomeMultiplayerFeature_MoneyManagement";
+    private const string DayMoneyLimitKey = "weizinai.SomeMultiplayerFeature_DayMoneyLimit";
+
     public MoneyManagementHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
 
@@ -17,11 +20,15 @@ internal class MoneyManagementHandler : BaseHandlerWithConfig<ModConfig>
     {
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
+
+        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
         if (!this.IsEnable()) return;
+
+        this.SetDayMoneyLimit(this.Config.DayMoneyLimit.ToString());
 
         if (!Game1.player.useSeparateWallets)
         {
@@ -46,8 +53,42 @@ internal class MoneyManagementHandler : BaseHandlerWithConfig<ModConfig>
         }
     }
 
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (Game1.IsClient && this.CheckMoneyManagementEnable() && this.Config.ApplyForMoneyKey.JustPressed())
+        {
+            var targetMoney = Math.Min(Game1.MasterPlayer.Money, this.GetDayMoneyLimit());
+
+            Game1.player.team.AddIndividualMoney(Game1.player, targetMoney);
+            Game1.MasterPlayer.Money -= targetMoney;
+            Log.Info($"成功申请转移金钱：{targetMoney}");
+        }
+    }
+
     private bool IsEnable()
     {
         return this.Config.MoneyManagement && Game1.IsServer;
+    }
+
+    private void SetDayMoneyLimit(string dayMoneyLimit)
+    {
+        var modData = Game1.player.modData;
+        if (!modData.TryAdd(DayMoneyLimitKey, dayMoneyLimit))
+            modData[DayMoneyLimitKey] = dayMoneyLimit;
+    }
+
+    private int GetDayMoneyLimit()
+    {
+        var modData = Game1.MasterPlayer.modData;
+        return int.Parse(modData[DayMoneyLimitKey]);
+    }
+
+    private bool CheckMoneyManagementEnable()
+    {
+        var modData = Game1.MasterPlayer.modData;
+
+        if (!modData.ContainsKey(MoneyManagementKey)) return false;
+
+        return modData[MoneyManagementKey] == "true";
     }
 }

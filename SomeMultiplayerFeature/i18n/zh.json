@@ -6,6 +6,8 @@
 
     // 金钱管理
     "Config.MoneyManagement.Name": "金钱管理",
+    "Config.ApplyForMoneyKey.Name": "申请金钱快捷键",
+    "Config.DayMoneyLimit.Name": "每日金钱限制",
 
     // 显示玩家数量
     "Config.ShowPlayerCount.Name": "显示玩家数量",

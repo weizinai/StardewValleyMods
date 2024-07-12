@@ -6,6 +6,8 @@
 
     // Money Management
     "Config.MoneyManagement.Name": "Money Management",
+    "Config.ApplyForMoneyKey.Name": "Apply For Money Key",
+    "Config.DayMoneyLimit.Name": "Day Money Limit",
 
     // Show Player Count
     "Config.ShowPlayerCount.Name": "Show Player Count",

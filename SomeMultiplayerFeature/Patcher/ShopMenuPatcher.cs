@@ -27,7 +27,7 @@ internal class ShopMenuPatcher : BasePatcher
 
         var player = Game1.player;
         var freezeMoney = int.Parse(value);
-        if (player.Money <= freezeMoney)
+        if (player.Money <= freezeMoney + item.salePrice() * stockToBuy)
         {
             Log.NoIconHUDMessage($"主机冻结了{freezeMoney}金，你无法使用金钱", 500);
             Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode,

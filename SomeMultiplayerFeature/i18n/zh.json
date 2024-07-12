@@ -1,4 +1,8 @@
 {
+    // 冻结金钱
+    "Config.FreezeMoney.Name": "冻结金钱",
+    "Config.FreezeMoneyAmount.Name": "冻结金钱数量",
+
     // 自动设置Ip连接
     "Config.AutoSetIpConnection.Name": "自动设置Ip连接",
     "Config.EnableTime.Name": "启用时间",

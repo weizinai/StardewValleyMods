@@ -5,6 +5,10 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 public class ModConfig
 {
+    // 冻结金钱
+    public bool FreezeMoney { get; set; } = true;
+    public int FreezeMoneyAmount { get; set; }
+
     // 自动设置IP连接
     public bool AutoSetIpConnection { get; set; } = true;
     public int EnableTime { get; set; } = 6;

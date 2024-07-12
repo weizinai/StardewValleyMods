@@ -27,7 +27,15 @@ public class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new FarmAnimalPatcher(), new FarmerPatcher(), new Game1Patcher(), new GameLocationPatcher(), new HoeDirtPatcher(), new TreePatcher());
+        HarmonyPatcher.Apply(this,
+            new FarmAnimalPatcher(),
+            new FarmerPatcher(),
+            new Game1Patcher(),
+            new GameLocationPatcher(),
+            new HoeDirtPatcher(),
+            new ShopMenuPatcher(),
+            new TreePatcher()
+        );
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -60,6 +68,7 @@ public class ModEntry : Mod
         this.handlers = new IHandler[]
         {
             new AutoClickHandler(this.Helper, this.config),
+            new FreezeMoneyHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MachineExperienceHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),

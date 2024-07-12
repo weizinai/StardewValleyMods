@@ -1,4 +1,8 @@
 {
+    // Freeze Money
+    "Config.FreezeMoney.Name": "Freeze Money",
+    "Config.FreezeMoneyAmount.Name": "Freeze Money Amount",
+
     // Auto Set Ip Connection
     "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",
     "Config.EnableTime.Name": "Enable Time",

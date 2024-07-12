@@ -20,6 +20,18 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
 
         this.configMenu
             .Register()
+            // 冻结金钱
+            .AddSectionTitle(I18n.Config_FreezeMoney_Name, enable: Game1.IsServer)
+            .AddBoolOption(
+                config => config.FreezeMoney,
+                (config, value) => config.FreezeMoney = value,
+                I18n.Config_FreezeMoney_Name
+            )
+            .AddNumberOption(
+                config => config.FreezeMoneyAmount,
+                (config, value) => config.FreezeMoneyAmount = value,
+                I18n.Config_FreezeMoneyAmount_Name
+            )
             // 自动设置Ip连接
             .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name, enable: Game1.IsServer)
             .AddBoolOption(

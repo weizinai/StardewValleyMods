@@ -13,7 +13,7 @@ internal class VisitCabinInfoHandler : BaseHandlerWithConfig<ModConfig>
 {
     public VisitCabinInfoHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.Player.Warped += this.OnWarped;
     }

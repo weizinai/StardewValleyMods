@@ -19,7 +19,7 @@ internal class UnreadyPlayerHandler : BaseHandlerWithConfig<ModConfig>
     public UnreadyPlayerHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;

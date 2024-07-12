@@ -65,6 +65,6 @@ public class ModEntry : Mod
             new VersionLimitHandler(this.Helper, this.config)
         };
 
-        foreach (var handler in handlers) handler.Init();
+        foreach (var handler in handlers) handler.Apply();
     }
 }

@@ -20,7 +20,7 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
             Log.Error($"无法找到Json文件: {BannedPlayerPath}，如果你不是主机玩家，则可以忽略该条消息。");
     }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
         this.Helper.ConsoleCommands.Add("ban", "", this.BanPlayer);

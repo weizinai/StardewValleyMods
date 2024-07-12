@@ -12,7 +12,7 @@ internal class CheckModInfoHandler : BaseHandler
 
     public CheckModInfoHandler(IModHelper helper) : base(helper) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
     }

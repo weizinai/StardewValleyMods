@@ -12,7 +12,7 @@ internal class IpConnectionHandler : BaseHandlerWithConfig<ModConfig>
     public IpConnectionHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         this.Helper.Events.GameLoop.TimeChanged += this.OnTimeChanged;

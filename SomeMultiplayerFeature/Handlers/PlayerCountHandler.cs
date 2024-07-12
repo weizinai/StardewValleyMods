@@ -14,7 +14,7 @@ internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
     public PlayerCountHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnSecondUpdateTicked;
         this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;

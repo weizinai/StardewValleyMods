@@ -14,7 +14,7 @@ internal class AutoClickHandler : BaseHandlerWithConfig<ModConfig>
 
     public AutoClickHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
         this.Helper.Events.GameLoop.Saving += this.OnSaving;

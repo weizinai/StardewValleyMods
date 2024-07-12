@@ -13,7 +13,7 @@ internal class MoneyManagementHandler : BaseHandlerWithConfig<ModConfig>
     public MoneyManagementHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;

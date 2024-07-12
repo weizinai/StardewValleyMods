@@ -10,7 +10,7 @@ internal class SpectatePlayerHandler : BaseHandlerWithConfig<ModConfig>
 {
     public SpectatePlayerHandler(IModHelper helper) : base(helper, ModEntry.Config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }

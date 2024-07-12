@@ -16,7 +16,7 @@ internal class TipHandler : BaseHandlerWithConfig<ModConfig>
         this.tipTextBox = new TextBox(new Point(64, 144), config.TipText);
     }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
     }

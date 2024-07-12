@@ -9,7 +9,7 @@ internal class CommandHandler : BaseHandlerWithConfig<ModConfig>
 {
     public CommandHandler(IModHelper helper) : base(helper, ModEntry.Config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.ConsoleCommands.Add("spectate_location", "", this.SpectateLocation);
         this.Helper.ConsoleCommands.Add("spectate_player", "", this.SpectateFarmer);

@@ -13,7 +13,7 @@ internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
 
     public LockCabinHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;

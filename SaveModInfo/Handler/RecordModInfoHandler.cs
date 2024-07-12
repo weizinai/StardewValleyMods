@@ -10,7 +10,7 @@ internal class RecordModInfoHandler : BaseHandler
 {
     public RecordModInfoHandler(IModHelper helper) : base(helper) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
     }

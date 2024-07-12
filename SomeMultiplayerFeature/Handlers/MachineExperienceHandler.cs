@@ -9,7 +9,7 @@ internal class MachineExperienceHandler : BaseHandler
 {
     public MachineExperienceHandler(IModHelper helper) : base(helper) { }
 
-    public override void Init()
+    public override void Apply()
     {
         this.Helper.Events.Content.AssetRequested += this.OnAssetRequested;
     }

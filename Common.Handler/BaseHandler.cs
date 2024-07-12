@@ -11,6 +11,6 @@ internal abstract class BaseHandler : IHandler
         this.Helper = helper;
     }
 
-    public abstract void Init();
+    public abstract void Apply();
     public virtual void Clear() { }
 }

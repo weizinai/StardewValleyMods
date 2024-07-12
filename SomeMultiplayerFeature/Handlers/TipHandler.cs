@@ -18,22 +18,17 @@ internal class TipHandler : BaseHandlerWithConfig<ModConfig>
 
     public override void Apply()
     {
-        this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
+        this.Helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.Display.RenderingHud -= this.OnRenderingHud;
+        this.Helper.Events.Display.RenderedHud -= this.OnRenderedHud;
     }
 
-    private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
+    private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
-        // 如果该功能未启用，则返回
-        if (!this.Config.ShowTip) return;
-
-        // 如果当前没有玩家在线，则返回
-        if (!Context.HasRemotePlayers) return;
-
-        this.tipTextBox.Draw(e.SpriteBatch);
+        if (this.Config.ShowTip && Context.IsMultiplayer)
+            this.tipTextBox.Draw(e.SpriteBatch);
     }
 }

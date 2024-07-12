@@ -17,36 +17,26 @@ internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
     public override void Apply()
     {
         this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnSecondUpdateTicked;
-        this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
+        this.Helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
     public override void Clear()
     {
         this.Helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnSecondUpdateTicked;
-        this.Helper.Events.Display.RenderingHud -= this.OnRenderingHud;
+        this.Helper.Events.Display.RenderedHud -= this.OnRenderedHud;
     }
 
     // 每秒检测当前在线玩家的数量
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        // 如果该功能未启用，则返回
-        if (!this.Config.ShowPlayerCount) return;
-
-        // 如果当前没有玩家在线，则返回
-        if (!Context.HasRemotePlayers) return;
-
-        this.playerCountTextBox.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
+        if (this.Config.ShowPlayerCount && Context.IsMultiplayer)
+            this.playerCountTextBox.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
     }
 
     // 绘制玩家数量按钮
-    private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
+    private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
-        // 如果该功能未启用，则返回
-        if (!this.Config.ShowPlayerCount) return;
-
-        // 如果当前没有玩家在线，则返回
-        if (!Context.HasRemotePlayers) return;
-
-        this.playerCountTextBox.Draw(e.SpriteBatch);
+        if (this.Config.ShowPlayerCount && Context.IsMultiplayer)
+            this.playerCountTextBox.Draw(e.SpriteBatch);
     }
 }

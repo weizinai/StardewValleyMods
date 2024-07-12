@@ -1,5 +1,6 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
@@ -22,18 +23,12 @@ public class ModEntry : Mod
         this.config = helper.ReadConfig<ModConfig>();
         this.InitHandler();
         // 注册事件
-        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this, new FarmAnimalPatcher(), new FarmerPatcher(), new Game1Patcher(), new GameLocationPatcher(), new HoeDirtPatcher(), new TreePatcher());
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
-    {
-        if (!Context.IsMainPlayer) Log.Info("该模组大部分功能仅在主机端有效。");
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(
             new GenericModConfigMenuIntegration<ModConfig>(
@@ -48,6 +43,8 @@ public class ModEntry : Mod
                 () => this.Helper.WriteConfig(this.config)
             )
         ).Register();
+
+        if (Game1.IsClient) Log.Info("该模组大部分功能仅在主机端有效。");
     }
 
     private void InitHandler()

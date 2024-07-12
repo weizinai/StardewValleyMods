@@ -1,3 +1,4 @@
+using StardewValley;
 using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
@@ -18,11 +19,12 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
         this.configMenu
             .Register()
             // 自动设置Ip连接
-            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
+            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name, enable: Game1.IsServer)
             .AddBoolOption(
                 config => config.AutoSetIpConnection,
                 (config, value) => config.AutoSetIpConnection = value,
-                I18n.Config_AutoSetIpConnection_Name
+                I18n.Config_AutoSetIpConnection_Name,
+                enable: Game1.IsServer
             )
             .AddNumberOption(
                 config => config.EnableTime,
@@ -30,7 +32,8 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_EnableTime_Name,
                 null,
                 6,
-                26
+                26,
+                enable: Game1.IsServer
             )
             .AddNumberOption(
                 config => config.DisableTime,
@@ -38,7 +41,8 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_DisableTime_Name,
                 null,
                 6,
-                26
+                26,
+                enable: Game1.IsServer
             )
             // 显示玩家数量
             .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
@@ -62,17 +66,19 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_TipText_Name
             )
             // 踢出未准备玩家
-            .AddSectionTitle(I18n.Config_KickUnreadyPlayer_Name)
+            .AddSectionTitle(I18n.Config_KickUnreadyPlayer_Name, enable: Game1.IsServer)
             .AddBoolOption(
                 config => config.KickUnreadyPlayer,
                 (config, value) => config.KickUnreadyPlayer = value,
                 I18n.Config_KickUnreadyPlayer_Name,
-                I18n.Config_KickUnreadyPlayer_Tooltip
+                I18n.Config_KickUnreadyPlayer_Tooltip,
+                enable: Game1.IsServer
             )
             .AddKeybindList(
                 config => config.KickUnreadyPlayerKey,
                 (config, value) => config.KickUnreadyPlayerKey = value,
-                I18n.Config_KickUnreadyPlayerKey_Name
+                I18n.Config_KickUnreadyPlayerKey_Name,
+                enable: Game1.IsServer
             )
             // 版本限制
             .AddSectionTitle(I18n.Config_VersionLimit_Name)
@@ -80,8 +86,8 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 config => config.VersionLimit,
                 (config, value) => config.VersionLimit = value,
                 I18n.Config_VersionLimit_Name,
-                I18n.Config_VersionLimit_Tooltip
-            )
-            ;
+                I18n.Config_VersionLimit_Tooltip,
+                enable: Game1.IsServer
+            );
     }
 }

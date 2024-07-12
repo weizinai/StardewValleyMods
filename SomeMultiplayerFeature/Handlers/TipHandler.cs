@@ -21,6 +21,11 @@ internal class TipHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.Display.RenderingHud -= this.OnRenderingHud;
+    }
+
     private void OnRenderingHud(object? sender, RenderingHudEventArgs e)
     {
         // 如果该功能未启用，则返回

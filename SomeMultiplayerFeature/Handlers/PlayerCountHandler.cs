@@ -20,6 +20,12 @@ internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.Display.RenderingHud += this.OnRenderingHud;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnSecondUpdateTicked;
+        this.Helper.Events.Display.RenderingHud -= this.OnRenderingHud;
+    }
+
     // 每秒检测当前在线玩家的数量
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {

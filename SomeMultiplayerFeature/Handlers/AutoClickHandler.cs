@@ -21,6 +21,13 @@ internal class AutoClickHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.Display.MenuChanged += this.OnMenuChanged;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnOneSecondUpdateTicked;
+        this.Helper.Events.GameLoop.Saving -= this.OnSaving;
+        this.Helper.Events.Display.MenuChanged -= this.OnMenuChanged;
+    }
+
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (Game1.activeClickableMenu is LevelUpMenu levelUpMenu)

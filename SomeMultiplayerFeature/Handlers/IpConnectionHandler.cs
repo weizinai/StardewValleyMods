@@ -18,6 +18,12 @@ internal class IpConnectionHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.TimeChanged += this.OnTimeChanged;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
+        this.Helper.Events.GameLoop.TimeChanged -= this.OnTimeChanged;
+    }
+
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
         if (!this.Config.AutoSetIpConnection) return;

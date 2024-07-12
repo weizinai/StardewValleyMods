@@ -14,6 +14,11 @@ internal class MachineExperienceHandler : BaseHandler
         this.Helper.Events.Content.AssetRequested += this.OnAssetRequested;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.Content.AssetRequested -= this.OnAssetRequested;
+    }
+
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
     {
         if (e.Name.IsEquivalentTo("Data/Machines"))

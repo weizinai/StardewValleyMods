@@ -22,6 +22,13 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
+        this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
+        this.Helper.Events.Multiplayer.ModMessageReceived -= this.OnModMessageReceived;
+    }
+
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
         if (Game1.IsServer) return;

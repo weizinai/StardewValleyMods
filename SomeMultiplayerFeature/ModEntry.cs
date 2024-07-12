@@ -14,6 +14,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;
 public class ModEntry : Mod
 {
     private ModConfig config = null!;
+    private IHandler[] handlers = Array.Empty<IHandler>();
 
     public override void Entry(IModHelper helper)
     {
@@ -21,7 +22,8 @@ public class ModEntry : Mod
         Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
         this.config = helper.ReadConfig<ModConfig>();
-        this.InitHandler();
+        new CustomCommandHandler(helper, this.config).Apply();
+        this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         // 注册Harmony补丁
@@ -39,20 +41,25 @@ public class ModEntry : Mod
                 {
                     this.config = new ModConfig();
                     this.Helper.WriteConfig(this.config);
+                    this.UpdateConfig();
                 },
-                () => this.Helper.WriteConfig(this.config)
-            )
+                () =>
+                {
+                    this.Helper.WriteConfig(this.config);
+                    this.UpdateConfig();
+                })
         ).Register();
 
         if (Game1.IsClient) Log.Info("该模组大部分功能仅在主机端有效。");
     }
 
-    private void InitHandler()
+    private void UpdateConfig()
     {
-        var handlers = new IHandler[]
+        foreach (var handler in this.handlers) handler.Clear();
+
+        this.handlers = new IHandler[]
         {
             new AutoClickHandler(this.Helper, this.config),
-            new CustomCommandHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MachineExperienceHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
@@ -61,6 +68,6 @@ public class ModEntry : Mod
             new VersionLimitHandler(this.Helper, this.config)
         };
 
-        foreach (var handler in handlers) handler.Apply();
+        foreach (var handler in this.handlers) handler.Apply();
     }
 }

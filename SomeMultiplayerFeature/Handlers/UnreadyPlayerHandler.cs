@@ -27,6 +27,14 @@ internal class UnreadyPlayerHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
+    public override void Clear()
+    {
+        this.Helper.Events.GameLoop.UpdateTicked -= this.OnUpdateTicked;
+        this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
+        this.Helper.Events.Multiplayer.PeerDisconnected -= this.OnPeerDisconnected;
+        this.Helper.Events.Multiplayer.ModMessageReceived -= this.OnModMessageReceived;
+    }
+
     // 如果当前玩家不是房主，则检测该玩家是否准备好，若未准备好，则向房主发送消息
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {

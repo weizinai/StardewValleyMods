@@ -56,6 +56,7 @@ internal class GameLocationPatcher : BasePatcher
         return true;
     }
 
+    // 禁止房屋升级
     private static bool HouseUpgradeAcceptPrefix()
     {
         if (Game1.IsServer) return true;

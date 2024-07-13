@@ -17,6 +17,7 @@ internal class FarmHousePatcher : BasePatcher
         );
     }
 
+    // 为初始种子包添加三种树种各10个
     private static void AddStarterGiftBoxPostfix(Farm farm, FarmHouse __instance)
     {
         if (!farm.TryGetMapPropertyAs("FarmHouseStarterSeedsPosition", out Vector2 tile, required: false))

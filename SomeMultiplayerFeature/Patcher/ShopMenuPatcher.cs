@@ -18,6 +18,7 @@ internal class ShopMenuPatcher : BasePatcher
         );
     }
 
+    // 冻结金钱
     private static bool TryToPurchaseItemPrefix(ISalable item, int stockToBuy)
     {
         if (Game1.IsServer) return true;

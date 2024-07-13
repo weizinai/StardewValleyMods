@@ -57,10 +57,9 @@ public class ModEntry : Mod
                 {
                     this.Helper.WriteConfig(this.config);
                     this.UpdateConfig();
-                }), this.Helper.Events.Input
+                }),
+            this.Helper.Events.Input
         ).Register();
-
-        if (Game1.IsClient) Log.Info("该模组大部分功能仅在主机端有效。");
     }
 
     private void UpdateConfig()

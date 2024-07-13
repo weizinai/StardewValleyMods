@@ -30,6 +30,7 @@ public class ModEntry : Mod
         HarmonyPatcher.Apply(this,
             new FarmAnimalPatcher(),
             new FarmerPatcher(),
+            new FarmHousePatcher(),
             new Game1Patcher(),
             new GameLocationPatcher(),
             new HoeDirtPatcher(),

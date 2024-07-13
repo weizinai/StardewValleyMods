@@ -11,6 +11,8 @@ public class ModConfig
     // 冻结金钱
     public bool FreezeMoney { get; set; } = true;
     public int FreezeMoneyAmount { get; set; }
+    public bool BanLargeBackpack { get; set; }
+    public bool BanDeluxeBackpack { get; set; } = true;
 
     // 自动设置IP连接
     public bool AutoSetIpConnection { get; set; } = true;

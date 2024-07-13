@@ -48,6 +48,16 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.FreezeMoneyAmount = value,
                 I18n.Config_FreezeMoneyAmount_Name
             )
+            .AddBoolOption(
+                config => config.BanLargeBackpack,
+                (config, value) => config.BanLargeBackpack = value,
+                I18n.Config_BanLargeBackpack_Name
+            )
+            .AddBoolOption(
+                config => config.BanDeluxeBackpack,
+                (config, value) => config.BanDeluxeBackpack = value,
+                I18n.Config_BanDeluxeBackpack_Name
+            )
             // 自动设置Ip连接
             .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name, enable: Game1.IsServer)
             .AddBoolOption(

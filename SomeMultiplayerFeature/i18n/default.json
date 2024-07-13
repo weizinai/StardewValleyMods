@@ -5,6 +5,8 @@
     // Freeze Money
     "Config.FreezeMoney.Name": "Freeze Money",
     "Config.FreezeMoneyAmount.Name": "Freeze Money Amount",
+    "Config.BanLargeBackpack.Name": "Ban Large Backpack",
+    "Config.BanDeluxeBackpack.Name": "Ban Deluxe Backpack",
 
     // Auto Set Ip Connection
     "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",

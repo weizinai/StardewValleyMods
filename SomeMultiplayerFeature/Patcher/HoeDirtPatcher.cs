@@ -16,12 +16,12 @@ internal class HoeDirtPatcher : BasePatcher
         );
     }
 
-    // 浇水获得4点耕种经验
+    // 浇水获得3点耕种经验
     private static void PerformToolActionPrefix(Tool t, HoeDirt __instance)
     {
         if (t is WateringCan && __instance.state.Value == HoeDirt.dry && __instance.crop != null)
         {
-            t.getLastFarmerToUse().gainExperience(Farmer.farmingSkill, 4);
+            t.getLastFarmerToUse().gainExperience(Farmer.farmingSkill, 3);
         }
     }
 }

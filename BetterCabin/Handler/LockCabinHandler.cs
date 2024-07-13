@@ -30,6 +30,8 @@ internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
     {
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
+
+        this.InitLockCabinConfig();
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)

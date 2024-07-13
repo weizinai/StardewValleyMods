@@ -4,13 +4,16 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.Common.Extension;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class VisitCabinInfoHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public VisitCabinInfoHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+    public VisitCabinInfoHandler(IModHelper helper, ModConfig config)
+        : base(helper, config) { }
 
     public override void Apply()
     {
@@ -35,8 +38,8 @@ internal class VisitCabinInfoHandler : BaseHandlerWithConfig<ModConfig>
             }
             else
             {
-                var isOnline = Game1.player.team.playerIsOnline(owner.UniqueMultiplayerID);
-                messageContent.Append(I18n.UI_VisitCabin_HasOwner(owner.displayName));
+                var isOnline = owner.IsOnline();
+                messageContent.Append(I18n.UI_VisitCabin_HasOwner(owner.Name));
                 messageContent.Append('\n');
                 messageContent.Append(isOnline ? I18n.UI_VisitCabin_Online() : I18n.UI_VisitCabin_Offline());
                 messageContent.Append('\n');
@@ -48,7 +51,7 @@ internal class VisitCabinInfoHandler : BaseHandlerWithConfig<ModConfig>
                 }
             }
 
-            Game1.addHUDMessage(new HUDMessage(messageContent.ToString()) { noIcon = true });
+            Log.NoIconHUDMessage(messageContent.ToString());
         }
     }
 }

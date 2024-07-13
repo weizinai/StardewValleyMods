@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.Common.Extension;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Menu;
 
@@ -32,7 +33,7 @@ internal class ServerCabinMenu : CarpenterMenu
                            ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 1))
                            ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 2))
                            ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 3));
-            if (building?.isCabin == false) building.color = Color.White;
+            if (!building.IsCabin(out _)) building.color = Color.White;
         }
     }
 
@@ -41,7 +42,7 @@ internal class ServerCabinMenu : CarpenterMenu
         if (this.demolishing || this.painting)
         {
             var building = this.TargetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
-            if (building?.isCabin == false) return;
+            if (!building.IsCabin(out _)) return;
         }
 
         base.receiveLeftClick(x, y, playSound);

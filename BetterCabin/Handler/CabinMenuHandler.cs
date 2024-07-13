@@ -10,7 +10,8 @@ namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class CabinMenuHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public CabinMenuHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+    public CabinMenuHandler(IModHelper helper, ModConfig config)
+        : base(helper, config) { }
 
     public override void Apply()
     {

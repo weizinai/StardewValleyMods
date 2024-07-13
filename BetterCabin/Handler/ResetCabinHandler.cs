@@ -3,13 +3,16 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.Common.Extension;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class ResetCabinHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public ResetCabinHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+    public ResetCabinHandler(IModHelper helper, ModConfig config)
+        : base(helper, config) { }
 
     public override void Apply()
     {
@@ -23,34 +26,35 @@ internal class ResetCabinHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsMainPlayer || !Context.IsPlayerFree) return;
+        if (Game1.IsClient || !Context.IsPlayerFree) return;
 
         if (this.Config.ResetCabinPlayerKeybind.JustPressed())
         {
             var location = Game1.player.currentLocation;
             if (location is Cabin cabin)
             {
-                if (Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID))
+                if (cabin.owner.IsOnline())
                 {
-                    Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_Online()) { noIcon = true });
+                    Log.NoIconHUDMessage(I18n.UI_ResetCabin_Online());
                     return;
                 }
 
                 if (!cabin.owner.isUnclaimedFarmhand)
                     this.ResetCabin(cabin);
                 else
-                    Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_NoOwner()) { noIcon = true });
+                    Log.NoIconHUDMessage(I18n.UI_ResetCabin_NoOwner());
             }
             else
             {
                 var farmhands = Game1.getAllFarmhands()
                     .Where(farmer => !farmer.isUnclaimedFarmhand)
-                    .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.displayName));
+                    .Select(farmer => new KeyValuePair<string, string>(farmer.UniqueMultiplayerID.ToString(), farmer.Name));
+
                 location.ShowPagedResponses(I18n.UI_ResetCabin_ChooseFarmhand(), farmhands.ToList(), value =>
                 {
                     var id = long.Parse(value);
-                    if (Game1.player.team.playerIsOnline(id)) Game1.server.kick(id);
                     var farmer = Game1.getFarmer(id);
+                    if (farmer.IsOnline()) Game1.server.kick(id);
                     this.ResetCabin((Utility.getHomeOfFarmer(farmer) as Cabin)!);
                 });
             }
@@ -59,7 +63,7 @@ internal class ResetCabinHandler : BaseHandlerWithConfig<ModConfig>
 
     private void ResetCabin(Cabin cabin)
     {
-        Game1.addHUDMessage(new HUDMessage(I18n.UI_ResetCabin_Success(cabin.owner.displayName)) { noIcon = true });
+        Log.NoIconHUDMessage(I18n.UI_ResetCabin_Success(cabin.owner.Name));
         cabin.DeleteFarmhand();
         cabin.CreateFarmhand();
     }

@@ -71,10 +71,7 @@ internal class ClientCabinMenu : IClickableMenu
             this.previousSkinButton.tryHover(x, y);
             this.nextSkinButton.tryHover(x, y);
 
-            if (this.moveButton.containsPoint(x, y))
-                this.hoverText = Game1.content.LoadString("Strings\\UI:Carpenter_MoveBuildings");
-            else
-                this.hoverText = "";
+            this.hoverText = this.moveButton.containsPoint(x, y) ? Game1.content.LoadString("Strings\\UI:Carpenter_MoveBuildings") : "";
         }
         else
         {
@@ -95,17 +92,6 @@ internal class ClientCabinMenu : IClickableMenu
             if (Game1.options.doesInputListContain(Game1.options.menuButton, key) && this.readyToClose() && Game1.locationRequest == null)
             {
                 this.ReturnToCarpentryMenu();
-            }
-            else
-            {
-                if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
-                    Game1.panScreen(0, 32);
-                else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
-                    Game1.panScreen(32, 0);
-                else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
-                    Game1.panScreen(0, -32);
-                else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
-                    Game1.panScreen(-32, 0);
             }
         }
     }
@@ -177,20 +163,7 @@ internal class ClientCabinMenu : IClickableMenu
     {
         if (!this.isMoving) return;
 
-        var mouseX = Game1.getOldMouseX(false);
-        if (mouseX < 64)
-            Game1.panScreen(-32, 0);
-        else if (mouseX - Game1.viewport.Width >= -64)
-            Game1.panScreen(32, 0);
-
-        var mouseY = Game1.getOldMouseY(false);
-        if (mouseY < 64)
-            Game1.panScreen(0, -32);
-        else if (mouseY - Game1.viewport.Height >= -64)
-            Game1.panScreen(0, 32);
-
-        var pressedKeys = Game1.oldKBState.GetPressedKeys();
-        foreach (var key in pressedKeys) this.receiveKeyPress(key);
+        PanScreenHelper.PanScreen(32, 64);
     }
 
     public override void draw(SpriteBatch b)

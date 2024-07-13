@@ -5,8 +5,14 @@ namespace weizinai.StardewValleyMod.Common.Extension;
 
 internal static class BuildingExtension
 {
-    public static bool IsCabin(this Building building)
+    public static bool IsCabin(this Building building, out Cabin? cabin)
     {
-        return building.GetIndoors() is Cabin;
+        if (building.GetIndoors() is Cabin tempCabin)
+        {
+            cabin = tempCabin;
+            return true;
+        }
+        cabin = null;
+        return false;
     }
 }

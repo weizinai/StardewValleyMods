@@ -1,6 +1,5 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
 using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
@@ -27,8 +26,6 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
     {
         if (!this.configMenu.IsLoaded) return;
 
-        this.configMenu.Unregister();
-
         this.configMenu
             .Register()
             .AddKeybindList(
@@ -37,7 +34,7 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_OpenConfigMenuKey_Name
             )
             // 冻结金钱
-            .AddSectionTitle(I18n.Config_FreezeMoney_Name, enable: Game1.IsServer)
+            .AddSectionTitle(I18n.Config_FreezeMoney_Name)
             .AddBoolOption(
                 config => config.FreezeMoney,
                 (config, value) => config.FreezeMoney = value,
@@ -74,12 +71,11 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 () => I18n.Config_BanHouseUpgrade_Name(3)
             )
             // 自动设置Ip连接
-            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name, enable: Game1.IsServer)
+            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
             .AddBoolOption(
                 config => config.AutoSetIpConnection,
                 (config, value) => config.AutoSetIpConnection = value,
-                I18n.Config_AutoSetIpConnection_Name,
-                enable: Game1.IsServer
+                I18n.Config_AutoSetIpConnection_Name
             )
             .AddNumberOption(
                 config => config.EnableTime,
@@ -87,8 +83,7 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_EnableTime_Name,
                 null,
                 6,
-                26,
-                enable: Game1.IsServer
+                26
             )
             .AddNumberOption(
                 config => config.DisableTime,
@@ -96,8 +91,7 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_DisableTime_Name,
                 null,
                 6,
-                26,
-                enable: Game1.IsServer
+                26
             )
             // 显示玩家数量
             .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
@@ -121,19 +115,17 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_TipText_Name
             )
             // 踢出未准备玩家
-            .AddSectionTitle(I18n.Config_KickUnreadyPlayer_Name, enable: Game1.IsServer)
+            .AddSectionTitle(I18n.Config_KickUnreadyPlayer_Name)
             .AddBoolOption(
                 config => config.KickUnreadyPlayer,
                 (config, value) => config.KickUnreadyPlayer = value,
                 I18n.Config_KickUnreadyPlayer_Name,
-                I18n.Config_KickUnreadyPlayer_Tooltip,
-                enable: Game1.IsServer
+                I18n.Config_KickUnreadyPlayer_Tooltip
             )
             .AddKeybindList(
                 config => config.KickUnreadyPlayerKey,
                 (config, value) => config.KickUnreadyPlayerKey = value,
-                I18n.Config_KickUnreadyPlayerKey_Name,
-                enable: Game1.IsServer
+                I18n.Config_KickUnreadyPlayerKey_Name
             )
             // 版本限制
             .AddSectionTitle(I18n.Config_VersionLimit_Name)
@@ -141,8 +133,7 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 config => config.VersionLimit,
                 (config, value) => config.VersionLimit = value,
                 I18n.Config_VersionLimit_Name,
-                I18n.Config_VersionLimit_Tooltip,
-                enable: Game1.IsServer
+                I18n.Config_VersionLimit_Tooltip
             );
     }
 }

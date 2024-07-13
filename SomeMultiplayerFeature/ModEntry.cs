@@ -25,7 +25,7 @@ public class ModEntry : Mod
         new CustomCommandHandler(helper, this.config).Apply();
         this.UpdateConfig();
         // 注册事件
-        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this,
             new FarmAnimalPatcher(),
@@ -40,7 +40,7 @@ public class ModEntry : Mod
         );
     }
 
-    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(
             new GenericModConfigMenuIntegration<ModConfig>(

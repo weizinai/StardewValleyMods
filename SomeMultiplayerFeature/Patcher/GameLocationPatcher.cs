@@ -21,6 +21,7 @@ internal class GameLocationPatcher : BasePatcher
         );
     }
 
+    // 采集铜矿、铁矿、金矿和铱矿分别获得14点、16点、18点和20点采矿经验，精通后减半
     private static IEnumerable<CodeInstruction> BreakStoneTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
@@ -32,6 +33,7 @@ internal class GameLocationPatcher : BasePatcher
         return codes.AsEnumerable();
     }
 
+    // 禁止购买背包
     private static bool AnswerDialogueActionPrefix(string questionAndAnswer)
     {
         if (Game1.IsServer) return true;

@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Patcher;
@@ -10,24 +11,32 @@ internal class GameLocationPatcher : BasePatcher
     {
         harmony.Patch(
             original: this.RequireMethod<GameLocation>("breakStone"),
-            postfix: this.GetHarmonyMethod(nameof(BreakStonePostfix))
+            transpiler: this.GetHarmonyMethod(nameof(BreakStoneTranspiler))
         );
     }
 
-    // 修改铜矿获得的经验为14点
-    // 修改铁矿获得的经验为16点
-    private static void BreakStonePostfix(string stoneId, Farmer who)
+    private static IEnumerable<CodeInstruction> BreakStoneTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var miningSkill = Farmer.miningSkill;
+        var codes = instructions.ToList();
 
-        switch (stoneId)
+        var index = codes.FindLastIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience)))) - 1;
+        codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
+        codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetStoneExperience))));
+
+        return codes.AsEnumerable();
+    }
+
+    private static int GetStoneExperience(int origin, string stoneId)
+    {
+        origin = stoneId switch
         {
-            case "751":
-                who.gainExperience(miningSkill, 9);
-                break;
-            case "850":
-                who.gainExperience(miningSkill, 4);
-                break;
-        }
+            "751" => 14, // 铜矿
+            "290" => 16, // 铁矿
+            "764" => 18, // 金矿
+            "765" => 20, // 铱矿
+            _ => origin
+        };
+
+        return Game1.player.mailReceived.Contains("gotMasteryHint") ? origin / 2 : origin;
     }
 }

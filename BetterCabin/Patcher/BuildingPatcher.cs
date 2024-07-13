@@ -32,24 +32,24 @@ internal class BuildingPatcher : BasePatcher
 
     private static void DrawPostfix(Building __instance, SpriteBatch b)
     {
-        if (__instance.IsCabin(out var cabin) && !cabin!.owner.isUnclaimedFarmhand)
+        if (__instance.IsCabinWithOwner(out var cabin))
         {
             // 小屋主人名字标签
             if (config.CabinOwnerNameTag)
             {
-                nameTag = new CabinOwnerNameBox(__instance, cabin, config);
+                nameTag = new CabinOwnerNameBox(__instance, cabin!, config);
                 nameTag.Draw(b);
             }
 
             // 总在线时间标签
             if (config.TotalOnlineTime.Enable)
             {
-                totalOnlineTimeTag = new TotalOnlineTimeBox(__instance, cabin, config);
+                totalOnlineTimeTag = new TotalOnlineTimeBox(__instance, cabin!, config);
                 totalOnlineTimeTag.Draw(b);
             }
 
             // 上次在线时间标签
-            if (config.LastOnlineTime.Enable && !Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID))
+            if (config.LastOnlineTime.Enable && !Game1.player.team.playerIsOnline(cabin!.owner.UniqueMultiplayerID))
             {
                 lastOnlineTimeTag = new LastOnlineTimeBox(__instance, cabin, config);
                 lastOnlineTimeTag.Draw(b);

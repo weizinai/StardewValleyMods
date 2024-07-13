@@ -36,7 +36,7 @@ internal class CabinMenuHandler : BaseHandlerWithConfig<ModConfig>
             {
                 Utility.ForEachBuilding(building =>
                 {
-                    if (building.IsCabin(out var cabin) && cabin!.owner.Equals(Game1.player))
+                    if (building.IsCabin(out var cabin) && cabin.owner.Equals(Game1.player))
                     {
                         Game1.activeClickableMenu = new ClientCabinMenu(building);
                         return false;

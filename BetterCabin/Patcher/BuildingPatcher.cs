@@ -37,19 +37,19 @@ internal class BuildingPatcher : BasePatcher
             // 小屋主人名字标签
             if (config.CabinOwnerNameTag)
             {
-                nameTag = new CabinOwnerNameBox(__instance, cabin!, config);
+                nameTag = new CabinOwnerNameBox(__instance, cabin, config);
                 nameTag.Draw(b);
             }
 
             // 总在线时间标签
             if (config.TotalOnlineTime.Enable)
             {
-                totalOnlineTimeTag = new TotalOnlineTimeBox(__instance, cabin!, config);
+                totalOnlineTimeTag = new TotalOnlineTimeBox(__instance, cabin, config);
                 totalOnlineTimeTag.Draw(b);
             }
 
             // 上次在线时间标签
-            if (config.LastOnlineTime.Enable && !Game1.player.team.playerIsOnline(cabin!.owner.UniqueMultiplayerID))
+            if (config.LastOnlineTime.Enable && !Game1.player.team.playerIsOnline(cabin.owner.UniqueMultiplayerID))
             {
                 lastOnlineTimeTag = new LastOnlineTimeBox(__instance, cabin, config);
                 lastOnlineTimeTag.Draw(b);

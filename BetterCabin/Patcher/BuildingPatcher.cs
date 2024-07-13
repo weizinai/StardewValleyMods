@@ -5,6 +5,7 @@ using StardewValley.Buildings;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.BetterCabin.UI;
+using weizinai.StardewValleyMod.Common.Extension;
 using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Patcher;
@@ -31,7 +32,7 @@ internal class BuildingPatcher : BasePatcher
 
     private static void DrawPostfix(Building __instance, SpriteBatch b)
     {
-        if (__instance.GetIndoors() is Cabin cabin && !cabin.owner.isUnclaimedFarmhand)
+        if (__instance.IsCabin(out var cabin) && !cabin!.owner.isUnclaimedFarmhand)
         {
             // 小屋主人名字标签
             if (config.CabinOwnerNameTag)

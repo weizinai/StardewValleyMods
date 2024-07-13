@@ -18,4 +18,6 @@
 
     <Import Project="..\Common.Patcher\Common.Patcher.projitems" Label="Shared"/>
 
+    <Import Project="..\Common.Extension\Common.Extension.projitems" Label="Shared" />
+
 </Project>

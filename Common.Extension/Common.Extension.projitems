@@ -10,5 +10,6 @@
     </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BuildingExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FarmerExtension.cs" />
   </ItemGroup>
 </Project>

@@ -26,14 +26,14 @@ internal class MachineExperienceHandler : BaseHandler
             e.Edit(asset =>
                 {
                     var machineData = asset.AsDictionary<string, MachineData>().Data;
-                    machineData["(BC)12"].ExperienceGainOnHarvest = "farming 20";
-                    machineData["(BC)13"].ExperienceGainOnHarvest = "mining 7";
-                    machineData["(BC)20"].ExperienceGainOnHarvest = "fishing 4";
-                    machineData["(BC)25"].ExperienceGainOnHarvest = "farming 4";
-                    machineData["(BC)105"].ExperienceGainOnHarvest = "foraging 4";
-                    machineData["(BC)114"].ExperienceGainOnHarvest = "mining 4";
-                    machineData["(BC)FishSmoker"].ExperienceGainOnHarvest = "fishing 4";
-                    machineData["(BC)HeavyFurnace"].ExperienceGainOnHarvest = "mining 35";
+                    machineData["(BC)12"].ExperienceGainOnHarvest = "farming 20";          // 小桶
+                    machineData["(BC)13"].ExperienceGainOnHarvest = "mining 7";            // 熔炉
+                    machineData["(BC)20"].ExperienceGainOnHarvest = "fishing 4";           // 回收机
+                    machineData["(BC)25"].ExperienceGainOnHarvest = "farming 4";           // 种子生成器
+                    machineData["(BC)105"].ExperienceGainOnHarvest = "foraging 4";         // 树液采集器
+                    machineData["(BC)114"].ExperienceGainOnHarvest = "foraging 4";         // 煤炭窑
+                    machineData["(BC)FishSmoker"].ExperienceGainOnHarvest = "fishing 4";   // 熏鱼机
+                    machineData["(BC)HeavyFurnace"].ExperienceGainOnHarvest = "mining 35"; // 重型熔炉
                 }
             );
         }

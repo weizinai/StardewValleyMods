@@ -22,4 +22,6 @@
 
     <Import Project="..\Common.Handler\Common.Handler.projitems" Label="Shared"/>
 
+    <Import Project="..\Common\Common.projitems" Label="Shared" />
+
 </Project>

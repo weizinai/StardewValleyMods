@@ -1,6 +1,6 @@
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
+namespace weizinai.StardewValleyMod.Common;
 
 internal static class PanScreenHelper
 {
@@ -10,7 +10,7 @@ internal static class PanScreenHelper
         PanScreenByKey(moveSpeed);
     }
 
-    private static void PanScreenByMouse(int moveSpeed, int moveThreshold)
+    public static void PanScreenByMouse(int moveSpeed, int moveThreshold)
     {
         var mouseX = Game1.getOldMouseX(false);
         var mouseY = Game1.getOldMouseY(false);
@@ -26,7 +26,7 @@ internal static class PanScreenHelper
             Game1.panScreen(0, moveSpeed);
     }
 
-    private static void PanScreenByKey(int moveSpeed)
+    public static void PanScreenByKey(int moveSpeed)
     {
         var pressedKeys = Game1.oldKBState.GetPressedKeys();
 

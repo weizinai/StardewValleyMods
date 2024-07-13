@@ -13,6 +13,7 @@ public class ModConfig
     public int FreezeMoneyAmount { get; set; }
     public bool BanLargeBackpack { get; set; }
     public bool BanDeluxeBackpack { get; set; } = true;
+    public bool[] BanHouseUpgrade { get; set; } = { false, true, true };
 
     // 自动设置IP连接
     public bool AutoSetIpConnection { get; set; } = true;

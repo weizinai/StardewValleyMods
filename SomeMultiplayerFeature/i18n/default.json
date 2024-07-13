@@ -7,6 +7,7 @@
     "Config.FreezeMoneyAmount.Name": "Freeze Money Amount",
     "Config.BanLargeBackpack.Name": "Ban Large Backpack",
     "Config.BanDeluxeBackpack.Name": "Ban Deluxe Backpack",
+    "Config.BanHouseUpgrade.Name": "Ban House Upgrade {{level}}",
 
     // Auto Set Ip Connection
     "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",

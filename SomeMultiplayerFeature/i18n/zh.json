@@ -7,6 +7,7 @@
     "Config.FreezeMoneyAmount.Name": "冻结金钱数量",
     "Config.BanLargeBackpack.Name": "禁止大背包",
     "Config.BanDeluxeBackpack.Name": "禁止豪华背包",
+    "Config.BanHouseUpgrade.Name": "禁止房屋升级{{level}}",
 
     // 自动设置Ip连接
     "Config.AutoSetIpConnection.Name": "自动设置Ip连接",

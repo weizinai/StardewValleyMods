@@ -71,6 +71,7 @@ public class ModEntry : Mod
             new AutoClickHandler(this.Helper, this.config),
             new CabinCostHandler(this.Helper),
             new FreezeMoneyHandler(this.Helper, this.config),
+            new HouseUpgradeHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MachineExperienceHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),

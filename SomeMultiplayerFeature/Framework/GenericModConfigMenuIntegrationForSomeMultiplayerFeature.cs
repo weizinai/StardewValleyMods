@@ -58,6 +58,21 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.BanDeluxeBackpack = value,
                 I18n.Config_BanDeluxeBackpack_Name
             )
+            .AddBoolOption(
+                config => config.BanHouseUpgrade[0],
+                (config, value) => config.BanHouseUpgrade[0] = value,
+                () => I18n.Config_BanHouseUpgrade_Name(1)
+            )
+            .AddBoolOption(
+                config => config.BanHouseUpgrade[1],
+                (config, value) => config.BanHouseUpgrade[1] = value,
+                () => I18n.Config_BanHouseUpgrade_Name(2)
+            )
+            .AddBoolOption(
+                config => config.BanHouseUpgrade[2],
+                (config, value) => config.BanHouseUpgrade[2] = value,
+                () => I18n.Config_BanHouseUpgrade_Name(3)
+            )
             // 自动设置Ip连接
             .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name, enable: Game1.IsServer)
             .AddBoolOption(

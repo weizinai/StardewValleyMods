@@ -1,7 +1,6 @@
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
-using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
@@ -18,6 +17,10 @@ internal class GameLocationPatcher : BasePatcher
         harmony.Patch(
             original: this.RequireMethod<GameLocation>(nameof(GameLocation.answerDialogueAction)),
             prefix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPrefix))
+        );
+        harmony.Patch(
+            original: this.RequireMethod<GameLocation>("houseUpgradeAccept"),
+            prefix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPrefix))
         );
     }
 
@@ -48,6 +51,21 @@ internal class GameLocationPatcher : BasePatcher
                     Game1.drawObjectDialogue("购买背包已被禁止");
                     return false;
             }
+        }
+
+        return true;
+    }
+
+    private static bool HouseUpgradeAcceptPrefix()
+    {
+        if (Game1.IsServer) return true;
+
+        var modData = Game1.MasterPlayer.modData;
+        var level = Game1.player.HouseUpgradeLevel;
+        if (modData.ContainsKey(HouseUpgradeHandler.HouseUpgradeKey + level))
+        {
+            Game1.drawObjectDialogue("房屋升级已被禁止");
+            return false;
         }
 
         return true;

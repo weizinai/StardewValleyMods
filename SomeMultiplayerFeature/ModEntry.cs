@@ -1,6 +1,5 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
@@ -21,6 +20,7 @@ public class ModEntry : Mod
         // 初始化
         Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
+        MultiplayerLog.Init(this);
         this.config = helper.ReadConfig<ModConfig>();
         new CustomCommandHandler(helper, this.config).Apply();
         this.UpdateConfig();

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -10,7 +11,8 @@ namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
 {
-    private static string LockCabinKey => "weizinai.BetterCabin_LockCabin";
+    private const string LockCabinKey = "weizinai.BetterCabin_LockCabin";
+    private const string WhiteListKey = "weizinai.BetterCabin_WhiteList";
 
     public LockCabinHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
@@ -58,6 +60,33 @@ internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
                 cabin!.modData[LockCabinKey] = "true";
                 Log.NoIconHUDMessage(I18n.UI_LockCabin_Lock());
             }
+            return;
+        }
+
+        if (this.Config.SetWhiteListKey.JustPressed())
+        {
+            var cabin = Utility.getHomeOfFarmer(Game1.player) as Cabin;
+            var whiteList = GetCabinWhiteList(cabin!);
+
+            var farmhands = Game1.getAllFarmers()
+                .Where(farmer => !farmer.Equals(Game1.player))
+                .Select(farmer => new KeyValuePair<string, string>(farmer.Name, whiteList.Contains(farmer.Name) ? farmer.Name + " (#)" : farmer.Name));
+
+            Game1.currentLocation.ShowPagedResponses(I18n.UI_WhiteList_ChooseFarmer(), farmhands.ToList(), value =>
+            {
+                if (whiteList.Contains(value))
+                {
+                    whiteList.Remove(value);
+                    Log.NoIconHUDMessage(I18n.UI_WhiteList_Remove(value));
+                }
+                else
+                {
+                    whiteList.Add(value);
+                    Log.NoIconHUDMessage(I18n.UI_WhiteList_Add(value));
+                }
+
+                cabin!.modData[WhiteListKey] = JsonSerializer.Serialize(whiteList);
+            }, itemsPerPage: 8);
         }
     }
 
@@ -80,5 +109,17 @@ internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
     public static bool CheckCabinLock(Cabin cabin)
     {
         return CheckLockCabinEnable() && cabin.modData.ContainsKey(LockCabinKey);
+    }
+
+    public static List<string> GetCabinWhiteList(Cabin cabin)
+    {
+        var modData = cabin.modData;
+
+        if (modData.TryGetValue(WhiteListKey, out var value))
+        {
+            return JsonSerializer.Deserialize<List<string>>(value!)!;
+        }
+
+        return new List<string>();
     }
 }

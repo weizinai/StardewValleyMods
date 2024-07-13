@@ -37,11 +37,15 @@
     "Config.LockCabin.Name": "Lock Cabin",
     "Config.LockCabin.Tooltip": "Whether or not client players are allowed to lock their cabins. This option is only available on the host side.",
     "Config.LockCabinKeybind.Name": "Lock Cabin Keybind",
+    "Config.SetWhiteListKey.Name": "Set White List Key",
     "UI.LockCabin.Enable": "The host player enable the lock cabin feature.",
     "UI.LockCabin.Disable": "The host player disable the lock cabin feature.",
     "UI.LockCabin.Lock": "Your cabin is locked.",
     "UI.LockCabin.Unlock": "Your cabin is unlocked.",
     "UI.LockCabin.VisitLockedCabin": "The cabin is locked by the owner and you can't visit it.",
+    "UI.WhiteList.ChooseFarmer": "Please select the players you want to add to or remove from the whitelist:",
+    "UI.WhiteList.Add": "{{name}} is added to the white list，now he can access you cabin.",
+    "UI.WhiteList.Remove": "{{name}} is removed from the white list, now he can't access your cabin.",
 
     // Cabin Menu
     "Config.CabinMenu.Name": "Cabin Menu",

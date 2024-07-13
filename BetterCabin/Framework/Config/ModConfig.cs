@@ -31,6 +31,7 @@ internal class ModConfig
     // 上锁小屋
     public bool LockCabin { get; set; } = true;
     public KeybindList LockCabinKeybind { get; set; } = new(SButton.L);
+    public KeybindList SetWhiteListKey { get; set; } = new(SButton.U);
 
     // 重置小屋
     public bool ResetCabinPlayer { get; set; } = true;

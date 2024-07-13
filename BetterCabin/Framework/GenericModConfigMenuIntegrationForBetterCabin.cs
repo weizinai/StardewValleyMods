@@ -111,6 +111,11 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.LockCabinKeybind = value,
                 I18n.Config_LockCabinKeybind_Name
             )
+            .AddKeybindList(
+                config => config.SetWhiteListKey,
+                (config, value) => config.SetWhiteListKey = value,
+                I18n.Config_SetWhiteListKey_Name
+            )
             // 删除小屋主人
             .AddSectionTitle(I18n.Config_ResetCabin_Name)
             .AddBoolOption(

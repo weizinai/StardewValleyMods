@@ -21,7 +21,11 @@ internal class Game1Patcher : BasePatcher
     {
         if (Game1.getLocationFromName(locationName) is Cabin cabin)
         {
-            if (cabin.owner.Equals(Game1.player)) return true;
+            var player = Game1.player;
+
+            if (cabin.owner.Equals(player)) return true;
+
+            if (LockCabinHandler.GetCabinWhiteList(cabin).Contains(player.Name)) return true;
 
             if (LockCabinHandler.CheckCabinLock(cabin))
             {
@@ -34,4 +38,6 @@ internal class Game1Patcher : BasePatcher
 
         return true;
     }
+
+
 }

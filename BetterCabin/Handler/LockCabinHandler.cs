@@ -4,6 +4,7 @@ using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
@@ -11,7 +12,11 @@ internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
 {
     private static string LockCabinKey => "weizinai.BetterCabin_LockCabin";
 
-    public LockCabinHandler(IModHelper helper, ModConfig config) : base(helper, config) { }
+    public LockCabinHandler(IModHelper helper, ModConfig config)
+        : base(helper, config)
+    {
+        if (Context.IsWorldReady) this.InitLockCabinConfig();
+    }
 
     public override void Apply()
     {
@@ -27,68 +32,53 @@ internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        InitLockCabinConfig(this.Config);
+        this.InitLockCabinConfig();
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Game1.IsClient || !Context.IsPlayerFree) return;
+        if (Game1.IsServer || !Context.IsPlayerFree) return;
 
         if (this.Config.LockCabinKeybind.JustPressed())
         {
             if (!CheckLockCabinEnable())
             {
-                Game1.addHUDMessage(new HUDMessage(I18n.UI_LockCabin_Disable(), 3));
+                Log.ErrorHUDMessage(I18n.UI_LockCabin_Disable());
                 return;
             }
 
             var cabin = Utility.getHomeOfFarmer(Game1.player) as Cabin;
             if (CheckCabinLock(cabin!))
             {
-                cabin!.modData[LockCabinKey] = "false";
-                Game1.addHUDMessage(new HUDMessage(I18n.UI_LockCabin_Unlock()) { noIcon = true });
+                cabin!.modData.Remove(LockCabinKey);
+                Log.NoIconHUDMessage(I18n.UI_LockCabin_Unlock());
             }
             else
             {
                 cabin!.modData[LockCabinKey] = "true";
-                Game1.addHUDMessage(new HUDMessage(I18n.UI_LockCabin_Lock()) { noIcon = true });
+                Log.NoIconHUDMessage(I18n.UI_LockCabin_Lock());
             }
         }
     }
 
-    public static void InitLockCabinConfig(ModConfig config)
+    private void InitLockCabinConfig()
     {
-        if (!Game1.IsServer) return;
+        if (Game1.IsClient) return;
 
-        if (config.LockCabin)
-        {
-            if (Game1.MasterPlayer.modData.ContainsKey(LockCabinKey))
-                Game1.MasterPlayer.modData[LockCabinKey] = "true";
-            else
-                Game1.MasterPlayer.modData.Add(LockCabinKey, "true");
-        }
+        var modData = Game1.MasterPlayer.modData;
+        if (this.Config.LockCabin)
+            modData[LockCabinKey] = "true";
         else
-        {
-            if (Game1.MasterPlayer.modData.ContainsKey(LockCabinKey))
-                Game1.MasterPlayer.modData[LockCabinKey] = "false";
-            else
-                Game1.MasterPlayer.modData.Add(LockCabinKey, "false");
-        }
+            modData.Remove(LockCabinKey);
     }
 
     private static bool CheckLockCabinEnable()
     {
-        if (!Game1.MasterPlayer.modData.ContainsKey(LockCabinKey)) return false;
-
-        return Game1.MasterPlayer.modData[LockCabinKey] == "true";
+        return Game1.MasterPlayer.modData.ContainsKey(LockCabinKey);
     }
 
     public static bool CheckCabinLock(Cabin cabin)
     {
-        if (!CheckLockCabinEnable()) return false;
-
-        if (!cabin.modData.ContainsKey(LockCabinKey)) return false;
-
-        return cabin.modData[LockCabinKey] == "true";
+        return CheckLockCabinEnable() && cabin.modData.ContainsKey(LockCabinKey);
     }
 }

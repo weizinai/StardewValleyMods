@@ -13,5 +13,6 @@ internal class LastOnlineTimeBox : Box
     protected override string Text => Utility.getDateString(-((int)Game1.stats.DaysPlayed - this.Cabin.owner.disconnectDay.Value));
     protected override Point Offset => new(this.Config.LastOnlineTime.XOffset, this.Config.LastOnlineTime.YOffset);
 
-    public LastOnlineTimeBox(Building building, Cabin cabin, ModConfig config) : base(building, cabin, config) { }
+    public LastOnlineTimeBox(Building building, Cabin cabin, ModConfig config)
+        : base(building, cabin, config) { }
 }

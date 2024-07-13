@@ -27,4 +27,6 @@
 
     <Import Project="..\Common.Extension\Common.Extension.projitems" Label="Shared" />
 
+    <Import Project="..\Common.Log\Common.Log.projitems" Label="Shared" />
+
 </Project>

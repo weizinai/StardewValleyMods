@@ -25,7 +25,18 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
 
     public override void Apply()
     {
+        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+    }
+
+    public override void Clear()
+    {
+        this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
         this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
+
         this.Helper.ConsoleCommands.Add("ban", "", this.BanPlayer);
         this.Helper.ConsoleCommands.Add("unban", "", this.UnbanPlayer);
         this.Helper.ConsoleCommands.Add("ping", "", this.PingPlayer);

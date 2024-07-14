@@ -22,7 +22,6 @@ public class ModEntry : Mod
         I18n.Init(helper.Translation);
         MultiplayerLog.Init(this);
         this.config = helper.ReadConfig<ModConfig>();
-        new CustomCommandHandler(helper, this.config).Apply();
         this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
@@ -70,6 +69,7 @@ public class ModEntry : Mod
         {
             new AutoClickHandler(this.Helper, this.config),
             new CabinCostHandler(this.Helper),
+            new CustomCommandHandler(this.Helper, this.config),
             new HouseUpgradeHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MachineExperienceHandler(this.Helper),

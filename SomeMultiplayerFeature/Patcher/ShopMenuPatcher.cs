@@ -20,9 +20,11 @@ internal class ShopMenuPatcher : BasePatcher
     }
 
     // 购物限制
-    private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy)
+    private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy, ShopMenu __instance)
     {
         if (Game1.IsServer) return true;
+
+        if (__instance.itemPriceAndStock[item].TradeItem != null) return true;
 
         var player = Game1.player;
 

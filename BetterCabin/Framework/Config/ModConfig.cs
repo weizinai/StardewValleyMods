@@ -36,4 +36,7 @@ internal class ModConfig
     // 重置小屋
     public bool ResetCabinPlayer { get; set; } = true;
     public KeybindList ResetCabinPlayerKeybind { get; set; } = new(SButton.Delete);
+
+    // 小屋花费
+    public int CabinCost { get; set; } = 0;
 }

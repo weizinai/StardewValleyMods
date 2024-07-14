@@ -52,5 +52,8 @@
     "Config.CabinMenu.Tooltip": "让玩家可以打开一个与小屋相关的面板。\n客户端玩家可以移动自己小屋的位置和设置自己小屋的外观。\n主机玩家可以移动小屋、拆除小屋和建造小屋。",
     "Config.CabinMenuKeybind.Name": "小屋面板快捷键",
     "Config.BuildCabinContinually.Name": "连续建造小屋",
-    "UI.ClientCabinMenu.ChooseSkin": "请选择小屋的外观"
+    "UI.ClientCabinMenu.ChooseSkin": "请选择小屋的外观",
+
+    // 小屋花费
+    "Config.CabinCost.Name": "小屋花费"
 }

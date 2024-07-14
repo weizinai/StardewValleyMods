@@ -129,6 +129,13 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.ResetCabinPlayerKeybind = value,
                 I18n.Config_ResetCabinKeybind_Name
             )
+            // 小屋花费
+            .AddSectionTitle(I18n.Config_CabinCost_Name)
+            .AddNumberOption(
+                config => config.CabinCost,
+                (config, value) => config.CabinCost = value,
+                I18n.Config_CabinCost_Name
+            )
             ;
     }
 }

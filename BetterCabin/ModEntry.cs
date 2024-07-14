@@ -65,6 +65,8 @@ internal class ModEntry : Mod
         if (this.config.LockCabin)
             this.handlers.Add(new LockCabinHandler(this.Helper, this.config));
 
+        this.handlers.Add(new CabinCostHandler(this.Helper, this.config));
+
         foreach (var handler in this.handlers) handler.Apply();
     }
 }

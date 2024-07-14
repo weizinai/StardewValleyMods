@@ -27,7 +27,6 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
-        this.Helper.Events.GameLoop.Saved += this.OnSaved;
 
         this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
@@ -37,7 +36,6 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
-        this.Helper.Events.GameLoop.Saved -= this.OnSaved;
 
         this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
     }
@@ -46,6 +44,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         this.Helper.ConsoleCommands.Add("change_limit", "", this.ChangeLimit);
         this.Helper.ConsoleCommands.Add("set_limit", "", this.SetLimit);
+        this.Helper.ConsoleCommands.Add("reload_limit", "", this.ReloadLimit);
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -63,15 +62,6 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         }
     }
 
-    private void OnSaved(object? sender, SavedEventArgs e)
-    {
-        if (Game1.IsServer)
-        {
-            this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-            Log.Info($"已将额度信息储存到本地<{LimitDataPath}>文件中");
-        }
-    }
-
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
         if (Game1.IsClient) return;
@@ -81,6 +71,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         {
             this.limitData[farmerName] = this.Config.DefaultPurchaseLimit;
             Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+            this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
             Log.Info($"{farmerName}玩家未设置额度，已自动将其设置为默认值{this.Config.DefaultPurchaseLimit}元");
         }
     }
@@ -146,6 +137,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         }
 
         Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+        this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
     }
 
     private void SetLimit(string command, string[] args)
@@ -173,6 +165,15 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
             Log.Info($"已将{name}的购物额度设置为{money}元");
         }
 
+        Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+        this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
+    }
+
+    private void ReloadLimit(string command, string[] args)
+    {
+        if (Game1.IsClient) return;
+
+        this.ReadLimitData();
         Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
     }
 }

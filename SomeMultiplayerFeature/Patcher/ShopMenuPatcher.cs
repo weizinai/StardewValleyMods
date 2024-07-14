@@ -1,3 +1,4 @@
+using System.Text.Json;
 using HarmonyLib;
 using StardewValley;
 using StardewValley.Menus;
@@ -48,7 +49,7 @@ internal class ShopMenuPatcher : BasePatcher
 
     private static bool TryGetPlayerLimit(Farmer player, out int limit, out int amount)
     {
-        player.modData.TryGetValue(PurchaseLimitHandler.PurchaseLimitKey, out var rawLimit);
+        Game1.MasterPlayer.modData.TryGetValue(PurchaseLimitHandler.PurchaseLimitKey, out var rawLimit);
         player.modData.TryGetValue(PurchaseLimitHandler.PurchaseAmountKey, out var rawAmount);
 
         if (rawLimit == null || rawAmount == null)
@@ -58,7 +59,7 @@ internal class ShopMenuPatcher : BasePatcher
             return false;
         }
 
-        limit = int.Parse(rawLimit);
+        limit = JsonSerializer.Deserialize<Dictionary<string, int>>(rawLimit)![player.Name];
         amount = int.Parse(rawAmount);
 
         return true;

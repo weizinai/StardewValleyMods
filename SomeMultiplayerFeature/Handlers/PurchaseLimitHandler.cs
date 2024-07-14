@@ -1,3 +1,4 @@
+using System.Text.Json;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -47,9 +48,8 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        this.InitPurchaseLimitConfig();
         this.InitLimitData();
-        this.InitFarmerLimitData();
+        this.InitPurchaseLimitConfig();
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
@@ -63,16 +63,13 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!this.Config.PurchaseLimit) return;
-
         if (Game1.IsClient) return;
 
-        var farmer = Game1.getFarmer(e.Peer.PlayerID);
-        if (!farmer.modData.ContainsKey(PurchaseLimitKey))
+        var farmerName = Game1.getFarmer(e.Peer.PlayerID).Name;
+        if (!this.limitData.ContainsKey(farmerName))
         {
-            farmer.modData[PurchaseLimitKey] = this.Config.DefaultPurchaseLimit.ToString();
-            this.limitData[farmer.Name] = this.Config.DefaultPurchaseLimit;
-            this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
+            this.limitData[farmerName] = this.Config.DefaultPurchaseLimit;
+            Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
         }
     }
 
@@ -82,7 +79,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
 
         var modData = Game1.MasterPlayer.modData;
         if (this.Config.PurchaseLimit)
-            modData[PurchaseLimitKey] = "true";
+            modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
         else
             modData.Remove(PurchaseLimitKey);
     }
@@ -104,26 +101,6 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         }
 
         this.limitData = rawData;
-    }
-
-    private void InitFarmerLimitData()
-    {
-        if (Game1.IsClient) return;
-
-        foreach (var farmer in Game1.getAllFarmhands())
-        {
-            if (this.limitData.TryGetValue(farmer.Name, out var value))
-            {
-                farmer.modData[PurchaseLimitKey] = value.ToString();
-            }
-            else
-            {
-                farmer.modData[PurchaseLimitKey] = this.Config.DefaultPurchaseLimit.ToString();
-                this.limitData[farmer.Name] = this.Config.DefaultPurchaseLimit;
-            }
-        }
-
-        this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
     }
 
     private void ChangeLimit(string command, string[] args)
@@ -151,7 +128,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
             Log.Info(money >= 0 ? $"已为{name}增加{money}元的购物额度" : $"已为{name}减少{-money}元的购物额度");
         }
 
-        this.InitFarmerLimitData();
+        Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
     }
 
     private void SetLimit(string command, string[] args)
@@ -179,6 +156,6 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
             Log.Info($"已将{name}的购物额度设置为{money}元");
         }
 
-        this.InitFarmerLimitData();
+        Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
     }
 }

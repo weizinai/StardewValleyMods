@@ -7,7 +7,7 @@ internal static class MultiplayerLog
 {
     private static string uniqueId = "";
     private static IModHelper helper = null!;
-    private static readonly HashSet<string> DetectedMessageType = new() { "NoIconHUDMessage" };
+    private static readonly HashSet<string> DetectedMessageType = new() { "Info", "NoIconHUDMessage" };
 
     public static void Init(Mod mod)
     {
@@ -25,6 +25,9 @@ internal static class MultiplayerLog
             var message = e.ReadAs<ModMessage>();
             switch (e.Type)
             {
+                case "Info":
+                    Log.Info(message.Content);
+                    break;
                 case "NoIconHUDMessage":
                     Log.NoIconHUDMessage(message.Content, message.TimeLeft);
                     break;
@@ -32,8 +35,13 @@ internal static class MultiplayerLog
         }
     }
 
-    public static void NoIconHUDMessage(string message, float timeLeft = 3500f)
+    public static void Info(string message, long[]? playerIDs = null)
     {
-        helper.Multiplayer.SendMessage(new ModMessage(message, timeLeft), "NoIconHUDMessage", new[] { uniqueId });
+        helper.Multiplayer.SendMessage(new ModMessage(message), "Info", new[] { uniqueId }, playerIDs);
+    }
+
+    public static void NoIconHUDMessage(string message, float timeLeft = 3500f, long[]? playerIDs = null)
+    {
+        helper.Multiplayer.SendMessage(new ModMessage(message, timeLeft), "NoIconHUDMessage", new[] { uniqueId }, playerIDs);
     }
 }

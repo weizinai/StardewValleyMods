@@ -10,7 +10,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Compile Include="$(MSBuildThisFileDirectory)Log.cs"/>
-        <Compile Include="$(MSBuildThisFileDirectory)ModMessage.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)MessageData.cs" />
         <Compile Include="$(MSBuildThisFileDirectory)MultiplayerLog.cs"/>
     </ItemGroup>
 </Project>

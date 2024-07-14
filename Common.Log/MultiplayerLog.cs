@@ -22,7 +22,7 @@ internal static class MultiplayerLog
     {
         if (DetectedMessageType.Contains(e.Type) && e.FromModID == uniqueId)
         {
-            var message = e.ReadAs<ModMessage>();
+            var message = e.ReadAs<MessageData>();
             switch (e.Type)
             {
                 case "Info":
@@ -40,16 +40,16 @@ internal static class MultiplayerLog
 
     public static void Info(string message, long[]? playerIDs = null)
     {
-        helper.Multiplayer.SendMessage(new ModMessage(message), "Info", new[] { uniqueId }, playerIDs);
+        helper.Multiplayer.SendMessage(new MessageData(message), "Info", new[] { uniqueId }, playerIDs);
     }
 
     public static void Alert(string message, long[]? playerIDs = null)
     {
-        helper.Multiplayer.SendMessage(new ModMessage(message), "Alert", new[] { uniqueId }, playerIDs);
+        helper.Multiplayer.SendMessage(new MessageData(message), "Alert", new[] { uniqueId }, playerIDs);
     }
 
     public static void NoIconHUDMessage(string message, float timeLeft = 3500f, long[]? playerIDs = null)
     {
-        helper.Multiplayer.SendMessage(new ModMessage(message, timeLeft), "NoIconHUDMessage", new[] { uniqueId }, playerIDs);
+        helper.Multiplayer.SendMessage(new MessageData(message, timeLeft), "NoIconHUDMessage", new[] { uniqueId }, playerIDs);
     }
 }

@@ -41,8 +41,14 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
                 var farmer = Game1.getFarmer(id);
                 if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
                 {
-                    Game1.chatBox.addInfoMessage($"{farmer.Name}的<SomeMultiplayerFeature>模组不是最新版，将被踢出。");
-                    Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, "你的<SomeMultiplayerFeature>模组不是最新版，将被踢出。", id);
+                    var message = "";
+                    if (!farmer.modData.ContainsKey(VersionLimitKey))
+                        message = $"{farmer.Name}未安装<SomeMultiplayerFeature>模组，将被踢出。";
+                    else if (farmer.modData[VersionLimitKey] != TargetVersion)
+                        message = $"{farmer.Name}的模组为{farmer.modData[VersionLimitKey]}版本，要求的版本为{TargetVersion}，不满足要求，将被踢出。";
+
+                    Game1.chatBox.addInfoMessage(message);
+                    // Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, "你的<SomeMultiplayerFeature>模组不是最新版，将被踢出。", id);
                     Game1.server.kick(id);
                 }
             }, 5000);

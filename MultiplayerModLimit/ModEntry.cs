@@ -23,11 +23,31 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
+        helper.Events.GameLoop.ReturnedToTitle += this.OnReturnedToTitle;
         helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
         // 注册命令
         helper.ConsoleCommands.Add("generate_allow", "", this.GenerateModList);
         helper.ConsoleCommands.Add("generate_require", "", this.GenerateModList);
         helper.ConsoleCommands.Add("generate_ban", "", this.GenerateModList);
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        this.configMenu = new GenericModConfigMenuIntegrationForMultiplayerModLimit(
+            new GenericModConfigMenuIntegration<ModConfig>(
+                this.Helper.ModRegistry,
+                this.ModManifest,
+                () => this.config,
+                () =>
+                {
+                    this.config = new ModConfig();
+                    this.Helper.WriteConfig(this.config);
+                },
+                () => this.Helper.WriteConfig(this.config)
+            )
+        );
+
+        this.configMenu.Register();
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
@@ -45,6 +65,11 @@ internal class ModEntry : Mod
         this.playersToKick.RemoveAll(player => player.Cooldown < 0);
     }
 
+    private void OnReturnedToTitle(object? sender, ReturnedToTitleEventArgs e)
+    {
+        this.playersToKick.Clear();
+    }
+
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
         // 如果玩家不是多人模式的房主，则返回
@@ -53,7 +78,7 @@ internal class ModEntry : Mod
         // 如果模组未启用，则返回
         if (!this.config.EnableMod) return;
 
-        var name = Game1.getFarmer(e.Peer.PlayerID).displayName;
+        var name = Game1.getFarmer(e.Peer.PlayerID).Name;
 
         if (this.config.RequireSMAPI && !e.Peer.HasSmapi)
         {
@@ -95,25 +120,6 @@ internal class ModEntry : Mod
                 Game1.chatBox.addInfoMessage(I18n.UI_KickPlayer_ServerTooltip(name));
             }
         }
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        this.configMenu = new GenericModConfigMenuIntegrationForMultiplayerModLimit(
-            new GenericModConfigMenuIntegration<ModConfig>(
-                this.Helper.ModRegistry,
-                this.ModManifest,
-                () => this.config,
-                () =>
-                {
-                    this.config = new ModConfig();
-                    this.Helper.WriteConfig(this.config);
-                },
-                () => this.Helper.WriteConfig(this.config)
-            )
-        );
-
-        this.configMenu.Register();
     }
 
     private void GenerateModList(string command, string[] args)

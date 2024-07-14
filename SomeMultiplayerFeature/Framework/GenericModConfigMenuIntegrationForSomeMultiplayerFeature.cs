@@ -34,16 +34,16 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 I18n.Config_OpenConfigMenuKey_Name
             )
             // 冻结金钱
-            .AddSectionTitle(I18n.Config_FreezeMoney_Name)
+            .AddSectionTitle(I18n.Config_PurchaseLimit_Name)
             .AddBoolOption(
-                config => config.FreezeMoney,
-                (config, value) => config.FreezeMoney = value,
-                I18n.Config_FreezeMoney_Name
+                config => config.PurchaseLimit,
+                (config, value) => config.PurchaseLimit = value,
+                I18n.Config_PurchaseLimit_Name
             )
             .AddNumberOption(
-                config => config.FreezeMoneyAmount,
-                (config, value) => config.FreezeMoneyAmount = value,
-                I18n.Config_FreezeMoneyAmount_Name
+                config => config.DefaultPurchaseLimit,
+                (config, value) => config.DefaultPurchaseLimit = value,
+                I18n.Config_DefaultPurchaseLimit_Name
             )
             .AddBoolOption(
                 config => config.BanLargeBackpack,

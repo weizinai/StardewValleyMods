@@ -70,12 +70,12 @@ public class ModEntry : Mod
         {
             new AutoClickHandler(this.Helper, this.config),
             new CabinCostHandler(this.Helper),
-            new FreezeMoneyHandler(this.Helper, this.config),
             new HouseUpgradeHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MachineExperienceHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
             new PurchaseBackpackHandler(this.Helper, this.config),
+            new PurchaseItemLimitHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),
             new UnreadyPlayerHandler(this.Helper, this.config),
             new VersionLimitHandler(this.Helper, this.config)

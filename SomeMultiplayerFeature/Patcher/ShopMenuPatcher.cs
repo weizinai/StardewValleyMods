@@ -3,13 +3,12 @@ using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 
 internal class ShopMenuPatcher : BasePatcher
 {
-    private const string FreezeMoneyKey = "weizinai.SomeMultiplayerFeature_FreezeMoney";
-
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -19,29 +18,49 @@ internal class ShopMenuPatcher : BasePatcher
         );
     }
 
-    // 冻结金钱
-    private static bool TryToPurchaseItemPrefix(ISalable item, int stockToBuy)
+    // 购物限制
+    private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy)
     {
         if (Game1.IsServer) return true;
 
-        Game1.MasterPlayer.modData.TryGetValue(FreezeMoneyKey, out var value);
-        if (value == null) return true;
-
         var player = Game1.player;
-        var freezeMoney = int.Parse(value);
-        if (player.Money <= freezeMoney + item.salePrice() * stockToBuy)
+
+        if (!TryGetPlayerLimit(player, out var limit, out var amount)) return true;
+
+        var availableMoney = limit - amount;
+
+        if (availableMoney < item.salePrice() * stockToBuy)
         {
-            Game1.drawObjectDialogue($"主机冻结了{freezeMoney}金，你无法使用金钱");
-            Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode,
-                $"{player.Name}想购买{item.DisplayName}{stockToBuy}个，已被禁止", Game1.MasterPlayer.UniqueMultiplayerID);
+            Game1.drawObjectDialogue(
+                $"你今日的消费金额为{amount}，总消费额度为{limit}，可用额度为{availableMoney}。购买{stockToBuy}个{item.DisplayName}需要{item.salePrice() * stockToBuy}金币，超过你的可用额度{availableMoney}。因此你的购物行为被禁止。");
+            stockToBuy = 0;
             return false;
         }
 
+        player.modData[PurchaseItemLimitHandler.PurchaseAmountKey] = (amount + item.salePrice() * stockToBuy).ToString();
         return true;
     }
 
     private static void TryToPurchaseItemPostfix(ISalable item, int stockToBuy)
     {
-        MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
+        if (stockToBuy > 0) MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
+    }
+
+    private static bool TryGetPlayerLimit(Farmer player, out int limit, out int amount)
+    {
+        player.modData.TryGetValue(PurchaseItemLimitHandler.PurchaseLimitKey, out var rawLimit);
+        player.modData.TryGetValue(PurchaseItemLimitHandler.PurchaseAmountKey, out var rawAmount);
+
+        if (rawLimit == null || rawAmount == null)
+        {
+            limit = 0;
+            amount = 0;
+            return false;
+        }
+
+        limit = int.Parse(rawLimit);
+        amount = int.Parse(rawAmount);
+
+        return true;
     }
 }

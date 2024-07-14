@@ -1,35 +1,35 @@
 {
-    // Open Config Menu
-    "Config.OpenConfigMenuKey.Name": "Open Config Menu Key",
+    // 打开配置菜单
+    "Config.OpenConfigMenuKey.Name": "打开配置菜单快捷键",
 
-    // Freeze Money
-    "Config.FreezeMoney.Name": "Freeze Money",
-    "Config.FreezeMoneyAmount.Name": "Freeze Money Amount",
-    "Config.BanLargeBackpack.Name": "Ban Large Backpack",
-    "Config.BanDeluxeBackpack.Name": "Ban Deluxe Backpack",
-    "Config.BanHouseUpgrade.Name": "Ban House Upgrade {{level}}",
+    // 冻结金钱
+    "Config.PurchaseLimit.Name": "购物限制",
+    "Config.DefaultPurchaseLimit.Name": "默认限制金额",
+    "Config.BanLargeBackpack.Name": "禁止大背包",
+    "Config.BanDeluxeBackpack.Name": "禁止豪华背包",
+    "Config.BanHouseUpgrade.Name": "禁止房屋升级{{level}}",
 
-    // Auto Set Ip Connection
-    "Config.AutoSetIpConnection.Name": "Auto Set Ip Connection",
-    "Config.EnableTime.Name": "Enable Time",
-    "Config.DisableTime.Name": "Disable Time",
+    // 自动设置Ip连接
+    "Config.AutoSetIpConnection.Name": "自动设置Ip连接",
+    "Config.EnableTime.Name": "启用时间",
+    "Config.DisableTime.Name": "禁用时间",
 
-    // Show Player Count
-    "Config.ShowPlayerCount.Name": "Show Player Count",
-    "Config.ShowPlayerCount.Tooltip": "Displays the number of players currently online. This feature is available on both the host side and the client side.",
-    "UI.PlayerCount": "{{playerCount}} Players Online",
+    // 显示玩家数量
+    "Config.ShowPlayerCount.Name": "显示玩家数量",
+    "Config.ShowPlayerCount.Tooltip": "显示当前在线的玩家数量。该功能主机端和客户端均可用。",
+    "UI.PlayerCount": "{{playerCount}}个玩家在线",
 
-    // Show Tip
-    "Config.ShowTip.Name": "Show Tip",
-    "Config.ShowTip.Tooltip": "A prompt is displayed in the game, which can be used to display the QQ group number. This feature is available on both the host side and the client side.",
-    "Config.TipText.Name": "Tip Text",
+    // 显示提示
+    "Config.ShowTip.Name": "显示提示",
+    "Config.ShowTip.Tooltip": "在游戏显示一段提示，可用于显示QQ群号。该功能主机端和客户端均可用。",
+    "Config.TipText.Name": "提示内容",
 
-    // Kick Unready Player
-    "Config.KickUnreadyPlayer.Name": "Kick Unready Player",
-    "Config.KickUnreadyPlayer.Tooltip": "Kick out unprepared players. This feature is only available on the host side.",
-    "Config.KickUnreadyPlayerKey.Name": "Kick Unready Player Key",
+    // 踢出未准备玩家
+    "Config.KickUnreadyPlayer.Name": "踢出未准备玩家",
+    "Config.KickUnreadyPlayer.Tooltip": "踢出未准备玩家。该功能仅限主机端可用。",
+    "Config.KickUnreadyPlayerKey.Name": "踢出未准备玩家快捷键",
 
     // Version Limit
-    "Config.VersionLimit.Name": "Version Limit",
-    "Config.VersionLimit.Tooltip": "Checks if the client player's mod version is up to date.This feature is only available on the host side."
+    "Config.VersionLimit.Name": "版本限制",
+    "Config.VersionLimit.Tooltip": "检测客户端玩家的模组版本是否是最新版。该功能仅限主机端可用。"
 }

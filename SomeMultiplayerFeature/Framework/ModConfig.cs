@@ -8,9 +8,9 @@ public class ModConfig
     // 打开设置菜单
     public KeybindList OpenConfigMenuKey { get; set; } = new(SButton.R);
 
-    // 冻结金钱
-    public bool FreezeMoney { get; set; } = true;
-    public int FreezeMoneyAmount { get; set; }
+    // 购物限制
+    public bool PurchaseLimit { get; set; } = true;
+    public int DefaultPurchaseLimit { get; set; } = 2000;
     public bool BanLargeBackpack { get; set; }
     public bool BanDeluxeBackpack { get; set; } = true;
     public bool[] BanHouseUpgrade { get; set; } = { false, true, true };

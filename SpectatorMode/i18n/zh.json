@@ -1,28 +1,29 @@
 {
-    // 旁观者模式
-    "Config.SpectatorModeTitle.Name": "旁观者模式",
+    // 一般设置
+    "Config.GeneralSettingTitle.Name": "一般设置",
+    "Config.ShowTimeAndMoney.Name": "显示时间和金钱",
+    "Config.ShowToolbar.Name": "显示工具栏",
     "UI.SpectatorMode.Title": "正在旁观 {{name}}",
     "UI.SpectatorMode.AutoStop": "已经很晚了，自动停止旁观。",
 
+    // 旁观地点
+    "Config.SpectateLocationTitle.Name": "旁观地点",
     "Config.SpectateLocationKey.Name": "旁观地点快捷键",
     "Config.OnlyShowOutdoors.Name": "仅显示户外地点",
+    "Config.MoveSpeed.Name": "移动速度",
+    "Config.MoveThreshold.Name": "移动阈值",
     "UI.SpectateLocation.Title": "请选择你要旁观的地点",
     "UI.SpectateLocation.Fail": "{{locationName}}不存在。",
     "UI.SpectateLocation.Success": "{{locationName}}存在，开始旁观。",
 
+    // 旁观玩家
+    "Config.SpectatePlayerTitle.Name": "旁观玩家",
     "Config.SpectatePlayerKey.Name": "旁观玩家快捷键",
+    "Config.ToggleStateKey.Name": "切换状态快捷键",
     "UI.SpectatePlayer.Title": "请选择你要旁观的玩家",
     "UI.SpectatePlayer.Fail": "{{playerName}}不存在。",
     "UI.SpectatePlayer.Success": "{{playerName}}存在，开始旁观。",
     "UI.NoPlayerOnline": "没有玩家在线",
-
-    "Config.ToggleStateKey.Name": "切换状态快捷键",
-
-    "Config.MoveSpeed.Name": "移动速度",
-    "Config.MoveThreshold.Name": "移动阈值",
-
-    "Config.ShowTimeAndMoney.Name": "显示时间和金钱",
-    "Config.ShowToolbar.Name": "显示工具栏",
 
     // 随机旁观
     "Config.RandomSpectateTitle.Name": "随机旁观",

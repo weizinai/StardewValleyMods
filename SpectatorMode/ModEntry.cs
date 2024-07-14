@@ -2,6 +2,7 @@
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 using weizinai.StardewValleyMod.SpectatorMode.Handler;
@@ -32,11 +33,17 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         new GenericModConfigMenuForSpectatorMode(
-            this.Helper,
-            this.ModManifest,
-            () => Config,
-            () => Config = new ModConfig(),
-            () => this.Helper.WriteConfig(Config)
+            new GenericModConfigMenuIntegration<ModConfig>(
+                this.Helper.ModRegistry,
+                this.ModManifest,
+                () => Config,
+                () =>
+                {
+                    Config = new ModConfig();
+                    this.Helper.WriteConfig(Config);
+                },
+                () => this.Helper.WriteConfig(Config)
+            )
         ).Register();
     }
 

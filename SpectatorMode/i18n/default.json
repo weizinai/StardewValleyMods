@@ -1,28 +1,29 @@
 {
-    // Spectator Mode
-    "Config.SpectatorModeTitle.Name": "Spectator Mode",
+    // General Setting
+    "Config.GeneralSettingTitle.Name": "General Setting",
+    "Config.ShowTimeAndMoney.Name": "Show Time and Money",
+    "Config.ShowToolbar.Name": "Show Toolbar",
     "UI.SpectatorMode.Title": "Spectating {{name}}",
     "UI.SpectatorMode.AutoStop": "It's late, automatically stop spectating.",
 
+    // Spectate Location
+    "Config.SpectateLocationTitle.Name": "Spectate Location",
     "Config.SpectateLocationKey.Name": "Spectate Location Key",
     "Config.OnlyShowOutdoors.Name": "Only Show Outdoors",
+    "Config.MoveSpeed.Name": "Move Speed",
+    "Config.MoveThreshold.Name": "Move Threshold",
     "UI.SpectateLocation.Title": "Please select the location where you would like to spectate",
     "UI.SpectateLocation.Fail": "{{locationName}} doesn't exist.",
     "UI.SpectateLocation.Success": "{{locationName}} exists, start spectating.",
 
+    // Spectate Player
+    "Config.SpectatePlayerTitle.Name": "Spectate Player",
     "Config.SpectatePlayerKey.Name": "Spectate Player Key",
+    "Config.ToggleStateKey.Name": "Toggle State Key",
     "UI.SpectatePlayer.Title": "Please select the player you would like to spectate",
     "UI.SpectatePlayer.Fail": "{{playerName}} doesn't exist.",
     "UI.SpectatePlayer.Success": "{{playerName}} exists, start spectating.",
     "UI.SpectatePlayer.Offline": "No Player Online",
-
-    "Config.ToggleStateKey.Name": "Toggle State Key",
-
-    "Config.MoveSpeed.Name": "Move Speed",
-    "Config.MoveThreshold.Name": "Move Threshold",
-
-    "Config.ShowTimeAndMoney.Name": "Show Time and Money",
-    "Config.ShowToolbar.Name": "Show Toolbar",
 
     // Random Spectate
     "Config.RandomSpectateTitle.Name": "Random Spectate",

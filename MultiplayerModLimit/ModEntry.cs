@@ -14,14 +14,14 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        this.config = helper.ReadConfig<ModConfig>();
         Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
+        MultiplayerLog.Init(this);
+        this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
         helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
-        helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
         // 注册命令
         helper.ConsoleCommands.Add("generate_allow", "", this.GenerateModList);
         helper.ConsoleCommands.Add("generate_require", "", this.GenerateModList);
@@ -89,23 +89,9 @@ internal class ModEntry : Mod
             if (unAllowedMods["Required"].Any() || unAllowedMods["Banned"].Any())
             {
                 this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
-                this.Helper.Multiplayer.SendMessage(unAllowedMods, "ModLimit",
-                    new[] { "weizinai.MultiplayerModLimit" }, new[] { e.Peer.PlayerID });
-                Game1.chatBox.addInfoMessage(I18n.UI_KickPlayerTooltip(name));
+                this.SendModRequirementInfo(unAllowedMods, e.Peer.PlayerID);
+                Game1.chatBox.addInfoMessage(I18n.UI_KickPlayer_ServerTooltip(name));
             }
-        }
-    }
-
-    private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
-    {
-        if (!Game1.IsClient) return;
-
-        if (e is { Type: "ModLimit", FromModID: "weizinai.MultiplayerModLimit" })
-        {
-            Log.Alert(I18n.UI_KickPlayerTooltip(Game1.player.displayName));
-            var message = e.ReadAs<Dictionary<string, List<string>>>();
-            foreach (var id in message["Required"]) Log.Info(I18n.UI_ModLimit_Required(id));
-            foreach (var id in message["Banned"]) Log.Info(I18n.UI_ModLimit_Banned(id));
         }
     }
 
@@ -138,5 +124,13 @@ internal class ModEntry : Mod
     private List<string> GetAllMods()
     {
         return this.Helper.ModRegistry.GetAll().Select(x => x.Manifest.UniqueID).ToList();
+    }
+
+    private void SendModRequirementInfo(Dictionary<string, List<string>> unAllowedMods, long playerId)
+    {
+        var target = new[] { playerId };
+        MultiplayerLog.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
+        foreach (var id in unAllowedMods["Required"]) MultiplayerLog.Info(I18n.UI_ModLimit_Required(id), target);
+        foreach (var id in unAllowedMods["Banned"]) MultiplayerLog.Info(I18n.UI_ModLimit_Banned(id), target);
     }
 }

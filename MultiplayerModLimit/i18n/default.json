@@ -10,7 +10,7 @@
 
     "Config.LimitSettingTitle.Name": "Limit Setting",
 
-    // Require SMAPI 
+    // Require SMAPI
     "Config.RequireSMAPI.Name": "Require SMAPI",
     "Config.RequireSMAPI.Tooltip": "If enabled, players must have SMAPI installed to join the game.",
     "UI.RequireSMAPI": "{{name}} will be kicked because he doesn't have SMAPI installed.",
@@ -20,7 +20,8 @@
     "Config.LimitMode.Tooltip": "The way the mod determines if a player meets the mod requirements. When <White List Mode> is selected, the mod will judge whether the player meets the requirements based on <AllowedModList> and <RequiredModList>. When <Black List Mode> is selected, the mod will judge whether the player meets the requirements based on <RequiredModList> and <BannedModList>.",
     "Config.LimitMode.WhiteListMode": "White List Mode",
     "Config.LimitMode.BlackListMode": "Black List Mode",
-    "UI.KickPlayerTooltip": "{{name}} will be kicked because he doesn't meet the mod requirements.",
+    "UI.KickPlayer.ServerTooltip": "{{name}} will be kicked because he doesn't meet the mod requirements.",
+    "UI.KickPlayer.ClientTooltip": "You will be kicked because you don't meet the mod requirements.",
     "UI.ModLimit.Required": "{{id}} is required.",
     "UI.ModLimit.Banned": "{{id}} is banned.",
 

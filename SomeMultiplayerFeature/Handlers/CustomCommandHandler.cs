@@ -17,7 +17,10 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
     {
         this.bannedPlayers = helper.Data.ReadJsonFile<Dictionary<string, string>>(BannedPlayerPath);
         if (this.bannedPlayers is null)
-            Log.Error($"无法找到Json文件: {BannedPlayerPath}，如果你不是主机玩家，则可以忽略该条消息。");
+        {
+            this.bannedPlayers = new Dictionary<string, string>();
+            this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
+        }
     }
 
     public override void Apply()

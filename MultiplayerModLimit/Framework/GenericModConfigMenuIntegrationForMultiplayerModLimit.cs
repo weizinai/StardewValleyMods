@@ -1,4 +1,3 @@
-using StardewModdingAPI;
 using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
@@ -7,9 +6,9 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 
-    public GenericModConfigMenuIntegrationForMultiplayerModLimit(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
+    public GenericModConfigMenuIntegrationForMultiplayerModLimit(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {
-        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.configMenu = configMenu;
     }
 
     public void Register()
@@ -77,7 +76,14 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
                 I18n.Config_BannedModListSelected_Name,
                 I18n.Config_BannedModListSelected_Tooltip,
                 this.configMenu.GetConfig().BannedModList.Keys.ToArray()
-            )
-            ;
+            );
+    }
+
+    public void Reset()
+    {
+        if (!this.configMenu.IsLoaded) return;
+
+        this.configMenu.Unregister();
+        this.Register();
     }
 }

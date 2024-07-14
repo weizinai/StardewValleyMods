@@ -33,5 +33,5 @@
     "Config.RequiredModListSelected.Tooltip": "<RequiredModList>中包含的模组是必须安装的模组。",
     "Config.BannedModListSelected.Name": "选择的禁止模组列表",
     "Config.BannedModListSelected.Tooltip": "<BannedModList>中包含的模组是禁止安装的模组。",
-    "UI.GenerateModList": "模组列表已生成。你需要重新启动游戏才能在Generic Mod Config Menu中进行设置。"
+    "UI.GenerateModList": "模组列表已生成。"
 }

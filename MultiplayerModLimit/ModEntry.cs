@@ -1,6 +1,7 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
 
@@ -9,6 +10,7 @@ namespace weizinai.StardewValleyMod.MultiplayerModLimit;
 internal class ModEntry : Mod
 {
     private ModConfig config = null!;
+    private GenericModConfigMenuIntegrationForMultiplayerModLimit configMenu = null!;
     private readonly List<PlayerSlot> playersToKick = new();
 
     public override void Entry(IModHelper helper)
@@ -97,13 +99,21 @@ internal class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForMultiplayerModLimit(
-            this.Helper,
-            this.ModManifest,
-            () => this.config,
-            () => this.config = new ModConfig(),
-            () => this.Helper.WriteConfig(this.config)
-        ).Register();
+        this.configMenu = new GenericModConfigMenuIntegrationForMultiplayerModLimit(
+            new GenericModConfigMenuIntegration<ModConfig>(
+                this.Helper.ModRegistry,
+                this.ModManifest,
+                () => this.config,
+                () =>
+                {
+                    this.config = new ModConfig();
+                    this.Helper.WriteConfig(this.config);
+                },
+                () => this.Helper.WriteConfig(this.config)
+            )
+        );
+
+        this.configMenu.Register();
     }
 
     private void GenerateModList(string command, string[] args)
@@ -117,7 +127,7 @@ internal class ModEntry : Mod
         };
         targetModList.Add(args[0], this.GetAllMods());
         this.Helper.WriteConfig(this.config);
-
+        this.configMenu.Reset();
         Log.Info(I18n.UI_GenerateModList());
     }
 

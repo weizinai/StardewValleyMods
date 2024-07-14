@@ -54,12 +54,10 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (Game1.IsClient) return;
-
-        Log.Alert("重置今日消费金额");
-        foreach (var farmer in Game1.getAllFarmhands())
+        if (Game1.IsClient)
         {
-            farmer.modData[PurchaseAmountKey] = "0";
+            Game1.player.modData[PurchaseAmountKey] = "0";
+            Log.NoIconHUDMessage("今日消费金额已重置");
         }
     }
 

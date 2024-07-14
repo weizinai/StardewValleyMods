@@ -7,7 +7,7 @@ using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class PurchaseItemLimitHandler : BaseHandlerWithConfig<ModConfig>
+internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     public const string PurchaseLimitKey = "weizinai.SomeMultiplayerFeature_PurchaseLimit";
     public const string PurchaseAmountKey = "weizinai.SomeMultiplayerFeature_PurchaseAmount";
@@ -15,7 +15,7 @@ internal class PurchaseItemLimitHandler : BaseHandlerWithConfig<ModConfig>
     private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
     private Dictionary<string, int> limitData = new();
 
-    public PurchaseItemLimitHandler(IModHelper helper, ModConfig config)
+    public PurchaseLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
         if (Context.IsWorldReady) this.InitPurchaseLimitConfig();

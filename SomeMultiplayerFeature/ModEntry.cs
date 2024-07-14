@@ -73,7 +73,7 @@ public class ModEntry : Mod
             new MachineExperienceHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
             new PurchaseBackpackHandler(this.Helper, this.config),
-            new PurchaseItemLimitHandler(this.Helper, this.config),
+            new PurchaseLimitHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),
             new UnreadyPlayerHandler(this.Helper, this.config),
             new VersionLimitHandler(this.Helper, this.config)

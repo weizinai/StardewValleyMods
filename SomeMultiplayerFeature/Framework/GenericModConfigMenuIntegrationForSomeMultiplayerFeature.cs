@@ -31,56 +31,60 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddKeybindList(
                 config => config.OpenConfigMenuKey,
                 (config, value) => config.OpenConfigMenuKey = value,
-                I18n.Config_OpenConfigMenuKey_Name
+                () => "打开配置菜单快捷键"
             )
             // 冻结金钱
-            .AddSectionTitle(I18n.Config_PurchaseLimit_Name)
+            .AddSectionTitle(() => "购物限制")
             .AddBoolOption(
                 config => config.PurchaseLimit,
                 (config, value) => config.PurchaseLimit = value,
-                I18n.Config_PurchaseLimit_Name
+                () => "购物限制"
             )
             .AddNumberOption(
                 config => config.DefaultPurchaseLimit,
                 (config, value) => config.DefaultPurchaseLimit = value,
-                I18n.Config_DefaultPurchaseLimit_Name
+                () => "默认限制额度"
             )
+            // 禁止购买背包
+            .AddSectionTitle(() => "禁止购买背包")
             .AddBoolOption(
                 config => config.BanLargeBackpack,
                 (config, value) => config.BanLargeBackpack = value,
-                I18n.Config_BanLargeBackpack_Name
+                () => "禁止购买大背包"
             )
             .AddBoolOption(
                 config => config.BanDeluxeBackpack,
                 (config, value) => config.BanDeluxeBackpack = value,
-                I18n.Config_BanDeluxeBackpack_Name
+                () => "禁止购买豪华背包"
             )
+            // 禁止升级房屋
+            .AddSectionTitle(() => "禁止升级房屋")
             .AddBoolOption(
                 config => config.BanHouseUpgrade[0],
                 (config, value) => config.BanHouseUpgrade[0] = value,
-                () => I18n.Config_BanHouseUpgrade_Name(1)
+                () => "禁止升级1级房屋"
             )
             .AddBoolOption(
                 config => config.BanHouseUpgrade[1],
                 (config, value) => config.BanHouseUpgrade[1] = value,
-                () => I18n.Config_BanHouseUpgrade_Name(2)
+                () => "禁止升级2级房屋"
             )
             .AddBoolOption(
                 config => config.BanHouseUpgrade[2],
                 (config, value) => config.BanHouseUpgrade[2] = value,
-                () => I18n.Config_BanHouseUpgrade_Name(3)
+                () => "禁止升级2级房屋"
             )
             // 自动设置Ip连接
-            .AddSectionTitle(I18n.Config_AutoSetIpConnection_Name)
+            .AddSectionTitle(() => "自动设置Ip连接")
             .AddBoolOption(
                 config => config.AutoSetIpConnection,
                 (config, value) => config.AutoSetIpConnection = value,
-                I18n.Config_AutoSetIpConnection_Name
+                () => "自动设置Ip连接"
             )
             .AddNumberOption(
                 config => config.EnableTime,
                 (config, value) => config.EnableTime = value,
-                I18n.Config_EnableTime_Name,
+                () => "启用时间",
                 null,
                 6,
                 26
@@ -88,52 +92,48 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
             .AddNumberOption(
                 config => config.DisableTime,
                 (config, value) => config.DisableTime = value,
-                I18n.Config_DisableTime_Name,
+                () => "禁用时间",
                 null,
                 6,
                 26
             )
             // 显示玩家数量
-            .AddSectionTitle(I18n.Config_ShowPlayerCount_Name)
+            .AddSectionTitle(() => "显示玩家数量")
             .AddBoolOption(
                 config => config.ShowPlayerCount,
                 (config, value) => config.ShowPlayerCount = value,
-                I18n.Config_ShowPlayerCount_Name,
-                I18n.Config_ShowPlayerCount_Tooltip
+                () => "显示玩家数量"
             )
             // 显示提示
-            .AddSectionTitle(I18n.Config_ShowTip_Name)
+            .AddSectionTitle(() => "显示提示")
             .AddBoolOption(
                 config => config.ShowTip,
                 (config, value) => config.ShowTip = value,
-                I18n.Config_ShowTip_Name,
-                I18n.Config_ShowTip_Tooltip
+                () => "显示提示"
             )
             .AddTextOption(
                 config => config.TipText,
                 (config, value) => config.TipText = value,
-                I18n.Config_TipText_Name
+                () => "提示内容"
             )
             // 踢出未准备玩家
-            .AddSectionTitle(I18n.Config_KickUnreadyPlayer_Name)
+            .AddSectionTitle(() => "踢出未准备玩家")
             .AddBoolOption(
                 config => config.KickUnreadyPlayer,
                 (config, value) => config.KickUnreadyPlayer = value,
-                I18n.Config_KickUnreadyPlayer_Name,
-                I18n.Config_KickUnreadyPlayer_Tooltip
+                () => "踢出未准备玩家"
             )
             .AddKeybindList(
                 config => config.KickUnreadyPlayerKey,
                 (config, value) => config.KickUnreadyPlayerKey = value,
-                I18n.Config_KickUnreadyPlayerKey_Name
+                () => "踢出未准备玩家快捷键"
             )
             // 版本限制
-            .AddSectionTitle(I18n.Config_VersionLimit_Name)
+            .AddSectionTitle(() => "版本限制")
             .AddBoolOption(
                 config => config.VersionLimit,
                 (config, value) => config.VersionLimit = value,
-                I18n.Config_VersionLimit_Name,
-                I18n.Config_VersionLimit_Tooltip
+                () => "版本限制"
             );
     }
 }

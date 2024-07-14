@@ -19,7 +19,6 @@ public class ModEntry : Mod
     {
         // 初始化
         Log.Init(this.Monitor);
-        I18n.Init(helper.Translation);
         MultiplayerLog.Init(this);
         this.config = helper.ReadConfig<ModConfig>();
         this.UpdateConfig();

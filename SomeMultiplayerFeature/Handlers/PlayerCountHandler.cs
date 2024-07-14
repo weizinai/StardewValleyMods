@@ -30,7 +30,7 @@ internal class PlayerCountHandler : BaseHandlerWithConfig<ModConfig>
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (this.Config.ShowPlayerCount && Context.IsMultiplayer)
-            this.playerCountTextBox.name = I18n.UI_PlayerCount(Game1.getOnlineFarmers().Count);
+            this.playerCountTextBox.name = $"{Game1.getOnlineFarmers().Count}个玩家在线";
     }
 
     // 绘制玩家数量按钮

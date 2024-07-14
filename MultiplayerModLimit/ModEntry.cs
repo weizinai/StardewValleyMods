@@ -72,10 +72,8 @@ internal class ModEntry : Mod
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        // 如果玩家不是多人模式的房主，则返回
         if (!Game1.IsServer) return;
 
-        // 如果模组未启用，则返回
         if (!this.config.EnableMod) return;
 
         var name = Game1.getFarmer(e.Peer.PlayerID).Name;
@@ -88,7 +86,7 @@ internal class ModEntry : Mod
 
         if (e.Peer.HasSmapi)
         {
-            var unAllowedMods = this.GetUnAllowedMods(e);
+            var unAllowedMods = this.GetUnAllowedMods(e.Peer);
 
             if (unAllowedMods["Required"].Any() || unAllowedMods["Banned"].Any())
             {
@@ -115,6 +113,9 @@ internal class ModEntry : Mod
         Log.Info(I18n.UI_GenerateModList());
     }
 
+    /// <summary>
+    /// 踢出未安装SMAPI的玩家
+    /// </summary>
     private void KickPlayerWithoutSMAPI(string playerName, long playerId)
     {
         this.playersToKick.Add(new PlayerSlot(playerId, this.config.KickPlayerDelayTime));
@@ -122,9 +123,12 @@ internal class ModEntry : Mod
         Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI_ServerTooltip(playerName));
     }
 
-    private Dictionary<string, List<string>> GetUnAllowedMods(PeerConnectedEventArgs e)
+    /// <summary>
+    /// 获取某个玩家不满足要求的模组数据
+    /// </summary>
+    private Dictionary<string, List<string>> GetUnAllowedMods(IMultiplayerPeer peer)
     {
-        var detectedMods = e.Peer.Mods.Select(x => x.ID).ToList();
+        var detectedMods = peer.Mods.Select(x => x.ID).ToList();
 
         var unAllowedMods = new Dictionary<string, List<string>>
         {
@@ -151,6 +155,9 @@ internal class ModEntry : Mod
         return unAllowedMods;
     }
 
+    /// <summary>
+    /// 像不满足模组要求的玩家的SMAPI控制太发送不满足的模组的信息
+    /// </summary>
     private void SendModRequirementInfo(Dictionary<string, List<string>> unAllowedMods, long playerId)
     {
         var target = new[] { playerId };
@@ -159,6 +166,9 @@ internal class ModEntry : Mod
         foreach (var id in unAllowedMods["Banned"]) MultiplayerLog.Info(I18n.UI_ModLimit_Banned(id), target);
     }
 
+    /// <summary>
+    /// 获取玩家安装的所有模组
+    /// </summary>
     private List<string> GetAllMods()
     {
         return this.Helper.ModRegistry.GetAll().Select(x => x.Manifest.UniqueID).ToList();

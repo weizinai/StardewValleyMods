@@ -94,6 +94,7 @@ internal class ModEntry : Mod
             {
                 this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
                 this.SendModRequirementInfo(unAllowedMods, e.Peer.PlayerID);
+                Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_KickPlayer_ClientTooltip(), e.Peer.PlayerID);
                 Game1.chatBox.addInfoMessage(I18n.UI_KickPlayer_ServerTooltip(name));
             }
         }

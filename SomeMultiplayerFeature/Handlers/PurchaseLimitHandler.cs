@@ -27,6 +27,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
+        this.Helper.Events.GameLoop.Saved += this.OnSaved;
 
         this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
@@ -36,6 +37,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
+        this.Helper.Events.GameLoop.Saved -= this.OnSaved;
 
         this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
     }
@@ -59,6 +61,11 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
             Game1.player.modData[PurchaseAmountKey] = "0";
             Log.NoIconHUDMessage("今日消费金额已重置");
         }
+    }
+
+    private void OnSaved(object? sender, SavedEventArgs e)
+    {
+        if (Game1.IsServer) this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)

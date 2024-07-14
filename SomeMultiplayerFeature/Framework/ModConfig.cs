@@ -11,8 +11,12 @@ public class ModConfig
     // 购物限制
     public bool PurchaseLimit { get; set; } = true;
     public int DefaultPurchaseLimit { get; set; } = 2000;
+
+    // 禁止购买背包
     public bool BanLargeBackpack { get; set; }
     public bool BanDeluxeBackpack { get; set; } = true;
+
+    // 禁止升级房屋
     public bool[] BanHouseUpgrade { get; set; } = { false, true, true };
 
     // 自动设置IP连接

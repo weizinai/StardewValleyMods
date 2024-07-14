@@ -23,14 +23,26 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     public override void Apply()
     {
+        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
+
+        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
 
     public override void Clear()
     {
+        this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
+
+        this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        this.Helper.ConsoleCommands.Add("change_limit", "", this.ChangeLimit);
+        this.Helper.ConsoleCommands.Add("set_limit", "", this.SetLimit);
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -48,6 +60,21 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         foreach (var farmer in Game1.getAllFarmhands())
         {
             farmer.modData[PurchaseAmountKey] = "0";
+        }
+    }
+
+    private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
+    {
+        if (!this.Config.PurchaseLimit) return;
+
+        if (Game1.IsClient) return;
+
+        var farmer = Game1.getFarmer(e.Peer.PlayerID);
+        if (!farmer.modData.ContainsKey(PurchaseLimitKey))
+        {
+            farmer.modData[PurchaseLimitKey] = this.Config.DefaultPurchaseLimit.ToString();
+            this.limitData[farmer.Name] = this.Config.DefaultPurchaseLimit;
+            this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
         }
     }
 
@@ -99,5 +126,61 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         }
 
         this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
+    }
+
+    private void ChangeLimit(string command, string[] args)
+    {
+        if (Game1.IsClient) return;
+
+        if (args.Length == 0 || args.Length > 2 || !int.TryParse(args[0], out var money))
+        {
+            Log.Error("命令输入错误，请使用：change_limit <金额> [玩家名称]");
+            return;
+        }
+
+        if (args.Length == 1)
+        {
+            foreach (var name in this.limitData.Keys)
+            {
+                this.limitData[name] += money;
+            }
+            Log.Info(money >= 0 ? $"已为所有玩家增加{money}元的购物额度" : $"为所有玩家减少{-money}元的购物额度");
+        }
+        else
+        {
+            var name = args[1];
+            this.limitData[name] += money;
+            Log.Info(money >= 0 ? $"已为{name}增加{money}元的购物额度" : $"已为{name}减少{-money}元的购物额度");
+        }
+
+        this.InitFarmerLimitData();
+    }
+
+    private void SetLimit(string command, string[] args)
+    {
+        if (Game1.IsClient) return;
+
+        if (args.Length == 0 || args.Length > 2 || !int.TryParse(args[0], out var money))
+        {
+            Log.Error("命令输入错误，请使用：set_limit <金额> [玩家名称]");
+            return;
+        }
+
+        if (args.Length == 1)
+        {
+            foreach (var name in this.limitData.Keys)
+            {
+                this.limitData[name] = money;
+            }
+            Log.Info($"已将所有玩家的购物额度设置为{money}元");
+        }
+        else
+        {
+            var name = args[1];
+            this.limitData[name] = money;
+            Log.Info($"已将{name}的购物额度设置为{money}元");
+        }
+
+        this.InitFarmerLimitData();
     }
 }

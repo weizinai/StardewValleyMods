@@ -52,9 +52,9 @@ internal class ModEntry : Mod
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!this.config.EnableMod) return;
-
         if (!Game1.IsServer) return;
+
+        if (!this.config.EnableMod) return;
 
         foreach (var player in this.playersToKick)
         {
@@ -82,37 +82,13 @@ internal class ModEntry : Mod
 
         if (this.config.RequireSMAPI && !e.Peer.HasSmapi)
         {
-            this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
-            Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_RequireSMAPI_ClientTooltip(), e.Peer.PlayerID);
-            Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI_ServerTooltip(name));
+            this.KickPlayerWithoutSMAPI(name, e.Peer.PlayerID);
             return;
         }
 
         if (e.Peer.HasSmapi)
         {
-            var detectedMods = e.Peer.Mods.Select(x => x.ID).ToList();
-
-            var unAllowedMods = new Dictionary<string, List<string>>
-            {
-                { "Required", new List<string>() },
-                { "Banned", new List<string>() },
-            };
-
-            var allowedModList = this.config.AllowedModList[this.config.AllowedModListSelected];
-            var requiredModList = this.config.RequiredModList[this.config.RequiredModListSelected];
-            var bannedModList = this.config.BannedModList[this.config.BannedModListSelected];
-
-            foreach (var id in requiredModList.Where(id => !detectedMods.Contains(id))) unAllowedMods["Required"].Add(id);
-
-            switch (this.config.LimitMode)
-            {
-                case LimitMode.WhiteListMode:
-                    foreach (var id in detectedMods.Where(id => !allowedModList.Contains(id) && !requiredModList.Contains(id))) unAllowedMods["Banned"].Add(id);
-                    break;
-                case LimitMode.BlackListMode:
-                    foreach (var id in detectedMods.Where(id => bannedModList.Contains(id))) unAllowedMods["Banned"].Add(id);
-                    break;
-            }
+            var unAllowedMods = this.GetUnAllowedMods(e);
 
             if (unAllowedMods["Required"].Any() || unAllowedMods["Banned"].Any())
             {
@@ -138,9 +114,40 @@ internal class ModEntry : Mod
         Log.Info(I18n.UI_GenerateModList());
     }
 
-    private List<string> GetAllMods()
+    private void KickPlayerWithoutSMAPI(string playerName, long playerId)
     {
-        return this.Helper.ModRegistry.GetAll().Select(x => x.Manifest.UniqueID).ToList();
+        this.playersToKick.Add(new PlayerSlot(playerId, this.config.KickPlayerDelayTime));
+        Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_RequireSMAPI_ClientTooltip(), playerId);
+        Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI_ServerTooltip(playerName));
+    }
+
+    private Dictionary<string, List<string>> GetUnAllowedMods(PeerConnectedEventArgs e)
+    {
+        var detectedMods = e.Peer.Mods.Select(x => x.ID).ToList();
+
+        var unAllowedMods = new Dictionary<string, List<string>>
+        {
+            { "Required", new List<string>() },
+            { "Banned", new List<string>() },
+        };
+
+        var allowedModList = this.config.AllowedModList[this.config.AllowedModListSelected];
+        var requiredModList = this.config.RequiredModList[this.config.RequiredModListSelected];
+        var bannedModList = this.config.BannedModList[this.config.BannedModListSelected];
+
+        foreach (var id in requiredModList.Where(id => !detectedMods.Contains(id))) unAllowedMods["Required"].Add(id);
+
+        switch (this.config.LimitMode)
+        {
+            case LimitMode.WhiteListMode:
+                foreach (var id in detectedMods.Where(id => !allowedModList.Contains(id) && !requiredModList.Contains(id))) unAllowedMods["Banned"].Add(id);
+                break;
+            case LimitMode.BlackListMode:
+                foreach (var id in detectedMods.Where(id => bannedModList.Contains(id))) unAllowedMods["Banned"].Add(id);
+                break;
+        }
+
+        return unAllowedMods;
     }
 
     private void SendModRequirementInfo(Dictionary<string, List<string>> unAllowedMods, long playerId)
@@ -149,5 +156,10 @@ internal class ModEntry : Mod
         MultiplayerLog.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
         foreach (var id in unAllowedMods["Required"]) MultiplayerLog.Info(I18n.UI_ModLimit_Required(id), target);
         foreach (var id in unAllowedMods["Banned"]) MultiplayerLog.Info(I18n.UI_ModLimit_Banned(id), target);
+    }
+
+    private List<string> GetAllMods()
+    {
+        return this.Helper.ModRegistry.GetAll().Select(x => x.Manifest.UniqueID).ToList();
     }
 }

@@ -67,7 +67,6 @@ public class ModEntry : Mod
         this.handlers = new IHandler[]
         {
             new AutoClickHandler(this.Helper, this.config),
-            new CabinCostHandler(this.Helper),
             new CustomCommandHandler(this.Helper, this.config),
             new HouseUpgradeHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),

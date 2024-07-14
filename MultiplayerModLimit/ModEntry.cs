@@ -83,7 +83,8 @@ internal class ModEntry : Mod
         if (this.config.RequireSMAPI && !e.Peer.HasSmapi)
         {
             this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
-            Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI(name));
+            Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_RequireSMAPI_ClientTooltip(), e.Peer.PlayerID);
+            Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI_ServerTooltip(name));
             return;
         }
 

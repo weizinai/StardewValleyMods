@@ -12,7 +12,8 @@
     // 要求SMAPI
     "Config.RequireSMAPI.Name": "要求SMAPI",
     "Config.RequireSMAPI.Tooltip": "如果启用，玩家必须安装SMAPI才能加入游戏。",
-    "UI.RequireSMAPI": "{{name}}将被踢出，因为他未安装SMAPI。",
+    "UI.RequireSMAPI.ServerTooltip": "{{name}}将被踢出，因为他未安装SMAPI。",
+    "UI.RequireSMAPI.ClientTooltip": "你将被踢出，因为你未安装SMAPI。",
 
     // 限制模式
     "Config.LimitMode.Name": "限制模式",

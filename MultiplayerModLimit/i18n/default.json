@@ -13,7 +13,8 @@
     // Require SMAPI
     "Config.RequireSMAPI.Name": "Require SMAPI",
     "Config.RequireSMAPI.Tooltip": "If enabled, players must have SMAPI installed to join the game.",
-    "UI.RequireSMAPI": "{{name}} will be kicked because he doesn't have SMAPI installed.",
+    "UI.RequireSMAPI.ServerTooltip": "{{name}} will be kicked because he doesn't have SMAPI installed.",
+    "UI.RequireSMAPI.ClientTooltip": "You will be kicked because you don't have SMAPI installed.",
 
     // Limit Mode
     "Config.LimitMode.Name": "Limit Mode",

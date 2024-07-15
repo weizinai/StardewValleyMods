@@ -1,7 +1,7 @@
 {
     "Name": "Better Cabin",
     "Author": "weizinai",
-    "Version": "0.7.0",
+    "Version": "0.7.1",
     "Description": "This mod gives the cabin more features.",
     "UniqueID": "weizinai.BetterCabin",
     "EntryDll": "BetterCabin.dll",

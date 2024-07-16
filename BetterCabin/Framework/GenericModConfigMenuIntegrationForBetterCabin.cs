@@ -136,6 +136,13 @@ internal class GenericModConfigMenuIntegrationForBetterCabin
                 (config, value) => config.CabinCost = value,
                 I18n.Config_CabinCost_Name
             )
+            // 可穿过的邮箱
+            .AddSectionTitle(I18n.Config_PassableMailbox_Name)
+            .AddBoolOption(
+                config => config.PassableMailbox,
+                (config, value) => config.PassableMailbox = value,
+                I18n.Config_PassableMailbox_Name
+            )
             ;
     }
 }

@@ -55,5 +55,8 @@
     "UI.ClientCabinMenu.ChooseSkin": "请选择小屋的外观",
 
     // 小屋花费
-    "Config.CabinCost.Name": "小屋花费"
+    "Config.CabinCost.Name": "小屋花费",
+
+    // 可穿过的邮箱
+    "Config.PassableMailbox.Name": "可穿过的邮箱"
 }

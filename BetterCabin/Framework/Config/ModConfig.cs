@@ -39,4 +39,7 @@ internal class ModConfig
 
     // 小屋花费
     public int CabinCost { get; set; } = 0;
+
+    // 可闯过的邮箱
+    public bool PassableMailbox { get; set; } = true;
 }

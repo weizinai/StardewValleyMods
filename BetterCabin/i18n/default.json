@@ -55,5 +55,8 @@
     "UI.ClientCabinMenu.ChooseSkin": "Please select the appearance of the cabin",
 
     // Cabin Cost
-    "Config.CabinCost.Name": "Cabin Cost"
+    "Config.CabinCost.Name": "Cabin Cost",
+
+    // Passable Mailbox
+    "Config.PassableMailbox.Name": "Passable Mailbox"
 }

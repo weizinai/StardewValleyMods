@@ -3,7 +3,7 @@
     "Changes": [
         {
             "Action": "Load",
-            "Target": "{{ModId}}/MiniMagicCabin, {{ModId}}/MiniNeighborCabin, {{ModId}}/MiniPigCabin, {{ModId}}/MiniPineappleCabin, {{ModId}}/MiniRusticCabin, {{ModId}}/MiniStoneCabin",
+            "Target": "{{ModId}}/MiniMagicCabin, {{ModId}}/MiniCabin1, {{ModId}}/MiniCabin2, {{ModId}}/MiniCabin3, {{ModId}}/MiniNeighborCabin, {{ModId}}/MiniPigCabin, {{ModId}}/MiniPineappleCabin, {{ModId}}/MiniRusticCabin, {{ModId}}/MiniStoneCabin, {{ModId}}/MiniWoodCabin1, {{ModId}}/MiniWoodCabin2, {{ModId}}/MiniWoodCabin3",
             "FromFile": "assets/{{TargetWithoutPath}}.png"
         },
 
@@ -31,6 +31,24 @@
                     // Exterior appearance
                     "DrawShadow": false,
                     "Skins": [
+                        {
+                            "Id": "Mini Cabin 1",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniCabin1"
+                        },
+                        {
+                            "Id": "Mini Cabin 2",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniCabin1"
+                        },
+                        {
+                            "Id": "Mini Cabin 3",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniCabin1"
+                        },
                         {
                             "Id": "Mini Magic Cabin",
                             "Name": "{{i18n:Buildings.MiniCabin.Name}}",
@@ -60,7 +78,25 @@
                             "Name": "{{i18n:Buildings.MiniCabin.Name}}",
                             "Description": "{{i18n:Buildings.MiniCabin.Description}}",
                             "Texture": "{{ModId}}/MiniRusticCabin"
-                        }
+                        },
+                        {
+                            "Id": "Mini Wood Cabin 1",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniWoodCabin1"
+                        },
+                        {
+                            "Id": "Mini Wood Cabin 2",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniWoodCabin2"
+                        },
+                        {
+                            "Id": "Mini Wood Cabin 3",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniWoodCabin3"
+                        },
                     ],
                     // Interior
                     "IndoorMap": "FarmHouse",

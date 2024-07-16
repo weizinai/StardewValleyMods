@@ -29,7 +29,7 @@ internal class CabinMenuHandler : BaseHandlerWithConfig<ModConfig>
 
         if (this.Config.CabinMenuKeybind.JustPressed())
         {
-            if (Game1.IsServer)
+            if (Context.IsMainPlayer)
             {
                 Game1.activeClickableMenu = new ServerCabinMenu();
             }

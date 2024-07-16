@@ -3,9 +3,10 @@
     "Changes": [
         {
             "Action": "Load",
-            "Target": "{{ModId}}/MiniCabin",
-            "FromFile": "assets/MiniCabin.png"
+            "Target": "{{ModId}}/MiniMagicCabin, {{ModId}}/MiniNeighborCabin, {{ModId}}/MiniPigCabin, {{ModId}}/MiniPineappleCabin, {{ModId}}/MiniRusticCabin, {{ModId}}/MiniStoneCabin",
+            "FromFile": "assets/{{TargetWithoutPath}}.png"
         },
+
         {
             "Action": "EditData",
             "Target": "Data/Buildings",
@@ -14,7 +15,7 @@
                     // Required fields
                     "Name": "{{i18n:Buildings.MiniCabin.Name}}",
                     "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                    "Texture": "{{ModId}}/MiniCabin",
+                    "Texture": "{{ModId}}/MiniStoneCabin",
                     // Construction
                     "Builder": "Robin",
                     "BuildCondition": "CAN_BUILD_CABIN",
@@ -29,6 +30,38 @@
                     },
                     // Exterior appearance
                     "DrawShadow": false,
+                    "Skins": [
+                        {
+                            "Id": "Mini Magic Cabin",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniMagicCabin"
+                        },
+                        {
+                            "Id": "Mini Neighbor Cabin",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniNeighborCabin"
+                        },
+                        {
+                            "Id": "Mini Pig Cabin",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniPigCabin"
+                        },
+                        {
+                            "Id": "Mini Pineapple Cabin",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniPineappleCabin"
+                        },
+                        {
+                            "Id": "Mini Rustic Cabin",
+                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
+                            "Texture": "{{ModId}}/MiniRusticCabin"
+                        }
+                    ],
                     // Interior
                     "IndoorMap": "FarmHouse",
                     "IndoorMapType": "StardewValley.Locations.Cabin",

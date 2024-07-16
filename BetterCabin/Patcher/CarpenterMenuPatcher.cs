@@ -17,8 +17,8 @@ internal class CarpenterMenuPatcher : BasePatcher
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
-            this.RequireMethod<CarpenterMenu>(nameof(CarpenterMenu.returnToCarpentryMenuAfterSuccessfulBuild)),
-            this.GetHarmonyMethod(nameof(ReturnToCarpentryMenuAfterSuccessfulBuildPrefix))
+            original: this.RequireMethod<CarpenterMenu>(nameof(CarpenterMenu.returnToCarpentryMenuAfterSuccessfulBuild)),
+            prefix: this.GetHarmonyMethod(nameof(ReturnToCarpentryMenuAfterSuccessfulBuildPrefix))
         );
     }
 

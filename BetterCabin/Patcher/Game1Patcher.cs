@@ -12,8 +12,8 @@ internal class Game1Patcher : BasePatcher
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
-            this.RequireMethod<Game1>(nameof(Game1.warpFarmer), new[] { typeof(string), typeof(int), typeof(int), typeof(int), typeof(bool) }),
-            this.GetHarmonyMethod(nameof(WarpFarmerPrefix))
+            original: this.RequireMethod<Game1>(nameof(Game1.warpFarmer), new[] { typeof(string), typeof(int), typeof(int), typeof(int), typeof(bool) }),
+            prefix: this.GetHarmonyMethod(nameof(WarpFarmerPrefix))
         );
     }
 
@@ -38,6 +38,4 @@ internal class Game1Patcher : BasePatcher
 
         return true;
     }
-
-
 }

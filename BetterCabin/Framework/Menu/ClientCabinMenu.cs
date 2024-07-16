@@ -10,7 +10,7 @@ using xTile.Dimensions;
 using static StardewValley.Menus.BuildingSkinMenu;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Menu;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 
 internal class ClientCabinMenu : IClickableMenu
 {

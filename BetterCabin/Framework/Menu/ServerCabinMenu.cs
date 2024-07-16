@@ -4,7 +4,7 @@ using StardewValley.Menus;
 using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.Common.Extension;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Menu;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 
 internal class ServerCabinMenu : CarpenterMenu
 {

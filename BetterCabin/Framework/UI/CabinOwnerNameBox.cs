@@ -2,10 +2,9 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 
-namespace weizinai.StardewValleyMod.BetterCabin.UI;
+namespace weizinai.StardewValleyMod.BetterCabin.Framework.UI;
 
 internal class CabinOwnerNameBox : Box
 {

@@ -2,7 +2,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
-using weizinai.StardewValleyMod.BetterCabin.Menu;
+using weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
 using weizinai.StardewValleyMod.Common.Extension;
 using weizinai.StardewValleyMod.Common.Handler;
 

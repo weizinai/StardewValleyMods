@@ -53,4 +53,11 @@ internal class ServerCabinMenu : CarpenterMenu
             this.buildingToMove = null;
         }
     }
+
+    public override void update(GameTime time)
+    {
+        base.update(time);
+
+        PanScreenHelper.PanScreen(32, 64);
+    }
 }

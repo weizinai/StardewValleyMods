@@ -11,8 +11,8 @@ namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
 internal class LockCabinHandler : BaseHandlerWithConfig<ModConfig>
 {
-    private const string LockCabinKey = "weizinai.BetterCabin_LockCabin";
-    private const string WhiteListKey = "weizinai.BetterCabin_WhiteList";
+    private const string LockCabinKey = ModEntry.ModDataPrefix + "LockCabin";
+    private const string WhiteListKey = ModEntry.ModDataPrefix + "WhiteList";
 
     public LockCabinHandler(IModHelper helper, ModConfig config)
         : base(helper, config)

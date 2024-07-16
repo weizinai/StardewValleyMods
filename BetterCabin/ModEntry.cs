@@ -13,6 +13,8 @@ namespace weizinai.StardewValleyMod.BetterCabin;
 
 internal class ModEntry : Mod
 {
+    public const string ModDataPrefix = "weizinai.BetterCabin.";
+
     private readonly List<IHandler> handlers = new();
     private ModConfig config = null!;
 

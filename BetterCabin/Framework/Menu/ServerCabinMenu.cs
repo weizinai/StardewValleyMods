@@ -47,7 +47,7 @@ internal class ServerCabinMenu : CarpenterMenu
 
         base.receiveLeftClick(x, y, playSound);
 
-        if (this.moving && this.buildingToMove?.isCabin == false)
+        if (this.moving && this.buildingToMove?.IsCabin(out _) == false)
         {
             this.buildingToMove.isMoving = false;
             this.buildingToMove = null;

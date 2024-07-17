@@ -70,7 +70,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         if (!this.limitData.ContainsKey(farmerName))
         {
             this.limitData[farmerName] = this.Config.DefaultPurchaseLimit;
-            Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+            this.SetPurchaseLimit();
             this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
             Log.Info($"{farmerName}玩家未设置额度，已自动将其设置为默认值{this.Config.DefaultPurchaseLimit}元");
         }
@@ -136,7 +136,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
             Log.Info(money >= 0 ? $"已为{name}增加{money}元的额度" : $"已为{name}减少{-money}元的额度");
         }
 
-        Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+        this.SetPurchaseLimit();
         this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
     }
 
@@ -165,7 +165,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
             Log.Info($"已将{name}的购物额度设置为{money}元");
         }
 
-        Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+        this.SetPurchaseLimit();
         this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
     }
 
@@ -174,6 +174,12 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         if (Game1.IsClient) return;
 
         this.ReadLimitData();
-        Game1.MasterPlayer.modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+        this.SetPurchaseLimit();
+    }
+
+    private void SetPurchaseLimit()
+    {
+        var modData = Game1.MasterPlayer.modData;
+        if (modData.ContainsKey(PurchaseLimitKey)) modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
     }
 }

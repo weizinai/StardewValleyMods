@@ -24,22 +24,11 @@ public class ModEntry : Mod
         this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        // 注册Harmony补丁
-        HarmonyPatcher.Apply(this,
-            new FarmAnimalPatcher(),
-            new FarmerPatcher(),
-            new FarmHousePatcher(),
-            new Game1Patcher(),
-            new GameLocationPatcher(),
-            new HoeDirtPatcher(),
-            new MineShaftPatcher(),
-            new ShopMenuPatcher(),
-            new TreePatcher()
-        );
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
+        // 注册GenericModConfigMenu
         new GenericModConfigMenuIntegrationForSomeMultiplayerFeature(
             new GenericModConfigMenuIntegration<ModConfig>(
                 this.Helper.ModRegistry,
@@ -58,6 +47,19 @@ public class ModEntry : Mod
                 }),
             this.Helper.Events.Input
         ).Register();
+
+        // 注册Harmony补丁
+        HarmonyPatcher.Apply(this,
+            new FarmAnimalPatcher(),
+            new FarmerPatcher(),
+            new FarmHousePatcher(),
+            new Game1Patcher(),
+            new GameLocationPatcher(),
+            new HoeDirtPatcher(),
+            new MineShaftPatcher(),
+            new ShopMenuPatcher(),
+            new TreePatcher()
+        );
     }
 
     private void UpdateConfig()

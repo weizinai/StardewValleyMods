@@ -39,6 +39,7 @@ internal class DataHandler : BaseHandler
                     machineData["(BC)HeavyFurnace"].ExperienceGainOnHarvest = "mining 35"; // 重型熔炉
                 }
             );
+            Log.Info("添加收获机器经验：\n小桶：20点耕种经验\n熔炉：7点采矿经验\n回收机：4点钓鱼经验\n种子生成器：4点耕种经验\n树液采集器：4点采集经验\n煤炭窑：4点采集经验\n熏鱼机：4点钓鱼经验\n重型熔炉：35点采矿经验");
         }
 
         if (e.Name.IsEquivalentTo("Data/Shops"))

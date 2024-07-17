@@ -1,6 +1,7 @@
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
@@ -24,7 +25,7 @@ internal class GameLocationPatcher : BasePatcher
         );
     }
 
-    // 采集铜矿、铁矿、金矿和铱矿分别获得14点、16点、18点和20点采矿经验，精通后减半
+    // 采集铜矿、铁矿、金矿和铱矿分别获得11点、12点、13点和14点采矿经验
     private static IEnumerable<CodeInstruction> BreakStoneTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = instructions.ToList();
@@ -32,6 +33,8 @@ internal class GameLocationPatcher : BasePatcher
         var index = codes.FindLastIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience)))) - 1;
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetStoneExperience))));
+
+        Log.Info("修改采矿经验：\n铜矿：11点\n铁矿：12点\n金矿：13点\n铱矿：14点");
 
         return codes.AsEnumerable();
     }

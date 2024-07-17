@@ -1,4 +1,3 @@
-using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.Common.Log;
@@ -15,10 +14,10 @@ internal class MineShaftPatcher : BasePatcher
             original: this.RequireMethod<MineShaft>(nameof(MineShaft.OnLeftMines)),
             postfix: this.GetHarmonyMethod(nameof(OnLeftMinesPostfix))
         );
-        harmony.Patch(
-            original: this.RequireMethod<MineShaft>(nameof(MineShaft.tryToAddOreClumps)),
-            transpiler: this.GetHarmonyMethod(nameof(TryToAddOreClumpsTranspiler))
-        );
+        // harmony.Patch(
+        //     original: this.RequireMethod<MineShaft>(nameof(MineShaft.tryToAddOreClumps)),
+        //     transpiler: this.GetHarmonyMethod(nameof(TryToAddOreClumpsTranspiler))
+        // );
     }
 
     // 矿井即时刷新
@@ -28,15 +27,15 @@ internal class MineShaftPatcher : BasePatcher
         Log.NoIconHUDMessage("矿井已刷新", 500f);
     }
 
-    private static IEnumerable<CodeInstruction> TryToAddOreClumpsTranspiler(IEnumerable<CodeInstruction> instructions)
-    {
-        var codes = instructions.ToList();
-
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.55));
-        codes[index].operand = 0.98;
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.25));
-        codes[index].operand = 0.76;
-
-        return codes.AsEnumerable();
-    }
+    // private static IEnumerable<CodeInstruction> TryToAddOreClumpsTranspiler(IEnumerable<CodeInstruction> instructions)
+    // {
+    //     var codes = instructions.ToList();
+    //
+    //     var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.55));
+    //     codes[index].operand = 2.0;
+    //     index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.25));
+    //     codes[index].operand = 1.0;
+    //
+    //     return codes.AsEnumerable();
+    // }
 }

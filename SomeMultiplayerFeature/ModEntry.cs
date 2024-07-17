@@ -70,9 +70,9 @@ public class ModEntry : Mod
         {
             new AutoClickHandler(this.Helper, this.config),
             new CustomCommandHandler(this.Helper, this.config),
+            new DataHandler(this.Helper),
             new HouseUpgradeHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
-            new MachineExperienceHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
             new PurchaseBackpackHandler(this.Helper, this.config),
             new PurchaseLimitHandler(this.Helper, this.config),

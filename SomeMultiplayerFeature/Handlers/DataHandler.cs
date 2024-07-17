@@ -5,9 +5,9 @@ using weizinai.StardewValleyMod.Common.Handler;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class MachineExperienceHandler : BaseHandler
+internal class DataHandler : BaseHandler
 {
-    public MachineExperienceHandler(IModHelper helper) : base(helper) { }
+    public DataHandler(IModHelper helper) : base(helper) { }
 
     public override void Apply()
     {
@@ -19,6 +19,7 @@ internal class MachineExperienceHandler : BaseHandler
         this.Helper.Events.Content.AssetRequested -= this.OnAssetRequested;
     }
 
+    // 修改收获机器经验
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
     {
         if (e.Name.IsEquivalentTo("Data/Machines"))

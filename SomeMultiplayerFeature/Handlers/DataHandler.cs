@@ -1,7 +1,9 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley.GameData.Machines;
+using StardewValley.GameData.Shops;
 using weizinai.StardewValleyMod.Common.Handler;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
@@ -37,6 +39,18 @@ internal class DataHandler : BaseHandler
                     machineData["(BC)HeavyFurnace"].ExperienceGainOnHarvest = "mining 35"; // 重型熔炉
                 }
             );
+        }
+
+        if (e.Name.IsEquivalentTo("Data/Shops"))
+        {
+            e.Edit(asset =>
+                {
+                    var shopData = asset.AsDictionary<string, ShopData>().Data;
+                    shopData["Dwarf"].Items.RemoveAll(itemData => itemData.ItemId is "(O)287" or "(O)288");
+                    shopData["AdventureShop"].Items.RemoveAll(itemData => itemData.ItemId == "(O)441");
+                }
+            );
+            Log.Info("移除商店中的炸弹、超级炸弹和爆炸弹丸");
         }
     }
 }

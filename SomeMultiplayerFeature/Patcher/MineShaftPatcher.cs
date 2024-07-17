@@ -1,6 +1,8 @@
 using HarmonyLib;
 using StardewValley.Locations;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 
@@ -14,9 +16,10 @@ internal class MineShaftPatcher : BasePatcher
         );
     }
 
-    // 矿井即使刷新
+    // 矿井即时刷新
     private static void OnLeftMinesPostfix()
     {
-        MineShaft.activeMines.RemoveAll(mine => mine.mineLevel <= 120 && !mine.farmers.Any());
+        MineshaftHandler.RefreshMineshaft();
+        Log.NoIconHUDMessage("矿井已刷新", 500f);
     }
 }

@@ -1,5 +1,7 @@
+using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
@@ -10,16 +12,19 @@ internal class FarmAnimalPatcher : BasePatcher
     {
         harmony.Patch(
             original: this.RequireMethod<FarmAnimal>(nameof(FarmAnimal.pet)),
-            prefix: this.GetHarmonyMethod(nameof(PetPrefix))
+            transpiler: this.GetHarmonyMethod(nameof(PetTranspiler))
         );
     }
 
     // 修改抚摸动物获得的经验为50点
-    private static void PetPrefix(Farmer who, bool is_auto_pet, FarmAnimal __instance)
+    private static IEnumerable<CodeInstruction> PetTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        if (!__instance.wasPet.Value && !is_auto_pet)
-        {
-            who.gainExperience(Farmer.farmingSkill, 45);
-        }
+        var codes = instructions.ToList();
+
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience))));
+        codes[index - 1] = new CodeInstruction(OpCodes.Ldc_I4, 50);
+        Log.Info("修改抚摸动物获得的经验为50点");
+
+        return codes.AsEnumerable();
     }
 }

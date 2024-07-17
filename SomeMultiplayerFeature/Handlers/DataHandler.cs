@@ -52,5 +52,19 @@ internal class DataHandler : BaseHandler
             );
             Log.Info("移除商店中的炸弹、超级炸弹和爆炸弹丸");
         }
+
+        if (e.Name.IsEquivalentTo("Data/CraftingRecipes"))
+        {
+            e.Edit(asset =>
+                {
+                    var craftingRecipes = asset.AsDictionary<string, string>().Data;
+                    craftingRecipes["Cherry Bomb"] = "92 5 390 2//286/false/Mining 1/";
+                    craftingRecipes["Bomb"] = "92 10 390 5//287/false/Mining 6/";
+                    craftingRecipes["Mega Bomb"] = "92 20 390 10//288/false/Mining 8/";
+                    craftingRecipes["Explosive Ammo"] = "92 10 390 10//441 5/false/Combat 8/";
+                }
+            );
+            Log.Info("修改炸弹配方：\n5 树液 + 2 石头 = 1 樱桃炸弹\n10 树液 + 5 石头 = 1 炸弹\n20 树液 + 10 石头 = 1 超级炸弹\n10 树液 + 10 石头 = 5 爆炸弹丸");
+        }
     }
 }

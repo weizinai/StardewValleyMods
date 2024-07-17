@@ -76,13 +76,13 @@ internal class GameLocationPatcher : BasePatcher
     {
         origin = stoneId switch
         {
-            "751" => 14, // 铜矿
-            "290" => 16, // 铁矿
-            "764" => 18, // 金矿
-            "765" => 20, // 铱矿
+            "751" => 10, // 铜矿
+            "290" => 11, // 铁矿
+            "764" => 12, // 金矿
+            "765" => 13, // 铱矿
             _ => origin
         };
 
-        return Game1.player.mailReceived.Contains("gotMasteryHint") ? origin / 2 : origin;
+        return origin;
     }
 }

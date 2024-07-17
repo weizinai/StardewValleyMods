@@ -26,10 +26,10 @@ internal class DataHandler : BaseHandler
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        Log.Info("\n添加收获机器经验：\n小桶：20点耕种经验\n熔炉：7点采矿经验\n回收机：4点钓鱼经验\n种子生成器：4点耕种经验\n树液采集器：4点采集经验\n煤炭窑：4点采集经验\n熏鱼机：4点钓鱼经验\n重型熔炉：35点采矿经验");
         Log.Info("移除商店中的炸弹、超级炸弹和爆炸弹丸");
-        Log.Info("\n修改炸弹配方：\n5 树液 + 2 石头 = 1 樱桃炸弹\n10 树液 + 5 石头 = 1 炸弹\n20 树液 + 10 石头 = 1 超级炸弹\n10 树液 + 10 石头 = 5 爆炸弹丸");
         Log.Info("修改树木生长的概率为50%、掉落种子的概率为0%");
+        Log.Info("\n添加收获机器经验：\n小桶：20点耕种经验\n熔炉：7点采矿经验\n回收机：4点钓鱼经验\n种子生成器：4点耕种经验\n树液采集器：4点采集经验\n煤炭窑：4点采集经验\n熏鱼机：4点钓鱼经验\n重型熔炉：35点采矿经验");
+        Log.Info("\n修改炸弹配方：\n5 树液 + 2 石头 = 1 樱桃炸弹\n10 树液 + 5 石头 = 1 炸弹\n20 树液 + 10 石头 = 1 超级炸弹\n10 树液 + 10 石头 = 5 爆炸弹丸");
     }
 
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)

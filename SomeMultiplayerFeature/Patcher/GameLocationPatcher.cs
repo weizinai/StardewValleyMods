@@ -34,7 +34,7 @@ internal class GameLocationPatcher : BasePatcher
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetStoneExperience))));
 
-        Log.Info("修改采矿经验：\n铜矿：11点\n铁矿：12点\n金矿：13点\n铱矿：14点");
+        Log.Info("\n修改采矿经验：\n铜矿：11点\n铁矿：12点\n金矿：13点\n铱矿：14点");
 
         return codes.AsEnumerable();
     }

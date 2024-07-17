@@ -16,7 +16,7 @@ internal class FarmerPatcher : BasePatcher
 
     private static void GainExperiencePrefix(int which, ref int howMuch)
     {
-        // 精通后钓鱼经验翻倍
-        if (Game1.player.locationsVisited.Contains("MasteryCave") && which == Farmer.fishingSkill) howMuch *= 2;
+        // 钓鱼经验翻倍
+        if (which == Farmer.fishingSkill) howMuch *= 2;
     }
 }

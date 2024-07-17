@@ -8,7 +8,7 @@ using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
-internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
+internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     public const string PurchaseLimitKey = "weizinai.SomeMultiplayerFeature_PurchaseLimit";
     public const string PurchaseAmountKey = "weizinai.SomeMultiplayerFeature_PurchaseAmount";
@@ -16,7 +16,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
     private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
     private Dictionary<string, int> limitData = new();
 
-    public PurchaseLimitHandler(IModHelper helper, ModConfig config)
+    public SpendLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
         if (Context.IsWorldReady) this.InitPurchaseLimitConfig();
@@ -69,10 +69,10 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         var farmerName = Game1.getFarmer(e.Peer.PlayerID).Name;
         if (!this.limitData.ContainsKey(farmerName))
         {
-            this.limitData[farmerName] = this.Config.DefaultPurchaseLimit;
+            this.limitData[farmerName] = this.Config.DefaultSpendLimit;
             this.SetPurchaseLimit();
             this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-            Log.Info($"{farmerName}玩家未设置额度，已自动将其设置为默认值{this.Config.DefaultPurchaseLimit}元");
+            Log.Info($"{farmerName}玩家未设置额度，已自动将其设置为默认值{this.Config.DefaultSpendLimit}元");
         }
     }
 
@@ -81,7 +81,7 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         if (Game1.IsClient) return;
 
         var modData = Game1.MasterPlayer.modData;
-        if (this.Config.PurchaseLimit)
+        if (this.Config.SpendLimit)
             modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
         else
             modData.Remove(PurchaseLimitKey);
@@ -99,10 +99,10 @@ internal class PurchaseLimitHandler : BaseHandlerWithConfig<ModConfig>
         {
             foreach (var farmer in Game1.getAllFarmhands())
             {
-                this.limitData[farmer.Name] = this.Config.DefaultPurchaseLimit;
+                this.limitData[farmer.Name] = this.Config.DefaultSpendLimit;
             }
             this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-            Log.Info($"存档<{Constants.SaveFolderName}>没有额度信息，已自动创建，并将所有玩家的额度设置为{this.Config.DefaultPurchaseLimit}元");
+            Log.Info($"存档<{Constants.SaveFolderName}>没有额度信息，已自动创建，并将所有玩家的额度设置为{this.Config.DefaultSpendLimit}元");
             return;
         }
 

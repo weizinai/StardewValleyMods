@@ -33,17 +33,17 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.OpenConfigMenuKey = value,
                 () => "打开配置菜单快捷键"
             )
-            // 冻结金钱
-            .AddSectionTitle(() => "购物限制")
+            // 花钱限制
+            .AddSectionTitle(() => "花钱限制")
             .AddBoolOption(
-                config => config.PurchaseLimit,
-                (config, value) => config.PurchaseLimit = value,
-                () => "购物限制"
+                config => config.SpendLimit,
+                (config, value) => config.SpendLimit = value,
+                () => "花钱限制"
             )
             .AddNumberOption(
-                config => config.DefaultPurchaseLimit,
-                (config, value) => config.DefaultPurchaseLimit = value,
-                () => "默认限制额度"
+                config => config.DefaultSpendLimit,
+                (config, value) => config.DefaultSpendLimit = value,
+                () => "默认花钱额度"
             )
             // 禁止购买背包
             .AddSectionTitle(() => "禁止购买背包")

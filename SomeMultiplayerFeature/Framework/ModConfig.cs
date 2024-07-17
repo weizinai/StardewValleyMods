@@ -9,8 +9,8 @@ public class ModConfig
     public KeybindList OpenConfigMenuKey { get; set; } = new(SButton.R);
 
     // 购物限制
-    public bool PurchaseLimit { get; set; } = true;
-    public int DefaultPurchaseLimit { get; set; } = 2000;
+    public bool SpendLimit { get; set; } = true;
+    public int DefaultSpendLimit { get; set; } = 2000;
 
     // 禁止购买背包
     public bool BanLargeBackpack { get; set; }

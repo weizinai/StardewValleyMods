@@ -10,8 +10,8 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public const string PurchaseLimitKey = ModEntry.ModDataPrefix + "SpentLimit";
-    public const string PurchaseAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
+    public const string SpentLimitKey = ModEntry.ModDataPrefix + "SpentLimit";
+    public const string SpentAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
 
     private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
     private Dictionary<string, int> limitData = new();
@@ -57,7 +57,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         if (Game1.IsClient)
         {
-            Game1.player.modData[PurchaseAmountKey] = "0";
+            Game1.player.modData[SpentAmountKey] = "0";
             Log.NoIconHUDMessage("今日消费金额已重置");
         }
     }
@@ -82,9 +82,9 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
         var modData = Game1.MasterPlayer.modData;
         if (this.Config.SpendLimit)
-            modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+            modData[SpentLimitKey] = JsonSerializer.Serialize(this.limitData);
         else
-            modData.Remove(PurchaseLimitKey);
+            modData.Remove(SpentLimitKey);
     }
 
     private void ReadLimitData()
@@ -180,6 +180,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     private void SetPurchaseLimit()
     {
         var modData = Game1.MasterPlayer.modData;
-        if (modData.ContainsKey(PurchaseLimitKey)) modData[PurchaseLimitKey] = JsonSerializer.Serialize(this.limitData);
+        if (modData.ContainsKey(SpentLimitKey)) modData[SpentLimitKey] = JsonSerializer.Serialize(this.limitData);
     }
 }

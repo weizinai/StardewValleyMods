@@ -40,7 +40,7 @@ internal class ShopMenuPatcher : BasePatcher
             return false;
         }
 
-        player.modData[SpendLimitHandler.PurchaseAmountKey] = (amount + item.salePrice() * stockToBuy).ToString();
+        player.modData[SpendLimitHandler.SpentAmountKey] = (amount + item.salePrice() * stockToBuy).ToString();
         return true;
     }
 
@@ -51,8 +51,8 @@ internal class ShopMenuPatcher : BasePatcher
 
     private static bool TryGetPlayerLimit(Farmer player, out int limit, out int amount)
     {
-        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.PurchaseLimitKey, out var rawLimit);
-        player.modData.TryGetValue(SpendLimitHandler.PurchaseAmountKey, out var rawAmount);
+        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var rawLimit);
+        player.modData.TryGetValue(SpendLimitHandler.SpentAmountKey, out var rawAmount);
 
         if (rawLimit == null || rawAmount == null)
         {

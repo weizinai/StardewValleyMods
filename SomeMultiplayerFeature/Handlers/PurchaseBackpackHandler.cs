@@ -8,8 +8,8 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class PurchaseBackpackHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public const string BanLargeBackpackKey = "weizinai.SomeMultiplayerFeature_BanLargeBackpack";
-    public const string BanDeluxeBackpackKey = "weizinai.SomeMultiplayerFeature_BanDeluxeBackpack";
+    public const string BanLargeBackpackKey = ModEntry.ModDataPrefix + "BanLargeBackpack";
+    public const string BanDeluxeBackpackKey = ModEntry.ModDataPrefix + "BanDeluxeBackpack";
 
     public PurchaseBackpackHandler(IModHelper helper, ModConfig config)
         : base(helper, config)

@@ -10,8 +10,8 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public const string PurchaseLimitKey = "weizinai.SomeMultiplayerFeature_PurchaseLimit";
-    public const string PurchaseAmountKey = "weizinai.SomeMultiplayerFeature_PurchaseAmount";
+    public const string PurchaseLimitKey = ModEntry.ModDataPrefix + "SpentLimit";
+    public const string PurchaseAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
 
     private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
     private Dictionary<string, int> limitData = new();

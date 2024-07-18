@@ -12,6 +12,8 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;
 
 public class ModEntry : Mod
 {
+    public const string ModDataPrefix = "weizinai.SMF.";
+
     private ModConfig config = null!;
     private IHandler[] handlers = Array.Empty<IHandler>();
 

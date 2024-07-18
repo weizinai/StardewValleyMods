@@ -8,7 +8,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class HouseUpgradeHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public const string HouseUpgradeKey = "weizinai.SomeMultiplayerFeature_HouseUpgrade";
+    public const string HouseUpgradeKey = ModEntry.ModDataPrefix + "HouseUpgrade";
 
     public HouseUpgradeHandler(IModHelper helper, ModConfig config)
         : base(helper, config)

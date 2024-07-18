@@ -35,10 +35,10 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         if (this.Config.VersionLimit && Game1.IsServer)
         {
+            var id = e.Peer.PlayerID;
+            var farmer = Game1.getFarmer(id);
             DelayedAction.functionAfterDelay(() =>
             {
-                var id = e.Peer.PlayerID;
-                var farmer = Game1.getFarmer(id);
                 if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
                 {
                     var message = "";

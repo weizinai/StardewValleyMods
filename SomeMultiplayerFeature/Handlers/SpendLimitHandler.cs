@@ -14,7 +14,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     public const string SpentAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
 
     private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
-    private Dictionary<string, int> limitData = new();
 
     public SpendLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
@@ -24,7 +23,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
 
@@ -35,16 +33,10 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
 
         this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        this.Helper.ConsoleCommands.Add("set_limit", "", this.SetLimit);
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -78,13 +70,13 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         if (Game1.IsClient) return;
 
+        if (!this.Config.SpendLimit) return;
+
         var farmerName = Game1.getFarmer(e.Peer.PlayerID).Name;
-        if (!this.limitData.ContainsKey(farmerName))
+        if (!SpendLimitHelper.TryGetFarmerSpendLimit(farmerName, out _))
         {
-            this.limitData[farmerName] = this.Config.DefaultSpendLimit;
-            this.SetPurchaseLimit();
-            this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-            Log.Info($"{farmerName}玩家未设置额度，已自动将其设置为默认值{this.Config.DefaultSpendLimit}元");
+            SpendLimitHelper.SetFarmerSpendLimit(farmerName, this.Config.DefaultSpendLimit);
+            Log.Info($"{farmerName}没有额度信息，已将其额度设置为{this.Config.DefaultSpendLimit}金");
         }
     }
 
@@ -102,63 +94,28 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
             if (rawData is null)
             {
-                foreach (var name in farmhands) this.limitData[name] = this.Config.DefaultSpendLimit;
+                rawData = new Dictionary<string, int>();
+                foreach (var name in farmhands) rawData[name] = this.Config.DefaultSpendLimit;
                 Log.NoIconHUDMessage($"存档<{Constants.SaveFolderName}>没有额度信息，已自动将所有玩家的额度设置为{this.Config.DefaultSpendLimit}金");
             }
             else
             {
-                this.limitData = rawData;
                 foreach (var name in farmhands)
                 {
-                    if (!this.limitData.ContainsKey(name))
+                    if (!rawData.ContainsKey(name))
                     {
-                        this.limitData[name] = this.Config.DefaultSpendLimit;
+                        rawData[name] = this.Config.DefaultSpendLimit;
                         Log.NoIconHUDMessage($"{name}没有额度信息，已将其额度设置为{this.Config.DefaultSpendLimit}金");
                     }
                 }
             }
 
-            modData[SpentLimitKey] = JsonSerializer.Serialize(this.limitData);
+            modData[SpentLimitKey] = JsonSerializer.Serialize(rawData);
         }
         else
         {
             modData.Remove(SpentLimitKey);
             Log.NoIconHUDMessage("花钱限制功能已关闭");
         }
-    }
-
-    private void SetLimit(string command, string[] args)
-    {
-        if (Game1.IsClient) return;
-
-        if (args.Length == 0 || args.Length > 2 || !int.TryParse(args[0], out var money))
-        {
-            Log.Error("命令输入错误，请使用：set_limit <金额> [玩家名称]");
-            return;
-        }
-
-        if (args.Length == 1)
-        {
-            foreach (var name in this.limitData.Keys)
-            {
-                this.limitData[name] = money;
-            }
-            Log.Info($"已将所有玩家的购物额度设置为{money}元");
-        }
-        else
-        {
-            var name = args[1];
-            this.limitData[name] = money;
-            Log.Info($"已将{name}的购物额度设置为{money}元");
-        }
-
-        this.SetPurchaseLimit();
-        this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-    }
-
-    private void SetPurchaseLimit()
-    {
-        var modData = Game1.MasterPlayer.modData;
-        if (modData.ContainsKey(SpentLimitKey)) modData[SpentLimitKey] = JsonSerializer.Serialize(this.limitData);
     }
 }

@@ -44,9 +44,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        this.Helper.ConsoleCommands.Add("change_limit", "", this.ChangeLimit);
         this.Helper.ConsoleCommands.Add("set_limit", "", this.SetLimit);
-        this.Helper.ConsoleCommands.Add("reload_limit", "", this.ReloadLimit);
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -126,35 +124,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         Log.Info($"成功读取存档<{Constants.SaveFolderName}>的额度信息");
     }
 
-    private void ChangeLimit(string command, string[] args)
-    {
-        if (Game1.IsClient) return;
-
-        if (args.Length == 0 || args.Length > 2 || !int.TryParse(args[0], out var money))
-        {
-            Log.Error("命令输入错误，请使用：change_limit <金额> [玩家名称]");
-            return;
-        }
-
-        if (args.Length == 1)
-        {
-            foreach (var name in this.limitData.Keys)
-            {
-                this.limitData[name] += money;
-            }
-            Log.Info(money >= 0 ? $"已为所有玩家增加{money}元的额度" : $"为所有玩家减少{-money}元的额度");
-        }
-        else
-        {
-            var name = args[1];
-            this.limitData[name] += money;
-            Log.Info(money >= 0 ? $"已为{name}增加{money}元的额度" : $"已为{name}减少{-money}元的额度");
-        }
-
-        this.SetPurchaseLimit();
-        this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-    }
-
     private void SetLimit(string command, string[] args)
     {
         if (Game1.IsClient) return;
@@ -182,14 +151,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
         this.SetPurchaseLimit();
         this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-    }
-
-    private void ReloadLimit(string command, string[] args)
-    {
-        if (Game1.IsClient) return;
-
-        this.ReadLimitData();
-        this.SetPurchaseLimit();
     }
 
     private void SetPurchaseLimit()

@@ -14,8 +14,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     public const string SpentLimitDataKey = ModEntry.ModDataPrefix + "SpentLimitData";
     public const string SpentAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
 
-    private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
-
     public SpendLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
@@ -26,9 +24,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
-
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-
         this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
 
@@ -36,7 +32,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
-
+        this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
         this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
     }
 
@@ -50,7 +46,10 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         if (Game1.IsClient)
         {
             Game1.player.modData[SpentAmountKey] = "0";
-            Log.NoIconHUDMessage("今日消费金额已重置");
+            if (Game1.MasterPlayer.modData.ContainsKey(SpendLimitKey))
+            {
+                Log.NoIconHUDMessage("今日消费金额已重置");
+            }
         }
     }
 
@@ -60,10 +59,23 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
         if (this.Config.SpendLimitManagerMenuKey.JustPressed())
         {
+            if (!Game1.MasterPlayer.modData.ContainsKey(SpendLimitKey))
+            {
+                Log.NoIconHUDMessage("主机未开启金钱限制功能");
+                return;
+            }
+
             if (Game1.IsServer)
+            {
                 Game1.activeClickableMenu = new SpendLimitManagerMenu();
+            }
             else
-                Log.Error("客户端无法打开花钱限制管理菜单，后续按该按键会显示额度相关信息");
+            {
+                var player = Game1.player;
+                var amount = int.Parse(player.modData[SpentAmountKey]);
+                SpendLimitHelper.TryGetFarmerSpendLimit(player.Name, out var limit);
+                Log.NoIconHUDMessage($"当日消费：{amount}\n可用额度：{limit - amount}\n总额度：{limit}");
+            }
         }
     }
 
@@ -88,31 +100,32 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         var modData = Game1.MasterPlayer.modData;
         if (this.Config.SpendLimit)
         {
-            var rawData = this.Helper.Data.ReadJsonFile<Dictionary<string, int>>(LimitDataPath);
             var farmhands = Game1.getAllFarmhands()
                 .Where(x => !x.isUnclaimedFarmhand)
                 .Select(x => x.Name);
 
-            if (rawData is null)
+            var limitData = new Dictionary<string, int>();
+            if (!modData.ContainsKey(SpentLimitDataKey))
             {
-                rawData = new Dictionary<string, int>();
-                foreach (var name in farmhands) rawData[name] = this.Config.DefaultSpendLimit;
-                Log.NoIconHUDMessage($"存档<{Constants.SaveFolderName}>没有额度信息，已自动将所有玩家的额度设置为{this.Config.DefaultSpendLimit}金");
+                limitData = new Dictionary<string, int>();
+                foreach (var name in farmhands) limitData[name] = this.Config.DefaultSpendLimit;
+                Log.NoIconHUDMessage($"当前存档没有额度信息，已自动将所有玩家的额度设置为{this.Config.DefaultSpendLimit}金");
             }
             else
             {
+                limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(modData[SpentLimitDataKey])!;
                 foreach (var name in farmhands)
                 {
-                    if (!rawData.ContainsKey(name))
+                    if (!limitData.ContainsKey(name))
                     {
-                        rawData[name] = this.Config.DefaultSpendLimit;
+                        limitData[name] = this.Config.DefaultSpendLimit;
                         Log.NoIconHUDMessage($"{name}没有额度信息，已将其额度设置为{this.Config.DefaultSpendLimit}金");
                     }
                 }
             }
 
             modData[SpendLimitKey] = "true";
-            modData[SpentLimitDataKey] = JsonSerializer.Serialize(rawData);
+            modData[SpentLimitDataKey] = JsonSerializer.Serialize(limitData);
         }
         else
         {

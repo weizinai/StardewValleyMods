@@ -51,7 +51,7 @@ internal class ShopMenuPatcher : BasePatcher
 
     private static bool TryGetPlayerLimit(Farmer player, out int limit, out int amount)
     {
-        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var rawLimit);
+        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitDataKey, out var rawLimit);
         player.modData.TryGetValue(SpendLimitHandler.SpentAmountKey, out var rawAmount);
 
         if (rawLimit == null || rawAmount == null)

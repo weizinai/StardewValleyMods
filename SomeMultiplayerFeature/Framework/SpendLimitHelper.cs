@@ -11,7 +11,7 @@ internal static class SpendLimitHelper
 
     public static bool TryGetFarmerSpendLimit(string name, out int limit)
     {
-        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var rawLimitData);
+        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitDataKey, out var rawLimitData);
 
         if (rawLimitData == null)
         {
@@ -36,7 +36,7 @@ internal static class SpendLimitHelper
     {
         var modData = Game1.MasterPlayer.modData;
 
-        modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var rawLimitData);
+        modData.TryGetValue(SpendLimitHandler.SpentLimitDataKey, out var rawLimitData);
 
         if (rawLimitData == null)
         {
@@ -46,6 +46,6 @@ internal static class SpendLimitHelper
 
         var limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(rawLimitData)!;
         limitData[name] = limit;
-        modData[SpendLimitHandler.SpentLimitKey] = JsonSerializer.Serialize(limitData);
+        modData[SpendLimitHandler.SpentLimitDataKey] = JsonSerializer.Serialize(limitData);
     }
 }

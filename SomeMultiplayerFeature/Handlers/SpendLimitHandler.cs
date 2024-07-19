@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
-    public const string SpentLimitKey = ModEntry.ModDataPrefix + "SpentLimit";
+    public const string SpentLimitDataKey = ModEntry.ModDataPrefix + "SpentLimitData";
     public const string SpentAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
 
     private static string LimitDataPath => $"data/purchase_limit_data/{Constants.SaveFolderName}.json";
@@ -110,11 +110,11 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
                 }
             }
 
-            modData[SpentLimitKey] = JsonSerializer.Serialize(rawData);
+            modData[SpentLimitDataKey] = JsonSerializer.Serialize(rawData);
         }
         else
         {
-            modData.Remove(SpentLimitKey);
+            modData.Remove(SpentLimitDataKey);
             Log.NoIconHUDMessage("花钱限制功能已关闭");
         }
     }

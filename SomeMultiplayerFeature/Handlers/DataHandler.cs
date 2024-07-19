@@ -29,7 +29,7 @@ internal class DataHandler : BaseHandler
         Log.Info("移除商店中的炸弹、超级炸弹和爆炸弹丸");
         Log.Info("修改树木生长的概率为50%、掉落种子的概率为0%");
         Log.Info("\n添加收获机器经验：\n小桶：20点耕种经验\n熔炉：7点采矿经验\n回收机：4点钓鱼经验\n种子生成器：4点耕种经验\n树液采集器：4点采集经验\n煤炭窑：4点采集经验\n熏鱼机：4点钓鱼经验\n重型熔炉：35点采矿经验");
-        Log.Info("\n修改炸弹配方：\n2 树液 + 1 石头 = 1 樱桃炸弹\n5 树液 + 3 石头 = 1 炸弹\n10 树液 + 5 石头 = 1 超级炸弹\n10 树液 + 10 石头 = 5 爆炸弹丸");
+        Log.Info("\n修改炸弹配方：\n2 树液 + 1 铜矿 = 1 樱桃炸弹\n4 树液 + 3 铁矿 = 1 炸弹\n8 树液 + 4 金矿 = 1 超级炸弹\n10 树液 + 10 铱矿 = 5 爆炸弹丸");
     }
 
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
@@ -70,10 +70,10 @@ internal class DataHandler : BaseHandler
             e.Edit(asset =>
                 {
                     var craftingRecipes = asset.AsDictionary<string, string>().Data;
-                    craftingRecipes["Cherry Bomb"] = "92 2 390 1//286/false/Mining 1/";
-                    craftingRecipes["Bomb"] = "92 5 390 3//287/false/Mining 6/";
-                    craftingRecipes["Mega Bomb"] = "92 10 390 5//288/false/Mining 8/";
-                    craftingRecipes["Explosive Ammo"] = "92 10 390 10//441 5/false/Combat 8/";
+                    craftingRecipes["Cherry Bomb"] = "92 2 378 1//286/false/Mining 1/";
+                    craftingRecipes["Bomb"] = "92 3 380 3//287/false/Mining 6/";
+                    craftingRecipes["Mega Bomb"] = "92 8 384 5//288/false/Mining 8/";
+                    craftingRecipes["Explosive Ammo"] = "92 10 386 10//441 5/false/Combat 8/";
                 }
             );
         }

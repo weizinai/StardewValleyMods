@@ -11,19 +11,19 @@ internal static class SpendLimitHelper
 
     public static bool TryGetFarmerSpendLimit(string name, out int limit)
     {
-        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var value);
+        Game1.MasterPlayer.modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var rawLimitData);
 
-        if (value == null)
+        if (rawLimitData == null)
         {
             Log.Error($"主机端未开启花钱限制功能，但却尝试获取{name}的消费额度");
             limit = DefaultErrorLimit;
             return false;
         }
 
-        var limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(value)!;
-        if (limitData.TryGetValue(name, out var result))
+        var limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(rawLimitData)!;
+        if (limitData.TryGetValue(name, out var value))
         {
-            limit = result;
+            limit = value;
             return true;
         }
 
@@ -36,15 +36,15 @@ internal static class SpendLimitHelper
     {
         var modData = Game1.MasterPlayer.modData;
 
-        modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var value);
+        modData.TryGetValue(SpendLimitHandler.SpentLimitKey, out var rawLimitData);
 
-        if (value == null)
+        if (rawLimitData == null)
         {
             Log.Error($"主机端未开启花钱限制功能，但却尝试设置{name}的消费额度");
             return;
         }
 
-        var limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(value)!;
+        var limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(rawLimitData)!;
         limitData[name] = limit;
         modData[SpendLimitHandler.SpentLimitKey] = JsonSerializer.Serialize(limitData);
     }

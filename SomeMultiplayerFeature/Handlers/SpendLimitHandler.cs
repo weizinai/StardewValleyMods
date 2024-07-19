@@ -28,6 +28,8 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
 
+        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+
         this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
 
@@ -59,6 +61,19 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         {
             Game1.player.modData[SpentAmountKey] = "0";
             Log.NoIconHUDMessage("今日消费金额已重置");
+        }
+    }
+
+    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
+    {
+        if (!Context.IsPlayerFree) return;
+
+        if (this.Config.SpendLimitManagerMenuKey.JustPressed())
+        {
+            if (Game1.IsServer)
+                Game1.activeClickableMenu = new SpendLimitManagerMenu();
+            else
+                Log.Error("客户端无法打开花钱限制管理菜单，后续按该按键会显示额度相关信息");
         }
     }
 

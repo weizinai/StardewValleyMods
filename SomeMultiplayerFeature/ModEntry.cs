@@ -1,5 +1,6 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
@@ -26,6 +27,7 @@ public class ModEntry : Mod
         this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -62,6 +64,13 @@ public class ModEntry : Mod
             new ShopMenuPatcher(),
             new TreePatcher()
         );
+    }
+
+    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
+    {
+        var keys = Game1.player.modData.Keys.Where(key => key.StartsWith("weizinai.Some")).ToList();
+        if (keys.Any()) Log.NoIconHUDMessage("检测到无用的旧版本数据，已清除。");
+        foreach (var key in keys) Game1.player.modData.Remove(key);
     }
 
     private void UpdateConfig()

@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     private const string VersionLimitKey = ModEntry.ModDataPrefix + "VersionLimit";
-    private const string TargetVersion = "0.15.3";
+    private const string TargetVersion = "0.15.4";
 
     public VersionLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }

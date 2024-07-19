@@ -19,7 +19,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     public SpendLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
     {
-        if (Context.IsWorldReady) this.InitPurchaseLimitConfig();
+        if (Context.IsWorldReady) this.InitSpendLimitConfig();
     }
 
     public override void Apply()
@@ -49,8 +49,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        this.ReadLimitData();
-        this.InitPurchaseLimitConfig();
+        this.InitSpendLimitConfig();
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
@@ -89,39 +88,43 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         }
     }
 
-    private void InitPurchaseLimitConfig()
+    private void InitSpendLimitConfig()
     {
         if (Game1.IsClient) return;
 
         var modData = Game1.MasterPlayer.modData;
         if (this.Config.SpendLimit)
-            modData[SpentLimitKey] = JsonSerializer.Serialize(this.limitData);
-        else
-            modData.Remove(SpentLimitKey);
-    }
-
-    private void ReadLimitData()
-    {
-        if (Game1.IsClient) return;
-
-        Log.Info($"开始读取存档<{Constants.SaveFolderName}>的额度信息");
-
-        var rawData = this.Helper.Data.ReadJsonFile<Dictionary<string, int>>(LimitDataPath);
-
-        if (rawData is null)
         {
-            foreach (var farmer in Game1.getAllFarmhands())
+            var rawData = this.Helper.Data.ReadJsonFile<Dictionary<string, int>>(LimitDataPath);
+            var farmhands = Game1.getAllFarmhands()
+                .Where(x => !x.isUnclaimedFarmhand)
+                .Select(x => x.Name);
+
+            if (rawData is null)
             {
-                this.limitData[farmer.Name] = this.Config.DefaultSpendLimit;
+                foreach (var name in farmhands) this.limitData[name] = this.Config.DefaultSpendLimit;
+                Log.NoIconHUDMessage($"存档<{Constants.SaveFolderName}>没有额度信息，已自动将所有玩家的额度设置为{this.Config.DefaultSpendLimit}金");
             }
-            this.Helper.Data.WriteJsonFile(LimitDataPath, this.limitData);
-            Log.Info($"存档<{Constants.SaveFolderName}>没有额度信息，已自动创建，并将所有玩家的额度设置为{this.Config.DefaultSpendLimit}元");
-            return;
+            else
+            {
+                this.limitData = rawData;
+                foreach (var name in farmhands)
+                {
+                    if (!this.limitData.ContainsKey(name))
+                    {
+                        this.limitData[name] = this.Config.DefaultSpendLimit;
+                        Log.NoIconHUDMessage($"{name}没有额度信息，已将其额度设置为{this.Config.DefaultSpendLimit}金");
+                    }
+                }
+            }
+
+            modData[SpentLimitKey] = JsonSerializer.Serialize(this.limitData);
         }
-
-        this.limitData = rawData;
-
-        Log.Info($"成功读取存档<{Constants.SaveFolderName}>的额度信息");
+        else
+        {
+            modData.Remove(SpentLimitKey);
+            Log.NoIconHUDMessage("花钱限制功能已关闭");
+        }
     }
 
     private void SetLimit(string command, string[] args)

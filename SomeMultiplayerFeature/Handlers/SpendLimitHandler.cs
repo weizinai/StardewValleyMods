@@ -11,8 +11,8 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     public const string SpendLimitKey = ModEntry.ModDataPrefix + "SpendLimit";
-    public const string SpentLimitDataKey = ModEntry.ModDataPrefix + "SpentLimitData";
-    public const string SpentAmountKey = ModEntry.ModDataPrefix + "SpentAmount";
+    public const string SpendLimitDataKey = ModEntry.ModDataPrefix + "SpendLimitData";
+    public const string SpendAmountKey = ModEntry.ModDataPrefix + "SpendAmount";
 
     public SpendLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config)
@@ -45,7 +45,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         if (Game1.IsClient)
         {
-            Game1.player.modData[SpentAmountKey] = "0";
+            Game1.player.modData[SpendAmountKey] = "0";
             if (Game1.MasterPlayer.modData.ContainsKey(SpendLimitKey))
             {
                 Log.NoIconHUDMessage("今日消费金额已重置");
@@ -72,7 +72,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
             else
             {
                 var player = Game1.player;
-                var amount = int.Parse(player.modData[SpentAmountKey]);
+                var amount = int.Parse(player.modData[SpendAmountKey]);
                 SpendLimitHelper.TryGetFarmerSpendLimit(player.Name, out var limit);
                 Log.NoIconHUDMessage($"当日消费：{amount}\n可用额度：{limit - amount}\n总额度：{limit}");
             }
@@ -105,7 +105,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
                 .Select(x => x.Name);
 
             var limitData = new Dictionary<string, int>();
-            if (!modData.ContainsKey(SpentLimitDataKey))
+            if (!modData.ContainsKey(SpendLimitDataKey))
             {
                 limitData = new Dictionary<string, int>();
                 foreach (var name in farmhands) limitData[name] = this.Config.DefaultSpendLimit;
@@ -113,7 +113,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
             }
             else
             {
-                limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(modData[SpentLimitDataKey])!;
+                limitData = JsonSerializer.Deserialize<Dictionary<string, int>>(modData[SpendLimitDataKey])!;
                 foreach (var name in farmhands)
                 {
                     if (!limitData.ContainsKey(name))
@@ -125,7 +125,7 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
             }
 
             modData[SpendLimitKey] = "true";
-            modData[SpentLimitDataKey] = JsonSerializer.Serialize(limitData);
+            modData[SpendLimitDataKey] = JsonSerializer.Serialize(limitData);
         }
         else
         {

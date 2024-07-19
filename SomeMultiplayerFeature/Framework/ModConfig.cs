@@ -11,6 +11,7 @@ public class ModConfig
     // 购物限制
     public bool SpendLimit { get; set; } = true;
     public int DefaultSpendLimit { get; set; } = 2000;
+    public KeybindList SpendLimitManagerMenuKey { get; set; } = new(SButton.N);
 
     // 禁止购买背包
     public bool BanLargeBackpack { get; set; }

@@ -45,6 +45,11 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.DefaultSpendLimit = value,
                 () => "默认花钱额度"
             )
+            .AddKeybindList(
+                config => config.SpendLimitManagerMenuKey,
+                (config, value) => config.SpendLimitManagerMenuKey = value,
+                () => "花钱限制管理快捷键"
+            )
             // 禁止购买背包
             .AddSectionTitle(() => "禁止购买背包")
             .AddBoolOption(

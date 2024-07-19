@@ -31,7 +31,7 @@ internal class ShopMenuPatcher : BasePatcher
         var totalPrice = item.salePrice() * stockToBuy;
         if (availableMoney < totalPrice)
         {
-            var dialogues = new List<string>()
+            var dialogues = new List<string>
             {
                 $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
                 $"购买{stockToBuy}个{item.DisplayName}需要{totalPrice}金，超过可用额度{totalPrice - availableMoney}金"
@@ -45,9 +45,9 @@ internal class ShopMenuPatcher : BasePatcher
         return true;
     }
 
-    private static void TryToPurchaseItemPostfix(ISalable item, int stockToBuy)
+    private static void TryToPurchaseItemPostfix(ISalable item, int stockToBuy, ShopMenu __instance)
     {
-        if (stockToBuy > 0) MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
+        if (stockToBuy > 0 && __instance.heldItem != null) MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
     }
 
     private static bool CheckSpendLimitEnable(ItemStockInformation itemStockInformation)

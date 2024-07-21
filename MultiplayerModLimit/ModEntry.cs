@@ -58,11 +58,11 @@ internal class ModEntry : Mod
 
         foreach (var player in this.playersToKick)
         {
-            player.Cooldown--;
-            if (player.Cooldown < 0) Game1.server?.kick(player.Id);
+            player.TimeLeft--;
+            if (player.TimeLeft < 0) Game1.server?.kick(player.Id);
         }
 
-        this.playersToKick.RemoveAll(player => player.Cooldown < 0);
+        this.playersToKick.RemoveAll(player => player.TimeLeft < 0);
     }
 
     private void OnReturnedToTitle(object? sender, ReturnedToTitleEventArgs e)

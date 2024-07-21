@@ -59,7 +59,7 @@ internal class ModEntry : Mod
         foreach (var player in this.playersToKick)
         {
             player.Cooldown--;
-            if (player.Cooldown < 0) Game1.server?.kick(player.ID);
+            if (player.Cooldown < 0) Game1.server?.kick(player.Id);
         }
 
         this.playersToKick.RemoveAll(player => player.Cooldown < 0);

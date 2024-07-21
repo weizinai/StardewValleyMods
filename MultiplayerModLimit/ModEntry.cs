@@ -107,7 +107,7 @@ internal class ModEntry : Mod
             "generate_ban" => this.config.BannedModList,
             _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
         };
-        targetModList.Add(args[0], this.GetAllMods());
+        targetModList[args[0]] = this.GetAllMods();
         this.Helper.WriteConfig(this.config);
         this.configMenu.Reset();
         Log.Info(I18n.UI_GenerateModList());

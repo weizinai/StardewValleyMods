@@ -52,9 +52,7 @@ internal class ModEntry : Mod
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!Game1.IsServer) return;
-
-        if (!this.config.EnableMod) return;
+        if (!this.IsModEnable()) return;
 
         foreach (var player in this.playersToKick)
         {
@@ -72,9 +70,7 @@ internal class ModEntry : Mod
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!Game1.IsServer) return;
-
-        if (!this.config.EnableMod) return;
+        if (!this.IsModEnable()) return;
 
         var name = Game1.getFarmer(e.Peer.PlayerID).Name;
 
@@ -172,5 +168,10 @@ internal class ModEntry : Mod
     private List<string> GetAllMods()
     {
         return this.Helper.ModRegistry.GetAll().Select(x => x.Manifest.UniqueID).ToList();
+    }
+
+    private bool IsModEnable()
+    {
+        return Game1.IsServer && this.config.EnableMod;
     }
 }

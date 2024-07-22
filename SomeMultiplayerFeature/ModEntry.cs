@@ -90,7 +90,6 @@ public class ModEntry : Mod
             new AutoClickHandler(this.Helper, this.config),
             new CustomCommandHandler(this.Helper, this.config),
             new DataHandler(this.Helper),
-            new HouseUpgradeHandler(this.Helper, this.config),
             new IpConnectionHandler(this.Helper, this.config),
             new MineshaftHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),

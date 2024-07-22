@@ -96,12 +96,61 @@ internal class GameLocationPatcher : BasePatcher
     {
         if (Game1.IsServer) return true;
 
-        var modData = Game1.MasterPlayer.modData;
-        var level = Game1.player.HouseUpgradeLevel;
-        if (modData.ContainsKey(HouseUpgradeHandler.HouseUpgradeKey + level))
+        var player = Game1.player;
+        SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+        switch (player.HouseUpgradeLevel)
         {
-            Game1.drawObjectDialogue("房屋升级已被禁止");
-            return false;
+            case 0:
+                if (availableMoney < 10000)
+                {
+                    var dialogues = new List<string>
+                    {
+                        $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
+                        $"升级1级房子需要10000金，超过可用额度{10000 - availableMoney}金"
+                    };
+                    Game1.drawObjectDialogue(dialogues);
+                    return false;
+                }
+                if (player.Money >= 10000 && player.Items.ContainsId("(O)388", 450))
+                {
+                    player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 10000).ToString();
+                    MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了1级", 500);
+                }
+                break;
+            case 1:
+                if (availableMoney < 65000)
+                {
+                    var dialogues = new List<string>
+                    {
+                        $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
+                        $"升级2级房子需要65000金，超过可用额度{65000 - availableMoney}金"
+                    };
+                    Game1.drawObjectDialogue(dialogues);
+                    return false;
+                }
+                if (player.Money >= 65000 && player.Items.ContainsId("(O)709", 100))
+                {
+                    player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 65000).ToString();
+                    MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了2级", 500);
+                }
+                break;
+            case 2:
+                if (availableMoney < 100000)
+                {
+                    var dialogues = new List<string>
+                    {
+                        $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
+                        $"升级3级房子需要10000金，超过可用额度{100000 - availableMoney}金"
+                    };
+                    Game1.drawObjectDialogue(dialogues);
+                    return false;
+                }
+                if (player.Money >= 100000)
+                {
+                    player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 100000).ToString();
+                    MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了3级", 500);
+                }
+                break;
         }
 
         return true;

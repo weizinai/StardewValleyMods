@@ -50,23 +50,6 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.SpendLimitManagerMenuKey = value,
                 () => "花钱限制管理快捷键"
             )
-            // 禁止升级房屋
-            .AddSectionTitle(() => "禁止升级房屋")
-            .AddBoolOption(
-                config => config.BanHouseUpgrade[0],
-                (config, value) => config.BanHouseUpgrade[0] = value,
-                () => "禁止升级1级房屋"
-            )
-            .AddBoolOption(
-                config => config.BanHouseUpgrade[1],
-                (config, value) => config.BanHouseUpgrade[1] = value,
-                () => "禁止升级2级房屋"
-            )
-            .AddBoolOption(
-                config => config.BanHouseUpgrade[2],
-                (config, value) => config.BanHouseUpgrade[2] = value,
-                () => "禁止升级2级房屋"
-            )
             // 自动设置Ip连接
             .AddSectionTitle(() => "自动设置Ip连接")
             .AddBoolOption(

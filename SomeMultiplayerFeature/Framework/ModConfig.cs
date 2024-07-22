@@ -13,9 +13,6 @@ public class ModConfig
     public int DefaultSpendLimit { get; set; } = 2000;
     public KeybindList SpendLimitManagerMenuKey { get; set; } = new(SButton.N);
 
-    // 禁止升级房屋
-    public bool[] BanHouseUpgrade { get; set; } = { false, true, true };
-
     // 自动设置IP连接
     public bool AutoSetIpConnection { get; set; } = true;
     public int EnableTime { get; set; } = 6;

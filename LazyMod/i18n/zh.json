@@ -25,6 +25,8 @@
 
     "Config.AutoWaterDirt.Name": "自动浇水",
     "Config.AutoWaterDirt.Tooltip": "当你手持水壶时,该功能才有效果.",
+    "Config.WaterOnlyWhenCrop.Name": "仅有作物时浇水",
+    "Config.WaterOnlyWhenCrop.Tooltip": "当该选项启用时，自动浇水只会处理有作物的耕地.",
 
     "Config.AutoRefillWateringCan.Name": "自动补充水壶",
     "Config.AutoRefillWateringCan.Tooltip": "当你手持水壶时,该功能才有效果.",

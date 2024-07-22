@@ -23,6 +23,8 @@ internal class WaterDirtHandler : BaseAutomationHandler
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
             if (tileFeature is HoeDirt hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
+                if (hoeDirt.crop == null && this.Config.WaterOnlyWhenCrop) return true;
+
                 this.UseToolOnTile(location, player, wateringCan, tile);
                 if (player.ShouldHandleAnimationSound())
                 {

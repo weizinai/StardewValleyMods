@@ -77,6 +77,12 @@ internal class GenericModConfigMenuIntegrationForLazyMod
             .AddStaminaToolAutomationConfig(config => config.AutoClearTilledDirt, I18n.Config_AutoClearTilledDirt_Name, I18n.Config_AutoClearTilledDirt_Tooltip, 0)
             // 自动浇水
             .AddStaminaToolAutomationConfig(config => config.AutoWaterDirt, I18n.Config_AutoWaterDirt_Name, I18n.Config_AutoWaterDirt_Tooltip, 0)
+            .AddBoolOption(
+                config => config.WaterOnlyWhenCrop,
+                (config, value) => config.WaterOnlyWhenCrop = value,
+                I18n.Config_WaterOnlyWhenCrop_Name,
+                I18n.Config_WaterOnlyWhenCrop_Tooltip
+            )
             // 自动补充水壶
             .AddToolAutomationConfig(config => config.AutoRefillWateringCan, I18n.Config_AutoRefillWateringCan_Name, I18n.Config_AutoRefillWateringCan_Tooltip, 1)
             // 自动播种

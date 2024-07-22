@@ -25,6 +25,8 @@
 
     "Config.AutoWaterDirt.Name": "Auto Water Dirt",
     "Config.AutoWaterDirt.Tooltip": "This feature only works when you hold the watering can.",
+    "Config.WaterOnlyWhenCrop.Name": "Water Only When Crop",
+    "Config.WaterOnlyWhenCrop.Tooltip": "When this option is enabled, auto-watering will only process hoe dirt with crops.",
 
     "Config.AutoRefillWateringCan.Name": "Auto Refill Watering Can",
     "Config.AutoRefillWateringCan.Tooltip": "This feature only works when you hold the watering can.",

@@ -4,9 +4,10 @@
 - 修复砍树桩功能不生效的问题
 - 现在`AutoChopTree`不会在镇上执行
 - 重构`Generic Mod Config Menu`，使其更加一致
-- 为所有使用工具的功能添加`FindToolFromInventory`选项
 - 移除`ShowMineShaftInfo`功能
+- 为所有使用工具的功能添加`FindToolFromInventory`选项
 - 移除`ChopTapperTree`和`ChopVinegarTree`选项
+- 添加`WaterOnlyWhenCrop`选项，让玩家可以选择是否仅在耕地有作物时浇水
 
 # 1.1.1
 

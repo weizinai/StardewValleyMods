@@ -28,18 +28,13 @@ internal class SpendLimitModel
     {
         if (this.increaseButton.containsPoint(x, y))
         {
-            SpendLimitHelper.TryGetFarmerSpendLimit(this.farmer.Name, out var limit);
-            SpendLimitHelper.SetFarmerSpendLimit(this.farmer.Name, limit + 1000);
-            this.SetTextBoxContent();
-            Log.NoIconHUDMessage($"已将{this.farmer.Name}的额度设置为{limit + 1000}元", 500f);
+            this.ChangeFarmerSpendLimit(true, out var newLimit);
+            Log.NoIconHUDMessage($"已将{this.farmer.Name}的额度设置为{newLimit}元", 500f);
         }
         else if (this.decreaseButton.containsPoint(x, y))
         {
-            SpendLimitHelper.TryGetFarmerSpendLimit(this.farmer.Name, out var rawLimit);
-            var limit = Math.Max(0, rawLimit - 1000);
-            SpendLimitHelper.SetFarmerSpendLimit(this.farmer.Name, limit);
-            this.SetTextBoxContent();
-            Log.NoIconHUDMessage($"已将{this.farmer.Name}的额度设置为{limit}元", 500f);
+            this.ChangeFarmerSpendLimit(false, out var newLimit);
+            Log.NoIconHUDMessage($"已将{this.farmer.Name}的额度设置为{newLimit}元", 500f);
         }
         else if (this.TextBoxBounds.Contains(x, y))
         {
@@ -95,5 +90,13 @@ internal class SpendLimitModel
     {
         SpendLimitHelper.TryGetFarmerSpendLimit(this.farmer.Name, out var value);
         this.textBox.Text = value.ToString();
+    }
+
+    public void ChangeFarmerSpendLimit(bool isIncrease, out int newLimit)
+    {
+        SpendLimitHelper.TryGetFarmerSpendLimit(this.farmer.Name, out var oldLimit);
+        newLimit = isIncrease ? oldLimit + 1000 : Math.Max(0, oldLimit - 1000);
+        SpendLimitHelper.SetFarmerSpendLimit(this.farmer.Name, newLimit);
+        this.SetTextBoxContent();
     }
 }

@@ -29,9 +29,9 @@ internal class SpendLimitManagerMenu : IClickableMenu
         this.downArrow = new ClickableTextureComponent(
             new Rectangle(this.xPositionOnScreen + this.width, this.yPositionOnScreen + this.height -24, 44, 48),
             Game1.mouseCursors, new Rectangle(421, 472, 11, 12), 4f);
-        this.increaseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen, this.yPositionOnScreen - 32, 28, 32),
+        this.increaseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen + 36, this.yPositionOnScreen - 40, 28, 32),
             Game1.mouseCursors, new Rectangle(184, 345, 7, 8), 4f);
-        this.decreaseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen + 36, this.yPositionOnScreen - 32, 28, 32),
+        this.decreaseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen, this.yPositionOnScreen - 40, 28, 32),
             Game1.mouseCursors, new Rectangle(177, 345, 7, 8), 4f);
         for (var i = 0; i < ModelsPerPage; i++) this.spendLimitModelSlots.Add(new ClickableComponent(this.GetSlotRectangle(i), ""));
 

@@ -1,3 +1,7 @@
+# 1.2.1
+
+- 修复`ToggleModState`不生效的问题
+
 # 1.2.0
 
 - 修复`StopStamina`选项有时不生效的问题

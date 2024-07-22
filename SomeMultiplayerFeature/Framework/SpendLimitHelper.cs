@@ -32,6 +32,14 @@ internal static class SpendLimitHelper
         return false;
     }
 
+    public static void GetFarmerSpendData(out int amount, out int limit, out int availableMoney)
+    {
+        var player = Game1.player;
+        TryGetFarmerSpendLimit(player.Name, out limit);
+        amount = int.Parse(player.modData[SpendLimitHandler.SpendAmountKey]);
+        availableMoney = limit - amount;
+    }
+
     public static void SetFarmerSpendLimit(string name, int limit)
     {
         var modData = Game1.MasterPlayer.modData;

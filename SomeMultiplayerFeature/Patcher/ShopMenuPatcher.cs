@@ -24,7 +24,7 @@ internal class ShopMenuPatcher : BasePatcher
     {
         if (!CheckSpendLimitEnable(__instance, item)) return true;
 
-        GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+        SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
         var stockInfo = __instance.itemPriceAndStock[item];
         var totalPrice = stockInfo.Price * stockToBuy;
         if (availableMoney < totalPrice)
@@ -40,7 +40,6 @@ internal class ShopMenuPatcher : BasePatcher
         }
 
         GetTradeItemData(stockInfo, out var tradeItem, out var tradeItemCount);
-
         var player = Game1.player;
         if (player.Money >= totalPrice &&
             (tradeItem == null || __instance.HasTradeItem(tradeItem, tradeItemCount * stockToBuy)))
@@ -64,14 +63,6 @@ internal class ShopMenuPatcher : BasePatcher
                menu.currency == 0 &&                                                      // 商店货币为金币
                (menu.heldItem == null || menu.heldItem.canStackWith(item)) &&             // 当前未持有物品或者持有的物品能与要购买的物品堆叠
                Game1.player.couldInventoryAcceptThisItem(item as Item);                   // 玩家有足够的空间容纳要购买的物品
-    }
-
-    private static void GetFarmerSpendData(out int amount, out int limit, out int availableMoney)
-    {
-        var player = Game1.player;
-        SpendLimitHelper.TryGetFarmerSpendLimit(player.Name, out limit);
-        amount = int.Parse(player.modData[SpendLimitHandler.SpendAmountKey]);
-        availableMoney = limit - amount;
     }
 
     private static void GetTradeItemData(ItemStockInformation stockInfo, out string? tradeItem, out int tradeItemCount)

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
@@ -12,6 +13,8 @@ internal class SpendLimitManagerMenu : IClickableMenu
     private int currentPage;
     private readonly ClickableTextureComponent upArrow;
     private readonly ClickableTextureComponent downArrow;
+    private readonly ClickableTextureComponent increaseButton;
+    private readonly ClickableTextureComponent decreaseButton;
     private readonly List<SpendLimitModel> spendLimitModels = new();
     private readonly List<ClickableComponent> spendLimitModelSlots = new();
 
@@ -26,6 +29,10 @@ internal class SpendLimitManagerMenu : IClickableMenu
         this.downArrow = new ClickableTextureComponent(
             new Rectangle(this.xPositionOnScreen + this.width, this.yPositionOnScreen + this.height -24, 44, 48),
             Game1.mouseCursors, new Rectangle(421, 472, 11, 12), 4f);
+        this.increaseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen, this.yPositionOnScreen - 32, 28, 32),
+            Game1.mouseCursors, new Rectangle(184, 345, 7, 8), 4f);
+        this.decreaseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen + 36, this.yPositionOnScreen - 32, 28, 32),
+            Game1.mouseCursors, new Rectangle(177, 345, 7, 8), 4f);
         for (var i = 0; i < ModelsPerPage; i++) this.spendLimitModelSlots.Add(new ClickableComponent(this.GetSlotRectangle(i), ""));
 
         this.InitSpendLimitModels();
@@ -46,6 +53,8 @@ internal class SpendLimitManagerMenu : IClickableMenu
 
         this.upArrow.draw(b);
         this.downArrow.draw(b);
+        this.increaseButton.draw(b);
+        this.decreaseButton.draw(b);
 
         this.drawMouse(b);
     }
@@ -54,6 +63,8 @@ internal class SpendLimitManagerMenu : IClickableMenu
     {
         this.upArrow.tryHover(x, y);
         this.downArrow.tryHover(x, y);
+        this.increaseButton.tryHover(x, y);
+        this.decreaseButton.tryHover(x, y);
     }
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
@@ -72,9 +83,24 @@ internal class SpendLimitManagerMenu : IClickableMenu
         }
 
         if (this.upArrow.containsPoint(x, y))
+        {
             this.currentPage--;
+        }
         else if (this.downArrow.containsPoint(x, y))
+        {
             this.currentPage++;
+        }
+        else if (this.increaseButton.containsPoint(x, y))
+        {
+            foreach (var model in this.spendLimitModels) model.ChangeFarmerSpendLimit(true, out _);
+            Log.NoIconHUDMessage("已将所有玩家的额度增加1000金", 500f);
+        }
+        else if (this.decreaseButton.containsPoint(x, y))
+        {
+            foreach (var model in this.spendLimitModels) model.ChangeFarmerSpendLimit(false, out _);
+            Log.NoIconHUDMessage("已将所有玩家的额度减少1000金", 500f);
+        }
+
         this.currentPage = Math.Max(0, Math.Min(this.currentPage, this.spendLimitModels.Count / ModelsPerPage));
         this.SetModelsPosition();
     }

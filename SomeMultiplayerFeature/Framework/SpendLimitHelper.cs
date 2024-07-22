@@ -56,4 +56,9 @@ internal static class SpendLimitHelper
         limitData[name] = limit;
         modData[SpendLimitHandler.SpendLimitDataKey] = JsonSerializer.Serialize(limitData);
     }
+
+    public static bool IsSpendLimitEnable()
+    {
+        return Game1.IsClient && Game1.MasterPlayer.modData.ContainsKey(SpendLimitHandler.SpendLimitKey);
+    }
 }

@@ -1,3 +1,8 @@
+# 1.2.1
+
+- 修复`ToggleModState`不生效的问题
+- 修改`GenericModConfigMenu`中可设置的最大范围为5
+
 # 1.2.0
 
 - 修复`StopStamina`选项有时不生效的问题

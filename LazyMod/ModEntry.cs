@@ -81,6 +81,8 @@ internal class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
+        if (!this.modEnable) return;
+
         if (!this.UpdateCooldown()) return;
 
         var player = Game1.player;

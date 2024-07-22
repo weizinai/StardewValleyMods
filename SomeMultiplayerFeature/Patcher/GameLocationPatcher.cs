@@ -43,7 +43,7 @@ internal class GameLocationPatcher : BasePatcher
     // 禁止购买背包
     private static bool AnswerDialogueActionPrefix(string questionAndAnswer)
     {
-        if (Game1.IsServer) return true;
+        if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
 
         if (questionAndAnswer == "Backpack_Purchase")
         {
@@ -94,7 +94,7 @@ internal class GameLocationPatcher : BasePatcher
     // 禁止房屋升级
     private static bool HouseUpgradeAcceptPrefix()
     {
-        if (Game1.IsServer) return true;
+        if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
 
         var player = Game1.player;
         SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);

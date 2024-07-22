@@ -58,11 +58,10 @@ internal class ShopMenuPatcher : BasePatcher
 
     private static bool CheckSpendLimitEnable(ShopMenu menu, ISalable item)
     {
-        return Game1.IsClient &&                                                          // 客户端
-               Game1.MasterPlayer.modData.ContainsKey(SpendLimitHandler.SpendLimitKey) && // 主机开启花钱限制功能
-               menu.currency == 0 &&                                                      // 商店货币为金币
-               (menu.heldItem == null || menu.heldItem.canStackWith(item)) &&             // 当前未持有物品或者持有的物品能与要购买的物品堆叠
-               Game1.player.couldInventoryAcceptThisItem(item as Item);                   // 玩家有足够的空间容纳要购买的物品
+        return SpendLimitHelper.IsSpendLimitEnable() &&                       // 花钱限制功能是否启用
+               menu.currency == 0 &&                                          // 商店货币为金币
+               (menu.heldItem == null || menu.heldItem.canStackWith(item)) && // 当前未持有物品或者持有的物品能与要购买的物品堆叠
+               Game1.player.couldInventoryAcceptThisItem(item as Item);       // 玩家有足够的空间容纳要购买的物品
     }
 
     private static void GetTradeItemData(ItemStockInformation stockInfo, out string? tradeItem, out int tradeItemCount)

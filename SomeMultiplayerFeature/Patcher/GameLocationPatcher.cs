@@ -18,8 +18,7 @@ internal class GameLocationPatcher : BasePatcher
         );
         harmony.Patch(
             original: this.RequireMethod<GameLocation>(nameof(GameLocation.answerDialogueAction)),
-            prefix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPrefix)),
-            postfix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPostfix))
+            prefix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPrefix))
         );
         harmony.Patch(
             original: this.RequireMethod<GameLocation>("houseUpgradeAccept"),
@@ -43,15 +42,13 @@ internal class GameLocationPatcher : BasePatcher
     }
 
     // 禁止购买背包
-    private static bool AnswerDialogueActionPrefix(string questionAndAnswer, ref int __state)
+    private static bool AnswerDialogueActionPrefix(string questionAndAnswer)
     {
+        if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
+
         if (questionAndAnswer == "Backpack_Purchase")
         {
             var player = Game1.player;
-            __state = player.MaxItems;
-
-            if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
-
             SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
             switch (player.MaxItems)
             {
@@ -81,22 +78,6 @@ internal class GameLocationPatcher : BasePatcher
         }
 
         return true;
-    }
-
-    private static void AnswerDialogueActionPostfix(string questionAndAnswer, int __state)
-    {
-        if (questionAndAnswer == "Backpack_Purchase")
-        {
-            var player = Game1.player;
-            if (__state == player.MaxItems) return;
-            var backpackName = player.MaxItems switch
-            {
-                24 => "大背包",
-                36 => "豪华背包",
-                _ => ""
-            };
-            MultiplayerLog.NoIconHUDMessage($"{player.Name}购买了{backpackName}", 500);
-        }
     }
 
     // 禁止房屋升级

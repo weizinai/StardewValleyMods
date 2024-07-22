@@ -18,11 +18,13 @@ internal class GameLocationPatcher : BasePatcher
         );
         harmony.Patch(
             original: this.RequireMethod<GameLocation>(nameof(GameLocation.answerDialogueAction)),
-            prefix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPrefix))
+            prefix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPrefix)),
+            postfix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPostfix))
         );
         harmony.Patch(
             original: this.RequireMethod<GameLocation>("houseUpgradeAccept"),
-            prefix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPrefix))
+            prefix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPrefix)),
+            postfix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPostfix))
         );
     }
 
@@ -41,13 +43,15 @@ internal class GameLocationPatcher : BasePatcher
     }
 
     // 禁止购买背包
-    private static bool AnswerDialogueActionPrefix(string questionAndAnswer)
+    private static bool AnswerDialogueActionPrefix(string questionAndAnswer, ref int __state)
     {
-        if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
-
         if (questionAndAnswer == "Backpack_Purchase")
         {
             var player = Game1.player;
+            __state = player.MaxItems;
+
+            if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
+
             SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
             switch (player.MaxItems)
             {
@@ -60,7 +64,6 @@ internal class GameLocationPatcher : BasePatcher
                     if (player.Money >= 2000)
                     {
                         player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 2000).ToString();
-                        MultiplayerLog.NoIconHUDMessage($"{player.Name}购买了大背包", 500);
                     }
                     break;
                 case 24:
@@ -72,13 +75,28 @@ internal class GameLocationPatcher : BasePatcher
                     if (player.Money >= 10000)
                     {
                         player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 10000).ToString();
-                        MultiplayerLog.NoIconHUDMessage($"{player.Name}购买了豪华背包", 500);
                     }
                     break;
             }
         }
 
         return true;
+    }
+
+    private static void AnswerDialogueActionPostfix(string questionAndAnswer, int __state)
+    {
+        if (questionAndAnswer == "Backpack_Purchase")
+        {
+            var player = Game1.player;
+            if (__state == player.MaxItems) return;
+            var backpackName = player.MaxItems switch
+            {
+                24 => "大背包",
+                36 => "豪华背包",
+                _ => ""
+            };
+            MultiplayerLog.NoIconHUDMessage($"{player.Name}购买了{backpackName}", 500);
+        }
     }
 
     // 禁止房屋升级
@@ -99,7 +117,6 @@ internal class GameLocationPatcher : BasePatcher
                 if (player.Money >= 10000 && player.Items.ContainsId("(O)388", 450))
                 {
                     player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 10000).ToString();
-                    MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了1级", 500);
                 }
                 break;
             case 1:
@@ -111,7 +128,6 @@ internal class GameLocationPatcher : BasePatcher
                 if (player.Money >= 65000 && player.Items.ContainsId("(O)709", 100))
                 {
                     player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 65000).ToString();
-                    MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了2级", 500);
                 }
                 break;
             case 2:
@@ -123,12 +139,20 @@ internal class GameLocationPatcher : BasePatcher
                 if (player.Money >= 100000)
                 {
                     player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 100000).ToString();
-                    MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了3级", 500);
                 }
                 break;
         }
 
         return true;
+    }
+
+    private static void HouseUpgradeAcceptPostfix()
+    {
+        var player = Game1.player;
+        if (player.daysUntilHouseUpgrade.Value == 3)
+        {
+            MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了{player.HouseUpgradeLevel + 1}级", 500);
+        }
     }
 
     private static int GetStoneExperience(int origin, string stoneId)

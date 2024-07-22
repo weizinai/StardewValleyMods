@@ -1,4 +1,5 @@
 using StardewValley;
+using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Framework;
@@ -10,6 +11,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 internal class ChopTreeHandler : BaseAutomationHandler
 {
     public ChopTreeHandler(ModConfig config) : base(config) { }
+
+    public override bool IsEnable()
+    {
+        return base.IsEnable() && Game1.currentLocation is not Town;
+    }
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
@@ -38,7 +44,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
             if (terrainFeature is Tree tree)
             {
-                if (tree.tapped.Value && tree.stopGrowingMoss.Value) return true;
+                if (tree.tapped.Value || tree.stopGrowingMoss.Value) return true;
 
                 foreach (var (key, value) in treeType)
                 {

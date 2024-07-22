@@ -1,4 +1,5 @@
-﻿using StardewModdingAPI;
+﻿using System.Reflection;
+using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
@@ -19,6 +20,7 @@ internal class ModConfig
 
     // 自动浇水
     public StaminaToolAutomationConfig AutoWaterDirt { get; set; } = new(0, 3, false);
+    public bool WaterOnlyWhenCrop { get; set; }
 
     // 自动补充水壶
     public ToolAutomationConfig AutoRefillWateringCan { get; set; } = new(1, true);

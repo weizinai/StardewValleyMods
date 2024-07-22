@@ -2,6 +2,7 @@
 
 - 修复`StopStamina`选项有时不生效的问题
 - 修复砍树桩功能不生效的问题
+- 现在`AutoChopTree`不会在镇上执行
 - 重构`Generic Mod Config Menu`，使其更加一致
 - 为所有使用工具的功能添加`FindToolFromInventory`选项
 - 移除`ShowMineShaftInfo`功能

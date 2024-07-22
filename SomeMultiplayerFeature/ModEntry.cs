@@ -94,7 +94,6 @@ public class ModEntry : Mod
             new IpConnectionHandler(this.Helper, this.config),
             new MineshaftHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
-            new PurchaseBackpackHandler(this.Helper, this.config),
             new SpendLimitHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),
             new UnreadyPlayerHandler(this.Helper, this.config),

@@ -13,10 +13,6 @@ public class ModConfig
     public int DefaultSpendLimit { get; set; } = 2000;
     public KeybindList SpendLimitManagerMenuKey { get; set; } = new(SButton.N);
 
-    // 禁止购买背包
-    public bool BanLargeBackpack { get; set; }
-    public bool BanDeluxeBackpack { get; set; } = true;
-
     // 禁止升级房屋
     public bool[] BanHouseUpgrade { get; set; } = { false, true, true };
 

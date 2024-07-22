@@ -50,18 +50,6 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.SpendLimitManagerMenuKey = value,
                 () => "花钱限制管理快捷键"
             )
-            // 禁止购买背包
-            .AddSectionTitle(() => "禁止购买背包")
-            .AddBoolOption(
-                config => config.BanLargeBackpack,
-                (config, value) => config.BanLargeBackpack = value,
-                () => "禁止购买大背包"
-            )
-            .AddBoolOption(
-                config => config.BanDeluxeBackpack,
-                (config, value) => config.BanDeluxeBackpack = value,
-                () => "禁止购买豪华背包"
-            )
             // 禁止升级房屋
             .AddSectionTitle(() => "禁止升级房屋")
             .AddBoolOption(

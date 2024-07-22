@@ -3,6 +3,7 @@ using HarmonyLib;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
@@ -46,13 +47,44 @@ internal class GameLocationPatcher : BasePatcher
 
         if (questionAndAnswer == "Backpack_Purchase")
         {
-            var modData = Game1.MasterPlayer.modData;
-            switch (Game1.player.MaxItems)
+            var player = Game1.player;
+            SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+            switch (player.MaxItems)
             {
-                case 12 when modData.ContainsKey(PurchaseBackpackHandler.BanLargeBackpackKey):
-                case 24 when modData.ContainsKey(PurchaseBackpackHandler.BanDeluxeBackpackKey):
-                    Game1.drawObjectDialogue("购买背包已被禁止");
-                    return false;
+                case 12:
+                    if (availableMoney < 2000)
+                    {
+                        var dialogues = new List<string>
+                        {
+                            $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
+                            $"购买大背包需要2000金，超过可用额度{2000 - availableMoney}金"
+                        };
+                        Game1.drawObjectDialogue(dialogues);
+                        return false;
+                    }
+                    if (player.Money >= 2000)
+                    {
+                        player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 2000).ToString();
+                        MultiplayerLog.NoIconHUDMessage($"{player.Name}购买了大背包", 500);
+                    }
+                    break;
+                case 24:
+                    if (availableMoney < 10000)
+                    {
+                        var dialogues = new List<string>
+                        {
+                            $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
+                            $"购买大背包需要10000金，超过可用额度{10000 - availableMoney}金"
+                        };
+                        Game1.drawObjectDialogue(dialogues);
+                        return false;
+                    }
+                    if (player.Money >= 10000)
+                    {
+                        player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 10000).ToString();
+                        MultiplayerLog.NoIconHUDMessage($"{player.Name}购买了豪华背包", 500);
+                    }
+                    break;
             }
         }
 

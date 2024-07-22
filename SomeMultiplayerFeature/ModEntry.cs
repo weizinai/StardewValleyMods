@@ -68,9 +68,17 @@ public class ModEntry : Mod
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        var keys = Game1.player.modData.Keys.Where(key => key.StartsWith("weizinai.Some")).ToList();
-        if (keys.Any()) Log.NoIconHUDMessage("检测到无用的旧版本数据，已清除。");
-        foreach (var key in keys) Game1.player.modData.Remove(key);
+        var modData = Game1.player.modData;
+        var keysToRemove = modData.Keys.Where(key => key.StartsWith("weizinai.Some")).ToList();
+
+        if (keysToRemove.Count > 0)
+        {
+            Log.NoIconHUDMessage("检测到无用的旧版本数据，已清除。");
+            foreach (var key in keysToRemove)
+            {
+                modData.Remove(key);
+            }
+        }
     }
 
     private void UpdateConfig()

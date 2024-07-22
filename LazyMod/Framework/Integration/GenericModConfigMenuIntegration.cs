@@ -22,7 +22,7 @@ internal partial class GenericModConfigMenuIntegration<TConfig> where TConfig : 
             I18n.Config_Range_Name,
             null,
             minRange,
-            3
+            5
         );
 
         return this;

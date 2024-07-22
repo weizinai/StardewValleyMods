@@ -48,18 +48,13 @@ internal class GameLocationPatcher : BasePatcher
         if (questionAndAnswer == "Backpack_Purchase")
         {
             var player = Game1.player;
-            SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+            SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
             switch (player.MaxItems)
             {
                 case 12:
                     if (availableMoney < 2000)
                     {
-                        var dialogues = new List<string>
-                        {
-                            $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
-                            $"购买大背包需要2000金，超过可用额度{2000 - availableMoney}金"
-                        };
-                        Game1.drawObjectDialogue(dialogues);
+                        SpendLimitHelper.ShowSpendLimitDialogue("购买大背包", 2000);
                         return false;
                     }
                     if (player.Money >= 2000)
@@ -71,12 +66,7 @@ internal class GameLocationPatcher : BasePatcher
                 case 24:
                     if (availableMoney < 10000)
                     {
-                        var dialogues = new List<string>
-                        {
-                            $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
-                            $"购买大背包需要10000金，超过可用额度{10000 - availableMoney}金"
-                        };
-                        Game1.drawObjectDialogue(dialogues);
+                        SpendLimitHelper.ShowSpendLimitDialogue("购买豪华背包", 10000);
                         return false;
                     }
                     if (player.Money >= 10000)
@@ -97,18 +87,13 @@ internal class GameLocationPatcher : BasePatcher
         if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
 
         var player = Game1.player;
-        SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+        SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
         switch (player.HouseUpgradeLevel)
         {
             case 0:
                 if (availableMoney < 10000)
                 {
-                    var dialogues = new List<string>
-                    {
-                        $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
-                        $"升级1级房子需要10000金，超过可用额度{10000 - availableMoney}金"
-                    };
-                    Game1.drawObjectDialogue(dialogues);
+                    SpendLimitHelper.ShowSpendLimitDialogue("升级1级房子", 10000);
                     return false;
                 }
                 if (player.Money >= 10000 && player.Items.ContainsId("(O)388", 450))
@@ -120,12 +105,7 @@ internal class GameLocationPatcher : BasePatcher
             case 1:
                 if (availableMoney < 65000)
                 {
-                    var dialogues = new List<string>
-                    {
-                        $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
-                        $"升级2级房子需要65000金，超过可用额度{65000 - availableMoney}金"
-                    };
-                    Game1.drawObjectDialogue(dialogues);
+                    SpendLimitHelper.ShowSpendLimitDialogue("升级2级房子", 65000);
                     return false;
                 }
                 if (player.Money >= 65000 && player.Items.ContainsId("(O)709", 100))
@@ -137,12 +117,7 @@ internal class GameLocationPatcher : BasePatcher
             case 2:
                 if (availableMoney < 100000)
                 {
-                    var dialogues = new List<string>
-                    {
-                        $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
-                        $"升级3级房子需要10000金，超过可用额度{100000 - availableMoney}金"
-                    };
-                    Game1.drawObjectDialogue(dialogues);
+                    SpendLimitHelper.ShowSpendLimitDialogue("升级3级房子", 100000);
                     return false;
                 }
                 if (player.Money >= 100000)

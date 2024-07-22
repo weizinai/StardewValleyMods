@@ -24,17 +24,12 @@ internal class ShopMenuPatcher : BasePatcher
     {
         if (!CheckSpendLimitEnable(__instance, item)) return true;
 
-        SpendLimitHelper.GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+        SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
         var stockInfo = __instance.itemPriceAndStock[item];
         var totalPrice = stockInfo.Price * stockToBuy;
         if (availableMoney < totalPrice)
         {
-            var dialogues = new List<string>
-            {
-                $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
-                $"购买{stockToBuy}个{item.DisplayName}需要{totalPrice}金，超过可用额度{totalPrice - availableMoney}金"
-            };
-            Game1.drawObjectDialogue(dialogues);
+            SpendLimitHelper.ShowSpendLimitDialogue($"购买{stockToBuy}个{item.DisplayName}", totalPrice);
             stockToBuy = 0;
             return false;
         }

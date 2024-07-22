@@ -61,4 +61,15 @@ internal static class SpendLimitHelper
     {
         return Game1.IsClient && Game1.MasterPlayer.modData.ContainsKey(SpendLimitHandler.SpendLimitKey);
     }
+
+    public static void ShowSpendLimitDialogue(string action, int money)
+    {
+        GetFarmerSpendData(out var amount, out var limit, out var availableMoney);
+        var dialogue = new List<string>
+        {
+            $"当日消费：{amount}金|可用额度：{availableMoney}金|总额度：{limit}金",
+            $"{action}需要{money}金，超过可用额度{money - availableMoney}金"
+        };
+        Game1.drawObjectDialogue(dialogue);
+    }
 }

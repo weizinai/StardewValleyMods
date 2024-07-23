@@ -22,8 +22,7 @@ internal class GameLocationPatcher : BasePatcher
         );
         harmony.Patch(
             original: this.RequireMethod<GameLocation>("houseUpgradeAccept"),
-            prefix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPrefix)),
-            postfix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPostfix))
+            prefix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPrefix))
         );
     }
 
@@ -125,15 +124,6 @@ internal class GameLocationPatcher : BasePatcher
         }
 
         return true;
-    }
-
-    private static void HouseUpgradeAcceptPostfix()
-    {
-        var player = Game1.player;
-        if (player.daysUntilHouseUpgrade.Value == 3)
-        {
-            MultiplayerLog.NoIconHUDMessage($"{player.Name}将房子升级到了{player.HouseUpgradeLevel + 1}级", 500);
-        }
     }
 
     private static int GetStoneExperience(int origin, string stoneId)

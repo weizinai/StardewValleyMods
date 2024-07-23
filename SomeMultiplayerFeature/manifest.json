@@ -1,7 +1,7 @@
 ﻿{
     "Name": "Some Multiplayer Feature",
     "Author": "weizinai",
-    "Version": "0.17.3",
+    "Version": "0.18.0",
     "Description": "Some Multiplayer Feature",
     "UniqueID": "weizinai.SomeMultiplayerFeature",
     "EntryDll": "SomeMultiplayerFeature.dll",

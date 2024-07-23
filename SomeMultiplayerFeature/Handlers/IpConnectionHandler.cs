@@ -41,7 +41,7 @@ internal class IpConnectionHandler : BaseHandlerWithConfig<ModConfig>
         // 如果当前不是多人模式或者当前玩家不是主玩家，则返回
         if (Game1.IsClient) return;
 
-        if (Game1.timeOfDay == this.Config.EnableTime * 100)
+        if (Game1.timeOfDay == this.Config.EnableTime * 100 && this.Config.EnableTime != 6)
         {
             this.EnableIpConnection();
         }

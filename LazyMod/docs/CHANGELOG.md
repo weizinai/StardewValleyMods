@@ -1,3 +1,7 @@
+# 1.2.2
+
+- 修复`AutoHarvestMoss`不生效的问题
+
 # 1.2.1
 
 - 修复`ToggleModState`不生效的问题

@@ -49,7 +49,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
                     Game1.chatBox.addInfoMessage(message);
                     // Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, "你的<SomeMultiplayerFeature>模组不是最新版，将被踢出。", id);
-                    Game1.server.kick(id);
+                    Game1.server?.kick(id);
                 }
             }, 5000);
         }

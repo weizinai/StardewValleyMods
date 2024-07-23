@@ -24,7 +24,7 @@ internal class ClearDeadCropHandler : BaseAutomationHandler
                 var crop = hoeDirt.crop;
                 if (crop.dead.Value)
                 {
-                    hoeDirt.performToolAction(scythe, 0, tile);
+                    hoeDirt.destroyCrop(true);
                 }
             }
 

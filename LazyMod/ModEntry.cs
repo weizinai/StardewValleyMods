@@ -172,7 +172,7 @@ internal class ModEntry : Mod
         if (this.config.AutoHarvestGinger.IsEnable) yield return new HarvestGingerHandler(this.config);
         if (this.config.AutoChopTree.IsEnable) yield return new ChopTreeHandler(this.config);
         if (this.config.AutoShakeTree.IsEnable) yield return new ShakeTreeHandler(this.config);
-        if (this.config.AutoHarvestMoss.IsEnable) yield return new HarvestCropHandler(this.config);
+        if (this.config.AutoHarvestMoss.IsEnable) yield return new HarvestMossHandler(this.config);
         if (this.config.AutoPlaceTapper.IsEnable) yield return new PlaceTapperHandler(this.config);
         if (this.config.AutoPlaceVinegar.IsEnable) yield return new PlaceVinegarHandler(this.config);
         if (this.config.AutoClearWood.IsEnable) yield return new ClearWoodHandler(this.config);

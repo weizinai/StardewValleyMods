@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
 internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     private const string VersionLimitKey = ModEntry.ModDataPrefix + "VersionLimit";
-    private const string TargetVersion = "0.17.1";
+    private const string TargetVersion = "0.17.2";
 
     public VersionLimitHandler(IModHelper helper, ModConfig config)
         : base(helper, config) { }
@@ -49,7 +49,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
                     Game1.chatBox.addInfoMessage(message);
                     // Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, "你的<SomeMultiplayerFeature>模组不是最新版，将被踢出。", id);
-                    Game1.server.kick(id);
+                    Game1.server?.kick(id);
                 }
             }, 5000);
         }

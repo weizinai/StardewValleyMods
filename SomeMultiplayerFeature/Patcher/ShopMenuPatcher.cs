@@ -22,15 +22,12 @@ internal class ShopMenuPatcher : BasePatcher
     // 购物限制
     private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy, ShopMenu __instance, ref bool __state)
     {
-        if (!CheckSpendLimitEnable(__instance, item)) return true;
-
         SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
         var stockInfo = __instance.itemPriceAndStock[item];
         var totalPrice = stockInfo.Price * stockToBuy;
-        if (availableMoney < totalPrice)
+        if (availableMoney < totalPrice && CheckSpendLimitEnable(__instance, item))
         {
             SpendLimitHelper.ShowSpendLimitDialogue($"购买{stockToBuy}个{item.DisplayName}", totalPrice);
-            stockToBuy = 0;
             return false;
         }
 

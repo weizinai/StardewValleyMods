@@ -45,6 +45,8 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.ConsoleCommands.Add("kickall", "", this.KickAllPlayer);
 
         this.Helper.ConsoleCommands.Add("inventory", "", this.AccessInventory);
+
+        this.Helper.ConsoleCommands.Add("server_mode", "", this.SetServerMode);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
@@ -176,5 +178,24 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
                 Log.Info($"{item.Stack}\t{item.DisplayName}");
             }
         }
+    }
+
+    private void SetServerMode(string command, string[] args)
+    {
+        if (Game1.IsClient) return;
+
+        if (args.Length < 1)
+        {
+            Log.Error("该命令需要参数，可选的参数为：<offline>、<friends>和<invite>。");
+            return;
+        }
+
+        var mode = args[0];
+        if (!new HashSet<string> { "offline", "friends", "invite" }.Contains(mode))
+        {
+            Log.Error("模式输入错误，可用的模式为：<offline>、<friends>和<invite>。");
+            return;
+        }
+        Game1.options.setServerMode(mode);
     }
 }

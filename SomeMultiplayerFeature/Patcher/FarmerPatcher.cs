@@ -65,11 +65,11 @@ internal class FarmerPatcher : BasePatcher
     {
         var level = number switch
         {
-            0 => player.FarmingLevel,
-            1 => player.FishingLevel,
-            2 => player.ForagingLevel,
-            3 => player.MiningLevel,
-            4 => player.CombatLevel,
+            0 => player.farmingLevel.Value,
+            1 => player.fishingLevel.Value,
+            2 => player.foragingLevel.Value,
+            3 => player.miningLevel.Value,
+            4 => player.combatLevel.Value,
             _ => -1
         };
         return Farmer.getBaseExperienceForLevel(level);

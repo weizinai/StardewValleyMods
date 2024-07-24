@@ -7,6 +7,7 @@ namespace weizinai.StardewValleyMod.FastControlInput.Handler;
 internal class UseToolButtonHandler : BaseInputHandler
 {
     public UseToolButtonHandler(float multiplier) : base(multiplier) { }
+
     public override bool IsEnable()
     {
         var currentKeyboardState = Game1.GetKeyboardState();

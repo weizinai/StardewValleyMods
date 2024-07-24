@@ -46,7 +46,13 @@ internal class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        foreach (var handler in this.handlers) if (handler.IsEnable()) handler.Update();
+        foreach (var handler in this.handlers)
+        {
+            if (handler.IsEnable())
+            {
+                handler.Update();
+            }
+        }
     }
 
     private void UpdateConfig()

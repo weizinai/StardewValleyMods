@@ -1,4 +1,3 @@
-using StardewModdingAPI;
 using weizinai.StardewValleyMod.Common.Integration;
 
 namespace weizinai.StardewValleyMod.FastControlInput.Framework;
@@ -7,9 +6,9 @@ internal class GenericModConfigMenuIntegrationForFastControlInput
 {
     private readonly GenericModConfigMenuIntegration<ModConfig> configMenu;
 
-    public GenericModConfigMenuIntegrationForFastControlInput(IModHelper helper, IManifest manifest, Func<ModConfig> getConfig, Action reset, Action save)
+    public GenericModConfigMenuIntegrationForFastControlInput(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {
-        this.configMenu = new GenericModConfigMenuIntegration<ModConfig>(helper.ModRegistry, manifest, getConfig, reset, save);
+        this.configMenu = configMenu;
     }
 
     public void Register()

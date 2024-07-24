@@ -23,7 +23,7 @@ internal class GenericModConfigMenuIntegrationForFastControlInput
                 I18n.Config_ActionButton_Name,
                 I18n.Config_ActionButton_Tooltip,
                 1f,
-                5f,
+                10f,
                 0.25f
             )
             .AddNumberOption(
@@ -32,7 +32,7 @@ internal class GenericModConfigMenuIntegrationForFastControlInput
                 I18n.Config_UseToolButton_Name,
                 I18n.Config_UseToolButton_Tooltip,
                 1f,
-                5f,
+                10f,
                 0.25f
             );
     }

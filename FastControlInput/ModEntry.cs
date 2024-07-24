@@ -1,8 +1,6 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.FastControlInput.Framework;
-using weizinai.StardewValleyMod.FastControlInput.Patcher;
 
 namespace weizinai.StardewValleyMod.FastControlInput;
 
@@ -17,8 +15,6 @@ internal class ModEntry : Mod
         this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new ModHooksPatcher(() => this.config));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

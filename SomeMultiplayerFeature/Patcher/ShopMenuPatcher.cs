@@ -22,21 +22,27 @@ internal class ShopMenuPatcher : BasePatcher
     // 购物限制
     private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy, ShopMenu __instance, ref bool __state)
     {
-        SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
+        if (!CanBuyItem(__instance, item)) return true;
+
         var stockInfo = __instance.itemPriceAndStock[item];
         var totalPrice = stockInfo.Price * stockToBuy;
-        if (availableMoney < totalPrice && CheckSpendLimitEnable(__instance, item))
-        {
-            SpendLimitHelper.ShowSpendLimitDialogue($"购买{stockToBuy}个{item.DisplayName}", totalPrice);
-            return false;
-        }
-
-        GetTradeItemData(stockInfo, out var tradeItem, out var tradeItemCount);
         var player = Game1.player;
+        GetTradeItemData(stockInfo, out var tradeItem, out var tradeItemCount);
+
         if (player.Money >= totalPrice &&
             (tradeItem == null || __instance.HasTradeItem(tradeItem, tradeItemCount * stockToBuy)))
         {
-            player.modData[SpendLimitHandler.SpendAmountKey] = (amount + totalPrice).ToString();
+            if (SpendLimitHelper.IsSpendLimitEnable())
+            {
+                SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
+                if (availableMoney < totalPrice)
+                {
+                    SpendLimitHelper.ShowSpendLimitDialogue($"购买{stockToBuy}个{item.DisplayName}", totalPrice);
+                    return false;
+                }
+                player.modData[SpendLimitHandler.SpendAmountKey] = (amount + totalPrice).ToString();
+            }
+
             __state = true;
         }
 
@@ -48,10 +54,9 @@ internal class ShopMenuPatcher : BasePatcher
         if (__state) MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
     }
 
-    private static bool CheckSpendLimitEnable(ShopMenu menu, ISalable item)
+    private static bool CanBuyItem(ShopMenu menu, ISalable item)
     {
-        return SpendLimitHelper.IsSpendLimitEnable() &&                       // 花钱限制功能是否启用
-               menu.currency == 0 &&                                          // 商店货币为金币
+        return menu.currency == 0 &&                                          // 商店货币为金币
                (menu.heldItem == null || menu.heldItem.canStackWith(item)) && // 当前未持有物品或者持有的物品能与要购买的物品堆叠
                Game1.player.couldInventoryAcceptThisItem(item as Item);       // 玩家有足够的空间容纳要购买的物品
     }

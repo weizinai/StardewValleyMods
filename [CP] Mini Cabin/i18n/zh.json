@@ -1,4 +1,6 @@
 {
-    "Buildings.MiniCabin.Name": "迷你小屋",
-    "Buildings.MiniCabin.Description": "这是一个迷你小屋。"
+    "Buildings.SmallCabin.Name": "小的小屋",
+    "Buildings.SmallCabin.Description": "这是一个小的小屋。",
+    "Buildings.MediumCabin.Name": "中等的小屋",
+    "Buildings.MediumCabin.Description": "这是一个中等的小屋。"
 }

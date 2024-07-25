@@ -3,19 +3,18 @@
     "Changes": [
         {
             "Action": "Load",
-            "Target": "{{ModId}}/MiniMagicCabin, {{ModId}}/MiniCabin1, {{ModId}}/MiniCabin2, {{ModId}}/MiniCabin3, {{ModId}}/MiniNeighborCabin, {{ModId}}/MiniPigCabin, {{ModId}}/MiniPineappleCabin, {{ModId}}/MiniRusticCabin, {{ModId}}/MiniStoneCabin, {{ModId}}/MiniWoodCabin1, {{ModId}}/MiniWoodCabin2, {{ModId}}/MiniWoodCabin3",
+            "Target": "{{ModId}}/MediumCabin1, {{ModId}}/MediumCabin2, {{ModId}}/MediumCabin3, {{ModId}}/MediumCabin4, {{ModId}}/MediumCabin5, {{ModId}}/MediumCabin6, {{ModId}}/MediumCabin7, {{ModId}}/MediumFloatingCabin1, {{ModId}}/MediumFloatingCabin2, {{ModId}}/MediumNeighborCabin, {{ModId}}/MediumRusticCabin, {{ModId}}/MediumStoneCabin, {{ModId}}/SmallPigCabin",
             "FromFile": "assets/{{TargetWithoutPath}}.png"
         },
-
         {
             "Action": "EditData",
             "Target": "Data/Buildings",
             "Entries": {
-                "{{ModId}}_MiniCabin": {
+                "{{ModId}}_SmallCabin": {
                     // Required fields
-                    "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                    "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                    "Texture": "{{ModId}}/MiniStoneCabin",
+                    "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                    "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                    "Texture": "{{ModId}}/SmallPigCabin",
                     // Construction
                     "Builder": "Robin",
                     "BuildCondition": "CAN_BUILD_CABIN",
@@ -30,74 +29,6 @@
                     },
                     // Exterior appearance
                     "DrawShadow": false,
-                    "Skins": [
-                        {
-                            "Id": "Mini Cabin 1",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniCabin1"
-                        },
-                        {
-                            "Id": "Mini Cabin 2",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniCabin1"
-                        },
-                        {
-                            "Id": "Mini Cabin 3",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniCabin1"
-                        },
-                        {
-                            "Id": "Mini Magic Cabin",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniMagicCabin"
-                        },
-                        {
-                            "Id": "Mini Neighbor Cabin",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniNeighborCabin"
-                        },
-                        {
-                            "Id": "Mini Pig Cabin",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniPigCabin"
-                        },
-                        {
-                            "Id": "Mini Pineapple Cabin",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniPineappleCabin"
-                        },
-                        {
-                            "Id": "Mini Rustic Cabin",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniRusticCabin"
-                        },
-                        {
-                            "Id": "Mini Wood Cabin 1",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniWoodCabin1"
-                        },
-                        {
-                            "Id": "Mini Wood Cabin 2",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniWoodCabin2"
-                        },
-                        {
-                            "Id": "Mini Wood Cabin 3",
-                            "Name": "{{i18n:Buildings.MiniCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MiniCabin.Description}}",
-                            "Texture": "{{ModId}}/MiniWoodCabin3"
-                        },
-                    ],
                     // Interior
                     "IndoorMap": "FarmHouse",
                     "IndoorMapType": "StardewValley.Locations.Cabin",
@@ -108,6 +39,143 @@
                             "Tile": {
                                 "X": 1,
                                 "Y": 0
+                            },
+                            "Action": "Mailbox"
+                        }
+                    ]
+                },
+                "{{ModId}}_MediumCabin": {
+                    // Required fields
+                    "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                    "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                    "Texture": "{{ModId}}/MediumCabin1",
+                    // Construction
+                    "Builder": "Robin",
+                    "BuildCondition": "CAN_BUILD_CABIN",
+                    // Exterior behavior
+                    "Size": {
+                        "X": 3,
+                        "Y": 2
+                    },
+                    "HumanDoor": {
+                        "X": 1,
+                        "Y": 1
+                    },
+                    // Exterior appearance
+                    "Skins": [
+                        {
+                            "Id": "Medium Cabin 2",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin2"
+                        },
+                        {
+                            "Id": "Medium Cabin 3",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin3"
+                        },
+                        {
+                            "Id": "Medium Cabin 4",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin4"
+                        },
+                        {
+                            "Id": "Medium Cabin 5",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin5"
+                        },
+                        {
+                            "Id": "Medium Cabin 6",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin6"
+                        },
+                        {
+                            "Id": "Medium Cabin 7",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin7"
+                        },
+                        {
+                            "Id": "Medium ",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumCabin7"
+                        },
+                        {
+                            "Id": "Medium Neighbor Cabin",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumNeighborCabin"
+                        },
+                        {
+                            "Id": "Medium Rustic Cabin",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumRusticCabin"
+                        },
+                        {
+                            "Id": "Medium Stone Cabin",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumStoneCabin"
+                        }
+                    ],
+                    // Interior
+                    "IndoorMap": "FarmHouse",
+                    "IndoorMapType": "StardewValley.Locations.Cabin",
+                    // Tile interactions
+                    "ActionTiles": [
+                        {
+                            "Id": "Default_OpenMailbox",
+                            "Tile": {
+                                "X": 1,
+                                "Y": 2
+                            },
+                            "Action": "Mailbox"
+                        }
+                    ]
+                },
+                "{{ModId}}_MediumFloatingCabin": {
+                    // Required fields
+                    "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                    "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                    "Texture": "{{ModId}}/MediumFloatingCabin1",
+                    // Construction
+                    "Builder": "Robin",
+                    "BuildCondition": "CAN_BUILD_CABIN",
+                    // Exterior behavior
+                    "Size": {
+                        "X": 3,
+                        "Y": 2
+                    },
+                    "HumanDoor": {
+                        "X": 1,
+                        "Y": 1
+                    },
+                    // Exterior appearance
+                    "DrawShadow": false,
+                    "Skins": [
+                        {
+                            "Id": "Medium Floating Cabin 2",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "{{ModId}}/MediumFloatingCabin2"
+                        }
+                    ],
+                    // Interior
+                    "IndoorMap": "FarmHouse",
+                    "IndoorMapType": "StardewValley.Locations.Cabin",
+                    // Tile interactions
+                    "ActionTiles": [
+                        {
+                            "Id": "Default_OpenMailbox",
+                            "Tile": {
+                                "X": 1,
+                                "Y": 2
                             },
                             "Action": "Mailbox"
                         }

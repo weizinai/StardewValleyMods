@@ -1,4 +1,6 @@
 {
-    "Buildings.MiniCabin.Name": "Mini Cabin",
-    "Buildings.MiniCabin.Description": "This is a mini cabin."
+    "Buildings.SmallCabin.Name": "Small Cabin",
+    "Buildings.SmallCabin.Description": "This is a samll cabin.",
+    "Buildings.MediumCabin.Name": "Medium Cabin",
+    "Buildings.MediumCabin.Description": "This is a medium cabin."
 }

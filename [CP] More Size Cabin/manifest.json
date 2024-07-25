@@ -1,9 +1,9 @@
 {
-    "Name": "[CP] Mini Cabin",
+    "Name": "[CP] More Size Cabin",
     "Author": "weizinai",
     "Version": "0.1.0",
-    "Description": "This mod add a mini cabin to the game.",
-    "UniqueID": "weizinai.MiniCabinCP",
+    "Description": "This mod add more size cabin to the game.",
+    "UniqueID": "weizinai.MoreSizeCabin",
     // "UpdateKeys": ["Nexus:9443"],
     "ContentPackFor": {
         "UniqueID": "Pathoschild.ContentPatcher"

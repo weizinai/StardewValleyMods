@@ -4,7 +4,7 @@
     "Version": "0.2.0",
     "Description": "This mod add more size cabin to the game.",
     "UniqueID": "weizinai.MoreSizeCabin",
-    // "UpdateKeys": ["Nexus:9443"],
+     "UpdateKeys": ["Nexus: 26349"],
     "ContentPackFor": {
         "UniqueID": "Pathoschild.ContentPatcher"
     }

@@ -21,6 +21,6 @@ internal class UseToolButtonHandler : BaseInputHandler
 
     public override void Update()
     {
-        this.ApplySkips(() => Game1.mouseClickPolling += Game1.currentGameTime.ElapsedGameTime.Milliseconds);
+        Game1.mouseClickPolling += (int)(Game1.currentGameTime.ElapsedGameTime.Milliseconds * (this.Multiplier - 1));
     }
 }

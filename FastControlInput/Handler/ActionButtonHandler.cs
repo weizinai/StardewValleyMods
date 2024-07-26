@@ -22,6 +22,6 @@ internal class ActionButtonHandler : BaseInputHandler
 
     public override void Update()
     {
-        this.ApplySkips(() => Game1.rightClickPolling -= Game1.currentGameTime.ElapsedGameTime.Milliseconds);
+        Game1.rightClickPolling -= (int)(Game1.currentGameTime.ElapsedGameTime.Milliseconds * (this.Multiplier - 1));
     }
 }

@@ -23,8 +23,8 @@ internal class MuseumMenuPatcher : BasePatcher
 
         var index = codes.FindIndex(code =>
             code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(MuseumMenu), nameof(MuseumMenu.ReturnToDonatableItems))));
-
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MuseumMenuPatcher), nameof(GetExperienceFromDonation))));
+        Log.Info("添加博物馆捐献物品获得200点采集经验功能");
 
         return codes.AsEnumerable();
     }

@@ -61,6 +61,7 @@ public class ModEntry : Mod
             new GameLocationPatcher(),
             new HoeDirtPatcher(),
             new MineShaftPatcher(),
+            new MuseumMenuPatcher(),
             new ShopMenuPatcher(),
             new TreePatcher()
         );

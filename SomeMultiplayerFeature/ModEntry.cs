@@ -93,6 +93,7 @@ public class ModEntry : Mod
             new DataHandler(this.Helper),
             new IpConnectionHandler(this.Helper, this.config),
             new MineshaftHandler(this.Helper),
+            new PerfectFishingHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
             new SpendLimitHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),

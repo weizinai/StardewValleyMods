@@ -5,7 +5,7 @@ using StardewValley.Locations;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 
-namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
 internal class MineshaftHandler : BaseHandler
 {

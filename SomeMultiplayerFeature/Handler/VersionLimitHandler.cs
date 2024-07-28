@@ -4,7 +4,7 @@ using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
 internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 {

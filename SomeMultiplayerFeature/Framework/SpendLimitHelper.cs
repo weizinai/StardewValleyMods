@@ -1,7 +1,7 @@
 using System.Text.Json;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Log;
-using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 

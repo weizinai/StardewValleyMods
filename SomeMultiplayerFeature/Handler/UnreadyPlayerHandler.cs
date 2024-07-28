@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
 internal class UnreadyPlayerHandler : BaseHandlerWithConfig<ModConfig>
 {

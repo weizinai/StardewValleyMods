@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
-using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;

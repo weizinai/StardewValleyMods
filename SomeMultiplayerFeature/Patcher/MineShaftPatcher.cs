@@ -2,7 +2,7 @@ using HarmonyLib;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
-using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handlers;
+using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 

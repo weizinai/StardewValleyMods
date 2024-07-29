@@ -156,6 +156,8 @@ internal class ModEntry : Mod
     /// </summary>
     private void SendModRequirementInfo(Dictionary<string, List<string>> unAllowedMods, long playerId)
     {
+        if (!this.config.SendSMAPIInfo) return;
+
         var target = new[] { playerId };
         MultiplayerLog.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
         foreach (var id in unAllowedMods["Required"]) MultiplayerLog.Info(I18n.UI_ModLimit_Required(id), target);

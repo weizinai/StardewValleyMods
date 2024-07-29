@@ -8,6 +8,10 @@
     "Config.KickPlayerDelayTime.Name": "Kick Player Delay Time",
     "Config.KickPlayerDelayTIme.Tooltip": "The delay time for a player to be kicked out of the game when he joins the game without meeting the requirements. (Unit: seconds)",
 
+    // Send SMAPI Info
+    "Config.SendSMAPIInfo.Name": "Send SMAPI Info",
+    "Config.SendSMAPIIngo.Tooltip": "This feature only takes effect when the mod is installed by the client player. When a player does not meet the mod requirements, whether to send the mod information to the SMAPI console of the player. Enabling this option may have an impact on online latency.",
+
     "Config.LimitSettingTitle.Name": "Limit Setting",
 
     // Require SMAPI

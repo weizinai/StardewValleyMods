@@ -7,6 +7,10 @@
     "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
     "Config.KickPlayerDelayTIme.Tooltip": "当一个不满足要求的玩家加入游戏后，他被踢出游戏的延迟时间。（单位：秒）",
 
+    // 发送SMAPI信息
+    "Config.SendSMAPIInfo.Name": "发送SMAPI信息",
+    "Config.SendSMAPIIngo.Tooltip": "该功能仅在客机端玩家安装该模组时生效。当某个玩家不满足模组要求时，是否向该玩家的SMAPI控制台发送相关的模组信息。启用该选项可能会对联机延迟造成影响。",
+
     "Config.LimitSettingTitle.Name": "限制设置",
 
     // 要求SMAPI

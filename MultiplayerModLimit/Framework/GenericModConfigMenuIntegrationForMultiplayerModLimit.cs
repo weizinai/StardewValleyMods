@@ -31,6 +31,13 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
                 I18n.Config_KickPlayerDelayTime_Name,
                 I18n.Config_KickPlayerDelayTIme_Tooltip
             )
+            // 发送SMAPI信息
+            .AddBoolOption(
+                config => config.SendSMAPIInfo,
+                (config, value) => config.SendSMAPIInfo = value,
+                I18n.Config_SendSMAPIInfo_Name,
+                I18n.Config_SendSMAPIIngo_Tooltip
+            )
             .AddSectionTitle(I18n.Config_LimitSettingTitle_Name)
             // 要求SMAPI
             .AddBoolOption(

@@ -4,6 +4,7 @@ internal class ModConfig
 {
     public bool EnableMod { get; set; } = true;
     public int KickPlayerDelayTime { get; set; } = 3;
+    public bool SendSMAPIInfo { get; set; } = true;
     public bool RequireSMAPI { get; set; } = true;
     public LimitMode LimitMode { get; set; } = LimitMode.WhiteListMode;
     public string AllowedModListSelected { get; set; } = "Default";

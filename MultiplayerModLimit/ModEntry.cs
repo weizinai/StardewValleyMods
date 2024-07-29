@@ -57,7 +57,10 @@ internal class ModEntry : Mod
         foreach (var player in this.playersToKick)
         {
             player.TimeLeft--;
-            if (player.TimeLeft < 0) Game1.server?.kick(player.Id);
+            if (player.TimeLeft < 0)
+            {
+                Game1.server?.kick(player.Id);
+            }
         }
 
         this.playersToKick.RemoveAll(player => player.TimeLeft < 0);
@@ -141,11 +144,21 @@ internal class ModEntry : Mod
         switch (this.config.LimitMode)
         {
             case LimitMode.WhiteListMode:
-                foreach (var id in detectedMods.Where(id => !allowedModList.Contains(id) && !requiredModList.Contains(id))) unAllowedMods["Banned"].Add(id);
+            {
+                foreach (var id in detectedMods.Where(id => !allowedModList.Contains(id) && !requiredModList.Contains(id)))
+                {
+                    unAllowedMods["Banned"].Add(id);
+                }
                 break;
+            }
             case LimitMode.BlackListMode:
-                foreach (var id in detectedMods.Where(id => bannedModList.Contains(id))) unAllowedMods["Banned"].Add(id);
+            {
+                foreach (var id in detectedMods.Where(id => bannedModList.Contains(id)))
+                {
+                    unAllowedMods["Banned"].Add(id);
+                }
                 break;
+            }
         }
 
         return unAllowedMods;
@@ -160,8 +173,14 @@ internal class ModEntry : Mod
 
         var target = new[] { playerId };
         MultiplayerLog.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
-        foreach (var id in unAllowedMods["Required"]) MultiplayerLog.Info(I18n.UI_ModLimit_Required(id), target);
-        foreach (var id in unAllowedMods["Banned"]) MultiplayerLog.Info(I18n.UI_ModLimit_Banned(id), target);
+        foreach (var id in unAllowedMods["Required"])
+        {
+            MultiplayerLog.Info(I18n.UI_ModLimit_Required(id), target);
+        }
+        foreach (var id in unAllowedMods["Banned"])
+        {
+            MultiplayerLog.Info(I18n.UI_ModLimit_Banned(id), target);
+        }
     }
 
     /// <summary>

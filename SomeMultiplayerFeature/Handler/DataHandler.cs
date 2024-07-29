@@ -1,11 +1,14 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Extensions;
 using StardewValley.GameData.Machines;
 using StardewValley.GameData.Shops;
 using StardewValley.GameData.WildTrees;
 using weizinai.StardewValleyMod.Common.Handler;
 using weizinai.StardewValleyMod.Common.Log;
+using xTile.Dimensions;
+using xTile.ObjectModel;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
@@ -32,6 +35,7 @@ internal class DataHandler : BaseHandler
         Log.Info("添加砍树桩掉落炸弹功能");
         Log.Info("\n添加收获机器经验：\n小桶：20点耕种经验\n熔炉：7点采矿经验\n回收机：4点钓鱼经验\n种子生成器：4点耕种经验\n树液采集器：4点采集经验\n煤炭窑：4点采集经验\n熏鱼机：4点钓鱼经验\n重型熔炉：35点采矿经验");
         Log.Info("\n修改炸弹配方：\n2 树液 + 1 铱矿 = 1 樱桃炸弹\n4 树液 + 2 铱矿 = 1 炸弹\n8 树液 + 4 铱矿 = 1 超级炸弹\n10 树液 + 10 铱矿 = 5 爆炸弹丸");
+        Log.Info("修改克林特的营业时间为6:00 - 2:00");
     }
 
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
@@ -97,6 +101,17 @@ internal class DataHandler : BaseHandler
                         ForStump = true
                     });
                 }
+            });
+        }
+
+        // 修改克林特上班时间
+        if (e.Name.IsEquivalentTo("Maps/Town"))
+        {
+            e.Edit(asset =>
+            {
+                var map = asset.AsMap().Data;
+                var tile = map.RequireLayer("Buildings").PickTile(new Location(94 * 64, 81 * 64), Game1.viewport.Size);
+                tile.Properties["Action"] = new PropertyValue("LockedDoorWarp 5 19 Blacksmith 600 2600");
             });
         }
     }

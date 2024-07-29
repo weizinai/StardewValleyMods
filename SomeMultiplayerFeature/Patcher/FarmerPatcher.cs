@@ -21,6 +21,9 @@ internal class FarmerPatcher : BasePatcher
             original: this.RequireMethod<Farmer>(nameof(Farmer.performPassoutWarp)),
             transpiler: this.GetHarmonyMethod(nameof(PerformPassoutWarpTranspiler))
         );
+
+        Log.Info("修改钓鱼经验为原来的1.5倍");
+        Log.Info("修改晕倒惩罚修改为扣每种经验100点");
     }
 
     private static void GainExperiencePrefix(int which, ref int howMuch)
@@ -43,8 +46,6 @@ internal class FarmerPatcher : BasePatcher
     private static GameLocation SleepLocationHandler(GameLocation location)
     {
         if (location is FarmHouse or IslandFarmHouse or Cellar) return location;
-
-        Log.Info("晕倒金钱惩罚已移除");
 
         var player = Game1.player;
         if (player.Level < 25)

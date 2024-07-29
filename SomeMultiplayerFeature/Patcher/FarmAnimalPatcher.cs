@@ -14,6 +14,8 @@ internal class FarmAnimalPatcher : BasePatcher
             original: this.RequireMethod<FarmAnimal>(nameof(FarmAnimal.pet)),
             transpiler: this.GetHarmonyMethod(nameof(PetTranspiler))
         );
+
+        Log.Info("修改抚摸动物获得的经验为50点");
     }
 
     // 修改抚摸动物获得的经验为50点
@@ -23,7 +25,6 @@ internal class FarmAnimalPatcher : BasePatcher
 
         var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience))));
         codes[index - 1] = new CodeInstruction(OpCodes.Ldc_I4, 50);
-        Log.Info("修改抚摸动物获得的经验为50点");
 
         return codes.AsEnumerable();
     }

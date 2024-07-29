@@ -13,14 +13,21 @@ internal class MineshaftHandler : BaseHandler
 
     public override void Apply()
     {
+        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         this.Helper.Events.Player.Warped += this.OnWarped;
         this.Helper.Events.Multiplayer.ModMessageReceived += this.OnModMessageReceived;
     }
 
     public override void Clear()
     {
+        this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
         this.Helper.Events.Player.Warped -= this.OnWarped;
         this.Helper.Events.Multiplayer.ModMessageReceived -= this.OnModMessageReceived;
+    }
+
+    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    {
+        Log.Info("添加矿井即时刷新功能");
     }
 
     private void OnWarped(object? sender, WarpedEventArgs e)

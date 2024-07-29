@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Objects;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
@@ -15,6 +16,8 @@ internal class FarmHousePatcher : BasePatcher
             original: this.RequireMethod<FarmHouse>("AddStarterGiftBox"),
             postfix: this.GetHarmonyMethod(nameof(AddStarterGiftBoxPostfix))
         );
+
+        Log.Info("为初始种子包添加三种树种各10个");
     }
 
     // 为初始种子包添加三种树种各10个

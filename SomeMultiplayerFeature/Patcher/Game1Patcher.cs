@@ -14,6 +14,8 @@ internal class Game1Patcher : BasePatcher
             original: this.RequireMethod<Game1>("checkForEscapeKeys"),
             prefix: this.GetHarmonyMethod(nameof(CheckForEscapeKeysPrefix))
         );
+
+        Log.Info("添加禁止取消后摇功能");
     }
 
     // 禁止取消后摇

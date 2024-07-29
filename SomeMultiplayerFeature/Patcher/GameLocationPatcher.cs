@@ -24,6 +24,8 @@ internal class GameLocationPatcher : BasePatcher
             original: this.RequireMethod<GameLocation>("houseUpgradeAccept"),
             prefix: this.GetHarmonyMethod(nameof(HouseUpgradeAcceptPrefix))
         );
+
+        Log.Info("\n修改采矿经验：\n铜矿：11点\n铁矿：12点\n金矿：13点\n铱矿：14点");
     }
 
     // 采集铜矿、铁矿、金矿和铱矿分别获得11点、12点、13点和14点采矿经验
@@ -34,8 +36,6 @@ internal class GameLocationPatcher : BasePatcher
         var index = codes.FindLastIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience)))) - 1;
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetStoneExperience))));
-
-        Log.Info("\n修改采矿经验：\n铜矿：11点\n铁矿：12点\n金矿：13点\n铱矿：14点");
 
         return codes.AsEnumerable();
     }

@@ -29,6 +29,9 @@ internal class ModEntry : Mod
         helper.ConsoleCommands.Add("generate_allow", "", this.GenerateModList);
         helper.ConsoleCommands.Add("generate_require", "", this.GenerateModList);
         helper.ConsoleCommands.Add("generate_ban", "", this.GenerateModList);
+        helper.ConsoleCommands.Add("add_allow", "", this.AddModToCurrentList);
+        helper.ConsoleCommands.Add("add_require", "", this.AddModToCurrentList);
+        helper.ConsoleCommands.Add("add_ban", "", this.AddModToCurrentList);
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -110,6 +113,27 @@ internal class ModEntry : Mod
         this.Helper.WriteConfig(this.config);
         this.configMenu.Reset();
         Log.Info(I18n.UI_GenerateModList());
+    }
+
+    private void AddModToCurrentList(string command, string[] args)
+    {
+        var targetModList = command switch
+        {
+            "add_allow" => this.config.AllowedModList[this.config.AllowedModListSelected],
+            "add_require" => this.config.RequiredModList[this.config.RequiredModListSelected],
+            "add_ban" => this.config.BannedModList[this.config.BannedModListSelected],
+            _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
+        };
+
+        var id = args[0];
+        if (targetModList.Contains(id))
+        {
+            Log.Info(I18n.UI_AddMod_Exist());
+            return;
+        }
+        targetModList.Add(id);
+        this.Helper.WriteConfig(this.config);
+        Log.Info(I18n.UI_AddMod_Success());
     }
 
     /// <summary>

@@ -39,5 +39,7 @@
     "Config.RequiredModListSelected.Tooltip": "The mods contained in <RequiredModList> are the mods that are required to be installed.",
     "Config.BannedModListSelected.Name": "Banned Mod List Selected",
     "Config.BannedModListSelected.Tooltip": "The mods contained in <BannedModList> are the mods that are banned to be installed.",
-    "UI.GenerateModList": "The mod list has been generated."
+    "UI.GenerateModList": "The mod list has been generated.",
+    "UI.AddMod.Exist": "Mod already exists in the list.",
+    "UI.AddMod.Success": "A mod has been successfully added to the current mod list"
 }

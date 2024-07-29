@@ -39,5 +39,7 @@
     "Config.RequiredModListSelected.Tooltip": "<RequiredModList>中包含的模组是必须安装的模组。",
     "Config.BannedModListSelected.Name": "选择的禁止模组列表",
     "Config.BannedModListSelected.Tooltip": "<BannedModList>中包含的模组是禁止安装的模组。",
-    "UI.GenerateModList": "模组列表已生成。"
+    "UI.GenerateModList": "模组列表已生成。",
+    "UI.AddMod.Exist": "该模组在当前列表已经存在。",
+    "UI.AddMod.Success": "成功向当前模组列表添加模组。"
 }

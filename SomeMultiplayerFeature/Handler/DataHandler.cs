@@ -1,5 +1,6 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 using StardewValley.GameData.Machines;
 using StardewValley.GameData.Shops;
 using StardewValley.GameData.WildTrees;
@@ -84,10 +85,16 @@ internal class DataHandler : BaseHandler
             e.Edit(asset =>
             {
                 var treeData = asset.AsDictionary<string, WildTreeData>().Data;
-                foreach (var (id, data) in treeData)
+                foreach (var (_, data) in treeData)
                 {
                     data.GrowthChance = 0.5f;
                     data.SeedSpreadChance = 0f;
+                    data.ChopItems?.Add(new WildTreeChopItemData
+                    {
+                        Id = "(O)287",
+                        ItemId = "(O)287",
+                        ForStump = true
+                    });
                 }
             });
         }

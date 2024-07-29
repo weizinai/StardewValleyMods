@@ -21,9 +21,14 @@ internal class FarmerPatcher : BasePatcher
             original: this.RequireMethod<Farmer>(nameof(Farmer.performPassoutWarp)),
             transpiler: this.GetHarmonyMethod(nameof(PerformPassoutWarpTranspiler))
         );
+        harmony.Patch(
+            original: this.RequireMethod<Farmer>(nameof(Farmer.Update)),
+            transpiler: this.GetHarmonyMethod(nameof(UpdateTranspiler))
+        );
 
         Log.Info("修改钓鱼经验为原来的1.5倍");
         Log.Info("修改晕倒惩罚修改为扣每种经验100点");
+        Log.Info("修改体力再生速度为原来的5倍");
     }
 
     private static void GainExperiencePrefix(int which, ref int howMuch)
@@ -39,6 +44,16 @@ internal class FarmerPatcher : BasePatcher
 
         var index = codes.FindIndex(code => code.opcode == OpCodes.Stfld && code.operand.ToString()!.Contains("passOutLocation"));
         codes.Insert(index, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FarmerPatcher), nameof(SleepLocationHandler))));
+
+        return codes.AsEnumerable();
+    }
+
+    private static IEnumerable<CodeInstruction> UpdateTranspiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var codes = instructions.ToList();
+
+        var index = codes.FindLastIndex(code => code.opcode == OpCodes.Ldc_I4 && code.operand.Equals(500));
+        codes[index].operand = 100;
 
         return codes.AsEnumerable();
     }

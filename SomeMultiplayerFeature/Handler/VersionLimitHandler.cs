@@ -52,11 +52,8 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private string GetKickMessage(Farmer farmer)
     {
-        var actualCurrentVersion = ArgUtility.SplitBySpace(farmer.modData[VersionLimitKey])[0];
-        var actualTargetVersion = ArgUtility.SplitBySpace(TargetVersion)[0];
-
         return !farmer.modData.ContainsKey(VersionLimitKey)
             ? $"{farmer.Name}未安装<SomeMultiplayerFeature>模组，将被踢出。"
-            : $"{farmer.Name}的<SomeMultiplayerFeature>模组为<{actualCurrentVersion}>版本，要求的版本为<{actualTargetVersion}>，不满足要求，将被踢出。";
+            : $"{farmer.Name}的<SomeMultiplayerFeature>模组为<{farmer.modData[VersionLimitKey]}>版本，要求的版本为<{TargetVersion}>，不满足要求，将被踢出。";
     }
 }

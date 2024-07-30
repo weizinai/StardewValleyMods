@@ -46,7 +46,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
                     Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, message, id);
                     Game1.server?.kick(id);
                 }
-            }, 5000);
+            }, 10000);
         }
     }
 

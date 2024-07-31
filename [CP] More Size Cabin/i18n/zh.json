@@ -1,6 +1,6 @@
 {
-    "Buildings.SmallCabin.Name": "小的小屋",
-    "Buildings.SmallCabin.Description": "这是一个小的小屋。",
+    "Buildings.FriendCabin.Name": "朋友房",
+    "Buildings.FriendCabin.Description": "朋友才有资格入住的房子。",
     "Buildings.MediumCabin.Name": "中等的小屋",
     "Buildings.MediumCabin.Description": "这是一个中等的小屋。"
 }

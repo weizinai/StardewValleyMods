@@ -12,8 +12,8 @@
             "Entries": {
                 "{{ModId}}_SmallCabin": {
                     // Required fields
-                    "Name": "{{i18n:Buildings.SmallCabin.Name}}",
-                    "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                    "Name": "{{i18n:Buildings.FriendCabin.Name}}",
+                    "Description": "{{i18n:Buildings.FriendCabin.Description}}",
                     "Texture": "{{ModId}}/SmallPigCabin",
                     // Construction
                     "Builder": "Robin",

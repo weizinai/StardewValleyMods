@@ -1,6 +1,6 @@
 {
-    "Buildings.SmallCabin.Name": "Small Cabin",
-    "Buildings.SmallCabin.Description": "This is a samll cabin.",
+    "Buildings.FriendCabin.Name": "Friend Cabin",
+    "Buildings.FriendCabin.Description": "Friends are eligible to live in the house.",
     "Buildings.MediumCabin.Name": "Medium Cabin",
     "Buildings.MediumCabin.Description": "This is a medium cabin."
 }

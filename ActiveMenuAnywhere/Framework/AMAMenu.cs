@@ -21,7 +21,6 @@ internal class AMAMenu : IClickableMenu
         (x: Game1.uiViewport.Width / 2 - InnerWidth / 2, y: Game1.uiViewport.Height / 2 - InnerHeight / 2);
 
     private readonly List<BaseOption> options = new();
-    private readonly List<float> optionScales = new(OptionsPerPage) { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f };
     private readonly List<ClickableComponent> optionSlots = new();
     private readonly List<ClickableComponent> tabs = new();
 
@@ -70,9 +69,9 @@ internal class AMAMenu : IClickableMenu
     {
         for (var i = 0; i < OptionsPerPage; i++)
             if (this.optionSlots[i].containsPoint(x, y) && i + this.currentPage * OptionsPerPage < this.options.Count)
-                this.optionScales[i] = 0.9f;
+                this.options[i].Scale = 0.9f;
             else
-                this.optionScales[i] = 1f;
+                this.options[i].Scale = 1f;
     }
 
     public override void draw(SpriteBatch spriteBatch)
@@ -311,14 +310,11 @@ internal class AMAMenu : IClickableMenu
             var optionsIndex = i + this.currentPage * OptionsPerPage;
             // 选项槽的位置和大小
             var bounds = this.optionSlots[i].bounds;
-            // 根据缩放调整纹理绘制的位置和大小
-            var size = (width: (int)(bounds.Width * this.optionScales[i]), height: (int)(bounds.Height * this.optionScales[i]));
-            var position = (x: bounds.X + (bounds.Width - size.width) / 2, y: bounds.Y + (bounds.Height - size.height) / 2);
             // 如果选项绘制完成,则停止绘制
             if (optionsIndex >= this.options.Count) break;
             // 绘制纹理
-            drawTextureBox(spriteBatch, ModEntry.Textures[this.currentMenuTabId], this.options[optionsIndex].SourceRect,
-                position.x, position.y, size.width, size.height, Color.White);
+            spriteBatch.Draw(ModEntry.Textures[this.currentMenuTabId], new Vector2(bounds.X + bounds.Width / 2f, bounds.Y + bounds.Height / 2f), this.options[optionsIndex].SourceRect,
+                Color.White, 0f, new Vector2(bounds.Width / 2f, bounds.Height /2f), this.options[optionsIndex].Scale, SpriteEffects.None, 0f);
             // 绘制标签
             var x = bounds.X + bounds.Width / 2;
             var y = bounds.Y + bounds.Height / 3 * 2;

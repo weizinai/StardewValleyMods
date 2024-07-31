@@ -6,6 +6,7 @@ internal abstract class BaseOption
 {
     public string Name { get; }
     public Rectangle SourceRect { get; }
+    public float Scale { get; set; } = 1f;
 
     protected BaseOption(string name, Rectangle sourceRect)
     {

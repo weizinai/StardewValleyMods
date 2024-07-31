@@ -38,39 +38,37 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (Game1.IsServer && this.Config.VersionLimit)
-        {
-            foreach (var data in this.datas)
-            {
-                data.TimeLeft--;
+        if (!this.IsVersionLimitEnable()) return;
 
-                if (data.TimeLeft < 0)
+        foreach (var data in this.datas)
+        {
+            data.TimeLeft--;
+
+            if (data.TimeLeft < 0)
+            {
+                var farmer = data.Player;
+                if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
                 {
-                    var farmer = data.Player;
-                    if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
-                    {
-                        var message = this.GetKickMessage(farmer);
-                        Game1.chatBox.addInfoMessage(message);
-                        Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, message, farmer.UniqueMultiplayerID);
-                        if (Game1.server == null)
-                            Log.Error($"Game1.server不存在，玩家{farmer.Name}可能未被踢出。");
-                        else
-                            Game1.server.kick(farmer.UniqueMultiplayerID);
-                    }
+                    var message = this.GetKickMessage(farmer);
+                    Game1.chatBox.addInfoMessage(message);
+                    Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, message, farmer.UniqueMultiplayerID);
+                    if (Game1.server == null)
+                        Log.Error($"Game1.server不存在，玩家{farmer.Name}可能未被踢出。");
+                    else
+                        Game1.server.kick(farmer.UniqueMultiplayerID);
                 }
             }
-
-            this.datas.RemoveAll(data => data.TimeLeft < 0);
         }
+
+        this.datas.RemoveAll(data => data.TimeLeft < 0);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (this.Config.VersionLimit && Game1.IsServer)
-        {
-            var farmer = Game1.getFarmer(e.Peer.PlayerID);
-            this.datas.Add(new PlayerToKickData(farmer));
-        }
+        if (!this.IsVersionLimitEnable()) return;
+
+        var farmer = Game1.getFarmer(e.Peer.PlayerID);
+        this.datas.Add(new PlayerToKickData(farmer));
     }
 
     private string GetKickMessage(Farmer farmer)
@@ -78,5 +76,10 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
         return !farmer.modData.ContainsKey(VersionLimitKey)
             ? $"{farmer.Name}未安装<SomeMultiplayerFeature>模组，将被踢出。"
             : $"{farmer.Name}的<SomeMultiplayerFeature>模组为<{farmer.modData[VersionLimitKey]}>版本，要求的版本为<{TargetVersion}>，不满足要求，将被踢出。";
+    }
+
+    private bool IsVersionLimitEnable()
+    {
+        return Game1.IsServer && this.Config.VersionLimit;
     }
 }

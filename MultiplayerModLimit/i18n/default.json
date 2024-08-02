@@ -8,6 +8,10 @@
     "Config.ShowMismatchedModInfo.Name": "Show Mismatched Mod Info",
     "Config.ShowMismatchedModInfo.Tooltip": "When this option is enabled, the SMAPI console at the host will display the mismatched mod information.",
 
+    // Kick Player
+    "Config.KickPlayer.Name": "Kick Player",
+    "Config.KickPlayer.Tooltip": "When this option is enabled, the mod will kick players who do not meet the mod requirements.",
+
     // Kick Player Delay Time
     "Config.KickPlayerDelayTime.Name": "Kick Player Delay Time",
     "Config.KickPlayerDelayTIme.Tooltip": "The delay time for a player to be kicked out of the game when he joins the game without meeting the requirements. (Unit: seconds)",

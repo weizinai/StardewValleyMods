@@ -31,6 +31,13 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
                 I18n.Config_ShowMismatchedModInfo_Name,
                 I18n.Config_ShowMismatchedModInfo_Tooltip
             )
+            // 踢出玩家
+            .AddBoolOption(
+                config => config.KickPlayer,
+                (config, value) => config.KickPlayer = value,
+                I18n.Config_KickPlayer_Name,
+                I18n.Config_KickPlayer_Tooltip
+            )
             // 踢出玩家延迟时间
             .AddNumberOption(
                 config => config.KickPlayerDelayTime,

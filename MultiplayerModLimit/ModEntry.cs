@@ -57,6 +57,8 @@ internal class ModEntry : Mod
     {
         if (!this.IsModEnable()) return;
 
+        if (!this.config.KickPlayer) return;
+
         foreach (var player in this.playersToKick)
         {
             player.TimeLeft--;
@@ -92,7 +94,10 @@ internal class ModEntry : Mod
 
             if (unAllowedMods["Required"].Any() || unAllowedMods["Banned"].Any())
             {
-                this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
+                if (this.config.KickPlayer)
+                {
+                    this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
+                }
                 this.ShowMismatchedModInfo(unAllowedMods, name);
                 this.SendModRequirementInfo(unAllowedMods, e.Peer.PlayerID);
                 Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_KickPlayer_ClientTooltip(), e.Peer.PlayerID);
@@ -142,7 +147,10 @@ internal class ModEntry : Mod
     /// </summary>
     private void KickPlayerWithoutSMAPI(string playerName, long playerId)
     {
-        this.playersToKick.Add(new PlayerSlot(playerId, this.config.KickPlayerDelayTime));
+        if (this.config.KickPlayer)
+        {
+            this.playersToKick.Add(new PlayerSlot(playerId, this.config.KickPlayerDelayTime));
+        }
         Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_RequireSMAPI_ClientTooltip(), playerId);
         Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI_ServerTooltip(playerName));
     }

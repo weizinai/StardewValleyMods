@@ -24,6 +24,13 @@ internal class GenericModConfigMenuIntegrationForMultiplayerModLimit
                 (config, value) => config.EnableMod = value,
                 I18n.Config_EnableMod_Name
             )
+            // 显示不匹配的模组信息
+            .AddBoolOption(
+                config => config.ShowMismatchedModInfo,
+                (config, value) => config.ShowMismatchedModInfo = value,
+                I18n.Config_ShowMismatchedModInfo_Name,
+                I18n.Config_ShowMismatchedModInfo_Tooltip
+            )
             // 踢出玩家延迟时间
             .AddNumberOption(
                 config => config.KickPlayerDelayTime,

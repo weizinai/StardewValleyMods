@@ -4,6 +4,7 @@ internal class ModConfig
 {
     // 一般设置
     public bool EnableMod { get; set; } = true;
+    public bool ShowMismatchedModInfo { get; set; }
     public int KickPlayerDelayTime { get; set; } = 3;
     public bool SendSMAPIInfo { get; set; } = true;
 

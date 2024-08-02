@@ -1,3 +1,7 @@
+# 0.4.0
+
+- 添加`ShowMismatchedModInfo`功能，现在主机可以选择是否在SMAPI控制台显示不匹配的模组信息
+
 # 0.3.0
 
 - 添加`SendSMAPIInfo`选项，让玩家可以选择是否向不满足模组要求的客机玩家发送SMAPI信息

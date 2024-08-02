@@ -4,6 +4,10 @@
     // 启用模组
     "Config.EnableMod.Name": "启用模组",
 
+    // 显示不匹配的模组信息
+    "Config.ShowMismatchedModInfo.Name": "显示不匹配的模组信息",
+    "Config.ShowMismatchedModInfo.Tooltip": "当该选项启用时，主机处SMAPI控制台会显示不匹配的模组信息。",
+
     // 踢出玩家延迟时间
     "Config.KickPlayerDelayTime.Name": "踢出玩家延迟时间",
     "Config.KickPlayerDelayTIme.Tooltip": "当一个不满足要求的玩家加入游戏后，他被踢出游戏的延迟时间。（单位：秒）",

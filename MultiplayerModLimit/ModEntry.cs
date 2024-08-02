@@ -93,6 +93,7 @@ internal class ModEntry : Mod
             if (unAllowedMods["Required"].Any() || unAllowedMods["Banned"].Any())
             {
                 this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, this.config.KickPlayerDelayTime));
+                this.ShowMismatchedModInfo(unAllowedMods, name);
                 this.SendModRequirementInfo(unAllowedMods, e.Peer.PlayerID);
                 Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_KickPlayer_ClientTooltip(), e.Peer.PlayerID);
                 Game1.chatBox.addInfoMessage(I18n.UI_KickPlayer_ServerTooltip(name));
@@ -186,6 +187,25 @@ internal class ModEntry : Mod
         }
 
         return unAllowedMods;
+    }
+
+    /// <summary>
+    /// 在主机处的SMAPI控制台显示不匹配的模组信息
+    /// </summary>
+    private void ShowMismatchedModInfo(Dictionary<string, List<string>> unAllowedMods, string name)
+    {
+        if (!this.config.ShowMismatchedModInfo) return;
+
+        Log.Alert(I18n.UI_KickPlayer_ServerTooltip(name));
+        foreach (var id in unAllowedMods["Required"])
+        {
+            Log.Info(I18n.UI_ModLimit_Required(id));
+        }
+        Log.Info("----------");
+        foreach (var id in unAllowedMods["Banned"])
+        {
+            Log.Info(I18n.UI_ModLimit_Banned(id));
+        }
     }
 
     /// <summary>

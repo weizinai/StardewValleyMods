@@ -66,6 +66,9 @@ internal class AMAMenu : IClickableMenu
 
     public override void performHoverAction(int x, int y)
     {
+        this.upArrow.tryHover(x, y);
+        this.downArrow.tryHover(x, y);
+
         for (var i = 0; i < OptionsPerPage; i++)
         {
             var optionIndex = i + this.currentPage * OptionsPerPage;

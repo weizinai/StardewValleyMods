@@ -26,6 +26,6 @@ internal abstract class BaseOption
     public void Draw(SpriteBatch b, Texture2D texture, int x, int y)
     {
         b.Draw(texture, new Vector2(x + 100, y + 100), this.SourceRect, Color.White, 0f, new Vector2(100, 100), this.Scale, SpriteEffects.None, 0f);
-        DrawHelper.DrawTab(x + 100, y + 150, Game1.smallFont, this.Label, Align.Center);
+        DrawHelper.DrawTab(x + 100, y + 120, Game1.smallFont, this.Label, Align.Center);
     }
 }

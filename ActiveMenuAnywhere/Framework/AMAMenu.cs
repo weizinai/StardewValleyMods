@@ -319,7 +319,7 @@ internal class AMAMenu : IClickableMenu
             // 绘制标签
             var x = bounds.X + bounds.Width / 2;
             var y = bounds.Y + bounds.Height / 3 * 2;
-            DrawHelper.DrawTab(x, y, Game1.smallFont, this.options[optionsIndex].Name, Align.Center);
+            DrawHelper.DrawTab(x, y, Game1.smallFont, this.options[optionsIndex].Label, Align.Center);
         }
     }
 }

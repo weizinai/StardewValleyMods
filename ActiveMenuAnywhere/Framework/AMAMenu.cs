@@ -74,30 +74,30 @@ internal class AMAMenu : IClickableMenu
                 this.options[i].Scale = 1f;
     }
 
-    public override void draw(SpriteBatch spriteBatch)
+    public override void draw(SpriteBatch b)
     {
         // Draw shadow
-        spriteBatch.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.4f);
+        b.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.4f);
 
         // Draw background
-        drawTextureBox(spriteBatch, this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height, Color.White);
+        drawTextureBox(b, this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height, Color.White);
 
         // Draw title
-        SpriteText.drawStringWithScrollCenteredAt(spriteBatch, "Active Menu Anywhere", this.xPositionOnScreen + this.width / 2, this.yPositionOnScreen - 64);
+        SpriteText.drawStringWithScrollCenteredAt(b, "Active Menu Anywhere", this.xPositionOnScreen + this.width / 2, this.yPositionOnScreen - 64);
 
         // Draw arrows
-        this.upArrow.draw(spriteBatch);
-        this.downArrow.draw(spriteBatch);
+        this.upArrow.draw(b);
+        this.downArrow.draw(b);
 
         // Draw tabs
         this.tabs.ForEach(tab => DrawHelper.DrawTab(tab.bounds.X + tab.bounds.Width, tab.bounds.Y, Game1.smallFont, tab.name, Align.Right,
             this.GetTabId(tab) == this.currentMenuTabId ? 0.7f : 1f));
 
         // Draw options
-        this.DrawOption();
+        this.DrawOption(b);
 
         // Draw Mouse
-        this.drawMouse(spriteBatch);
+        this.drawMouse(b);
     }
 
     private void Init(MenuTabId menuTabId)
@@ -302,24 +302,14 @@ internal class AMAMenu : IClickableMenu
         for (var i = 0; i < OptionsPerPage; i++) this.optionSlots.Add(new ClickableComponent(this.GetBoundsRectangle(i), ""));
     }
 
-    private void DrawOption()
+    private void DrawOption(SpriteBatch b)
     {
-        var spriteBatch = Game1.spriteBatch;
         for (var i = 0; i < OptionsPerPage; i++)
         {
             var optionsIndex = i + this.currentPage * OptionsPerPage;
-            // 选项槽的位置和大小
             var bounds = this.optionSlots[i].bounds;
-            // 如果选项绘制完成,则停止绘制
             if (optionsIndex >= this.options.Count) break;
-            // 绘制纹理
-            spriteBatch.Draw(TextureManager.Instance.Textures[this.currentMenuTabId], new Vector2(bounds.X + bounds.Width / 2f, bounds.Y + bounds.Height / 2f),
-                this.options[optionsIndex].SourceRect, Color.White, 0f, new Vector2(bounds.Width / 2f, bounds.Height / 2f),
-                this.options[optionsIndex].Scale, SpriteEffects.None, 0f);
-            // 绘制标签
-            var x = bounds.X + bounds.Width / 2;
-            var y = bounds.Y + bounds.Height / 3 * 2;
-            DrawHelper.DrawTab(x, y, Game1.smallFont, this.options[optionsIndex].Label, Align.Center);
+            this.options[optionsIndex].Draw(b, TextureManager.Instance.Textures[this.currentMenuTabId], bounds.X, bounds.Y);
         }
     }
 }

@@ -68,10 +68,11 @@ internal class AMAMenu : IClickableMenu
     public override void performHoverAction(int x, int y)
     {
         for (var i = 0; i < OptionsPerPage; i++)
-            if (this.optionSlots[i].containsPoint(x, y) && i + this.currentPage * OptionsPerPage < this.options.Count)
-                this.options[i].Scale = 0.9f;
-            else
-                this.options[i].Scale = 1f;
+        {
+            var optionIndex = i + this.currentPage * OptionsPerPage;
+            if (optionIndex >= this.options.Count) return;
+            this.options[optionIndex].Scale = this.optionSlots[i].containsPoint(x, y) ? 0.9f : 1f;
+        }
     }
 
     public override void draw(SpriteBatch b)

@@ -8,12 +8,10 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
 
 internal class Game1Patcher : BasePatcher
 {
-    private static ModConfig config = null!;
     private static IModHelper helper = null!;
 
-    public Game1Patcher(ModConfig config, IModHelper helper)
+    public Game1Patcher(IModHelper helper)
     {
-        Game1Patcher.config = config;
         Game1Patcher.helper = helper;
     }
 
@@ -27,9 +25,9 @@ internal class Game1Patcher : BasePatcher
 
     private static bool ShowTelephoneMenuPrefix()
     {
-        if (!config.OpenMenuByTelephone) return true;
+        if (!ModConfig.Instance.OpenMenuByTelephone) return true;
 
-        Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabId, config, helper);
+        Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMeanTabId, helper);
 
         return false;
     }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -11,19 +10,17 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
 
 internal class ModEntry : Mod
 {
-    private ModConfig config = null!;
-
     public override void Entry(IModHelper helper)
     {
         // 初始化
         I18n.Init(helper.Translation);
+        ModConfig.Init(helper);
         TextureManager.Instance.LoadTexture(helper);
-        this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new Game1Patcher(this.config, helper));
+        HarmonyPatcher.Apply(this, new Game1Patcher(helper));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -32,27 +29,29 @@ internal class ModEntry : Mod
             new GenericModConfigMenuIntegration<ModConfig>(
                 this.Helper.ModRegistry,
                 this.ModManifest,
-                () => this.config,
+                () => ModConfig.Instance,
                 () =>
                 {
-                    this.config = new ModConfig();
-                    this.Helper.WriteConfig(this.config);
+                    ModConfig.Instance = new ModConfig();
+                    this.Helper.WriteConfig(ModConfig.Instance);
                 },
-                () => this.Helper.WriteConfig(this.config)
+                () => this.Helper.WriteConfig(ModConfig.Instance)
             )
         ).Register();
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (this.config.OpenMenuByTelephone) return;
+        var config = ModConfig.Instance;
 
-        if (this.config.MenuKey.JustPressed())
+        if (config.OpenMenuByTelephone) return;
+
+        if (config.MenuKey.JustPressed())
         {
             if (Game1.activeClickableMenu is AMAMenu)
                 Game1.exitActiveMenu();
             else if (Context.IsPlayerFree)
-                Game1.activeClickableMenu = new AMAMenu(this.config.DefaultMeanTabId, this.config, this.Helper);
+                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabId, this.Helper);
         }
     }
 }

@@ -313,8 +313,9 @@ internal class AMAMenu : IClickableMenu
             // 如果选项绘制完成,则停止绘制
             if (optionsIndex >= this.options.Count) break;
             // 绘制纹理
-            spriteBatch.Draw(ModEntry.Textures[this.currentMenuTabId], new Vector2(bounds.X + bounds.Width / 2f, bounds.Y + bounds.Height / 2f), this.options[optionsIndex].SourceRect,
-                Color.White, 0f, new Vector2(bounds.Width / 2f, bounds.Height /2f), this.options[optionsIndex].Scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureManager.Instance.Textures[this.currentMenuTabId], new Vector2(bounds.X + bounds.Width / 2f, bounds.Y + bounds.Height / 2f),
+                this.options[optionsIndex].SourceRect, Color.White, 0f, new Vector2(bounds.Width / 2f, bounds.Height / 2f),
+                this.options[optionsIndex].Scale, SpriteEffects.None, 0f);
             // 绘制标签
             var x = bounds.X + bounds.Width / 2;
             var y = bounds.Y + bounds.Height / 3 * 2;

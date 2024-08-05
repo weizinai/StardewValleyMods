@@ -1,7 +1,7 @@
 {
     "Name": "Multiplayer Mod Limit",
     "Author": "weizinai",
-    "Version": "0.4.0",
+    "Version": "0.4.1",
     "Description": "This mod allows you to limit the mods of farmhand.",
     "UniqueID": "weizinai.MultiplayerModLimit",
     "EntryDll": "MultiplayerModLimit.dll",

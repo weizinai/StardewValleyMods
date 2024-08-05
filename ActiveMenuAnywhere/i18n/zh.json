@@ -8,6 +8,10 @@
     "Config.FavoriteKey.Name": "收藏快捷键",
     "Config.FavoriteKey.Tooltip": "当你按住该快捷键时，鼠标左键点击菜单可以收藏菜单。",
 
+    "UI.Favorite.Add": "已将该菜单添加到收藏。",
+    "UI.Favorite.Remove": "已将该菜单从收藏中移除。",
+    "UI.Favorite.Exist": "该菜单在收藏中已存在。",
+
     // Tab
     "UI.Tab.Favorites": "收藏",
     "UI.Tab.Farm": "农场",

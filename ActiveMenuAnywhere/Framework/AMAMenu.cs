@@ -4,6 +4,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.Common.Log;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -59,12 +60,18 @@ internal class AMAMenu : IClickableMenu
                     if (this.currentMenuTabId == MenuTabId.Favorite)
                     {
                         this.config.FavoriteMenus.Remove(option.Id);
+                        Log.NoIconHUDMessage(I18n.UI_Favorite_Remove());
                     }
                     else
                     {
                         if (!this.config.FavoriteMenus.Contains(option.Id))
                         {
                             this.config.FavoriteMenus.Add(option.Id);
+                            Log.NoIconHUDMessage(I18n.UI_Favorite_Add());
+                        }
+                        else
+                        {
+                            Log.NoIconHUDMessage(I18n.UI_Favorite_Exist());
                         }
                     }
                 }

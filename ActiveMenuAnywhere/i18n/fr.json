@@ -8,6 +8,10 @@
     "Config.FavoriteKey.Name": "Favorite Key", // TODO
     "Config.FavoriteKey.Tooltip": "When you hold down the key, left-click on the menu to favorite it.", // TODO
 
+    "UI.Favorite.Add": "The menu has been added to the favorites.", // TODO
+    "UI.Favorite.Remove": "The menu has been removed from the favorites.", // TODO
+    "UI.Favorite.Exist": "The menu already exists in the favorites.", // TODO
+
     // Tab
     "UI.Tab.Favorites": "Favorites", // TODO
     "UI.Tab.Farm": "Ferme",

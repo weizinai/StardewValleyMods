@@ -4,6 +4,7 @@ using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
 using weizinai.StardewValleyMod.Common.Integration;
+using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
@@ -13,6 +14,7 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
+        Log.Init(this.Monitor);
         I18n.Init(helper.Translation);
         ModConfig.Init(helper);
         OptionFactory.Init(helper);

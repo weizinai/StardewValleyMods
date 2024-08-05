@@ -64,7 +64,15 @@ internal class ModEntry : Mod
             player.TimeLeft--;
             if (player.TimeLeft < 0)
             {
-                Game1.server?.kick(player.Id);
+                try
+                {
+                    Game1.server.kick(player.Id);
+                }
+                catch (Exception)
+                {
+                    Game1.otherFarmers.Remove(player.Id);
+                }
+
             }
         }
 

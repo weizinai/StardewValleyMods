@@ -15,6 +15,7 @@ internal class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         ModConfig.Init(helper);
+        OptionFactory.Init(helper);
         TextureManager.Instance.LoadTexture(helper);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;

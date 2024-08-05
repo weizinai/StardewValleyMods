@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
+using StardewModdingAPI.Framework.ModLoading.Rewriters.StardewValley_1_6;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -137,13 +137,6 @@ internal class AMAMenu : IClickableMenu
         return new Rectangle(this.innerDrawPosition.x + i * 200, this.innerDrawPosition.y + j * 200, 200, 200);
     }
 
-    private Rectangle GetSourceRectangle(int index)
-    {
-        var i = index % 3;
-        var j = index / 3;
-        return new Rectangle(i * 200, j * 200, 200, 200);
-    }
-
     private Rectangle GetTabRectangle(int index)
     {
         var tabOffset = (x: 4, y: 16);
@@ -191,109 +184,31 @@ internal class AMAMenu : IClickableMenu
         switch (this.currentMenuTabId)
         {
             case MenuTabId.Farm:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new TVOption(this.helper),
-                    new ShippingBinOption(this.helper)
-                });
+                this.options.AddRange(OptionFactory.CreateFarmOptions());
                 break;
             case MenuTabId.Town:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new BillboardOption(),
-                    new SpecialOrderOption(),
-                    new CommunityCenterOption(),
-                    new PierreOption(),
-                    new ClintOption(),
-                    new GusOption(),
-                    new JojaShopOption(),
-                    new PrizeTicketOption(),
-                    new BooksellerOption(),
-                    new KrobusOption(),
-                    new StatueOption(),
-                    new HarveyOption(),
-                    new TailoringOption(),
-                    new DyeOption(),
-                    new IceCreamStandOption(),
-                    new AbandonedJojaMartOption()
-                });
+                this.options.AddRange(OptionFactory.CreateTownOptions());
                 break;
             case MenuTabId.Mountain:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new RobinOption(),
-                    new DwarfOption(),
-                    new MonsterOption(this.helper),
-                    new MarlonOption()
-                });
+                this.options.AddRange(OptionFactory.CreateMountainOptions());
                 break;
             case MenuTabId.Forest:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new MarnieOption(this.helper),
-                    new TravelerOption(),
-                    new HatMouseOption(),
-                    new WizardOption(),
-                    new RaccoonOption(this.helper)
-                });
+                this.options.AddRange(OptionFactory.CreateForestOptions());
                 break;
             case MenuTabId.Beach:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new WillyOption(),
-                    new BobberOption(),
-                    new NightMarketTraveler(),
-                    new DecorationBoatOption(),
-                    new MagicBoatOption()
-                });
+                this.options.AddRange(OptionFactory.CreateBeachOptions());
                 break;
             case MenuTabId.Desert:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new SandyOption(),
-                    new DesertTradeOption(),
-                    new CasinoOption(),
-                    new FarmerFileOption(),
-                    new BuyQiCoinsOption(),
-                    new ClubSellerOption()
-                });
+                this.options.AddRange(OptionFactory.CreateDesertOptions());
                 break;
             case MenuTabId.GingerIsland:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new QiSpecialOrderOption(),
-                    new QiGemShopOption(),
-                    new QiCatOption(this.helper),
-                    new IslandTradeOption(),
-                    new IslandResortOption(),
-                    new VolcanoShopOption(),
-                    new ForgeOption()
-                });
+                this.options.AddRange(OptionFactory.CreateGingerIslandOptions());
                 break;
             case MenuTabId.SVE:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new SophiaOption()
-                });
+                this.options.AddRange(OptionFactory.CreateSVEOptions());
                 break;
             case MenuTabId.RSV:
-                this.options.AddRange(new BaseOption[]
-                {
-                    new RSVQuestBoardOption(),
-                    new RSVSpecialOrderOption(),
-                    new IanOption(),
-                    new PaulaOption(),
-                    new LorenzoOption(),
-                    new JericOption(),
-                    new KimpoiOption(),
-                    new PikaOption(),
-                    new LolaOption(),
-                    new NinjaBoardOption(),
-                    new JoiOption(),
-                    new MysticFalls1Option(),
-                    new MysticFalls2Option(),
-                    new MysticFalls3Option(),
-                });
+                this.options.AddRange(OptionFactory.CreateRSVOptions());
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

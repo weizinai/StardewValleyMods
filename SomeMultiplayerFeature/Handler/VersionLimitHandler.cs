@@ -9,7 +9,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 {
     private const string VersionLimitKey = ModEntry.ModDataPrefix + "VersionLimit";
-    private static string TargetVersion => "0.19.2" + "_" + Game1.dayOfMonth;
+    private static string TargetVersion => "0.19.3" + "_" + Game1.dayOfMonth;
 
     private readonly List<PlayerToKickData> datas = new();
 

@@ -1,5 +1,6 @@
 # 1.6.0
 
+- 移除`ActiveMenuAnywhereMenu`背景的阴影
 - 为翻页按钮添加交互响应
 - 暂时隐藏`CommunityCenter`菜单，因为其有尚未修复的问题
 - 添加`Favorite`功能，让玩家可以收藏常用的菜单

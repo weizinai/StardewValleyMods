@@ -20,6 +20,13 @@
 
     <ItemGroup>
         <None Remove="ActiveMenuAnywhere.csproj.DotSettings"/>
+        <None Remove="docs\ChangeLog.md"/>
+        <None Remove="docs\Readme.md"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="docs\CHANGELOG.md" />
+      <Content Include="docs\README.md" />
     </ItemGroup>
 
     <Import Project="..\Common.Integration\Common.Integration.projitems" Label="Shared"/>

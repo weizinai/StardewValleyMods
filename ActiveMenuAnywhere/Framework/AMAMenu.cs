@@ -60,18 +60,18 @@ internal class AMAMenu : IClickableMenu
                     if (this.currentMenuTabId == MenuTabId.Favorite)
                     {
                         this.config.FavoriteMenus.Remove(option.Id);
-                        Log.NoIconHUDMessage(I18n.UI_Favorite_Remove());
+                        Log.NoIconHUDMessage(I18n.UI_Favorite_Remove(), 1000);
                     }
                     else
                     {
                         if (!this.config.FavoriteMenus.Contains(option.Id))
                         {
                             this.config.FavoriteMenus.Add(option.Id);
-                            Log.NoIconHUDMessage(I18n.UI_Favorite_Add());
+                            Log.NoIconHUDMessage(I18n.UI_Favorite_Add(), 1000);
                         }
                         else
                         {
-                            Log.NoIconHUDMessage(I18n.UI_Favorite_Exist());
+                            Log.NoIconHUDMessage(I18n.UI_Favorite_Exist(), 1000);
                         }
                     }
                 }

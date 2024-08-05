@@ -193,7 +193,7 @@ internal static class OptionFactory
         {
             CreateOption(OptionId.Billboard),
             CreateOption(OptionId.SpecialOrder),
-            CreateOption(OptionId.CommunityCenter),
+            // CreateOption(OptionId.CommunityCenter),
             CreateOption(OptionId.Pierre),
             CreateOption(OptionId.Clint),
             CreateOption(OptionId.Gus),

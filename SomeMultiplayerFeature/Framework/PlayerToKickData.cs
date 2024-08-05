@@ -1,14 +1,13 @@
-using StardewValley;
-
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 internal class PlayerToKickData
 {
-    public Farmer Player { get; set; }
-    public int TimeLeft { get; set; } = 10;
+    public long Id { get; }
+    public int TimeLeft { get; set; }
 
-    public PlayerToKickData(Farmer player)
+    public PlayerToKickData(long id, int timeLeft)
     {
-        this.Player = player;
+        this.Id = id;
+        this.TimeLeft = timeLeft;
     }
 }

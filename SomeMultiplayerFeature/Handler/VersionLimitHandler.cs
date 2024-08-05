@@ -2,7 +2,6 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Handler;
-using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
@@ -46,16 +45,27 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
             if (data.TimeLeft < 0)
             {
-                var farmer = data.Player;
+                var farmer = Game1.getFarmerMaybeOffline(data.Id);
+
+                if (farmer == null)
+                {
+                    Game1.chatBox.addInfoMessage($"无法获取Id为{data.Id}的玩家，该玩家可能已经退出。");
+                    return;
+                }
+
                 if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
                 {
                     var message = this.GetKickMessage(farmer);
                     Game1.chatBox.addInfoMessage(message);
-                    Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, message, farmer.UniqueMultiplayerID);
-                    if (Game1.server == null)
-                        Log.Error($"Game1.server不存在，玩家{farmer.Name}可能未被踢出。");
-                    else
+                    try
+                    {
                         Game1.server.kick(farmer.UniqueMultiplayerID);
+                    }
+                    catch (Exception)
+                    {
+                        Game1.chatBox.addErrorMessage($"踢出玩家{farmer.Name}失败，该问题可能导致空用户的产生，已尝试解决。");
+                        Game1.otherFarmers.Remove(data.Id);
+                    }
                 }
             }
         }
@@ -67,8 +77,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         if (!this.IsVersionLimitEnable()) return;
 
-        var farmer = Game1.getFarmer(e.Peer.PlayerID);
-        this.datas.Add(new PlayerToKickData(farmer));
+        this.datas.Add(new PlayerToKickData(e.Peer.PlayerID, 10));
     }
 
     private string GetKickMessage(Farmer farmer)

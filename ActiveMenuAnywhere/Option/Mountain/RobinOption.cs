@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class RobinOption : BaseOption
 {
-    public RobinOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Robin(), sourceRect) { }
+    public RobinOption() : base(I18n.UI_Option_Robin(), GetSourceRectangle(0)) { }
 
     public override void Apply()
     {

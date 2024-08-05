@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class LolaOption : BaseOption
 {
-    public LolaOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Lola(), sourceRect) { }
+    public LolaOption() : base(I18n.UI_Option_Lola(), GetSourceRectangle(8)) { }
 
     public override bool IsEnable()
     {

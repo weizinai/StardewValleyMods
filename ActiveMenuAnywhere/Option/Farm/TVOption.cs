@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Objects;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -10,8 +9,8 @@ internal class TVOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public TVOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.UI_Option_TV(), sourceRect)
+    public TVOption(IModHelper helper) :
+        base(I18n.UI_Option_TV(), GetSourceRectangle(0))
     {
         this.helper = helper;
     }

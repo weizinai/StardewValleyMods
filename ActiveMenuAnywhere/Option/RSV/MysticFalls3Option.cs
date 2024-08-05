@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MysticFalls3Option : BaseOption
 {
-    public MysticFalls3Option(Rectangle sourceRect)
-        : base(I18n.UI_Option_MysticFall3(), sourceRect) { }
+    public MysticFalls3Option() : base(I18n.UI_Option_MysticFall3(), GetSourceRectangle(14)) { }
 
     public override bool IsEnable()
     {

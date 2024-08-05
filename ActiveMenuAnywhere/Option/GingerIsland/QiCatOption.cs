@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -10,8 +9,7 @@ internal class QiCatOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public QiCatOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.UI_Option_QiCat(), sourceRect)
+    public QiCatOption(IModHelper helper) : base(I18n.UI_Option_QiCat(), GetSourceRectangle(2))
     {
         this.helper = helper;
     }

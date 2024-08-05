@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BillboardOption : BaseOption
 {
-    public BillboardOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Billboard(), sourceRect) { }
+    public BillboardOption() : base(I18n.UI_Option_Billboard(), GetSourceRectangle(0)) { }
 
     public override void Apply()
     {

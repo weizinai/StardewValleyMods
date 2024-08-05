@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Menus;
@@ -12,8 +11,8 @@ internal class ShippingBinOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public ShippingBinOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.UI_Option_ShippingBin(), sourceRect)
+    public ShippingBinOption(IModHelper helper) :
+        base(I18n.UI_Option_ShippingBin(), GetSourceRectangle(1))
     {
         this.helper = helper;
     }

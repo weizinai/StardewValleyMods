@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PikaOption : BaseOption
 {
-    public PikaOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Pika(), sourceRect) { }
+    public PikaOption() : base(I18n.UI_Option_Pika(), GetSourceRectangle(7)) { }
 
     public override void Apply()
     {

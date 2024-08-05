@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class TailoringOption : BaseOption
 {
-    public TailoringOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Tailoring(), sourceRect) { }
+    public TailoringOption() : base(I18n.UI_Option_Tailoring(), GetSourceRectangle(12)) { }
 
     public override bool IsEnable()
     {

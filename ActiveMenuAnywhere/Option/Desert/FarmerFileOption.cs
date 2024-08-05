@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class FarmerFileOption : BaseOption
 {
-    public FarmerFileOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_FarmerFile(), sourceRect) { }
+    public FarmerFileOption() : base(I18n.UI_Option_FarmerFile(), GetSourceRectangle(3)) { }
 
     public override bool IsEnable()
     {

@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DesertTradeOption : BaseOption
 {
-    public DesertTradeOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_DesertTrade(), sourceRect) { }
+    public DesertTradeOption() : base(I18n.UI_Option_DesertTrade(), GetSourceRectangle(1)) { }
 
     public override bool IsEnable()
     {

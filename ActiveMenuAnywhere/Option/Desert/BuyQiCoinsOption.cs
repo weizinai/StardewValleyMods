@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BuyQiCoinsOption : BaseOption
 {
-    public BuyQiCoinsOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_BuyQiCoins(), sourceRect) { }
+    public BuyQiCoinsOption() : base(I18n.UI_Option_BuyQiCoins(), GetSourceRectangle(4)) { }
 
     public override bool IsEnable()
     {

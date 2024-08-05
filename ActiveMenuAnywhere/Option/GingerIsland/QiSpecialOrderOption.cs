@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -8,8 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class QiSpecialOrderOption : BaseOption
 {
-    public QiSpecialOrderOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_QiSpecialOrder(), sourceRect) { }
+    public QiSpecialOrderOption() : base(I18n.UI_Option_QiSpecialOrder(), GetSourceRectangle(0)) { }
 
     public override bool IsEnable()
     {

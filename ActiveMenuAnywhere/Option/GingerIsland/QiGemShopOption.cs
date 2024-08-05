@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class QiGemShopOption : BaseOption
 {
-    public QiGemShopOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_QiGemShop(), sourceRect) { }
+    public QiGemShopOption() : base(I18n.UI_Option_QiGemShop(), GetSourceRectangle(1)) { }
 
     public override bool IsEnable()
     {

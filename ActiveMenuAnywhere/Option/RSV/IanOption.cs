@@ -1,12 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+﻿using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class IanOption : BaseOption
 {
-    public IanOption(Rectangle sourceRect)
-        : base(I18n.UI_Option_Ian(), sourceRect) { }
+    public IanOption() : base(I18n.UI_Option_Ian(), GetSourceRectangle(2)) { }
 
     public override void Apply()
     {

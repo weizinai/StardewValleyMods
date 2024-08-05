@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BooksellerOption : BaseOption
 {
-    public BooksellerOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Bookseller(), sourceRect) { }
+    public BooksellerOption() : base(I18n.UI_Option_Bookseller(), GetSourceRectangle(8)) { }
 
     public override bool IsEnable()
     {

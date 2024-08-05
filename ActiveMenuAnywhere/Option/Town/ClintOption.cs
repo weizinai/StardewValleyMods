@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -8,8 +7,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ClintOption : BaseOption
 {
-    public ClintOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Clint(), sourceRect) { }
+    public ClintOption() : base(I18n.UI_Option_Clint(), GetSourceRectangle(4)) { }
 
     public override void Apply()
     {

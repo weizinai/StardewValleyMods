@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JoiOption : BaseOption
 {
-    public JoiOption(Rectangle sourceRect)
-        : base(I18n.UI_Option_Joi(), sourceRect) { }
+    public JoiOption() : base(I18n.UI_Option_Joi(), GetSourceRectangle(11)) { }
 
     public override bool IsEnable()
     {

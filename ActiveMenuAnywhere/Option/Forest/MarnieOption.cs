@@ -4,7 +4,6 @@ using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 using xTile.Dimensions;
-using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
@@ -15,8 +14,7 @@ internal class MarnieOption : BaseOption
     private GameLocation originLocation = null!;
     private Location originViewport;
 
-    public MarnieOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.UI_Option_Marnie(), sourceRect)
+    public MarnieOption(IModHelper helper) : base(I18n.UI_Option_Marnie(), GetSourceRectangle(0))
     {
         this.helper = helper;
     }

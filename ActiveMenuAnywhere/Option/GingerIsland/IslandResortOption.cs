@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class IslandResortOption : BaseOption
 {
-    public IslandResortOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_IslandResort(), sourceRect) { }
+    public IslandResortOption() : base(I18n.UI_Option_IslandResort(), GetSourceRectangle(4)) { }
 
     public override bool IsEnable()
     {

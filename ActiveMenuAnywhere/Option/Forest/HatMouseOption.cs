@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class HatMouseOption : BaseOption
 {
-    public HatMouseOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_HatMouse(), sourceRect) { }
+    public HatMouseOption() : base(I18n.UI_Option_HatMouse(), GetSourceRectangle(2)) { }
 
     public override bool IsEnable()
     {

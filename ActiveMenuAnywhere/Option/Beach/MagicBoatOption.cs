@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MagicBoatOption : BaseOption
 {
-    public MagicBoatOption(Rectangle sourceRect)
-        : base(I18n.UI_Option_MagicBoat(), sourceRect) { }
+    public MagicBoatOption() : base(I18n.UI_Option_MagicBoat(), GetSourceRectangle(4)) { }
 
     public override bool IsEnable()
     {

@@ -193,106 +193,106 @@ internal class AMAMenu : IClickableMenu
             case MenuTabId.Farm:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new TVOption(this.GetSourceRectangle(0), this.helper),
-                    new ShippingBinOption(this.GetSourceRectangle(1), this.helper)
+                    new TVOption(this.helper),
+                    new ShippingBinOption(this.helper)
                 });
                 break;
             case MenuTabId.Town:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new BillboardOption(this.GetSourceRectangle(0)),
-                    new SpecialOrderOption(this.GetSourceRectangle(1)),
-                    new CommunityCenterOption(this.GetSourceRectangle(2)),
-                    new PierreOption(this.GetSourceRectangle(3)),
-                    new ClintOption(this.GetSourceRectangle(4)),
-                    new GusOption(this.GetSourceRectangle(5)),
-                    new JojaShopOption(this.GetSourceRectangle(6)),
-                    new PrizeTicketOption(this.GetSourceRectangle(7)),
-                    new BooksellerOption(this.GetSourceRectangle(8)),
-                    new KrobusOption(this.GetSourceRectangle(9)),
-                    new StatueOption(this.GetSourceRectangle(10)),
-                    new HarveyOption(this.GetSourceRectangle(11)),
-                    new TailoringOption(this.GetSourceRectangle(12)),
-                    new DyeOption(this.GetSourceRectangle(13)),
-                    new IceCreamStandOption(this.GetSourceRectangle(14)),
-                    new AbandonedJojaMartOption(this.GetSourceRectangle(15))
+                    new BillboardOption(),
+                    new SpecialOrderOption(),
+                    new CommunityCenterOption(),
+                    new PierreOption(),
+                    new ClintOption(),
+                    new GusOption(),
+                    new JojaShopOption(),
+                    new PrizeTicketOption(),
+                    new BooksellerOption(),
+                    new KrobusOption(),
+                    new StatueOption(),
+                    new HarveyOption(),
+                    new TailoringOption(),
+                    new DyeOption(),
+                    new IceCreamStandOption(),
+                    new AbandonedJojaMartOption()
                 });
                 break;
             case MenuTabId.Mountain:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new RobinOption(this.GetSourceRectangle(0)),
-                    new DwarfOption(this.GetSourceRectangle(1)),
-                    new MonsterOption(this.GetSourceRectangle(2), this.helper),
-                    new MarlonOption(this.GetSourceRectangle(3))
+                    new RobinOption(),
+                    new DwarfOption(),
+                    new MonsterOption(this.helper),
+                    new MarlonOption()
                 });
                 break;
             case MenuTabId.Forest:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new MarnieOption(this.GetSourceRectangle(0), this.helper),
-                    new TravelerOption(this.GetSourceRectangle(1)),
-                    new HatMouseOption(this.GetSourceRectangle(2)),
-                    new WizardOption(this.GetSourceRectangle(3)),
-                    new RaccoonOption(this.GetSourceRectangle(4), this.helper)
+                    new MarnieOption(this.helper),
+                    new TravelerOption(),
+                    new HatMouseOption(),
+                    new WizardOption(),
+                    new RaccoonOption(this.helper)
                 });
                 break;
             case MenuTabId.Beach:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new WillyOption(this.GetSourceRectangle(0)),
-                    new BobberOption(this.GetSourceRectangle(1)),
-                    new NightMarketTraveler(this.GetSourceRectangle(2)),
-                    new DecorationBoatOption(this.GetSourceRectangle(3)),
-                    new MagicBoatOption(this.GetSourceRectangle(4))
+                    new WillyOption(),
+                    new BobberOption(),
+                    new NightMarketTraveler(),
+                    new DecorationBoatOption(),
+                    new MagicBoatOption()
                 });
                 break;
             case MenuTabId.Desert:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new SandyOption(this.GetSourceRectangle(0)),
-                    new DesertTradeOption(this.GetSourceRectangle(1)),
-                    new CasinoOption(this.GetSourceRectangle(2)),
-                    new FarmerFileOption(this.GetSourceRectangle(3)),
-                    new BuyQiCoinsOption(this.GetSourceRectangle(4)),
-                    new ClubSellerOption(this.GetSourceRectangle(5))
+                    new SandyOption(),
+                    new DesertTradeOption(),
+                    new CasinoOption(),
+                    new FarmerFileOption(),
+                    new BuyQiCoinsOption(),
+                    new ClubSellerOption()
                 });
                 break;
             case MenuTabId.GingerIsland:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new QiSpecialOrderOption(this.GetSourceRectangle(0)),
-                    new QiGemShopOption(this.GetSourceRectangle(1)),
-                    new QiCatOption(this.GetSourceRectangle(2), this.helper),
-                    new IslandTradeOption(this.GetSourceRectangle(3)),
-                    new IslandResortOption(this.GetSourceRectangle(4)),
-                    new VolcanoShopOption(this.GetSourceRectangle(5)),
-                    new ForgeOption(this.GetSourceRectangle(6))
+                    new QiSpecialOrderOption(),
+                    new QiGemShopOption(),
+                    new QiCatOption(this.helper),
+                    new IslandTradeOption(),
+                    new IslandResortOption(),
+                    new VolcanoShopOption(),
+                    new ForgeOption()
                 });
                 break;
             case MenuTabId.SVE:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new SophiaOption(this.GetSourceRectangle(0))
+                    new SophiaOption()
                 });
                 break;
             case MenuTabId.RSV:
                 this.options.AddRange(new BaseOption[]
                 {
-                    new RSVQuestBoardOption(this.GetSourceRectangle(0)),
-                    new RSVSpecialOrderOption(this.GetSourceRectangle(1)),
-                    new IanOption(this.GetSourceRectangle(2)),
-                    new PaulaOption(this.GetSourceRectangle(3)),
-                    new LorenzoOption(this.GetSourceRectangle(4)),
-                    new JericOption(this.GetSourceRectangle(5)),
-                    new KimpoiOption(this.GetSourceRectangle(6)),
-                    new PikaOption(this.GetSourceRectangle(7)),
-                    new LolaOption(this.GetSourceRectangle(8)),
-                    new NinjaBoardOption(this.GetSourceRectangle(10)),
-                    new JoiOption(this.GetSourceRectangle(11)),
-                    new MysticFalls1Option(this.GetSourceRectangle(12)),
-                    new MysticFalls2Option(this.GetSourceRectangle(13)),
-                    new MysticFalls3Option(this.GetSourceRectangle(14)),
+                    new RSVQuestBoardOption(),
+                    new RSVSpecialOrderOption(),
+                    new IanOption(),
+                    new PaulaOption(),
+                    new LorenzoOption(),
+                    new JericOption(),
+                    new KimpoiOption(),
+                    new PikaOption(),
+                    new LolaOption(),
+                    new NinjaBoardOption(),
+                    new JoiOption(),
+                    new MysticFalls1Option(),
+                    new MysticFalls2Option(),
+                    new MysticFalls3Option(),
                 });
                 break;
             default:

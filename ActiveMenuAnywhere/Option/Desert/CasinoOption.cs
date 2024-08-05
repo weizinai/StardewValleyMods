@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class CasinoOption : BaseOption
 {
-    public CasinoOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Casino(), sourceRect) { }
+    public CasinoOption() : base(I18n.UI_Option_Casino(), GetSourceRectangle(2)) { }
 
     public override bool IsEnable()
     {

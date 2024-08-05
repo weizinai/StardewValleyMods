@@ -28,4 +28,11 @@ internal abstract class BaseOption
         b.Draw(texture, new Vector2(x + 100, y + 100), this.sourceRect, Color.White, 0f, new Vector2(100, 100), this.Scale, SpriteEffects.None, 0f);
         DrawHelper.DrawTab(x + 100, y + 120, Game1.smallFont, this.label, Align.Center);
     }
+
+    protected static Rectangle GetSourceRectangle(int index)
+    {
+        var i = index % 3;
+        var j = index / 3;
+        return new Rectangle(i * 200, j * 200, 200, 200);
+    }
 }

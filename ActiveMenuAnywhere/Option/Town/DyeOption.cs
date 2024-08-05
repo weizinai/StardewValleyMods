@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DyeOption : BaseOption
 {
-    public DyeOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Dye(), sourceRect) { }
+    public DyeOption() : base(I18n.UI_Option_Dye(), GetSourceRectangle(13)) { }
 
     public override bool IsEnable()
     {

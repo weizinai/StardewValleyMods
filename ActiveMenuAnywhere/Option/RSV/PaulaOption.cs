@@ -1,12 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+﻿using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PaulaOption : BaseOption
 {
-    public PaulaOption(Rectangle sourceRect)
-        : base(I18n.UI_Option_Paula(), sourceRect) { }
+    public PaulaOption() : base(I18n.UI_Option_Paula(), GetSourceRectangle(3)) { }
 
     public override void Apply()
     {

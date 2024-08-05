@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ForgeOption : BaseOption
 {
-    public ForgeOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Forge(), sourceRect) { }
+    public ForgeOption() : base(I18n.UI_Option_Forge(), GetSourceRectangle(6)) { }
 
     public override bool IsEnable()
     {

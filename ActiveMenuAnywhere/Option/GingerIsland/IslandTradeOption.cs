@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class IslandTradeOption : BaseOption
 {
-    public IslandTradeOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_IslandTrade(), sourceRect) { }
+    public IslandTradeOption() : base(I18n.UI_Option_IslandTrade(), GetSourceRectangle(3)) { }
 
     public override bool IsEnable()
     {

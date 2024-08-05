@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class KrobusOption : BaseOption
 {
-    public KrobusOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Krobus(), sourceRect) { }
+    public KrobusOption() : base(I18n.UI_Option_Krobus(), GetSourceRectangle(9)) { }
 
     public override bool IsEnable()
     {

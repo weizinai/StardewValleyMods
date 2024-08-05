@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MarlonOption : BaseOption
 {
-    public MarlonOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Marlon(), sourceRect) { }
+    public MarlonOption() : base(I18n.UI_Option_Marlon(), GetSourceRectangle(3)) { }
 
     public override bool IsEnable()
     {

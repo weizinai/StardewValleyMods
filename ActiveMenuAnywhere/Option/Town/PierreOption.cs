@@ -1,14 +1,12 @@
 ﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 using xTile.Dimensions;
-using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PierreOption : BaseOption
 {
-    public PierreOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Pierre(), sourceRect) { }
+    public PierreOption() : base(I18n.UI_Option_Pierre(), GetSourceRectangle(3)) { }
 
     public override void Apply()
     {

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Characters;
 using StardewValley.Locations;
@@ -11,8 +10,7 @@ internal class RaccoonOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public RaccoonOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.UI_Option_Raccoon(), sourceRect)
+    public RaccoonOption(IModHelper helper) : base(I18n.UI_Option_Raccoon(), GetSourceRectangle(4))
     {
         this.helper = helper;
     }

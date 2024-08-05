@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class SandyOption : BaseOption
 {
-    public SandyOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Sandy(), sourceRect) { }
+    public SandyOption() : base(I18n.UI_Option_Sandy(), GetSourceRectangle(0)) { }
 
     public override bool IsEnable()
     {

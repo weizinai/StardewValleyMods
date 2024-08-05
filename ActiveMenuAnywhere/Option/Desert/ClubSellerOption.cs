@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ClubSellerOption : BaseOption
 {
-    public ClubSellerOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_ClubSeller(), sourceRect) { }
+    public ClubSellerOption() : base(I18n.UI_Option_ClubSeller(), GetSourceRectangle(5)) { }
 
     public override bool IsEnable()
     {

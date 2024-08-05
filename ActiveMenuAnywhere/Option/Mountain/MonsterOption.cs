@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewModdingAPI;
+﻿using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -10,8 +9,7 @@ internal class MonsterOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public MonsterOption(Rectangle sourceRect, IModHelper helper) :
-        base(I18n.UI_Option_Monster(), sourceRect)
+    public MonsterOption(IModHelper helper) : base(I18n.UI_Option_Monster(), GetSourceRectangle(2))
     {
         this.helper = helper;
     }

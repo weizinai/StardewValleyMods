@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JericOption : BaseOption
 {
-    public JericOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Jeric(), sourceRect) { }
+    public JericOption() : base(I18n.UI_Option_Jeric(), GetSourceRectangle(5)) { }
 
     public override void Apply()
     {

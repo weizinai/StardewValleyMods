@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class AbandonedJojaMartOption : BaseOption
 {
-    public AbandonedJojaMartOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_AbandonedJojaMart(), sourceRect) { }
+    public AbandonedJojaMartOption() : base(I18n.UI_Option_AbandonedJojaMart(), GetSourceRectangle(15)) { }
 
     public override bool IsEnable()
     {

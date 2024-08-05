@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class WillyOption : BaseOption
 {
-    public WillyOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Willy(), sourceRect) { }
+    public WillyOption() : base(I18n.UI_Option_Willy(), GetSourceRectangle(0)) { }
 
     public override bool IsEnable()
     {

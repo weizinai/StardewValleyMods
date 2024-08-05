@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class StatueOption : BaseOption
 {
-    public StatueOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Statue(), sourceRect) { }
+    public StatueOption() : base(I18n.UI_Option_Statue(), GetSourceRectangle(10)) { }
 
     public override bool IsEnable()
     {

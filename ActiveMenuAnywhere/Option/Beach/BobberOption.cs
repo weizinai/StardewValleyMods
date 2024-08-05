@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -7,8 +6,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BobberOption : BaseOption
 {
-    public BobberOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Bobber(), sourceRect) { }
+    public BobberOption() : base(I18n.UI_Option_Bobber(), GetSourceRectangle(1)) { }
 
     public override bool IsEnable()
     {

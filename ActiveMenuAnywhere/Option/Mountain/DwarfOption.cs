@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DwarfOption : BaseOption
 {
-    public DwarfOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Dwarf(), sourceRect) { }
+    public DwarfOption() : base(I18n.UI_Option_Dwarf(), GetSourceRectangle(1)) { }
 
     public override bool IsEnable()
     {

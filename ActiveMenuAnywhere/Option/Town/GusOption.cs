@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class GusOption : BaseOption
 {
-    public GusOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Gus(), sourceRect) { }
+    public GusOption() : base(I18n.UI_Option_Gus(), GetSourceRectangle(5)) { }
 
     public override void Apply()
     {

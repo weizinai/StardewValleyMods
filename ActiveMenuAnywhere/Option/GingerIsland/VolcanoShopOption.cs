@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class VolcanoShopOption : BaseOption
 {
-    public VolcanoShopOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_VolcanoShop(), sourceRect) { }
+    public VolcanoShopOption() : base(I18n.UI_Option_VolcanoShop(), GetSourceRectangle(5)) { }
 
     public override bool IsEnable()
     {

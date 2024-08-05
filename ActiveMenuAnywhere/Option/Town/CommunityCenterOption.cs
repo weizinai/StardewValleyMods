@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -10,8 +9,7 @@ internal class CommunityCenterOption : BaseOption
     private readonly List<string> keys;
     private readonly List<string> texts;
 
-    public CommunityCenterOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_CommunityCenter(), sourceRect)
+    public CommunityCenterOption() : base(I18n.UI_Option_CommunityCenter(), GetSourceRectangle(2))
     {
         this.keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
         this.texts = new List<string>

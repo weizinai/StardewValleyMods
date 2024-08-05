@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JojaShopOption : BaseOption
 {
-    public JojaShopOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_JojaShop(), sourceRect) { }
+    public JojaShopOption() : base(I18n.UI_Option_JojaShop(), GetSourceRectangle(6)) { }
 
     public override bool IsEnable()
     {

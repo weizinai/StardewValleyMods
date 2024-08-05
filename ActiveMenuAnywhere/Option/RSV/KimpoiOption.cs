@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using StardewValley;
+﻿using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class KimpoiOption : BaseOption
 {
-    public KimpoiOption(Rectangle sourceRect) :
-        base(I18n.UI_Option_Kimpoi(), sourceRect) { }
+    public KimpoiOption() : base(I18n.UI_Option_Kimpoi(), GetSourceRectangle(6)) { }
 
     public override bool IsEnable()
     {

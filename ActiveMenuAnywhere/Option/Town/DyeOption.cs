@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DyeOption : BaseOption
 {
-    public DyeOption() : base(I18n.UI_Option_Dye(), GetSourceRectangle(13)) { }
+    public DyeOption()
+        : base(I18n.UI_Option_Dye(), TextureManager.Instance.TownTexture, GetSourceRectangle(13), OptionId.Dye) { }
 
     public override bool IsEnable()
     {

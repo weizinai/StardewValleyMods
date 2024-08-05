@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class IslandTradeOption : BaseOption
 {
-    public IslandTradeOption() : base(I18n.UI_Option_IslandTrade(), GetSourceRectangle(3)) { }
+    public IslandTradeOption()
+        : base(I18n.UI_Option_IslandTrade(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(3), OptionId.IslandTrade) { }
 
     public override bool IsEnable()
     {

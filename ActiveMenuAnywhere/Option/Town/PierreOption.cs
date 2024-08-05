@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PierreOption : BaseOption
 {
-    public PierreOption() : base(I18n.UI_Option_Pierre(), GetSourceRectangle(3)) { }
+    public PierreOption()
+        : base(I18n.UI_Option_Pierre(), TextureManager.Instance.TownTexture, GetSourceRectangle(3), OptionId.Pierre) { }
 
     public override void Apply()
     {

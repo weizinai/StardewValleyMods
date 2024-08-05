@@ -9,8 +9,8 @@ internal class TVOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public TVOption(IModHelper helper) :
-        base(I18n.UI_Option_TV(), GetSourceRectangle(0))
+    public TVOption(IModHelper helper)
+        : base(I18n.UI_Option_TV(), TextureManager.Instance.FarmTexture, GetSourceRectangle(0), OptionId.TV)
     {
         this.helper = helper;
     }

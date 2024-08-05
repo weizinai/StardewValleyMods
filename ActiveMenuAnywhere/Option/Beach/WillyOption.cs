@@ -5,7 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class WillyOption : BaseOption
 {
-    public WillyOption() : base(I18n.UI_Option_Willy(), GetSourceRectangle(0)) { }
+    public WillyOption() : base(I18n.UI_Option_Willy(), TextureManager.Instance.BeachTexture, GetSourceRectangle(0), OptionId.Willy) { }
 
     public override bool IsEnable()
     {

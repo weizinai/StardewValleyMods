@@ -5,8 +5,11 @@
     "Config.OpenMenuByTelephone.Tooltip": "When this option is enabled, you will only be able to open the menu by telephone.", // TODO
     "Config.DefaultMenuTabID": "Onglet de menu par défaut",
     "Config.ProgressMode.Name": "Progress Mode", // TODO
+    "Config.FavoriteKey.Name": "Favorite Key", // TODO
+    "Config.FavoriteKey.Tooltip": "When you hold down the key, left-click on the menu to favorite it.", // TODO
 
     // Tab
+    "UI.Tab.Favorites": "Favorites", // TODO
     "UI.Tab.Farm": "Ferme",
     "UI.Tab.Town": "Ville",
     "UI.Tab.Mountain": "Montagne",
@@ -19,11 +22,11 @@
 
     // Beach
     "UI.Option.Bobber": "Flotteur",
-    "UI.Option.DecorationBoat": "Decoration Boat", // TODO 
+    "UI.Option.DecorationBoat": "Decoration Boat", // TODO
     "UI.Option.MagicBoat": "Magic Boat", // TODO
     "UI.Option.NightMarketTraveler": "Night Market Traveler", // TODO
     "UI.Option.Willy": "Willie",
-    
+
     // Desert
     "UI.Option.BuyQiCoins": "Pièces Qi",
     "UI.Option.Casino": "Casino",
@@ -31,7 +34,7 @@
     "UI.Option.DesertTrade": "Marchande\ndu désert",
     "UI.Option.FarmerFile": "Dossier\nAgriculteur",
     "UI.Option.Sandy": "Sandy",
-    
+
     // Farm
     "UI.Option.ShippingBin": "Bac d'expédition",
     "UI.Option.TV": "Télé",
@@ -42,14 +45,14 @@
     // "UI.Option.RetroCatalogue":"Retro Catalogue",
     // "UI.Option.TrashCatalogue":"Trash Catalogue",
     // "UI.Option.WizardCatalogue":"Wizard Catalogue",
-    
+
     // Forest
     "UI.Option.HatMouse": "Souris à\nChapeaux",
     "UI.Option.Marnie": "Marnie",
     "UI.Option.Raccoon": "Raton laveur",
     "UI.Option.Traveler": "Marchande\nambulante",
     "UI.Option.Wizard": "Sorcier",
-    
+
     // GingerIsland
     "UI.Option.Forge": "Forge",
     "UI.Option.IslandResort": "Station\nbalnéaire",
@@ -58,13 +61,13 @@
     "UI.Option.QiGemShop": "Boutique de\nGemmes Qi",
     "UI.Option.QiSpecialOrder": "Commande\nspéciale Qi",
     "UI.Option.VolcanoShop": "Boutique\ndu volcan",
-    
+
     // Mountain
     "UI.Option.Dwarf": "Nain",
     "UI.Option.Marlon": "Marlon",
     "UI.Option.Monster": "Objectifs \nd'éradication \nde monstres",
     "UI.Option.Robin": "Robine",
-    
+
     // RSV
     "UI.Option.Ian": "Ian",
     "UI.Option.Jeric": "Jéric",
@@ -80,10 +83,10 @@
     "UI.Option.Pika": "Pika",
     "UI.Option.RSVQuestBoard": "Tableau de \nquêtes RSV",
     "UI.Option.RSVSpecialOrder": "Commande \nspéciale RSV",
-    
+
     // SVE
     "UI.Option.Sophia": "Sophia", // TODO
-    
+
     // Town
     "UI.Option.AbandonedJojaMart": "Joja Mart\nabandonné",
     "UI.Option.Billboard": "Panneau\nd'affichage",

@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JoiOption : BaseOption
 {
-    public JoiOption() : base(I18n.UI_Option_Joi(), GetSourceRectangle(11)) { }
+    public JoiOption()
+        : base(I18n.UI_Option_Joi(),TextureManager.Instance.RSVTexture, GetSourceRectangle(11), OptionId.Joi) { }
 
     public override bool IsEnable()
     {

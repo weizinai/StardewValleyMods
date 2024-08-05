@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class IslandResortOption : BaseOption
 {
-    public IslandResortOption() : base(I18n.UI_Option_IslandResort(), GetSourceRectangle(4)) { }
+    public IslandResortOption()
+        : base(I18n.UI_Option_IslandResort(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(4), OptionId.IslandResort) { }
 
     public override bool IsEnable()
     {

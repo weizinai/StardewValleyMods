@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MarlonOption : BaseOption
 {
-    public MarlonOption() : base(I18n.UI_Option_Marlon(), GetSourceRectangle(3)) { }
+    public MarlonOption()
+        : base(I18n.UI_Option_Marlon(), TextureManager.Instance.MountainTexture, GetSourceRectangle(3), OptionId.Marlon) { }
 
     public override bool IsEnable()
     {

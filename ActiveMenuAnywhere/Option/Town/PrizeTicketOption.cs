@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PrizeTicketOption : BaseOption
 {
-    public PrizeTicketOption() : base(I18n.UI_Option_PrizeTicket(), GetSourceRectangle(7)) { }
+    public PrizeTicketOption()
+        : base(I18n.UI_Option_PrizeTicket(), TextureManager.Instance.TownTexture, GetSourceRectangle(7), OptionId.PrizeTicket) { }
 
     public override void Apply()
     {

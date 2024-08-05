@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ClubSellerOption : BaseOption
 {
-    public ClubSellerOption() : base(I18n.UI_Option_ClubSeller(), GetSourceRectangle(5)) { }
+    public ClubSellerOption()
+        : base(I18n.UI_Option_ClubSeller(), TextureManager.Instance.DesertTexture, GetSourceRectangle(5), OptionId.ClubSeller) { }
 
     public override bool IsEnable()
     {

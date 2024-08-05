@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class FarmerFileOption : BaseOption
 {
-    public FarmerFileOption() : base(I18n.UI_Option_FarmerFile(), GetSourceRectangle(3)) { }
+    public FarmerFileOption()
+        : base(I18n.UI_Option_FarmerFile(), TextureManager.Instance.DesertTexture, GetSourceRectangle(3), OptionId.FarmerFile) { }
 
     public override bool IsEnable()
     {

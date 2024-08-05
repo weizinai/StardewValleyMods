@@ -5,7 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class NightMarketTraveler : BaseOption
 {
-    public NightMarketTraveler() : base(I18n.UI_Option_NightMarketTraveler(), GetSourceRectangle(2)) { }
+    public NightMarketTraveler() : base(I18n.UI_Option_NightMarketTraveler(), TextureManager.Instance.BeachTexture, GetSourceRectangle(2), OptionId.NightMarketTraveler) { }
 
     public override bool IsEnable()
     {

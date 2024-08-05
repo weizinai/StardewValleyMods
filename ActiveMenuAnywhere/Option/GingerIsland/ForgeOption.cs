@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ForgeOption : BaseOption
 {
-    public ForgeOption() : base(I18n.UI_Option_Forge(), GetSourceRectangle(6)) { }
+    public ForgeOption()
+        : base(I18n.UI_Option_Forge(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(6), OptionId.ForgeOption) { }
 
     public override bool IsEnable()
     {

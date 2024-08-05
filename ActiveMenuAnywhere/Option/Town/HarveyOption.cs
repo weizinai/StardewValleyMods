@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class HarveyOption : BaseOption
 {
-    public HarveyOption() : base(I18n.UI_Option_Harvey(), GetSourceRectangle(11)) { }
+    public HarveyOption()
+        : base(I18n.UI_Option_Harvey(), TextureManager.Instance.TownTexture, GetSourceRectangle(11), OptionId.HarveyOption) { }
 
     public override void Apply()
     {

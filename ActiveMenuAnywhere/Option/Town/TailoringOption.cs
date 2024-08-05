@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class TailoringOption : BaseOption
 {
-    public TailoringOption() : base(I18n.UI_Option_Tailoring(), GetSourceRectangle(12)) { }
+    public TailoringOption()
+        : base(I18n.UI_Option_Tailoring(), TextureManager.Instance.TownTexture, GetSourceRectangle(12), OptionId.Tailoring) { }
 
     public override bool IsEnable()
     {

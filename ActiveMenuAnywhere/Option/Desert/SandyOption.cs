@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class SandyOption : BaseOption
 {
-    public SandyOption() : base(I18n.UI_Option_Sandy(), GetSourceRectangle(0)) { }
+    public SandyOption()
+        : base(I18n.UI_Option_Sandy(), TextureManager.Instance.DesertTexture, GetSourceRectangle(0), OptionId.Sandy) { }
 
     public override bool IsEnable()
     {

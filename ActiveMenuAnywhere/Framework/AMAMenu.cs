@@ -54,10 +54,27 @@ internal class AMAMenu : IClickableMenu
             if (this.optionSlots[i].containsPoint(x, y) && optionsIndex < this.options.Count)
             {
                 var option = this.options[optionsIndex];
-                if (option.IsEnable() || !this.config.ProgressMode)
-                    option.Apply();
+                if (this.config.FavoriteKey.IsDown())
+                {
+                    if (this.currentMenuTabId == MenuTabId.Favorite)
+                    {
+                        this.config.FavoriteMenus.Remove(option.Id);
+                    }
+                    else
+                    {
+                        if (!this.config.FavoriteMenus.Contains(option.Id))
+                        {
+                            this.config.FavoriteMenus.Add(option.Id);
+                        }
+                    }
+                }
                 else
-                    Game1.drawObjectDialogue(I18n.UI_Tip_Unavailable());
+                {
+                    if (option.IsEnable() || !this.config.ProgressMode)
+                        option.Apply();
+                    else
+                        Game1.drawObjectDialogue(I18n.UI_Tip_Unavailable());
+                }
                 break;
             }
         }
@@ -163,6 +180,7 @@ internal class AMAMenu : IClickableMenu
         this.tabs.Clear();
         this.tabs.AddRange(new[]
         {
+            new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Favorites(), MenuTabId.Favorite.ToString()),
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Farm(), MenuTabId.Farm.ToString()),
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Town(), MenuTabId.Town.ToString()),
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Mountain(), MenuTabId.Mountain.ToString()),
@@ -182,6 +200,9 @@ internal class AMAMenu : IClickableMenu
         this.options.Clear();
         switch (this.currentMenuTabId)
         {
+            case MenuTabId.Favorite:
+                this.options.AddRange(OptionFactory.CreateFavoriteOptions());
+                break;
             case MenuTabId.Farm:
                 this.options.AddRange(OptionFactory.CreateFarmOptions());
                 break;
@@ -226,7 +247,7 @@ internal class AMAMenu : IClickableMenu
             var optionsIndex = i + this.currentPage * OptionsPerPage;
             var bounds = this.optionSlots[i].bounds;
             if (optionsIndex >= this.options.Count) break;
-            this.options[optionsIndex].Draw(b, TextureManager.Instance.Textures[this.currentMenuTabId], bounds.X, bounds.Y);
+            this.options[optionsIndex].Draw(b, bounds.X, bounds.Y);
         }
     }
 }

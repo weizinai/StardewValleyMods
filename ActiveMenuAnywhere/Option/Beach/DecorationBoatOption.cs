@@ -5,7 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DecorationBoatOption : BaseOption
 {
-    public DecorationBoatOption() : base(I18n.UI_Option_DecorationBoat(), GetSourceRectangle(3)) { }
+    public DecorationBoatOption() : base(I18n.UI_Option_DecorationBoat(), TextureManager.Instance.BeachTexture, GetSourceRectangle(3), OptionId.DecorationBoat) { }
 
     public override bool IsEnable()
     {

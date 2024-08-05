@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class SophiaOption : BaseOption
 {
-    public SophiaOption() : base(I18n.UI_Option_Sophia(), GetSourceRectangle(0)) { }
+    public SophiaOption()
+        : base(I18n.UI_Option_Sophia(),TextureManager.Instance.SVETexture, GetSourceRectangle(0), OptionId.Sophia) { }
 
     public override void Apply()
     {

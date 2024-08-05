@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MysticFalls3Option : BaseOption
 {
-    public MysticFalls3Option() : base(I18n.UI_Option_MysticFall3(), GetSourceRectangle(14)) { }
+    public MysticFalls3Option()
+        : base(I18n.UI_Option_MysticFall3(), TextureManager.Instance.RSVTexture,GetSourceRectangle(14), OptionId.MysticFalls3) { }
 
     public override bool IsEnable()
     {

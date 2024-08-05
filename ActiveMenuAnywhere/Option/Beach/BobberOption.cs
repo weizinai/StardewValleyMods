@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BobberOption : BaseOption
 {
-    public BobberOption() : base(I18n.UI_Option_Bobber(), GetSourceRectangle(1)) { }
+    public BobberOption()
+        : base(I18n.UI_Option_Bobber(), TextureManager.Instance.BeachTexture, GetSourceRectangle(1), OptionId.Bobber) { }
 
     public override bool IsEnable()
     {

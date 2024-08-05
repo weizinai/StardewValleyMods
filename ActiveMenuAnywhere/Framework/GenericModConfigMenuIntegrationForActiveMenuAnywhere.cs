@@ -56,6 +56,11 @@ internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere
                 config => config.ProgressMode,
                 (config, value) => config.ProgressMode = value,
                 I18n.Config_ProgressMode_Name
+            )
+            .AddKeybindList(
+                config => config.FavoriteKey,
+                (config, value) => config.FavoriteKey = value,
+                I18n.Config_FavoriteKey_Name
             );
     }
 }

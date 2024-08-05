@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class RSVQuestBoardOption : BaseOption
 {
-    public RSVQuestBoardOption() : base(I18n.UI_Option_RSVQuestBoard(), GetSourceRectangle(0)) { }
+    public RSVQuestBoardOption()
+        : base(I18n.UI_Option_RSVQuestBoard(),TextureManager.Instance.RSVTexture, GetSourceRectangle(0), OptionId.RSVQuestBoard) { }
 
     public override void Apply()
     {

@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class LolaOption : BaseOption
 {
-    public LolaOption() : base(I18n.UI_Option_Lola(), GetSourceRectangle(8)) { }
+    public LolaOption()
+        : base(I18n.UI_Option_Lola(), TextureManager.Instance.RSVTexture,GetSourceRectangle(8), OptionId.Lola) { }
 
     public override bool IsEnable()
     {

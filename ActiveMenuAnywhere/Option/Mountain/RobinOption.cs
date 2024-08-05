@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class RobinOption : BaseOption
 {
-    public RobinOption() : base(I18n.UI_Option_Robin(), GetSourceRectangle(0)) { }
+    public RobinOption()
+        : base(I18n.UI_Option_Robin(), TextureManager.Instance.MountainTexture, GetSourceRectangle(0), OptionId.Robin) { }
 
     public override void Apply()
     {

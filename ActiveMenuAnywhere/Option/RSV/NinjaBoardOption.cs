@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class NinjaBoardOption : BaseOption
 {
-    public NinjaBoardOption() : base(I18n.UI_Option_NinjaBoard(), GetSourceRectangle(10)) { }
+    public NinjaBoardOption()
+        : base(I18n.UI_Option_NinjaBoard(),TextureManager.Instance.RSVTexture, GetSourceRectangle(10), OptionId.NinjaBoard) { }
 
     public override bool IsEnable()
     {

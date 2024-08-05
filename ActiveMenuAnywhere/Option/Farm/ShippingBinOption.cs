@@ -12,7 +12,7 @@ internal class ShippingBinOption : BaseOption
     private readonly IModHelper helper;
 
     public ShippingBinOption(IModHelper helper) :
-        base(I18n.UI_Option_ShippingBin(), GetSourceRectangle(1))
+        base(I18n.UI_Option_ShippingBin(), TextureManager.Instance.FarmTexture, GetSourceRectangle(1), OptionId.ShippingBin)
     {
         this.helper = helper;
     }

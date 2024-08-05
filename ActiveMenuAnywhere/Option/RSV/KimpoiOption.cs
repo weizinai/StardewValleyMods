@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class KimpoiOption : BaseOption
 {
-    public KimpoiOption() : base(I18n.UI_Option_Kimpoi(), GetSourceRectangle(6)) { }
+    public KimpoiOption()
+        : base(I18n.UI_Option_Kimpoi(), TextureManager.Instance.RSVTexture,GetSourceRectangle(6), OptionId.Kimpoi) { }
 
     public override bool IsEnable()
     {

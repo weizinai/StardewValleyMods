@@ -209,4 +209,9 @@ internal static class OptionFactory
             CreateOption(OptionId.AbandonedJojaMart)
         };
     }
+
+    public static BaseOption[] CreateFavoriteOptions()
+    {
+        return ModConfig.Instance.FavoriteMenus.Select(CreateOption).ToArray();
+    }
 }

@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class JericOption : BaseOption
 {
-    public JericOption() : base(I18n.UI_Option_Jeric(), GetSourceRectangle(5)) { }
+    public JericOption()
+        : base(I18n.UI_Option_Jeric(),TextureManager.Instance.RSVTexture, GetSourceRectangle(5), OptionId.Jeric) { }
 
     public override void Apply()
     {

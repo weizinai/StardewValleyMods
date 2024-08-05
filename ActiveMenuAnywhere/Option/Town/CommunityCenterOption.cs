@@ -9,7 +9,8 @@ internal class CommunityCenterOption : BaseOption
     private readonly List<string> keys;
     private readonly List<string> texts;
 
-    public CommunityCenterOption() : base(I18n.UI_Option_CommunityCenter(), GetSourceRectangle(2))
+    public CommunityCenterOption()
+        : base(I18n.UI_Option_CommunityCenter(), TextureManager.Instance.TownTexture, GetSourceRectangle(2), OptionId.CommunityCenter)
     {
         this.keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
         this.texts = new List<string>

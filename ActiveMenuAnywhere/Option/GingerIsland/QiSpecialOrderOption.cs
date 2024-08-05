@@ -7,7 +7,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class QiSpecialOrderOption : BaseOption
 {
-    public QiSpecialOrderOption() : base(I18n.UI_Option_QiSpecialOrder(), GetSourceRectangle(0)) { }
+    public QiSpecialOrderOption()
+        : base(I18n.UI_Option_QiSpecialOrder(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(0), OptionId.QiSpecialOrder) { }
 
     public override bool IsEnable()
     {

@@ -5,7 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MagicBoatOption : BaseOption
 {
-    public MagicBoatOption() : base(I18n.UI_Option_MagicBoat(), GetSourceRectangle(4)) { }
+    public MagicBoatOption() : base(I18n.UI_Option_MagicBoat(), TextureManager.Instance.BeachTexture, GetSourceRectangle(4), OptionId.MagicBoat) { }
 
     public override bool IsEnable()
     {

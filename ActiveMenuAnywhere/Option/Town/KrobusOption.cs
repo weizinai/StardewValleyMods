@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class KrobusOption : BaseOption
 {
-    public KrobusOption() : base(I18n.UI_Option_Krobus(), GetSourceRectangle(9)) { }
+    public KrobusOption()
+        : base(I18n.UI_Option_Krobus(), TextureManager.Instance.TownTexture, GetSourceRectangle(9), OptionId.Krobus) { }
 
     public override bool IsEnable()
     {

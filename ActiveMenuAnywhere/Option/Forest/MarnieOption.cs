@@ -14,7 +14,8 @@ internal class MarnieOption : BaseOption
     private GameLocation originLocation = null!;
     private Location originViewport;
 
-    public MarnieOption(IModHelper helper) : base(I18n.UI_Option_Marnie(), GetSourceRectangle(0))
+    public MarnieOption(IModHelper helper)
+        : base(I18n.UI_Option_Marnie(), TextureManager.Instance.ForestTexture,GetSourceRectangle(0), OptionId.Marnie)
     {
         this.helper = helper;
     }

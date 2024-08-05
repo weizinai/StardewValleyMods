@@ -5,8 +5,11 @@
     "Config.OpenMenuByTelephone.Tooltip": "When this option is enabled, you will only be able to open the menu by telephone.",
     "Config.DefaultMenuTabID": "Default Menu Tab",
     "Config.ProgressMode.Name": "Progress Mode",
+    "Config.FavoriteKey.Name": "Favorite Key",
+    "Config.FavoriteKey.Tooltip": "When you hold down the key, left-click on the menu to favorite it.",
 
     // Tab
+    "UI.Tab.Favorites": "Favorites",
     "UI.Tab.Farm": "Farm",
     "UI.Tab.Town": "Town1",
     "UI.Tab.Mountain": "Mountain",

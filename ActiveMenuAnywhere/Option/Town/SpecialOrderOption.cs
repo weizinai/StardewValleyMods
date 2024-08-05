@@ -6,7 +6,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class SpecialOrderOption : BaseOption
 {
-    public SpecialOrderOption() : base(I18n.UI_Option_SpecialOrder(), GetSourceRectangle(1)) { }
+    public SpecialOrderOption()
+        : base(I18n.UI_Option_SpecialOrder(), TextureManager.Instance.TownTexture, GetSourceRectangle(1), OptionId.SpecialOrder) { }
 
     public override bool IsEnable()
     {

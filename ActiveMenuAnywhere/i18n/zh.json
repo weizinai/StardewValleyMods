@@ -5,8 +5,11 @@
     "Config.OpenMenuByTelephone.Tooltip": "当该选项启用后，你将只能通过电话打开菜单。",
     "Config.DefaultMenuTabID": "默认菜单标签",
     "Config.ProgressMode.Name": "进度模式",
+    "Config.FavoriteKey.Name": "收藏快捷键",
+    "Config.FavoriteKey.Tooltip": "当你按住该快捷键时，鼠标左键点击菜单可以收藏菜单。",
 
     // Tab
+    "UI.Tab.Favorites": "收藏",
     "UI.Tab.Farm": "农场",
     "UI.Tab.Town": "鹈鹕镇",
     "UI.Tab.Mountain": "深山",

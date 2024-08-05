@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class GusOption : BaseOption
 {
-    public GusOption() : base(I18n.UI_Option_Gus(), GetSourceRectangle(5)) { }
+    public GusOption()
+        : base(I18n.UI_Option_Gus(), TextureManager.Instance.TownTexture, GetSourceRectangle(5), OptionId.Gus) { }
 
     public override void Apply()
     {

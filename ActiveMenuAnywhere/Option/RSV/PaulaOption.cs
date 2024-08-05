@@ -4,7 +4,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PaulaOption : BaseOption
 {
-    public PaulaOption() : base(I18n.UI_Option_Paula(), GetSourceRectangle(3)) { }
+    public PaulaOption()
+        : base(I18n.UI_Option_Paula(),TextureManager.Instance.RSVTexture, GetSourceRectangle(3), OptionId.Paula) { }
 
     public override void Apply()
     {

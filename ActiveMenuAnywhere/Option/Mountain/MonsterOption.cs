@@ -9,7 +9,8 @@ internal class MonsterOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public MonsterOption(IModHelper helper) : base(I18n.UI_Option_Monster(), GetSourceRectangle(2))
+    public MonsterOption(IModHelper helper)
+        : base(I18n.UI_Option_Monster(), TextureManager.Instance.MountainTexture, GetSourceRectangle(2), OptionId.Monster)
     {
         this.helper = helper;
     }

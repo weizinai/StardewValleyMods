@@ -2,6 +2,7 @@
 
 internal enum MenuTabId
 {
+    Favorite,
     Farm,
     Town,
     Mountain,

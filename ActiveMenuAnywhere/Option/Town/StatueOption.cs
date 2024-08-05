@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class StatueOption : BaseOption
 {
-    public StatueOption() : base(I18n.UI_Option_Statue(), GetSourceRectangle(10)) { }
+    public StatueOption()
+        : base(I18n.UI_Option_Statue(), TextureManager.Instance.TownTexture, GetSourceRectangle(10), OptionId.Statue) { }
 
     public override bool IsEnable()
     {

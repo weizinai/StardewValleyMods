@@ -10,7 +10,8 @@ internal class RaccoonOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public RaccoonOption(IModHelper helper) : base(I18n.UI_Option_Raccoon(), GetSourceRectangle(4))
+    public RaccoonOption(IModHelper helper)
+        : base(I18n.UI_Option_Raccoon(), TextureManager.Instance.ForestTexture,GetSourceRectangle(4), OptionId.Raccoon)
     {
         this.helper = helper;
     }

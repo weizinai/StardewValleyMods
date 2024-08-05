@@ -5,7 +5,8 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class TravelerOption : BaseOption
 {
-    public TravelerOption() : base(I18n.UI_Option_Traveler(), GetSourceRectangle(1)) { }
+    public TravelerOption()
+        : base(I18n.UI_Option_Traveler(),TextureManager.Instance.ForestTexture, GetSourceRectangle(1), OptionId.Traveler) { }
 
     public override bool IsEnable()
     {

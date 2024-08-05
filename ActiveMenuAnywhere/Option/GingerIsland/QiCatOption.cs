@@ -9,7 +9,8 @@ internal class QiCatOption : BaseOption
 {
     private readonly IModHelper helper;
 
-    public QiCatOption(IModHelper helper) : base(I18n.UI_Option_QiCat(), GetSourceRectangle(2))
+    public QiCatOption(IModHelper helper)
+        : base(I18n.UI_Option_QiCat(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(2), OptionId.QiCat)
     {
         this.helper = helper;
     }

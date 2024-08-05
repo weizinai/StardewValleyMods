@@ -1,4 +1,5 @@
-﻿using StardewModdingAPI;
+﻿using System.Text.Json.Serialization;
+using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -16,4 +17,8 @@ internal class ModConfig
     public bool OpenMenuByTelephone { get; set; }
     public MenuTabId DefaultMeanTabId { get; set; } = MenuTabId.Town;
     public bool ProgressMode { get; set; } = true;
+    public KeybindList FavoriteKey { get; set; } = new(SButton.LeftAlt);
+
+    [JsonIgnore]
+    public List<OptionId> FavoriteMenus { get; set; } = new();
 }

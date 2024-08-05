@@ -110,6 +110,11 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 config => config.VersionLimit,
                 (config, value) => config.VersionLimit = value,
                 () => "版本限制"
+            )
+            .AddNumberOption(
+                config => config.KickPlayerDelayTime,
+                (config, value) => config.KickPlayerDelayTime = value,
+                () => "踢出玩家延迟时间"
             );
     }
 }

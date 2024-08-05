@@ -31,4 +31,5 @@ public class ModConfig
 
     // 版本限制
     public bool VersionLimit { get; set; } = true;
+    public int KickPlayerDelayTime { get; set; } = 10;
 }

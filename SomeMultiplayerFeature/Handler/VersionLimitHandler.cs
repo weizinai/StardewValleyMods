@@ -77,7 +77,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
     {
         if (!this.IsVersionLimitEnable()) return;
 
-        this.datas.Add(new PlayerToKickData(e.Peer.PlayerID, 10));
+        this.datas.Add(new PlayerToKickData(e.Peer.PlayerID, this.Config.KickPlayerDelayTime));
     }
 
     private string GetKickMessage(Farmer farmer)

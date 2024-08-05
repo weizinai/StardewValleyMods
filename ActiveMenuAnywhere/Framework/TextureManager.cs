@@ -5,7 +5,7 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 internal class TextureManager
 {
-    public static TextureManager Instance { get;  } = new();
+    public static TextureManager Instance { get; } = new();
 
     public Dictionary<MenuTabId, Texture2D> Textures { get; } = new();
     public Texture2D FarmTexture => this.Textures[MenuTabId.Farm];

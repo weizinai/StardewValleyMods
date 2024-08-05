@@ -8,6 +8,7 @@ internal enum OptionId
     MagicBoat,
     NightMarketTraveler,
     Willy,
+
     // Desert
     BuyQiCoins,
     Casino,
@@ -15,15 +16,18 @@ internal enum OptionId
     DesertTrade,
     FarmerFile,
     Sandy,
+
     // Farm
     ShippingBin,
     TV,
+
     // Forest
     HatMouse,
     Marnie,
     Raccoon,
     Traveler,
     Wizard,
+
     // GingerIsland
     ForgeOption,
     IslandResort,
@@ -32,11 +36,13 @@ internal enum OptionId
     QiGemShop,
     QiSpecialOrder,
     VolcanoShop,
+
     // Mountain
     Dwarf,
     Marlon,
     Monster,
     Robin,
+
     // RSV
     Ian,
     Jeric,
@@ -52,8 +58,10 @@ internal enum OptionId
     Pika,
     RSVQuestBoard,
     RSVSpecialOrder,
+
     // SVE
     Sophia,
+
     // Town
     AbandonedJojaMart,
     Billboard,

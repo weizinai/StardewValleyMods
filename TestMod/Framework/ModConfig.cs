@@ -10,4 +10,7 @@ internal class ModConfig
     {
         Instance = helper.ReadConfig<ModConfig>();
     }
+
+    public bool EnableChangeCardChance { get; set; } = true;
+    public float CardChance { get; set; } = 0.1f;
 }

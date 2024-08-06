@@ -2,7 +2,9 @@
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using TestMod.Framework;
+using TestMod.Patcher;
 using weizinai.StardewValleyMod.Common.Log;
+using weizinai.StardewValleyMod.Common.Patcher;
 
 namespace TestMod;
 
@@ -17,6 +19,8 @@ public class ModEntry : Mod
         ModConfig.Init(helper);
         // 注册事件
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        // 注册Harmony补丁
+        HarmonyPatcher.Apply(this, new CalicoJackPatcher());
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

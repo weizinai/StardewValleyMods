@@ -12,5 +12,5 @@ internal class ModConfig
     }
 
     public bool EnableChangeCardChance { get; set; } = true;
-    public float CardChance { get; set; } = 0.1f;
+    public float CardChance { get; set; } = 0.005f;
 }

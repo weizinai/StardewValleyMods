@@ -1,6 +1,6 @@
 using weizinai.StardewValleyMod.Common.Integration;
 
-namespace TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Framework;
 
 internal class GenericModConfigMenuIntegrationForTestMod
 {

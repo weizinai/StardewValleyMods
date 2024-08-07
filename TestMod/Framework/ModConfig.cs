@@ -1,6 +1,6 @@
 using StardewModdingAPI;
 
-namespace TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Framework;
 
 internal class ModConfig
 {

@@ -1,10 +1,10 @@
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Minigames;
-using TestMod.Framework;
 using weizinai.StardewValleyMod.Common.Patcher;
+using weizinai.StardewValleyMod.TestMod.Framework;
 
-namespace TestMod.Patcher;
+namespace weizinai.StardewValleyMod.TestMod.Patcher;
 
 internal class CalicoJackPatcher : BasePatcher
 {

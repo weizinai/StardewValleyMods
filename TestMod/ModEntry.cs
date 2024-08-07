@@ -1,13 +1,13 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
-using TestMod.Framework;
-using TestMod.Patcher;
 using weizinai.StardewValleyMod.Common.Integration;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
+using weizinai.StardewValleyMod.TestMod.Framework;
+using weizinai.StardewValleyMod.TestMod.Patcher;
 
-namespace TestMod;
+namespace weizinai.StardewValleyMod.TestMod;
 
 public class ModEntry : Mod
 {

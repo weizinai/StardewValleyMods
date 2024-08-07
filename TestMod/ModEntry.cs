@@ -17,6 +17,7 @@ public class ModEntry : Mod
     {
         // 初始化
         Log.Init(this.Monitor);
+        I18n.Init(this.Helper.Translation);
         ModConfig.Init(helper);
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;

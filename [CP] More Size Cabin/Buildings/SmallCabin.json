@@ -1,0 +1,86 @@
+{
+    "Changes": [
+        {
+            "Action": "Load",
+            "Target": "Mods/{{ModId}}/SmallClassicCabin_Vine, Mods/{{ModId}}/SmallClassicCabin_WhiteBirch, Mods/{{ModId}}/SmallClassicCabin_Wreath, Mods/{{ModId}}/SmallNeighborCabin, Mods/{{ModId}}/SmallPigCabin, Mods/{{ModId}}/SmallRusticCabin, Mods/{{ModId}}/SmallStoneCabin",
+            "FromFile": "assets/SmallCabin/{{TargetWithoutPath}}.png"
+        },
+        {
+            "Action": "EditData",
+            "Target": "Data/Buildings",
+            "Entries": {
+                "{{ModId}}_SmallCabin": {
+                    // Required fields
+                    "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                    "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                    "Texture": "Mods/{{ModId}}/SmallStoneCabin",
+                    // Construction
+                    "Builder": "Robin",
+                    "BuildCondition": "CAN_BUILD_CABIN",
+                    // Exterior behavior
+                    "Size": {
+                        "X": 2,
+                        "Y": 1
+                    },
+                    "HumanDoor": {
+                        "X": 0,
+                        "Y": 0
+                    },
+                    // Exterior appearance
+                    "Skins": [
+                        {
+                            "Id": "SmallClassicCabin_Vine",
+                            "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                            "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/SmallClassicCabin_Vine"
+                        },
+                        {
+                            "Id": "SmallClassicCabin_WhiteBirch",
+                            "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                            "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/SmallClassicCabin_WhiteBirch"
+                        },
+                        {
+                            "Id": "SmallClassicCabin_Wreath",
+                            "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                            "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/SmallClassicCabin_Wreath"
+                        },
+                        {
+                            "Id": "SmallNeighborCabin",
+                            "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                            "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/SmallNeighborCabin"
+                        },
+                        {
+                            "Id": "SmallPigCabin",
+                            "Name": "{{i18n:Buildings.SmallPigCabin.Name}}",
+                            "Description": "{{i18n:Buildings.SmallPigCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/SmallPigCabin"
+                        },
+                        {
+                            "Id": "SmallRusticCabin",
+                            "Name": "{{i18n:Buildings.SmallCabin.Name}}",
+                            "Description": "{{i18n:Buildings.SmallCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/SmallRusticCabin"
+                        }
+                    ],
+                    // Interior
+                    "IndoorMap": "FarmHouse",
+                    "IndoorMapType": "StardewValley.Locations.Cabin",
+                    // Tile interactions
+                    "ActionTiles": [
+                        {
+                            "Id": "Default_OpenMailbox",
+                            "Tile": {
+                                "X": 1,
+                                "Y": 0
+                            },
+                            "Action": "Mailbox"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

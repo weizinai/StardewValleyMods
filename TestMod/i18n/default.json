@@ -3,4 +3,7 @@
     "Config.Value.Name": "Value",
 
     "Config.CardChance.Name": "Card Chance",
+
+    "Config.WheelSpinSpeed.Name": "Wheel Spin Speed",
+    "Config.ExtraSpeed.Name": "Extra Speed",
 }

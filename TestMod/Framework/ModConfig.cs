@@ -12,4 +12,6 @@ internal class ModConfig
     }
 
     public SingleValueConfig<float> CardChance { get; set; } = new(true, 0.005f);
+    public SingleValueConfig<int> WheelSpinSpeed { get; set; } = new(true, 0);
+    public bool ExtraSpeed { get; set; }
 }

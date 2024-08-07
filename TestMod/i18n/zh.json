@@ -3,4 +3,7 @@
     "Config.Value.Name": "数值",
 
     "Config.CardChance.Name": "卡片概率",
+
+    "Config.WheelSpinSpeed.Name": "轮盘速度",
+    "Config.ExtraSpeed.Name": "速度速度",
 }

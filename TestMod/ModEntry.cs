@@ -23,7 +23,10 @@ public class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new CalicoJackPatcher());
+        HarmonyPatcher.Apply(this,
+            new CalicoJackPatcher(),
+            new WheelSpinGamePatcher()
+        );
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

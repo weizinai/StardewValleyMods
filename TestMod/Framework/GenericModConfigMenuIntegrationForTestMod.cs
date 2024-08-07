@@ -17,15 +17,16 @@ internal class GenericModConfigMenuIntegrationForTestMod
 
         this.configMenu
             .Register()
+            .AddSectionTitle(I18n.Config_CardChance_Name)
             .AddBoolOption(
-                config => config.EnableChangeCardChance,
-                (config, value) => config.EnableChangeCardChance = value,
-                () => "启用卡片概率修改"
+                config => config.CardChance.IsEnabled,
+                (config, value) => config.CardChance.IsEnabled = value,
+                I18n.Config_IsEnabled_Name
             )
             .AddNumberOption(
-                config => config.CardChance,
-                (config, value) => config.CardChance = value,
-                () => "卡片概率"
+                config => config.CardChance.Value,
+                (config, value) => config.CardChance.Value = value,
+                I18n.Config_Value_Name
             );
     }
 }

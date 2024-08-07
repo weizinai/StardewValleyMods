@@ -84,8 +84,8 @@
                         },
                         {
                             "Id": "MediumTowerOfSorcery",
-                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Name": "{{i18n:Buildings.MediumTowerOfSorcery.Name}}",
+                            "Description": "{{i18n:Buildings.MediumTowerOfSorcery.Description}}",
                             "Texture": "Mods/{{ModId}}/MediumTowerOfSorcery"
                         }
                     ],

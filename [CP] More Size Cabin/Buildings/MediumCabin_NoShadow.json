@@ -31,20 +31,20 @@
                     "Skins": [
                         {
                             "Id": "MediumFloatingCabin_Fish",
-                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Name": "{{i18n:Buildings.MediumFloatingCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumFloatingCabin.Description}}",
                             "Texture": "Mods/{{ModId}}/MediumFloatingCabin_Fish"
                         },
                         {
                             "Id": "MediumFloatingCabin_Flower",
-                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Name": "{{i18n:Buildings.MediumFloatingCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumFloatingCabin.Description}}",
                             "Texture": "Mods/{{ModId}}/MediumFloatingCabin_Flower"
                         },
                         {
                             "Id": "MediumWinterGarden",
-                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
-                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Name": "{{i18n:Buildings.MediumWinterGarden.Name}}",
+                            "Description": "{{i18n:Buildings.MediumWinterGarden.Description}}",
                             "Texture": "Mods/{{ModId}}/MediumWinterGarden"
                         }
                     ],

@@ -10,7 +10,7 @@ internal class WheelSpinGamePatcher : BasePatcher
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
-            original: this.RequireConstructor<WheelSpinGame>(),
+            original: this.RequireConstructor<WheelSpinGame>(new[] { typeof(int) }),
             postfix: this.GetHarmonyMethod(nameof(WheelSpinGamePostfix))
         );
     }

@@ -27,8 +27,10 @@ internal static class SpendLimitHelper
             return true;
         }
 
-        Log.Error($"无法获取{name}的消费额度，其额度已自动设置为{DefaultErrorLimit}");
-        limit = DefaultErrorLimit;
+        Log.NoIconHUDMessage($"无法获取{name}的消费额度，其额度已自动设置为默认额度{2000}");
+        limit = 2000;
+
+        SetFarmerSpendLimit(name, 2000);
         return false;
     }
 

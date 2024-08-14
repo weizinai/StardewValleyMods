@@ -25,7 +25,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
         this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
 
     public override void Clear()
@@ -33,7 +32,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
         this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
         this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
         this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
-        this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -76,20 +74,6 @@ internal class SpendLimitHandler : BaseHandlerWithConfig<ModConfig>
                 SpendLimitHelper.TryGetFarmerSpendLimit(player.Name, out var limit);
                 Log.NoIconHUDMessage($"当日消费：{amount}\n可用额度：{limit - amount}\n总额度：{limit}");
             }
-        }
-    }
-
-    private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
-    {
-        if (Game1.IsClient) return;
-
-        if (!this.Config.SpendLimit) return;
-
-        var farmerName = Game1.getFarmer(e.Peer.PlayerID).Name;
-        if (!SpendLimitHelper.TryGetFarmerSpendLimit(farmerName, out _))
-        {
-            SpendLimitHelper.SetFarmerSpendLimit(farmerName, this.Config.DefaultSpendLimit);
-            Log.Info($"{farmerName}没有额度信息，已将其额度设置为{this.Config.DefaultSpendLimit}金");
         }
     }
 

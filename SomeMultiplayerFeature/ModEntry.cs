@@ -14,6 +14,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;
 public class ModEntry : Mod
 {
     public const string ModDataPrefix = "weizinai.SMF.";
+    public const string ModUniqueId = "weizinai.SomeMultiplayerFeature";
 
     private ModConfig config = null!;
     private IHandler[] handlers = Array.Empty<IHandler>();
@@ -58,7 +59,7 @@ public class ModEntry : Mod
             new FarmerPatcher(),
             new FarmHousePatcher(),
             new Game1Patcher(),
-            new GameLocationPatcher(),
+            new GameLocationPatcher(this.Helper),
             new HoeDirtPatcher(),
             new MineShaftPatcher(),
             new MuseumMenuPatcher(),
@@ -89,6 +90,7 @@ public class ModEntry : Mod
         this.handlers = new IHandler[]
         {
             new AutoClickHandler(this.Helper, this.config),
+            new SecretarySystemHandler(this.Helper, this.config),
             new CustomCommandHandler(this.Helper, this.config),
             new DataHandler(this.Helper),
             new IpConnectionHandler(this.Helper, this.config),

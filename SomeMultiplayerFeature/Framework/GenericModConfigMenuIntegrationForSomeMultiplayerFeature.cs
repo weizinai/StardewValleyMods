@@ -104,6 +104,13 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 (config, value) => config.KickUnreadyPlayerKey = value,
                 () => "踢出未准备玩家快捷键"
             )
+            // 秘书系统
+            .AddSectionTitle(() => "秘书系统")
+            .AddKeybindList(
+                config => config.SecretarySystemKey,
+                (config, value) => config.SecretarySystemKey = value,
+                () => "秘书系统快捷键"
+            )
             // 版本限制
             .AddSectionTitle(() => "版本限制")
             .AddBoolOption(

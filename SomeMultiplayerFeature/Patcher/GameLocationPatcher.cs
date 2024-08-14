@@ -1,15 +1,24 @@
 using System.Reflection.Emit;
 using HarmonyLib;
+using StardewModdingAPI;
 using StardewValley;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
+using xTile.Dimensions;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 
 internal class GameLocationPatcher : BasePatcher
 {
+    private static IModHelper helper = null!;
+
+    public GameLocationPatcher(IModHelper helper)
+    {
+        GameLocationPatcher.helper = helper;
+    }
+
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -17,8 +26,8 @@ internal class GameLocationPatcher : BasePatcher
             transpiler: this.GetHarmonyMethod(nameof(BreakStoneTranspiler))
         );
         harmony.Patch(
-            original: this.RequireMethod<GameLocation>(nameof(GameLocation.answerDialogueAction)),
-            prefix: this.GetHarmonyMethod(nameof(AnswerDialogueActionPrefix))
+            original: this.RequireMethod<GameLocation>(nameof(GameLocation.performAction), new[] { typeof(string[]), typeof(Farmer), typeof(Location) }),
+            prefix: this.GetHarmonyMethod(nameof(PerformActionPrefix))
         );
         harmony.Patch(
             original: this.RequireMethod<GameLocation>("houseUpgradeAccept"),
@@ -41,39 +50,58 @@ internal class GameLocationPatcher : BasePatcher
     }
 
     // 禁止购买背包
-    private static bool AnswerDialogueActionPrefix(string questionAndAnswer)
+    private static bool PerformActionPrefix(string[] action)
     {
-        if (!SpendLimitHelper.IsSpendLimitEnable()) return true;
-
-        if (questionAndAnswer == "Backpack_Purchase")
+        if (!ArgUtility.TryGet(action, 0, out var actionType, out _))
         {
-            var player = Game1.player;
-            SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
-            switch (player.MaxItems)
+            return true;
+        }
+
+        if (actionType == "BuyBackpack")
+        {
+            if (!SecretarySystemHandler.IsSecretary(Game1.player))
             {
-                case 12:
-                    if (availableMoney < 2000)
-                    {
-                        SpendLimitHelper.ShowSpendLimitDialogue("购买大背包", 2000);
-                        return false;
-                    }
-                    if (player.Money >= 2000)
-                    {
-                        player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 2000).ToString();
-                    }
-                    break;
-                case 24:
-                    if (availableMoney < 10000)
-                    {
-                        SpendLimitHelper.ShowSpendLimitDialogue("购买豪华背包", 10000);
-                        return false;
-                    }
-                    if (player.Money >= 10000)
-                    {
-                        player.modData[SpendLimitHandler.SpendAmountKey] = (amount + 10000).ToString();
-                    }
-                    break;
+                Game1.drawObjectDialogue("你不是秘书，无法购买背包。只能由秘书玩家为你购买。");
+                return false;
             }
+
+            var farmers = Game1.getOnlineFarmers()
+                .Where(x => x.MaxItems != 36)
+                .Select(x => new KeyValuePair<string, string>(x.UniqueMultiplayerID.ToString(), x.Name + $" ({x.MaxItems})"));
+            Game1.currentLocation.ShowPagedResponses("请选择要为哪个玩家购买背包：", farmers.ToList(), value =>
+            {
+                var farmer = Game1.getFarmer(long.Parse(value));
+                if (farmer is { MaxItems: 12, Money: >= 2000 })
+                {
+                    if (farmer.Equals(Game1.player))
+                    {
+                        SecretarySystemHandler.PurchaseBackpack();
+                    }
+                    else
+                    {
+                        MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}为{farmer.Name}购买了大背包");
+                        helper.Multiplayer.SendMessage("", "BackpackPurchase", new[] { ModEntry.ModUniqueId }, new[] { farmer.UniqueMultiplayerID });
+                    }
+                }
+                else if (farmer is { MaxItems: 24, Money: >= 10000 })
+                {
+                    if (farmer.Equals(Game1.player))
+                    {
+                        SecretarySystemHandler.PurchaseBackpack();
+                    }
+                    else
+                    {
+                        MultiplayerLog.NoIconHUDMessage($"{Game1.player.Name}为{farmer.Name}购买了豪华背包");
+                        helper.Multiplayer.SendMessage("", "BackpackPurchase", new[] { ModEntry.ModUniqueId }, new[] { farmer.UniqueMultiplayerID });
+                    }
+                }
+                else
+                {
+                    Game1.drawObjectDialogue(Game1.content.LoadString("Strings\\UI:NotEnoughMoney2"));
+                }
+            });
+
+            return false;
         }
 
         return true;

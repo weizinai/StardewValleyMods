@@ -29,6 +29,9 @@ public class ModConfig
     public bool KickUnreadyPlayer { get; set; } = true;
     public KeybindList KickUnreadyPlayerKey { get; set; } = new(SButton.F3);
 
+    // 秘书系统
+    public KeybindList SecretarySystemKey { get; set; } = new(SButton.L);
+
     // 版本限制
     public bool VersionLimit { get; set; } = true;
     public int KickPlayerDelayTime { get; set; } = 10;

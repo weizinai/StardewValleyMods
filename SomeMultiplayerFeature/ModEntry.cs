@@ -19,12 +19,15 @@ public class ModEntry : Mod
     private ModConfig config = null!;
     private IHandler[] handlers = Array.Empty<IHandler>();
 
+    public static ModEntry Instance { get; private set; } = null!;
+
     public override void Entry(IModHelper helper)
     {
         // 初始化
         Log.Init(this.Monitor);
         MultiplayerLog.Init(this);
         this.config = helper.ReadConfig<ModConfig>();
+        Instance = this;
         this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;

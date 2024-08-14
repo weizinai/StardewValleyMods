@@ -31,7 +31,6 @@ public class ModEntry : Mod
         this.UpdateConfig();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -69,21 +68,6 @@ public class ModEntry : Mod
             new ShopMenuPatcher(),
             new TreePatcher()
         );
-    }
-
-    private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
-    {
-        var modData = Game1.player.modData;
-        var keysToRemove = modData.Keys.Where(key => key.StartsWith("weizinai.Some")).ToList();
-
-        if (keysToRemove.Count > 0)
-        {
-            Log.NoIconHUDMessage("检测到无用的旧版本数据，已清除。");
-            foreach (var key in keysToRemove)
-            {
-                modData.Remove(key);
-            }
-        }
     }
 
     private void UpdateConfig()

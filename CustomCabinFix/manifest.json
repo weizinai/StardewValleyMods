@@ -1,7 +1,7 @@
 {
     "Name": "Custom Cabin Fix",
     "Author": "weizinai",
-    "Version": "0.1.0",
+    "Version": "0.1.1",
     "Description": "This mod fixes some issues that would occur when adding custom cabins.",
     "UniqueID": "weizinai.CustomCabinFix",
     "EntryDll": "CustomCabinFix.dll",

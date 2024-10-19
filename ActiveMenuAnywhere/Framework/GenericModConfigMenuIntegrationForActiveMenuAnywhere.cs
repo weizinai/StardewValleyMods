@@ -33,11 +33,12 @@ internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere
                 (config, value) => config.DefaultMeanTabId = Enum.Parse<MenuTabId>(value),
                 I18n.Config_DefaultMenuTabID,
                 null,
-                new[] { "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland", "RSV", "SVE" },
+                new[] { "Favorite", "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland", "RSV", "SVE" },
                 value =>
                 {
                     var formatValue = value switch
                     {
+                        "Favorite" => I18n.UI_Tab_Favorites(),
                         "Farm" => I18n.UI_Tab_Farm(),
                         "Town" => I18n.UI_Tab_Town(),
                         "Mountain" => I18n.UI_Tab_Mountain(),

@@ -1,3 +1,7 @@
+# 1.6.1
+
+- 在`DefaultMenuTabId`中添加`Favorite`选项
+
 # 1.6.0
 
 - 移除`ActiveMenuAnywhereMenu`背景的阴影

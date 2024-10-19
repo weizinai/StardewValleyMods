@@ -29,8 +29,8 @@ internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere
                 I18n.Config_OpenMenuByTelephone_Tooltip
             )
             .AddTextOption(
-                config => config.DefaultMeanTabId.ToString(),
-                (config, value) => config.DefaultMeanTabId = Enum.Parse<MenuTabId>(value),
+                config => config.DefaultMenuTabId.ToString(),
+                (config, value) => config.DefaultMenuTabId = Enum.Parse<MenuTabId>(value),
                 I18n.Config_DefaultMenuTabID,
                 null,
                 new[] { "Favorite", "Farm", "Town", "Mountain", "Forest", "Beach", "Desert", "GingerIsland", "RSV", "SVE" },

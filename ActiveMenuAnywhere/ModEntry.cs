@@ -54,7 +54,7 @@ internal class ModEntry : Mod
             if (Game1.activeClickableMenu is AMAMenu)
                 Game1.exitActiveMenu();
             else if (Context.IsPlayerFree)
-                Game1.activeClickableMenu = new AMAMenu(config.DefaultMeanTabId, this.Helper);
+                Game1.activeClickableMenu = new AMAMenu(config.DefaultMenuTabId, this.Helper);
         }
     }
 }

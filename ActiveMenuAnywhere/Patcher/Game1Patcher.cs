@@ -27,7 +27,7 @@ internal class Game1Patcher : BasePatcher
     {
         if (!ModConfig.Instance.OpenMenuByTelephone) return true;
 
-        Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMeanTabId, helper);
+        Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMenuTabId, helper);
 
         return false;
     }

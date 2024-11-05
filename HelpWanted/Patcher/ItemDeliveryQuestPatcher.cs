@@ -35,13 +35,13 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
         harmony.Patch(this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.GetGoldRewardPerItem)),
             postfix: this.GetHarmonyMethod(nameof(GetGoldRewardPerItemPostfix))
         );
-        harmony.Patch(this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.checkIfComplete)),
-            transpiler: this.GetHarmonyMethod(nameof(CheckIfCompleteTranspiler))
+        harmony.Patch(this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.OnItemOfferedToNpc)),
+            transpiler: this.GetHarmonyMethod(nameof(OnItemOfferedToNpcTranspiler))
         );
     }
 
     // 交易任务友谊奖励修改
-    private static IEnumerable<CodeInstruction> CheckIfCompleteTranspiler(IEnumerable<CodeInstruction> instructions)
+    private static IEnumerable<CodeInstruction> OnItemOfferedToNpcTranspiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
         var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4 && code.operand.Equals(150));

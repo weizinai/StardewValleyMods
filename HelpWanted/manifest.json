@@ -1,7 +1,7 @@
 ﻿{
     "Name": "Help Wanted Redux For 1.6",
     "Author": "weizinai",
-    "Version": "1.1.1",
+    "Version": "1.2.0",
     "Description": "Help Wanted.",
     "UniqueID": "weizinai.HelpWanted",
     "EntryDll": "HelpWanted.dll",

@@ -1,4 +1,5 @@
-﻿using StardewModdingAPI;
+﻿using Netcode;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.Common.Log;
 using weizinai.StardewValleyMod.Common.Patcher;
@@ -40,9 +41,15 @@ internal class ModEntry : Mod
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        new GenericModConfigMenuIntegrationForHelpWanted(this.Helper, this.ModManifest,
+        new GenericModConfigMenuIntegrationForHelpWanted(
+            this.Helper,
+            this.ModManifest,
             () => this.config,
-            () => this.config = new ModConfig(),
+            () =>
+            {
+                this.config = new ModConfig();
+                this.Helper.WriteConfig(this.config);
+            },
             () => this.Helper.WriteConfig(this.config)
         ).Register();
     }

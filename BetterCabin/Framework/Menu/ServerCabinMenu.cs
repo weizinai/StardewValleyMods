@@ -39,7 +39,7 @@ internal class ServerCabinMenu : CarpenterMenu
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
-        if (this.demolishing || this.painting)
+        if (this.Action is CarpentryAction.Demolish or CarpentryAction.Paint)
         {
             var building = this.TargetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
             if (building?.IsCabin(out _) == false) return;
@@ -47,7 +47,7 @@ internal class ServerCabinMenu : CarpenterMenu
 
         base.receiveLeftClick(x, y, playSound);
 
-        if (this.moving && this.buildingToMove?.IsCabin(out _) == false)
+        if (this.Action == CarpentryAction.Move && this.buildingToMove?.IsCabin(out _) == false)
         {
             this.buildingToMove.isMoving = false;
             this.buildingToMove = null;

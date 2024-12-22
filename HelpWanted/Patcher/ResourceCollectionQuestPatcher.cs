@@ -18,7 +18,8 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(this.RequireMethod<ResourceCollectionQuest>(nameof(ResourceCollectionQuest.loadQuestInfo)),
+        harmony.Patch(
+            original: this.RequireMethod<ResourceCollectionQuest>(nameof(ResourceCollectionQuest.loadQuestInfo)),
             transpiler: this.GetHarmonyMethod(nameof(LoadQuestInfoTranspiler))
         );
     }

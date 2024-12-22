@@ -13,7 +13,8 @@ internal class TownPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(this.RequireMethod<Town>(nameof(Town.draw), new[] { typeof(SpriteBatch) }),
+        harmony.Patch(
+            original: this.RequireMethod<Town>(nameof(Town.draw), new[] { typeof(SpriteBatch) }),
             postfix: this.GetHarmonyMethod(nameof(DrawPostfix))
         );
     }

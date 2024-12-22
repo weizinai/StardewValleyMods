@@ -20,7 +20,9 @@ internal class SlayMonsterQuestPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(this.RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)), this.GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
+        harmony.Patch(
+            original: this.RequireMethod<SlayMonsterQuest>(nameof(SlayMonsterQuest.loadQuestInfo)),
+            prefix: this.GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
         );
     }
 
@@ -313,7 +315,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
         }
     }
 
-    // 初始化沙漠矿洞怪物清单 
+    // 初始化沙漠矿洞怪物清单
     private static void InitPossibleSkullCavernMonsters(List<string> possibleMonsters)
     {
         var mineLevel = Utility.GetAllPlayerDeepestMineLevel();

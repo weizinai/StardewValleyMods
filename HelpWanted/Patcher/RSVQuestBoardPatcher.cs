@@ -19,8 +19,8 @@ internal class RSVQuestBoardPatcher : BasePatcher
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
-            AccessTools.Method(Type.GetType("RidgesideVillage.Questing.RSVQuestBoard,RidgesideVillage"), "draw", new[] { typeof(SpriteBatch) }),
-            this.GetHarmonyMethod(nameof(DrawPrefix))
+            original: AccessTools.Method(Type.GetType("RidgesideVillage.Questing.RSVQuestBoard,RidgesideVillage"), "draw", new[] { typeof(SpriteBatch) }),
+            prefix: this.GetHarmonyMethod(nameof(DrawPrefix))
         );
     }
 

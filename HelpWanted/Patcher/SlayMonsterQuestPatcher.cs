@@ -26,9 +26,11 @@ internal class SlayMonsterQuestPatcher : BasePatcher
         );
     }
 
-    private static bool LoadQuestInfoPrefix(ref SlayMonsterQuest __instance, Random ___random)
+    private static bool LoadQuestInfoPrefix(ref SlayMonsterQuest __instance)
     {
-        for (var i = 0; i < ___random.Next(1, 100); i++) ___random.Next();
+        var random = Utility.CreateRandom(Game1.uniqueIDForThisGame, Game1.stats.DaysPlayed);
+
+        for (var i = 0; i < random.Next(1, 100); i++) random.Next();
 
         if (__instance.target.Value is not null && __instance.monster is not null) return false;
 
@@ -38,7 +40,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
         InitPossibleMonsters(possibleMonsters);
 
         var number = __instance.monsterName.Value == null ? 1 : __instance.numberToKill.Value == 0 ? 1 : 0;
-        if (number != 0) __instance.monsterName.Value = ___random.ChooseFrom(possibleMonsters);
+        if (number != 0) __instance.monsterName.Value = random.ChooseFrom(possibleMonsters);
         if (__instance.monsterName.Value is "Frost Jelly" or "Sludge" or "Big Slime")
         {
             __instance.monster!.Value = new Monster("Green Slime", Vector2.Zero);
@@ -56,105 +58,105 @@ internal class SlayMonsterQuestPatcher : BasePatcher
                 case "Bug":
                 case "Grub":
                 case "Fly":
-                    __instance.numberToKill.Value = ___random.Next(10, 21);
+                    __instance.numberToKill.Value = random.Next(10, 21);
                     __instance.reward.Value = __instance.numberToKill.Value * 30;
                     break;
                 case "Green Slime":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.numberToKill.Value -= __instance.numberToKill.Value % 2;
                     __instance.reward.Value = __instance.numberToKill.Value * 60;
                     break;
                 case "Frost Jelly":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.numberToKill.Value -= __instance.numberToKill.Value % 2;
                     __instance.reward.Value = __instance.numberToKill.Value * 85;
                     break;
                 case "Sludge":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.numberToKill.Value -= __instance.numberToKill.Value % 2;
                     __instance.reward.Value = __instance.numberToKill.Value * 125;
                     break;
                 case "Big Slime":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.numberToKill.Value -= __instance.numberToKill.Value % 2;
                     __instance.reward.Value = __instance.numberToKill.Value * 180;
                     break;
                 case "Rock Crab":
-                    __instance.numberToKill.Value = ___random.Next(2, 6);
+                    __instance.numberToKill.Value = random.Next(2, 6);
                     __instance.reward.Value = __instance.numberToKill.Value * 75;
                     break;
                 case "Lava Crab":
-                    __instance.numberToKill.Value = ___random.Next(2, 6);
+                    __instance.numberToKill.Value = random.Next(2, 6);
                     __instance.reward.Value = __instance.numberToKill.Value * 180;
                     break;
                 case "Iridium Crab":
-                    __instance.numberToKill.Value = ___random.Next(2, 6);
+                    __instance.numberToKill.Value = random.Next(2, 6);
                     __instance.reward.Value = __instance.numberToKill.Value * 350;
                     break;
                 case "Bat":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.reward.Value = __instance.numberToKill.Value * 60;
                     break;
                 case "Frost Bat":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.reward.Value = __instance.numberToKill.Value * 90;
                     break;
                 case "Lave Bat":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.reward.Value = __instance.numberToKill.Value * 120;
                     break;
                 case "Iridium Bat":
-                    __instance.numberToKill.Value = ___random.Next(4, 11);
+                    __instance.numberToKill.Value = random.Next(4, 11);
                     __instance.reward.Value = __instance.numberToKill.Value * 450;
                     break;
                 case "Duggy":
-                    __instance.numberToKill.Value = ___random.Next(2, 4);
+                    __instance.numberToKill.Value = random.Next(2, 4);
                     __instance.reward.Value = __instance.numberToKill.Value * 150;
                     break;
                 case "Stone Golem":
                 case "Ghost":
-                    __instance.numberToKill.Value = ___random.Next(2, 4);
+                    __instance.numberToKill.Value = random.Next(2, 4);
                     __instance.reward.Value = __instance.numberToKill.Value * 250;
                     break;
                 case "Carbon Ghost":
-                    __instance.numberToKill.Value = ___random.Next(2, 4);
+                    __instance.numberToKill.Value = random.Next(2, 4);
                     __instance.reward.Value = __instance.numberToKill.Value * 300;
                     break;
                 case "Dust Spirit":
-                    __instance.numberToKill.Value = ___random.Next(10, 21);
+                    __instance.numberToKill.Value = random.Next(10, 21);
                     __instance.reward.Value = __instance.numberToKill.Value * 60;
                     break;
                 case "Skeleton":
-                    __instance.numberToKill.Value = ___random.Next(6, 12);
+                    __instance.numberToKill.Value = random.Next(6, 12);
                     __instance.reward.Value = __instance.numberToKill.Value * 100;
                     break;
                 case "Shadow Brute":
                 case "Shadow Shaman":
-                    __instance.numberToKill.Value = ___random.Next(6, 12);
+                    __instance.numberToKill.Value = random.Next(6, 12);
                     __instance.reward.Value = __instance.numberToKill.Value * 200;
                     break;
                 case "Metal Head":
-                    __instance.numberToKill.Value = ___random.Next(2, 6);
+                    __instance.numberToKill.Value = random.Next(2, 6);
                     __instance.reward.Value = __instance.numberToKill.Value * 275;
                     break;
                 case "Squid Kid":
-                    __instance.numberToKill.Value = ___random.Next(1, 3);
+                    __instance.numberToKill.Value = random.Next(1, 3);
                     __instance.reward.Value = __instance.numberToKill.Value * 350;
                     break;
                 case "Mummy":
-                    __instance.numberToKill.Value = ___random.Next(2, 4);
+                    __instance.numberToKill.Value = random.Next(2, 4);
                     __instance.reward.Value = __instance.numberToKill.Value * 400;
                     break;
                 case "Serpent":
-                    __instance.numberToKill.Value = ___random.Next(6, 12);
+                    __instance.numberToKill.Value = random.Next(6, 12);
                     __instance.reward.Value = __instance.numberToKill.Value * 300;
                     break;
                 case "Pepper Rex":
-                    __instance.numberToKill.Value = ___random.Next(1, 3);
+                    __instance.numberToKill.Value = random.Next(1, 3);
                     __instance.reward.Value = __instance.numberToKill.Value * 500;
                     break;
                 default:
-                    __instance.numberToKill.Value = ___random.Next(3, 7);
+                    __instance.numberToKill.Value = random.Next(3, 7);
                     __instance.reward.Value = __instance.numberToKill.Value * 120;
                     break;
             }
@@ -178,15 +180,15 @@ internal class SlayMonsterQuestPatcher : BasePatcher
                 __instance.target.Value = "Lewis";
                 __instance.dialogueparts.Clear();
                 __instance.dialogueparts.Add("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13730");
-                if (___random.NextBool())
+                if (random.NextBool())
                 {
                     __instance.dialogueparts.Add("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13731");
-                    __instance.dialogueparts.Add("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + ___random.Choose("13732", "13733"));
+                    __instance.dialogueparts.Add("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + random.Choose("13732", "13733"));
                     __instance.dialogueparts.Add(new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13734",
-                        new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + ___random.Choose("13735", "13736")),
-                        new DescriptionElement("Strings\\StringsFromCSFiles:Dialogue.cs." + ___random.Choose<string>("795", "796", "797", "798", "799", "800", "801",
+                        new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + random.Choose("13735", "13736")),
+                        new DescriptionElement("Strings\\StringsFromCSFiles:Dialogue.cs." + random.Choose<string>("795", "796", "797", "798", "799", "800", "801",
                             "802", "803", "804", "805", "806", "807", "808", "809", "810")),
-                        new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + ___random.Choose("13740", "13741", "13742"))));
+                        new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + random.Choose("13740", "13741", "13742"))));
                 }
                 else
                 {
@@ -212,7 +214,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
                 __instance.parts.Clear();
                 __instance.parts.Add(new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13752",
                     __instance.monster.Value, __instance.numberToKill.Value,
-                    new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + ___random.Choose("13755", "13756", "13757"))));
+                    new DescriptionElement("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs." + random.Choose("13755", "13756", "13757"))));
                 __instance.target.Value = "Wizard";
                 __instance.dialogueparts.Clear();
                 __instance.dialogueparts.Add("Strings\\StringsFromCSFiles:SlayMonsterQuest.cs.13760");

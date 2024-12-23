@@ -15,17 +15,11 @@ namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class ItemDeliveryQuestPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
     private static readonly Random Random = new();
 
     private static List<string> possibleItems = new();
     private static string universalGiftTaste = "";
     private static string npcGiftTaste = "";
-
-    public ItemDeliveryQuestPatcher(ModConfig config)
-    {
-        ItemDeliveryQuestPatcher.config = config;
-    }
 
     public override void Apply(Harmony harmony)
     {
@@ -55,7 +49,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
     // 交易任务金钱奖励修改
     private static void GetGoldRewardPerItemPostfix(ref int __result)
     {
-        __result = (int)(__result * config.ItemDeliveryRewardMultiplier);
+        __result = (int)(__result * ModConfig.Instance.ItemDeliveryRewardMultiplier);
     }
 
     private static IEnumerable<CodeInstruction> LoadQuestInfoTranspiler(IEnumerable<CodeInstruction> instructions)
@@ -97,7 +91,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
     private static string GetRandomItem(Season season, string npcName)
     {
-        if (config.UseModPossibleItems)
+        if (ModConfig.Instance.UseModPossibleItems)
             InitModPossibleItems(npcName);
         else
         {
@@ -229,6 +223,8 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
     private static void InitUniversalGiftTaste()
     {
+        var config = ModConfig.Instance;
+
         universalGiftTaste = "";
         universalGiftTaste += Game1.NPCGiftTastes["Universal_Love"];
         if (config.QuestItemRequirement > 0) universalGiftTaste += " " + Game1.NPCGiftTastes["Universal_Like"];
@@ -239,6 +235,8 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
     private static void InitNPCGiftTaste(string npcName)
     {
+        var config = ModConfig.Instance;
+
         npcGiftTaste = "";
         if (!Game1.NPCGiftTastes.TryGetValue(npcName, out var data)) return;
         var split = data.Split('/');
@@ -252,6 +250,8 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
     private static bool IsItemAvailable(string itemId)
     {
+        var config = ModConfig.Instance;
+
         var isGiftTaste = config.UseModPossibleItems || (universalGiftTaste.Contains(itemId) && npcGiftTaste.Contains(itemId));
 
         if (itemId is "-5" or "-6" && isGiftTaste) return true;
@@ -276,7 +276,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
     private static int GetItemDeliveryFriendshipGain()
     {
-        return config.ItemDeliveryFriendshipGain;
+        return ModConfig.Instance.ItemDeliveryFriendshipGain;
     }
 
     private static MethodInfo GetMethod(string name)

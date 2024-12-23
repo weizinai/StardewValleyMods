@@ -8,17 +8,14 @@ namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 internal class AppearanceManager
 {
-    private readonly ModConfig config;
-
     private const string PadTexturePath = "aedenthorn.HelpWanted/Pad";
     private const string PinTexturePath = "aedenthorn.HelpWanted/Pin";
 
     private readonly Texture2D defaultPadTexture;
     private readonly Texture2D defaultPinTexture;
 
-    public AppearanceManager(IModHelper helper, ModConfig config)
+    public AppearanceManager(IModHelper helper)
     {
-        this.config = config;
         this.defaultPadTexture = helper.ModContent.Load<Texture2D>("assets/Pad.png");
         this.defaultPinTexture = helper.ModContent.Load<Texture2D>("assets/Pin.png");
     }
@@ -95,8 +92,9 @@ internal class AppearanceManager
     public Color GetRandomColor()
     {
         var random = Game1.random;
-        return new Color((byte)random.Next(this.config.RandomColorMin, this.config.RandomColorMax),
-            (byte)random.Next(this.config.RandomColorMin, this.config.RandomColorMax),
-            (byte)random.Next(this.config.RandomColorMin, this.config.RandomColorMax));
+        var config = ModConfig.Instance;
+        return new Color((byte)random.Next(config.RandomColorMin, config.RandomColorMax),
+            (byte)random.Next(config.RandomColorMin, config.RandomColorMax),
+            (byte)random.Next(config.RandomColorMin, config.RandomColorMax));
     }
 }

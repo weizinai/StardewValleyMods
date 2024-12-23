@@ -11,13 +11,6 @@ namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class SlayMonsterQuestPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
-
-    public SlayMonsterQuestPatcher(ModConfig config)
-    {
-        SlayMonsterQuestPatcher.config = config;
-    }
-
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -162,7 +155,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
             }
         }
 
-        __instance.reward.Value = (int)(__instance.reward.Value * config.SlayMonstersRewardMultiplier);
+        __instance.reward.Value = (int)(__instance.reward.Value * ModConfig.Instance.SlayMonstersRewardMultiplier);
 
         switch (__instance.monsterName.Value)
         {
@@ -241,7 +234,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
     private static void InitPossibleMonsters(List<string> possibleMonsters)
     {
         InitPossibleMineShaftMonsters(possibleMonsters);
-        if (config.MoreSlayMonsterQuest)
+        if (ModConfig.Instance.MoreSlayMonsterQuest)
         {
             InitPossibleSkullCavernMonsters(possibleMonsters);
             InitPossibleVolcanoDungeonMonsters(possibleMonsters);
@@ -287,7 +280,7 @@ internal class SlayMonsterQuestPatcher : BasePatcher
                 break;
         }
 
-        if (!config.MoreSlayMonsterQuest) return;
+        if (!ModConfig.Instance.MoreSlayMonsterQuest) return;
 
         // 模组杀怪任务怪物清单
         switch (mineLevel)

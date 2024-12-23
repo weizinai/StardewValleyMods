@@ -13,12 +13,11 @@ internal abstract class BaseQuestBoard : IClickableMenu
 
     protected int ShowingQuestId;
     protected Quest? ShowingQuest;
-    protected readonly ModConfig Config;
 
     protected Rectangle BoardRect = new(78 * 4, 52 * 4, 184 * 4, 102 * 4);
     protected const int OptionIndex = -4200;
 
-    protected BaseQuestBoard(ModConfig config) : base(0, 0, 0, 0, true)
+    protected BaseQuestBoard() : base(0, 0, 0, 0, true)
     {
         // 位置和大小逻辑
         this.width = 338 * 4;
@@ -35,8 +34,5 @@ internal abstract class BaseQuestBoard : IClickableMenu
         // 关闭按钮逻辑
         this.upperRightCloseButton = new ClickableTextureComponent(new Rectangle(this.xPositionOnScreen + this.width - 20, this.yPositionOnScreen, 48, 48),
             Game1.mouseCursors, new Rectangle(337, 494, 12, 12), 4f);
-
-        // 初始化
-        this.Config = config;
     }
 }

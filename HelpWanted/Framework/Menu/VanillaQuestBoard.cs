@@ -11,7 +11,7 @@ internal sealed class VanillaQuestBoard : BaseQuestBoard
     private readonly Texture2D billboardTexture;
     public static readonly List<QuestNote> QuestNotes = new();
 
-    public VanillaQuestBoard(ModConfig config) : base(config)
+    public VanillaQuestBoard()
     {
         // 背景逻辑
         this.billboardTexture = Game1.temporaryContent.Load<Texture2D>("LooseSprites/Billboard");
@@ -156,8 +156,8 @@ internal sealed class VanillaQuestBoard : BaseQuestBoard
                 this.yPositionOnScreen + Game1.random.Next(this.BoardRect.Y, this.BoardRect.Bottom - height1), width1, height1);
             // 遍历所有的可点击组件,计算是否有碰撞发生
             var collision = QuestNotes.Any(cc =>
-                Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * this.Config.XOverlapBoundary ||
-                Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * this.Config.YOverlapBoundary);
+                Math.Abs(cc.bounds.Center.X - rectangle.Center.X) < rectangle.Width * ModConfig.Instance.XOverlapBoundary ||
+                Math.Abs(cc.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * ModConfig.Instance.YOverlapBoundary);
             // 如果碰撞发生,则尝试次数减1,否则返回矩形区域
             if (collision)
                 tries--;
@@ -205,8 +205,8 @@ internal sealed class VanillaQuestBoard : BaseQuestBoard
         for (var i = 0; i < questList.Count; i++)
         {
             var size = new Point(
-                (int)(questList[i].PadSource.Width * this.Config.NoteScale),
-                (int)(questList[i].PadSource.Height * this.Config.NoteScale));
+                (int)(questList[i].PadSource.Width * ModConfig.Instance.NoteScale),
+                (int)(questList[i].PadSource.Height * ModConfig.Instance.NoteScale));
             var bounds = this.GetFreeBounds(size.X, size.Y);
             if (bounds is null)
             {

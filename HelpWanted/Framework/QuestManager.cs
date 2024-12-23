@@ -14,7 +14,6 @@ namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 internal class QuestManager
 {
-    private readonly ModConfig config;
     private readonly IModHelper helper;
     private readonly AppearanceManager appearanceManager;
 
@@ -26,12 +25,11 @@ internal class QuestManager
 
     private const string CustomQuestDataPath = "weizinai.HelpWanted/Quest";
 
-    public QuestManager(ModConfig config, IModHelper helper)
+    public QuestManager(IModHelper helper)
     {
         // 初始化
         this.helper = helper;
-        this.config = config;
-        this.appearanceManager = new AppearanceManager(helper, config);
+        this.appearanceManager = new AppearanceManager(helper);
         // 注册事件
         helper.Events.Content.AssetRequested += this.OnAssetRequested;
     }
@@ -52,7 +50,7 @@ internal class QuestManager
         var quest = this.GetVanillaQuest();
         var tries = 0;
         var npcNames = new HashSet<string>();
-        for (var i = 0; i < this.config.MaxQuests; i++)
+        for (var i = 0; i < ModConfig.Instance.MaxQuests; i++)
         {
             if (quest is null) break;
             var npc = this.GetNpcFromQuest(quest);
@@ -89,7 +87,7 @@ internal class QuestManager
         Log.Info("Begin generating today's daily quests of RSV.");
         RSVQuestList.Clear();
         var quest = this.GetRSVQuest();
-        for (var i = 0; i < this.config.MaxRSVQuests; i++)
+        for (var i = 0; i < ModConfig.Instance.MaxRSVQuests; i++)
         {
             if (quest is null)
             {
@@ -146,19 +144,19 @@ internal class QuestManager
 
     private bool CheckDayAvailable()
     {
-        if (Game1.stats.DaysPlayed <= 1 && !this.config.QuestFirstDay)
+        if (Game1.stats.DaysPlayed <= 1 && !ModConfig.Instance.QuestFirstDay)
         {
             Log.Info("Today is the first day of the game, no daily quests are generated.");
             return false;
         }
 
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.config.QuestFestival)
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !ModConfig.Instance.QuestFestival)
         {
             Log.Info("Today or tomorrow is the festival day, no daily quests are generated.");
             return false;
         }
 
-        if (Game1.random.NextDouble() >= this.config.DailyQuestChance)
+        if (Game1.random.NextDouble() >= ModConfig.Instance.DailyQuestChance)
         {
             Log.Trace("No daily quests are generated.");
             return false;
@@ -169,9 +167,9 @@ internal class QuestManager
 
     private bool CheckNPCAvailable(HashSet<string> npcNames, NPC npc)
     {
-        var oneQuestPerVillager = this.config.OneQuestPerVillager && npcNames.Contains(npc.Name);
-        var excludeMaxHeartsNPC = this.config.ExcludeMaxHeartsNPC && Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250;
-        var excludeNPCList = this.config.ExcludeNPCList.Contains(npc.Name);
+        var oneQuestPerVillager = ModConfig.Instance.OneQuestPerVillager && npcNames.Contains(npc.Name);
+        var excludeMaxHeartsNPC = ModConfig.Instance.ExcludeMaxHeartsNPC && Game1.player.tryGetFriendshipLevelForNPC(npc.Name) >= Utility.GetMaximumHeartsForCharacter(npc) * 250;
+        var excludeNPCList = ModConfig.Instance.ExcludeNPCList.Contains(npc.Name);
 
         var available = !oneQuestPerVillager && !excludeMaxHeartsNPC && !excludeNPCList;
 
@@ -195,10 +193,10 @@ internal class QuestManager
         var pinTextureSource = new Rectangle(0, 0, 64, 64);
         var pinColor = this.appearanceManager.GetRandomColor();
         var icon = npc.Portrait;
-        var iconColor = new Color(this.config.PortraitTintR, this.config.PortraitTintB, this.config.PortraitTintB, this.config.PortraitTintA);
+        var iconColor = new Color(ModConfig.Instance.PortraitTintR, ModConfig.Instance.PortraitTintB, ModConfig.Instance.PortraitTintB, ModConfig.Instance.PortraitTintA);
         var iconSource = new Rectangle(0, 0, 64, 64);
-        var iconScale = this.config.PortraitScale;
-        var iconOffset = new Point(this.config.PortraitOffsetX, this.config.PortraitOffsetY);
+        var iconScale = ModConfig.Instance.PortraitScale;
+        var iconOffset = new Point(ModConfig.Instance.PortraitOffsetX, ModConfig.Instance.PortraitOffsetY);
         return new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor,
             icon, iconSource, iconColor, iconScale, iconOffset, quest);
     }
@@ -211,14 +209,14 @@ internal class QuestManager
         var slayMonsterQuest = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
         var questTypes = new List<(float weight, Func<Quest> createQuest)>
         {
-            (this.config.ResourceCollectionWeight, () => new ResourceCollectionQuest()),
-            (slayMonsterQuest ? this.config.SlayMonstersWeight : 0, () => new SlayMonsterQuest()),
-            (this.config.FishingWeight, () => new FishingQuest()),
-            (this.config.ItemDeliveryWeight, () => new ItemDeliveryQuest())
+            (ModConfig.Instance.ResourceCollectionWeight, () => new ResourceCollectionQuest()),
+            (slayMonsterQuest ? ModConfig.Instance.SlayMonstersWeight : 0, () => new SlayMonsterQuest()),
+            (ModConfig.Instance.FishingWeight, () => new FishingQuest()),
+            (ModConfig.Instance.ItemDeliveryWeight, () => new ItemDeliveryQuest())
         };
         var currentWeight = 0f;
-        var totalWeight = this.config.ResourceCollectionWeight + (slayMonsterQuest ? this.config.SlayMonstersWeight : 0) + this.config.FishingWeight +
-                          this.config.ItemDeliveryWeight;
+        var totalWeight = ModConfig.Instance.ResourceCollectionWeight + (slayMonsterQuest ? ModConfig.Instance.SlayMonstersWeight : 0) + ModConfig.Instance.FishingWeight +
+                          ModConfig.Instance.ItemDeliveryWeight;
         foreach (var (weight, createQuest) in questTypes)
         {
             Log.Trace($"{this.GetQuestType(createQuest())}的权重为{weight}");
@@ -237,7 +235,8 @@ internal class QuestManager
             return null;
         }
 
-        quest.daysLeft.Value = this.config.QuestDays;
+        quest.daysLeft.Value = ModConfig.Instance.QuestDays;
+        quest.daysLeft.Value = ModConfig.Instance.QuestDays;
         quest.dailyQuest.Value = true;
         quest.accepted.Value = true;
         quest.canBeCancelled.Value = true;

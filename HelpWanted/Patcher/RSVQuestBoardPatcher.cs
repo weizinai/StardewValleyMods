@@ -9,13 +9,6 @@ namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class RSVQuestBoardPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
-
-    public RSVQuestBoardPatcher(ModConfig config)
-    {
-        RSVQuestBoardPatcher.config = config;
-    }
-
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -26,8 +19,8 @@ internal class RSVQuestBoardPatcher : BasePatcher
 
     private static bool DrawPrefix(string ___boardType)
     {
-        if (___boardType != "VillageQuestBoard" || !config.EnableRSVQuestBoard) return true;
-        Game1.activeClickableMenu = new RSVQuestBoard(config);
+        if (___boardType != "VillageQuestBoard" || !ModConfig.Instance.EnableRSVQuestBoard) return true;
+        Game1.activeClickableMenu = new RSVQuestBoard();
         return false;
     }
 }

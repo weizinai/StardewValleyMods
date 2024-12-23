@@ -5,6 +5,13 @@ namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 internal class ModConfig
 {
+    public static ModConfig Instance { get; set; } = null!;
+
+    public static void Init(IModHelper helper)
+    {
+        Instance = helper.ReadConfig<ModConfig>();
+    }
+
     // 一般设置
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.None);
     public bool QuestFirstDay { get; set; }

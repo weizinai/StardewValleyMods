@@ -8,13 +8,6 @@ namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class FishingQuestPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
-
-    public FishingQuestPatcher(ModConfig config)
-    {
-        FishingQuestPatcher.config = config;
-    }
-
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -38,6 +31,6 @@ internal class FishingQuestPatcher : BasePatcher
 
     private static int GetReward(int reward)
     {
-        return (int)(reward * config.FishingRewardMultiplier);
+        return (int)(reward * ModConfig.Instance.FishingRewardMultiplier);
     }
 }

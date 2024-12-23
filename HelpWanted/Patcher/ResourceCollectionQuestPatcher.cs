@@ -9,13 +9,6 @@ namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class ResourceCollectionQuestPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
-
-    public ResourceCollectionQuestPatcher(ModConfig config)
-    {
-        ResourceCollectionQuestPatcher.config = config;
-    }
-
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(
@@ -42,6 +35,6 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
 
     private static int GetReward(NetInt reward)
     {
-        return (int)(reward.Value * config.ResourceCollectionRewardMultiplier);
+        return (int)(reward.Value * ModConfig.Instance.ResourceCollectionRewardMultiplier);
     }
 }

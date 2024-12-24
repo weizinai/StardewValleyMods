@@ -25,7 +25,7 @@ internal class ModEntry : Mod
         var patches = new List<IPatcher>
         {
             new BillboardPatcher(), new ItemDeliveryQuestPatcher(), new SlayMonsterQuestPatcher(), new ResourceCollectionQuestPatcher(),
-            new FishingQuestPatcher(), new Game1Patcher(), new TownPatcher()
+            new FishingQuestPatcher(), new QuestPatcher(), new Game1Patcher(), new TownPatcher()
         };
         if (helper.ModRegistry.IsLoaded("Rafseazz.RidgesideVillage")) patches.Add(new RSVQuestBoardPatcher());
         HarmonyPatcher.Apply(this, patches.ToArray());

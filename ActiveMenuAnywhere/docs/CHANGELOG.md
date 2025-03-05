@@ -1,3 +1,7 @@
+# 1.6.2
+
+- 修复`Favorite`选项中的内容不保存的问题
+
 # 1.6.1
 
 - 在`DefaultMenuTabId`中添加`Favorite`选项

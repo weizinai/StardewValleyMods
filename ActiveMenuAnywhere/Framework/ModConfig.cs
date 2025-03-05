@@ -18,7 +18,5 @@ internal class ModConfig
     public MenuTabId DefaultMenuTabId { get; set; } = MenuTabId.Town;
     public bool ProgressMode { get; set; } = true;
     public KeybindList FavoriteKey { get; set; } = new(SButton.LeftAlt);
-
-    [JsonIgnore]
     public List<OptionId> FavoriteMenus { get; set; } = new();
 }

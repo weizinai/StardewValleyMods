@@ -62,7 +62,7 @@ public class ModEntry : Mod
             new HoeDirtPatcher(),
             new MineShaftPatcher(),
             new MuseumMenuPatcher(),
-            new ShopMenuPatcher(),
+            // new ShopMenuPatcher(),
             new TreePatcher()
         );
     }
@@ -95,7 +95,7 @@ public class ModEntry : Mod
             new MineshaftHandler(this.Helper),
             new PerfectFishingHandler(this.Helper),
             new PlayerCountHandler(this.Helper, this.config),
-            new SpendLimitHandler(this.Helper, this.config),
+            // new SpendLimitHandler(this.Helper, this.config),
             new TipHandler(this.Helper, this.config),
             new UnreadyPlayerHandler(this.Helper, this.config),
             new VersionLimitHandler(this.Helper, this.config)

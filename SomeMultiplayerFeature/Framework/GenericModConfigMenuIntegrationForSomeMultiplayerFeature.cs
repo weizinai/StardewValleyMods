@@ -34,22 +34,22 @@ internal class GenericModConfigMenuIntegrationForSomeMultiplayerFeature
                 () => "打开配置菜单快捷键"
             )
             // 花钱限制
-            .AddSectionTitle(() => "花钱限制")
-            .AddBoolOption(
-                config => config.SpendLimit,
-                (config, value) => config.SpendLimit = value,
-                () => "花钱限制"
-            )
-            .AddNumberOption(
-                config => config.DefaultSpendLimit,
-                (config, value) => config.DefaultSpendLimit = value,
-                () => "默认花钱额度"
-            )
-            .AddKeybindList(
-                config => config.SpendLimitManagerMenuKey,
-                (config, value) => config.SpendLimitManagerMenuKey = value,
-                () => "花钱限制管理快捷键"
-            )
+            // .AddSectionTitle(() => "花钱限制")
+            // .AddBoolOption(
+            //     config => config.SpendLimit,
+            //     (config, value) => config.SpendLimit = value,
+            //     () => "花钱限制"
+            // )
+            // .AddNumberOption(
+            //     config => config.DefaultSpendLimit,
+            //     (config, value) => config.DefaultSpendLimit = value,
+            //     () => "默认花钱额度"
+            // )
+            // .AddKeybindList(
+            //     config => config.SpendLimitManagerMenuKey,
+            //     (config, value) => config.SpendLimitManagerMenuKey = value,
+            //     () => "花钱限制管理快捷键"
+            // )
             // 自动设置Ip连接
             .AddSectionTitle(() => "自动设置Ip连接")
             .AddBoolOption(

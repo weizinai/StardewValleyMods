@@ -12,42 +12,42 @@ internal class ShopMenuPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<ShopMenu>("tryToPurchaseItem"),
-            prefix: this.GetHarmonyMethod(nameof(TryToPurchaseItemPrefix)),
-            postfix: this.GetHarmonyMethod(nameof(TryToPurchaseItemPostfix))
-        );
+        // harmony.Patch(
+        //     original: this.RequireMethod<ShopMenu>("tryToPurchaseItem"),
+        //     prefix: this.GetHarmonyMethod(nameof(TryToPurchaseItemPrefix)),
+        //     postfix: this.GetHarmonyMethod(nameof(TryToPurchaseItemPostfix))
+        // );
     }
 
     // 购物限制
-    private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy, ShopMenu __instance, ref bool __state)
-    {
-        if (!CanBuyItem(__instance, item)) return true;
-
-        var stockInfo = __instance.itemPriceAndStock[item];
-        var totalPrice = stockInfo.Price * stockToBuy;
-        var player = Game1.player;
-        GetTradeItemData(stockInfo, out var tradeItem, out var tradeItemCount);
-
-        if (player.Money >= totalPrice &&
-            (tradeItem == null || __instance.HasTradeItem(tradeItem, tradeItemCount * stockToBuy)))
-        {
-            if (SpendLimitHelper.IsSpendLimitEnable())
-            {
-                SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
-                if (availableMoney < totalPrice)
-                {
-                    SpendLimitHelper.ShowSpendLimitDialogue($"购买{stockToBuy}个{item.DisplayName}", totalPrice);
-                    return false;
-                }
-                player.modData[SpendLimitHandler.SpendAmountKey] = (amount + totalPrice).ToString();
-            }
-
-            __state = true;
-        }
-
-        return true;
-    }
+    // private static bool TryToPurchaseItemPrefix(ISalable item, ref int stockToBuy, ShopMenu __instance, ref bool __state)
+    // {
+    //     if (!CanBuyItem(__instance, item)) return true;
+    //
+    //     var stockInfo = __instance.itemPriceAndStock[item];
+    //     var totalPrice = stockInfo.Price * stockToBuy;
+    //     var player = Game1.player;
+    //     GetTradeItemData(stockInfo, out var tradeItem, out var tradeItemCount);
+    //
+    //     if (player.Money >= totalPrice &&
+    //         (tradeItem == null || __instance.HasTradeItem(tradeItem, tradeItemCount * stockToBuy)))
+    //     {
+    //         if (SpendLimitHelper.IsSpendLimitEnable())
+    //         {
+    //             SpendLimitHelper.GetFarmerSpendData(out var amount, out _, out var availableMoney);
+    //             if (availableMoney < totalPrice)
+    //             {
+    //                 SpendLimitHelper.ShowSpendLimitDialogue($"购买{stockToBuy}个{item.DisplayName}", totalPrice);
+    //                 return false;
+    //             }
+    //             player.modData[SpendLimitHandler.SpendAmountKey] = (amount + totalPrice).ToString();
+    //         }
+    //
+    //         __state = true;
+    //     }
+    //
+    //     return true;
+    // }
 
     private static void TryToPurchaseItemPostfix(ISalable item, int stockToBuy, bool __state)
     {

@@ -9,9 +9,9 @@ public class ModConfig
     public KeybindList OpenConfigMenuKey { get; set; } = new(SButton.R);
 
     // 购物限制
-    public bool SpendLimit { get; set; } = true;
-    public int DefaultSpendLimit { get; set; } = 2000;
-    public KeybindList SpendLimitManagerMenuKey { get; set; } = new(SButton.N);
+    // public bool SpendLimit { get; set; } = true;
+    // public int DefaultSpendLimit { get; set; } = 2000;
+    // public KeybindList SpendLimitManagerMenuKey { get; set; } = new(SButton.N);
 
     // 自动设置IP连接
     public bool AutoSetIpConnection { get; set; } = true;

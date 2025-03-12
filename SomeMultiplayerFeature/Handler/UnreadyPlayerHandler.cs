@@ -48,10 +48,14 @@ internal class UnreadyPlayerHandler : BaseHandlerWithConfig<ModConfig>
         if (this.Config.KickUnreadyPlayerKey.JustPressed())
         {
             Log.Info("-- 开始踢出玩家 --");
-            foreach (var player in this.unreadyPlayers)
+            foreach (var playerId in this.unreadyPlayers)
             {
-                Game1.server.kick(player);
-                Log.Info($"{Game1.getFarmer(player).Name}未准备好，已被踢出。");
+                Game1.server.kick(playerId);
+                var player = Game1.GetPlayer(playerId);
+                if (player is null)
+                    Log.Error($"无法获取玩家{playerId}的信息");
+                else
+                    Log.Info($"{player.Name}未准备好，已被踢出。");
             }
             this.unreadyPlayers.Clear();
             Log.Info("-- 结束踢出玩家 --");

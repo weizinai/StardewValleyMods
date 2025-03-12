@@ -55,12 +55,17 @@ internal class CustomCommandHandler : BaseHandlerWithConfig<ModConfig>
         if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var id = e.Peer.PlayerID;
-        var name = Game1.getFarmer(id).Name;
+        var player = Game1.GetPlayer(id);
+        if (player is null)
+        {
+            Log.Error($"无法获取玩家{id}的姓名");
+            return;
+        }
 
         if (this.bannedPlayers!.ContainsKey(id.ToString()))
         {
             Game1.server.kick(id);
-            Log.Alert($"{name}在黑名单中，已被踢出。");
+            Log.Alert($"{player.Name}在黑名单中，已被踢出。");
         }
     }
 

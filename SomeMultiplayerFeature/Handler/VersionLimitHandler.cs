@@ -45,7 +45,7 @@ internal class VersionLimitHandler : BaseHandlerWithConfig<ModConfig>
 
             if (data.TimeLeft < 0)
             {
-                var farmer = Game1.getFarmerMaybeOffline(data.Id);
+                var farmer = Game1.GetPlayer(data.Id);
 
                 if (farmer == null)
                 {

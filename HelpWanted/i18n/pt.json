@@ -1,0 +1,76 @@
+﻿{
+  // Configurações Gerais
+  "Config.GeneralSettingsTitle.Name": "Configurações Gerais",
+  "Config.OpenConfigMenuKeybind.Name": "Tecla de Atalho para Abrir o Menu de Configurações",
+  "Config.QuestFirstDay.Name": "Primeiro Dia de Missão",
+  "Config.QuestFirstDay.Tooltip": "Quando esta opção está desativada, o jogo não gerará missões no primeiro dia, como no jogo original.",
+  "Config.QuestFestival.Name": "Missão de Festival",
+  "Config.QuestFestival.Tooltip": "Quando esta opção está desativada, se hoje ou amanhã for um festival, a missão não será gerada, como no jogo original.",
+  "Config.DailyQuestChance.Name": "Chance de Missão Diária",
+  "Config.OneQuestPerVillager.Name": "Uma Missão por Habitante",
+  "Config.ExcludeMaxHeartsNPC.Name": "Excluir NPCs com Máximos de Coração",
+  "Config.ExcludeNPCList.Name": "Lista de NPCs Excluídos",
+  "Config.ExcludeNPCList.Tooltip": "Lista de NPCs excluídos. Cada nome de NPC é separado por vírgula. (ex.: \"Lewis, Marnie\")",
+  "Config.QuestDays.Name": "Dias de Missão",
+  "Config.QuestDays.Tooltip": "O limite de tempo para completar a missão",
+  "Config.MaxQuests.Name": "Máximo de Missões",
+  "Config.MaxQuests.Tooltip": "O número máximo de missões por dia é limitado pelo número de notas adesivas que podem ser colocadas no quadro de avisos",
+  "Config.EnableRSVQuestBoard.Name": "Ativar Quadro de Missões RSV",
+  "Config.MaxRSVQuests.Name": "Máximo de Missões RSV",
+
+  // Entrega de Itens
+  "Config.ItemDeliveryPage.Name": "Missão de Entrega de Itens",
+  "Config.ItemDeliveryWeight.Name": "Peso da Entrega de Itens",
+  "Config.ItemDeliveryWeight.Tooltip": "O peso da missão de entrega de itens.",
+  "Config.ItemDeliveryRewardMultiplier.Name": "Multiplicador de Recompensa de Entrega de Itens",
+  "Config.ItemDeliveryFriendshipGain.Name": "Ganho de Amizade por Entrega de Itens",
+  "Config.ItemDeliveryFriendshipGain.Tooltip": "O valor desta opção requer uma reinicialização do jogo para ter efeito.",
+  "Config.QuestItemSettingsTitle.Name": "Configurações de Itens da Missão",
+  "Config.QuestItemRequirement.Name": "Requisito de Item da Missão",
+  "Config.QuestItemRequirement.Tooltip": "Requisitos de itens para a missão de entrega de itens. Se for 0, significa que o item deve ser pelo menos amado. Se for 1, significa que o item deve ser pelo menos apreciado. Se for 2, significa que o item deve ser pelo menos neutro. Se for 3, significa que o item deve ser pelo menos desaprovado. Se for 4, significa que o item deve ser pelo menos odiado.",
+  "Config.MaxPrice.Name": "Preço Máximo",
+  "Config.MaxPrice.Tooltip": "O preço máximo para um item de missão. Se for -1, não há limite.",
+  "Config.AllowArtisanGoods.Name": "Permitir Produtos Artesanais",
+  "Config.AllowArtisanGoods.Tooltip": "Se o item da missão de entrega pode ser um Produto Artesanal",
+  "Config.UseModPossibleItems.Name": "Usar Lista de Itens Possíveis do Mod",
+  "Config.UseModPossibleItems.Tooltip": "Quando esta opção está ativada, os itens para a missão de entrega de itens são selecionados aleatoriamente entre todos os itens que atendem aos requisitos de itens da opção. Quando esta opção está desativada, os itens para a missão de entrega de itens são selecionados aleatoriamente a partir da lista original de itens de missão de entrega de itens.",
+
+  // Coleta de Recursos
+  "Config.ResourceCollectionPage.Name": "Missão de Coleta de Recursos",
+  "Config.ResourceCollectionWeight.Name": "Peso da Coleta de Recursos",
+  "Config.ResourceCollectionWeight.Tooltip": "O peso da missão de coleta de recursos.",
+  "Config.ResourceCollectionRewardMultiplier.Name": "Multiplicador de Recompensa de Coleta de Recursos",
+
+  // Pesca
+  "Config.FishingPage.Name": "Missão de Pesca",
+  "Config.FishingWeight.Name": "Peso da Pesca",
+  "Config.FishingWeight.Tooltip": "O peso da missão de pesca.",
+  "Config.FishingRewardMultiplier.Name": "Multiplicador de Recompensa de Pesca",
+
+  // Caça a Monstros
+  "Config.SlayMonstersPage.Name": "Missão de Caça a Monstros",
+  "Config.SlayMonstersWeight.Name": "Peso da Caça a Monstros",
+  "Config.SlayMonstersWeight.Tooltip": "O peso da missão de caçar monstros. As missões de caça a monstros devem ter atingido as minas e ter mais de 6 dias no jogo.",
+  "Config.SlayMonstersRewardMultiplier.Name": "Multiplicador de Recompensa de Caça a Monstros",
+  "Config.MoreSlayMonsterQuests.Name": "Mais Missões de Caça a Monstros",
+  "Config.MoreSlayMonsterQuests.Tooltip": "Quando esta opção está ativada, mais monstros serão alvo da missão de caça a monstros.",
+
+  // Aparência
+  "Config.AppearancePage.Name": "Aparência",
+  "Config.NoteAppearanceTitle.Name": "Aparência das Notas",
+  "Config.NoteScale.Name": "Escala da Nota",
+  "Config.XOverlapBoundary.Name": "Limite de Sobreposição X",
+  "Config.XOverlapBoundary.Tooltip": "Taxa de sobreposição horizontal das notas de missão. Se você definir como 1, não haverá sobreposição, se definir como 0,5, pode haver sobreposição de metade, e se definir como 0, pode haver sobreposição total.",
+  "Config.YOverlapBoundary.Name": "Limite de Sobreposição Y",
+  "Config.YOverlapBoundary.Tooltip": "Taxa de sobreposição vertical das notas de missão. Se você definir como 1, não haverá sobreposição, se definir como 0,5, pode haver sobreposição de metade, e se definir como 0, pode haver sobreposição total.",
+  "Config.RandomColorMin.Name": "Cor Aleatória Mínima",
+  "Config.RandomColorMax.Name": "Cor Aleatória Máxima",
+  "Config.PortraitAppearanceTitle.Name": "Aparência do Retrato",
+  "Config.PortraitScale.Name": "Escala do Retrato",
+  "Config.PortraitOffsetX.Name": "Deslocamento X do Retrato",
+  "Config.PortraitOffsetY.Name": "Deslocamento Y do Retrato",
+  "Config.PortraitTintR.Name": "Cor do Retrato R",
+  "Config.PortraitTintG.Name": "Cor do Retrato G",
+  "Config.PortraitTintB.Name": "Cor do Retrato B",
+  "Config.PortraitTintA.Name": "Cor do Retrato A"
+}

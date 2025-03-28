@@ -1,0 +1,76 @@
+{
+    // General Settings
+    "Config.GeneralSettingsTitle.Name": "Paramètres généraux",
+    "Config.OpenConfigMenuKeybind.Name": "Ouvrir le raccourci clavier du menu de configuration",
+    "Config.QuestFirstDay.Name": "Quête du premier Jour",
+    "Config.QuestFirstDay.Tooltip": "Lorsque cette option est désactivée, le jeu ne générera pas de quêtes le premier jour, comme dans le jeu de base.",
+    "Config.QuestFestival.Name": "Festival de quêtes",
+    "Config.QuestFestival.Tooltip": "Lorsque cette option est désactivée, si le jeu a un festival aujourd'hui ou demain, la quête ne sera pas générée, comme dans le jeu de base.",
+    "Config.DailyQuestChance.Name": "Chances de quête quotidienne",
+    "Config.OneQuestPerVillager.Name": "Une quête par villageois",
+    "Config.ExcludeMaxHeartsNPC.Name": "Exclure les PNJ à l’amitié max.",
+    "Config.ExcludeNPCList.Name": "Liste d’exclusion des PNJ",
+    "Config.ExcludeNPCList.Tooltip": "Liste des PNJ exclus. Chaque nom de PNJ est séparé par une virgule. (par exemple, \"Lewis, Marnie\")",
+    "Config.QuestDays.Name": "Jours de quête",
+    "Config.QuestDays.Tooltip": "Le délai pour terminer la quête",
+    "Config.MaxQuests.Name": "Quêtes maximales",
+    "Config.MaxQuests.Tooltip": "Le nombre maximum de quêtes par jour est limité par le nombre de notes autocollantes pouvant être placées sur le panneau d'affichage.",
+    "Config.EnableRSVQuestBoard.Name": "Activer le tableau de quête RSV",
+    "Config.MaxRSVQuests.Name": "Maximum de quêtes de Ridgeside (RSV).",
+
+    // Item Delivery
+    "Config.ItemDeliveryPage.Name": "Quête de livraison d'objets",
+    "Config.ItemDeliveryWeight.Name": "Probabilité de livraison de l'article",
+    "Config.ItemDeliveryWeight.Tooltip": "La probabilité de la quête de livraison de l'objet.",
+    "Config.ItemDeliveryRewardMultiplier.Name": "Multiplicateur de récompense pour la livraison",
+    "Config.ItemDeliveryFriendshipGain.Name": "Gain d'amitié lors de la livraison d'objets",
+    "Config.ItemDeliveryFriendshipGain.Tooltip": "La valeur de cette option nécessite un redémarrage du jeu pour qu'elle prenne effet.",
+    "Config.QuestItemSettingsTitle.Name": "Paramètres des objets de quête",
+    "Config.QuestItemRequirement.Name": "Pré-requis d'objet de quête",
+    "Config.QuestItemRequirement.Tooltip": "Exigences en matière d'objets pour la quête de livraison d'objets. S'il vaut 0, cela signifie que l'élément doit être au moins adoré. S'il vaut 1, cela signifie que l'élément doit être au moins aimé. S'il vaut 2, cela signifie que l'élément est au moins neutre. S'il est 3, cela signifie que l'article est au moins \"pas aimé\". S'il vaut 4, cela signifie que tous les objets sont acceptés, y compris ceux détestés.",
+    "Config.MaxPrice.Name": "Prix ​​maximum",
+    "Config.MaxPrice.Tooltip": "Le prix maximum d'un objet de quête. Si -1, il n'y a pas de limite.",
+    "Config.AllowArtisanGoods.Name": "Autoriser les produits artisanaux",
+    "Config.AllowArtisanGoods.Tooltip": "Si l'objet de la quête de livraison d'objet peut être ou non un produit artisanal.",
+    "Config.UseModPossibleItems.Name": "Utiliser la liste d'éléments possibles du mod",
+    "Config.UseModPossibleItems.Tooltip": "Lorsque cette option est activée, les objets de la quête de livraison d'objets sont sélectionnés au hasard parmi tous les objets qui répondent aux exigences de l'option. Lorsque cette option est désactivée, les objets de la quête de livraison d'objets sont sélectionnés au hasard dans la liste des objets de la quête de livraison d'objets du jeu de base.",
+
+    // Resource Collection
+    "Config.ResourceCollectionPage.Name": "Quête de collecte de ressources",
+    "Config.ResourceCollectionWeight.Name": "Probabilité de la collecte de ressources",
+    "Config.ResourceCollectionWeight.Tooltip": "La probabilité de la quête de collecte de ressources.",
+    "Config.ResourceCollectionRewardMultiplier.Name": "Multiplicateur de récompense de collecte de ressources",
+
+    // Fishing Weight
+    "Config.FishingPage.Name": "Quête de pêche",
+    "Config.FishingWeight.Name": "Probabilité de pêche",
+    "Config.FishingWeight.Tooltip": "La probabilité de la quête de pêche.",
+    "Config.FishingRewardMultiplier.Name": "Multiplicateur de récompense de pêche",
+
+    // Slay Monsters
+    "Config.SlayMonstersPage.Name": "Quête Tuer des monstres",
+    "Config.SlayMonstersWeight.Name": "Tuer des monstres",
+    "Config.SlayMonstersWeight.Tooltip": "La probabilité la quête Tuer des monstres. Les quêtes Tuer des monstres nécessitent d’avoir atteint les mines et plus de 6 jours dans le jeu.",
+    "Config.SlayMonstersRewardMultiplier.Name": "Multiplicateur de récompense pour tuer des monstres",
+    "Config.MoreSlayMonsterQuests.Name": "Plus de quêtes Tuer des monstres",
+    "Config.MoreSlayMonsterQuests.Tooltip": "Lorsque cette option est activée, davantage de monstres seront la cible de la quête Tuer des monstres.",
+
+    // Appearance
+    "Config.AppearancePage.Name": "Apparence",
+    "Config.NoteAppearanceTitle.Name": "Apparence des remarques",
+    "Config.NoteScale.Name": "Échelle de notes",
+    "Config.XOverlapBoundary.Name": "Limite de chevauchement X",
+    "Config.XOverlapBoundary.Tooltip": "Taux de chevauchement horizontal des notes de quête. Si vous le définissez sur 1, vous ne pouvez pas se chevaucher du tout, si vous le définissez sur 0,5, vous pouvez le chevaucher de moitié, et si vous le définissez sur 0, vous pouvez le chevaucher complètement.",
+    "Config.YOverlapBoundary.Name": "Limite de chevauchement Y",
+    "Config.YOverlapBoundary.Tooltip": "Taux de chevauchement vertical des notes de quête. Si vous le définissez sur 1, vous ne pouvez pas se chevaucher du tout, si vous le définissez sur 0,5, vous pouvez le chevaucher de moitié, et si vous le définissez sur 0, vous pouvez le chevaucher complètement.",
+    "Config.RandomColorMin.Name": "Couleur aléatoire minimum",
+    "Config.RandomColorMax.Name": "Couleur aléatoire maximum",
+    "Config.PortraitAppearanceTitle.Name": "Apparence en portrait",
+    "Config.PortraitScale.Name": "Échelle de portrait",
+    "Config.PortraitOffsetX.Name": "Décalage portrait X",
+    "Config.PortraitOffsetY.Name": "Portrait Décalage Y",
+    "Config.PortraitTintR.Name": "Teinte portrait R",
+    "Config.PortraitTintG.Name": "Teinte Portrait V",
+    "Config.PortraitTintB.Name": "Teinte portrait B",
+    "Config.PortraitTintA.Name": "Teinte portrait A"
+}

@@ -57,7 +57,8 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
         var codes = new List<CodeInstruction>(instructions);
 
         // 随机作物逻辑
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Call && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime))));
+        var index = codes.FindIndex(code => code.opcode == OpCodes.Call 
+                                            && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.possibleCropsAtThisTime))));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_0));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target))));
         codes.Insert(index + 3, new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get))));
@@ -65,8 +66,9 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
         // 随机任务物品逻辑
         index = codes.FindIndex(index,
-            code => code.opcode == OpCodes.Call && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
-                new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
+            code => code.opcode == OpCodes.Call 
+                    && code.operand.Equals(AccessTools.Method(typeof(Utility), nameof(Utility.getRandomItemFromSeason),
+                        new[] { typeof(Season), typeof(int), typeof(bool), typeof(bool) })));
         codes[index - 3] = new CodeInstruction(OpCodes.Ldarg_0);
         codes[index - 2] = new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ItemDeliveryQuest), nameof(ItemDeliveryQuest.target)));
         codes[index - 1] = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(NetString), nameof(NetString.Get)));
@@ -92,7 +94,9 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
     private static string GetRandomItem(Season season, string npcName)
     {
         if (ModConfig.Instance.UseModPossibleItems)
+        {
             InitModPossibleItems(npcName);
+        }
         else
         {
             InitVanillaPossibleItems(season);
@@ -236,16 +240,20 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
     private static void InitNPCGiftTaste(string npcName)
     {
         var config = ModConfig.Instance;
-
-        npcGiftTaste = "";
+        var npcGiftTasteList = new List<string>();
+        
         if (!Game1.NPCGiftTastes.TryGetValue(npcName, out var data)) return;
         var split = data.Split('/');
         if (split.Length < 10) return;
-        npcGiftTaste += split[1];
-        if (config.QuestItemRequirement > 0) npcGiftTaste += " " + split[3];
-        if (config.QuestItemRequirement > 1) npcGiftTaste += " " + split[5];
-        if (config.QuestItemRequirement > 2) npcGiftTaste += " " + split[7];
-        if (config.QuestItemRequirement > 3) npcGiftTaste += " " + split[9];
+        
+        npcGiftTasteList.AddRange(ArgUtility.SplitBySpace(split[1]));
+        if (config.QuestItemRequirement > 0) npcGiftTasteList.AddRange(ArgUtility.SplitBySpace(split[3]));
+        if (config.QuestItemRequirement > 1) npcGiftTasteList.AddRange(ArgUtility.SplitBySpace(split[5]));
+        if (config.QuestItemRequirement > 2) npcGiftTasteList.AddRange(ArgUtility.SplitBySpace(split[7]));
+        if (config.QuestItemRequirement > 3) npcGiftTasteList.AddRange(ArgUtility.SplitBySpace(split[9]));
+
+        npcGiftTasteList.RemoveAll(itemId => CropChecker.IsCrop(itemId) && !CropChecker.IsCurrentSeasonCrop(itemId));
+        npcGiftTaste = string.Join(" ", npcGiftTasteList);
     }
 
     private static bool IsItemAvailable(string itemId)

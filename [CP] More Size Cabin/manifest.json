@@ -1,0 +1,17 @@
+{
+    "Name": "[CP] More Size Cabin",
+    "Author": "weizinai, lingyuan124 and WuWo2004",
+    "Version": "1.0.1",
+    "Description": "This mod add more size cabin to the game.",
+    "UniqueID": "weizinai.MoreSizeCabin",
+    "UpdateKeys": ["Nexus: 26349"],
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher"
+    },
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.CustomCabinFix",
+            "IsRequired": true
+        }
+    ]
+}

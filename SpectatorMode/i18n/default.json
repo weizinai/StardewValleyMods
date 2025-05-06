@@ -1,0 +1,58 @@
+{
+    // General Setting
+    "Config.GeneralSettingTitle.Name": "General Setting",
+    "Config.ShowSpectateTooltip.Name": "Show Spectate Tooltip",
+    "Config.ShowTimeAndMoney.Name": "Show Time and Money",
+    "Config.ShowToolbar.Name": "Show Toolbar",
+
+    "UI.SpectatorMode.Title": "Spectating {{name}}",
+
+    // Spectate Location
+    "Config.SpectateLocationTitle.Name": "Spectate Location",
+    "Config.SpectateLocationKey.Name": "Spectate Location Key",
+    "Config.OnlyShowOutdoors.Name": "Only Show Outdoors",
+    "Config.MoveSpeed.Name": "Move Speed",
+    "Config.MoveThreshold.Name": "Move Threshold",
+
+    "UI.SpectateLocation.Title": "Please select the location where you would like to spectate",
+    "UI.SpectateLocation.Fail": "{{locationName}} doesn't exist.",
+    "UI.SpectateLocation.Success": "{{locationName}} exists, start spectating.",
+
+    // Spectate Player
+    "Config.SpectatePlayerTitle.Name": "Spectate Player",
+    "Config.SpectatePlayerKey.Name": "Spectate Player Key",
+    "Config.ToggleStateKey.Name": "Toggle State Key",
+    "Config.AutoSpectatePlayer.Name": "Auto Spectate Player",
+    "Config.AutoSpectatePlayerTime.Name": "Auto Spectate Player Time",
+
+    "UI.SpectatePlayer.Title": "Please select the player you would like to spectate",
+    "UI.SpectatePlayer.Fail": "{{playerName}} doesn't exist.",
+    "UI.SpectatePlayer.Success": "{{playerName}} exists, start spectating.",
+    "UI.AutoSpectatePlayer.Enable": "Auto spectate player is enabled",
+    "UI.AutoSpectatePlayer.Disable": "Auto spectate player is disabled",
+    "UI.SpectatePlayer.Offline": "No Player Online",
+
+    // Random Spectate
+    "Config.RandomSpectateTitle.Name": "Random Spectate",
+    "Config.RandomSpectateKey.Name": "Random Spectate Key",
+    "Config.RandomSpectateInterval.Name": "Random Spectate Interval",
+    "Config.ShowRandomSpectateTooltip.Name": "Show Random Spectate Tooltip",
+
+    "UI.RandomSpectate.Begin": "Begin Random Spectate",
+    "UI.RandomSpectate.End": "End Random Spectate",
+    "UI.RandomSpectate.Title": "Random Spectating {{currentTime}}/{{totalTime}}",
+
+    // Auto Sleep
+    "Config.AutoSleep.Name": "Auto Sleep",
+    "Config.AutoSleepTime.Name": "Auto Sleep Time",
+    "Config.SkipShippingMenu.Name": "Skip Shipping Menu",
+
+    "UI.SkipShippingMenu.Tooltip": "The shipping menu has been skipped for you",
+
+    // Auto festival
+    "Config.AutoFestivalTitle.Name": "Auto Festival",
+    "Config.AutoParticipateFestival.Name": "Auto Participate Festival",
+
+    // Auto skip event
+    "Config.AutoSkipEvent.Name": "Auto Skip Event"
+}

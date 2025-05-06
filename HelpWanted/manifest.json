@@ -1,0 +1,25 @@
+﻿{
+    "Name": "Help Wanted Redux For 1.6",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "Help Wanted.",
+    "UniqueID": "weizinai.HelpWanted",
+    "EntryDll": "HelpWanted.dll",
+    "UpdateKeys": [
+        "Nexus: 21766"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        },
+        {
+            "UniqueID": "Rafseazz.RidgesideVillage",
+            "IsRequired": false
+        }
+    ]
+}

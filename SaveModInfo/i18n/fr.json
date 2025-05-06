@@ -1,0 +1,6 @@
+{
+    "UI.RecordModInfo.Tooltip": "Enregistrement réussi des informations de mod chargées dans la sauvegarde de jeu actuelle.",
+
+    "UI.CheckModInfo.NoInfo": "Cete sauvegarde n’a enregistré aucune information sur les mods utilisés.",
+    "UI.CheckModInfo.RemovedMod": "Mod {{name}} a été retiré."
+}

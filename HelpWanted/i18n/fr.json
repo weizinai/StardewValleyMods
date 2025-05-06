@@ -1,0 +1,102 @@
+{
+    // TODO
+    "Config.VanillaConfigPage.Name": "Vanilla Config",
+    "Config.RSVConfigPage.Name": "RSV Config",
+
+    // General Setting
+    "Config.GeneralSettingsTitle.Name": "General Settings",
+    "Config.QuestFirstDay.Name": "Quête du premier Jour",
+    "Config.QuestFirstDay.Tooltip": "Lorsque cette option est désactivée, le jeu ne générera pas de quêtes le premier jour, comme dans le jeu de base.",
+    "Config.QuestFestival.Name": "Festival de quêtes",
+    "Config.QuestFestival.Tooltip": "Lorsque cette option est désactivée, si le jeu a un festival aujourd'hui ou demain, la quête ne sera pas générée, comme dans le jeu de base.",
+    "Config.DailyQuestChance.Name": "Chances de quête quotidienne",
+    "Config.MaxQuests.Name": "Max Quests",
+
+    // Quest Setting
+    "Config.ItemDeliveryQuestTitle.Name": "Item Delivery Quest",
+    "Config.ResourceCollectionQuestTitle.Name": "Resource Collection Quest",
+    "Config.FishingQuestTitle.Name": "Fishing Quest",
+    "Config.SlayMonstersQuestTitle.Name": "Slay Monsters Quest",
+    "Config.LostItemQuestTitle.Name": "Lost Item Quest",
+
+    "Config.QuestWeight.Name": "Quest Weight",
+    "Config.QuestRewardMultiplier.Name": "Quest Reward Multiplier",
+    "Config.QuestDays.Name": "Quest Days",
+    "Config.QuestDays.Tooltip": "Quest days limit: 0 indicates unlimited days.",
+    // TODO
+
+    // Vanilla
+    // General Settings
+    "Config.OneQuestPerVillager.Name": "Une quête par villageois",
+    "Config.ExcludeMaxHeartsNPC.Name": "Exclure les PNJ à l’amitié max.",
+    "Config.ExcludeNPCList.Name": "Liste d’exclusion des PNJ",
+    "Config.ExcludeNPCList.Tooltip": "Liste des PNJ exclus. Chaque nom de PNJ est séparé par une virgule. (par exemple, \"Lewis, Marnie\")",
+
+    // Item Delivery
+    "Config.ItemDeliveryFriendshipGain.Name": "Gain d'amitié lors de la livraison d'objets",
+    // TODO
+    "Config.RewriteQuestItem.Name": "Rewrite Quest Item",
+    "Config.RewriteQuestItem.Tooltip": "When this option is enabled, quest items will be selected from the gift taste of villagers meeting the config below. When disabled, the items will revert to the original game's settings and remain unaffected by the options below.",
+    "Config.ItemGiftTasteRequirement.Name": "Item Gift Taste Requirement",
+    // TODO
+    "Config.AllowArtisanGoods.Name": "Autoriser les produits artisanaux",
+    "Config.AllowArtisanGoods.Tooltip": "Si l'objet de la quête de livraison d'objet peut être ou non un produit artisanal.",
+    "Config.MaxPrice.Name": "Prix ​​maximum",
+    "Config.MaxPrice.Tooltip": "Le prix maximum d'un objet de quête. Si -1, il n'y a pas de limite.",
+
+    // TODO
+    "Config.ItemGiftTasteRequirement.Love": "Love",
+    "Config.ItemGiftTasteRequirement.Like": "Like",
+    "Config.ItemGiftTasteRequirement.Neutral": "Neutral",
+    "Config.ItemGiftTasteRequirement.Dislike": "Dislike",
+    "Config.ItemGiftTasteRequirement.Hate": "Hate",
+    // TODO
+
+    // Resource Collection
+    // TODO
+    "Config.MoreResourceCollectionQuest.Name": "More Resource Collection Quest",
+    // TODO
+
+    // Slay Monsters
+    "Config.MoreSlayMonsterQuests.Name": "Plus de quêtes Tuer des monstres",
+
+    // UI
+    // TODO
+    "UI.GenerateVanillaQuest.Tooltip": "Initiating today's vanilla daily quest generation",
+    "UI.VanillaQuestFirstDay.Tooltip": "Vanilla daily quest generation disabled: First day of game cycle",
+    "UI.VanillaQuestFestival.Tooltip": "Vanilla daily quest generation suspended: Festival scheduled today or tomorrow",
+    "UI.VanillaDailyQuest.Tooltip": "Vanilla daily quest generation disabled for today",
+    // TODO
+
+    // RSV
+    "Config.EnableRSVQuestBoard.Name": "Activer le tableau de quête RSV",
+    // TODO
+    "Config.AllowSameQuest.Name": "Allow Same Quest",
+
+    // UI
+    // TODO
+    "UI.GenerateRSVQuest.Tooltip": "Initiating today's RSV daily quest generation",
+    "UI.RSVQuestFirstDay.Tooltip": "RSV daily quest generation disabled: First day of game cycle",
+    "UI.RSVQuestFestival.Tooltip": "RSV daily quest generation suspended: Festival scheduled today or tomorrow",
+    "UI.RSVDailyQuest.Tooltip": "RSV daily quest generation disabled for today",
+    // TODO
+
+    // Appearance
+    "Config.AppearancePage.Name": "Apparence",
+    "Config.NoteAppearanceTitle.Name": "Apparence des remarques",
+    "Config.NoteScale.Name": "Échelle de notes",
+    "Config.XOverlapBoundary.Name": "Limite de chevauchement X",
+    "Config.XOverlapBoundary.Tooltip": "Taux de chevauchement horizontal des notes de quête. Si vous le définissez sur 1, vous ne pouvez pas se chevaucher du tout, si vous le définissez sur 0,5, vous pouvez le chevaucher de moitié, et si vous le définissez sur 0, vous pouvez le chevaucher complètement.",
+    "Config.YOverlapBoundary.Name": "Limite de chevauchement Y",
+    "Config.YOverlapBoundary.Tooltip": "Taux de chevauchement vertical des notes de quête. Si vous le définissez sur 1, vous ne pouvez pas se chevaucher du tout, si vous le définissez sur 0,5, vous pouvez le chevaucher de moitié, et si vous le définissez sur 0, vous pouvez le chevaucher complètement.",
+    "Config.RandomColorMin.Name": "Couleur aléatoire minimum",
+    "Config.RandomColorMax.Name": "Couleur aléatoire maximum",
+    "Config.PortraitAppearanceTitle.Name": "Apparence en portrait",
+    "Config.PortraitScale.Name": "Échelle de portrait",
+    "Config.PortraitOffsetX.Name": "Décalage portrait X",
+    "Config.PortraitOffsetY.Name": "Portrait Décalage Y",
+    "Config.PortraitTintR.Name": "Teinte portrait R",
+    "Config.PortraitTintG.Name": "Teinte Portrait V",
+    "Config.PortraitTintB.Name": "Teinte portrait B",
+    "Config.PortraitTintA.Name": "Teinte portrait A"
+}

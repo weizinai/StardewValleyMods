@@ -1,0 +1,21 @@
+﻿{
+    "Name": "AutoRefreshMineShaft",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod will improve the issue of mine shaft not refreshing in multiplayer.",
+    "UniqueID": "weizinai.AutoRefreshMineShaft",
+    "EntryDll": "AutoRefreshMineShaft.dll",
+    "UpdateKeys": [
+        "Nexus: 33451"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

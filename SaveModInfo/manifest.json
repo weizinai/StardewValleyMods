@@ -1,0 +1,17 @@
+{
+    "Name": "Save Mod Info",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod can display the mod change information of the game save.",
+    "UniqueID": "weizinai.SaveModInfo",
+    "EntryDll": "SaveModInfo.dll",
+    "UpdateKeys": [
+        "Nexus: 25903"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+﻿{
+    "Name": "Lazy Mod",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "A mod help you do many things.",
+    "UniqueID": "weizinai.LazyMod",
+    "EntryDll": "LazyMod.dll",
+    "UpdateKeys": [
+        "Nexus: 22826"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+﻿{
+    "Name": "Mini Mine Shaft",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "",
+    "UniqueID": "weizinai.MiniMineShaft",
+    "EntryDll": "MiniMineShaft.dll",
+    "UpdateKeys": [
+        "Nexus: "
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "Name": "Custom Machine Experience",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod allows you to customize the experience gained from harvesting machines.",
+    "UniqueID": "weizinai.CustomMachineExperience",
+    "EntryDll": "CustomMachineExperience.dll",
+    "UpdateKeys": ["Nexus: 25455"],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

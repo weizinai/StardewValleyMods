@@ -1,0 +1,14 @@
+﻿{
+    "Name": "More Experience",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod adds more ways to earn experience to the game.",
+    "UniqueID": "weizinai.MoreExperience",
+    "EntryDll": "MoreExperience.dll",
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        }
+    ]
+}

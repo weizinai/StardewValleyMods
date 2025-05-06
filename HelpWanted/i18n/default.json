@@ -1,0 +1,89 @@
+﻿{
+    "Config.VanillaConfigPage.Name": "Vanilla Config",
+    "Config.RSVConfigPage.Name": "RSV Config",
+
+    // General Setting
+    "Config.GeneralSettingsTitle.Name": "General Settings",
+    "Config.QuestFirstDay.Name": "Quest First Day",
+    "Config.QuestFirstDay.Tooltip": "When this option is disabled, the game will not generate quests on the first day, as in the vanilla game.",
+    "Config.QuestFestival.Name": "Quest Festival",
+    "Config.QuestFestival.Tooltip": "When this option is disabled, if the game is a festival today or tomorrow, the quest will not be generated, as in the vanilla game.",
+    "Config.DailyQuestChance.Name": "Daily Quest Chance",
+    "Config.MaxQuests.Name": "Max Quests",
+
+    // Quest Setting
+    "Config.ItemDeliveryQuestTitle.Name": "Item Delivery Quest",
+    "Config.ResourceCollectionQuestTitle.Name": "Resource Collection Quest",
+    "Config.FishingQuestTitle.Name": "Fishing Quest",
+    "Config.SlayMonstersQuestTitle.Name": "Slay Monsters Quest",
+    "Config.LostItemQuestTitle.Name": "Lost Item Quest",
+
+    "Config.QuestWeight.Name": "Quest Weight",
+    "Config.QuestRewardMultiplier.Name": "Quest Reward Multiplier",
+    "Config.QuestDays.Name": "Quest Days",
+    "Config.QuestDays.Tooltip": "Quest days limit: 0 indicates unlimited duration",
+
+    // Vanilla
+    // General Settings
+    "Config.OneQuestPerVillager.Name": "One Quest Per Villager",
+    "Config.ExcludeMaxHeartsNPC.Name": "Exclude Max Hearts NPC",
+    "Config.ExcludeNPCList.Name": "Exclude NPC List",
+    "Config.ExcludeNPCList.Tooltip": "List of excluded NPCs.Each NPC name is separated by a comma.(e.g.\"Lewis, Marnie\")",
+
+    // Item Delivery
+    "Config.ItemDeliveryFriendshipGain.Name": "Item Delivery Friendship Gain",
+    "Config.RewriteQuestItem.Name": "Rewrite Quest Item",
+    "Config.RewriteQuestItem.Tooltip": "When this option is enabled, quest items will be selected from the gift taste of villagers meeting the config below. When disabled, the items will revert to the original game's settings and remain unaffected by the options below.",
+    "Config.ItemGiftTasteRequirement.Name": "Item Gift Taste Requirement",
+    "Config.AllowArtisanGoods.Name": "Allow Artisan Goods",
+    "Config.AllowArtisanGoods.Tooltip": "Whether or not the item for the item delivery quest can be Artisan Goods",
+    "Config.MaxPrice.Name": "Max Price",
+    "Config.MaxPrice.Tooltip": "The maximum price for a quest item.If it is -1, there is no limit.",
+
+    "Config.ItemGiftTasteRequirement.Love": "Love",
+    "Config.ItemGiftTasteRequirement.Like": "Like",
+    "Config.ItemGiftTasteRequirement.Neutral": "Neutral",
+    "Config.ItemGiftTasteRequirement.Dislike": "Dislike",
+    "Config.ItemGiftTasteRequirement.Hate": "Hate",
+
+    // Resource Collection
+    "Config.MoreResourceCollectionQuest.Name": "More Resource Collection Quest",
+
+    // Slay Monsters
+    "Config.MoreSlayMonsterQuests.Name": "More Slay Monster Quests",
+
+    // UI
+    "UI.GenerateVanillaQuest.Tooltip": "Initiating today's vanilla daily quest generation",
+    "UI.VanillaQuestFirstDay.Tooltip": "Vanilla daily quest generation disabled: First day of game cycle",
+    "UI.VanillaQuestFestival.Tooltip": "Vanilla daily quest generation suspended: Festival scheduled today or tomorrow",
+    "UI.VanillaDailyQuest.Tooltip": "Vanilla daily quest generation disabled for today",
+
+    // RSV
+    "Config.EnableRSVQuestBoard.Name": "Enable RSV Quest Board",
+    "Config.AllowSameQuest.Name": "Allow Same Quest",
+
+    // UI
+    "UI.GenerateRSVQuest.Tooltip": "Initiating today's RSV daily quest generation",
+    "UI.RSVQuestFirstDay.Tooltip": "RSV daily quest generation disabled: First day of game cycle",
+    "UI.RSVQuestFestival.Tooltip": "RSV daily quest generation suspended: Festival scheduled today or tomorrow",
+    "UI.RSVDailyQuest.Tooltip": "RSV daily quest generation disabled for today",
+
+    // Appearance
+    "Config.AppearancePage.Name": "Appearance",
+    "Config.NoteAppearanceTitle.Name": "Note Appearance",
+    "Config.NoteScale.Name": "Note Scale",
+    "Config.XOverlapBoundary.Name": "X Overlap Boundary",
+    "Config.XOverlapBoundary.Tooltip": "Horizontal overlap rate of quest notes.If you set it to 1, you can't overlap at all, if you set it to 0.5, you can overlap half, and if you set it to 0, you can overlap completely.",
+    "Config.YOverlapBoundary.Name": "Y Overlap Boundary",
+    "Config.YOverlapBoundary.Tooltip": "Vertical overlap rate of quest notes.If you set it to 1, you can't overlap at all, if you set it to 0.5, you can overlap half, and if you set it to 0, you can overlap completely.",
+    "Config.RandomColorMin.Name": "Random Color Min",
+    "Config.RandomColorMax.Name": "Random Color Max",
+    "Config.PortraitAppearanceTitle.Name": "Portrait Appearance",
+    "Config.PortraitScale.Name": "Portrait Scale",
+    "Config.PortraitOffsetX.Name": "Portrait Offset X",
+    "Config.PortraitOffsetY.Name": "Portrait Offset Y",
+    "Config.PortraitTintR.Name": "Portrait Tint R",
+    "Config.PortraitTintG.Name": "Portrait Tint G",
+    "Config.PortraitTintB.Name": "Portrait Tint B",
+    "Config.PortraitTintA.Name": "Portrait Tint A"
+}

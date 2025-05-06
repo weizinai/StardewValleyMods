@@ -1,0 +1,21 @@
+﻿{
+    "Name": "Auto Break Geode",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "Allows you to automatically break geode.",
+    "UniqueID": "weizinai.AutoBreakGeode",
+    "EntryDll": "AutoBreakGeode.dll",
+    "UpdateKeys": [
+        "Nexus: 20685"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    // 小的小屋
+    "Buildings.SmallCabin.Name": "小的小屋",
+    "Buildings.SmallCabin.Description": "这是一个小的小屋。",
+    "Buildings.SmallPigCabin.Name": "朋友房",
+    "Buildings.SmallPigCabin.Description": "朋友才有资格入住的房子。",
+
+    // 中等的小屋
+    "Buildings.MediumCabin.Name": "中等的小屋",
+    "Buildings.MediumCabin.Description": "这是一个中等的小屋。",
+    "Buildings.MediumFloatingCabin.Name": "架空木屋",
+    "Buildings.MediumFloatingCabin.Description": "这是一个架空的木屋。",
+    "Buildings.MediumTowerOfSorcery.Name": "魔法塔",
+    "Buildings.MediumTowerOfSorcery.Description": "这是一个魔法塔。",
+    "Buildings.MediumWinterGarden.Name": "阳光房",
+    "Buildings.MediumWinterGarden.Description": "这是一个阳光房。"
+}

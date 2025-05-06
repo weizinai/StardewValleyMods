@@ -1,0 +1,17 @@
+﻿{
+    // Show unready farmers
+    "Config.ShowUnreadyFarmersTitle.Name": "Show Unready Farmers",
+    "Config.ShowInfoInReadyCheckDialogue.Name": "Show Info In Ready Check Dialogue",
+    "Config.ShowInfoInSaveGameMenu.Name": "Show Info In Save Game Menu",
+
+    // Kick unready farmers
+    "Config.KickUnreadyFarmersTitle.Name": "Kick Unready Farmers",
+    "Config.AutoKickUnreadyFarmers.Name": "Auto Kick Unready Farmers",
+    "Config.AutoKickUnreadyFarmersRatio.Name": "Auto Kick Unready Farmers Ratio",
+    "Config.AutoKickUnreadyFarmersDelay.Name": "Auto Kick Unready Farmers Delay",
+    "Config.SpecialTreatForFestival.Name": "Special Treat For Festival",
+
+    "UI.KickUnreadyFarmer.Tooltip": "{{farmerName}} is not ready and will be kicked out",
+    "UI.AutoKickUnreadyFarmers.DefaultTooltip": "The current ready player has exceeded {{ratio}}, and the unready player will be kicked after {{delay}}s",
+    "UI.AutoKickUnreadyFarmers.FestivalTooltip": "The festival is about to begin, and kicking out unready players begins"
+}

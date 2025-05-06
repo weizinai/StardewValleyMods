@@ -1,0 +1,10 @@
+{
+    "Config.IsEnabled.Name": "启用",
+    "Config.Value.Name": "数值",
+
+    // 齐瓜牌概率
+    "Config.CardChance.Name": "卡片概率",
+    // 轮盘旋转速度
+    "Config.WheelSpinSpeed.Name": "轮盘速度",
+    "Config.ExtraSpeed.Name": "额外速度",
+}

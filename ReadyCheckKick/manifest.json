@@ -1,0 +1,21 @@
+{
+    "Name": "Ready Check Kick",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "The mod will display the name of the unready player in the top right corner when staying overnight.",
+    "UniqueID": "weizinai.ReadyCheckKick",
+    "EntryDll": "ReadyCheckKick.dll",
+    "UpdateKeys": [
+        "Nexus: 33527"
+    ],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

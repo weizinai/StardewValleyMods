@@ -1,3 +1,9 @@
-﻿# 0.2.0
+﻿## [0.2.1] - 2025-05-07
 
-- 添加`PiCore`前置
+### Changed
+
+- The viewport now automatically locks when players enter a new location.
+
+### Fixed
+
+- Fixed an issue where the viewport could be moved unintentionally during cutscenes.

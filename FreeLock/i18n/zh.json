@@ -5,6 +5,6 @@
     "Config.MoveThreshold.Name": "移动阈值",
     "Config.MoveThreshold.Tooltip": "当鼠标离屏幕边缘的距离达到阈值时，视角才会移动。（像素）",
 
-    "UI.ViewportLocked": "视角已锁定",
-    "UI.ViewportUnlocked": "视角已解锁"
+    "UI.ViewportLocked.Tooltip": "视角已锁定",
+    "UI.ViewportUnlocked.Tooltip": "视角已解锁"
 }

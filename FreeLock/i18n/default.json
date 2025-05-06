@@ -5,6 +5,6 @@
     "Config.MoveThreshold.Name": "Move Threshold",
     "Config.MoveThreshold.Tooltip": "The viewport only moves when the distance of the mouse from the edge of the screen reaches a threshold. (pixels)",
 
-    "UI.ViewportLocked": "The viewport is locked.",
-    "UI.ViewportUnlocked": "The viewport is unlocked."
+    "UI.ViewportLocked.Tooltip": "The viewport is locked.",
+    "UI.ViewportUnlocked.Tooltip": "The viewport is unlocked."
 }

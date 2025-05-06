@@ -2,7 +2,7 @@ using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
 namespace weizinai.StardewValleyMod.FreeLock.Framework;
 
-internal class GenericModConfigMenuForFreeLock : IGenericModConfigMenuIntegrationFor<ModConfig>
+internal class GenericModConfigMenuIntegrationForFreeLock : IGenericModConfigMenuIntegrationFor<ModConfig>
 {
     public void Register(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {

@@ -21,6 +21,7 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        helper.Events.Player.Warped += this.OnWarped;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
@@ -38,14 +39,23 @@ internal class ModEntry : Mod
         if (this.config.FreeLockKeybind.JustPressed())
         {
             Game1.viewportFreeze = !Game1.viewportFreeze;
-            Logger.NoIconHUDMessage(Game1.viewportFreeze ? I18n.UI_ViewportUnlocked() : I18n.UI_ViewportLocked());
+            Logger.NoIconHUDMessage(Game1.viewportFreeze ? I18n.UI_ViewportUnlocked_Tooltip() : I18n.UI_ViewportLocked_Tooltip(), 1000f);
+        }
+    }
+
+    private void OnWarped(object? sender, WarpedEventArgs e)
+    {
+        if (Game1.viewportFreeze)
+        {
+            Game1.viewportFreeze = false;
+            Logger.NoIconHUDMessage(I18n.UI_ViewportLocked_Tooltip(), 1000f);
         }
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.AddGenericModConfigMenu(
-            new GenericModConfigMenuForFreeLock(),
+            new GenericModConfigMenuIntegrationForFreeLock(),
             () => this.config,
             value => this.config = value
         );

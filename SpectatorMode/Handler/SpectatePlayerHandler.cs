@@ -45,6 +45,8 @@ internal class SpectatePlayerHandler : BaseHandler
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
+        if (Game1.getOnlineFarmers().Count == 1) return;
+
         if (!this.autoSpectatePlayer && ModConfig.Instance.AutoSpectatePlayer && Game1.timeOfDay == ModConfig.Instance.AutoSpectatePlayerTime)
         {
             this.EnableAutoSpectatePlayer();
@@ -57,7 +59,7 @@ internal class SpectatePlayerHandler : BaseHandler
                 .ToList()
             );
 
-            if (randomPlayer is null)
+            if (randomPlayer == null)
             {
                 this.autoSpectatePlayer = false;
                 Logger.NoIconHUDMessage(I18n.UI_SpectatePlayer_Offline());

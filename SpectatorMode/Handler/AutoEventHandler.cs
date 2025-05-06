@@ -19,7 +19,7 @@ internal class AutoEventHandler : BaseHandler
     {
         if (!ModConfig.Instance.AutoSkipEvent) return;
 
-        if (Game1.CurrentEvent is not null)
+        if (Game1.CurrentEvent != null)
         {
             if (!Game1.CurrentEvent.skipped && Game1.CurrentEvent.skippable)
             {

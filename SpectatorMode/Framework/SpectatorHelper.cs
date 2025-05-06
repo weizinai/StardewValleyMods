@@ -16,7 +16,7 @@ internal static class SpectatorHelper
         return true;
     }
 
-    public static bool TrySpectateFarmer(string farmerName, [NotNullWhen(true)]out SpectatorMenu? menu)
+    public static bool TrySpectateFarmer(string farmerName, [NotNullWhen(true)] out SpectatorMenu? menu)
     {
         var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.displayName == farmerName);
 

@@ -30,7 +30,7 @@
     "UI.SpectatePlayer.Success": "{{playerName}}存在，开始旁观。",
     "UI.AutoSpectatePlayer.Enable": "自动旁观玩家已启用",
     "UI.AutoSpectatePlayer.Disable": "自动旁观玩家已禁用",
-    "UI.NoPlayerOnline": "没有玩家在线",
+    "UI.SpectatePlayer.Offline": "没有玩家在线",
 
     // 随机旁观
     "Config.RandomSpectateTitle.Name": "随机旁观",

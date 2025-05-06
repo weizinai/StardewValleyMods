@@ -14,7 +14,7 @@ namespace weizinai.StardewValleyMod.ReadyCheckKick.Patcher;
 internal class SaveGameMenuPatcher : BasePatcher
 {
     private static IReflectionHelper helper = null!;
-    
+
     public SaveGameMenuPatcher(IReflectionHelper helper)
     {
         SaveGameMenuPatcher.helper = helper;
@@ -31,7 +31,7 @@ internal class SaveGameMenuPatcher : BasePatcher
     private static void DrawPostfix(SpriteBatch b)
     {
         if (!ModConfig.Instance.ShowInfoInSaveGameMenu) return;
-        
+
         var endOfNightStatus = Game1.player.team.endOfNightStatus;
         var formattedStatusList = helper.GetField<Dictionary<long, string>>(endOfNightStatus, "_formattedStatusList").GetValue();
 

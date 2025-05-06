@@ -97,9 +97,9 @@ internal class ReadyCheckDialogueHandler : BaseHandler
                 var festivalId = $"{Game1.currentSeason}{Game1.dayOfMonth}";
                 if (Event.tryToLoadFestivalData(festivalId, out _, out _, out _, out _, out var endTime))
                 {
-                    Logger.Info(I18n.UI_AutoKickUnreadyFarmers_FestivalTooltip());
                     if (Game1.timeOfDay == endTime - 50)
                     {
+                        Logger.Info(I18n.UI_AutoKickUnreadyFarmers_FestivalTooltip());
                         this.KickUnreadyFarmers();
                     }
                 }

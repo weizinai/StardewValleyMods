@@ -2,7 +2,7 @@
 using StardewValley;
 using StardewValley.Extensions;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
-using weizinai.StardewValleyMod.HelpWanted.Repository;
+using weizinai.StardewValleyMod.PiCore.Constant;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
@@ -37,24 +37,24 @@ public class QuestMonsterManager
         {
             case <= 40:
             {
-                yield return MonsterRepository.GreenSlime;
-                if (mineLevel > 10) yield return MonsterRepository.RockCrab;
-                if (mineLevel > 30) yield return MonsterRepository.Duggy;
+                yield return SMonster.GreenSlime;
+                if (mineLevel > 10) yield return SMonster.RockCrab;
+                if (mineLevel > 30) yield return SMonster.Duggy;
                 break;
             }
             case <= 80:
             {
-                yield return MonsterRepository.FrostJelly;
-                yield return MonsterRepository.DustSpirit;
-                if (mineLevel > 50) yield return MonsterRepository.Ghost;
-                if (mineLevel > 70) yield return MonsterRepository.Skeleton;
+                yield return SMonster.FrostJelly;
+                yield return SMonster.DustSpirit;
+                if (mineLevel > 50) yield return SMonster.Ghost;
+                if (mineLevel > 70) yield return SMonster.Skeleton;
                 break;
             }
             default:
             {
-                yield return MonsterRepository.Sludge;
-                yield return MonsterRepository.LavaCrab;
-                if (mineLevel > 90) yield return MonsterRepository.SquidKid;
+                yield return SMonster.Sludge;
+                yield return SMonster.LavaCrab;
+                if (mineLevel > 90) yield return SMonster.SquidKid;
                 break;
             }
         }
@@ -68,43 +68,43 @@ public class QuestMonsterManager
         {
             case <= 40:
             {
-                yield return MonsterRepository.Bug;
+                yield return SMonster.Bug;
                 if (mineLevel > 10)
                 {
-                    yield return MonsterRepository.Grub;
-                    yield return MonsterRepository.Fly;
+                    yield return SMonster.Grub;
+                    yield return SMonster.Fly;
                 }
                 if (mineLevel > 30)
                 {
-                    yield return MonsterRepository.Bat;
-                    yield return MonsterRepository.StoneGolem;
+                    yield return SMonster.Bat;
+                    yield return SMonster.StoneGolem;
                 }
                 break;
             }
             case <= 80:
             {
-                yield return MonsterRepository.FrostBat;
+                yield return SMonster.FrostBat;
                 break;
             }
             default:
             {
-                yield return MonsterRepository.LavaBat;
-                yield return MonsterRepository.ShadowBrute;
-                yield return MonsterRepository.ShadowShaman;
-                yield return MonsterRepository.MetalHead;
+                yield return SMonster.LavaBat;
+                yield return SMonster.ShadowBrute;
+                yield return SMonster.ShadowShaman;
+                yield return SMonster.MetalHead;
                 break;
             }
         }
 
         if (mineLevel > 120)
         {
-            yield return MonsterRepository.BigSlime;
-            yield return MonsterRepository.Mummy;
-            yield return MonsterRepository.Serpent;
-            yield return MonsterRepository.CarbonGhost;
-            yield return MonsterRepository.PepperRex;
-            if (mineLevel > 145) yield return MonsterRepository.IridiumCrab;
-            if (mineLevel > 170) yield return MonsterRepository.IridiumBat;
+            yield return SMonster.BigSlime;
+            yield return SMonster.Mummy;
+            yield return SMonster.Serpent;
+            yield return SMonster.CarbonGhost;
+            yield return SMonster.PepperRex;
+            if (mineLevel > 145) yield return SMonster.IridiumCrab;
+            if (mineLevel > 170) yield return SMonster.IridiumBat;
         }
     }
 
@@ -112,13 +112,13 @@ public class QuestMonsterManager
     {
         if (!Utility.doesAnyFarmerHaveMail("addedParrotBoy")) yield break;
 
-        yield return MonsterRepository.DwarvishSentry;
-        yield return MonsterRepository.FalseMagmaCap;
-        yield return MonsterRepository.HotHead;
-        yield return MonsterRepository.LavaLurk;
-        yield return MonsterRepository.MagmaDuggy;
-        yield return MonsterRepository.MagmaSparker;
-        yield return MonsterRepository.MagmaSprite;
-        yield return MonsterRepository.TigerSlime;
+        yield return SMonster.DwarvishSentry;
+        yield return SMonster.FalseMagmaCap;
+        yield return SMonster.HotHead;
+        yield return SMonster.LavaLurk;
+        yield return SMonster.MagmaDuggy;
+        yield return SMonster.MagmaSparker;
+        yield return SMonster.MagmaSprite;
+        yield return SMonster.TigerSlime;
     }
 }

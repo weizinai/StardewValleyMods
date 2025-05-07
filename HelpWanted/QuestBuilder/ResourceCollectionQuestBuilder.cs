@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Model;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
-using static weizinai.StardewValleyMod.HelpWanted.Repository.ItemRepository;
+using static weizinai.StardewValleyMod.PiCore.Constant.SItem;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 

@@ -8,7 +8,7 @@ using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Model;
-using weizinai.StardewValleyMod.HelpWanted.Repository;
+using weizinai.StardewValleyMod.PiCore.Constant;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
@@ -18,43 +18,43 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
     private static readonly Dictionary<string, MonsterConfig> ItemConfig = new()
     {
         // 原版任务矿井怪物
-        [MonsterRepository.GreenSlime] = new MonsterConfig("Lewis", 60, 4, 11, 2),
-        [MonsterRepository.RockCrab] = new MonsterConfig("Demetrius", 75, 2, 6),
-        [MonsterRepository.Duggy] = new MonsterConfig("Clint", 150, 2, 4),
-        [MonsterRepository.FrostJelly] = new MonsterConfig("Lewis", 85, 4, 11, 2),
-        [MonsterRepository.DustSpirit] = new MonsterConfig("Wizard", 60, 10, 21),
-        [MonsterRepository.Ghost] = new MonsterConfig("Wizard", 250, 2, 4),
-        [MonsterRepository.Skeleton] = new MonsterConfig("Wizard", 100, 6, 12),
-        [MonsterRepository.Sludge] = new MonsterConfig("Lewis", 125, 4, 11, 2),
-        [MonsterRepository.LavaCrab] = new MonsterConfig("Demetrius", 180, 2, 6),
-        [MonsterRepository.SquidKid] = new MonsterConfig("Wizard", 350, 1, 3),
+        [SMonster.GreenSlime] = new MonsterConfig("Lewis", 60, 4, 11, 2),
+        [SMonster.RockCrab] = new MonsterConfig("Demetrius", 75, 2, 6),
+        [SMonster.Duggy] = new MonsterConfig("Clint", 150, 2, 4),
+        [SMonster.FrostJelly] = new MonsterConfig("Lewis", 85, 4, 11, 2),
+        [SMonster.DustSpirit] = new MonsterConfig("Wizard", 60, 10, 21),
+        [SMonster.Ghost] = new MonsterConfig("Wizard", 250, 2, 4),
+        [SMonster.Skeleton] = new MonsterConfig("Wizard", 100, 6, 12),
+        [SMonster.Sludge] = new MonsterConfig("Lewis", 125, 4, 11, 2),
+        [SMonster.LavaCrab] = new MonsterConfig("Demetrius", 180, 2, 6),
+        [SMonster.SquidKid] = new MonsterConfig("Wizard", 350, 1, 3),
         // 模组任务矿井怪物
-        [MonsterRepository.Bug] = new MonsterConfig("Marlon", 30),
-        [MonsterRepository.Grub] = new MonsterConfig("Marlon", 50, 10, 21),
-        [MonsterRepository.Fly] = new MonsterConfig("Marlon", 60),
-        [MonsterRepository.Bat] = new MonsterConfig("Marlon", 80),
-        [MonsterRepository.StoneGolem] = new MonsterConfig("Wizard", 80),
-        [MonsterRepository.FrostBat] = new MonsterConfig("Marlon", 100),
-        [MonsterRepository.LavaBat] = new MonsterConfig("Marlon", 150),
-        [MonsterRepository.ShadowBrute] = new MonsterConfig("Wizard", 150),
-        [MonsterRepository.ShadowShaman] = new MonsterConfig("Wizard", 150),
-        [MonsterRepository.MetalHead] = new MonsterConfig("Wizard", 150),
-        [MonsterRepository.BigSlime] = new MonsterConfig("Sandy", 180),
-        [MonsterRepository.Mummy] = new MonsterConfig("Wizard", 400),
-        [MonsterRepository.Serpent] = new MonsterConfig("Sandy", 300),
-        [MonsterRepository.CarbonGhost] = new MonsterConfig("Wizard", 300),
-        [MonsterRepository.PepperRex] = new MonsterConfig("Sandy", 600),
-        [MonsterRepository.IridiumCrab] = new MonsterConfig("Demetrius", 400),
-        [MonsterRepository.IridiumBat] = new MonsterConfig("Sandy", 400),
+        [SMonster.Bug] = new MonsterConfig("Marlon", 30),
+        [SMonster.Grub] = new MonsterConfig("Marlon", 50, 10, 21),
+        [SMonster.Fly] = new MonsterConfig("Marlon", 60),
+        [SMonster.Bat] = new MonsterConfig("Marlon", 80),
+        [SMonster.StoneGolem] = new MonsterConfig("Wizard", 80),
+        [SMonster.FrostBat] = new MonsterConfig("Marlon", 100),
+        [SMonster.LavaBat] = new MonsterConfig("Marlon", 150),
+        [SMonster.ShadowBrute] = new MonsterConfig("Wizard", 150),
+        [SMonster.ShadowShaman] = new MonsterConfig("Wizard", 150),
+        [SMonster.MetalHead] = new MonsterConfig("Wizard", 150),
+        [SMonster.BigSlime] = new MonsterConfig("Sandy", 180),
+        [SMonster.Mummy] = new MonsterConfig("Wizard", 400),
+        [SMonster.Serpent] = new MonsterConfig("Sandy", 300),
+        [SMonster.CarbonGhost] = new MonsterConfig("Wizard", 300),
+        [SMonster.PepperRex] = new MonsterConfig("Sandy", 600),
+        [SMonster.IridiumCrab] = new MonsterConfig("Demetrius", 400),
+        [SMonster.IridiumBat] = new MonsterConfig("Sandy", 400),
         // 模组任务火山怪物
-        [MonsterRepository.DwarvishSentry] = new MonsterConfig("Leo", 300),
-        [MonsterRepository.FalseMagmaCap] = new MonsterConfig("Leo", 300),
-        [MonsterRepository.HotHead] = new MonsterConfig("Leo", 300),
-        [MonsterRepository.LavaLurk] = new MonsterConfig("Leo", 300),
-        [MonsterRepository.MagmaDuggy] = new MonsterConfig("Clint", 500, 1, 3),
-        [MonsterRepository.MagmaSparker] = new MonsterConfig("Leo", 300),
-        [MonsterRepository.MagmaSprite] = new MonsterConfig("Leo", 300),
-        [MonsterRepository.TigerSlime] = new MonsterConfig("Leo", 250)
+        [SMonster.DwarvishSentry] = new MonsterConfig("Leo", 300),
+        [SMonster.FalseMagmaCap] = new MonsterConfig("Leo", 300),
+        [SMonster.HotHead] = new MonsterConfig("Leo", 300),
+        [SMonster.LavaLurk] = new MonsterConfig("Leo", 300),
+        [SMonster.MagmaDuggy] = new MonsterConfig("Clint", 500, 1, 3),
+        [SMonster.MagmaSparker] = new MonsterConfig("Leo", 300),
+        [SMonster.MagmaSprite] = new MonsterConfig("Leo", 300),
+        [SMonster.TigerSlime] = new MonsterConfig("Leo", 250)
     };
 
     public SlayMonsterQuestBuilder(SlayMonsterQuest quest) : base(quest)
@@ -99,7 +99,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
         switch (this.Quest.monsterName.Value)
         {
-            case MonsterRepository.GreenSlime:
+            case SMonster.GreenSlime:
             {
                 this.Quest.parts.Add(new DescriptionElement(
                     GetPathString("S", 13723),
@@ -108,13 +108,13 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 ));
                 break;
             }
-            case MonsterRepository.Duggy:
-            case MonsterRepository.MagmaDuggy:
+            case SMonster.Duggy:
+            case SMonster.MagmaDuggy:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("S", 13711), this.Quest.numberToKill.Value));
                 break;
             }
-            case MonsterRepository.FrostJelly:
+            case SMonster.FrostJelly:
             {
                 this.Quest.parts.Add(new DescriptionElement(
                     GetPathString("S", 13723),
@@ -123,7 +123,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 ));
                 break;
             }
-            case MonsterRepository.Sludge:
+            case SMonster.Sludge:
             {
                 this.Quest.parts.Add(new DescriptionElement(
                     GetPathString("S", 13723),
@@ -132,20 +132,20 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 ));
                 break;
             }
-            case MonsterRepository.RockCrab:
-            case MonsterRepository.LavaCrab:
+            case SMonster.RockCrab:
+            case SMonster.LavaCrab:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("S", 13747), this.Quest.numberToKill.Value));
                 break;
             }
-            case MonsterRepository.DustSpirit:
-            case MonsterRepository.Ghost:
-            case MonsterRepository.Skeleton:
-            case MonsterRepository.SquidKid:
-            case MonsterRepository.StoneGolem:
-            case MonsterRepository.ShadowBrute:
-            case MonsterRepository.ShadowShaman:
-            case MonsterRepository.MetalHead:
+            case SMonster.DustSpirit:
+            case SMonster.Ghost:
+            case SMonster.Skeleton:
+            case SMonster.SquidKid:
+            case SMonster.StoneGolem:
+            case SMonster.ShadowBrute:
+            case SMonster.ShadowShaman:
+            case SMonster.MetalHead:
             {
                 if (this.IsWizardAvailable())
                 {
@@ -162,8 +162,8 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 }
                 break;
             }
-            case MonsterRepository.Mummy:
-            case MonsterRepository.CarbonGhost:
+            case SMonster.Mummy:
+            case SMonster.CarbonGhost:
             {
                 this.Quest.parts.Add(new DescriptionElement(
                     GetPathString("S", 13752),
@@ -190,9 +190,9 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
         switch (this.Quest.monsterName.Value)
         {
-            case MonsterRepository.GreenSlime:
-            case MonsterRepository.FrostJelly:
-            case MonsterRepository.Sludge:
+            case SMonster.GreenSlime:
+            case SMonster.FrostJelly:
+            case SMonster.Sludge:
             {
                 this.Quest.dialogueparts.Add(GetPathString("S", 13730));
                 if (random.NextBool())
@@ -212,26 +212,26 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 }
                 break;
             }
-            case MonsterRepository.RockCrab:
-            case MonsterRepository.LavaCrab:
+            case SMonster.RockCrab:
+            case SMonster.LavaCrab:
             {
                 this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("S", 13750), this.Quest.monster.Value));
                 break;
             }
-            case MonsterRepository.Duggy:
-            case MonsterRepository.MagmaDuggy:
+            case SMonster.Duggy:
+            case SMonster.MagmaDuggy:
             {
                 this.Quest.dialogueparts.Add(GetPathString("S", 13760));
                 break;
             }
-            case MonsterRepository.DustSpirit:
-            case MonsterRepository.Ghost:
-            case MonsterRepository.Skeleton:
-            case MonsterRepository.SquidKid:
-            case MonsterRepository.StoneGolem:
-            case MonsterRepository.ShadowBrute:
-            case MonsterRepository.ShadowShaman:
-            case MonsterRepository.MetalHead:
+            case SMonster.DustSpirit:
+            case SMonster.Ghost:
+            case SMonster.Skeleton:
+            case SMonster.SquidKid:
+            case SMonster.StoneGolem:
+            case SMonster.ShadowBrute:
+            case SMonster.ShadowShaman:
+            case SMonster.MetalHead:
             {
                 if (this.IsWizardAvailable())
                 {
@@ -243,8 +243,8 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 }
                 break;
             }
-            case MonsterRepository.Mummy:
-            case MonsterRepository.CarbonGhost:
+            case SMonster.Mummy:
+            case SMonster.CarbonGhost:
             {
                 this.Quest.dialogueparts.Add(GetPathString("S", 13760));
                 break;

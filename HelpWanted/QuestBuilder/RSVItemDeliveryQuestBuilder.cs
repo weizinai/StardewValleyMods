@@ -40,7 +40,8 @@ public class RSVItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
     protected override void SetQuestItemId()
     {
-        this.Quest.ItemId.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1);
+        var itemId = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1);
+        this.Quest.ItemId.Value = ItemRegistry.QualifyItemId(itemId) ?? itemId;
         this.Quest.number.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2, "1"));
     }
 

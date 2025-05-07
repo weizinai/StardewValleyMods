@@ -1,70 +1,27 @@
+﻿# CHANGELOG
+
+The English version of the changelog is machine-translated. I apologize for any linguistic inaccuracies in the translation.
+
+## [2.0.1] - 2025-05-07
+
+### Fixed
+
+- Fixed an issue where the RidgeSide Village quest could not be completed
+
 ## [2.0.0] - 2025-05-06
 
 ### Added
 
-- 为任务奖励修改、激活任务面板添加调试信息
-- 为`RSV`添加更多的设置选项
-- 添加更多的`ResourceCollectionQuest`和`SlayMonsterQuest`
+- Added more configuration options for Ridgeside Village
+- Added additional resource collection quests and monster slaying quests
 
 ### Changed
 
-- 现在任务菜单放不下的任务不会再清除，而是在任务菜单有空间后放下
-- 为`TextureManager`添加缓存机制，以优化其性能
-- 修改部分调试信息，使其更容易确定模组问题
-- 将部分提示信息从SMAPI控制台移至游戏内
+- Redesigned layout for GenericModConfigMenu
+- Replaced some SMAPI console messages with in-game HUD notifications
 
 ### Fixed
 
-- 修复无法加载自定纹理的问题
-- 修复有些情况下`FishingQuest`的任务奖励不对的问题
-- 修复有些情况下`RSV`生成不了任务的问题
-
-### Removed
-
-- 移除无用的调试信息
-
-## [1.5.0]
-
-- 添加`PiCore`前置
-- 移除`OpenConfigMenuKey`选项
-
-## [1.4.1]
-
-- 修复可能的随机数复用问题
-
-## [1.4.0]
-
-- 添加游戏手柄支持（感谢`Cristiano`）
-- 添加`fr`翻译（感谢`Caranud`），添加`pt`翻译（感谢`Cristiano`）
-- 修复交易任务会生成非当前季节的任务物品的问题
-
-## [1.3.1]
-
-- 修复任务数量不对的问题
-
-## [1.3.0]
-
-- 修复GMCM中使用默认功能可能导致的一些问题
-- 适配星露谷物语1.6.15
-
-## [1.2.0]
-
-- 适配星露谷物语1.6.10
-
-## [1.1.1]
-
-- 修复交易任务的物品是错误物品的问题
-- 修复任务权重不起作用的问题
-- 修复只生成交易任务的问题
-- 添加`EnableRSVQuestBoard`选项
-- 添加`MaxRSVQuests`选项
-
-## [1.1.0]
-
-- 添加打开配置菜单快捷键
-- 修改RSV的求助任务面板
-
-## [1.0.11]
-
-- 修复`QuestItemRequirement`选项没有提示的问题
-- 修复`UseModPossibleItems`选项没有提示的问题
+- Fixed custom textures failing to load
+- Fixed occasional incorrect quest rewards
+- Fixed occasional failure to generate quests in Ridgeside Village

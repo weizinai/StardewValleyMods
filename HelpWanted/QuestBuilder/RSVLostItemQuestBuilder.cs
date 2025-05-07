@@ -37,7 +37,8 @@ public class RSVLostItemQuestBuilder : QuestBuilder<LostItemQuest>
     {
         var rawField = ArgUtility.SplitBySpace(this.rawQuest[4]);
 
-        this.Quest.ItemId.Value = rawField[1];
+        var itemId = rawField[1];
+        this.Quest.ItemId.Value = ItemRegistry.QualifyItemId(itemId);
         this.Quest.locationOfItem.Value = rawField[2];
         this.Quest.tileX.Value = int.Parse(rawField[3]);
         this.Quest.tileY.Value = int.Parse(rawField[4]);

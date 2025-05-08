@@ -1,8 +1,8 @@
 ﻿/*
- * 代码来源：Pathoschild
- * 原始出处：https://github.com/Pathoschild/StardewMods
- * 授权协议：MIT License
- */
+代码来源：Pathoschild
+原始出处：https://github.com/Pathoschild/StardewMods
+授权协议：MIT License
+*/
 
 using System;
 using System.Diagnostics.CodeAnalysis;

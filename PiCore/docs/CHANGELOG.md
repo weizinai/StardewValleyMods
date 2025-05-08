@@ -4,4 +4,5 @@
 
 ### Added
 
-- Introduced string constant classes to accurately represent in-game items and monsters, improving code readability and maintainability
+- Add property accessor methods
+- Introduced string constant classes to accurately represent in-game items and monsters

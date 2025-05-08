@@ -1,8 +1,8 @@
 /*
- * 代码来源：Pathoschild
- * 原始出处：https://github.com/Pathoschild/StardewMods
- * 授权协议：MIT License
- */
+代码来源：Pathoschild
+原始出处：https://github.com/Pathoschild/StardewMods
+授权协议：MIT License
+*/
 
 using System;
 using System.Linq;
@@ -38,12 +38,32 @@ public abstract class BasePatcher : IPatcher
                throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(T), name, parameters)} to patch.");
     }
 
+    /// <summary>Get a property getter and assert that it was found.</summary>
+    /// <typeparam name="T">The type containing the property.</typeparam>
+    /// <param name="name">The property name.</param>
+    /// <exception cref="InvalidOperationException">The type has no matching property getter.</exception>
+    protected MemberInfo RequirePropertyGetter<T>(string name)
+    {
+        return AccessTools.Property(typeof(T), name).GetGetMethod() ??
+               throw new InvalidOperationException($"Can't find property getter {GetMethodString(typeof(T), name)} to patch.");
+    }
+
+    /// <summary>Get a property setter and assert that it was found.</summary>
+    /// <typeparam name="T">The type containing the property.</typeparam>
+    /// <param name="name">The property name.</param>
+    /// <exception cref="InvalidOperationException">The type has no matching property setter.</exception>
+    protected MemberInfo RequirePropertySetter<T>(string name)
+    {
+        return AccessTools.Property(typeof(T), name).GetSetMethod() ??
+               throw new InvalidOperationException($"Can't find property setter {GetMethodString(typeof(T), name)} to patch.");
+    }
+
     /// <summary>Get a Harmony patch method on the current patcher instance.</summary>
     /// <param name="name">The method name.</param>
     protected HarmonyMethod GetHarmonyMethod(string name)
     {
         return new HarmonyMethod(AccessTools.Method(this.GetType(), name)) ??
-               throw new InvalidOperationException($"Can't find patcher method {GetMethodString(this.GetType(), name)}.");
+               throw new InvalidOperationException($"Can't find method {GetMethodString(this.GetType(), name)}.");
     }
 
     /// <summary>Get a human-readable representation of a method target.</summary>

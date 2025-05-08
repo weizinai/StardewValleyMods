@@ -6,5 +6,5 @@
     "Config.CardChance.Name": "卡片概率",
     // 轮盘旋转速度
     "Config.WheelSpinSpeed.Name": "轮盘速度",
-    "Config.ExtraSpeed.Name": "额外速度",
+    "Config.ExtraSpeed.Name": "额外速度"
 }

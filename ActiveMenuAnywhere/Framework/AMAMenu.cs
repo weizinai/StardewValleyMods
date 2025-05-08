@@ -218,12 +218,12 @@ internal class AMAMenu : IClickableMenu
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_Desert(), nameof(MenuTabId.Desert)),
             new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_GingerIsland(), nameof(MenuTabId.GingerIsland))
         });
-        
+
         if (this.helper.ModRegistry.Get("FlashShifter.SVECode") != null)
         {
             this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i++), I18n.UI_Tab_SVE(), nameof(MenuTabId.SVE)));
         }
-        
+
         if (this.helper.ModRegistry.Get("Rafseazz.RidgesideVillage") != null)
         {
             this.tabs.Add(new ClickableComponent(this.GetTabRectangle(i), I18n.UI_Tab_RSV(), nameof(MenuTabId.RSV)));

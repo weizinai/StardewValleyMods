@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
@@ -36,22 +33,23 @@ internal class FarmAnimalPatcher : BasePatcher
 
     private static IEnumerable<CodeInstruction> DayUpdateTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = instructions.ToList();
+        var codeMatcher = new CodeMatcher(instructions);
 
-        // 抚摸动物友谊修改
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)10));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetPetAnimalModifyForFriendship)));
-        // 抚摸动物心情修改
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)50));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetPetAnimalModifyForHappiness)));
-        // 喂食动物心情修改
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)100));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetFeedAnimalModifyForHappiness)));
-        // 喂食动物友谊修改
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)20));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetFeedAnimalModifyForFriendship)));
+        codeMatcher
+            // 抚摸动物友谊修改
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)10))
+            .SetInstructionAndAdvance(CodeInstruction.Call(typeof(FarmAnimalPatcher), nameof(GetPetAnimalModifyForFriendship)))
+            // 抚摸动物心情修改
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)50))
+            .SetInstructionAndAdvance(CodeInstruction.Call(typeof(FarmAnimalPatcher), nameof(GetPetAnimalModifyForHappiness)))
+            // 喂食动物心情修改
+            .MatchEndForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)100))
+            .SetInstructionAndAdvance(CodeInstruction.Call(typeof(FarmAnimalPatcher), nameof(GetFeedAnimalModifyForHappiness)))
+            // 喂食动物友谊修改
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)20))
+            .SetInstruction(CodeInstruction.Call(typeof(FarmAnimalPatcher), nameof(GetFeedAnimalModifyForFriendship)));
 
-        return codes.AsEnumerable();
+        return codeMatcher.Instructions();
     }
 
     // 抚摸动物友谊修改
@@ -77,11 +75,5 @@ internal class FarmAnimalPatcher : BasePatcher
     private static int GetFeedAnimalModifyForHappiness()
     {
         return config.FeedAnimalModifyForHappiness;
-    }
-
-    private static MethodInfo GetMethod(string name)
-    {
-        return AccessTools.Method(typeof(FarmAnimalPatcher), name) ??
-               throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(FarmAnimalPatcher), name)}.");
     }
 }

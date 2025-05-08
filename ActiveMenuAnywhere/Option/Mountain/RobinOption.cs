@@ -83,7 +83,7 @@ internal class RobinOption : BaseOption
                 "Construct",
                 Game1.content.LoadString("Strings\\Locations:ScienceHouse_CarpenterMenu_Construct")
             ));
-            
+
             // 离开
             options.Add(new Response(
                 "Leave",
@@ -105,11 +105,11 @@ internal class RobinOption : BaseOption
     // 判断是否可以进行社区升级
     private bool CommunityUpgrade()
     {
-        var isCommunityCenterCompleted = Game1.MasterPlayer.mailReceived.Contains("ccIsComplete") 
+        var isCommunityCenterCompleted = Game1.MasterPlayer.mailReceived.Contains("ccIsComplete")
                                          || Game1.MasterPlayer.hasCompletedCommunityCenter();
         var isJojaMember = Game1.MasterPlayer.mailReceived.Contains("JojaMember");
         var isCommunityUpgradeCompleted = Game1.RequireLocation<Town>("Town").daysUntilCommunityUpgrade.Value <= 0;
-        
+
         return (isCommunityCenterCompleted || isJojaMember) && isCommunityUpgradeCompleted;
     }
 }

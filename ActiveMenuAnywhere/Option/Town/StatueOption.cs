@@ -16,7 +16,7 @@ internal class StatueOption : BaseOption
     public override void Apply()
     {
         var location = Game1.currentLocation;
-        
+
         location.createQuestionDialogue(
             Game1.content.LoadString("Strings\\Locations:Sewer_DogStatue"),
             location.createYesNoResponses(),

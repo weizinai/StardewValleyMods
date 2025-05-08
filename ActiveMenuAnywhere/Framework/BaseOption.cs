@@ -40,7 +40,7 @@ internal abstract class BaseOption
             SpriteEffects.None,
             0f
         );
-        
+
         DrawHelper.DrawTab(x + 100, y + 120, Game1.smallFont, this.label, Align.Center);
     }
 

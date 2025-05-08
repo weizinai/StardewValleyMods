@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Minigames;
@@ -20,12 +19,14 @@ internal class CalicoJackPatcher : BasePatcher
 
     private static IEnumerable<CodeInstruction> TickTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = instructions.ToList();
+        var codeMatcher = new CodeMatcher(instructions);
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R8 && code.operand.Equals(0.0005));
-        codes.Insert(index + 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(CalicoJackPatcher), nameof(GetCardChance))));
+        codeMatcher
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_R8, 0.0005))
+            .Advance(1)
+            .Insert(CodeInstruction.Call(typeof(CalicoJackPatcher), nameof(GetCardChance)));
 
-        return codes.AsEnumerable();
+        return codeMatcher.Instructions();
     }
 
     private static double GetCardChance(double originChance)

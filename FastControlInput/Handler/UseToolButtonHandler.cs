@@ -14,8 +14,8 @@ internal class UseToolButtonHandler : BaseInputHandler
         var currentMouseState = Game1.input.GetMouseState();
         var currentGamePadState = Game1.input.GetGamePadState();
 
-        return Game1.isOneOfTheseKeysDown(currentKeyboardState, Game1.options.useToolButton) 
-               || currentMouseState.LeftButton == ButtonState.Pressed 
+        return Game1.isOneOfTheseKeysDown(currentKeyboardState, Game1.options.useToolButton)
+               || currentMouseState.LeftButton == ButtonState.Pressed
                || Game1.options.gamepadControls && currentGamePadState.IsButtonDown(Buttons.X);
     }
 

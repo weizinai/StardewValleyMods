@@ -8,12 +8,12 @@ internal static class RSVReflection
     private static Type GetRSVType(string typeName)
     {
         var type = Type.GetType($"{typeName}, RidgesideVillage");
-        
+
         if (type is null)
         {
             throw new ArgumentException($"Could not find type {typeName} in RidgesideVillage assembly.");
         }
-        
+
         return type;
     }
 
@@ -21,12 +21,12 @@ internal static class RSVReflection
     {
         var type = GetRSVType(typeName);
         var method = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Static);
-        
+
         if (method is null)
         {
             throw new ArgumentException($"Could not find method {methodName} in type {typeName}.");
         }
-        
+
         return method;
     }
 }

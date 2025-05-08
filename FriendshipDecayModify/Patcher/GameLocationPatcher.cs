@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
@@ -28,12 +26,14 @@ internal class GameLocationPatcher : BasePatcher
     // 垃圾桶修改
     private static IEnumerable<CodeInstruction> CheckGarbageTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = instructions.ToList();
+        var codeMatcher = new CodeMatcher(instructions);
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.changeFriendship))));
-        codes.Insert(index - 1, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GameLocationPatcher), nameof(GetGarbageCanModify))));
+        codeMatcher
+            .MatchStartForward(new CodeMatch(CodeInstruction.Call(typeof(Farmer), nameof(Farmer.changeFriendship))))
+            .Advance(-1)
+            .Insert(CodeInstruction.Call(typeof(GameLocationPatcher), nameof(GetGarbageCanModify)));
 
-        return codes.AsEnumerable();
+        return codeMatcher.Instructions();
     }
 
     private static int GetGarbageCanModify(int friendshipChange)

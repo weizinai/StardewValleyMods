@@ -24,7 +24,7 @@ internal class BooksellerOption : BaseOption
                 new("Trade", Game1.content.LoadString("Strings\\1_6_Strings:trade_books")),
                 new("Leave", Game1.content.LoadString("Strings\\1_6_Strings:Leave"))
             };
-            
+
             Game1.currentLocation.createQuestionDialogue(
                 Game1.content.LoadString("Strings\\1_6_Strings:books_welcome"),
                 options.ToArray(),

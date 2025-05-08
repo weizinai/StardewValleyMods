@@ -48,7 +48,7 @@ public class LidgrenServerPatcher : BasePatcher
     private static bool IsPortOccupied(int port)
     {
         using var socker = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        
+
         try
         {
             socker.Bind(new IPEndPoint(IPAddress.Any, port));

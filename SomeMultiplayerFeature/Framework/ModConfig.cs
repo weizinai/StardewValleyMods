@@ -11,7 +11,7 @@ public class ModConfig
     {
         Instance = helper.ReadConfig<ModConfig>();
     }
-    
+
     // 打开设置菜单
     public KeybindList OpenConfigMenuKey { get; set; } = new(SButton.R);
 

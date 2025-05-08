@@ -25,19 +25,19 @@ internal class RaccoonOption : BaseOption
     public override void Apply()
     {
         var options = new List<Response>();
-        
+
         var day = Game1.netWorldState.Value.Date.TotalDays - Game1.netWorldState.Value.DaysPlayedWhenLastRaccoonBundleWasFinished;
         if (day >= 7)
         {
             options.Add(new Response("RaccoonBundle", "RaccoonBundle"));
         }
-        
+
         var mrsRaccoon = Game1.RequireLocation<Forest>("Forest").getCharacterFromName("MrsRaccoon");
         if (mrsRaccoon != null)
         {
             options.Add(new Response("MrsRaccoonShop", "MrsRaccoonShop"));
         }
-        
+
         options.Add(new Response("Leave", "Leave"));
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }

@@ -45,13 +45,13 @@ public abstract class BaseIntegration : IModIntegration
         {
             return;
         }
-        
+
         if (manifest.Version.IsOlderThan(minVersion))
         {
             Logger.Warn($"Detected {label} {manifest.Version}, but need {minVersion} or later. Disabled integration with this mod.");
             return;
         }
-        
+
         this.IsLoaded = true;
     }
 
@@ -60,12 +60,12 @@ public abstract class BaseIntegration : IModIntegration
     protected TApi? GetValidateApi<TApi>() where TApi : class
     {
         var api = this.modRegistry.GetApi<TApi>(this.modId);
-        
+
         if (api is null)
         {
             Logger.Warn($"Detected {this.Label}, but couldn't fetch its API. Disabled integration with this mod.");
         }
-        
+
         return api;
     }
 

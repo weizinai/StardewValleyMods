@@ -26,7 +26,7 @@ internal class ClintOption : BaseOption
 
         // 砸开晶球
         var hasGeode = Game1.player.Items.Any(item1 => Utility.IsGeode(item1));
-        
+
         if (hasGeode)
         {
             options.Add(new Response("Process", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Geodes")));

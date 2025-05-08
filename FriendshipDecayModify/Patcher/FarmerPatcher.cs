@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
@@ -30,16 +27,20 @@ internal class FarmerPatcher : BasePatcher
     // 每日对话修改
     private static IEnumerable<CodeInstruction> ResetFriendshipsForNewDayTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = instructions.ToList();
+        var codeMatcher = new CodeMatcher(instructions);
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-20));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDailyGreetingModifyForSpouse)));
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-8));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDailyGreetingModifyForDatingVillager)));
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_I4_S && code.operand.Equals((sbyte)-2));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDailyGreetingModifyForVillager)));
+        codeMatcher
+            // 配偶
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)-20))
+            .SetInstruction(CodeInstruction.Call(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForSpouse)))
+            // 对象
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)-8))
+            .SetInstruction(CodeInstruction.Call(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForDatingVillager)))
+            // 村民
+            .MatchStartForward(new CodeMatch(OpCodes.Ldc_I4_S, (sbyte)-2))
+            .SetInstruction(CodeInstruction.Call(typeof(FarmerPatcher), nameof(GetDailyGreetingModifyForVillager)));
 
-        return codes.AsEnumerable();
+        return codeMatcher.Instructions();
     }
 
     private static int GetDailyGreetingModifyForVillager()
@@ -55,11 +56,5 @@ internal class FarmerPatcher : BasePatcher
     private static int GetDailyGreetingModifyForSpouse()
     {
         return -config.DailyGreetingModifyForSpouse;
-    }
-
-    private static MethodInfo GetMethod(string name)
-    {
-        return AccessTools.Method(typeof(FarmerPatcher), name) ??
-               throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(FarmerPatcher), name)}.");
     }
 }

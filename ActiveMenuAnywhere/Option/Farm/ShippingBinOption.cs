@@ -52,17 +52,17 @@ internal class ShippingBinOption : BaseOption
         {
             who.removeItemFromInventory(i);
             farm?.getShippingBin(who).Add(i);
-            
+
             if (i is Object obj && farm != null)
             {
                 this.helper.Reflection.GetMethod(new ShippingBin(), "showShipment").Invoke(obj, false);
             }
-            
+
             if (farm != null)
             {
                 farm.lastItemShipped = i;
             }
-            
+
             if (Game1.player.ActiveObject == null)
             {
                 Game1.player.showNotCarrying();

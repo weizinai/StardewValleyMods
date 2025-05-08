@@ -1,19 +1,28 @@
 {
     // Config
     "Config.MenuKey_Name": "Raccourci de menu",
-    "Config.OpenMenuByTelephone.Name": "Open Menu By Telephone", // TODO
-    "Config.OpenMenuByTelephone.Tooltip": "When this option is enabled, you will only be able to open the menu by telephone.", // TODO
+    "Config.OpenMenuByTelephone.Name": "Open Menu By Telephone",
+    // TODO
+    "Config.OpenMenuByTelephone.Tooltip": "When this option is enabled, you will only be able to open the menu by telephone.",
+    // TODO
     "Config.DefaultMenuTabID": "Onglet de menu par défaut",
-    "Config.ProgressMode.Name": "Progress Mode", // TODO
-    "Config.FavoriteKey.Name": "Favorite Key", // TODO
-    "Config.FavoriteKey.Tooltip": "When you hold down the key, left-click on the menu to favorite it.", // TODO
+    "Config.ProgressMode.Name": "Progress Mode",
+    // TODO
+    "Config.FavoriteKey.Name": "Favorite Key",
+    // TODO
+    "Config.FavoriteKey.Tooltip": "When you hold down the key, left-click on the menu to favorite it.",
+    // TODO
 
-    "UI.Favorite.Add": "The menu has been added to the favorites.", // TODO
-    "UI.Favorite.Remove": "The menu has been removed from the favorites.", // TODO
-    "UI.Favorite.Exist": "The menu already exists in the favorites.", // TODO
+    "UI.Favorite.Add": "The menu has been added to the favorites.",
+    // TODO
+    "UI.Favorite.Remove": "The menu has been removed from the favorites.",
+    // TODO
+    "UI.Favorite.Exist": "The menu already exists in the favorites.",
+    // TODO
 
     // Tab
-    "UI.Tab.Favorites": "Favorites", // TODO
+    "UI.Tab.Favorites": "Favorites",
+    // TODO
     "UI.Tab.Farm": "Ferme",
     "UI.Tab.Town": "Ville",
     "UI.Tab.Mountain": "Montagne",
@@ -26,9 +35,12 @@
 
     // Beach
     "UI.Option.Bobber": "Flotteur",
-    "UI.Option.DecorationBoat": "Decoration Boat", // TODO
-    "UI.Option.MagicBoat": "Magic Boat", // TODO
-    "UI.Option.NightMarketTraveler": "Night Market Traveler", // TODO
+    "UI.Option.DecorationBoat": "Decoration Boat",
+    // TODO
+    "UI.Option.MagicBoat": "Magic Boat",
+    // TODO
+    "UI.Option.NightMarketTraveler": "Night Market Traveler",
+    // TODO
     "UI.Option.Willy": "Willie",
 
     // Desert
@@ -89,7 +101,8 @@
     "UI.Option.RSVSpecialOrder": "Commande \nspéciale RSV",
 
     // SVE
-    "UI.Option.Sophia": "Sophia", // TODO
+    "UI.Option.Sophia": "Sophia",
+    // TODO
 
     // Town
     "UI.Option.AbandonedJojaMart": "Joja Mart\nabandonné",

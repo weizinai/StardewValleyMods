@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
@@ -30,14 +27,14 @@ internal class NPCPatcher : BasePatcher
     // 礼物修改
     private static IEnumerable<CodeInstruction> ReceiveGiftTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = instructions.ToList();
+        var codeMatcher = new CodeMatcher(instructions);
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_R4 && code.operand.Equals(-40f));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetHateGiftModify)));
-        index = codes.FindIndex(index, code => code.opcode == OpCodes.Ldc_R4 && code.operand.Equals(-20f));
-        codes[index] = new CodeInstruction(OpCodes.Call, GetMethod(nameof(GetDislikeGiftModify)));
+        codeMatcher.MatchStartForward(new CodeMatch(OpCodes.Ldc_R4, -40f))
+            .SetInstruction(CodeInstruction.Call(typeof(NPCPatcher), nameof(GetHateGiftModify)))
+            .MatchEndForward(new CodeMatch(OpCodes.Ldc_R4, -20f))
+            .SetInstruction(CodeInstruction.Call(typeof(NPCPatcher), nameof(GetDislikeGiftModify)));
 
-        return codes.AsEnumerable();
+        return codeMatcher.Instructions();
     }
 
     private static float GetHateGiftModify()
@@ -48,11 +45,5 @@ internal class NPCPatcher : BasePatcher
     private static float GetDislikeGiftModify()
     {
         return -config.DislikeGiftModify;
-    }
-
-    private static MethodInfo GetMethod(string name)
-    {
-        return AccessTools.Method(typeof(NPCPatcher), name) ??
-               throw new InvalidOperationException($"Can't find method {GetMethodString(typeof(FarmerPatcher), name)}.");
     }
 }

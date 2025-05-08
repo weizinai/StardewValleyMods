@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Quests;
+using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 using weizinai.StardewValleyMod.PiCore.Patcher;
@@ -35,10 +35,19 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
     // 交易任务友谊奖励修改
     private static IEnumerable<CodeInstruction> OnItemOfferedToNpcTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        var codes = new List<CodeInstruction>(instructions);
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Ldc_I4 && code.operand.Equals(150));
-        codes[index] = new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ItemDeliveryQuestPatcher), nameof(GetItemDeliveryFriendshipGain)));
-        return codes.AsEnumerable();
+        var codeMatcher = new CodeMatcher(instructions);
+
+        codeMatcher.MatchStartForward(new CodeMatch(OpCodes.Ldc_I4, 150));
+
+        if (!codeMatcher.IsValid)
+        {
+            Logger.Error("Target instruction not found [Opcode: Ldc_I4, Operand: 150]");
+            return codeMatcher.Instructions();
+        }
+
+        codeMatcher.SetInstruction(CodeInstruction.Call(() => GetItemDeliveryFriendshipGain));
+
+        return codeMatcher.Instructions();
     }
 
     private static int GetItemDeliveryFriendshipGain()

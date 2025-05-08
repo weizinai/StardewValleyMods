@@ -22,8 +22,8 @@ internal class WheelSpinGamePatcher : BasePatcher
 
         if (!config.IsEnabled) return;
 
-        ___arrowRotationVelocity = Math.PI / 16 +
-                                   config.Value * Math.PI / 256 +
-                                   (ModConfig.Instance.ExtraSpeed ? Math.PI / 64 : 0);
+        ___arrowRotationVelocity = Math.PI / 16
+                                   + config.Value * Math.PI / 256
+                                   + (ModConfig.Instance.ExtraSpeed ? Math.PI / 64 : 0);
     }
 }

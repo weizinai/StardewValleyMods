@@ -5,6 +5,7 @@ using StardewValley.Quests;
 using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
+using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
@@ -29,7 +30,7 @@ public class FishingQuestBuilder : QuestBuilder<FishingQuest>
             return false;
         }
 
-        this.Quest.target.Value = this.randomBool ? "Demetrius" : "Willy";
+        this.Quest.target.Value = this.randomBool ? Demetrius : Willy;
         return true;
     }
 

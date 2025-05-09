@@ -45,7 +45,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
             return codeMatcher.Instructions();
         }
 
-        codeMatcher.SetInstruction(CodeInstruction.Call(() => GetItemDeliveryFriendshipGain));
+        codeMatcher.SetInstruction(CodeInstruction.Call(typeof(ItemDeliveryQuestPatcher), nameof(GetItemDeliveryFriendshipGain)));
 
         return codeMatcher.Instructions();
     }

@@ -7,6 +7,7 @@ using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Model;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 using static weizinai.StardewValleyMod.PiCore.Constant.SItem;
+using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
@@ -62,7 +63,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
             return false;
         }
 
-        this.Quest.target.Value = ModEntry.Random.NextBool() ? "Clint" : "Robin";
+        this.Quest.target.Value = ModEntry.Random.NextBool() ? Clint : Robin;
 
         return true;
     }
@@ -80,7 +81,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
 
         switch (this.Quest.target.Value)
         {
-            case "Clint":
+            case Clint:
             {
                 possibleItems.AddRange(new[] { CopperOre, IronOre, Coal });
                 if (Utility.GetAllPlayerDeepestMineLevel() > 40) possibleItems.Add(GoldOre);
@@ -89,7 +90,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
                 if (Game1.player.mailReceived.Contains("willyHours")) possibleItems.Add(CinderShard);
                 break;
             }
-            case "Robin":
+            case Robin:
             {
                 possibleItems.AddRange(new[] { Wood, Stone });
                 if (!moreQuest) break;
@@ -116,7 +117,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
     {
         this.Quest.parts.Clear();
 
-        if (this.Quest.target.Value == "Robin")
+        if (this.Quest.target.Value == Robin)
         {
             this.Quest.parts.Add(new DescriptionElement(
                 GetPathString("R", 13674),
@@ -135,7 +136,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
         }
 
         this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.Quest.reward.Value));
-        this.Quest.parts.Add(this.Quest.target.Value == "Clint" ? GetPathString("R", 13688) : "");
+        this.Quest.parts.Add(this.Quest.target.Value == Clint ? GetPathString("R", 13688) : "");
     }
 
     protected override void SetQuestDialogue()
@@ -143,7 +144,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
         var random = ModEntry.Random;
         this.Quest.dialogueparts.Clear();
 
-        if (this.Quest.target.Value == "Robin")
+        if (this.Quest.target.Value == Robin)
         {
             this.Quest.dialogueparts.Add(new DescriptionElement(
                 GetPathString("R", 13677),

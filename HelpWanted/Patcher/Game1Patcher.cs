@@ -14,7 +14,7 @@ internal class Game1Patcher : BasePatcher
         );
     }
 
-    // 禁止原版任务生成逻辑
+    // 禁止生成原版任务
     private static bool RefreshQuestOfTheDayPrefix()
     {
         return false;

@@ -19,6 +19,7 @@ internal class RSVQuestBoardPatcher : BasePatcher
         );
     }
 
+    // 将RSV任务菜单替换为自定义菜单
     private static bool DrawPrefix(string ___boardType)
     {
         if (___boardType != "VillageQuestBoard" || !ModConfig.Instance.RSVConfig.EnableRSVQuestBoard) return true;

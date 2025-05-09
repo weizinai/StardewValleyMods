@@ -5,6 +5,7 @@
 
     // General Setting
     "Config.GeneralSettingsTitle.Name": "General Settings",
+    "Config.ShowQuestGenerationTooltip.Name": "Show Quest Generation Tooltip",
     "Config.QuestFirstDay.Name": "Primeiro Dia de Missão",
     "Config.QuestFirstDay.Tooltip": "Quando esta opção está desativada, o jogo não gerará missões no primeiro dia, como no jogo original.",
     "Config.QuestFestival.Name": "Missão de Festival",

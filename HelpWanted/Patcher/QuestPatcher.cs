@@ -13,7 +13,8 @@ public class QuestPatcher : BasePatcher
             postfix: this.GetHarmonyMethod(nameof(IsTimedQuestPostfix))
         );
     }
-
+    
+    // 使每日任务的时间可以没有限制
     private static void IsTimedQuestPostfix(Quest __instance, ref bool __result)
     {
         __result = __instance.GetDaysLeft() > 0;

@@ -4,6 +4,7 @@
 
     // General Setting
     "Config.GeneralSettingsTitle.Name": "General Settings",
+    "Config.ShowQuestGenerationTooltip.Name": "Show Quest Generation Tooltip",
     "Config.QuestFirstDay.Name": "Quest First Day",
     "Config.QuestFirstDay.Tooltip": "When this option is disabled, the game will not generate quests on the first day, as in the vanilla game.",
     "Config.QuestFestival.Name": "Quest Festival",

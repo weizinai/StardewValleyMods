@@ -10,6 +10,7 @@ using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Model;
 using weizinai.StardewValleyMod.PiCore.Constant;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
+using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
@@ -18,43 +19,43 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
     private static readonly Dictionary<string, MonsterConfig> ItemConfig = new()
     {
         // 原版任务矿井怪物
-        [SMonster.GreenSlime] = new MonsterConfig("Lewis", 60, 4, 11, 2),
-        [SMonster.RockCrab] = new MonsterConfig("Demetrius", 75, 2, 6),
-        [SMonster.Duggy] = new MonsterConfig("Clint", 150, 2, 4),
-        [SMonster.FrostJelly] = new MonsterConfig("Lewis", 85, 4, 11, 2),
-        [SMonster.DustSpirit] = new MonsterConfig("Wizard", 60, 10, 21),
-        [SMonster.Ghost] = new MonsterConfig("Wizard", 250, 2, 4),
-        [SMonster.Skeleton] = new MonsterConfig("Wizard", 100, 6, 12),
-        [SMonster.Sludge] = new MonsterConfig("Lewis", 125, 4, 11, 2),
-        [SMonster.LavaCrab] = new MonsterConfig("Demetrius", 180, 2, 6),
-        [SMonster.SquidKid] = new MonsterConfig("Wizard", 350, 1, 3),
+        [SMonster.GreenSlime] = new MonsterConfig(Lewis, 60, 4, 11, 2),
+        [SMonster.RockCrab] = new MonsterConfig(Demetrius, 75, 2, 6),
+        [SMonster.Duggy] = new MonsterConfig(Clint, 150, 2, 4),
+        [SMonster.FrostJelly] = new MonsterConfig(Lewis, 85, 4, 11, 2),
+        [SMonster.DustSpirit] = new MonsterConfig(Wizard, 60, 10, 21),
+        [SMonster.Ghost] = new MonsterConfig(Wizard, 250, 2, 4),
+        [SMonster.Skeleton] = new MonsterConfig(Wizard, 100, 6, 12),
+        [SMonster.Sludge] = new MonsterConfig(Lewis, 125, 4, 11, 2),
+        [SMonster.LavaCrab] = new MonsterConfig(Demetrius, 180, 2, 6),
+        [SMonster.SquidKid] = new MonsterConfig(Wizard, 350, 1, 3),
         // 模组任务矿井怪物
-        [SMonster.Bug] = new MonsterConfig("Marlon", 30),
-        [SMonster.Grub] = new MonsterConfig("Marlon", 50, 10, 21),
-        [SMonster.Fly] = new MonsterConfig("Marlon", 60),
-        [SMonster.Bat] = new MonsterConfig("Marlon", 80),
-        [SMonster.StoneGolem] = new MonsterConfig("Wizard", 80),
-        [SMonster.FrostBat] = new MonsterConfig("Marlon", 100),
-        [SMonster.LavaBat] = new MonsterConfig("Marlon", 150),
-        [SMonster.ShadowBrute] = new MonsterConfig("Wizard", 150),
-        [SMonster.ShadowShaman] = new MonsterConfig("Wizard", 150),
-        [SMonster.MetalHead] = new MonsterConfig("Wizard", 150),
-        [SMonster.BigSlime] = new MonsterConfig("Sandy", 180),
-        [SMonster.Mummy] = new MonsterConfig("Wizard", 400),
-        [SMonster.Serpent] = new MonsterConfig("Sandy", 300),
-        [SMonster.CarbonGhost] = new MonsterConfig("Wizard", 300),
-        [SMonster.PepperRex] = new MonsterConfig("Sandy", 600),
-        [SMonster.IridiumCrab] = new MonsterConfig("Demetrius", 400),
-        [SMonster.IridiumBat] = new MonsterConfig("Sandy", 400),
+        [SMonster.Bug] = new MonsterConfig(Marlon, 30),
+        [SMonster.Grub] = new MonsterConfig(Marlon, 50, 10, 21),
+        [SMonster.Fly] = new MonsterConfig(Marlon, 60),
+        [SMonster.Bat] = new MonsterConfig(Marlon, 80),
+        [SMonster.StoneGolem] = new MonsterConfig(Wizard, 80),
+        [SMonster.FrostBat] = new MonsterConfig(Marlon, 100),
+        [SMonster.LavaBat] = new MonsterConfig(Marlon, 150),
+        [SMonster.ShadowBrute] = new MonsterConfig(Wizard, 150),
+        [SMonster.ShadowShaman] = new MonsterConfig(Wizard, 150),
+        [SMonster.MetalHead] = new MonsterConfig(Wizard, 150),
+        [SMonster.BigSlime] = new MonsterConfig(Sandy, 180),
+        [SMonster.Mummy] = new MonsterConfig(Wizard, 400),
+        [SMonster.Serpent] = new MonsterConfig(Sandy, 300),
+        [SMonster.CarbonGhost] = new MonsterConfig(Wizard, 300),
+        [SMonster.PepperRex] = new MonsterConfig(Sandy, 600),
+        [SMonster.IridiumCrab] = new MonsterConfig(Demetrius, 400),
+        [SMonster.IridiumBat] = new MonsterConfig(Sandy, 400),
         // 模组任务火山怪物
-        [SMonster.DwarvishSentry] = new MonsterConfig("Leo", 300),
-        [SMonster.FalseMagmaCap] = new MonsterConfig("Leo", 300),
-        [SMonster.HotHead] = new MonsterConfig("Leo", 300),
-        [SMonster.LavaLurk] = new MonsterConfig("Leo", 300),
-        [SMonster.MagmaDuggy] = new MonsterConfig("Clint", 500, 1, 3),
-        [SMonster.MagmaSparker] = new MonsterConfig("Leo", 300),
-        [SMonster.MagmaSprite] = new MonsterConfig("Leo", 300),
-        [SMonster.TigerSlime] = new MonsterConfig("Leo", 250)
+        [SMonster.DwarvishSentry] = new MonsterConfig(Leo, 300),
+        [SMonster.FalseMagmaCap] = new MonsterConfig(Leo, 300),
+        [SMonster.HotHead] = new MonsterConfig(Leo, 300),
+        [SMonster.LavaLurk] = new MonsterConfig(Leo, 300),
+        [SMonster.MagmaDuggy] = new MonsterConfig(Clint, 500, 1, 3),
+        [SMonster.MagmaSparker] = new MonsterConfig(Leo, 300),
+        [SMonster.MagmaSprite] = new MonsterConfig(Leo, 300),
+        [SMonster.TigerSlime] = new MonsterConfig(Leo, 250)
     };
 
     public SlayMonsterQuestBuilder(SlayMonsterQuest quest) : base(quest)
@@ -64,9 +65,9 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
     protected override bool TrySetQuestTarget()
     {
-        this.Quest.target.Value = ItemConfig.TryGetValue(this.Quest.monsterName.Value, out var config) ? config.GetTarget() : "Marlon";
+        this.Quest.target.Value = ItemConfig.TryGetValue(this.Quest.monsterName.Value, out var config) ? config.GetTarget() : Marlon;
 
-        if (this.Quest.target.Value == "Wizard" && !this.IsWizardAvailable()) this.Quest.target.Value = "Lewis";
+        if (this.Quest.target.Value == Wizard && !this.IsWizardAvailable()) this.Quest.target.Value = Lewis;
 
         return true;
     }

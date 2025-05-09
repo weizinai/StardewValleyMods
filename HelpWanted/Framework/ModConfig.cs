@@ -14,6 +14,8 @@ public class ModConfig
     public VanillaModConfig VanillaConfig { get; set; } = new();
     public RSVModConfig RSVConfig { get; set; } = new();
 
+    public bool ShowQuestGenerationTooltip = true;
+
     #region 外观
 
     // 便签缩放

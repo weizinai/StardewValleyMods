@@ -16,7 +16,10 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
     {
         if (!this.CheckDayAvailable()) return;
 
-        Logger.NoIconHUDMessage(I18n.UI_GenerateRSVQuest_Tooltip());
+        if (ModConfig.Instance.ShowQuestGenerationTooltip)
+        {
+            Logger.NoIconHUDMessage(I18n.UI_GenerateRSVQuest_Tooltip());
+        }
 
         var maxQuests = this.RSVConfig.MaxQuests;
         var quest = this.GenerateRSVQuest();
@@ -62,19 +65,19 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
     {
         if (Game1.stats.DaysPlayed <= 1 && !this.RSVConfig.QuestFirstDay)
         {
-            Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
+            Logger.NoIconHUDMessage(I18n.UI_RSVQuestFirstDay_Tooltip());
             return false;
         }
 
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.RSVConfig.QuestFestival)
         {
-            Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
+            Logger.NoIconHUDMessage(I18n.UI_RSVQuestFestival_Tooltip());
             return false;
         }
 
         if (ModEntry.Random.NextDouble() >= this.RSVConfig.DailyQuestChance)
         {
-            Logger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
+            Logger.NoIconHUDMessage(I18n.UI_RSVDailyQuest_Tooltip());
             return false;
         }
 

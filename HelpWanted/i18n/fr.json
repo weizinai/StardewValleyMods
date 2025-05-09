@@ -5,6 +5,7 @@
 
     // General Setting
     "Config.GeneralSettingsTitle.Name": "General Settings",
+    "Config.ShowQuestGenerationTooltip.Name": "Show Quest Generation Tooltip",
     "Config.QuestFirstDay.Name": "Quête du premier Jour",
     "Config.QuestFirstDay.Tooltip": "Lorsque cette option est désactivée, le jeu ne générera pas de quêtes le premier jour, comme dans le jeu de base.",
     "Config.QuestFestival.Name": "Festival de quêtes",

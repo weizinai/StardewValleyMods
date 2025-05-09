@@ -136,6 +136,7 @@ public abstract class BaseQuestBoard : IClickableMenu
                 this.ShowingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
                 Game1.player.questLog.Add(this.ShowingQuest);
                 this.CurrentQuestNotes.RemoveAll(option => option.myID == this.showingQuestId);
+                this.allClickableComponents?.RemoveAll(component => component.myID == this.showingQuestId);
                 this.CloseShowingQuest();
             }
         }
@@ -375,6 +376,12 @@ public abstract class BaseQuestBoard : IClickableMenu
         this.acceptQuestButton.visible = false;
     }
 
+    public override void populateClickableComponentList()
+    {
+        this.allClickableComponents = new List<ClickableComponent> { this.upperRightCloseButton };
+        this.allClickableComponents.AddRange(this.CurrentQuestNotes);
+    }
+
     public override void applyMovementKey(int direction)
     {
         if (this.allClickableComponents == null)
@@ -387,39 +394,37 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     private void MoveCursorInDirection(int direction)
     {
+        if (this.currentlySnappedComponent == null)
+        {
+            this.snapToDefaultClickableComponent();
+        }
+
         if (this.IsShowingQuest)
         {
             this.ToggleQuestButtons();
-            return;
         }
-
-        if (this.currentlySnappedComponent == null)
+        else
         {
-            this.SnapToDefaultComponent();
+            this.NavigateToNextComponent(direction);
         }
-
-        this.NavigateToNextComponent(direction);
     }
 
     private void ToggleQuestButtons()
     {
-        this.currentlySnappedComponent =
-            this.currentlySnappedComponent == this.acceptQuestButton
-                ? this.upperRightCloseButton
-                : this.acceptQuestButton;
+        this.currentlySnappedComponent = this.currentlySnappedComponent == this.acceptQuestButton
+            ? this.upperRightCloseButton
+            : this.acceptQuestButton;
 
         this.snapCursorToCurrentSnappedComponent();
         Game1.playSound("toolSwap");
     }
 
-    private void SnapToDefaultComponent()
+    public override void snapToDefaultClickableComponent()
     {
-        var list = this.allClickableComponents;
-        if (list is { Count: > 0 })
-        {
-            this.snapToDefaultClickableComponent();
-            this.currentlySnappedComponent ??= this.allClickableComponents[0];
-        }
+        this.currentlySnappedComponent = this.IsShowingQuest
+            ? this.acceptQuestButton
+            : this.CurrentQuestNotes.FirstOrDefault() ?? (ClickableComponent)this.upperRightCloseButton;
+        this.snapCursorToCurrentSnappedComponent();
     }
 
     private void NavigateToNextComponent(int direction)
@@ -435,8 +440,7 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     private ClickableComponent? FindNextComponent(int direction)
     {
-        if (this.allClickableComponents == null || this.currentlySnappedComponent == null)
-            return null;
+        if (this.allClickableComponents == null || this.currentlySnappedComponent == null) return null;
 
         var currentX = this.currentlySnappedComponent.bounds.X;
         var currentY = this.currentlySnappedComponent.bounds.Y;
@@ -447,7 +451,7 @@ public abstract class BaseQuestBoard : IClickableMenu
             1 => this.allClickableComponents.Where(c => c.bounds.X > currentX),
             2 => this.allClickableComponents.Where(c => c.bounds.Y > currentY),
             3 => this.allClickableComponents.Where(c => c.bounds.X < currentX),
-            _ => Enumerable.Empty<ClickableComponent>(),
+            _ => Enumerable.Empty<ClickableComponent>()
         };
 
         return candidates

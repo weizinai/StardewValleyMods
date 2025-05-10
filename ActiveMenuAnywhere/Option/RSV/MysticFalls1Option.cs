@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class MysticFalls1Option : BaseOption
+public class MysticFalls1Option : BaseOption
 {
     public MysticFalls1Option()
         : base(I18n.UI_Option_MysticFall1(), TextureManager.Instance.RSVTexture, GetSourceRectangle(12), OptionId.MysticFalls1) { }

@@ -8,7 +8,7 @@ using xTile.Dimensions;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class MarnieOption : BaseOption
+public class MarnieOption : BaseOption
 {
     private readonly IModHelper helper;
 

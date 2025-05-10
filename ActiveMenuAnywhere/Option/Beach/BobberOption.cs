@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class BobberOption : BaseOption
+public class BobberOption : BaseOption
 {
     public BobberOption()
         : base(I18n.UI_Option_Bobber(), TextureManager.Instance.BeachTexture, GetSourceRectangle(1), OptionId.Bobber) { }

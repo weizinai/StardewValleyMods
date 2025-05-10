@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class RSVQuestBoardOption : BaseOption
+public class RSVQuestBoardOption : BaseOption
 {
     public RSVQuestBoardOption()
         : base(I18n.UI_Option_RSVQuestBoard(), TextureManager.Instance.RSVTexture, GetSourceRectangle(0), OptionId.RSVQuestBoard) { }

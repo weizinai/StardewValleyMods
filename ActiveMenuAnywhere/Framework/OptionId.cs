@@ -1,6 +1,6 @@
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal enum OptionId
+public enum OptionId
 {
     // Beach
     Bobber,

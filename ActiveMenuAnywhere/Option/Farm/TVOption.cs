@@ -5,7 +5,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class TVOption : BaseOption
+public class TVOption : BaseOption
 {
     private readonly IModHelper helper;
 

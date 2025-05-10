@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class VolcanoShopOption : BaseOption
+public class VolcanoShopOption : BaseOption
 {
     public VolcanoShopOption()
         : base(I18n.UI_Option_VolcanoShop(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(5), OptionId.VolcanoShop) { }

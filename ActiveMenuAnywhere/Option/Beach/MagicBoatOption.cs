@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class MagicBoatOption : BaseOption
+public class MagicBoatOption : BaseOption
 {
     public MagicBoatOption()
         : base(I18n.UI_Option_MagicBoat(), TextureManager.Instance.BeachTexture, GetSourceRectangle(4), OptionId.MagicBoat) { }

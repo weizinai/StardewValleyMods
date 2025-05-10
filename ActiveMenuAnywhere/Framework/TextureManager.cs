@@ -4,7 +4,7 @@ using StardewModdingAPI;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal class TextureManager
+public class TextureManager
 {
     public static TextureManager Instance { get; } = new();
 

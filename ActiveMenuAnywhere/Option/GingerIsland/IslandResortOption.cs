@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class IslandResortOption : BaseOption
+public class IslandResortOption : BaseOption
 {
     public IslandResortOption()
         : base(I18n.UI_Option_IslandResort(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(4), OptionId.IslandResort) { }

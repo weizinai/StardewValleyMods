@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class StatueOption : BaseOption
+public class StatueOption : BaseOption
 {
     public StatueOption()
         : base(I18n.UI_Option_Statue(), TextureManager.Instance.TownTexture, GetSourceRectangle(10), OptionId.Statue) { }

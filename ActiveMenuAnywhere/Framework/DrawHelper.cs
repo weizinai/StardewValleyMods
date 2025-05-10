@@ -6,7 +6,7 @@ using static weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework.Align;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal class DrawHelper
+public class DrawHelper
 {
     public static void DrawTab(int x, int y, SpriteFont font, string text, Align align, float alpha = 1)
     {

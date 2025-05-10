@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
 
-internal class Game1Patcher : BasePatcher
+public class Game1Patcher : BasePatcher
 {
     private static IModHelper helper = null!;
 

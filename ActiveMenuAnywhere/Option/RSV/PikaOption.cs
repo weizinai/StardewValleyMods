@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class PikaOption : BaseOption
+public class PikaOption : BaseOption
 {
     public PikaOption()
         : base(I18n.UI_Option_Pika(), TextureManager.Instance.RSVTexture, GetSourceRectangle(7), OptionId.Pika) { }

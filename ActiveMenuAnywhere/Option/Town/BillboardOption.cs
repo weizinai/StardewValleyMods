@@ -5,7 +5,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class BillboardOption : BaseOption
+public class BillboardOption : BaseOption
 {
     public BillboardOption()
         : base(I18n.UI_Option_Billboard(), TextureManager.Instance.TownTexture, GetSourceRectangle(0), OptionId.Billboard) { }

@@ -7,7 +7,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class ClintOption : BaseOption
+public class ClintOption : BaseOption
 {
     public ClintOption()
         : base(I18n.UI_Option_Clint(), TextureManager.Instance.TownTexture, GetSourceRectangle(4), OptionId.Clint) { }

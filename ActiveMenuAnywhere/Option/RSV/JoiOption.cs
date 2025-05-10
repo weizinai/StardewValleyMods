@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class JoiOption : BaseOption
+public class JoiOption : BaseOption
 {
     public JoiOption()
         : base(I18n.UI_Option_Joi(), TextureManager.Instance.RSVTexture, GetSourceRectangle(11), OptionId.Joi) { }

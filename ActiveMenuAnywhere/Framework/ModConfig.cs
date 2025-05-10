@@ -4,7 +4,7 @@ using StardewModdingAPI.Utilities;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal class ModConfig
+public class ModConfig
 {
     public static ModConfig Instance { get; set; } = null!;
 

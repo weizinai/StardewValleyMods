@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class DyeOption : BaseOption
+public class DyeOption : BaseOption
 {
     public DyeOption()
         : base(I18n.UI_Option_Dye(), TextureManager.Instance.TownTexture, GetSourceRectangle(13), OptionId.Dye) { }

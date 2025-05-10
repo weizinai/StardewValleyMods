@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class KrobusOption : BaseOption
+public class KrobusOption : BaseOption
 {
     public KrobusOption()
         : base(I18n.UI_Option_Krobus(), TextureManager.Instance.TownTexture, GetSourceRectangle(9), OptionId.Krobus) { }

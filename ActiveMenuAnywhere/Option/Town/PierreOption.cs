@@ -5,7 +5,7 @@ using xTile.Dimensions;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class PierreOption : BaseOption
+public class PierreOption : BaseOption
 {
     public PierreOption()
         : base(I18n.UI_Option_Pierre(), TextureManager.Instance.TownTexture, GetSourceRectangle(3), OptionId.Pierre) { }

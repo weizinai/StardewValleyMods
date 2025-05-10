@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal static class RSVReflection
+public static class RSVReflection
 {
     private static Type GetRSVType(string typeName)
     {

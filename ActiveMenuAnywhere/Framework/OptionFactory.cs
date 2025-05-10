@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal static class OptionFactory
+public static class OptionFactory
 {
     private static IModHelper helper = null!;
     private static readonly Dictionary<OptionId, Func<BaseOption>> Options = new();

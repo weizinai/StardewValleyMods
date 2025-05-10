@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class SandyOption : BaseOption
+public class SandyOption : BaseOption
 {
     public SandyOption()
         : base(I18n.UI_Option_Sandy(), TextureManager.Instance.DesertTexture, GetSourceRectangle(0), OptionId.Sandy) { }

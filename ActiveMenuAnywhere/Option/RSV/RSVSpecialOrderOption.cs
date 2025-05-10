@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class RSVSpecialOrderOption : BaseOption
+public class RSVSpecialOrderOption : BaseOption
 {
     public RSVSpecialOrderOption()
         : base(I18n.UI_Option_RSVSpecialOrder(), TextureManager.Instance.RSVTexture, GetSourceRectangle(1), OptionId.RSVSpecialOrder) { }

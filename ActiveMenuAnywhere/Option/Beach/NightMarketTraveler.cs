@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class NightMarketTraveler : BaseOption
+public class NightMarketTraveler : BaseOption
 {
     public NightMarketTraveler()
         : base(I18n.UI_Option_NightMarketTraveler(), TextureManager.Instance.BeachTexture, GetSourceRectangle(2), OptionId.NightMarketTraveler) { }

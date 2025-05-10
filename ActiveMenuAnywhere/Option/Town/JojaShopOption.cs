@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class JojaShopOption : BaseOption
+public class JojaShopOption : BaseOption
 {
     public JojaShopOption()
         : base(I18n.UI_Option_JojaShop(), TextureManager.Instance.TownTexture, GetSourceRectangle(6), OptionId.JojaShop) { }

@@ -4,7 +4,7 @@ using StardewValley;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal abstract class BaseOption
+public abstract class BaseOption
 {
     private readonly string label;
     private readonly Texture2D texture;

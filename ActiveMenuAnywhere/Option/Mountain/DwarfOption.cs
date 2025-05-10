@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class DwarfOption : BaseOption
+public class DwarfOption : BaseOption
 {
     public DwarfOption()
         : base(I18n.UI_Option_Dwarf(), TextureManager.Instance.MountainTexture, GetSourceRectangle(1), OptionId.Dwarf) { }

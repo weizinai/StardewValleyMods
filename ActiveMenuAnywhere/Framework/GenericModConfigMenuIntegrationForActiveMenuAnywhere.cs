@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere : IGenericModConfigMenuIntegrationFor<ModConfig>
+public class GenericModConfigMenuIntegrationForActiveMenuAnywhere : IGenericModConfigMenuIntegrationFor<ModConfig>
 {
     public void Register(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {

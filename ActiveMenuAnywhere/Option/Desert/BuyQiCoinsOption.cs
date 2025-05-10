@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class BuyQiCoinsOption : BaseOption
+public class BuyQiCoinsOption : BaseOption
 {
     public BuyQiCoinsOption()
         : base(I18n.UI_Option_BuyQiCoins(), TextureManager.Instance.DesertTexture, GetSourceRectangle(4), OptionId.BuyQiCoins) { }

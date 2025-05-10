@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class HatMouseOption : BaseOption
+public class HatMouseOption : BaseOption
 {
     public HatMouseOption()
         : base(I18n.UI_Option_HatMouse(), TextureManager.Instance.ForestTexture, GetSourceRectangle(2), OptionId.HatMouse) { }

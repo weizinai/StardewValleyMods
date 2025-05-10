@@ -7,7 +7,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class RaccoonOption : BaseOption
+public class RaccoonOption : BaseOption
 {
     private readonly IModHelper helper;
 

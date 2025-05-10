@@ -5,7 +5,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class MonsterOption : BaseOption
+public class MonsterOption : BaseOption
 {
     private readonly IModHelper helper;
 

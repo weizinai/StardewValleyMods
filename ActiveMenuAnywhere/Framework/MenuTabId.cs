@@ -1,6 +1,6 @@
 ﻿namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal enum MenuTabId
+public enum MenuTabId
 {
     Favorite,
     Farm,

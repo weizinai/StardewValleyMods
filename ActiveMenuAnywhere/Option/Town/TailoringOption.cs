@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class TailoringOption : BaseOption
+public class TailoringOption : BaseOption
 {
     public TailoringOption()
         : base(I18n.UI_Option_Tailoring(), TextureManager.Instance.TownTexture, GetSourceRectangle(12), OptionId.Tailoring) { }

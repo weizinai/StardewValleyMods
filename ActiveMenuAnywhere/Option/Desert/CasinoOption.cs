@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class CasinoOption : BaseOption
+public class CasinoOption : BaseOption
 {
     public CasinoOption()
         : base(I18n.UI_Option_Casino(), TextureManager.Instance.DesertTexture, GetSourceRectangle(2), OptionId.Casino) { }

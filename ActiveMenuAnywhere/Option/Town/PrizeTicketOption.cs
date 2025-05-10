@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class PrizeTicketOption : BaseOption
+public class PrizeTicketOption : BaseOption
 {
     public PrizeTicketOption()
         : base(I18n.UI_Option_PrizeTicket(), TextureManager.Instance.TownTexture, GetSourceRectangle(7), OptionId.PrizeTicket) { }

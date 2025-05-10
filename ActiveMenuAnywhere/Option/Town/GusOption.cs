@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class GusOption : BaseOption
+public class GusOption : BaseOption
 {
     public GusOption()
         : base(I18n.UI_Option_Gus(), TextureManager.Instance.TownTexture, GetSourceRectangle(5), OptionId.Gus) { }

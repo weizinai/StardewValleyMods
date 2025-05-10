@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class IslandTradeOption : BaseOption
+public class IslandTradeOption : BaseOption
 {
     public IslandTradeOption()
         : base(I18n.UI_Option_IslandTrade(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(3), OptionId.IslandTrade) { }

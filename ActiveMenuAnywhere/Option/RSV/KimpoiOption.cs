@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class KimpoiOption : BaseOption
+public class KimpoiOption : BaseOption
 {
     public KimpoiOption()
         : base(I18n.UI_Option_Kimpoi(), TextureManager.Instance.RSVTexture, GetSourceRectangle(6), OptionId.Kimpoi) { }

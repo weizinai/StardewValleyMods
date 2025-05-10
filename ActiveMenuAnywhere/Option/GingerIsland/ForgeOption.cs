@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class ForgeOption : BaseOption
+public class ForgeOption : BaseOption
 {
     public ForgeOption()
         : base(I18n.UI_Option_Forge(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(6), OptionId.ForgeOption) { }

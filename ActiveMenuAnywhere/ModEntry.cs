@@ -9,7 +9,7 @@ using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
 
-internal class ModEntry : Mod
+public class ModEntry : Mod
 {
     public override void Entry(IModHelper helper)
     {

@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class TravelerOption : BaseOption
+public class TravelerOption : BaseOption
 {
     public TravelerOption()
         : base(I18n.UI_Option_Traveler(), TextureManager.Instance.ForestTexture, GetSourceRectangle(1), OptionId.Traveler) { }

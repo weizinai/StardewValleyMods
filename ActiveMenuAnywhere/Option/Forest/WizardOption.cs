@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class WizardOption : BaseOption
+public class WizardOption : BaseOption
 {
     public WizardOption()
         : base(I18n.UI_Option_Wizard(), TextureManager.Instance.ForestTexture, GetSourceRectangle(3), OptionId.Wizard) { }

@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class QiGemShopOption : BaseOption
+public class QiGemShopOption : BaseOption
 {
     public QiGemShopOption()
         : base(I18n.UI_Option_QiGemShop(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(1), OptionId.QiGemShop) { }

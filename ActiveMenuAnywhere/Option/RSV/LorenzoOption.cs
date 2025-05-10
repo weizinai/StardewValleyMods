@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class LorenzoOption : BaseOption
+public class LorenzoOption : BaseOption
 {
     public LorenzoOption()
         : base(I18n.UI_Option_Lorenzo(), TextureManager.Instance.RSVTexture, GetSourceRectangle(4), OptionId.Lorenzo) { }

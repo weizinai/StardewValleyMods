@@ -11,7 +11,7 @@ using weizinai.StardewValleyMod.Common;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-internal class AMAMenu : IClickableMenu
+public class AMAMenu : IClickableMenu
 {
     private const int InnerWidth = 600;
     private const int InnerHeight = 600;

@@ -5,7 +5,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class CommunityCenterOption : BaseOption
+public class CommunityCenterOption : BaseOption
 {
     private readonly List<string> keys;
     private readonly List<string> texts;

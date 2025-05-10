@@ -3,7 +3,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class DesertTradeOption : BaseOption
+public class DesertTradeOption : BaseOption
 {
     public DesertTradeOption()
         : base(I18n.UI_Option_DesertTrade(), TextureManager.Instance.DesertTexture, GetSourceRectangle(1), OptionId.DesertTrade) { }

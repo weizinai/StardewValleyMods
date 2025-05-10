@@ -4,7 +4,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class BooksellerOption : BaseOption
+public class BooksellerOption : BaseOption
 {
     public BooksellerOption()
         : base(I18n.UI_Option_Bookseller(), TextureManager.Instance.TownTexture, GetSourceRectangle(8), OptionId.Bookseller) { }

@@ -2,7 +2,7 @@
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class IanOption : BaseOption
+public class IanOption : BaseOption
 {
     public IanOption()
         : base(I18n.UI_Option_Ian(), TextureManager.Instance.RSVTexture, GetSourceRectangle(2), OptionId.Ian) { }

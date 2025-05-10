@@ -5,7 +5,7 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class QiCatOption : BaseOption
+public class QiCatOption : BaseOption
 {
     private readonly IModHelper helper;
 

@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
-namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 public abstract class BaseOption
 {

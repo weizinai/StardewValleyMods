@@ -7,6 +7,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 using weizinai.StardewValleyMod.Common;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;

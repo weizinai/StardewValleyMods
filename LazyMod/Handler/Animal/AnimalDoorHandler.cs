@@ -1,11 +1,10 @@
 using System.Linq;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class AnimalDoorHandler : BaseAutomationHandler, IAutomationHandlerWithDayChanged
+public class AnimalDoorHandler : BaseAutomationHandler, IAutomationHandlerWithDayChanged
 {
     public AnimalDoorHandler(ModConfig config) : base(config) { }
 

@@ -1,11 +1,10 @@
 using StardewValley;
 using StardewValley.GameData.Machines;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class TriggerMachineHandler : BaseAutomationHandler
+public class TriggerMachineHandler : BaseAutomationHandler
 {
     public TriggerMachineHandler(ModConfig config) : base(config) { }
 

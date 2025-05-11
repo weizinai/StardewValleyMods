@@ -8,7 +8,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class FoodHandler : BaseAutomationHandler
+public class FoodHandler : BaseAutomationHandler
 {
     private readonly Dictionary<SObject, string?> foodData = new();
 

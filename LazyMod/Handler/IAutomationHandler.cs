@@ -1,8 +1,8 @@
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal interface IAutomationHandler
+public interface IAutomationHandler
 {
     public bool IsEnable();
 

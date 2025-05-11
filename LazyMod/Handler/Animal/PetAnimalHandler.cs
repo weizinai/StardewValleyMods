@@ -2,12 +2,11 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class PetAnimalHandler : BaseAutomationHandler
+public class PetAnimalHandler : BaseAutomationHandler
 {
     public PetAnimalHandler(ModConfig config) : base(config) { }
 

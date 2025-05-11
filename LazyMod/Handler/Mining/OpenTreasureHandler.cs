@@ -1,10 +1,9 @@
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class OpenTreasureHandler : BaseAutomationHandler
+public class OpenTreasureHandler : BaseAutomationHandler
 {
     public OpenTreasureHandler(ModConfig config) : base(config) { }
 

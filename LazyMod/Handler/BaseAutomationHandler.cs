@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewValley;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 using weizinai.StardewValleyMod.PiCore;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework;
+namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal abstract class BaseAutomationHandler : IAutomationHandler
+public abstract class BaseAutomationHandler : IAutomationHandler
 {
     protected readonly ModConfig Config;
 

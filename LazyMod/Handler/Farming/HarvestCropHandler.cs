@@ -1,12 +1,11 @@
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class HarvestCropHandler : BaseAutomationHandler
+public class HarvestCropHandler : BaseAutomationHandler
 {
     public HarvestCropHandler(ModConfig config) : base(config) { }
 

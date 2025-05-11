@@ -1,11 +1,10 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class FertilizeHandler : BaseAutomationHandler
+public class FertilizeHandler : BaseAutomationHandler
 {
     public FertilizeHandler(ModConfig config) : base(config) { }
 

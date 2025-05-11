@@ -1,12 +1,11 @@
 using StardewValley;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class ShearsAnimalHandler : BaseAutomationHandler
+public class ShearsAnimalHandler : BaseAutomationHandler
 {
     public ShearsAnimalHandler(ModConfig config) : base(config) { }
 

@@ -2,9 +2,9 @@ using System;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework.Integration;
+namespace weizinai.StardewValleyMod.LazyMod.Integration;
 
-internal static class GenericModConfigMenuIntegrationExtension
+public static class GenericModConfigMenuIntegrationExtension
 {
     public static GenericModConfigMenuIntegration<ModConfig> AddBaseAutomationConfig(
         this GenericModConfigMenuIntegration<ModConfig> configMenu,

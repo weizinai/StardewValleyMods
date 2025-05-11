@@ -4,7 +4,7 @@ using StardewModdingAPI.Utilities;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-internal class ModConfig
+public class ModConfig
 {
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.R);
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);

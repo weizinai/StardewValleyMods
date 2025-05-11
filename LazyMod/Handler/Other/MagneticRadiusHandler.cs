@@ -1,12 +1,11 @@
 using System;
 using StardewValley;
 using StardewValley.Buffs;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class MagneticRadiusHandler : BaseAutomationHandler
+public class MagneticRadiusHandler : BaseAutomationHandler
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
 

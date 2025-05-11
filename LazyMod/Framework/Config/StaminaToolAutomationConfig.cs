@@ -1,6 +1,6 @@
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-internal class StaminaToolAutomationConfig : ToolAutomationConfig
+public class StaminaToolAutomationConfig : ToolAutomationConfig
 {
     public float StopStamina;
 

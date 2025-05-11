@@ -1,6 +1,6 @@
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-internal class ToolAutomationConfig : BaseAutomationConfig
+public class ToolAutomationConfig : BaseAutomationConfig
 {
     public bool FindToolFromInventory;
 

@@ -1,12 +1,11 @@
 using System.Linq;
 using StardewValley;
 using StardewValley.Characters;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class GarbageCanHandler : BaseAutomationHandler
+public class GarbageCanHandler : BaseAutomationHandler
 {
     public GarbageCanHandler(ModConfig config) : base(config) { }
 

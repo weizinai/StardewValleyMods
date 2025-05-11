@@ -1,10 +1,9 @@
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class PlaceFloorHandler : BaseAutomationHandler
+public class PlaceFloorHandler : BaseAutomationHandler
 {
     public PlaceFloorHandler(ModConfig config) : base(config) { }
 

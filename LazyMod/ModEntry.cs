@@ -5,16 +5,15 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.Common;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
-using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
+using weizinai.StardewValleyMod.LazyMod.Helper;
+using weizinai.StardewValleyMod.LazyMod.Integration;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
-internal class ModEntry : Mod
+public class ModEntry : Mod
 {
     private ModConfig config = null!;
     private GenericModConfigMenuIntegration<ModConfig>? configMenu;

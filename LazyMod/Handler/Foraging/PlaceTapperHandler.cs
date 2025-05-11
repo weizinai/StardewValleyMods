@@ -1,11 +1,10 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class PlaceTapperHandler : BaseAutomationHandler
+public class PlaceTapperHandler : BaseAutomationHandler
 {
     public PlaceTapperHandler(ModConfig config) : base(config) { }
 

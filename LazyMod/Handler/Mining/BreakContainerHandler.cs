@@ -1,13 +1,12 @@
 using StardewValley;
 using StardewValley.Objects;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class BreakContainerHandler : BaseAutomationHandler
+public class BreakContainerHandler : BaseAutomationHandler
 {
     public BreakContainerHandler(ModConfig config) : base(config) { }
 

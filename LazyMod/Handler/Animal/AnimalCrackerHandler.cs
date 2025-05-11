@@ -1,11 +1,10 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class AnimalCrackerHandler : BaseAutomationHandler
+public class AnimalCrackerHandler : BaseAutomationHandler
 {
     public AnimalCrackerHandler(ModConfig config) : base(config) { }
 

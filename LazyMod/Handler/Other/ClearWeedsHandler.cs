@@ -1,12 +1,11 @@
 using StardewValley;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class ClearWeedsHandler : BaseAutomationHandler
+public class ClearWeedsHandler : BaseAutomationHandler
 {
     public ClearWeedsHandler(ModConfig config) : base(config) { }
 

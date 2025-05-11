@@ -1,11 +1,10 @@
 using StardewValley;
 using StardewValley.Objects;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class HarvestCrabPotHandler : BaseAutomationHandler
+public class HarvestCrabPotHandler : BaseAutomationHandler
 {
     public HarvestCrabPotHandler(ModConfig config) : base(config) { }
 

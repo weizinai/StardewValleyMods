@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+namespace weizinai.StardewValleyMod.LazyMod.Helper;
 
-internal static class ToolHelper
+public static class ToolHelper
 {
     private static HashSet<Tool> toolCache = new();
 

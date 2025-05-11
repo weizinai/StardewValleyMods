@@ -3,13 +3,12 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class ChopTreeHandler : BaseAutomationHandler
+public class ChopTreeHandler : BaseAutomationHandler
 {
     public ChopTreeHandler(ModConfig config) : base(config) { }
 

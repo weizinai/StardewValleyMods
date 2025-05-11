@@ -3,13 +3,12 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class ClearStoneHandler : BaseAutomationHandler
+public class ClearStoneHandler : BaseAutomationHandler
 {
     // 农场普通石头的QualifiedItemId
     private readonly HashSet<string> farmStone = new() { "(O)343", "(O)450" };

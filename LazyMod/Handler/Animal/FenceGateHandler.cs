@@ -1,12 +1,11 @@
 using System;
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class FenceGateHandler : BaseAutomationHandler
+public class FenceGateHandler : BaseAutomationHandler
 {
     public FenceGateHandler(ModConfig config) : base(config) { }
 

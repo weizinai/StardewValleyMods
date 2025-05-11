@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using StardewValley;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+namespace weizinai.StardewValleyMod.LazyMod.Helper;
 
-internal static class TileHelper
+public static class TileHelper
 {
     private static readonly Dictionary<int, List<Vector2>> TileCache = new();
 

@@ -1,13 +1,12 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
-using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
+using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class ClearDeadCropHandler : BaseAutomationHandler
+public class ClearDeadCropHandler : BaseAutomationHandler
 {
     public ClearDeadCropHandler(ModConfig config) : base(config) { }
 

@@ -1,11 +1,10 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class ShakeTreeHandler : BaseAutomationHandler
+public class ShakeTreeHandler : BaseAutomationHandler
 {
     public ShakeTreeHandler(ModConfig config) : base(config) { }
 

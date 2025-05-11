@@ -1,10 +1,9 @@
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
-internal class PlaceCrabPotHandler : BaseAutomationHandler
+public class PlaceCrabPotHandler : BaseAutomationHandler
 {
     public PlaceCrabPotHandler(ModConfig config) : base(config) { }
 

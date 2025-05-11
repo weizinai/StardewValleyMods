@@ -1,10 +1,11 @@
 using System;
+using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
-namespace weizinai.StardewValleyMod.LazyMod.Framework.Integration;
+namespace weizinai.StardewValleyMod.LazyMod.Integration;
 
-internal class GenericModConfigMenuIntegrationForLazyMod : IGenericModConfigMenuIntegrationFor<ModConfig>
+public class GenericModConfigMenuIntegrationForLazyMod : IGenericModConfigMenuIntegrationFor<ModConfig>
 {
     private readonly string[] buffMaintainAllowValues =
     {

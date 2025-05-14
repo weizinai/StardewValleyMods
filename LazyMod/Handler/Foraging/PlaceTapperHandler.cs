@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class PlaceTapperHandler : BaseAutomationHandler
 {
-    public PlaceTapperHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (item is SObject { QualifiedItemId: "(BC)105" or "(BC)264" } tapper)

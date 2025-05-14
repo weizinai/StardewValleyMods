@@ -4,15 +4,12 @@ using StardewValley;
 using StardewValley.Buffs;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Framework;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class FoodHandler : BaseAutomationHandler
 {
     private readonly Dictionary<SObject, string?> foodData = new();
-
-    public FoodHandler(ModConfig config) : base(config) { }
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {

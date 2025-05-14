@@ -1,15 +1,12 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class TillDirtHandler : BaseAutomationHandler
 {
-    public TillDirtHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoTillDirt.FindToolFromInventory);

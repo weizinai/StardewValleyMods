@@ -1,14 +1,11 @@
 using StardewValley;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class ClearWeedsHandler : BaseAutomationHandler
 {
-    public ClearWeedsHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);

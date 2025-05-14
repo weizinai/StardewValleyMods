@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class GrabTreasureItemHandler : BaseAutomationHandler
 {
-    public GrabTreasureItemHandler(ModConfig config) : base(config) { }
-
     public override bool IsEnable()
     {
         return true;

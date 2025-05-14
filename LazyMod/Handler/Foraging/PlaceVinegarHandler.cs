@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class PlaceVinegarHandler : BaseAutomationHandler
 {
-    public PlaceVinegarHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (item is SObject { QualifiedItemId: "(O)419" } vinegar)

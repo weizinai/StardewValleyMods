@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -15,7 +14,7 @@ namespace weizinai.StardewValleyMod.LazyMod;
 
 public class ModEntry : Mod
 {
-    private ModConfig config = null!;
+    private ModConfig Config => ModConfig.Instance;
     private GenericModConfigMenuIntegration<ModConfig>? configMenu;
 
     private int cooldownTimer;
@@ -29,16 +28,7 @@ public class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         Logger.Init(this.Monitor);
-        try
-        {
-            this.config = helper.ReadConfig<ModConfig>();
-        }
-        catch (Exception)
-        {
-            helper.WriteConfig(new ModConfig());
-            this.config = helper.ReadConfig<ModConfig>();
-            Logger.Info("Read config.json file failed and was automatically fixed. Please reset the features you want to turn on.");
-        }
+        ModConfig.Init(helper);
 
         this.UpdateConfig();
 
@@ -58,8 +48,8 @@ public class ModEntry : Mod
     {
         this.configMenu = this.AddGenericModConfigMenu(
             new GenericModConfigMenuIntegrationForLazyMod(),
-            () => this.config,
-            value => this.config = value,
+            () => ModConfig.Instance,
+            value => ModConfig.Instance = value,
             this.UpdateConfig,
             this.UpdateConfig
         );
@@ -112,13 +102,13 @@ public class ModEntry : Mod
     {
         if (!Context.IsPlayerFree) return;
 
-        if (this.config.ToggleModStateKeybind.JustPressed())
+        if (this.Config.ToggleModStateKeybind.JustPressed())
         {
             this.modEnable = !this.modEnable;
             Logger.NoIconHUDMessage(this.modEnable ? I18n.UI_ModState_Enable() : I18n.UI_ModState_Disable());
         }
 
-        if (this.config.OpenConfigMenuKeybind.JustPressed())
+        if (this.Config.OpenConfigMenuKeybind.JustPressed())
         {
             this.configMenu?.OpenModMenu();
         }
@@ -127,7 +117,7 @@ public class ModEntry : Mod
     private bool UpdateCooldown()
     {
         this.cooldownTimer++;
-        if (this.cooldownTimer < this.config.Cooldown) return false;
+        if (this.cooldownTimer < ModConfig.Instance.Cooldown) return false;
         this.cooldownTimer = 0;
         return true;
     }
@@ -141,61 +131,61 @@ public class ModEntry : Mod
     private IEnumerable<IAutomationHandler> GetHandlers()
     {
         // Farming
-        if (this.config.AutoTillDirt.IsEnable) yield return new TillDirtHandler(this.config);
-        if (this.config.AutoClearTilledDirt.IsEnable) yield return new ClearTilledDirtHandler(this.config);
-        if (this.config.AutoWaterDirt.IsEnable) yield return new WaterDirtHandler(this.config);
-        if (this.config.AutoRefillWateringCan.IsEnable) yield return new RefillWateringCanHandler(this.config);
-        if (this.config.AutoSeed.IsEnable) yield return new SeedHandler(this.config);
-        if (this.config.AutoFertilize.IsEnable) yield return new FertilizeHandler(this.config);
-        if (this.config.AutoHarvestCrop.IsEnable) yield return new HarvestCropHandler(this.config);
-        if (this.config.AutoShakeFruitTree.IsEnable) yield return new ShakeFruitTreeHandler(this.config);
-        if (this.config.AutoClearDeadCrop.IsEnable) yield return new ClearDeadCropHandler(this.config);
+        if (this.Config.AutoTillDirt.IsEnable) yield return new TillDirtHandler();
+        if (this.Config.AutoClearTilledDirt.IsEnable) yield return new ClearTilledDirtHandler();
+        if (this.Config.AutoWaterDirt.IsEnable) yield return new WaterDirtHandler();
+        if (this.Config.AutoRefillWateringCan.IsEnable) yield return new RefillWateringCanHandler();
+        if (this.Config.AutoSeed.IsEnable) yield return new SeedHandler();
+        if (this.Config.AutoFertilize.IsEnable) yield return new FertilizeHandler();
+        if (this.Config.AutoHarvestCrop.IsEnable) yield return new HarvestCropHandler();
+        if (this.Config.AutoShakeFruitTree.IsEnable) yield return new ShakeFruitTreeHandler();
+        if (this.Config.AutoClearDeadCrop.IsEnable) yield return new ClearDeadCropHandler();
 
         // Animal
-        if (this.config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler(this.config);
-        if (this.config.AutoPetPet.IsEnable) yield return new PetPetHandler(this.config);
-        if (this.config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler(this.config);
-        if (this.config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler(this.config);
-        if (this.config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler(this.config);
-        if (this.config.AutoOpenAnimalDoor) yield return new AnimalDoorHandler(this.config);
-        if (this.config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler(this.config);
+        if (this.Config.AutoPetAnimal.IsEnable) yield return new PetAnimalHandler();
+        if (this.Config.AutoPetPet.IsEnable) yield return new PetPetHandler();
+        if (this.Config.AutoMilkAnimal.IsEnable) yield return new MilkAnimalHandler();
+        if (this.Config.AutoShearsAnimal.IsEnable) yield return new ShearsAnimalHandler();
+        if (this.Config.AutoFeedAnimalCracker.IsEnable) yield return new AnimalCrackerHandler();
+        if (this.Config.AutoOpenAnimalDoor) yield return new AnimalDoorHandler();
+        if (this.Config.AutoOpenFenceGate.IsEnable) yield return new FenceGateHandler();
 
         // Mining
-        if (this.config.AutoClearStone.IsEnable) yield return new ClearStoneHandler(this.config);
-        if (this.config.AutoCollectCoal.IsEnable) yield return new CollectCoalHandler(this.config);
-        if (this.config.AutoBreakContainer.IsEnable) yield return new BreakContainerHandler(this.config);
-        if (this.config.AutoOpenTreasure.IsEnable) yield return new OpenTreasureHandler(this.config);
-        if (this.config.AutoClearCrystal.IsEnable) yield return new ClearCrystalHandler(this.config);
-        if (this.config.AutoCoolLava.IsEnable) yield return new CoolLavaHandler(this.config);
+        if (this.Config.AutoClearStone.IsEnable) yield return new ClearStoneHandler();
+        if (this.Config.AutoCollectCoal.IsEnable) yield return new CollectCoalHandler();
+        if (this.Config.AutoBreakContainer.IsEnable) yield return new BreakContainerHandler();
+        if (this.Config.AutoOpenTreasure.IsEnable) yield return new OpenTreasureHandler();
+        if (this.Config.AutoClearCrystal.IsEnable) yield return new ClearCrystalHandler();
+        if (this.Config.AutoCoolLava.IsEnable) yield return new CoolLavaHandler();
 
         // Foraging
-        if (this.config.AutoForage.IsEnable) yield return new ForageHandler(this.config);
-        if (this.config.AutoHarvestGinger.IsEnable) yield return new HarvestGingerHandler(this.config);
-        if (this.config.AutoChopTree.IsEnable) yield return new ChopTreeHandler(this.config);
-        if (this.config.AutoShakeTree.IsEnable) yield return new ShakeTreeHandler(this.config);
-        if (this.config.AutoHarvestMoss.IsEnable) yield return new HarvestMossHandler(this.config);
-        if (this.config.AutoPlaceTapper.IsEnable) yield return new PlaceTapperHandler(this.config);
-        if (this.config.AutoPlaceVinegar.IsEnable) yield return new PlaceVinegarHandler(this.config);
-        if (this.config.AutoClearWood.IsEnable) yield return new ClearWoodHandler(this.config);
+        if (this.Config.AutoForage.IsEnable) yield return new ForageHandler();
+        if (this.Config.AutoHarvestGinger.IsEnable) yield return new HarvestGingerHandler();
+        if (this.Config.AutoChopTree.IsEnable) yield return new ChopTreeHandler();
+        if (this.Config.AutoShakeTree.IsEnable) yield return new ShakeTreeHandler();
+        if (this.Config.AutoHarvestMoss.IsEnable) yield return new HarvestMossHandler();
+        if (this.Config.AutoPlaceTapper.IsEnable) yield return new PlaceTapperHandler();
+        if (this.Config.AutoPlaceVinegar.IsEnable) yield return new PlaceVinegarHandler();
+        if (this.Config.AutoClearWood.IsEnable) yield return new ClearWoodHandler();
 
         // Fishing
-        if (this.config.AutoGrabTreasureItem) yield return new GrabTreasureItemHandler(this.config);
-        if (this.config.AutoExitTreasureMenu) yield return new ExitTreasureMenuHandler(this.config);
-        if (this.config.AutoPlaceCarbPot.IsEnable) yield return new PlaceCrabPotHandler(this.config);
-        if (this.config.AutoAddBaitForCarbPot.IsEnable) yield return new AddBaitForCrabPotHandler(this.config);
-        if (this.config.AutoHarvestCarbPot.IsEnable) yield return new HarvestCrabPotHandler(this.config);
+        if (this.Config.AutoGrabTreasureItem) yield return new GrabTreasureItemHandler();
+        if (this.Config.AutoExitTreasureMenu) yield return new ExitTreasureMenuHandler();
+        if (this.Config.AutoPlaceCarbPot.IsEnable) yield return new PlaceCrabPotHandler();
+        if (this.Config.AutoAddBaitForCarbPot.IsEnable) yield return new AddBaitForCrabPotHandler();
+        if (this.Config.AutoHarvestCarbPot.IsEnable) yield return new HarvestCrabPotHandler();
 
         // Food
-        yield return new FoodHandler(this.config);
+        yield return new FoodHandler();
 
         // Other
-        yield return new MagneticRadiusHandler(this.config);
-        if (this.config.AutoClearWeeds.IsEnable) yield return new ClearWeedsHandler(this.config);
-        if (this.config.AutoDigSpots.IsEnable) yield return new DigSpotHandler(this.config);
-        if (this.config.AutoHarvestMachine.IsEnable) yield return new HarvestMachineHandler(this.config);
-        if (this.config.AutoTriggerMachine.IsEnable) yield return new TriggerMachineHandler(this.config);
-        if (this.config.AutoUseFairyDust.IsEnable) yield return new FairyDustHandler(this.config);
-        if (this.config.AutoGarbageCan.IsEnable) yield return new GarbageCanHandler(this.config);
-        if (this.config.AutoPlaceFloor.IsEnable) yield return new PlaceFloorHandler(this.config);
+        yield return new MagneticRadiusHandler();
+        if (this.Config.AutoClearWeeds.IsEnable) yield return new ClearWeedsHandler();
+        if (this.Config.AutoDigSpots.IsEnable) yield return new DigSpotHandler();
+        if (this.Config.AutoHarvestMachine.IsEnable) yield return new HarvestMachineHandler();
+        if (this.Config.AutoTriggerMachine.IsEnable) yield return new TriggerMachineHandler();
+        if (this.Config.AutoUseFairyDust.IsEnable) yield return new FairyDustHandler();
+        if (this.Config.AutoGarbageCan.IsEnable) yield return new GarbageCanHandler();
+        if (this.Config.AutoPlaceFloor.IsEnable) yield return new PlaceFloorHandler();
     }
 }

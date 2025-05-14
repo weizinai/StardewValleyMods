@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Framework;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-public class ModConfig
+public class ModConfig : SingletonModConfig<ModConfig>
 {
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.R);
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);

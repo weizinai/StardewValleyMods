@@ -13,12 +13,7 @@ namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public abstract class BaseAutomationHandler : IAutomationHandler
 {
-    protected readonly ModConfig Config;
-
-    protected BaseAutomationHandler(ModConfig config)
-    {
-        this.Config = config;
-    }
+    protected ModConfig Config => ModConfig.Instance;
 
     public virtual bool IsEnable()
     {

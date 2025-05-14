@@ -1,13 +1,10 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class AnimalCrackerHandler : BaseAutomationHandler
 {
-    public AnimalCrackerHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (item?.QualifiedItemId == "(O)GoldenAnimalCracker")

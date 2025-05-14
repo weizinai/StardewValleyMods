@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.GameData.Machines;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class TriggerMachineHandler : BaseAutomationHandler
 {
-    public TriggerMachineHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (item == null) return;

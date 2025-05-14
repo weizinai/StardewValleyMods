@@ -2,14 +2,11 @@ using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class PetAnimalHandler : BaseAutomationHandler
 {
-    public PetAnimalHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var animals = location.animals.Values;

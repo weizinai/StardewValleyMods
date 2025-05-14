@@ -1,15 +1,12 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class WaterDirtHandler : BaseAutomationHandler
 {
-    public WaterDirtHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoWaterDirt.FindToolFromInventory);

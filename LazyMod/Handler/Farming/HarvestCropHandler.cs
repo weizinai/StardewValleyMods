@@ -1,14 +1,11 @@
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class HarvestCropHandler : BaseAutomationHandler
 {
-    public HarvestCropHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         this.ForEachTile(this.Config.AutoHarvestCrop.Range, tile =>

@@ -3,7 +3,6 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
@@ -40,8 +39,6 @@ public class ClearStoneHandler : BaseAutomationHandler
     private readonly HashSet<string> calicoEggStone = new() { "(O)CalicoEggStone_0", "(O)CalicoEggStone_1", "(O)CalicoEggStone_2" };
 
     private readonly HashSet<int> mineBoulder = new() { 752, 754, 756, 758, 148 };
-
-    public ClearStoneHandler(ModConfig config) : base(config) { }
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {

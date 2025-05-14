@@ -3,15 +3,12 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class ChopTreeHandler : BaseAutomationHandler
 {
-    public ChopTreeHandler(ModConfig config) : base(config) { }
-
     public override bool IsEnable()
     {
         return base.IsEnable() && Game1.currentLocation is not Town;

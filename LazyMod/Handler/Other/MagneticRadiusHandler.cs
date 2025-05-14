@@ -1,15 +1,12 @@
 using System;
 using StardewValley;
 using StardewValley.Buffs;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class MagneticRadiusHandler : BaseAutomationHandler
 {
     private const string UniqueBuffId = "weizinai.LazyMod";
-
-    public MagneticRadiusHandler(ModConfig config) : base(config) { }
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {

@@ -1,15 +1,12 @@
 using System.Linq;
 using StardewValley;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class MilkAnimalHandler : BaseAutomationHandler
 {
-    public MilkAnimalHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var milkPail = ToolHelper.GetTool<MilkPail>(this.Config.AutoMilkAnimal.FindToolFromInventory);

@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.Objects;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class HarvestCrabPotHandler : BaseAutomationHandler
 {
-    public HarvestCrabPotHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         this.ForEachTile(this.Config.AutoHarvestCarbPot.Range, tile =>

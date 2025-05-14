@@ -1,13 +1,10 @@
 using System.Linq;
 using StardewValley;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class AnimalDoorHandler : BaseAutomationHandler, IAutomationHandlerWithDayChanged
 {
-    public AnimalDoorHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location) { }
 
     public void OnDayStarted()

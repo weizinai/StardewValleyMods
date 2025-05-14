@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.Objects;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class HarvestMachineHandler : BaseAutomationHandler
 {
-    public HarvestMachineHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         this.ForEachTile(this.Config.AutoHarvestMachine.Range, tile =>

@@ -1,13 +1,10 @@
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class CollectCoalHandler : BaseAutomationHandler
 {
-    public CollectCoalHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (location is not MineShaft) return;

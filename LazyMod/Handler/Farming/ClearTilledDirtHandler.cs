@@ -1,15 +1,12 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class ClearTilledDirtHandler : BaseAutomationHandler
 {
-    public ClearTilledDirtHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearTilledDirt.FindToolFromInventory);

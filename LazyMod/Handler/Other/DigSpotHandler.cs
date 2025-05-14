@@ -1,14 +1,11 @@
 using StardewValley;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class DigSpotHandler : BaseAutomationHandler
 {
-    public DigSpotHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);

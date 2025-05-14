@@ -2,15 +2,12 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Helper;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
 public class CoolLavaHandler : BaseAutomationHandler
 {
-    public CoolLavaHandler(ModConfig config) : base(config) { }
-
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         if (location is not VolcanoDungeon dungeon) return;

@@ -4,6 +4,15 @@ public static class SItem
 {
     #region Object
 
+    /// <summary>IceCrystal</summary>
+    public const string IceCrystalNode1 = "(O)319";
+    
+    /// <summary>IceCrystal</summary>
+    public const string IceCrystalNode2 = "(O)320";
+    
+    /// <summary>IceCrystal</summary>
+    public const string IceCrystalNode3 = "(O)321";
+
     /// <summary>铜矿石</summary>
     public const string CopperOre = "(O)378";
 

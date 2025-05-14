@@ -1,6 +1,7 @@
 using StardewValley;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Helper;
+using weizinai.StardewValleyMod.PiCore.Extension;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
@@ -14,7 +15,7 @@ public class ClearWeedsHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoClearWeeds.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj != null && obj.IsWeeds() && obj.QualifiedItemId is not ("(O)319" or "(O)320" or "(O)321"))
+            if (obj != null && obj.IsWeeds() && !obj.IsIceCrystal())
             {
                 obj.performToolAction(scythe);
                 location.removeObject(tile, false);

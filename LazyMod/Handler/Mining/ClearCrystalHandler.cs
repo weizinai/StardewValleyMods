@@ -1,6 +1,7 @@
 using StardewValley;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Helper;
+using weizinai.StardewValleyMod.PiCore.Extension;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
@@ -14,7 +15,7 @@ public class ClearCrystalHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoClearCrystal.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId is "(O)319" or "(O)320" or "(O)321")
+            if (obj?.IsIceCrystal() == true)
             {
                 if (obj.performToolAction(tool))
                 {

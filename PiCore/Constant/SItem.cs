@@ -1,4 +1,6 @@
-﻿namespace weizinai.StardewValleyMod.PiCore.Constant;
+﻿using System.Threading.Tasks.Sources;
+
+namespace weizinai.StardewValleyMod.PiCore.Constant;
 
 public static class SItem
 {
@@ -39,6 +41,9 @@ public static class SItem
 
     /// <summary>火山晶石</summary>
     public const string CinderShard = "(O)848";
+
+    /// <summary>金色动物饼干</summary>
+    public const string GoldenAnimalCracker = "(O)GoldenAnimalCracker";
 
     #endregion
 }

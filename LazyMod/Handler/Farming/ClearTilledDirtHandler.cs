@@ -10,7 +10,8 @@ public class ClearTilledDirtHandler : BaseAutomationHandler
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearTilledDirt.FindToolFromInventory);
-        if (pickaxe is null) return;
+
+        if (pickaxe == null) return;
 
         this.ForEachTile(this.Config.AutoClearTilledDirt.Range, tile =>
         {

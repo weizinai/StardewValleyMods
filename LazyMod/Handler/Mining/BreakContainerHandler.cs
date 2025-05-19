@@ -15,7 +15,10 @@ public class BreakContainerHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoBreakContainer.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is BreakableContainer) obj.performToolAction(weapon);
+            if (obj is BreakableContainer)
+            {
+                obj.performToolAction(weapon);
+            }
             return true;
         });
     }

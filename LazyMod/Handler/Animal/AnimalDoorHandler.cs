@@ -1,4 +1,3 @@
-using System.Linq;
 using StardewValley;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
@@ -24,9 +23,15 @@ public class AnimalDoorHandler : BaseAutomationHandler, IAutomationHandlerWithDa
         var location = Game1.currentLocation;
         Utility.ForEachBuilding(building =>
         {
-            if (building.animalDoor is not null && building.animalDoorOpen.Value != isOpen)
+            if (building.animalDoor != null && building.animalDoorOpen.Value != isOpen)
             {
-                foreach (var animal in location.Animals.Values.Where(animal => !animal.IsHome && animal.home == building)) animal.warpHome();
+                foreach (var animal in location.Animals.Values)
+                {
+                    if (!animal.IsHome && animal.home == building)
+                    {
+                        animal.warpHome();
+                    }
+                }
                 building.ToggleAnimalDoor(Game1.player);
             }
             return true;

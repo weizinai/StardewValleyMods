@@ -9,30 +9,29 @@ public class AnimalCrackerHandler : BaseAutomationHandler
 {
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (item?.QualifiedItemId == SItem.GoldenAnimalCracker)
+        if (item?.QualifiedItemId != SItem.GoldenAnimalCracker) return;
+
+        var animals = location.animals.Values;
+
+        this.ForEachTile(this.Config.AutoFeedAnimalCracker.Range, tile =>
         {
-            var animals = location.animals.Values;
-
-            this.ForEachTile(this.Config.AutoFeedAnimalCracker.Range, tile =>
+            foreach (var animal in animals)
             {
-                foreach (var animal in animals)
+                if (this.CanFeedAnimalCracker(tile, animal))
                 {
-                    if (this.CanFeedAnimalCracker(tile, animal))
-                    {
-                        animal.EatGoldenAnimalCracker();
-                        return true;
-                    }
+                    animal.EatGoldenAnimalCracker();
+                    return true;
                 }
+            }
 
-                return true;
-            });
-        }
+            return true;
+        });
     }
 
     private bool CanFeedAnimalCracker(Vector2 tile, FarmAnimal animal)
     {
-        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) 
-               && !animal.hasEatenAnimalCracker.Value 
+        return animal.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile))
+               && !animal.hasEatenAnimalCracker.Value
                && (animal.GetAnimalData()?.CanEatGoldenCrackers ?? false);
     }
 }

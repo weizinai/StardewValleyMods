@@ -15,7 +15,10 @@ public class HarvestMossHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoHarvestMoss.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is Tree tree && tree.hasMoss.Value) tree.performToolAction(scythe, 0, tile);
+            if (terrainFeature is Tree tree && tree.hasMoss.Value)
+            {
+                tree.performToolAction(scythe, 0, tile);
+            }
             return true;
         });
     }

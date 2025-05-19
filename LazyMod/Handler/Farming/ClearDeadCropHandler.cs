@@ -10,7 +10,8 @@ public class ClearDeadCropHandler : BaseAutomationHandler
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
-        if (scythe is null) return;
+
+        if (scythe == null) return;
 
         this.ForEachTile(this.Config.AutoClearDeadCrop.Range, tile =>
         {

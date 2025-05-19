@@ -10,17 +10,20 @@ public class HarvestCrabPotHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoHarvestCarbPot.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is CrabPot) this.HarvestMachine(player, obj);
+            if (obj is CrabPot)
+            {
+                this.HarvestMachine(player, obj);
+            }
             return true;
         });
     }
 
     protected void HarvestMachine(Farmer player, SObject? machine)
     {
-        if (machine is null) return;
+        if (machine == null) return;
 
         var heldObject = machine.heldObject.Value;
-        if (machine.readyForHarvest.Value && heldObject is not null)
+        if (machine.readyForHarvest.Value && heldObject != null)
         {
             if (!player.couldInventoryAcceptThisItem(heldObject)) return;
             machine.checkForAction(player);

@@ -89,13 +89,18 @@ public class ModEntry : Mod
 
     private void OnDayEnding(object? sender, DayEndingEventArgs e)
     {
-        foreach (var handler in this.dayChangedHandlers) handler.OnDayEnding();
+        foreach (var handler in this.dayChangedHandlers)
+        {
+            handler.OnDayEnding();
+        }
     }
 
     private void OnInventoryChanged(object? sender, InventoryChangedEventArgs e)
     {
         if (e.Added.Any(item => item is Tool) || e.Removed.Any(item => item is Tool))
+        {
             ToolHelper.UpdateToolCache();
+        }
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

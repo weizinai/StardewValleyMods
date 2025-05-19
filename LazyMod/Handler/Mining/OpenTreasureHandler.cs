@@ -9,7 +9,10 @@ public class OpenTreasureHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoOpenTreasure.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId == "(O)-1") obj.checkForAction(player);
+            if (obj?.QualifiedItemId == "(O)-1")
+            {
+                obj.checkForAction(player);
+            }
             return true;
         });
     }

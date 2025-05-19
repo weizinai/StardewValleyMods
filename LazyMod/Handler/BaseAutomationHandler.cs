@@ -26,8 +26,12 @@ public abstract class BaseAutomationHandler : IAutomationHandler
     {
         var grid = TileHelper.GetTileGrid(range);
         foreach (var tile in grid)
+        {
             if (!action(tile))
+            {
                 break;
+            }
+        }
     }
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)
@@ -55,7 +59,10 @@ public abstract class BaseAutomationHandler : IAutomationHandler
     protected void ConsumeItem(Farmer player, Item item)
     {
         item.Stack--;
-        if (item.Stack <= 0) player.removeItemFromInventory(item);
+        if (item.Stack <= 0)
+        {
+            player.removeItemFromInventory(item);
+        }
     }
 
     protected void CheckTileAction(GameLocation location, Farmer player, Vector2 tile)
@@ -67,6 +74,8 @@ public abstract class BaseAutomationHandler : IAutomationHandler
     {
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
         if (obj.placementAction(location, (int)position.X, (int)position.Y, player))
+        {
             player.reduceActiveItemByOne();
+        }
     }
 }

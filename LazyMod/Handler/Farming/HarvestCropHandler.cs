@@ -16,15 +16,16 @@ public class HarvestCropHandler : BaseAutomationHandler
                 var crop = hoeDirt.crop;
 
                 // 自动收获花逻辑
-                if (!this.Config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory)
-                    return true;
+                if (!this.Config.AutoHarvestFlower && ItemRegistry.GetData(crop.indexOfHarvest.Value)?.Category == SObject.flowersCategory) return true;
 
                 if (crop.harvest((int)tile.X, (int)tile.Y, hoeDirt))
                 {
                     hoeDirt.destroyCrop(true);
                     // 姜岛金核桃逻辑
                     if (location is IslandLocation && Game1.random.NextDouble() < 0.05)
+                    {
                         player.team.RequestLimitedNutDrops("IslandFarming", location, (int)tile.X * 64, (int)tile.Y * 64, 5);
+                    }
                 }
             }
 

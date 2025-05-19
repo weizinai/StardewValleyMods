@@ -1,6 +1,7 @@
 using StardewValley;
 using StardewValley.Tools;
 using weizinai.StardewValleyMod.LazyMod.Helper;
+using static weizinai.StardewValleyMod.PiCore.Constant.SItem;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
@@ -16,7 +17,10 @@ public class DigSpotHandler : BaseAutomationHandler
             if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return false;
 
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId is "(O)590" or "(O)SeedSpot") this.UseToolOnTile(location, player, hoe, tile);
+            if (obj?.QualifiedItemId is ArtifactSpot or SeedSpot)
+            {
+                this.UseToolOnTile(location, player, hoe, tile);
+            }
             return true;
         });
     }

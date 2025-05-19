@@ -10,7 +10,10 @@ public class ShakeTreeHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoShakeTree.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is Tree tree && tree.hasSeed.Value) tree.performUseAction(tile);
+            if (terrainFeature is Tree tree && tree.hasSeed.Value)
+            {
+                tree.performUseAction(tile);
+            }
             return true;
         });
     }

@@ -11,6 +11,7 @@ public class FenceGateHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoOpenFenceGate.Range + 2, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
+
             if (obj is not Fence fence || !fence.isGate.Value) return true;
 
             var distance = this.GetDistance(player.Tile, tile);

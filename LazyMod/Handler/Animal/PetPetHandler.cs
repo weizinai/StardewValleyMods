@@ -9,18 +9,16 @@ public class PetPetHandler : BaseAutomationHandler
 {
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var pets = location.characters.OfType<Pet>().ToList();
+        var pets = location.characters.OfType<Pet>().ToArray();
+
         if (!pets.Any()) return;
 
         this.ForEachTile(this.Config.AutoPetPet.Range, tile =>
         {
-            foreach (var pet in pets)
+            foreach (var pet in pets.Where(pet => this.CanPetPet(tile, player, pet)))
             {
-                if (this.CanPetPet(tile, player, pet))
-                {
-                    pet.checkAction(player, location);
-                    return true;
-                }
+                pet.checkAction(player, location);
+                return true;
             }
             return true;
         });
@@ -28,7 +26,7 @@ public class PetPetHandler : BaseAutomationHandler
 
     private bool CanPetPet(Vector2 tile, Farmer player, Pet pet)
     {
-        return pet.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile)) &&
-               (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays);
+        return pet.GetBoundingBox().Intersects(this.GetTileBoundingBox(tile))
+               && (!pet.lastPetDay.TryGetValue(player.UniqueMultiplayerID, out var lastPetDay) || lastPetDay != Game1.Date.TotalDays);
     }
 }

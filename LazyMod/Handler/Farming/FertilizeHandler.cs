@@ -1,5 +1,6 @@
 using StardewValley;
 using StardewValley.TerrainFeatures;
+using static weizinai.StardewValleyMod.PiCore.Constant.SItem;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
 
@@ -17,7 +18,8 @@ public class FertilizeHandler : BaseAutomationHandler
                 switch (item.QualifiedItemId)
                 {
                     // 树肥逻辑
-                    case "(O)805":
+                    case TreeFertilizer:
+                    {
                         if (terrainFeature is Tree tree && !tree.fertilized.Value && tree.growthStage.Value < Tree.treeStage)
                         {
                             if (tree.fertilize())
@@ -26,8 +28,10 @@ public class FertilizeHandler : BaseAutomationHandler
                             }
                         }
                         break;
+                    }
                     // 其他肥料逻辑
                     default:
+                    {
                         if (terrainFeature is HoeDirt hoeDirt)
                         {
                             if (hoeDirt.plant(item.ItemId, player, true))
@@ -36,6 +40,7 @@ public class FertilizeHandler : BaseAutomationHandler
                             }
                         }
                         break;
+                    }
                 }
 
                 return true;

@@ -16,7 +16,11 @@ public class ExitTreasureMenuHandler : BaseAutomationHandler
         if (Game1.activeClickableMenu is ItemGrabMenu { source: ItemGrabMenu.source_fishingChest } menu)
         {
             var hasItem = menu.ItemsToGrabMenu.actualInventory.OfType<Item>().Any();
-            if (!hasItem) menu.exitThisMenu();
+
+            if (!hasItem)
+            {
+                menu.exitThisMenu();
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
-using StardewValley.Monsters;
 using StardewValley.TerrainFeatures;
 
 namespace weizinai.StardewValleyMod.LazyMod.Handler;
@@ -78,18 +77,6 @@ public class ForageHandler : BaseAutomationHandler
                         player.gainExperience(2, 7);
                     }
                 }
-
-                // 紫色短裤逻辑
-                if (obj.ItemId.Equals("789") && location.Name.Equals("LewisBasement"))
-                {
-                    var bat = new Bat(Vector2.Zero, -789)
-                    {
-                        focusedOnFarmers = true
-                    };
-                    Game1.changeMusicTrack("none");
-                    location.playSound("cursed_mannequin");
-                    location.characters.Add(bat);
-                }
             }
             else
             {
@@ -98,8 +85,13 @@ public class ForageHandler : BaseAutomationHandler
 
             player.addItemToInventoryBool(obj.getOne());
             Game1.stats.ItemsForaged++;
-            if (player.professions.Contains(13) && random.NextDouble() < 0.2 && !obj.questItem.Value && player.couldInventoryAcceptThisItem(obj) &&
-                !location.isFarmBuildingInterior())
+            if (
+                player.professions.Contains(13)
+                && random.NextDouble() < 0.2
+                && !obj.questItem.Value
+                && player.couldInventoryAcceptThisItem(obj)
+                && !location.isFarmBuildingInterior()
+            )
             {
                 player.addItemToInventoryBool(obj.getOne());
                 player.gainExperience(2, 7);

@@ -17,7 +17,7 @@ public class GrabTreasureItemHandler : BaseAutomationHandler
             var items = menu.ItemsToGrabMenu.actualInventory;
             for (var i = 0; i < items.Count; i++)
             {
-                if (items[i] is null) continue;
+                if (items[i] == null) continue;
                 if (!player.couldInventoryAcceptThisItem(items[i])) break;
 
                 var center = menu.ItemsToGrabMenu.inventory[i].bounds.Center;

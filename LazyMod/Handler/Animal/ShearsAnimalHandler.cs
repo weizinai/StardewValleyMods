@@ -9,7 +9,8 @@ public class ShearsAnimalHandler : BaseAutomationHandler
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var shears = ToolHelper.GetTool<Shears>(this.Config.AutoShearsAnimal.FindToolFromInventory);
-        if (shears is null) return;
+
+        if (shears == null) return;
 
         var animals = location.animals.Values;
 

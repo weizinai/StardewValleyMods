@@ -23,7 +23,10 @@ public class CoolLavaHandler : BaseAutomationHandler
             if (this.CanCoolLave(dungeon, tile))
             {
                 this.UseToolOnTile(location, player, wateringCan, tile);
-                if (player.ShouldHandleAnimationSound()) player.playNearbySoundLocal("wateringCan");
+                if (player.ShouldHandleAnimationSound())
+                {
+                    player.playNearbySoundLocal("wateringCan");
+                }
             }
 
             return true;

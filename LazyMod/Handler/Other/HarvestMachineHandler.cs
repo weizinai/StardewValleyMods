@@ -10,7 +10,10 @@ public class HarvestMachineHandler : BaseAutomationHandler
         this.ForEachTile(this.Config.AutoHarvestMachine.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
-            if (obj is not CrabPot) this.HarvestMachine(player, obj);
+            if (obj is not CrabPot)
+            {
+                this.HarvestMachine(player, obj);
+            }
             return true;
         });
     }

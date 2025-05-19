@@ -17,7 +17,7 @@ public class MagneticRadiusHandler : BaseAutomationHandler
         }
 
         player.buffs.AppliedBuffs.TryGetValue(UniqueBuffId, out var buff);
-        if (buff is null || buff.millisecondsDuration <= 5000 || Math.Abs(buff.effects.MagneticRadius.Value - this.Config.MagneticRadiusIncrease) > 0.1f)
+        if (buff is not { millisecondsDuration: > 5000 } || Math.Abs(buff.effects.MagneticRadius.Value - this.Config.MagneticRadiusIncrease) > 0.1f)
         {
             buff = new Buff(
                 id: UniqueBuffId,
@@ -26,7 +26,8 @@ public class MagneticRadiusHandler : BaseAutomationHandler
                 effects: new BuffEffects
                 {
                     MagneticRadius = { Value = this.Config.MagneticRadiusIncrease * 64 }
-                });
+                }
+            );
             player.applyBuff(buff);
         }
     }

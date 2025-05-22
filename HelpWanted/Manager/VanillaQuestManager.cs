@@ -58,21 +58,32 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 
     private bool CheckDayAvailable()
     {
+        var showTooltip = ModConfig.Instance.ShowQuestGenerationTooltip;
+
         if (Game1.stats.DaysPlayed <= 1 && !this.VanillaConfig.QuestFirstDay)
         {
-            Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
+            if (showTooltip)
+            {
+                Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
+            }
             return false;
         }
 
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.VanillaConfig.QuestFestival)
         {
-            Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
+            if (showTooltip)
+            {
+                Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
+            }
             return false;
         }
 
         if (ModEntry.Random.NextDouble() >= this.VanillaConfig.DailyQuestChance)
         {
-            Logger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
+            if (showTooltip)
+            {
+                Logger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
+            }
             return false;
         }
 
@@ -84,7 +95,8 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         var npcName = npc.Name;
 
         var oneQuestPerVillager = this.VanillaConfig.OneQuestPerVillager && npcNames.Contains(npcName);
-        var excludeMaxHeartsNPC = this.VanillaConfig.ExcludeMaxHeartsNPC && Game1.player.tryGetFriendshipLevelForNPC(npcName) >= Utility.GetMaximumHeartsForCharacter(npc) * 250;
+        var excludeMaxHeartsNPC = this.VanillaConfig.ExcludeMaxHeartsNPC
+                                  && Game1.player.tryGetFriendshipLevelForNPC(npcName) >= Utility.GetMaximumHeartsForCharacter(npc) * 250;
         var excludeNPCList = this.VanillaConfig.ExcludeNPCList.Contains(npc.displayName);
 
         var available = !oneQuestPerVillager && !excludeMaxHeartsNPC && !excludeNPCList;

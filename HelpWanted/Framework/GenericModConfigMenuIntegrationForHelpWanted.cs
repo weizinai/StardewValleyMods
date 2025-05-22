@@ -8,6 +8,11 @@ internal class GenericModConfigMenuIntegrationForHelpWanted : IGenericModConfigM
     public void Register(GenericModConfigMenuIntegration<ModConfig> configMenu)
     {
         configMenu.Register()
+            .AddBoolOption(
+                config => config.ShowQuestGenerationTooltip,
+                (config, value) => config.ShowQuestGenerationTooltip = value,
+                I18n.Config_ShowQuestGenerationTooltip_Name
+            )
             .AddPageLink("VanillaConfig", I18n.Config_VanillaConfigPage_Name)
             .AddPageLink("RSVConfig", I18n.Config_RSVConfigPage_Name, enable: ModEntry.IsRSVLoaded)
             .AddPageLink("Appearance", I18n.Config_AppearancePage_Name);

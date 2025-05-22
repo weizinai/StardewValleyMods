@@ -55,8 +55,8 @@
 
     // UI
     "UI.GenerateVanillaQuest.Tooltip": "Initiating today's vanilla daily quest generation",
-    "UI.VanillaQuestFirstDay.Tooltip": "Vanilla daily quest generation disabled: First day of game cycle",
-    "UI.VanillaQuestFestival.Tooltip": "Vanilla daily quest generation suspended: Festival scheduled today or tomorrow",
+    "UI.VanillaQuestFirstDay.Tooltip": "Vanilla daily quest generation disabled: \nFirst day of game cycle",
+    "UI.VanillaQuestFestival.Tooltip": "Vanilla daily quest generation suspended: \nFestival scheduled today or tomorrow",
     "UI.VanillaDailyQuest.Tooltip": "Vanilla daily quest generation disabled for today",
 
     // RSV

@@ -2,6 +2,18 @@
 
 The English version of the changelog is machine-translated. I apologize for any linguistic inaccuracies in the translation.
 
+## [2.0.3] - 2025-05-22
+
+### Changed
+
+- Optimized the layout of quest generation tooltips when game language is set to English
+
+### Fixed
+
+- Fixed unintended time limits on story quests
+- Resolved display issue of the `ShowQuestGenerationTooltip` option in `GenericModConfigMenu`
+- Fixed an issue where related tooltips were still displayed when the 'ShowQuestGenerationTooltips' option was disabled
+
 ## [2.0.2] - 2025-05-09
 
 ### Added

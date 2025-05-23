@@ -74,14 +74,17 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
     {
         if (Game1.season != Season.Winter && this.randomDouble < 0.15)
         {
-            // this.quest.ItemId.Value = this.Random.ChooseFrom(Utility.possibleCropsAtThisTime(Game1.season, Game1.dayOfMonth <= 7));
-            this.Quest.ItemId.Value = QuestItemManager.Instance.GetRandomCrop(this.Quest.target.Value);
+            this.Quest.ItemId.Value = ModConfig.Instance.VanillaConfig.RewriteQuestItem
+                ? QuestItemManager.Instance.GetRandomCrop(this.Quest.target.Value)
+                : ModEntry.Random.ChooseFrom(Utility.possibleCropsAtThisTime(Game1.season, Game1.dayOfMonth <= 7));
             this.Quest.ItemId.Value = ItemRegistry.QualifyItemId(this.Quest.ItemId.Value) ?? this.Quest.ItemId.Value;
         }
         else
         {
-            // var rawItemId = Utility.getRandomItemFromSeason(Game1.season, 1000, true);
-            var rawItemId = QuestItemManager.Instance.GetRandomItem(this.Quest.target.Value);
+            var rawItemId = ModConfig.Instance.VanillaConfig.RewriteQuestItem
+                ? QuestItemManager.Instance.GetRandomItem(this.Quest.target.Value)
+                : Utility.getRandomItemFromSeason(Game1.season, 1000, true);
+
             this.Quest.ItemId.Value = rawItemId switch
             {
                 "-5" => "(O)176",

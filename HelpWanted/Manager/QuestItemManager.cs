@@ -31,6 +31,7 @@ public class QuestItemManager
         }
 
         Logger.Info($"No qualifying items found in {npcName}'s gift taste. Generating a random item through vanilla logic.");
+
         return Utility.getRandomItemFromSeason(Game1.season, true, ModEntry.Random);
     }
 
@@ -47,6 +48,7 @@ public class QuestItemManager
         }
 
         Logger.Info($"No qualifying crops found in {npcName}'s gift taste. Generating a random crop through vanilla logic.");
+
         return ModEntry.Random.ChooseFrom(Utility.possibleCropsAtThisTime(Game1.season, Game1.dayOfMonth <= 7));
     }
 
@@ -62,6 +64,7 @@ public class QuestItemManager
         this.possibleItems[npcName] = new List<string>();
 
         this.LoadUniversalGiftTaste();
+
         foreach (var itemId in this.universalGiftTaste)
         {
             if (CheckItemId(itemId))
@@ -81,6 +84,7 @@ public class QuestItemManager
         this.possibleItems[npcName].RemoveAll(itemId =>
         {
             var obj = new SObject(itemId, 1);
+
             return this.Config.MaxPrice >= 0 && obj.Price >= this.Config.MaxPrice
                    || !this.Config.AllowArtisanGoods && obj.Category == SObject.artisanGoodsCategory;
         });
@@ -98,6 +102,7 @@ public class QuestItemManager
         this.possibleCrops[npcName] = new List<string>();
 
         this.LoadUniversalGiftTaste();
+
         foreach (var itemId in this.universalGiftTaste)
         {
             if (CheckItemId(itemId))
@@ -117,6 +122,7 @@ public class QuestItemManager
         this.possibleCrops[npcName].RemoveAll(itemId =>
         {
             var obj = new SObject(itemId, 1);
+
             return this.Config.MaxPrice >= 0 && obj.Price >= this.Config.MaxPrice;
         });
 
@@ -146,13 +152,16 @@ public class QuestItemManager
         if (!Game1.NPCGiftTastes.TryGetValue(npcName, out var rawData))
         {
             Logger.Error($"Failed to retrieve the gift taste for {npcName} in step 1.");
+
             return new List<string>();
         }
 
         var data = rawData.Split('/');
+
         if (data.Length < 10)
         {
             Logger.Error($"Failed to retrieve the gift taste for {npcName} in step 2.");
+
             return new List<string>();
         }
 

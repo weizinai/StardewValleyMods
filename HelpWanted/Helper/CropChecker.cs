@@ -18,6 +18,7 @@ internal static class CropChecker
             if (crop.HarvestItemId == itemId)
             {
                 CropCache[itemId] = crop;
+
                 return true;
             }
         }
@@ -32,10 +33,12 @@ internal static class CropChecker
         if (crop.Seasons.Contains(Game1.season))
         {
             Logger.Trace($"{itemId} is a crop for the current season.");
+
             return true;
         }
 
         Logger.Trace($"{itemId} isn't a crop for the current season.");
+
         return false;
     }
 }

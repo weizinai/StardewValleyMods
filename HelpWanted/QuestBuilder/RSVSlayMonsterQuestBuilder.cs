@@ -26,6 +26,7 @@ public class RSVSlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
     protected override bool TrySetQuestTarget()
     {
         this.Quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2);
+
         return true;
     }
 

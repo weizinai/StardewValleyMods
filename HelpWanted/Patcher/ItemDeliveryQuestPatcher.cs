@@ -42,6 +42,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
         if (!codeMatcher.IsValid)
         {
             Logger.Error("Target instruction not found [Opcode: Ldc_I4, Operand: 150]");
+
             return codeMatcher.Instructions();
         }
 

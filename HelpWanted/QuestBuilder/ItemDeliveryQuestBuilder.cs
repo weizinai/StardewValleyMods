@@ -32,6 +32,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
         if (this.Quest.target.Value != null)
         {
             Logger.Trace($"Target for the current item delivery quest has been set to {this.Quest.target.Value}.");
+
             return false;
         }
 
@@ -40,6 +41,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
         if (Game1.player.friendshipData is not { Length: > 0 } || validTargets.Count <= 0)
         {
             Logger.Error("No NPC is assigned as the item delivery target in step 1.");
+
             return false;
         }
 
@@ -48,6 +50,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
         if (this.targetNPC == null)
         {
             Logger.Error("No NPC is assigned as the item delivery target in step 2.");
+
             return false;
         }
 
@@ -92,6 +95,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                 _ => ItemRegistry.QualifyItemId(rawItemId) ?? rawItemId
             };
         }
+
         this.item = ItemRegistry.Create(this.Quest.ItemId.Value);
     }
 
@@ -115,26 +119,31 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
             case Wizard:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13546, 13548, 13551, 13553), this.item));
+
                 break;
             }
             case Haley:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13557, 13560), this.item));
+
                 break;
             }
             case Sam:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13568, 13571), this.item));
+
                 break;
             }
             case Maru:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Maru ? 13580 : 13583), this.item));
+
                 break;
             }
             case Abigail:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Abigail ? 13590 : 13593), this.item));
+
                 break;
             }
             default:
@@ -146,16 +155,19 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                         case Demetrius:
                         {
                             this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13311, 13314), this.item));
+
                             break;
                         }
                         case Marnie:
                         {
                             this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13317, 13320), this.item));
+
                             break;
                         }
                         case Sebastian:
                         {
                             this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13324, 13327), this.item));
+
                             break;
                         }
                         default:
@@ -169,6 +181,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                                 GetPathString("I", 13308)
                             ));
                             this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
+
                             break;
                         }
                     }
@@ -180,11 +193,13 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                         case SObject { Type: "Cooking" } when this.Quest.target.Value != Wizard:
                         {
                             this.HandlerCookingQuest();
+
                             break;
                         }
                         case SObject { Edibility: > 0 } when random.NextBool():
                         {
                             this.HandlerEdibleQuest();
+
                             break;
                         }
                         case SObject { Edibility: < 0 } when random.NextBool():
@@ -203,15 +218,18 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                                 ));
                                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
                             }
+
                             break;
                         }
                         default:
                         {
                             this.HandlerDefaultQuest();
+
                             break;
                         }
                     }
                 }
+
                 break;
             }
         }
@@ -230,36 +248,43 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
             case Wizard:
             {
                 this.Quest.dialogueparts.Add(GetPathString("I", 13555));
+
                 break;
             }
             case Haley:
             {
                 this.Quest.dialogueparts.Add(GetPathString("I", 13566));
+
                 break;
             }
             case Sam:
             {
                 this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", 13577)));
+
                 break;
             }
             case Maru:
             {
                 this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Maru ? 13585 : 13587)));
+
                 break;
             }
             case Abigail:
             {
                 this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Abigail ? 13597 : 13599)));
+
                 break;
             }
             case Sebastian:
             {
                 this.Quest.dialogueparts.Add(GetPathString("I", 13602));
+
                 break;
             }
             case Elliott:
             {
                 this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", 13604), this.item));
+
                 break;
             }
             default:
@@ -274,6 +299,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                         : new DescriptionElement(GetPathString("I", 13534, 13535, 13536)));
                 this.Quest.dialogueparts.Add(GetPathString("I", 13538, 13539, 13540));
                 this.Quest.dialogueparts.Add(GetPathString("I", 13542, 13543, 13544));
+
                 break;
             }
         }
@@ -380,11 +406,13 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
             case Demetrius:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13311, 13314), this.item));
+
                 break;
             }
             case Marnie:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13317, 13320), this.item));
+
                 break;
             }
             case Harvey:
@@ -394,11 +422,13 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                     this.item,
                     new DescriptionElement(GetPathString("I", 13448, 13449, 13450, 13451, 13452, 13453, 13454, 13455, 13456, 13457, 13458, 13459))
                 ));
+
                 break;
             }
             case Gus when random.NextDouble() < 0.6:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13462), this.item));
+
                 break;
             }
             default:
@@ -458,6 +488,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                     this.Quest.parts.Add(questDescriptions2[index]);
                     this.Quest.parts.Add(questDescriptions3[index]);
                 }
+
                 break;
             }
         }

@@ -15,6 +15,7 @@ public class QuestMonsterManager
     public string GetRandomMonster()
     {
         this.possibleMonsters.AddRange(this.GetVanillaMineShaftMonsters());
+
         if (ModConfig.Instance.VanillaConfig.MoreSlayMonsterQuest)
         {
             this.possibleMonsters.AddRange(this.GetModMineShaftMonsters());
@@ -38,23 +39,29 @@ public class QuestMonsterManager
             case <= 40:
             {
                 yield return SMonster.GreenSlime;
+
                 if (mineLevel > 10) yield return SMonster.RockCrab;
                 if (mineLevel > 30) yield return SMonster.Duggy;
+
                 break;
             }
             case <= 80:
             {
                 yield return SMonster.FrostJelly;
                 yield return SMonster.DustSpirit;
+
                 if (mineLevel > 50) yield return SMonster.Ghost;
                 if (mineLevel > 70) yield return SMonster.Skeleton;
+
                 break;
             }
             default:
             {
                 yield return SMonster.Sludge;
                 yield return SMonster.LavaCrab;
+
                 if (mineLevel > 90) yield return SMonster.SquidKid;
+
                 break;
             }
         }
@@ -69,21 +76,25 @@ public class QuestMonsterManager
             case <= 40:
             {
                 yield return SMonster.Bug;
+
                 if (mineLevel > 10)
                 {
                     yield return SMonster.Grub;
                     yield return SMonster.Fly;
                 }
+
                 if (mineLevel > 30)
                 {
                     yield return SMonster.Bat;
                     yield return SMonster.StoneGolem;
                 }
+
                 break;
             }
             case <= 80:
             {
                 yield return SMonster.FrostBat;
+
                 break;
             }
             default:
@@ -92,6 +103,7 @@ public class QuestMonsterManager
                 yield return SMonster.ShadowBrute;
                 yield return SMonster.ShadowShaman;
                 yield return SMonster.MetalHead;
+
                 break;
             }
         }
@@ -103,6 +115,7 @@ public class QuestMonsterManager
             yield return SMonster.Serpent;
             yield return SMonster.CarbonGhost;
             yield return SMonster.PepperRex;
+
             if (mineLevel > 145) yield return SMonster.IridiumCrab;
             if (mineLevel > 170) yield return SMonster.IridiumBat;
         }

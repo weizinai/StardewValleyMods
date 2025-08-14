@@ -25,6 +25,7 @@ public class RSVLostItemQuestBuilder : QuestBuilder<LostItemQuest>
     protected override bool TrySetQuestTarget()
     {
         this.Quest.npcName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0);
+
         return true;
     }
 

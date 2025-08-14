@@ -25,6 +25,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         var quest = this.GenerateVanillaQuest();
         int tries = 0, i = 0;
         var npcNames = new HashSet<string>(maxQuests);
+
         while (i < maxQuests && quest != null)
         {
             var npc = this.GetNPCFromQuest(quest);
@@ -32,6 +33,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
             if (npc == null)
             {
                 Logger.Error("Failed to retrieve NPC information for the quest; vanilla quest generation has been terminated.");
+
                 break;
             }
 
@@ -66,6 +68,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
             {
                 Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
             }
+
             return false;
         }
 
@@ -75,6 +78,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
             {
                 Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
             }
+
             return false;
         }
 
@@ -84,6 +88,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
             {
                 Logger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
             }
+
             return false;
         }
 
@@ -134,6 +139,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         foreach (var (weight, createQuest) in questTypes)
         {
             currentWeight += weight;
+
             if (randomDouble < currentWeight / totalWeight)
             {
                 var quest = createQuest();
@@ -142,11 +148,13 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
                 quest.canBeCancelled.Value = true;
                 quest.reloadDescription();
                 quest.reloadObjective();
+
                 return quest;
             }
         }
 
         Logger.Error("Vanilla quest generation failed.");
+
         return null;
     }
 }

@@ -33,6 +33,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             if (npc == null)
             {
                 Logger.Error("Failed to retrieve NPC information for the quest; RSV quest generation has been terminated.");
+
                 break;
             }
 
@@ -46,6 +47,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
                     i++;
                     tries = 0;
                 }
+
                 Logger.Trace($"Duplicate RSV quest detected: ID {quest.id.Value} already exists. Regenerating new RSV quest.");
             }
             else
@@ -71,6 +73,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             {
                 Logger.NoIconHUDMessage(I18n.UI_RSVQuestFirstDay_Tooltip());
             }
+
             return false;
         }
 
@@ -80,6 +83,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             {
                 Logger.NoIconHUDMessage(I18n.UI_RSVQuestFestival_Tooltip());
             }
+
             return false;
         }
 
@@ -89,6 +93,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             {
                 Logger.NoIconHUDMessage(I18n.UI_RSVDailyQuest_Tooltip());
             }
+
             return false;
         }
 
@@ -115,43 +120,51 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
         foreach (var (weight, createQuest) in questTypes)
         {
             currentWeight += weight;
+
             if (randomDouble < currentWeight / totalWeight)
             {
                 var quest = createQuest();
+
                 switch (quest)
                 {
                     case ItemDeliveryQuest itemDeliveryQuest:
                     {
                         var builder = new RSVItemDeliveryQuestBuilder(itemDeliveryQuest);
                         builder.BuildQuest();
+
                         break;
                     }
                     case FishingQuest fishingQuest:
                     {
                         var builder = new RSVFishingQuestBuilder(fishingQuest);
                         builder.BuildQuest();
+
                         break;
                     }
                     case SlayMonsterQuest slayMonsterQuest:
                     {
                         var builder = new RSVSlayMonsterQuestBuilder(slayMonsterQuest);
                         builder.BuildQuest();
+
                         break;
                     }
                     case LostItemQuest lostItemQuest:
                     {
                         var builder = new RSVLostItemQuestBuilder(lostItemQuest);
                         builder.BuildQuest();
+
                         break;
                     }
                 }
 
                 quest.canBeCancelled.Value = true;
+
                 return quest;
             }
         }
 
         Logger.Error("RSV quest generation failed.");
+
         return null;
     }
 }

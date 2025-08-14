@@ -27,10 +27,12 @@ public class FishingQuestBuilder : QuestBuilder<FishingQuest>
         {
             Logger.Trace($"Target for the current fishing quest has been set to {this.Quest.target.Value}.");
             Logger.Trace($"ItemId for the current fishing quest has been set to {this.Quest.ItemId.Value}.");
+
             return false;
         }
 
         this.Quest.target.Value = this.randomBool ? Demetrius : Willy;
+
         return true;
     }
 

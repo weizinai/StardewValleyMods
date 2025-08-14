@@ -24,16 +24,20 @@ internal static class Broadcaster
         if (DetectedMessageType.Contains(e.Type) && e.FromModID == uniqueId)
         {
             var message = e.ReadAs<MessageData>();
+
             switch (e.Type)
             {
                 case "Info":
                     Logger.Info(message.Content);
+
                     break;
                 case "Alert":
                     Logger.Alert(message.Content);
+
                     break;
                 case "NoIconHUDMessage":
                     Logger.NoIconHUDMessage(message.Content, message.TimeLeft);
+
                     break;
             }
         }

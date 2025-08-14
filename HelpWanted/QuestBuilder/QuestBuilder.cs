@@ -28,6 +28,7 @@ public abstract class QuestBuilder<T> where T : Quest
     public virtual void BuildQuest()
     {
         if (!this.TrySetQuestTarget()) return;
+
         this.SetQuestTitle();
         this.SetQuestItemId();
         this.SetQuestMoneyReward();

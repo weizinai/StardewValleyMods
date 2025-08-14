@@ -20,10 +20,12 @@ public class QuestModel
 
     public float NoteWidth => this.PadSource.Width * ModConfig.Instance.NoteScale;
     public float NoteHeight => this.PadSource.Height * ModConfig.Instance.NoteScale;
+
     public Vector2 IconOffset => new(
         (this.NoteWidth - this.IconSource.Width * this.IconScale) / 2,
         this.NoteHeight - this.IconSource.Height * this.IconScale
     );
+
     public float IconScale => ModConfig.Instance.PortraitScale;
 
     public QuestModel(

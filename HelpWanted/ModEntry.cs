@@ -52,6 +52,7 @@ internal class ModEntry : Mod
         this.ClearCache();
 
         VanillaQuestManager.Instance.InitVanillaQuestList();
+
         if (IsRSVLoaded && ModConfig.Instance.RSVConfig.EnableRSVQuestBoard)
         {
             RSVQuestManager.Instance.InitRSVQuestList();

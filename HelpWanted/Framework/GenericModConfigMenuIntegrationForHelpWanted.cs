@@ -266,16 +266,6 @@ internal class GenericModConfigMenuIntegrationForHelpWanted : IGenericModConfigM
                 I18n.Config_PortraitScale_Name
             )
             .AddNumberOption(
-                config => config.PortraitOffsetX,
-                (config, value) => config.PortraitOffsetX = value,
-                I18n.Config_PortraitOffsetX_Name
-            )
-            .AddNumberOption(
-                config => config.PortraitOffsetY,
-                (config, value) => config.PortraitOffsetY = value,
-                I18n.Config_PortraitOffsetY_Name
-            )
-            .AddNumberOption(
                 config => config.PortraitTintR,
                 (config, value) => config.PortraitTintR = value,
                 I18n.Config_PortraitTintR_Name,

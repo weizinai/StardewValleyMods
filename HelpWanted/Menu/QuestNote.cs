@@ -7,25 +7,25 @@ namespace weizinai.StardewValleyMod.HelpWanted.Menu;
 
 public class QuestNote : ClickableComponent
 {
-    public readonly QuestData QuestData;
+    public readonly QuestModel QuestModel;
 
-    public QuestNote(QuestData questData, Rectangle bounds) : base(bounds, "")
+    public QuestNote(QuestModel questModel, Rectangle bounds) : base(bounds, "")
     {
-        this.QuestData = questData;
+        this.QuestModel = questModel;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(this.QuestData.Pad, this.bounds, this.QuestData.PadSource, this.QuestData.PadColor);
-        spriteBatch.Draw(this.QuestData.Pin, this.bounds, this.QuestData.PinSource, this.QuestData.PinColor);
+        spriteBatch.Draw(this.QuestModel.Pad, this.bounds, this.QuestModel.PadSource, this.QuestModel.PadColor);
+        spriteBatch.Draw(this.QuestModel.Pin, this.bounds, this.QuestModel.PinSource, this.QuestModel.PinColor);
         spriteBatch.Draw(
-            this.QuestData.Icon,
-            new Vector2(this.bounds.X + this.QuestData.IconOffset.X, this.bounds.Y + this.QuestData.IconOffset.Y),
-            this.QuestData.IconSource,
-            this.QuestData.IconColor,
+            this.QuestModel.Icon,
+            new Vector2(this.bounds.X + this.QuestModel.IconOffset.X, this.bounds.Y + this.QuestModel.IconOffset.Y),
+            this.QuestModel.IconSource,
+            this.QuestModel.IconColor,
             0,
             Vector2.Zero,
-            this.QuestData.IconScale,
+            this.QuestModel.IconScale,
             SpriteEffects.None,
             0
         );

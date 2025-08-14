@@ -94,8 +94,6 @@
     "Config.RandomColorMax.Name": "Cor Aleatória Máxima",
     "Config.PortraitAppearanceTitle.Name": "Aparência do Retrato",
     "Config.PortraitScale.Name": "Escala do Retrato",
-    "Config.PortraitOffsetX.Name": "Deslocamento X do Retrato",
-    "Config.PortraitOffsetY.Name": "Deslocamento Y do Retrato",
     "Config.PortraitTintR.Name": "Cor do Retrato R",
     "Config.PortraitTintG.Name": "Cor do Retrato G",
     "Config.PortraitTintB.Name": "Cor do Retrato B",

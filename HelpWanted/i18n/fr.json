@@ -94,8 +94,6 @@
     "Config.RandomColorMax.Name": "Couleur aléatoire maximum",
     "Config.PortraitAppearanceTitle.Name": "Apparence en portrait",
     "Config.PortraitScale.Name": "Échelle de portrait",
-    "Config.PortraitOffsetX.Name": "Décalage portrait X",
-    "Config.PortraitOffsetY.Name": "Portrait Décalage Y",
     "Config.PortraitTintR.Name": "Teinte portrait R",
     "Config.PortraitTintG.Name": "Teinte Portrait V",
     "Config.PortraitTintB.Name": "Teinte portrait B",

@@ -28,13 +28,9 @@ public class ModConfig
     // 随机颜色通道
     public int RandomColorMin = 150;
     public int RandomColorMax = 255;
-
+    
     // 肖像缩放
     public float PortraitScale = 1f;
-
-    // 肖像偏移
-    public int PortraitOffsetX = 32;
-    public int PortraitOffsetY = 64;
 
     // 肖像色调
     public int PortraitTintR = 150;

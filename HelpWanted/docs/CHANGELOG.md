@@ -2,6 +2,20 @@
 
 The English version of the changelog is machine-translated. I apologize for any linguistic inaccuracies in the translation.
 
+## [2.0.4] - 2025-08-14
+
+### Added
+
+- Updated French translation (thanks to Caranud!)
+
+### Changed
+
+- Optimized the appearance adjustment settings.
+
+### Fixed
+
+- Fixed an issue where quest items would still be rewritten when the `RewriteQuestItem` option was disabled.
+
 ## [2.0.3] - 2025-05-22
 
 ### Changed

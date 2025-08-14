@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 public abstract class QuestManager<T> where T : class, new()
 {
     public static T Instance { get; } = new();
-    public readonly List<QuestData> QuestList = new();
+    public readonly List<QuestModel> QuestList = new();
 
     protected NPC? GetNPCFromQuest(Quest quest)
     {
@@ -25,7 +25,7 @@ public abstract class QuestManager<T> where T : class, new()
         };
     }
 
-    protected QuestData GetQuestData(NPC npc, Quest quest)
+    protected QuestModel GetQuestData(NPC npc, Quest quest)
     {
         var questType = this.GetQuestType(quest);
         var padTexture = TextureManager.Instance.GetPadTexture(npc.Name, questType.ToString());
@@ -42,10 +42,13 @@ public abstract class QuestManager<T> where T : class, new()
             ModConfig.Instance.PortraitTintA
         );
         var iconSource = new Rectangle(0, 0, 64, 64);
-        var iconScale = ModConfig.Instance.PortraitScale;
-        var iconOffset = new Point(ModConfig.Instance.PortraitOffsetX, ModConfig.Instance.PortraitOffsetY);
-        return new QuestData(padTexture, padTextureSource, padColor, pinTexture, pinTextureSource, pinColor,
-            icon, iconSource, iconColor, iconScale, iconOffset, quest);
+
+        return new QuestModel(
+            padTexture, padTextureSource, padColor,
+            pinTexture, pinTextureSource, pinColor,
+            icon, iconSource, iconColor,
+            quest
+        );
     }
 
     protected QuestType GetQuestType(Quest quest)

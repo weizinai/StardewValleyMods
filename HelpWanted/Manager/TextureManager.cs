@@ -51,6 +51,7 @@ internal class TextureManager
         foreach (var path in pathsToCheck)
         {
             var variantTextures = this.GetTextureVariants(path);
+
             if (variantTextures.Count > 0)
             {
                 return Game1.random.ChooseFrom(variantTextures);
@@ -63,6 +64,7 @@ internal class TextureManager
                     var texture = this.helper.GameContent.Load<Texture2D>(path);
                     this.textureCache.Add(path, texture);
                 }
+
                 return this.textureCache[path];
             }
             catch
@@ -84,11 +86,13 @@ internal class TextureManager
             try
             {
                 var path = $"{basePath}/{i}";
+
                 if (!this.textureCache.ContainsKey(path))
                 {
                     var texture = this.helper.GameContent.Load<Texture2D>(path);
                     this.textureCache.Add(path, texture);
                 }
+
                 textures.Add(this.textureCache[path]);
                 i++;
             }

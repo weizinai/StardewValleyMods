@@ -81,8 +81,6 @@
     "Config.RandomColorMax.Name": "Random Color Max",
     "Config.PortraitAppearanceTitle.Name": "Portrait Appearance",
     "Config.PortraitScale.Name": "Portrait Scale",
-    "Config.PortraitOffsetX.Name": "Portrait Offset X",
-    "Config.PortraitOffsetY.Name": "Portrait Offset Y",
     "Config.PortraitTintR.Name": "Portrait Tint R",
     "Config.PortraitTintG.Name": "Portrait Tint G",
     "Config.PortraitTintB.Name": "Portrait Tint B",

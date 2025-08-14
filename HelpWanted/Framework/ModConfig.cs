@@ -32,10 +32,6 @@ public class ModConfig
     // 肖像缩放
     public float PortraitScale = 1f;
 
-    // 肖像偏移
-    public int PortraitOffsetX = 32;
-    public int PortraitOffsetY = 64;
-
     // 肖像色调
     public int PortraitTintR = 150;
     public int PortraitTintG = 150;

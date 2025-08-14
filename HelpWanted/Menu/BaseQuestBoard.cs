@@ -97,10 +97,12 @@ public abstract class BaseQuestBoard : IClickableMenu
             // 任务便签逻辑
             this.hoverTitle = "";
             this.hoverText = "";
+
             foreach (var option in this.CurrentQuestNotes.Where(option => option.containsPoint(x, y)))
             {
-                this.hoverTitle = option.QuestData.Quest.questTitle;
-                this.hoverText = option.QuestData.Quest.currentObjective;
+                this.hoverTitle = option.QuestModel.Quest.questTitle;
+                this.hoverText = option.QuestModel.Quest.currentObjective;
+
                 break;
             }
         }
@@ -111,6 +113,7 @@ public abstract class BaseQuestBoard : IClickableMenu
         if (this.IsShowingQuest && Game1.options.doesInputListContain(Game1.options.menuButton, key))
         {
             this.CloseShowingQuest();
+
             return;
         }
 
@@ -126,6 +129,7 @@ public abstract class BaseQuestBoard : IClickableMenu
             {
                 if (playSound) Game1.playSound(this.closeSound);
                 this.CloseShowingQuest();
+
                 return;
             }
 
@@ -155,8 +159,9 @@ public abstract class BaseQuestBoard : IClickableMenu
                 this.hoverTitle = "";
                 this.hoverText = "";
                 this.showingQuestId = option.myID;
-                this.ShowingQuest = option.QuestData.Quest;
+                this.ShowingQuest = option.QuestModel.Quest;
                 this.acceptQuestButton.visible = true;
+
                 return;
             }
         }
@@ -255,15 +260,12 @@ public abstract class BaseQuestBoard : IClickableMenu
 
         for (var i = questList.Count - 1; i >= 0; i--)
         {
-            var size = new Point(
-                (int)(questList[i].PadSource.Width * ModConfig.Instance.NoteScale),
-                (int)(questList[i].PadSource.Height * ModConfig.Instance.NoteScale)
-            );
-            var bounds = this.GetFreeBounds(size.X, size.Y);
+            var bounds = this.GetFreeBounds((int)questList[i].NoteWidth, (int)questList[i].NoteHeight);
 
             if (bounds is null)
             {
                 Logger.Debug($"Quest menu capacity reached: {this.CurrentQuestNotes.Count} quests placed, unable to accommodate remaining {questList.Count}");
+
                 break;
             }
 
@@ -281,10 +283,12 @@ public abstract class BaseQuestBoard : IClickableMenu
         if (_width >= this.boardRect.Width || _height >= this.boardRect.Height)
         {
             Logger.Error("Note dimensions exceed quest menu boundaries.");
+
             return null;
         }
 
         var tries = 1000;
+
         while (tries > 0)
         {
             var rectangle = new Rectangle(
@@ -351,10 +355,12 @@ public abstract class BaseQuestBoard : IClickableMenu
             new Vector2(this.acceptQuestButton.bounds.X + 12, this.acceptQuestButton.bounds.Y + (LocalizedContentManager.CurrentLanguageLatin ? 16 : 12)),
             Game1.textColor
         );
+
         // 奖券逻辑
         if (this.boardType == BoardType.Vanilla)
         {
             if (Game1.stats.Get("BillboardQuestsDone") % 3 != 2) return;
+
             Utility.drawWithShadow(
                 b,
                 Game1.content.Load<Texture2D>("TileSheets\\Objects_2"),
@@ -430,6 +436,7 @@ public abstract class BaseQuestBoard : IClickableMenu
     private void NavigateToNextComponent(int direction)
     {
         var nextComponent = this.FindNextComponent(direction);
+
         if (nextComponent != null)
         {
             this.currentlySnappedComponent = nextComponent;

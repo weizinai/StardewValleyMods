@@ -30,6 +30,7 @@ public class RSVItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
     protected override bool TrySetQuestTarget()
     {
         this.Quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0);
+
         return true;
     }
 

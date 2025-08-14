@@ -20,6 +20,7 @@ public class RSVFishingQuestBuilder : QuestBuilder<FishingQuest>
     protected override bool TrySetQuestTarget()
     {
         this.Quest.target.Value = "Carmen";
+
         return true;
     }
 

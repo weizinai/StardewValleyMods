@@ -60,6 +60,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
         if (this.Quest.target.Value != null || Game1.gameMode == 6)
         {
             Logger.Trace($"Target for the current resource collection quest has been set to {this.Quest.target.Value}.");
+
             return false;
         }
 
@@ -85,16 +86,22 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
             {
                 possibleItems.AddRange(new[] { CopperOre, IronOre, Coal });
                 if (Utility.GetAllPlayerDeepestMineLevel() > 40) possibleItems.Add(GoldOre);
+
                 if (!moreQuest) break;
+
                 if (Game1.player.mailReceived.Contains("ccVault")) possibleItems.Add(IridiumOre);
                 if (Game1.player.mailReceived.Contains("willyHours")) possibleItems.Add(CinderShard);
+
                 break;
             }
             case Robin:
             {
                 possibleItems.AddRange(new[] { Wood, Stone });
+
                 if (!moreQuest) break;
+
                 if (Game1.player.locationsVisited.Contains("Woods")) possibleItems.Add(Hardwood);
+
                 break;
             }
         }

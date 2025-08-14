@@ -81,8 +81,6 @@
     "Config.RandomColorMax.Name": "随机颜色通道最大值",
     "Config.PortraitAppearanceTitle.Name": "肖像外观",
     "Config.PortraitScale.Name": "肖像缩放",
-    "Config.PortraitOffsetX.Name": "肖像水平偏移",
-    "Config.PortraitOffsetY.Name": "肖像垂直偏移",
     "Config.PortraitTintR.Name": "肖像色调 R",
     "Config.PortraitTintG.Name": "肖像色调 G",
     "Config.PortraitTintB.Name": "肖像色调 B",

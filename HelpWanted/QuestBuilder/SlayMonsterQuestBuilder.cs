@@ -107,12 +107,14 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                     this.Quest.numberToKill.Value,
                     new DescriptionElement(GetPathString("S", 13728))
                 ));
+
                 break;
             }
             case SMonster.Duggy:
             case SMonster.MagmaDuggy:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("S", 13711), this.Quest.numberToKill.Value));
+
                 break;
             }
             case SMonster.FrostJelly:
@@ -122,6 +124,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                     this.Quest.numberToKill.Value,
                     new DescriptionElement(GetPathString("S", 13725))
                 ));
+
                 break;
             }
             case SMonster.Sludge:
@@ -131,12 +134,14 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                     this.Quest.numberToKill.Value,
                     new DescriptionElement(GetPathString("S", 13727))
                 ));
+
                 break;
             }
             case SMonster.RockCrab:
             case SMonster.LavaCrab:
             {
                 this.Quest.parts.Add(new DescriptionElement(GetPathString("S", 13747), this.Quest.numberToKill.Value));
+
                 break;
             }
             case SMonster.DustSpirit:
@@ -161,6 +166,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 {
                     this.AddDefaultDescription();
                 }
+
                 break;
             }
             case SMonster.Mummy:
@@ -172,11 +178,13 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                     this.Quest.numberToKill.Value,
                     new DescriptionElement(GetPathString("S", 13755, 13756, 13757))
                 ));
+
                 break;
             }
             default:
             {
                 this.AddDefaultDescription();
+
                 break;
             }
         }
@@ -196,6 +204,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.Sludge:
             {
                 this.Quest.dialogueparts.Add(GetPathString("S", 13730));
+
                 if (random.NextBool())
                 {
                     this.Quest.dialogueparts.Add(GetPathString("S", 13731));
@@ -211,18 +220,21 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 {
                     this.Quest.dialogueparts.Add(GetPathString("S", 13744));
                 }
+
                 break;
             }
             case SMonster.RockCrab:
             case SMonster.LavaCrab:
             {
                 this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("S", 13750), this.Quest.monster.Value));
+
                 break;
             }
             case SMonster.Duggy:
             case SMonster.MagmaDuggy:
             {
                 this.Quest.dialogueparts.Add(GetPathString("S", 13760));
+
                 break;
             }
             case SMonster.DustSpirit:
@@ -242,17 +254,20 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 {
                     this.AddDefaultDialogue();
                 }
+
                 break;
             }
             case SMonster.Mummy:
             case SMonster.CarbonGhost:
             {
                 this.Quest.dialogueparts.Add(GetPathString("S", 13760));
+
                 break;
             }
             default:
             {
                 this.AddDefaultDialogue();
+
                 break;
             }
         }
@@ -274,6 +289,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
         {
             Logger.Trace($"Target for the current slay monster quest has been set to {this.Quest.target.Value}.");
             Logger.Trace($"Monster for the current slay monster quest has been set to {this.Quest.monsterName.Value}.");
+
             return;
         }
 

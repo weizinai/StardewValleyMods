@@ -1,5 +1,4 @@
 {
-    // TODO
     "Config.VanillaConfigPage.Name": "Vanilla Config",
     "Config.RSVConfigPage.Name": "RSV Config",
 
@@ -24,7 +23,6 @@
     "Config.QuestRewardMultiplier.Name": "Quest Reward Multiplier",
     "Config.QuestDays.Name": "Quest Days",
     "Config.QuestDays.Tooltip": "Quest days limit: 0 indicates unlimited days.",
-    // TODO
 
     // Vanilla
     // General Settings
@@ -35,52 +33,41 @@
 
     // Item Delivery
     "Config.ItemDeliveryFriendshipGain.Name": "Gain d'amitié lors de la livraison d'objets",
-    // TODO
     "Config.RewriteQuestItem.Name": "Rewrite Quest Item",
     "Config.RewriteQuestItem.Tooltip": "When this option is enabled, quest items will be selected from the gift taste of villagers meeting the config below. When disabled, the items will revert to the original game's settings and remain unaffected by the options below.",
     "Config.ItemGiftTasteRequirement.Name": "Item Gift Taste Requirement",
-    // TODO
     "Config.AllowArtisanGoods.Name": "Autoriser les produits artisanaux",
     "Config.AllowArtisanGoods.Tooltip": "Si l'objet de la quête de livraison d'objet peut être ou non un produit artisanal.",
     "Config.MaxPrice.Name": "Prix ​​maximum",
     "Config.MaxPrice.Tooltip": "Le prix maximum d'un objet de quête. Si -1, il n'y a pas de limite.",
 
-    // TODO
     "Config.ItemGiftTasteRequirement.Love": "Love",
     "Config.ItemGiftTasteRequirement.Like": "Like",
     "Config.ItemGiftTasteRequirement.Neutral": "Neutral",
     "Config.ItemGiftTasteRequirement.Dislike": "Dislike",
     "Config.ItemGiftTasteRequirement.Hate": "Hate",
-    // TODO
 
     // Resource Collection
-    // TODO
     "Config.MoreResourceCollectionQuest.Name": "More Resource Collection Quest",
-    // TODO
 
     // Slay Monsters
     "Config.MoreSlayMonsterQuests.Name": "Plus de quêtes Tuer des monstres",
 
     // UI
-    // TODO
     "UI.GenerateVanillaQuest.Tooltip": "Initiating today's vanilla daily quest generation",
     "UI.VanillaQuestFirstDay.Tooltip": "Vanilla daily quest generation disabled: \nFirst day of game cycle",
     "UI.VanillaQuestFestival.Tooltip": "Vanilla daily quest generation suspended: \nFestival scheduled today or tomorrow",
     "UI.VanillaDailyQuest.Tooltip": "Vanilla daily quest generation disabled for today",
-    // TODO
 
     // RSV
     "Config.EnableRSVQuestBoard.Name": "Activer le tableau de quête RSV",
-    // TODO
     "Config.AllowSameQuest.Name": "Allow Same Quest",
 
     // UI
-    // TODO
     "UI.GenerateRSVQuest.Tooltip": "Initiating today's RSV daily quest generation",
     "UI.RSVQuestFirstDay.Tooltip": "RSV daily quest generation disabled: First day of game cycle",
     "UI.RSVQuestFestival.Tooltip": "RSV daily quest generation suspended: Festival scheduled today or tomorrow",
     "UI.RSVDailyQuest.Tooltip": "RSV daily quest generation disabled for today",
-    // TODO
 
     // Appearance
     "Config.AppearancePage.Name": "Apparence",

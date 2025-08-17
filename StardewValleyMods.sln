@@ -24,8 +24,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = ".Common", "Common\.Common.s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplayerModLimit", "MultiplayerModLimit\MultiplayerModLimit.csproj", "{E4803549-2C81-4F9E-9BB1-BED3307E75FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMachineExperience", "CustomMachineExperience\CustomMachineExperience.csproj", "{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCabinFix", "CustomCabinFix\CustomCabinFix.csproj", "{75520E66-9892-4E4A-846E-F8E359BA2E4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{FF5F4769-163A-406D-9F61-806E7601181F}"
@@ -50,8 +48,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoRefreshMineShaft", "AutoRefreshMineShaft\AutoRefreshMineShaft.csproj", "{B62A4222-F17F-42D5-B909-B4051A585A57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiCore", "PiCore\PiCore.csproj", "{8305437D-9CD5-406B-B3F9-00C65100E850}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniMineShaft", "MiniMineShaft\MiniMineShaft.csproj", "{A0DBE65F-1868-4F3A-8D37-22B8FAE5D024}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiHost", "MultiHost\MultiHost.csproj", "{F8EE1558-E6C4-4706-AC85-407AAC5ED9B9}"
 EndProject
@@ -105,10 +101,6 @@ Global
 		{E4803549-2C81-4F9E-9BB1-BED3307E75FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4803549-2C81-4F9E-9BB1-BED3307E75FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4803549-2C81-4F9E-9BB1-BED3307E75FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A887EA4-93D7-4D0E-85C2-5BECE327FD2A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75520E66-9892-4E4A-846E-F8E359BA2E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -137,10 +129,6 @@ Global
 		{8305437D-9CD5-406B-B3F9-00C65100E850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8305437D-9CD5-406B-B3F9-00C65100E850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8305437D-9CD5-406B-B3F9-00C65100E850}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0DBE65F-1868-4F3A-8D37-22B8FAE5D024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0DBE65F-1868-4F3A-8D37-22B8FAE5D024}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0DBE65F-1868-4F3A-8D37-22B8FAE5D024}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0DBE65F-1868-4F3A-8D37-22B8FAE5D024}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8EE1558-E6C4-4706-AC85-407AAC5ED9B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8EE1558-E6C4-4706-AC85-407AAC5ED9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8EE1558-E6C4-4706-AC85-407AAC5ED9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU

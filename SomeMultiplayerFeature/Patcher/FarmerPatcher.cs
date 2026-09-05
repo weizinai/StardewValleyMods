@@ -12,10 +12,7 @@ internal class FarmerPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Farmer>(nameof(Farmer.Update)),
-            transpiler: this.GetHarmonyMethod(nameof(UpdateTranspiler))
-        );
+        this.Patch<Farmer>(harmony, nameof(Farmer.Update), PatchKind.Transpiler, nameof(UpdateTranspiler));
 
         Logger<ModEntry>.Info("修改体力再生速度为原来的5倍");
     }

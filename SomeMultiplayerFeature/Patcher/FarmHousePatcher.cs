@@ -13,10 +13,7 @@ internal class FarmHousePatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<FarmHouse>("AddStarterGiftBox"),
-            postfix: this.GetHarmonyMethod(nameof(AddStarterGiftBoxPostfix))
-        );
+        this.Patch<FarmHouse>(harmony, "AddStarterGiftBox", PatchKind.Postfix, nameof(AddStarterGiftBoxPostfix));
 
         Logger<ModEntry>.Info("为初始种子包添加三种树种各10个");
     }

@@ -10,10 +10,7 @@ internal class HoeDirtPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<HoeDirt>(nameof(HoeDirt.performToolAction)),
-            prefix: this.GetHarmonyMethod(nameof(PerformToolActionPrefix))
-        );
+        this.Patch<HoeDirt>(harmony, nameof(HoeDirt.performToolAction), PatchKind.Prefix, nameof(PerformToolActionPrefix));
     }
 
     // 添加浇水获得5点耕种经验

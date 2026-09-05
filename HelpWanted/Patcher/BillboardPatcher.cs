@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
@@ -12,10 +12,7 @@ internal class BillboardPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Billboard>(nameof(Billboard.draw), new[] { typeof(SpriteBatch) }),
-            prefix: this.GetHarmonyMethod(nameof(DrawPrefix))
-        );
+        this.Patch<Billboard>(harmony, nameof(Billboard.draw), PatchKind.Prefix, nameof(DrawPrefix), new[] { typeof(SpriteBatch) });
     }
 
     // 将原版任务菜单替换为自定义菜单

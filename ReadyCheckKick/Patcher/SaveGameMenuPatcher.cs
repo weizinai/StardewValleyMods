@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
@@ -13,19 +14,23 @@ namespace weizinai.StardewValleyMod.ReadyCheckKick.Patcher;
 
 internal class SaveGameMenuPatcher : BasePatcher
 {
-    private static IReflectionHelper helper = null!;
+    private static SaveGameMenuPatcher instance = null!;
+    private readonly IReflectionHelper helper;
 
     public SaveGameMenuPatcher(IReflectionHelper helper)
     {
-        SaveGameMenuPatcher.helper = helper;
+        if (instance != null)
+        {
+            throw new InvalidOperationException($"{nameof(SaveGameMenuPatcher)} already initialized.");
+        }
+
+        this.helper = helper;
+        instance = this;
     }
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<SaveGameMenu>(nameof(SaveGameMenu.draw), new[] { typeof(SpriteBatch) }),
-            postfix: this.GetHarmonyMethod(nameof(DrawPostfix))
-        );
+        this.Patch<SaveGameMenu>(harmony, nameof(SaveGameMenu.draw), PatchKind.Postfix, nameof(DrawPostfix), new[] { typeof(SpriteBatch) });
     }
 
     private static void DrawPostfix(SpriteBatch b)
@@ -36,7 +41,7 @@ internal class SaveGameMenuPatcher : BasePatcher
         }
 
         var endOfNightStatus = Game1.player.team.endOfNightStatus;
-        var formattedStatusList = helper.GetField<Dictionary<long, string>>(endOfNightStatus, "_formattedStatusList").GetValue();
+        var formattedStatusList = instance.helper.GetField<Dictionary<long, string>>(endOfNightStatus, "_formattedStatusList").GetValue();
 
         // 未准备玩家获取逻辑
         var unreadyFarmers = new List<string>();

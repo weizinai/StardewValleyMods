@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -14,30 +15,31 @@ namespace weizinai.StardewValleyMod.AutoBreakGeode.Patcher;
 
 internal class GeodeMenuPatcher : BasePatcher
 {
+    private static GeodeMenuPatcher instance = null!;
+    private readonly ModConfig config;
     private static RootElement? ui;
-    private static ModConfig config = null!;
 
     public GeodeMenuPatcher(ModConfig config)
     {
-        GeodeMenuPatcher.config = config;
+        if (instance != null)
+        {
+            throw new InvalidOperationException($"{nameof(GeodeMenuPatcher)} already initialized.");
+        }
+
+        this.config = config;
+        instance = this;
     }
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(this.RequireConstructor<GeodeMenu>(),
-            postfix: this.GetHarmonyMethod(nameof(GeodeMenuPostfix))
-        );
-        harmony.Patch(this.RequireMethod<GeodeMenu>(nameof(GeodeMenu.update)),
-            postfix: this.GetHarmonyMethod(nameof(UpdatePostfix))
-        );
-        harmony.Patch(this.RequireMethod<GeodeMenu>(nameof(GeodeMenu.draw), new[] { typeof(SpriteBatch) }),
-            transpiler: this.GetHarmonyMethod(nameof(DrawTranspiler))
-        );
+        this.PatchConstructor<GeodeMenu>(harmony, PatchKind.Postfix, nameof(GeodeMenuPostfix));
+        this.Patch<GeodeMenu>(harmony, nameof(GeodeMenu.update), PatchKind.Postfix, nameof(UpdatePostfix));
+        this.Patch<GeodeMenu>(harmony, nameof(GeodeMenu.draw), PatchKind.Transpiler, nameof(DrawTranspiler), new[] { typeof(SpriteBatch) });
     }
 
     private static void GeodeMenuPostfix(ClickableComponent ___geodeSpot)
     {
-        if (!config.DrawBeginButton)
+        if (!instance.config.DrawBeginButton)
         {
             return;
         }

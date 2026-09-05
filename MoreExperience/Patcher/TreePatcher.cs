@@ -10,10 +10,7 @@ internal class TreePatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Tree>("performTreeFall"),
-            postfix: this.GetHarmonyMethod(nameof(PerformTreeFallPostfix))
-        );
+        this.Patch<Tree>(harmony, "performTreeFall", PatchKind.Postfix, nameof(PerformTreeFallPostfix));
     }
 
     // 修改砍树获得的采集经验为 11 + 9 点

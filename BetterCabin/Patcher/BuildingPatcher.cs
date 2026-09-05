@@ -17,10 +17,7 @@ internal class BuildingPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Building>(nameof(Building.draw)),
-            postfix: this.GetHarmonyMethod(nameof(DrawPostfix))
-        );
+        this.Patch<Building>(harmony, nameof(Building.draw), PatchKind.Postfix, nameof(DrawPostfix));
     }
 
     private static void DrawPostfix(Building __instance, SpriteBatch b)

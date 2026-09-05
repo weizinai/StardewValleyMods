@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using HarmonyLib;
 using StardewValley;
@@ -8,19 +9,23 @@ namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 internal class GameLocationPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
+    private static GameLocationPatcher instance = null!;
+    private readonly ModConfig config;
 
     public GameLocationPatcher(ModConfig config)
     {
-        GameLocationPatcher.config = config;
+        if (instance != null)
+        {
+            throw new InvalidOperationException($"{nameof(GameLocationPatcher)} already initialized.");
+        }
+
+        this.config = config;
+        instance = this;
     }
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<GameLocation>(nameof(GameLocation.CheckGarbage)),
-            transpiler: this.GetHarmonyMethod(nameof(CheckGarbageTranspiler))
-        );
+        this.Patch<GameLocation>(harmony, nameof(GameLocation.CheckGarbage), PatchKind.Transpiler, nameof(CheckGarbageTranspiler));
     }
 
     // 垃圾桶修改
@@ -38,6 +43,6 @@ internal class GameLocationPatcher : BasePatcher
 
     private static int GetGarbageCanModify(int friendshipChange)
     {
-        return friendshipChange >= 0 ? friendshipChange : -config.GarbageCanModify;
+        return friendshipChange >= 0 ? friendshipChange : -instance.config.GarbageCanModify;
     }
 }

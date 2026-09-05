@@ -11,10 +11,7 @@ internal class FarmAnimalPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<FarmAnimal>(nameof(FarmAnimal.pet)),
-            transpiler: this.GetHarmonyMethod(nameof(PetTranspiler))
-        );
+        this.Patch<FarmAnimal>(harmony, nameof(FarmAnimal.pet), PatchKind.Transpiler, nameof(PetTranspiler));
     }
 
     // 修改抚摸动物获得的耕种经验为50点

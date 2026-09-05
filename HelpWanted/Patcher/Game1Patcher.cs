@@ -8,10 +8,7 @@ internal class Game1Patcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Game1>(nameof(Game1.RefreshQuestOfTheDay)),
-            prefix: this.GetHarmonyMethod(nameof(RefreshQuestOfTheDayPrefix))
-        );
+        this.Patch<Game1>(harmony, nameof(Game1.RefreshQuestOfTheDay), PatchKind.Prefix, nameof(RefreshQuestOfTheDayPrefix));
     }
 
     // 禁止生成原版任务

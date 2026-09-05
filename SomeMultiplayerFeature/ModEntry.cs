@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.PiCore.Handler;
@@ -44,7 +44,7 @@ public class ModEntry : Mod
 
         // 注册Harmony补丁
         HarmonyPatcher.Apply(
-            this.ModManifest.UniqueID,
+            this,
             new FarmerPatcher(),
             new FarmHousePatcher(),
             new Game1Patcher(),

@@ -10,7 +10,7 @@ internal class ModEntry : Mod
     {
         // 注册Harmony补丁
         HarmonyPatcher.Apply(
-            this.ModManifest.UniqueID,
+            this,
             new FarmAnimalPatcher(),
             new FarmerPatcher(),
             new GameLocationPatcher(),

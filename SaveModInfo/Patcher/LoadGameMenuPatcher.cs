@@ -12,10 +12,7 @@ internal class LoadGameMenuPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<LoadGameMenu>(nameof(LoadGameMenu.performHoverAction)),
-            postfix: this.GetHarmonyMethod(nameof(PerformHoverActionPostfix))
-        );
+        this.Patch<LoadGameMenu>(harmony, nameof(LoadGameMenu.performHoverAction), PatchKind.Postfix, nameof(PerformHoverActionPostfix));
     }
 
     private static void PerformHoverActionPostfix(int x, int y, LoadGameMenu __instance, ref string ___hoverText)

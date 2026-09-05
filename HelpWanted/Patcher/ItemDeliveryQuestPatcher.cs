@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Quests;
@@ -13,14 +13,8 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.loadQuestInfo)),
-            prefix: this.GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
-        );
-        harmony.Patch(
-            original: this.RequireMethod<ItemDeliveryQuest>(nameof(ItemDeliveryQuest.OnItemOfferedToNpc)),
-            transpiler: this.GetHarmonyMethod(nameof(OnItemOfferedToNpcTranspiler))
-        );
+        this.Patch<ItemDeliveryQuest>(harmony, nameof(ItemDeliveryQuest.loadQuestInfo), PatchKind.Prefix, nameof(LoadQuestInfoPrefix));
+        this.Patch<ItemDeliveryQuest>(harmony, nameof(ItemDeliveryQuest.OnItemOfferedToNpc), PatchKind.Transpiler, nameof(OnItemOfferedToNpcTranspiler));
     }
 
     private static bool LoadQuestInfoPrefix(ItemDeliveryQuest __instance)

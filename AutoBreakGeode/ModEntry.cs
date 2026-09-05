@@ -26,7 +26,7 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID, new GeodeMenuPatcher(this.config));
+        HarmonyPatcher.Apply(this, new GeodeMenuPatcher(this.config));
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)

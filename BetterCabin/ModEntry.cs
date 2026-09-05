@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.BetterCabin.Framework;
@@ -28,7 +28,7 @@ internal class ModEntry : Mod
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID,
+        HarmonyPatcher.Apply(this,
             new BuildingPatcher(),
             new CarpenterMenuPatcher(),
             new ForceBuildCabinPatcher(),

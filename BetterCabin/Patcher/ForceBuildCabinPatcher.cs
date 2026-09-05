@@ -13,17 +13,14 @@ internal class ForceBuildCabinPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<GameLocation>(nameof(GameLocation.isBuildable)),
-            postfix: this.GetHarmonyMethod(nameof(IsBuildablePostfix))
-        );
+        this.Patch<GameLocation>(harmony, nameof(GameLocation.isBuildable), PatchKind.Postfix, nameof(IsBuildablePostfix));
 
-        harmony.Patch(
-            original: this.RequireMethod<GameLocation>(
-                nameof(GameLocation.buildStructure),
-                new[] { typeof(string), typeof(BuildingData), typeof(Vector2), typeof(Farmer), typeof(Building).MakeByRefType(), typeof(bool), typeof(bool) }
-            ),
-            postfix: this.GetHarmonyMethod(nameof(BuildStructurePostfix))
+        this.Patch<GameLocation>(
+            harmony,
+            nameof(GameLocation.buildStructure),
+            PatchKind.Postfix,
+            nameof(BuildStructurePostfix),
+            new[] { typeof(string), typeof(BuildingData), typeof(Vector2), typeof(Farmer), typeof(Building).MakeByRefType(), typeof(bool), typeof(bool) }
         );
     }
 

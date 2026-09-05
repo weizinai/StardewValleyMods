@@ -16,10 +16,7 @@ internal class TownPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Town>(nameof(Town.draw), new[] { typeof(SpriteBatch) }),
-            postfix: this.GetHarmonyMethod(nameof(DrawPostfix))
-        );
+        this.Patch<Town>(harmony, nameof(Town.draw), PatchKind.Postfix, nameof(DrawPostfix), new[] { typeof(SpriteBatch) });
     }
 
     // 修改任务面板感叹号的绘制

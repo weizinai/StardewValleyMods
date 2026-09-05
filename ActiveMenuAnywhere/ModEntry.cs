@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -23,7 +23,7 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID, new Game1Patcher(helper));
+        HarmonyPatcher.Apply(this, new Game1Patcher(helper));
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)

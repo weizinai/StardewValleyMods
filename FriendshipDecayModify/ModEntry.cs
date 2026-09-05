@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
@@ -22,7 +22,7 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(
-            this.ModManifest.UniqueID,
+            this,
             new GameLocationPatcher(this.config),
             new FarmerPatcher(this.config),
             new NPCPatcher(this.config),

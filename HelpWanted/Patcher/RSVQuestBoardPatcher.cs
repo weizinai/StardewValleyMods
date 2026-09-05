@@ -11,6 +11,11 @@ namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
 
 internal class RSVQuestBoardPatcher : BasePatcher
 {
+    /// <summary>
+    ///     未加载 RSV 时不应用补丁；RSV 类型仅以字符串方式解析，禁用时不会触发其程序集加载。
+    /// </summary>
+    public override bool IsEnabled => ModEntry.IsRSVLoaded;
+
     public override void Apply(Harmony harmony)
     {
         harmony.Patch(

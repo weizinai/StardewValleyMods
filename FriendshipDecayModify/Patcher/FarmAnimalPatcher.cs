@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -9,20 +10,25 @@ namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 internal class FarmAnimalPatcher : BasePatcher
 {
-    private static ModConfig config = null!;
+    private static FarmAnimalPatcher instance = null!;
+    private readonly ModConfig config;
     private static int friendshipTowardFarmer;
 
     public FarmAnimalPatcher(ModConfig config)
     {
-        FarmAnimalPatcher.config = config;
+        if (instance != null)
+        {
+            throw new InvalidOperationException($"{nameof(FarmAnimalPatcher)} already initialized.");
+        }
+
+        this.config = config;
+        instance = this;
     }
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<FarmAnimal>(nameof(FarmAnimal.dayUpdate)), this.GetHarmonyMethod(nameof(DayUpdatePrefix)),
-            transpiler: this.GetHarmonyMethod(nameof(DayUpdateTranspiler))
-        );
+        this.Patch<FarmAnimal>(harmony, nameof(FarmAnimal.dayUpdate), PatchKind.Prefix, nameof(DayUpdatePrefix));
+        this.Patch<FarmAnimal>(harmony, nameof(FarmAnimal.dayUpdate), PatchKind.Transpiler, nameof(DayUpdateTranspiler));
     }
 
     private static bool DayUpdatePrefix(FarmAnimal __instance)
@@ -56,26 +62,26 @@ internal class FarmAnimalPatcher : BasePatcher
     // 抚摸动物友谊修改
     private static int GetPetAnimalModifyForFriendship()
     {
-        var petAnimalDecay = config.PetAnimalModifyForFriendship - friendshipTowardFarmer / 200;
+        var petAnimalDecay = instance.config.PetAnimalModifyForFriendship - friendshipTowardFarmer / 200;
 
-        return petAnimalDecay < 0 ? petAnimalDecay : config.PetAnimalModifyForFriendship;
+        return petAnimalDecay < 0 ? petAnimalDecay : instance.config.PetAnimalModifyForFriendship;
     }
 
     // 抚摸动物心情修改
     private static int GetPetAnimalModifyForHappiness()
     {
-        return config.PetAnimalModifyForHappiness;
+        return instance.config.PetAnimalModifyForHappiness;
     }
 
     // 喂食动物友谊修改
     private static int GetFeedAnimalModifyForFriendship()
     {
-        return config.FeedAnimalModifyForFriendship;
+        return instance.config.FeedAnimalModifyForFriendship;
     }
 
     // 喂食动物心情修改
     private static int GetFeedAnimalModifyForHappiness()
     {
-        return config.FeedAnimalModifyForHappiness;
+        return instance.config.FeedAnimalModifyForHappiness;
     }
 }

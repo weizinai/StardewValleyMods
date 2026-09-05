@@ -9,10 +9,7 @@ internal class ResourceCollectionQuestPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<ResourceCollectionQuest>(nameof(ResourceCollectionQuest.loadQuestInfo)),
-            prefix: this.GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
-        );
+        this.Patch<ResourceCollectionQuest>(harmony, nameof(ResourceCollectionQuest.loadQuestInfo), PatchKind.Prefix, nameof(LoadQuestInfoPrefix));
     }
 
     private static bool LoadQuestInfoPrefix(ResourceCollectionQuest __instance)

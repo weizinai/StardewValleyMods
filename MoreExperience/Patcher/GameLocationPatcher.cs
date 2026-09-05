@@ -11,10 +11,7 @@ internal class GameLocationPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<GameLocation>("breakStone"),
-            transpiler: this.GetHarmonyMethod(nameof(BreakStoneTranspiler))
-        );
+        this.Patch<GameLocation>(harmony, "breakStone", PatchKind.Transpiler, nameof(BreakStoneTranspiler));
     }
 
     // 修改采集铜矿、铁矿、金矿和铱矿获得的采矿经验为11点、12点、13点和14点

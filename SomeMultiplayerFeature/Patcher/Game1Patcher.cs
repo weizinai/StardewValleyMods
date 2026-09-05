@@ -10,10 +10,7 @@ internal class Game1Patcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Game1>("checkForEscapeKeys"),
-            prefix: this.GetHarmonyMethod(nameof(CheckForEscapeKeysPrefix))
-        );
+        this.Patch<Game1>(harmony, "checkForEscapeKeys", PatchKind.Prefix, nameof(CheckForEscapeKeysPrefix));
 
         Logger<ModEntry>.Info("添加禁止取消后摇功能");
     }

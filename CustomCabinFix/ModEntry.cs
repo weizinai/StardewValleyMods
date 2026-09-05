@@ -8,6 +8,6 @@ internal class ModEntry : Mod
 {
     public override void Entry(IModHelper helper)
     {
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID, new BuildingPatcher());
+        HarmonyPatcher.Apply(this, new BuildingPatcher());
     }
 }

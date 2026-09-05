@@ -8,15 +8,8 @@ public class QuestPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Quest>(nameof(Quest.IsTimedQuest)),
-            postfix: this.GetHarmonyMethod(nameof(IsTimedQuestPostfix))
-        );
-
-        harmony.Patch(
-            original: this.RequireMethod<Quest>(nameof(Quest.getQuestFromId)),
-            postfix: this.GetHarmonyMethod(nameof(GetQuestFromIdPostfix))
-        );
+        this.Patch<Quest>(harmony, nameof(Quest.IsTimedQuest), PatchKind.Postfix, nameof(IsTimedQuestPostfix));
+        this.Patch<Quest>(harmony, nameof(Quest.getQuestFromId), PatchKind.Postfix, nameof(GetQuestFromIdPostfix));
     }
 
     // 使每日任务的时间可以没有限制

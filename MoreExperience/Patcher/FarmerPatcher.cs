@@ -15,14 +15,8 @@ internal class FarmerPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Farmer>(nameof(Farmer.gainExperience)),
-            prefix: this.GetHarmonyMethod(nameof(GainExperiencePrefix))
-        );
-        harmony.Patch(
-            original: this.RequireMethod<Farmer>(nameof(Farmer.performPassoutWarp)),
-            transpiler: this.GetHarmonyMethod(nameof(PerformPassoutWarpTranspiler))
-        );
+        this.Patch<Farmer>(harmony, nameof(Farmer.gainExperience), PatchKind.Prefix, nameof(GainExperiencePrefix));
+        this.Patch<Farmer>(harmony, nameof(Farmer.performPassoutWarp), PatchKind.Transpiler, nameof(PerformPassoutWarpTranspiler));
     }
 
     // 修改钓鱼获得的钓鱼经验为原来的1.5倍

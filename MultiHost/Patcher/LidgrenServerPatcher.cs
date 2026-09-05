@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Sockets;
 using HarmonyLib;
 using Lidgren.Network;
@@ -25,10 +25,7 @@ public class LidgrenServerPatcher : BasePatcher
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<LidgrenServer>(nameof(LidgrenServer.initialize)),
-            prefix: this.GetHarmonyMethod(nameof(InitializePrefix))
-        );
+        this.Patch<LidgrenServer>(harmony, nameof(LidgrenServer.initialize), PatchKind.Prefix, nameof(InitializePrefix));
     }
 
     private static bool InitializePrefix(LidgrenServer __instance)

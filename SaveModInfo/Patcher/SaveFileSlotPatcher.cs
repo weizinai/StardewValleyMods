@@ -14,10 +14,7 @@ internal class SaveFileSlotPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<SaveFileSlot>("drawSlotName"),
-            postfix: this.GetHarmonyMethod(nameof(DrawSlotNamePostfix))
-        );
+        this.Patch<SaveFileSlot>(harmony, "drawSlotName", PatchKind.Postfix, nameof(DrawSlotNamePostfix));
     }
 
     private static void DrawSlotNamePostfix(SpriteBatch b, int i, SaveFileSlot __instance, LoadGameMenu ___menu)

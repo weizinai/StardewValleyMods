@@ -10,10 +10,7 @@ internal class BuildingPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Building>(nameof(Building.getPorchStandingSpot)),
-            postfix: this.GetHarmonyMethod(nameof(GetPorchStandingSpotPostfix))
-        );
+        this.Patch<Building>(harmony, nameof(Building.getPorchStandingSpot), PatchKind.Postfix, nameof(GetPorchStandingSpotPostfix));
     }
 
     private static void GetPorchStandingSpotPostfix(Building __instance, ref Point __result)

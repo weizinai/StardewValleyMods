@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using weizinai.StardewValleyMod.MultiHost.Patcher;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
@@ -12,6 +12,6 @@ internal class ModEntry : Mod
         // 初始化
         Logger<ModEntry>.Init(this);
         // 注册补丁
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID, new LidgrenServerPatcher());
+        HarmonyPatcher.Apply(this, new LidgrenServerPatcher());
     }
 }

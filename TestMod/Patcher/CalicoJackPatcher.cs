@@ -11,10 +11,7 @@ internal class CalicoJackPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<CalicoJack>(nameof(CalicoJack.tick)),
-            transpiler: this.GetHarmonyMethod(nameof(TickTranspiler))
-        );
+        this.Patch<CalicoJack>(harmony, nameof(CalicoJack.tick), PatchKind.Transpiler, nameof(TickTranspiler));
     }
 
     private static IEnumerable<CodeInstruction> TickTranspiler(IEnumerable<CodeInstruction> instructions)

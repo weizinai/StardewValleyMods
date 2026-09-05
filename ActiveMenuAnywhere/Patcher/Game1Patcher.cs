@@ -1,3 +1,4 @@
+using System;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
@@ -8,19 +9,23 @@ namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
 
 internal class Game1Patcher : BasePatcher
 {
-    private static IModHelper helper = null!;
+    private static Game1Patcher instance = null!;
+    private readonly IModHelper helper;
 
     public Game1Patcher(IModHelper helper)
     {
-        Game1Patcher.helper = helper;
+        if (instance != null)
+        {
+            throw new InvalidOperationException($"{nameof(Game1Patcher)} already initialized.");
+        }
+
+        this.helper = helper;
+        instance = this;
     }
 
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<Game1>(nameof(Game1.ShowTelephoneMenu)),
-            prefix: this.GetHarmonyMethod(nameof(ShowTelephoneMenuPrefix))
-        );
+        this.Patch<Game1>(harmony, nameof(Game1.ShowTelephoneMenu), PatchKind.Prefix, nameof(ShowTelephoneMenuPrefix));
     }
 
     private static bool ShowTelephoneMenuPrefix()
@@ -30,7 +35,7 @@ internal class Game1Patcher : BasePatcher
             return true;
         }
 
-        Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMenuTabId, helper);
+        Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMenuTabId, instance.helper);
 
         return false;
     }

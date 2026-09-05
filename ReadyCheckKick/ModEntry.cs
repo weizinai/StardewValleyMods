@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
@@ -19,7 +19,7 @@ internal class ModEntry : Mod
 
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
 
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID, new SaveGameMenuPatcher(helper.Reflection));
+        HarmonyPatcher.Apply(this, new SaveGameMenuPatcher(helper.Reflection));
 
         new ReadyCheckDialogueHandler(helper).Apply();
     }

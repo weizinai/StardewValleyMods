@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -44,12 +44,10 @@ internal class ModEntry : Mod
             new TownPatcher()
         };
 
-        if (IsRSVLoaded)
-        {
-            patches.Add(new RSVQuestBoardPatcher());
-        }
+        // RSV 未加载时由 RSVQuestBoardPatcher.IsEnabled 跳过，不在此处做条件注册
+        patches.Add(new RSVQuestBoardPatcher());
 
-        HarmonyPatcher.Apply(this.ModManifest.UniqueID, patches.ToArray());
+        HarmonyPatcher.Apply(this, patches.ToArray());
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)

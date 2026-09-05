@@ -9,9 +9,11 @@ internal class CarpenterMenuPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<CarpenterMenu>(nameof(CarpenterMenu.returnToCarpentryMenuAfterSuccessfulBuild)),
-            prefix: this.GetHarmonyMethod(nameof(ReturnToCarpentryMenuAfterSuccessfulBuildPrefix))
+        this.Patch<CarpenterMenu>(
+            harmony,
+            nameof(CarpenterMenu.returnToCarpentryMenuAfterSuccessfulBuild),
+            PatchKind.Prefix,
+            nameof(ReturnToCarpentryMenuAfterSuccessfulBuildPrefix)
         );
     }
 

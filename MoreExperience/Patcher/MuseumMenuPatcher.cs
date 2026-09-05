@@ -12,10 +12,7 @@ internal class MuseumMenuPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<MuseumMenu>(nameof(MuseumMenu.receiveLeftClick)),
-            transpiler: this.GetHarmonyMethod(nameof(ReceiveLeftClickTranspiler))
-        );
+        this.Patch<MuseumMenu>(harmony, nameof(MuseumMenu.receiveLeftClick), PatchKind.Transpiler, nameof(ReceiveLeftClickTranspiler));
     }
 
     // 添加博物馆捐献获得200点采集经验

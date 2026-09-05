@@ -13,18 +13,9 @@ internal class PassableMailboxPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<BuildingData>(nameof(BuildingData.IsTilePassable)),
-            postfix: this.GetHarmonyMethod(nameof(IsTilePassablePostfix))
-        );
-        harmony.Patch(
-            original: this.RequireMethod<Building>(nameof(Building.doAction)),
-            postfix: this.GetHarmonyMethod(nameof(DoActionPostfix))
-        );
-        harmony.Patch(
-            original: this.RequireMethod<GameLocation>(nameof(GameLocation.CanItemBePlacedHere)),
-            postfix: this.GetHarmonyMethod(nameof(CanItemBePlacedHerePostfix))
-        );
+        this.Patch<BuildingData>(harmony, nameof(BuildingData.IsTilePassable), PatchKind.Postfix, nameof(IsTilePassablePostfix));
+        this.Patch<Building>(harmony, nameof(Building.doAction), PatchKind.Postfix, nameof(DoActionPostfix));
+        this.Patch<GameLocation>(harmony, nameof(GameLocation.CanItemBePlacedHere), PatchKind.Postfix, nameof(CanItemBePlacedHerePostfix));
     }
 
     private static void IsTilePassablePostfix(BuildingData __instance, ref bool __result, int relativeX, int relativeY)

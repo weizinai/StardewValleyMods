@@ -9,10 +9,7 @@ internal class FishingQuestPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<FishingQuest>(nameof(FishingQuest.loadQuestInfo)),
-            prefix: this.GetHarmonyMethod(nameof(LoadQuestInfoPrefix))
-        );
+        this.Patch<FishingQuest>(harmony, nameof(FishingQuest.loadQuestInfo), PatchKind.Prefix, nameof(LoadQuestInfoPrefix));
     }
 
     private static bool LoadQuestInfoPrefix(FishingQuest __instance)

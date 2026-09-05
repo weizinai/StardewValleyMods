@@ -8,10 +8,7 @@ internal class SObjectPatcher : BasePatcher
 {
     public override void Apply(Harmony harmony)
     {
-        harmony.Patch(
-            original: this.RequireMethod<SObject>(nameof(SObject.PlaceInMachine)),
-            postfix: this.GetHarmonyMethod(nameof(PlaceInMachinePostfix))
-        );
+        this.Patch<SObject>(harmony, nameof(SObject.PlaceInMachine), PatchKind.Postfix, nameof(PlaceInMachinePostfix));
     }
 
     // 放入机器获得经验

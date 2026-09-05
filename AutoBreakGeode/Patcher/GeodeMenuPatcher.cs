@@ -37,7 +37,10 @@ internal class GeodeMenuPatcher : BasePatcher
 
     private static void GeodeMenuPostfix(ClickableComponent ___geodeSpot)
     {
-        if (!config.DrawBeginButton) return;
+        if (!config.DrawBeginButton)
+        {
+            return;
+        }
 
         ui = new RootElement();
         var button = new Button(I18n.UI_BeginButton_Name(), Vector2.Zero)
@@ -54,7 +57,10 @@ internal class GeodeMenuPatcher : BasePatcher
 
     private static void UpdatePostfix()
     {
-        if (ui is null) return;
+        if (ui is null)
+        {
+            return;
+        }
 
         ui.Update();
         ui.ReceiveLeftClick();
@@ -65,18 +71,23 @@ internal class GeodeMenuPatcher : BasePatcher
         var codes = instructions.ToList();
         var parameters = new[]
         {
-            typeof(Texture2D), typeof(Vector2), typeof(Rectangle), typeof(Color), typeof(float), typeof(Vector2), typeof(float), typeof(SpriteEffects), typeof(float)
+            typeof(Texture2D), typeof(Vector2), typeof(Rectangle), typeof(Color), typeof(float), typeof(Vector2), typeof(float), typeof(SpriteEffects),
+            typeof(float)
         };
         var index = codes.FindIndex(code =>
             code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(SpriteBatch), nameof(SpriteBatch.Draw), parameters)));
         codes.Insert(index + 1, new CodeInstruction(OpCodes.Ldarg_1));
         codes.Insert(index + 2, new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(GeodeMenuPatcher), nameof(DrawButton))));
+
         return codes.AsEnumerable();
     }
 
     private static void DrawButton(SpriteBatch spriteBatch)
     {
-        if (ui is null) return;
+        if (ui is null)
+        {
+            return;
+        }
 
         ui.Draw(spriteBatch);
         ui.PerformHoverAction(spriteBatch);

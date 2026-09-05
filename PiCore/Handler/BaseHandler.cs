@@ -4,11 +4,11 @@ namespace weizinai.StardewValleyMod.PiCore.Handler;
 
 public abstract class BaseHandler : IHandler
 {
-    protected readonly IModHelper Helper;
+    protected readonly IModHelper helper;
 
     protected BaseHandler(IModHelper helper)
     {
-        this.Helper = helper;
+        this.helper = helper;
     }
 
     public abstract void Apply();

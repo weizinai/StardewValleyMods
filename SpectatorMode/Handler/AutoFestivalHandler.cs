@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.PiCore.Handler;
@@ -14,8 +14,8 @@ internal class AutoFestivalHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
-        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.helper.Events.GameLoop.DayStarted += this.OnDayStarted;
+        this.helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
@@ -27,9 +27,15 @@ internal class AutoFestivalHandler : BaseHandler
     {
         if (ModConfig.Instance.AutoParticipateFestival && Game1.whereIsTodaysFest is not null)
         {
-            if (Game1.activeClickableMenu is SpectatorMenu menu) menu.exitThisMenu();
+            if (Game1.activeClickableMenu is SpectatorMenu menu)
+            {
+                menu.exitThisMenu();
+            }
 
-            if (Game1.isWarping) return;
+            if (Game1.isWarping)
+            {
+                return;
+            }
 
             if (!this.warpingFestival && Game1.timeOfDay >= Utility.getStartTimeOfFestival())
             {

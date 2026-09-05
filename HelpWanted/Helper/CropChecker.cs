@@ -11,7 +11,10 @@ internal static class CropChecker
 
     public static bool IsCrop(string itemId)
     {
-        if (CropCache.ContainsKey(itemId)) return true;
+        if (CropCache.ContainsKey(itemId))
+        {
+            return true;
+        }
 
         foreach (var crop in Game1.cropData.Values)
         {

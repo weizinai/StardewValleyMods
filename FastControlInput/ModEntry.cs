@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using StardewModdingAPI;
@@ -54,7 +54,14 @@ internal class ModEntry : Mod
 
     private IEnumerable<IInputHandler> GetHandlers()
     {
-        if (this.config.ActionButton > 1) yield return new ActionButtonHandler(this.config.ActionButton);
-        if (this.config.UseToolButton > 1) yield return new UseToolButtonHandler(this.config.UseToolButton);
+        if (this.config.ActionButton > 1)
+        {
+            yield return new ActionButtonHandler(this.config.ActionButton);
+        }
+
+        if (this.config.UseToolButton > 1)
+        {
+            yield return new UseToolButtonHandler(this.config.UseToolButton);
+        }
     }
 }

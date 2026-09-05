@@ -22,9 +22,15 @@ internal class SaveFileSlotPatcher : BasePatcher
 
     private static void DrawSlotNamePostfix(SpriteBatch b, int i, SaveFileSlot __instance, LoadGameMenu ___menu)
     {
-        if (___menu.GetType() != typeof(LoadGameMenu)) return;
+        if (___menu.GetType() != typeof(LoadGameMenu))
+        {
+            return;
+        }
 
-        if (string.IsNullOrEmpty(CheckModInfoHandler.CheckResult[__instance.Farmer.slotName])) return;
+        if (string.IsNullOrEmpty(CheckModInfoHandler.CheckResult[__instance.Farmer.slotName]))
+        {
+            return;
+        }
 
         var position = new Vector2(___menu.slotButtons[i].bounds.X + 128 + 36 + SpriteText.getWidthOfString(__instance.Farmer.Name),
             ___menu.slotButtons[i].bounds.Y + 36 - 4);

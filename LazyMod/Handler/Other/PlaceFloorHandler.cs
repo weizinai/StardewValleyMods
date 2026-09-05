@@ -12,9 +12,10 @@ internal class PlaceFloorHandler : BaseAutomationHandler
     {
         if (item is SObject floor && floor.IsFloorPathItem())
         {
-            this.ForEachTile(this.Config.AutoPlaceFloor.Range, tile =>
+            this.ForEachTile(this.config.AutoPlaceFloor.Range, tile =>
             {
                 this.PlaceObjectAction(floor, tile, player, location);
+
                 return true;
             });
         }

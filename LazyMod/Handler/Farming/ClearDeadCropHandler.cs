@@ -13,15 +13,21 @@ internal class ClearDeadCropHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearDeadCrop.FindToolFromInventory);
-        if (scythe is null) return;
+        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.config.AutoClearDeadCrop.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoClearDeadCrop.Range, tile =>
+        if (scythe is null)
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoClearDeadCrop.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 var crop = hoeDirt.crop;
+
                 if (crop.dead.Value)
                 {
                     hoeDirt.destroyCrop(true);

@@ -69,7 +69,8 @@ internal class GenericModConfigMenuIntegrationForLazyMod : IGenericModConfigMenu
             // 自动耕地
             .AddStaminaToolAutomationConfig(config => config.AutoTillDirt, I18n.Config_AutoTillDirt_Name, I18n.Config_AutoTillDirt_Tooltip, 0)
             // 自动清理耕地
-            .AddStaminaToolAutomationConfig(config => config.AutoClearTilledDirt, I18n.Config_AutoClearTilledDirt_Name, I18n.Config_AutoClearTilledDirt_Tooltip, 0)
+            .AddStaminaToolAutomationConfig(config => config.AutoClearTilledDirt, I18n.Config_AutoClearTilledDirt_Name, I18n.Config_AutoClearTilledDirt_Tooltip,
+                0)
             // 自动浇水
             .AddStaminaToolAutomationConfig(config => config.AutoWaterDirt, I18n.Config_AutoWaterDirt_Name, I18n.Config_AutoWaterDirt_Tooltip, 0)
             .AddBoolOption(
@@ -79,7 +80,8 @@ internal class GenericModConfigMenuIntegrationForLazyMod : IGenericModConfigMenu
                 I18n.Config_WaterOnlyWhenCrop_Tooltip
             )
             // 自动补充水壶
-            .AddToolAutomationConfig(config => config.AutoRefillWateringCan, I18n.Config_AutoRefillWateringCan_Name, I18n.Config_AutoRefillWateringCan_Tooltip, 1)
+            .AddToolAutomationConfig(config => config.AutoRefillWateringCan, I18n.Config_AutoRefillWateringCan_Name, I18n.Config_AutoRefillWateringCan_Tooltip,
+                1)
             // 自动播种
             .AddBaseAutomationConfig(config => config.AutoSeed, I18n.Config_AutoSeed_Name, I18n.Config_AutoSeed_Tooltip, 0)
             // 自动施肥
@@ -109,7 +111,8 @@ internal class GenericModConfigMenuIntegrationForLazyMod : IGenericModConfigMenu
             // 自动剪毛
             .AddStaminaToolAutomationConfig(config => config.AutoShearsAnimal, I18n.Config_AutoShearsAnimal_Name, I18n.Config_AutoShearsAnimal_Tooltip, 1)
             // 自动喂食动物饼干
-            .AddBaseAutomationConfig(config => config.AutoFeedAnimalCracker, I18n.Config_AutoFeedAnimalCracker_Name, I18n.Config_AutoFeedAnimalCracker_Tooltip, 1)
+            .AddBaseAutomationConfig(config => config.AutoFeedAnimalCracker, I18n.Config_AutoFeedAnimalCracker_Name, I18n.Config_AutoFeedAnimalCracker_Tooltip,
+                1)
             // 自动打开动物门
             .AddSectionTitle(I18n.Config_AutoOpenAnimalDoor_Name)
             .AddBoolOption(
@@ -249,7 +252,8 @@ internal class GenericModConfigMenuIntegrationForLazyMod : IGenericModConfigMenu
             // 自动使用蟹笼
             .AddBaseAutomationConfig(config => config.AutoPlaceCarbPot, I18n.Config_AutoPlaceCarbPot_Name, I18n.Config_AutoPlaceCarbPot_Tooltip, 1)
             // 自动添加蟹笼鱼饵
-            .AddBaseAutomationConfig(config => config.AutoAddBaitForCarbPot, I18n.Config_AutoAddBaitForCarbPot_Name, I18n.Config_AutoAddBaitForCarbPot_Tooltip, 1)
+            .AddBaseAutomationConfig(config => config.AutoAddBaitForCarbPot, I18n.Config_AutoAddBaitForCarbPot_Name, I18n.Config_AutoAddBaitForCarbPot_Tooltip,
+                1)
             // 自动收获蟹笼
             .AddBaseAutomationConfig(config => config.AutoHarvestCarbPot, I18n.Config_AutoHarvestCarbPot_Name, null, 1);
     }

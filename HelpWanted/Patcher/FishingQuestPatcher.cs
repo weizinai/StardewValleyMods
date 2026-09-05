@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using StardewValley.Quests;
 using weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 using weizinai.StardewValleyMod.PiCore.Patcher;

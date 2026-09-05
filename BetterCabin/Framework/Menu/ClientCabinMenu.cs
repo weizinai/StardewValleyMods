@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,8 +35,8 @@ internal class ClientCabinMenu : IClickableMenu
     private readonly GameLocation originLocation;
     private readonly Location originViewport;
 
-    private Rectangle Bound => new(this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height);
-    private GameLocation TargetLocation => this.building.GetParentLocation();
+    private Rectangle bound => new(this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height);
+    private GameLocation targetLocation => this.building.GetParentLocation();
 
     public ClientCabinMenu(Building targetBuilding)
         : base(Game1.uiViewport.Width / 2 - WindowWidth / 2, Game1.uiViewport.Height / 2 - WindowHeight / 2, WindowWidth, WindowHeight)
@@ -49,6 +49,7 @@ internal class ClientCabinMenu : IClickableMenu
         var buildingData = targetBuilding.GetData();
         var index = 0;
         this.skins.Add(new SkinEntry(index++, null, "", ""));
+
         if (buildingData.Skins != null)
         {
             foreach (var skin in buildingData.Skins)
@@ -78,8 +79,12 @@ internal class ClientCabinMenu : IClickableMenu
         else
         {
             this.building.color = Color.White;
-            var b = this.TargetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
-            if (this.building.Equals(b)) b.color = Color.Lime * 0.8f;
+            var b = this.targetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
+
+            if (this.building.Equals(b))
+            {
+                b.color = Color.Lime * 0.8f;
+            }
         }
     }
 
@@ -131,7 +136,8 @@ internal class ClientCabinMenu : IClickableMenu
         {
             if (this.buildingToMove is null)
             {
-                this.buildingToMove = this.TargetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
+                this.buildingToMove = this.targetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
+
                 if (this.building.Equals(this.buildingToMove))
                 {
                     this.buildingToMove.isMoving = true;
@@ -146,7 +152,8 @@ internal class ClientCabinMenu : IClickableMenu
             }
 
             var buildingPosition = PositionHelper.GetTilePositionFromMousePosition();
-            if (this.TargetLocation.buildStructure(this.buildingToMove, buildingPosition, Game1.player))
+
+            if (this.targetLocation.buildStructure(this.buildingToMove, buildingPosition, Game1.player))
             {
                 this.buildingToMove.isMoving = false;
                 this.buildingToMove = null;
@@ -163,7 +170,10 @@ internal class ClientCabinMenu : IClickableMenu
 
     public override void update(GameTime time)
     {
-        if (!this.isMoving) return;
+        if (!this.isMoving)
+        {
+            return;
+        }
 
         PanScreenHelper.PanScreen(32, 64);
     }
@@ -172,14 +182,17 @@ internal class ClientCabinMenu : IClickableMenu
     {
         if (!this.isMoving)
         {
-            if (!Game1.options.showClearBackgrounds) b.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
+            if (!Game1.options.showClearBackgrounds)
+            {
+                b.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
+            }
 
             Game1.DrawBox(this.xPositionOnScreen, this.yPositionOnScreen, this.width, this.height);
 
             var sourceRect = this.building.getSourceRect();
-            this.building.drawInMenu(b, this.Bound.Center.X - sourceRect.Width * 4 / 2, this.Bound.Center.Y - sourceRect.Height * 4 / 2 - 16);
+            this.building.drawInMenu(b, this.bound.Center.X - sourceRect.Width * 4 / 2, this.bound.Center.Y - sourceRect.Height * 4 / 2 - 16);
 
-            SpriteText.drawStringWithScrollCenteredAt(b, I18n.UI_ClientCabinMenu_ChooseSkin(), this.Bound.Center.X, this.yPositionOnScreen - 96);
+            SpriteText.drawStringWithScrollCenteredAt(b, I18n.UI_ClientCabinMenu_ChooseSkin(), this.bound.Center.X, this.yPositionOnScreen - 96);
 
             this.okButton.draw(b);
             this.moveButton.draw(b);
@@ -189,16 +202,23 @@ internal class ClientCabinMenu : IClickableMenu
         else
         {
             Game1.StartWorldDrawInUI(b);
+
             if (this.buildingToMove is not null)
             {
                 var mouseTilePosition = PositionHelper.GetTilePositionFromMousePosition();
+
                 for (var y = 0; y < this.buildingToMove.tilesHigh.Value; y++)
                 {
                     for (var x = 0; x < this.buildingToMove.tilesWide.Value; x++)
                     {
                         var sheetIndex = this.buildingToMove.getTileSheetIndexForStructurePlacementTile(x, y);
                         var currentGlobalTilePosition = new Vector2(mouseTilePosition.X + x, mouseTilePosition.Y + y);
-                        if (!Game1.currentLocation.isBuildable(currentGlobalTilePosition)) sheetIndex++;
+
+                        if (!Game1.currentLocation.isBuildable(currentGlobalTilePosition))
+                        {
+                            sheetIndex++;
+                        }
+
                         b.Draw(Game1.mouseCursors, Game1.GlobalToLocal(Game1.viewport, currentGlobalTilePosition * 64f),
                             new Rectangle(194 + sheetIndex * 16, 388, 16, 16), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0.999f);
                     }
@@ -209,19 +229,23 @@ internal class ClientCabinMenu : IClickableMenu
         }
 
         this.drawMouse(b);
-        if (this.hoverText.Length > 0) drawHoverText(b, this.hoverText, Game1.dialogueFont);
+
+        if (this.hoverText.Length > 0)
+        {
+            drawHoverText(b, this.hoverText, Game1.dialogueFont);
+        }
     }
 
     private void InitButton()
     {
-        this.previousSkinButton = new ClickableTextureComponent(new Rectangle(this.Bound.Left, this.Bound.Center.Y - 32, 64, 64),
+        this.previousSkinButton = new ClickableTextureComponent(new Rectangle(this.bound.Left, this.bound.Center.Y - 32, 64, 64),
             Game1.mouseCursors, Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 44), 1f);
-        this.nextSkinButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64, this.Bound.Center.Y - 32, 64, 64),
+        this.nextSkinButton = new ClickableTextureComponent(new Rectangle(this.bound.Right - 64, this.bound.Center.Y - 32, 64, 64),
             Game1.mouseCursors, Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 33), 1f);
 
-        this.moveButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64 * 2 - 8, this.Bound.Bottom + 16, 64, 64),
+        this.moveButton = new ClickableTextureComponent(new Rectangle(this.bound.Right - 64 * 2 - 8, this.bound.Bottom + 16, 64, 64),
             Game1.mouseCursors, new Rectangle(257, 284, 16, 16), 4f);
-        this.okButton = new ClickableTextureComponent(new Rectangle(this.Bound.Right - 64, this.Bound.Bottom + 16, 64, 64),
+        this.okButton = new ClickableTextureComponent(new Rectangle(this.bound.Right - 64, this.bound.Bottom + 16, 64, 64),
             Game1.mouseCursors, Game1.getSourceRectForStandardTileSheet(Game1.mouseCursors, 46), 1f);
 
         if (this.skins.Count == 0)
@@ -234,13 +258,19 @@ internal class ClientCabinMenu : IClickableMenu
     private void SetSkin(int index)
     {
         index %= this.skins.Count;
-        if (index < 0) index = this.skins.Count + index;
+
+        if (index < 0)
+        {
+            index = this.skins.Count + index;
+        }
+
         this.SetSkin(this.skins[index]);
     }
 
     private void SetSkin(SkinEntry skin)
     {
         this.currentSkin = skin;
+
         if (this.building.skinId.Value != skin.Id)
         {
             this.building.skinId.Value = skin.Id;
@@ -255,14 +285,14 @@ internal class ClientCabinMenu : IClickableMenu
         this.hoverText = "";
 
         Game1.currentLocation.cleanupBeforePlayerExit();
-        Game1.currentLocation = this.TargetLocation;
+        Game1.currentLocation = this.targetLocation;
         Game1.currentLocation.resetForPlayerEntry();
         Game1.globalFadeToClear();
 
         Game1.displayHUD = false;
         Game1.displayFarmer = false;
 
-        Game1.player.viewingLocation.Value = this.TargetLocation.NameOrUniqueName;
+        Game1.player.viewingLocation.Value = this.targetLocation.NameOrUniqueName;
         Game1.viewportFreeze = true;
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(new Vector2(this.building.tileX.Value, this.building.tileY.Value));
         Game1.viewport.Location = new Location((int)position.X - Game1.viewport.Width / 2, (int)position.Y - Game1.viewport.Height / 2);

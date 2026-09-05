@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley.Extensions;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Helper;
@@ -24,5 +24,8 @@ public class PathStringHelper
         ["S"] = $"{BasePath}{SlayMonsterQuestType}.cs."
     };
 
-    public static string GetPathString(string type, params int[] index) => $"{PathCache[type]}{ModEntry.Random.ChooseFrom(index)}";
+    public static string GetPathString(string type, params int[] index)
+    {
+        return $"{PathCache[type]}{ModEntry.Random.ChooseFrom(index)}";
+    }
 }

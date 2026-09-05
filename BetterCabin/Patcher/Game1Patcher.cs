@@ -23,13 +23,20 @@ internal class Game1Patcher : BasePatcher
         {
             var player = Game1.player;
 
-            if (cabin.owner.Equals(player)) return true;
+            if (cabin.owner.Equals(player))
+            {
+                return true;
+            }
 
-            if (LockCabinHandler.GetCabinWhiteList(cabin).Contains(player.Name)) return true;
+            if (LockCabinHandler.GetCabinWhiteList(cabin).Contains(player.Name))
+            {
+                return true;
+            }
 
             if (LockCabinHandler.CheckCabinLock(cabin))
             {
                 HudLogger.ErrorHUDMessage(I18n.UI_LockCabin_VisitLockedCabin());
+
                 return false;
             }
         }

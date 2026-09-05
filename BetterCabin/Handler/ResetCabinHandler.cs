@@ -17,33 +17,42 @@ internal class ResetCabinHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        this.helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
+        this.helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (Game1.IsClient || !Context.IsPlayerFree) return;
+        if (Game1.IsClient || !Context.IsPlayerFree)
+        {
+            return;
+        }
 
         if (ModConfig.Instance.ResetCabinPlayerKeybind.JustPressed())
         {
             var location = Game1.player.currentLocation;
+
             if (location is Cabin cabin)
             {
                 if (cabin.owner.IsOnline())
                 {
                     HudLogger.NoIconHUDMessage(I18n.UI_ResetCabin_Online());
+
                     return;
                 }
 
                 if (!cabin.owner.isUnclaimedFarmhand)
+                {
                     this.ResetCabin(cabin);
+                }
                 else
+                {
                     HudLogger.NoIconHUDMessage(I18n.UI_ResetCabin_NoOwner());
+                }
             }
             else
             {
@@ -56,9 +65,16 @@ internal class ResetCabinHandler : BaseHandler
                     var id = long.Parse(value);
                     var farmer = Game1.GetPlayer(id);
 
-                    if (farmer is null) return;
+                    if (farmer is null)
+                    {
+                        return;
+                    }
 
-                    if (farmer.IsOnline()) Game1.server.kick(id);
+                    if (farmer.IsOnline())
+                    {
+                        Game1.server.kick(id);
+                    }
+
                     this.ResetCabin((Utility.getHomeOfFarmer(farmer) as Cabin)!);
                 });
             }

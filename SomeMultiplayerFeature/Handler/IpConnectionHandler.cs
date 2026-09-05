@@ -14,32 +14,47 @@ internal class IpConnectionHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
-        this.Helper.Events.GameLoop.TimeChanged += this.OnTimeChanged;
+        this.helper.Events.GameLoop.DayStarted += this.OnDayStarted;
+        this.helper.Events.GameLoop.TimeChanged += this.OnTimeChanged;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
-        this.Helper.Events.GameLoop.TimeChanged -= this.OnTimeChanged;
+        this.helper.Events.GameLoop.DayStarted -= this.OnDayStarted;
+        this.helper.Events.GameLoop.TimeChanged -= this.OnTimeChanged;
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
     {
-        if (!ModConfig.Instance.AutoSetIpConnection) return;
+        if (!ModConfig.Instance.AutoSetIpConnection)
+        {
+            return;
+        }
 
-        if (Game1.IsClient) return;
+        if (Game1.IsClient)
+        {
+            return;
+        }
 
-        if (ModConfig.Instance.EnableTime == 6) this.EnableIpConnection();
+        if (ModConfig.Instance.EnableTime == 6)
+        {
+            this.EnableIpConnection();
+        }
     }
 
     private void OnTimeChanged(object? sender, TimeChangedEventArgs e)
     {
         // 如果该功能为启用，则返回
-        if (!ModConfig.Instance.AutoSetIpConnection) return;
+        if (!ModConfig.Instance.AutoSetIpConnection)
+        {
+            return;
+        }
 
         // 如果当前不是多人模式或者当前玩家不是主玩家，则返回
-        if (Game1.IsClient) return;
+        if (Game1.IsClient)
+        {
+            return;
+        }
 
         if (Game1.timeOfDay == ModConfig.Instance.EnableTime * 100 && ModConfig.Instance.EnableTime != 6)
         {
@@ -57,8 +72,10 @@ internal class IpConnectionHandler : BaseHandler
         if (Game1.isFestival())
         {
             HudLogger.NoIconHUDMessage("今天是节日，不打开Ip连接。");
+
             return;
         }
+
         HudLogger.NoIconHUDMessage("Ip连接已打开");
         Game1.options.ipConnectionsEnabled = true;
     }

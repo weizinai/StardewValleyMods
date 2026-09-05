@@ -14,12 +14,15 @@ internal class SpectateLocationHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        this.helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
+        if (!Context.IsPlayerFree)
+        {
+            return;
+        }
 
         if (ModConfig.Instance.SpectateLocationKey.JustPressed())
         {

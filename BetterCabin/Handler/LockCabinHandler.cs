@@ -18,19 +18,22 @@ internal class LockCabinHandler : BaseHandler
 
     public LockCabinHandler(IModHelper helper) : base(helper)
     {
-        if (Context.IsWorldReady) this.InitLockCabinConfig();
+        if (Context.IsWorldReady)
+        {
+            this.InitLockCabinConfig();
+        }
     }
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
-        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        this.helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        this.helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
-        this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
+        this.helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
+        this.helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
 
         this.InitLockCabinConfig();
     }
@@ -42,17 +45,22 @@ internal class LockCabinHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (Game1.IsServer || !Context.IsPlayerFree) return;
+        if (Game1.IsServer || !Context.IsPlayerFree)
+        {
+            return;
+        }
 
         if (ModConfig.Instance.LockCabinKeybind.JustPressed())
         {
             if (!CheckLockCabinEnable())
             {
                 HudLogger.ErrorHUDMessage(I18n.UI_LockCabin_Disable());
+
                 return;
             }
 
             var cabin = Utility.getHomeOfFarmer(Game1.player) as Cabin;
+
             if (CheckCabinLock(cabin!))
             {
                 cabin!.modData.Remove(LockCabinKey);
@@ -63,6 +71,7 @@ internal class LockCabinHandler : BaseHandler
                 cabin!.modData[LockCabinKey] = "true";
                 HudLogger.NoIconHUDMessage(I18n.UI_LockCabin_Lock());
             }
+
             return;
         }
 
@@ -95,13 +104,21 @@ internal class LockCabinHandler : BaseHandler
 
     private void InitLockCabinConfig()
     {
-        if (Game1.IsClient) return;
+        if (Game1.IsClient)
+        {
+            return;
+        }
 
         var modData = Game1.MasterPlayer.modData;
+
         if (ModConfig.Instance.LockCabin)
+        {
             modData[LockCabinKey] = "true";
+        }
         else
+        {
             modData.Remove(LockCabinKey);
+        }
     }
 
     private static bool CheckLockCabinEnable()

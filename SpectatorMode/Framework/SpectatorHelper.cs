@@ -10,9 +10,13 @@ internal static class SpectatorHelper
     {
         var location = Game1.getLocationFromName(locationName);
 
-        if (location is null) return false;
+        if (location is null)
+        {
+            return false;
+        }
 
         Game1.activeClickableMenu = new SpectatorMenu(location);
+
         return true;
     }
 
@@ -23,11 +27,13 @@ internal static class SpectatorHelper
         if (farmer is null)
         {
             menu = null;
+
             return false;
         }
 
         menu = new SpectatorMenu(farmer.currentLocation, farmer);
         Game1.activeClickableMenu = menu;
+
         return true;
     }
 }

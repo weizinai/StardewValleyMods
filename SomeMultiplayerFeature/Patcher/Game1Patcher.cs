@@ -27,6 +27,7 @@ internal class Game1Patcher : BasePatcher
             keyboardState.IsKeyDown(Keys.RightShift) && keyboardState.IsKeyDown(Keys.R) && keyboardState.IsKeyDown(Keys.Delete))
         {
             HudLogger.NoIconHUDMessage("取消后摇功能已被禁用");
+
             return false;
         }
 

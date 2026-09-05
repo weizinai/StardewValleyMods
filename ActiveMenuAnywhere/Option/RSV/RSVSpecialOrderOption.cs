@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 

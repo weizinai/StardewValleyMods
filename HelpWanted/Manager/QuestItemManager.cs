@@ -12,7 +12,7 @@ public class QuestItemManager
 {
     public static QuestItemManager Instance { get; } = new();
 
-    private VanillaModConfig Config => ModConfig.Instance.VanillaConfig;
+    private VanillaModConfig config => ModConfig.Instance.VanillaConfig;
 
     private readonly List<string> universalGiftTaste = new();
     private readonly Dictionary<string, List<string>> possibleItems = new();
@@ -85,8 +85,8 @@ public class QuestItemManager
         {
             var obj = new SObject(itemId, 1);
 
-            return this.Config.MaxPrice >= 0 && obj.Price >= this.Config.MaxPrice
-                   || !this.Config.AllowArtisanGoods && obj.Category == SObject.artisanGoodsCategory;
+            return this.config.MaxPrice >= 0 && obj.Price >= this.config.MaxPrice
+                   || !this.config.AllowArtisanGoods && obj.Category == SObject.artisanGoodsCategory;
         });
 
         return;
@@ -123,7 +123,7 @@ public class QuestItemManager
         {
             var obj = new SObject(itemId, 1);
 
-            return this.Config.MaxPrice >= 0 && obj.Price >= this.Config.MaxPrice;
+            return this.config.MaxPrice >= 0 && obj.Price >= this.config.MaxPrice;
         });
 
         return;
@@ -136,13 +136,32 @@ public class QuestItemManager
 
     private void LoadUniversalGiftTaste()
     {
-        if (this.universalGiftTaste.Any()) return;
+        if (this.universalGiftTaste.Any())
+        {
+            return;
+        }
 
         this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Love"]));
-        if (this.Config.QuestItemRequirement > 0) this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Like"]));
-        if (this.Config.QuestItemRequirement > 1) this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Neutral"]));
-        if (this.Config.QuestItemRequirement > 2) this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Dislike"]));
-        if (this.Config.QuestItemRequirement > 3) this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Hate"]));
+
+        if (this.config.QuestItemRequirement > 0)
+        {
+            this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Like"]));
+        }
+
+        if (this.config.QuestItemRequirement > 1)
+        {
+            this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Neutral"]));
+        }
+
+        if (this.config.QuestItemRequirement > 2)
+        {
+            this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Dislike"]));
+        }
+
+        if (this.config.QuestItemRequirement > 3)
+        {
+            this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Hate"]));
+        }
     }
 
     private List<string> GetNPCGiftTaste(string npcName)
@@ -166,10 +185,26 @@ public class QuestItemManager
         }
 
         giftTaste.AddRange(ArgUtility.SplitBySpace(data[1]));
-        if (this.Config.QuestItemRequirement > 0) giftTaste.AddRange(ArgUtility.SplitBySpace(data[3]));
-        if (this.Config.QuestItemRequirement > 1) giftTaste.AddRange(ArgUtility.SplitBySpace(data[5]));
-        if (this.Config.QuestItemRequirement > 2) giftTaste.AddRange(ArgUtility.SplitBySpace(data[7]));
-        if (this.Config.QuestItemRequirement > 3) giftTaste.AddRange(ArgUtility.SplitBySpace(data[9]));
+
+        if (this.config.QuestItemRequirement > 0)
+        {
+            giftTaste.AddRange(ArgUtility.SplitBySpace(data[3]));
+        }
+
+        if (this.config.QuestItemRequirement > 1)
+        {
+            giftTaste.AddRange(ArgUtility.SplitBySpace(data[5]));
+        }
+
+        if (this.config.QuestItemRequirement > 2)
+        {
+            giftTaste.AddRange(ArgUtility.SplitBySpace(data[7]));
+        }
+
+        if (this.config.QuestItemRequirement > 3)
+        {
+            giftTaste.AddRange(ArgUtility.SplitBySpace(data[9]));
+        }
 
         return giftTaste;
     }

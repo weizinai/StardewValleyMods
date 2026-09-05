@@ -46,28 +46,43 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (!this.Config.ClearStoneOnMineShaft && location is MineShaft) return;
-        if (!this.Config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
+        if (!this.config.ClearStoneOnMineShaft && location is MineShaft)
+        {
+            return;
+        }
 
-        var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearStone.FindToolFromInventory);
-        if (pickaxe is null) return;
+        if (!this.config.ClearStoneOnVolcano && location is VolcanoDungeon)
+        {
+            return;
+        }
+
+        var pickaxe = ToolHelper.GetTool<Pickaxe>(this.config.AutoClearStone.FindToolFromInventory);
+
+        if (pickaxe is null)
+        {
+            return;
+        }
 
         var stoneTypes = new Dictionary<HashSet<string>, bool>
         {
-            { this.farmStone, this.Config.ClearFarmStone },
-            { this.otherStone, this.Config.ClearOtherStone },
-            { this.islandStone, this.Config.ClearIslandStone },
-            { this.oreStone, this.Config.ClearOreStone },
-            { this.gemStone, this.Config.ClearGemStone },
-            { this.geodeStone, this.Config.ClearGeodeStone },
-            { this.calicoEggStone, this.Config.ClearCalicoEggStone }
+            { this.farmStone, this.config.ClearFarmStone },
+            { this.otherStone, this.config.ClearOtherStone },
+            { this.islandStone, this.config.ClearIslandStone },
+            { this.oreStone, this.config.ClearOreStone },
+            { this.gemStone, this.config.ClearGemStone },
+            { this.geodeStone, this.config.ClearGeodeStone },
+            { this.calicoEggStone, this.config.ClearCalicoEggStone }
         };
 
-        this.ForEachTile(this.Config.AutoClearStone.Range, tile =>
+        this.ForEachTile(this.config.AutoClearStone.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoClearStone.StopStamina) return false;
+            if (player.Stamina <= this.config.AutoClearStone.StopStamina)
+            {
+                return false;
+            }
 
             location.objects.TryGetValue(tile, out var obj);
+
             if (obj is not null)
             {
                 foreach (var stoneType in stoneTypes)
@@ -75,6 +90,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
                     if (stoneType.Value && stoneType.Key.Contains(obj.QualifiedItemId))
                     {
                         this.UseToolOnTile(location, player, pickaxe, tile);
+
                         break;
                     }
                 }
@@ -82,32 +98,40 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile)))
+                {
+                    continue;
+                }
 
                 var clear = false;
                 var requiredUpgradeLevel = Tool.stone;
 
-                if (this.Config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex)
+                if (this.config.ClearMeteorite && clump.parentSheetIndex.Value == ResourceClump.meteoriteIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.gold;
                 }
                 else
-                    switch (this.Config.ClearBoulder)
+                {
+                    switch (this.config.ClearBoulder)
                     {
                         case true when clump.parentSheetIndex.Value == ResourceClump.boulderIndex:
                             clear = true;
                             requiredUpgradeLevel = Tool.steel;
+
                             break;
                         case true when this.mineBoulder.Contains(clump.parentSheetIndex.Value):
                             clear = true;
                             requiredUpgradeLevel = Tool.stone;
+
                             break;
                     }
+                }
 
                 if (clear && pickaxe.UpgradeLevel >= requiredUpgradeLevel)
                 {
                     this.UseToolOnTile(location, player, pickaxe, tile);
+
                     break;
                 }
             }

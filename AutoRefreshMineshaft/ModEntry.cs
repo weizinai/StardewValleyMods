@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
@@ -33,7 +33,10 @@ internal class ModEntry : Mod
 
     private void OnWarped(object? sender, WarpedEventArgs e)
     {
-        if (!this.config.EnableMod) return;
+        if (!this.config.EnableMod)
+        {
+            return;
+        }
 
         if (e is { OldLocation: MineShaft, NewLocation: not MineShaft })
         {
@@ -68,8 +71,10 @@ internal class ModEntry : Mod
             if (mine.mineLevel <= 120 && !mine.farmers.Any())
             {
                 mine.OnRemoved();
+
                 return true;
             }
+
             return false;
         });
     }

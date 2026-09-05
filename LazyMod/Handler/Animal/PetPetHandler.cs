@@ -14,18 +14,24 @@ internal class PetPetHandler : BaseAutomationHandler
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var pets = location.characters.OfType<Pet>().ToList();
-        if (!pets.Any()) return;
 
-        this.ForEachTile(this.Config.AutoPetPet.Range, tile =>
+        if (!pets.Any())
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoPetPet.Range, tile =>
         {
             foreach (var pet in pets)
             {
                 if (this.CanPetPet(tile, player, pet))
                 {
                     pet.checkAction(player, location);
+
                     return true;
                 }
             }
+
             return true;
         });
     }

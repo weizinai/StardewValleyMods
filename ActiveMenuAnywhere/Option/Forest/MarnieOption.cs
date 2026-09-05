@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -43,31 +43,35 @@ internal class MarnieOption : BaseOption
         switch (whichAnswer)
         {
             case "Supplies":
-            {
-                Utility.TryOpenShopMenu("AnimalShop", "Marnie");
-                break;
-            }
-            case "Purchase":
-            {
-                Game1.currentLocation.ShowAnimalShopMenu(_ =>
                 {
-                    this.originLocation = Game1.currentLocation;
-                    this.originViewport = Game1.viewport.Location;
-                });
-                this.helper.Events.Display.MenuChanged += this.OnMenuChanged;
-                break;
-            }
+                    Utility.TryOpenShopMenu("AnimalShop", "Marnie");
+
+                    break;
+                }
+            case "Purchase":
+                {
+                    Game1.currentLocation.ShowAnimalShopMenu(_ =>
+                    {
+                        this.originLocation = Game1.currentLocation;
+                        this.originViewport = Game1.viewport.Location;
+                    });
+                    this.helper.Events.Display.MenuChanged += this.OnMenuChanged;
+
+                    break;
+                }
             case "Adopt":
-            {
-                Utility.TryOpenShopMenu("PetAdoption", "Marnie");
-                break;
-            }
+                {
+                    Utility.TryOpenShopMenu("PetAdoption", "Marnie");
+
+                    break;
+                }
             case "Leave":
-            {
-                Game1.exitActiveMenu();
-                Game1.player.forceCanMove();
-                break;
-            }
+                {
+                    Game1.exitActiveMenu();
+                    Game1.player.forceCanMove();
+
+                    break;
+                }
         }
     }
 

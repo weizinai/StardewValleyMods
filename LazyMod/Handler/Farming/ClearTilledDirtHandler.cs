@@ -13,14 +13,22 @@ internal class ClearTilledDirtHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var pickaxe = ToolHelper.GetTool<Pickaxe>(this.Config.AutoClearTilledDirt.FindToolFromInventory);
-        if (pickaxe is null) return;
+        var pickaxe = ToolHelper.GetTool<Pickaxe>(this.config.AutoClearTilledDirt.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoClearTilledDirt.Range, tile =>
+        if (pickaxe is null)
         {
-            if (player.Stamina <= this.Config.AutoClearTilledDirt.StopStamina) return false;
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoClearTilledDirt.Range, tile =>
+        {
+            if (player.Stamina <= this.config.AutoClearTilledDirt.StopStamina)
+            {
+                return false;
+            }
 
             location.terrainFeatures.TryGetValue(tile, out var tileFeature);
+
             if (tileFeature is HoeDirt { crop: null } hoeDirt && hoeDirt.state.Value == HoeDirt.dry)
             {
                 this.UseToolOnTile(location, player, pickaxe, tile);

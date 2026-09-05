@@ -32,6 +32,7 @@ internal class CalicoJackPatcher : BasePatcher
     private static double GetCardChance(double originChance)
     {
         var config = ModConfig.Instance.CardChance;
+
         return config.IsEnabled ? config.Value : originChance;
     }
 }

@@ -16,14 +16,22 @@ public static class PanScreenHelper
         var mouseY = Game1.getOldMouseY(false);
 
         if (mouseX < moveThreshold)
+        {
             Game1.panScreen(-moveSpeed, 0);
+        }
         else if (mouseX - Game1.viewport.Width >= -moveThreshold)
+        {
             Game1.panScreen(moveSpeed, 0);
+        }
 
         if (mouseY < moveThreshold)
+        {
             Game1.panScreen(0, -moveSpeed);
+        }
         else if (mouseY - Game1.viewport.Height >= -moveThreshold)
+        {
             Game1.panScreen(0, moveSpeed);
+        }
     }
 
     public static void PanScreenByKey(int moveSpeed)
@@ -33,13 +41,21 @@ public static class PanScreenHelper
         foreach (var key in pressedKeys)
         {
             if (Game1.options.doesInputListContain(Game1.options.moveDownButton, key))
+            {
                 Game1.panScreen(0, moveSpeed);
+            }
             else if (Game1.options.doesInputListContain(Game1.options.moveRightButton, key))
+            {
                 Game1.panScreen(moveSpeed, 0);
+            }
             else if (Game1.options.doesInputListContain(Game1.options.moveUpButton, key))
+            {
                 Game1.panScreen(0, -moveSpeed);
+            }
             else if (Game1.options.doesInputListContain(Game1.options.moveLeftButton, key))
+            {
                 Game1.panScreen(-moveSpeed, 0);
+            }
         }
     }
 }

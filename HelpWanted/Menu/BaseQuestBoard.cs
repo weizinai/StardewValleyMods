@@ -29,10 +29,10 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     private readonly BoardType boardType;
     private int showingQuestId;
-    protected Quest? ShowingQuest;
+    protected Quest? showingQuest;
 
-    [MemberNotNullWhen(true, nameof(ShowingQuest))]
-    private bool IsShowingQuest => this.ShowingQuest != null;
+    [MemberNotNullWhen(true, nameof(showingQuest))]
+    private bool isShowingQuest => this.showingQuest != null;
 
     public static readonly Dictionary<BoardType, List<QuestNote>> AllQuestNotes = new()
     {
@@ -40,7 +40,7 @@ public abstract class BaseQuestBoard : IClickableMenu
         [BoardType.RSV] = new List<QuestNote>()
     };
 
-    private List<QuestNote> CurrentQuestNotes => AllQuestNotes[this.boardType];
+    private List<QuestNote> currentQuestNotes => AllQuestNotes[this.boardType];
 
     protected BaseQuestBoard(BoardType boardType, Texture2D billboardTexture, Rectangle billboardTextureSourceRect) : base(0, 0, 0, 0, true)
     {
@@ -85,12 +85,16 @@ public abstract class BaseQuestBoard : IClickableMenu
         // 关闭按钮逻辑
         this.upperRightCloseButton?.tryHover(x, y, 0.5f);
 
-        if (this.IsShowingQuest)
+        if (this.isShowingQuest)
         {
             // 接受任务按钮逻辑
             var oldScale = this.acceptQuestButton.scale;
             this.acceptQuestButton.scale = this.acceptQuestButton.bounds.Contains(x, y) ? 1.5f : 1f;
-            if (this.acceptQuestButton.scale > oldScale) Game1.playSound("Cowboy_gunshot");
+
+            if (this.acceptQuestButton.scale > oldScale)
+            {
+                Game1.playSound("Cowboy_gunshot");
+            }
         }
         else
         {
@@ -98,7 +102,7 @@ public abstract class BaseQuestBoard : IClickableMenu
             this.hoverTitle = "";
             this.hoverText = "";
 
-            foreach (var option in this.CurrentQuestNotes.Where(option => option.containsPoint(x, y)))
+            foreach (var option in this.currentQuestNotes.Where(option => option.containsPoint(x, y)))
             {
                 this.hoverTitle = option.QuestModel.Quest.questTitle;
                 this.hoverText = option.QuestModel.Quest.currentObjective;
@@ -110,7 +114,7 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     public override void receiveKeyPress(Keys key)
     {
-        if (this.IsShowingQuest && Game1.options.doesInputListContain(Game1.options.menuButton, key))
+        if (this.isShowingQuest && Game1.options.doesInputListContain(Game1.options.menuButton, key))
         {
             this.CloseShowingQuest();
 
@@ -122,12 +126,16 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
-        if (this.IsShowingQuest)
+        if (this.isShowingQuest)
         {
             // 关闭按钮逻辑
             if (this.upperRightCloseButton != null && this.upperRightCloseButton.containsPoint(x, y))
             {
-                if (playSound) Game1.playSound(this.closeSound);
+                if (playSound)
+                {
+                    Game1.playSound(this.closeSound);
+                }
+
                 this.CloseShowingQuest();
 
                 return;
@@ -137,9 +145,9 @@ public abstract class BaseQuestBoard : IClickableMenu
             if (this.acceptQuestButton.containsPoint(x, y))
             {
                 Game1.playSound("newArtifact");
-                this.ShowingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
-                Game1.player.questLog.Add(this.ShowingQuest);
-                this.CurrentQuestNotes.RemoveAll(option => option.myID == this.showingQuestId);
+                this.showingQuest.dayQuestAccepted.Value = Game1.Date.TotalDays;
+                Game1.player.questLog.Add(this.showingQuest);
+                this.currentQuestNotes.RemoveAll(option => option.myID == this.showingQuestId);
                 this.allClickableComponents?.RemoveAll(component => component.myID == this.showingQuestId);
                 this.CloseShowingQuest();
             }
@@ -149,17 +157,21 @@ public abstract class BaseQuestBoard : IClickableMenu
             // 关闭按钮逻辑
             if (this.upperRightCloseButton != null && this.upperRightCloseButton.containsPoint(x, y))
             {
-                if (playSound) Game1.playSound(this.closeSound);
+                if (playSound)
+                {
+                    Game1.playSound(this.closeSound);
+                }
+
                 this.exitThisMenu();
             }
 
             // 任务便签逻辑
-            foreach (var option in this.CurrentQuestNotes.Where(option => option.containsPoint(x, y)))
+            foreach (var option in this.currentQuestNotes.Where(option => option.containsPoint(x, y)))
             {
                 this.hoverTitle = "";
                 this.hoverText = "";
                 this.showingQuestId = option.myID;
-                this.ShowingQuest = option.QuestModel.Quest;
+                this.showingQuest = option.QuestModel.Quest;
                 this.acceptQuestButton.visible = true;
 
                 return;
@@ -170,7 +182,10 @@ public abstract class BaseQuestBoard : IClickableMenu
     public override void draw(SpriteBatch b)
     {
         // 阴影绘制逻辑
-        if (!Game1.options.showClearBackgrounds) b.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
+        if (!Game1.options.showClearBackgrounds)
+        {
+            b.Draw(Game1.fadeToBlackRect, Game1.graphics.GraphicsDevice.Viewport.Bounds, Color.Black * 0.75f);
+        }
 
         // 面板绘制逻辑
         b.Draw(
@@ -185,7 +200,7 @@ public abstract class BaseQuestBoard : IClickableMenu
             1f
         );
 
-        if (!this.CurrentQuestNotes.Any())
+        if (!this.currentQuestNotes.Any())
         {
             b.DrawString(
                 Game1.dialogueFont,
@@ -196,10 +211,14 @@ public abstract class BaseQuestBoard : IClickableMenu
         }
         else
         {
-            if (this.IsShowingQuest)
+            if (this.isShowingQuest)
+            {
                 this.DrawShowingQuest(b);
+            }
             else
+            {
                 this.DrawQuestNotes(b);
+            }
         }
 
         if (this.boardType == BoardType.Vanilla)
@@ -256,7 +275,10 @@ public abstract class BaseQuestBoard : IClickableMenu
             ? VanillaQuestManager.Instance.QuestList
             : RSVQuestManager.Instance.QuestList;
 
-        if (questList.Count <= 0) return;
+        if (questList.Count <= 0)
+        {
+            return;
+        }
 
         for (var i = questList.Count - 1; i >= 0; i--)
         {
@@ -264,12 +286,13 @@ public abstract class BaseQuestBoard : IClickableMenu
 
             if (bounds is null)
             {
-                Logger<ModEntry>.Debug($"Quest menu capacity reached: {this.CurrentQuestNotes.Count} quests placed, unable to accommodate remaining {questList.Count}");
+                Logger<ModEntry>.Debug(
+                    $"Quest menu capacity reached: {this.currentQuestNotes.Count} quests placed, unable to accommodate remaining {questList.Count}");
 
                 break;
             }
 
-            this.CurrentQuestNotes.Add(new QuestNote(questList[i], bounds.Value)
+            this.currentQuestNotes.Add(new QuestNote(questList[i], bounds.Value)
             {
                 // 设置该选项的ID
                 myID = OptionIndex - i,
@@ -298,15 +321,19 @@ public abstract class BaseQuestBoard : IClickableMenu
                 _height
             );
 
-            var collision = this.CurrentQuestNotes.Any(note =>
+            var collision = this.currentQuestNotes.Any(note =>
                 Math.Abs(note.bounds.Center.X - rectangle.Center.X) < rectangle.Width * ModConfig.Instance.XOverlapBoundary
                 || Math.Abs(note.bounds.Center.Y - rectangle.Center.Y) < rectangle.Height * ModConfig.Instance.YOverlapBoundary
             );
 
             if (collision)
+            {
                 tries--;
+            }
             else
+            {
                 return rectangle;
+            }
         }
 
         return null;
@@ -314,7 +341,7 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     private void DrawQuestNotes(SpriteBatch b)
     {
-        foreach (var questNote in this.CurrentQuestNotes)
+        foreach (var questNote in this.currentQuestNotes)
         {
             questNote.Draw(b);
         }
@@ -326,7 +353,7 @@ public abstract class BaseQuestBoard : IClickableMenu
         // 任务描述逻辑
         Utility.drawTextWithShadow(
             b,
-            Game1.parseText(this.ShowingQuest!.questDescription, font, 640),
+            Game1.parseText(this.showingQuest!.questDescription, font, 640),
             font,
             new Vector2(this.xPositionOnScreen + 320 + 32, this.yPositionOnScreen + 256),
             Game1.textColor,
@@ -359,7 +386,10 @@ public abstract class BaseQuestBoard : IClickableMenu
         // 奖券逻辑
         if (this.boardType == BoardType.Vanilla)
         {
-            if (Game1.stats.Get("BillboardQuestsDone") % 3 != 2) return;
+            if (Game1.stats.Get("BillboardQuestsDone") % 3 != 2)
+            {
+                return;
+            }
 
             Utility.drawWithShadow(
                 b,
@@ -377,7 +407,7 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     private void CloseShowingQuest()
     {
-        this.ShowingQuest = null;
+        this.showingQuest = null;
         this.showingQuestId = -1;
         this.acceptQuestButton.visible = false;
     }
@@ -385,7 +415,7 @@ public abstract class BaseQuestBoard : IClickableMenu
     public override void populateClickableComponentList()
     {
         this.allClickableComponents = new List<ClickableComponent> { this.upperRightCloseButton };
-        this.allClickableComponents.AddRange(this.CurrentQuestNotes);
+        this.allClickableComponents.AddRange(this.currentQuestNotes);
     }
 
     public override void applyMovementKey(int direction)
@@ -405,7 +435,7 @@ public abstract class BaseQuestBoard : IClickableMenu
             this.snapToDefaultClickableComponent();
         }
 
-        if (this.IsShowingQuest)
+        if (this.isShowingQuest)
         {
             this.ToggleQuestButtons();
         }
@@ -427,9 +457,9 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     public override void snapToDefaultClickableComponent()
     {
-        this.currentlySnappedComponent = this.IsShowingQuest
+        this.currentlySnappedComponent = this.isShowingQuest
             ? this.acceptQuestButton
-            : this.CurrentQuestNotes.FirstOrDefault() ?? (ClickableComponent)this.upperRightCloseButton;
+            : this.currentQuestNotes.FirstOrDefault() ?? (ClickableComponent)this.upperRightCloseButton;
         this.snapCursorToCurrentSnappedComponent();
     }
 
@@ -447,7 +477,10 @@ public abstract class BaseQuestBoard : IClickableMenu
 
     private ClickableComponent? FindNextComponent(int direction)
     {
-        if (this.allClickableComponents == null || this.currentlySnappedComponent == null) return null;
+        if (this.allClickableComponents == null || this.currentlySnappedComponent == null)
+        {
+            return null;
+        }
 
         var currentX = this.currentlySnappedComponent.bounds.X;
         var currentY = this.currentlySnappedComponent.bounds.Y;

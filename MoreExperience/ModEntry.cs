@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using weizinai.StardewValleyMod.MoreExperience.Patcher;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 

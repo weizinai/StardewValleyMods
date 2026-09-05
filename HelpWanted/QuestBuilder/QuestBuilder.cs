@@ -1,10 +1,10 @@
-﻿using StardewValley.Quests;
+using StardewValley.Quests;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
 public abstract class QuestBuilder<T> where T : Quest
 {
-    protected readonly T Quest;
+    protected readonly T quest;
 
     protected abstract bool TrySetQuestTarget();
 
@@ -22,12 +22,15 @@ public abstract class QuestBuilder<T> where T : Quest
 
     protected QuestBuilder(T quest)
     {
-        this.Quest = quest;
+        this.quest = quest;
     }
 
     public virtual void BuildQuest()
     {
-        if (!this.TrySetQuestTarget()) return;
+        if (!this.TrySetQuestTarget())
+        {
+            return;
+        }
 
         this.SetQuestTitle();
         this.SetQuestItemId();

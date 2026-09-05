@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -25,21 +25,24 @@ internal class PikaOption : BaseOption
         switch (whichAnswer)
         {
             case "Shop":
-            {
-                Utility.TryOpenShopMenu("RSVPikaShop", "Pika");
-                break;
-            }
+                {
+                    Utility.TryOpenShopMenu("RSVPikaShop", "Pika");
+
+                    break;
+                }
             case "RecipeShop":
-            {
-                Utility.TryOpenShopMenu("RSVPikaRecipes", "Pika");
-                break;
-            }
+                {
+                    Utility.TryOpenShopMenu("RSVPikaRecipes", "Pika");
+
+                    break;
+                }
             case "Leave":
-            {
-                Game1.exitActiveMenu();
-                Game1.player.forceCanMove();
-                break;
-            }
+                {
+                    Game1.exitActiveMenu();
+                    Game1.player.forceCanMove();
+
+                    break;
+                }
         }
     }
 }

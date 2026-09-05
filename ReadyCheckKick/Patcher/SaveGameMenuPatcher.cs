@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
@@ -30,13 +30,17 @@ internal class SaveGameMenuPatcher : BasePatcher
 
     private static void DrawPostfix(SpriteBatch b)
     {
-        if (!ModConfig.Instance.ShowInfoInSaveGameMenu) return;
+        if (!ModConfig.Instance.ShowInfoInSaveGameMenu)
+        {
+            return;
+        }
 
         var endOfNightStatus = Game1.player.team.endOfNightStatus;
         var formattedStatusList = helper.GetField<Dictionary<long, string>>(endOfNightStatus, "_formattedStatusList").GetValue();
 
         // 未准备玩家获取逻辑
         var unreadyFarmers = new List<string>();
+
         foreach (var farmer in Game1.getOnlineFarmers())
         {
             if (formattedStatusList.TryGetValue(farmer.UniqueMultiplayerID, out var status) && status != "ready")
@@ -45,7 +49,10 @@ internal class SaveGameMenuPatcher : BasePatcher
             }
         }
 
-        if (!unreadyFarmers.Any()) return;
+        if (!unreadyFarmers.Any())
+        {
+            return;
+        }
 
         // 文字绘制逻辑
         var text = string.Join("\n", unreadyFarmers);

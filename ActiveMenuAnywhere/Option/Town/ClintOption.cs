@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using StardewValley;
 using StardewValley.Menus;
@@ -43,49 +43,58 @@ internal class ClintOption : BaseOption
         switch (whichAnswer)
         {
             case "Shop":
-            {
-                Utility.TryOpenShopMenu("Blacksmith", "Clint");
-                break;
-            }
-            case "Upgrade":
-            {
-                Utility.TryOpenShopMenu("ClintUpgrade", "Clint");
-                break;
-            }
-            case "Receive":
-            {
-                if (Game1.player.toolBeingUpgraded.Value != null && Game1.player.daysLeftForToolUpgrade.Value <= 0)
                 {
-                    if (Game1.player.freeSpotsInInventory() > 0 || Game1.player.toolBeingUpgraded.Value is GenericTool)
-                    {
-                        var tool = Game1.player.toolBeingUpgraded.Value;
-                        Game1.player.toolBeingUpgraded.Value = null;
-                        Game1.player.hasReceivedToolUpgradeMessageYet = false;
-                        Game1.player.holdUpItemThenMessage(tool);
-                        if (tool is GenericTool)
-                            tool.actionWhenClaimed();
-                        else
-                            Game1.player.addItemToInventoryBool(tool);
-                    }
-                }
-                else
-                {
-                    Game1.drawObjectDialogue(I18n.UI_ClintOption_Unfinished());
-                }
+                    Utility.TryOpenShopMenu("Blacksmith", "Clint");
 
-                break;
-            }
+                    break;
+                }
+            case "Upgrade":
+                {
+                    Utility.TryOpenShopMenu("ClintUpgrade", "Clint");
+
+                    break;
+                }
+            case "Receive":
+                {
+                    if (Game1.player.toolBeingUpgraded.Value != null && Game1.player.daysLeftForToolUpgrade.Value <= 0)
+                    {
+                        if (Game1.player.freeSpotsInInventory() > 0 || Game1.player.toolBeingUpgraded.Value is GenericTool)
+                        {
+                            var tool = Game1.player.toolBeingUpgraded.Value;
+                            Game1.player.toolBeingUpgraded.Value = null;
+                            Game1.player.hasReceivedToolUpgradeMessageYet = false;
+                            Game1.player.holdUpItemThenMessage(tool);
+
+                            if (tool is GenericTool)
+                            {
+                                tool.actionWhenClaimed();
+                            }
+                            else
+                            {
+                                Game1.player.addItemToInventoryBool(tool);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Game1.drawObjectDialogue(I18n.UI_ClintOption_Unfinished());
+                    }
+
+                    break;
+                }
             case "Process":
-            {
-                Game1.activeClickableMenu = new GeodeMenu();
-                break;
-            }
+                {
+                    Game1.activeClickableMenu = new GeodeMenu();
+
+                    break;
+                }
             case "Leave":
-            {
-                Game1.exitActiveMenu();
-                Game1.player.forceCanMove();
-                break;
-            }
+                {
+                    Game1.exitActiveMenu();
+                    Game1.player.forceCanMove();
+
+                    break;
+                }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using StardewValley;
+using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 

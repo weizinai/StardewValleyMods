@@ -1,4 +1,4 @@
-﻿using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
 namespace weizinai.StardewValleyMod.ReadyCheckKick.Framework;
 

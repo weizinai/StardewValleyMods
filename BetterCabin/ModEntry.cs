@@ -52,20 +52,38 @@ internal class ModEntry : Mod
     {
         var config = ModConfig.Instance;
 
-        foreach (var handler in this.handlers) handler.Clear();
+        foreach (var handler in this.handlers)
+        {
+            handler.Clear();
+        }
+
         this.handlers.Clear();
 
         if (config.ResetCabinPlayer)
+        {
             this.handlers.Add(new ResetCabinHandler(this.Helper));
+        }
+
         if (config.CabinMenu)
+        {
             this.handlers.Add(new CabinMenuHandler(this.Helper));
+        }
+
         if (config.VisitCabinInfo)
+        {
             this.handlers.Add(new VisitCabinInfoHandler(this.Helper));
+        }
+
         if (config.LockCabin)
+        {
             this.handlers.Add(new LockCabinHandler(this.Helper));
+        }
 
         this.handlers.Add(new CabinCostHandler(this.Helper));
 
-        foreach (var handler in this.handlers) handler.Apply();
+        foreach (var handler in this.handlers)
+        {
+            handler.Apply();
+        }
     }
 }

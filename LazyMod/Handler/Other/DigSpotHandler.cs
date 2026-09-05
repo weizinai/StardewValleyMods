@@ -12,15 +12,27 @@ internal class DigSpotHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoDigSpots.FindToolFromInventory);
-        if (hoe is null) return;
+        var hoe = ToolHelper.GetTool<Hoe>(this.config.AutoDigSpots.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoDigSpots.Range, tile =>
+        if (hoe is null)
         {
-            if (player.Stamina <= this.Config.AutoDigSpots.StopStamina) return false;
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoDigSpots.Range, tile =>
+        {
+            if (player.Stamina <= this.config.AutoDigSpots.StopStamina)
+            {
+                return false;
+            }
 
             location.objects.TryGetValue(tile, out var obj);
-            if (obj?.QualifiedItemId is "(O)590" or "(O)SeedSpot") this.UseToolOnTile(location, player, hoe, tile);
+
+            if (obj?.QualifiedItemId is "(O)590" or "(O)SeedSpot")
+            {
+                this.UseToolOnTile(location, player, hoe, tile);
+            }
+
             return true;
         });
     }

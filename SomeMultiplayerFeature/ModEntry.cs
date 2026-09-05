@@ -63,7 +63,10 @@ public class ModEntry : Mod
 
     private void UpdateConfig()
     {
-        foreach (var handler in this.handlers) handler.Clear();
+        foreach (var handler in this.handlers)
+        {
+            handler.Clear();
+        }
 
         this.handlers = new IHandler[]
         {
@@ -78,6 +81,9 @@ public class ModEntry : Mod
             new VersionLimitHandler(this.Helper)
         };
 
-        foreach (var handler in this.handlers) handler.Apply();
+        foreach (var handler in this.handlers)
+        {
+            handler.Apply();
+        }
     }
 }

@@ -16,27 +16,31 @@ internal class PlayerCountHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnSecondUpdateTicked;
-        this.Helper.Events.Display.RenderedHud += this.OnRenderedHud;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked += this.OnSecondUpdateTicked;
+        this.helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnSecondUpdateTicked;
-        this.Helper.Events.Display.RenderedHud -= this.OnRenderedHud;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnSecondUpdateTicked;
+        this.helper.Events.Display.RenderedHud -= this.OnRenderedHud;
     }
 
     // 每秒检测当前在线玩家的数量
     private void OnSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
         if (ModConfig.Instance.ShowPlayerCount && Context.IsMultiplayer)
+        {
             this.playerCountTextBox.name = $"{Game1.getOnlineFarmers().Count}个玩家在线";
+        }
     }
 
     // 绘制玩家数量按钮
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
         if (ModConfig.Instance.ShowPlayerCount && Context.IsMultiplayer)
+        {
             this.playerCountTextBox.Draw(e.SpriteBatch);
+        }
     }
 }

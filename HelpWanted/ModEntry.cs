@@ -43,7 +43,12 @@ internal class ModEntry : Mod
             new Game1Patcher(),
             new TownPatcher()
         };
-        if (IsRSVLoaded) patches.Add(new RSVQuestBoardPatcher());
+
+        if (IsRSVLoaded)
+        {
+            patches.Add(new RSVQuestBoardPatcher());
+        }
+
         HarmonyPatcher.Apply(this.ModManifest.UniqueID, patches.ToArray());
     }
 

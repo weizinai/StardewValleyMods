@@ -11,8 +11,8 @@ internal class CommandHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.ConsoleCommands.Add("spectate_location", "", this.SpectateLocation);
-        this.Helper.ConsoleCommands.Add("spectate_player", "", this.SpectateFarmer);
+        this.helper.ConsoleCommands.Add("spectate_location", "", this.SpectateLocation);
+        this.helper.ConsoleCommands.Add("spectate_player", "", this.SpectateFarmer);
     }
 
     // 旁观地点

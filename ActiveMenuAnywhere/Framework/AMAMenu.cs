@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -44,20 +44,33 @@ internal class AMAMenu : IClickableMenu
     public override void receiveLeftClick(int x, int y, bool playSound = true)
     {
         // arrow
-        if (this.upArrow.containsPoint(x, y) && this.currentPage > 0) this.currentPage--;
-        if (this.downArrow.containsPoint(x, y) && this.options.Count - (this.currentPage + 1) * OptionsPerPage > 0) this.currentPage++;
+        if (this.upArrow.containsPoint(x, y) && this.currentPage > 0)
+        {
+            this.currentPage--;
+        }
+
+        if (this.downArrow.containsPoint(x, y) && this.options.Count - (this.currentPage + 1) * OptionsPerPage > 0)
+        {
+            this.currentPage++;
+        }
 
         // tab
         var tab = this.tabs.FirstOrDefault(tab => tab.containsPoint(x, y));
-        if (tab != null) Game1.activeClickableMenu = new AMAMenu(this.GetTabId(tab), this.helper);
+
+        if (tab != null)
+        {
+            Game1.activeClickableMenu = new AMAMenu(this.GetTabId(tab), this.helper);
+        }
 
         // option
         for (var i = 0; i < OptionsPerPage; i++)
         {
             var optionsIndex = i + this.currentPage * OptionsPerPage;
+
             if (this.optionSlots[i].containsPoint(x, y) && optionsIndex < this.options.Count)
             {
                 var option = this.options[optionsIndex];
+
                 if (this.config.FavoriteKey.IsDown())
                 {
                     if (this.currentMenuTabId == MenuTabId.Favorite)
@@ -81,10 +94,15 @@ internal class AMAMenu : IClickableMenu
                 else
                 {
                     if (option.IsEnable() || !this.config.ProgressMode)
+                    {
                         option.Apply();
+                    }
                     else
+                    {
                         Game1.drawObjectDialogue(I18n.UI_Tip_Unavailable());
+                    }
                 }
+
                 break;
             }
         }
@@ -98,7 +116,12 @@ internal class AMAMenu : IClickableMenu
         for (var i = 0; i < OptionsPerPage; i++)
         {
             var optionIndex = i + this.currentPage * OptionsPerPage;
-            if (optionIndex >= this.options.Count) return;
+
+            if (optionIndex >= this.options.Count)
+            {
+                return;
+            }
+
             this.options[optionIndex].Scale = this.optionSlots[i].containsPoint(x, y) ? 0.9f : 1f;
         }
     }
@@ -163,6 +186,7 @@ internal class AMAMenu : IClickableMenu
     {
         var i = index % 3;
         var j = index / 3;
+
         return new Rectangle(this.innerDrawPosition.x + i * 200, this.innerDrawPosition.y + j * 200, 200, 200);
     }
 
@@ -233,37 +257,48 @@ internal class AMAMenu : IClickableMenu
     private void SetOptions()
     {
         this.options.Clear();
+
         switch (this.currentMenuTabId)
         {
             case MenuTabId.Favorite:
                 this.options.AddRange(OptionFactory.CreateFavoriteOptions());
+
                 break;
             case MenuTabId.Farm:
                 this.options.AddRange(OptionFactory.CreateFarmOptions());
+
                 break;
             case MenuTabId.Town:
                 this.options.AddRange(OptionFactory.CreateTownOptions());
+
                 break;
             case MenuTabId.Mountain:
                 this.options.AddRange(OptionFactory.CreateMountainOptions());
+
                 break;
             case MenuTabId.Forest:
                 this.options.AddRange(OptionFactory.CreateForestOptions());
+
                 break;
             case MenuTabId.Beach:
                 this.options.AddRange(OptionFactory.CreateBeachOptions());
+
                 break;
             case MenuTabId.Desert:
                 this.options.AddRange(OptionFactory.CreateDesertOptions());
+
                 break;
             case MenuTabId.GingerIsland:
                 this.options.AddRange(OptionFactory.CreateGingerIslandOptions());
+
                 break;
             case MenuTabId.SVE:
                 this.options.AddRange(OptionFactory.CreateSVEOptions());
+
                 break;
             case MenuTabId.RSV:
                 this.options.AddRange(OptionFactory.CreateRSVOptions());
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -284,7 +319,12 @@ internal class AMAMenu : IClickableMenu
         {
             var optionsIndex = i + this.currentPage * OptionsPerPage;
             var bounds = this.optionSlots[i].bounds;
-            if (optionsIndex >= this.options.Count) break;
+
+            if (optionsIndex >= this.options.Count)
+            {
+                break;
+            }
+
             this.options[optionsIndex].Draw(b, bounds.X, bounds.Y);
         }
     }

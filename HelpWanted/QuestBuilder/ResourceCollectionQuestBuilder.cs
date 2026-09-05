@@ -57,21 +57,21 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
 
     protected override bool TrySetQuestTarget()
     {
-        if (this.Quest.target.Value != null || Game1.gameMode == 6)
+        if (this.quest.target.Value != null || Game1.gameMode == 6)
         {
-            Logger<ModEntry>.Trace($"Target for the current resource collection quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current resource collection quest has been set to {this.quest.target.Value}.");
 
             return false;
         }
 
-        this.Quest.target.Value = ModEntry.Random.NextBool() ? Clint : Robin;
+        this.quest.target.Value = ModEntry.Random.NextBool() ? Clint : Robin;
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.Quest.questTitle = Game1.content.LoadString(GetPathString("R", 13640));
+        this.quest.questTitle = Game1.content.LoadString(GetPathString("R", 13640));
     }
 
     protected override void SetQuestItemId()
@@ -80,113 +80,133 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
         var moreQuest = ModConfig.Instance.VanillaConfig.MoreResourceCollectionQuest;
         var possibleItems = new List<string>(4);
 
-        switch (this.Quest.target.Value)
+        switch (this.quest.target.Value)
         {
             case Clint:
-            {
-                possibleItems.AddRange(new[] { CopperOre, IronOre, Coal });
-                if (Utility.GetAllPlayerDeepestMineLevel() > 40) possibleItems.Add(GoldOre);
+                {
+                    possibleItems.AddRange(new[] { CopperOre, IronOre, Coal });
 
-                if (!moreQuest) break;
+                    if (Utility.GetAllPlayerDeepestMineLevel() > 40)
+                    {
+                        possibleItems.Add(GoldOre);
+                    }
 
-                if (Game1.player.mailReceived.Contains("ccVault")) possibleItems.Add(IridiumOre);
-                if (Game1.player.mailReceived.Contains("willyHours")) possibleItems.Add(CinderShard);
+                    if (!moreQuest)
+                    {
+                        break;
+                    }
 
-                break;
-            }
+                    if (Game1.player.mailReceived.Contains("ccVault"))
+                    {
+                        possibleItems.Add(IridiumOre);
+                    }
+
+                    if (Game1.player.mailReceived.Contains("willyHours"))
+                    {
+                        possibleItems.Add(CinderShard);
+                    }
+
+                    break;
+                }
             case Robin:
-            {
-                possibleItems.AddRange(new[] { Wood, Stone });
+                {
+                    possibleItems.AddRange(new[] { Wood, Stone });
 
-                if (!moreQuest) break;
+                    if (!moreQuest)
+                    {
+                        break;
+                    }
 
-                if (Game1.player.locationsVisited.Contains("Woods")) possibleItems.Add(Hardwood);
+                    if (Game1.player.locationsVisited.Contains("Woods"))
+                    {
+                        possibleItems.Add(Hardwood);
+                    }
 
-                break;
-            }
+                    break;
+                }
         }
 
-        this.Quest.ItemId.Value = random.ChooseFrom(possibleItems);
-        this.Quest.number.Value = ItemConfig.TryGetValue(this.Quest.ItemId.Value, out var config) ? config.GetRandomNumber() : 1;
-        this.item = ItemRegistry.Create(this.Quest.ItemId.Value);
+        this.quest.ItemId.Value = random.ChooseFrom(possibleItems);
+        this.quest.number.Value = ItemConfig.TryGetValue(this.quest.ItemId.Value, out var config) ? config.GetRandomNumber() : 1;
+        this.item = ItemRegistry.Create(this.quest.ItemId.Value);
     }
 
     protected override void SetQuestMoneyReward()
     {
-        this.Quest.reward.Value = this.Quest.number.Value * (ItemConfig.TryGetValue(this.Quest.ItemId.Value, out var config) ? config.GetReward() : 0);
+        this.quest.reward.Value = this.quest.number.Value * (ItemConfig.TryGetValue(this.quest.ItemId.Value, out var config) ? config.GetReward() : 0);
 
-        var originalReward = this.Quest.reward.Value;
-        this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.ResourceCollectionQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The vanilla resource collection quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        var originalReward = this.quest.reward.Value;
+        this.quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.ResourceCollectionQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The vanilla resource collection quest reward has been adjusted from [{originalReward}] to [{this.quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.Quest.parts.Clear();
+        this.quest.parts.Clear();
 
-        if (this.Quest.target.Value == Robin)
+        if (this.quest.target.Value == Robin)
         {
-            this.Quest.parts.Add(new DescriptionElement(
+            this.quest.parts.Add(new DescriptionElement(
                 GetPathString("R", 13674),
-                this.Quest.number.Value,
+                this.quest.number.Value,
                 this.item
             ));
         }
         else
         {
-            this.Quest.parts.Add(new DescriptionElement(
+            this.quest.parts.Add(new DescriptionElement(
                 GetPathString("R", 13647),
-                this.Quest.number.Value,
+                this.quest.number.Value,
                 this.item,
                 new DescriptionElement(GetPathString("R", new[] { 13649, 13650, 13651, 13652 }[this.randomIndex]))
             ));
         }
 
-        this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.Quest.reward.Value));
-        this.Quest.parts.Add(this.Quest.target.Value == Clint ? GetPathString("R", 13688) : "");
+        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.quest.reward.Value));
+        this.quest.parts.Add(this.quest.target.Value == Clint ? GetPathString("R", 13688) : "");
     }
 
     protected override void SetQuestDialogue()
     {
         var random = ModEntry.Random;
-        this.Quest.dialogueparts.Clear();
+        this.quest.dialogueparts.Clear();
 
-        if (this.Quest.target.Value == Robin)
+        if (this.quest.target.Value == Robin)
         {
-            this.Quest.dialogueparts.Add(new DescriptionElement(
+            this.quest.dialogueparts.Add(new DescriptionElement(
                 GetPathString("R", 13677),
-                this.Quest.ItemId.Value == Wood
+                this.quest.ItemId.Value == Wood
                     ? new DescriptionElement(GetPathString("R", 13678))
                     : new DescriptionElement(GetPathString("R", 13679))
             ));
-            this.Quest.dialogueparts.Add(GetPathString("R", 13681, 13682, 13683));
+            this.quest.dialogueparts.Add(GetPathString("R", 13681, 13682, 13683));
         }
         else
         {
             if (this.randomIndex == 3)
             {
-                this.Quest.dialogueparts.Add(GetPathString("R", 13655));
-                this.Quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
-                this.Quest.dialogueparts.Add(GetPathString("R", 13659));
+                this.quest.dialogueparts.Add(GetPathString("R", 13655));
+                this.quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
+                this.quest.dialogueparts.Add(GetPathString("R", 13659));
             }
             else
             {
-                this.Quest.dialogueparts.Add(GetPathString("R", 13662));
-                this.Quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
-                this.Quest.dialogueparts.Add(random.NextBool()
+                this.quest.dialogueparts.Add(GetPathString("R", 13662));
+                this.quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
+                this.quest.dialogueparts.Add(random.NextBool()
                     ? new DescriptionElement(GetPathString("R", 13667), new DescriptionElement(GetPathString("R", 13668, 13669, 13670)))
                     : new DescriptionElement(GetPathString("R", 13672)));
-                this.Quest.dialogueparts.Add(GetPathString("R", 13673));
+                this.quest.dialogueparts.Add(GetPathString("R", 13673));
             }
         }
     }
 
     protected override void SetQuestObjective()
     {
-        this.Quest.objective.Value = new DescriptionElement(
+        this.quest.objective.Value = new DescriptionElement(
             GetPathString("R", 13691),
             "0",
-            this.Quest.number.Value,
+            this.quest.number.Value,
             this.item
         );
     }

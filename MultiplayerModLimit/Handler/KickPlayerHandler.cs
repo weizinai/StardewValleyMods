@@ -12,7 +12,7 @@ namespace weizinai.StardewValleyMod.MultiplayerModLimit.Handler;
 
 internal class KickPlayerHandler : BaseHandler
 {
-    private bool IsModEnable => Context.HasRemotePlayers && Context.IsMainPlayer && ModConfig.Instance.EnableMod;
+    private bool isModEnable => Context.HasRemotePlayers && Context.IsMainPlayer && ModConfig.Instance.EnableMod;
 
     private readonly List<PlayerSlot> playersToKick = new();
 
@@ -20,21 +20,28 @@ internal class KickPlayerHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
-        this.Helper.Events.GameLoop.ReturnedToTitle += this.OnReturnedToTitle;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
+        this.helper.Events.GameLoop.ReturnedToTitle += this.OnReturnedToTitle;
 
-        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
+        this.helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!this.IsModEnable) return;
+        if (!this.isModEnable)
+        {
+            return;
+        }
 
-        if (!ModConfig.Instance.KickPlayer) return;
+        if (!ModConfig.Instance.KickPlayer)
+        {
+            return;
+        }
 
         foreach (var player in this.playersToKick)
         {
             player.TimeLeft--;
+
             if (player.TimeLeft < 0)
             {
                 try
@@ -58,13 +65,17 @@ internal class KickPlayerHandler : BaseHandler
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!this.IsModEnable) return;
+        if (!this.isModEnable)
+        {
+            return;
+        }
 
         var name = Game1.GetPlayer(e.Peer.PlayerID)?.Name ?? "";
 
         if (ModConfig.Instance.RequireSMAPI && !e.Peer.HasSmapi)
         {
             this.KickPlayerWithoutSMAPI(name, e.Peer.PlayerID);
+
             return;
         }
 
@@ -78,6 +89,7 @@ internal class KickPlayerHandler : BaseHandler
                 {
                     this.playersToKick.Add(new PlayerSlot(e.Peer.PlayerID, ModConfig.Instance.KickPlayerDelayTime));
                 }
+
                 this.ShowMismatchedModInfo(unAllowedMods, name);
                 this.SendModRequirementInfo(unAllowedMods, e.Peer.PlayerID);
                 Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_KickPlayer_ClientTooltip(), e.Peer.PlayerID);
@@ -87,7 +99,7 @@ internal class KickPlayerHandler : BaseHandler
     }
 
     /// <summary>
-    /// 踢出未安装SMAPI的客机玩家
+    ///     踢出未安装SMAPI的客机玩家
     /// </summary>
     private void KickPlayerWithoutSMAPI(string playerName, long playerId)
     {
@@ -95,12 +107,13 @@ internal class KickPlayerHandler : BaseHandler
         {
             this.playersToKick.Add(new PlayerSlot(playerId, ModConfig.Instance.KickPlayerDelayTime));
         }
+
         Game1.Multiplayer.sendChatMessage(LocalizedContentManager.CurrentLanguageCode, I18n.UI_RequireSMAPI_ClientTooltip(), playerId);
         Game1.chatBox.addInfoMessage(I18n.UI_RequireSMAPI_ServerTooltip(playerName));
     }
 
     /// <summary>
-    /// 获取客机玩家不满足要求的模组
+    ///     获取客机玩家不满足要求的模组
     /// </summary>
     private Dictionary<string, List<string>> GetUnAllowedMods(IMultiplayerPeer peer)
     {
@@ -117,45 +130,56 @@ internal class KickPlayerHandler : BaseHandler
         var bannedModList = ModConfig.Instance.BannedModList[ModConfig.Instance.BannedModListSelected];
 
         // 获取客机玩家没有安装的被要求的模组
-        foreach (var id in requiredModList.Where(id => !detectedMods.Contains(id))) unAllowedMods["Required"].Add(id);
+        foreach (var id in requiredModList.Where(id => !detectedMods.Contains(id)))
+        {
+            unAllowedMods["Required"].Add(id);
+        }
 
         // 获取客机玩家安装的被禁止的模组
         switch (ModConfig.Instance.LimitMode)
         {
             case LimitMode.WhiteListMode:
-            {
-                foreach (var id in detectedMods.Where(id => !allowedModList.Contains(id) && !requiredModList.Contains(id)))
                 {
-                    unAllowedMods["Banned"].Add(id);
+                    foreach (var id in detectedMods.Where(id => !allowedModList.Contains(id) && !requiredModList.Contains(id)))
+                    {
+                        unAllowedMods["Banned"].Add(id);
+                    }
+
+                    break;
                 }
-                break;
-            }
             case LimitMode.BlackListMode:
-            {
-                foreach (var id in detectedMods.Where(id => bannedModList.Contains(id)))
                 {
-                    unAllowedMods["Banned"].Add(id);
+                    foreach (var id in detectedMods.Where(id => bannedModList.Contains(id)))
+                    {
+                        unAllowedMods["Banned"].Add(id);
+                    }
+
+                    break;
                 }
-                break;
-            }
         }
 
         return unAllowedMods;
     }
 
     /// <summary>
-    /// 在主机玩家的SMAPI控制台显示客机玩家不匹配的模组信息
+    ///     在主机玩家的SMAPI控制台显示客机玩家不匹配的模组信息
     /// </summary>
     private void ShowMismatchedModInfo(Dictionary<string, List<string>> unAllowedMods, string name)
     {
-        if (!ModConfig.Instance.ShowMismatchedModInfo) return;
+        if (!ModConfig.Instance.ShowMismatchedModInfo)
+        {
+            return;
+        }
 
         Logger<ModEntry>.Alert(I18n.UI_KickPlayer_ServerTooltip(name));
+
         foreach (var id in unAllowedMods["Required"])
         {
             Logger<ModEntry>.Info(I18n.UI_ModLimit_Required(id));
         }
+
         Logger<ModEntry>.Info("----------");
+
         foreach (var id in unAllowedMods["Banned"])
         {
             Logger<ModEntry>.Info(I18n.UI_ModLimit_Banned(id));
@@ -163,18 +187,23 @@ internal class KickPlayerHandler : BaseHandler
     }
 
     /// <summary>
-    /// 向不满足模组要求的客机玩家的SMAPI控制台发送不满足的模组的信息
+    ///     向不满足模组要求的客机玩家的SMAPI控制台发送不满足的模组的信息
     /// </summary>
     private void SendModRequirementInfo(Dictionary<string, List<string>> unAllowedMods, long playerId)
     {
-        if (!ModConfig.Instance.SendSMAPIInfo) return;
+        if (!ModConfig.Instance.SendSMAPIInfo)
+        {
+            return;
+        }
 
         var target = new[] { playerId };
         Broadcaster<ModEntry>.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
+
         foreach (var id in unAllowedMods["Required"])
         {
             Broadcaster<ModEntry>.Info(I18n.UI_ModLimit_Required(id), target);
         }
+
         foreach (var id in unAllowedMods["Banned"])
         {
             Broadcaster<ModEntry>.Info(I18n.UI_ModLimit_Banned(id), target);

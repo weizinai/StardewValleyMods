@@ -15,7 +15,7 @@ namespace weizinai.StardewValleyMod.PiCore.Integration;
 public abstract class BaseIntegration : IModIntegration
 {
     /// <summary>A human-readable name for the mod.</summary>
-    protected readonly string Label;
+    protected readonly string label;
 
     /// <summary>The mod's unique ID.</summary>
     private readonly string modId;
@@ -34,7 +34,7 @@ public abstract class BaseIntegration : IModIntegration
     protected BaseIntegration(string label, string modId, string minVersion, IModRegistry modRegistry)
     {
         // Init
-        this.Label = label;
+        this.label = label;
         this.modId = modId;
         this.modRegistry = modRegistry;
 
@@ -49,6 +49,7 @@ public abstract class BaseIntegration : IModIntegration
         if (manifest.Version.IsOlderThan(minVersion))
         {
             Logger<ModEntry>.Warn($"Detected {label} {manifest.Version}, but need {minVersion} or later. Disabled integration with this mod.");
+
             return;
         }
 
@@ -63,7 +64,7 @@ public abstract class BaseIntegration : IModIntegration
 
         if (api is null)
         {
-            Logger<ModEntry>.Warn($"Detected {this.Label}, but couldn't fetch its API. Disabled integration with this mod.");
+            Logger<ModEntry>.Warn($"Detected {this.label}, but couldn't fetch its API. Disabled integration with this mod.");
         }
 
         return api;
@@ -75,7 +76,7 @@ public abstract class BaseIntegration : IModIntegration
     {
         if (!this.IsLoaded)
         {
-            throw new InvalidOperationException($"The {this.Label} integration isn't loaded.");
+            throw new InvalidOperationException($"The {this.label} integration isn't loaded.");
         }
     }
 }
@@ -107,7 +108,7 @@ public class BaseIntegration<TApi> : BaseIntegration where TApi : class
     {
         if (!this.IsLoaded)
         {
-            throw new InvalidOperationException($"The {this.Label} integration isn't loaded.");
+            throw new InvalidOperationException($"The {this.label} integration isn't loaded.");
         }
     }
 }

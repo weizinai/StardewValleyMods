@@ -38,15 +38,20 @@ public class CombineImage : Element
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        if (this.IsHidden()) return;
+        if (this.IsHidden())
+        {
+            return;
+        }
+
         IClickableMenu.drawTextureBox(spriteBatch, this.background, this.backgroundSourceRectangle,
-            (int)this.Position.X, (int)this.Position.Y, this.Width, this.Height, this.backgroundColor, 1f, false);
+            (int)this.position.X, (int)this.position.Y, this.Width, this.Height, this.backgroundColor, 1f, false);
         spriteBatch.Draw(this.content, this.GetContentRectangle(), this.contentSourceRectangle, this.contentColor);
     }
 
     private Rectangle GetContentRectangle()
     {
-        return new Rectangle((int)this.Position.X + ContentPadding, (int)this.Position.Y + ContentPadding, this.Width - ContentPadding * 2, this.Height - ContentPadding * 2);
+        return new Rectangle((int)this.position.X + ContentPadding, (int)this.position.Y + ContentPadding, this.Width - ContentPadding * 2,
+            this.Height - ContentPadding * 2);
     }
 
     private Vector2 GetImageSize()

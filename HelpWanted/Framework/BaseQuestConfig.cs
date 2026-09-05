@@ -1,4 +1,4 @@
-﻿namespace weizinai.StardewValleyMod.HelpWanted.Framework;
+namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 
 public class BaseQuestConfig
 {

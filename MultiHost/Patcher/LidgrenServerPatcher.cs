@@ -52,12 +52,16 @@ public class LidgrenServerPatcher : BasePatcher
         try
         {
             socker.Bind(new IPEndPoint(IPAddress.Any, port));
+
             return false;
         }
         catch (SocketException ex)
         {
             if (ex.SocketErrorCode == SocketError.AddressAlreadyInUse)
+            {
                 return true;
+            }
+
             throw;
         }
     }

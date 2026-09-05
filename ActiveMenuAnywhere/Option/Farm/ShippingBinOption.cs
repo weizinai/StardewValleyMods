@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Menus;
@@ -48,6 +48,7 @@ internal class ShippingBinOption : BaseOption
     private void ShipItem(Item? i, Farmer who)
     {
         var farm = Game1.RequireLocation<Farm>("farm");
+
         if (i != null)
         {
             who.removeItemFromInventory(i);

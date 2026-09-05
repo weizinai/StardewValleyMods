@@ -18,12 +18,12 @@ internal class PerfectFishingHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.Display.MenuChanged += this.OnMenuChanged;
+        this.helper.Events.Display.MenuChanged += this.OnMenuChanged;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.Display.MenuChanged -= this.OnMenuChanged;
+        this.helper.Events.Display.MenuChanged -= this.OnMenuChanged;
     }
 
     private void OnMenuChanged(object? sender, MenuChangedEventArgs e)
@@ -33,6 +33,7 @@ internal class PerfectFishingHandler : BaseHandler
             if (bar.perfect)
             {
                 this.perfectCount++;
+
                 if (this.perfectCount >= RequiredPerfectCount)
                 {
                     Broadcaster<ModEntry>.NoIconHUDMessage($"{Game1.player.Name}连续3次完美钓鱼");

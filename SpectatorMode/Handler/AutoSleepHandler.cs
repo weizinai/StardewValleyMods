@@ -17,9 +17,9 @@ internal class AutoSleepHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.DayStarted += this.OnDayStarted;
-        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
-        this.Helper.Events.Display.MenuChanged += this.OnMenuChanged;
+        this.helper.Events.GameLoop.DayStarted += this.OnDayStarted;
+        this.helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.helper.Events.Display.MenuChanged += this.OnMenuChanged;
     }
 
     private void OnDayStarted(object? sender, DayStartedEventArgs e)
@@ -31,9 +31,15 @@ internal class AutoSleepHandler : BaseHandler
     {
         if (ModConfig.Instance.AutoSleep && Game1.timeOfDay >= ModConfig.Instance.AutoSleepTime)
         {
-            if (Game1.activeClickableMenu is SpectatorMenu menu) menu.exitThisMenu();
+            if (Game1.activeClickableMenu is SpectatorMenu menu)
+            {
+                menu.exitThisMenu();
+            }
 
-            if (Game1.isWarping) return;
+            if (Game1.isWarping)
+            {
+                return;
+            }
 
             if (Game1.activeClickableMenu is DialogueBox dialogueBox)
             {
@@ -41,6 +47,7 @@ internal class AutoSleepHandler : BaseHandler
                 {
                     dialogueBox.selectedResponse = 0;
                 }
+
                 dialogueBox.receiveLeftClick(0, 0);
             }
 
@@ -63,11 +70,14 @@ internal class AutoSleepHandler : BaseHandler
 
     private void OnMenuChanged(object? sender, MenuChangedEventArgs e)
     {
-        if (!ModConfig.Instance.AutoSleep || !ModConfig.Instance.SkipShippingMenu) return;
+        if (!ModConfig.Instance.AutoSleep || !ModConfig.Instance.SkipShippingMenu)
+        {
+            return;
+        }
 
         if (e.NewMenu is ShippingMenu menu)
         {
-            this.Helper.Reflection.GetMethod(menu, "okClicked").Invoke();
+            this.helper.Reflection.GetMethod(menu, "okClicked").Invoke();
             Logger<ModEntry>.Info(I18n.UI_SkipShippingMenu_Tooltip());
         }
     }

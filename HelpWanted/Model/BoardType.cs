@@ -1,4 +1,4 @@
-﻿namespace weizinai.StardewValleyMod.HelpWanted.Model;
+namespace weizinai.StardewValleyMod.HelpWanted.Model;
 
 public enum BoardType
 {

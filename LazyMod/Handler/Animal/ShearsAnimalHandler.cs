@@ -12,16 +12,24 @@ internal class ShearsAnimalHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var shears = ToolHelper.GetTool<Shears>(this.Config.AutoShearsAnimal.FindToolFromInventory);
-        if (shears is null) return;
+        var shears = ToolHelper.GetTool<Shears>(this.config.AutoShearsAnimal.FindToolFromInventory);
+
+        if (shears is null)
+        {
+            return;
+        }
 
         var animals = location.animals.Values;
 
-        this.ForEachTile(this.Config.AutoShearsAnimal.Range, tile =>
+        this.ForEachTile(this.config.AutoShearsAnimal.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoShearsAnimal.StopStamina || player.freeSpotsInInventory() < 1) return false;
+            if (player.Stamina <= this.config.AutoShearsAnimal.StopStamina || player.freeSpotsInInventory() < 1)
+            {
+                return false;
+            }
 
             var animal = this.GetBestHarvestableFarmAnimal(shears, tile, animals);
+
             if (animal is not null)
             {
                 shears.animal = animal;

@@ -12,6 +12,7 @@ internal class ServerCabinMenu : CarpenterMenu
     {
         this.Blueprints.Clear();
         var index = 0;
+
         foreach (var (id, data) in Game1.buildingData)
         {
             if (data.IndoorMapType == "StardewValley.Locations.Cabin")
@@ -19,6 +20,7 @@ internal class ServerCabinMenu : CarpenterMenu
                 this.Blueprints.Add(new BlueprintEntry(index++, id, data, null));
             }
         }
+
         this.SetNewActiveBlueprint(0);
     }
 
@@ -33,7 +35,11 @@ internal class ServerCabinMenu : CarpenterMenu
                            ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 1))
                            ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 2))
                            ?? this.TargetLocation.getBuildingAt(new Vector2(tile.X, tile.Y + 3));
-            if (building?.IsCabin(out _) == false) building.color = Color.White;
+
+            if (building?.IsCabin(out _) == false)
+            {
+                building.color = Color.White;
+            }
         }
     }
 
@@ -42,7 +48,11 @@ internal class ServerCabinMenu : CarpenterMenu
         if (this.Action is CarpentryAction.Demolish or CarpentryAction.Paint)
         {
             var building = this.TargetLocation.getBuildingAt(PositionHelper.GetTilePositionFromMousePosition());
-            if (building?.IsCabin(out _) == false) return;
+
+            if (building?.IsCabin(out _) == false)
+            {
+                return;
+            }
         }
 
         base.receiveLeftClick(x, y, playSound);

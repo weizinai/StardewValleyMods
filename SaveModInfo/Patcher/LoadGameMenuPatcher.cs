@@ -20,7 +20,10 @@ internal class LoadGameMenuPatcher : BasePatcher
 
     private static void PerformHoverActionPostfix(int x, int y, LoadGameMenu __instance, ref string ___hoverText)
     {
-        if (__instance.GetType() != typeof(LoadGameMenu)) return;
+        if (__instance.GetType() != typeof(LoadGameMenu))
+        {
+            return;
+        }
 
         for (var i = 0; i < __instance.slotButtons.Count; i++)
         {
@@ -33,6 +36,7 @@ internal class LoadGameMenuPatcher : BasePatcher
                 if (bound.Contains(x, y))
                 {
                     ___hoverText = CheckModInfoHandler.CheckResult[farmer.slotName];
+
                     break;
                 }
             }

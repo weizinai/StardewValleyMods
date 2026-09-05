@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.PiCore.Handler;
@@ -12,12 +12,15 @@ internal class AutoEventHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (!ModConfig.Instance.AutoSkipEvent) return;
+        if (!ModConfig.Instance.AutoSkipEvent)
+        {
+            return;
+        }
 
         if (Game1.CurrentEvent != null)
         {

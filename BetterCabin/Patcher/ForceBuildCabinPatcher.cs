@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Buildings;
@@ -29,9 +29,15 @@ internal class ForceBuildCabinPatcher : BasePatcher
 
     private static void IsBuildablePostfix(GameLocation __instance, ref bool __result, Vector2 tileLocation)
     {
-        if (!ModConfig.Instance.ForceBuildCabin) return;
+        if (!ModConfig.Instance.ForceBuildCabin)
+        {
+            return;
+        }
 
-        if (__result) return;
+        if (__result)
+        {
+            return;
+        }
 
         if (Game1.activeClickableMenu is CarpenterMenu { Action: CarpenterMenu.CarpentryAction.None } menu)
         {
@@ -47,17 +53,27 @@ internal class ForceBuildCabinPatcher : BasePatcher
 
     private static void BuildStructurePostfix(GameLocation __instance, ref bool __result, BuildingData data, Vector2 tileLocation)
     {
-        if (!ModConfig.Instance.ForceBuildCabin) return;
+        if (!ModConfig.Instance.ForceBuildCabin)
+        {
+            return;
+        }
 
-        if (__result == false) return;
+        if (!__result)
+        {
+            return;
+        }
 
-        if (data.IndoorMapType != "StardewValley.Locations.Cabin") return;
+        if (data.IndoorMapType != "StardewValley.Locations.Cabin")
+        {
+            return;
+        }
 
         for (var x = 0; x < data.Size.X; x++)
         {
             for (var y = 0; y < data.Size.Y; y++)
             {
                 var position = new Vector2(tileLocation.X + x, tileLocation.Y + y);
+
                 if (__instance.objects.GetValueOrDefault(position)?.Category == SObject.litterCategory)
                 {
                     __instance.objects.Remove(position);

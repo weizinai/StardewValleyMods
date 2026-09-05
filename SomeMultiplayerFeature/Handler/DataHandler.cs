@@ -17,14 +17,14 @@ internal class DataHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        this.Helper.Events.Content.AssetRequested += this.OnAssetRequested;
+        this.helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        this.helper.Events.Content.AssetRequested += this.OnAssetRequested;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
-        this.Helper.Events.Content.AssetRequested -= this.OnAssetRequested;
+        this.helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
+        this.helper.Events.Content.AssetRequested -= this.OnAssetRequested;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -70,6 +70,7 @@ internal class DataHandler : BaseHandler
             e.Edit(asset =>
             {
                 var treeData = asset.AsDictionary<string, WildTreeData>().Data;
+
                 foreach (var (_, data) in treeData)
                 {
                     data.GrowthChance = 0.5f;

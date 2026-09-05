@@ -16,56 +16,56 @@ public class RSVSlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
     public RSVSlayMonsterQuestBuilder(SlayMonsterQuest quest) : base(quest)
     {
-        this.Quest.daysLeft.Value = ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.Days;
+        this.quest.daysLeft.Value = ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.Days;
 
         var randomId = ModEntry.Random.ChooseFrom(QuestLibrary);
-        this.rawQuest = StardewValley.Quests.Quest.GetRawQuestFields(randomId);
-        this.Quest.id.Value = randomId;
+        this.rawQuest = Quest.GetRawQuestFields(randomId);
+        this.quest.id.Value = randomId;
     }
 
     protected override bool TrySetQuestTarget()
     {
-        this.Quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2);
+        this.quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2);
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.Quest.questTitle = this.rawQuest[1];
+        this.quest.questTitle = this.rawQuest[1];
     }
 
     protected override void SetQuestItemId()
     {
-        this.Quest.monsterName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0).Replace("_", " ");
-        this.Quest.monster.Value = new Monster
+        this.quest.monsterName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0).Replace("_", " ");
+        this.quest.monster.Value = new Monster
         {
-            Name = this.Quest.monsterName.Value
+            Name = this.quest.monsterName.Value
         };
-        this.Quest.numberToKill.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1));
+        this.quest.numberToKill.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1));
     }
 
     protected override void SetQuestMoneyReward()
     {
-        this.Quest.reward.Value = int.Parse(this.rawQuest[6]);
+        this.quest.reward.Value = int.Parse(this.rawQuest[6]);
 
-        var originalReward = this.Quest.reward.Value;
-        this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The RSV slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        var originalReward = this.quest.reward.Value;
+        this.quest.reward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The RSV slay monster quest reward has been adjusted from [{originalReward}] to [{this.quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.Quest.questDescription = this.rawQuest[2];
+        this.quest.questDescription = this.rawQuest[2];
     }
 
     protected override void SetQuestDialogue()
     {
-        this.Quest.targetMessage = this.rawQuest[9];
+        this.quest.targetMessage = this.rawQuest[9];
     }
 
     protected override void SetQuestObjective()
     {
-        this.Quest.currentObjective = this.rawQuest[3];
+        this.quest.currentObjective = this.rawQuest[3];
     }
 }

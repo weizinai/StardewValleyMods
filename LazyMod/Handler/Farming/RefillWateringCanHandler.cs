@@ -12,14 +12,19 @@ internal class RefillWateringCanHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoRefillWateringCan.FindToolFromInventory);
-        if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax) return;
+        var wateringCan = ToolHelper.GetTool<WateringCan>(this.config.AutoRefillWateringCan.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoRefillWateringCan.Range, tile =>
+        if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoRefillWateringCan.Range, tile =>
         {
             if (location.CanRefillWateringCanOnTile((int)tile.X, (int)tile.Y))
             {
                 this.UseToolOnTile(location, player, wateringCan, tile);
+
                 return false;
             }
 

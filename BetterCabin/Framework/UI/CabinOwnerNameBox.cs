@@ -8,21 +8,21 @@ namespace weizinai.StardewValleyMod.BetterCabin.Framework.UI;
 
 internal class CabinOwnerNameBox : Box
 {
-    protected override Color TextColor
+    protected override Color textColor
     {
         get
         {
-            if (Game1.player.Equals(this.Cabin.owner))
+            if (Game1.player.Equals(this.cabin.owner))
             {
-                return this.Config.OwnerColor;
+                return this.config.OwnerColor;
             }
 
-            return Game1.player.team.playerIsOnline(this.Cabin.owner.UniqueMultiplayerID) ? this.Config.OnlineFarmerColor : this.Config.OfflineFarmerColor;
+            return Game1.player.team.playerIsOnline(this.cabin.owner.UniqueMultiplayerID) ? this.config.OnlineFarmerColor : this.config.OfflineFarmerColor;
         }
     }
 
-    protected override string Text => this.Cabin.owner.Name;
-    protected override Point Offset => new(this.Config.NameTagXOffset, this.Config.NameTagYOffset);
+    protected override string text => this.cabin.owner.Name;
+    protected override Point offset => new(this.config.NameTagXOffset, this.config.NameTagYOffset);
 
     public CabinOwnerNameBox(Building building, Cabin cabin, ModConfig config)
         : base(building, cabin, config) { }

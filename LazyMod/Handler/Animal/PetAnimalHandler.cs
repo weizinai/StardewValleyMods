@@ -14,18 +14,24 @@ internal class PetAnimalHandler : BaseAutomationHandler
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
         var animals = location.animals.Values;
-        if (!animals.Any()) return;
 
-        this.ForEachTile(this.Config.AutoPetAnimal.Range, tile =>
+        if (!animals.Any())
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoPetAnimal.Range, tile =>
         {
             foreach (var animal in animals)
             {
                 if (this.CanPetAnimal(tile, animal))
                 {
                     this.PetAnimal(player, animal);
+
                     return true;
                 }
             }
+
             return true;
         });
     }
@@ -49,6 +55,7 @@ internal class PetAnimalHandler : BaseAutomationHandler
             ? Math.Min(1000, animal.friendshipTowardFarmer.Value + 7)
             : Math.Min(1000, animal.friendshipTowardFarmer.Value + 15);
         animal.happiness.Value = Math.Min(255, animal.happiness.Value + Math.Max(5, 30 + happinessDrain));
+
         if (data is { ProfessionForHappinessBoost: >= 0 } && player.professions.Contains(data.ProfessionForHappinessBoost))
         {
             animal.friendshipTowardFarmer.Value = Math.Min(1000, animal.friendshipTowardFarmer.Value + 15);

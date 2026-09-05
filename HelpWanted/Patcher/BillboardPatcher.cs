@@ -21,7 +21,10 @@ internal class BillboardPatcher : BasePatcher
     // 将原版任务菜单替换为自定义菜单
     private static bool DrawPrefix(bool ___dailyQuestBoard)
     {
-        if (!___dailyQuestBoard) return true;
+        if (!___dailyQuestBoard)
+        {
+            return true;
+        }
 
         Logger<ModEntry>.Trace("Detected activation of the vanilla daily quest menu. It has been replaced with the custom menu.");
 

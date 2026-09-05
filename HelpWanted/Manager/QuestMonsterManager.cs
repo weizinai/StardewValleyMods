@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Extensions;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
@@ -37,33 +37,50 @@ public class QuestMonsterManager
         switch (mineLevel)
         {
             case <= 40:
-            {
-                yield return SMonster.GreenSlime;
+                {
+                    yield return SMonster.GreenSlime;
 
-                if (mineLevel > 10) yield return SMonster.RockCrab;
-                if (mineLevel > 30) yield return SMonster.Duggy;
+                    if (mineLevel > 10)
+                    {
+                        yield return SMonster.RockCrab;
+                    }
 
-                break;
-            }
+                    if (mineLevel > 30)
+                    {
+                        yield return SMonster.Duggy;
+                    }
+
+                    break;
+                }
             case <= 80:
-            {
-                yield return SMonster.FrostJelly;
-                yield return SMonster.DustSpirit;
+                {
+                    yield return SMonster.FrostJelly;
+                    yield return SMonster.DustSpirit;
 
-                if (mineLevel > 50) yield return SMonster.Ghost;
-                if (mineLevel > 70) yield return SMonster.Skeleton;
+                    if (mineLevel > 50)
+                    {
+                        yield return SMonster.Ghost;
+                    }
 
-                break;
-            }
+                    if (mineLevel > 70)
+                    {
+                        yield return SMonster.Skeleton;
+                    }
+
+                    break;
+                }
             default:
-            {
-                yield return SMonster.Sludge;
-                yield return SMonster.LavaCrab;
+                {
+                    yield return SMonster.Sludge;
+                    yield return SMonster.LavaCrab;
 
-                if (mineLevel > 90) yield return SMonster.SquidKid;
+                    if (mineLevel > 90)
+                    {
+                        yield return SMonster.SquidKid;
+                    }
 
-                break;
-            }
+                    break;
+                }
         }
     }
 
@@ -74,38 +91,38 @@ public class QuestMonsterManager
         switch (mineLevel)
         {
             case <= 40:
-            {
-                yield return SMonster.Bug;
-
-                if (mineLevel > 10)
                 {
-                    yield return SMonster.Grub;
-                    yield return SMonster.Fly;
-                }
+                    yield return SMonster.Bug;
 
-                if (mineLevel > 30)
-                {
-                    yield return SMonster.Bat;
-                    yield return SMonster.StoneGolem;
-                }
+                    if (mineLevel > 10)
+                    {
+                        yield return SMonster.Grub;
+                        yield return SMonster.Fly;
+                    }
 
-                break;
-            }
+                    if (mineLevel > 30)
+                    {
+                        yield return SMonster.Bat;
+                        yield return SMonster.StoneGolem;
+                    }
+
+                    break;
+                }
             case <= 80:
-            {
-                yield return SMonster.FrostBat;
+                {
+                    yield return SMonster.FrostBat;
 
-                break;
-            }
+                    break;
+                }
             default:
-            {
-                yield return SMonster.LavaBat;
-                yield return SMonster.ShadowBrute;
-                yield return SMonster.ShadowShaman;
-                yield return SMonster.MetalHead;
+                {
+                    yield return SMonster.LavaBat;
+                    yield return SMonster.ShadowBrute;
+                    yield return SMonster.ShadowShaman;
+                    yield return SMonster.MetalHead;
 
-                break;
-            }
+                    break;
+                }
         }
 
         if (mineLevel > 120)
@@ -116,14 +133,24 @@ public class QuestMonsterManager
             yield return SMonster.CarbonGhost;
             yield return SMonster.PepperRex;
 
-            if (mineLevel > 145) yield return SMonster.IridiumCrab;
-            if (mineLevel > 170) yield return SMonster.IridiumBat;
+            if (mineLevel > 145)
+            {
+                yield return SMonster.IridiumCrab;
+            }
+
+            if (mineLevel > 170)
+            {
+                yield return SMonster.IridiumBat;
+            }
         }
     }
 
     private IEnumerable<string> GetModVolcanoDungeonMonsters()
     {
-        if (!Utility.doesAnyFarmerHaveMail("addedParrotBoy")) yield break;
+        if (!Utility.doesAnyFarmerHaveMail("addedParrotBoy"))
+        {
+            yield break;
+        }
 
         yield return SMonster.DwarvishSentry;
         yield return SMonster.FalseMagmaCap;

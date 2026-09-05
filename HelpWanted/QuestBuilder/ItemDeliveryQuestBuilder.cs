@@ -29,14 +29,14 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
     protected override bool TrySetQuestTarget()
     {
-        if (this.Quest.target.Value != null)
+        if (this.quest.target.Value != null)
         {
-            Logger<ModEntry>.Trace($"Target for the current item delivery quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current item delivery quest has been set to {this.quest.target.Value}.");
 
             return false;
         }
 
-        var validTargets = this.Quest.GetValidTargetList();
+        var validTargets = this.quest.GetValidTargetList();
 
         if (Game1.player.friendshipData is not { Length: > 0 } || validTargets.Count <= 0)
         {
@@ -54,12 +54,12 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
             return false;
         }
 
-        this.Quest.target.Value = this.targetNPC.Name;
+        this.quest.target.Value = this.targetNPC.Name;
 
-        if (this.Quest.target.Value == Wizard && !Game1.player.mailReceived.Contains("wizardJunimoNote") && !Game1.player.mailReceived.Contains("JojaMember"))
+        if (this.quest.target.Value == Wizard && !Game1.player.mailReceived.Contains("wizardJunimoNote") && !Game1.player.mailReceived.Contains("JojaMember"))
         {
-            this.Quest.target.Value = Demetrius;
-            this.targetNPC = Game1.getCharacterFromName(this.Quest.target.Value);
+            this.quest.target.Value = Demetrius;
+            this.targetNPC = Game1.getCharacterFromName(this.quest.target.Value);
         }
 
         return true;
@@ -67,9 +67,9 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
     protected override void SetQuestTitle()
     {
-        this.Quest.questTitle = Game1.content.LoadString(
+        this.quest.questTitle = Game1.content.LoadString(
             "Strings\\1_6_Strings:ItemDeliveryQuestTitle",
-            NPC.GetDisplayName(this.Quest.target.Value)
+            NPC.GetDisplayName(this.quest.target.Value)
         );
     }
 
@@ -77,18 +77,18 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
     {
         if (Game1.season != Season.Winter && this.randomDouble < 0.15)
         {
-            this.Quest.ItemId.Value = ModConfig.Instance.VanillaConfig.RewriteQuestItem
-                ? QuestItemManager.Instance.GetRandomCrop(this.Quest.target.Value)
+            this.quest.ItemId.Value = ModConfig.Instance.VanillaConfig.RewriteQuestItem
+                ? QuestItemManager.Instance.GetRandomCrop(this.quest.target.Value)
                 : ModEntry.Random.ChooseFrom(Utility.possibleCropsAtThisTime(Game1.season, Game1.dayOfMonth <= 7));
-            this.Quest.ItemId.Value = ItemRegistry.QualifyItemId(this.Quest.ItemId.Value) ?? this.Quest.ItemId.Value;
+            this.quest.ItemId.Value = ItemRegistry.QualifyItemId(this.quest.ItemId.Value) ?? this.quest.ItemId.Value;
         }
         else
         {
             var rawItemId = ModConfig.Instance.VanillaConfig.RewriteQuestItem
-                ? QuestItemManager.Instance.GetRandomItem(this.Quest.target.Value)
+                ? QuestItemManager.Instance.GetRandomItem(this.quest.target.Value)
                 : Utility.getRandomItemFromSeason(Game1.season, 1000, true);
 
-            this.Quest.ItemId.Value = rawItemId switch
+            this.quest.ItemId.Value = rawItemId switch
             {
                 "-5" => "(O)176",
                 "-6" => "(O)184",
@@ -96,218 +96,218 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
             };
         }
 
-        this.item = ItemRegistry.Create(this.Quest.ItemId.Value);
+        this.item = ItemRegistry.Create(this.quest.ItemId.Value);
     }
 
     protected override void SetQuestMoneyReward()
     {
-        if (this.Quest.dailyQuest.Value || this.Quest.moneyReward.Value == 0)
+        if (this.quest.dailyQuest.Value || this.quest.moneyReward.Value == 0)
         {
-            var reward = this.Quest.GetGoldRewardPerItem(this.item);
-            this.Quest.moneyReward.Value = (int)(reward * ModConfig.Instance.VanillaConfig.ItemDeliveryQuestConfig.RewardMultiplier);
-            Logger<ModEntry>.Trace($"The vanilla item delivery quest reward has been adjusted from [{reward}] to [{this.Quest.moneyReward.Value}].");
+            var reward = this.quest.GetGoldRewardPerItem(this.item);
+            this.quest.moneyReward.Value = (int)(reward * ModConfig.Instance.VanillaConfig.ItemDeliveryQuestConfig.RewardMultiplier);
+            Logger<ModEntry>.Trace($"The vanilla item delivery quest reward has been adjusted from [{reward}] to [{this.quest.moneyReward.Value}].");
         }
     }
 
     protected override void SetQuestDescription()
     {
         var random = ModEntry.Random;
-        this.Quest.parts.Clear();
+        this.quest.parts.Clear();
 
-        switch (this.Quest.target.Value)
+        switch (this.quest.target.Value)
         {
             case Wizard:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13546, 13548, 13551, 13553), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13546, 13548, 13551, 13553), this.item));
 
-                break;
-            }
+                    break;
+                }
             case Haley:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13557, 13560), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13557, 13560), this.item));
 
-                break;
-            }
+                    break;
+                }
             case Sam:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13568, 13571), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13568, 13571), this.item));
 
-                break;
-            }
+                    break;
+                }
             case Maru:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Maru ? 13580 : 13583), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Maru ? 13580 : 13583), this.item));
 
-                break;
-            }
+                    break;
+                }
             case Abigail:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Abigail ? 13590 : 13593), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Abigail ? 13590 : 13593), this.item));
 
-                break;
-            }
+                    break;
+                }
             default:
-            {
-                if (Game1.season != Season.Winter && this.randomDouble < 0.15)
                 {
-                    switch (this.Quest.target.Value)
+                    if (Game1.season != Season.Winter && this.randomDouble < 0.15)
                     {
-                        case Demetrius:
+                        switch (this.quest.target.Value)
                         {
-                            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13311, 13314), this.item));
+                            case Demetrius:
+                                {
+                                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13311, 13314), this.item));
 
-                            break;
-                        }
-                        case Marnie:
-                        {
-                            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13317, 13320), this.item));
+                                    break;
+                                }
+                            case Marnie:
+                                {
+                                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13317, 13320), this.item));
 
-                            break;
-                        }
-                        case Sebastian:
-                        {
-                            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13324, 13327), this.item));
+                                    break;
+                                }
+                            case Sebastian:
+                                {
+                                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13324, 13327), this.item));
 
-                            break;
-                        }
-                        default:
-                        {
-                            this.Quest.parts.Add(GetPathString("I", 13299, 13300, 13301));
-                            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13302, 13303, 13304), this.item));
-                            this.Quest.parts.Add(random.Choose(
-                                GetPathString("I", 13306),
-                                GetPathString("I", 13307),
-                                "",
-                                GetPathString("I", 13308)
-                            ));
-                            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
+                                    break;
+                                }
+                            default:
+                                {
+                                    this.quest.parts.Add(GetPathString("I", 13299, 13300, 13301));
+                                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13302, 13303, 13304), this.item));
+                                    this.quest.parts.Add(random.Choose(
+                                        GetPathString("I", 13306),
+                                        GetPathString("I", 13307),
+                                        "",
+                                        GetPathString("I", 13308)
+                                    ));
+                                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
 
-                            break;
+                                    break;
+                                }
                         }
                     }
-                }
-                else
-                {
-                    switch (this.item)
+                    else
                     {
-                        case SObject { Type: "Cooking" } when this.Quest.target.Value != Wizard:
+                        switch (this.item)
                         {
-                            this.HandlerCookingQuest();
+                            case SObject { Type: "Cooking" } when this.quest.target.Value != Wizard:
+                                {
+                                    this.HandlerCookingQuest();
 
-                            break;
-                        }
-                        case SObject { Edibility: > 0 } when random.NextBool():
-                        {
-                            this.HandlerEdibleQuest();
+                                    break;
+                                }
+                            case SObject { Edibility: > 0 } when random.NextBool():
+                                {
+                                    this.HandlerEdibleQuest();
 
-                            break;
-                        }
-                        case SObject { Edibility: < 0 } when random.NextBool():
-                        case not SObject when random.NextBool():
-                        {
-                            if (this.Quest.target.Value == Emily)
-                            {
-                                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13473, 13476), this.item));
-                            }
-                            else
-                            {
-                                this.Quest.parts.Add(new DescriptionElement(
-                                    GetPathString("I", 13464),
-                                    this.item,
-                                    new DescriptionElement(GetPathString("I", 13465, 13466, 13467, 13468, 13469))
-                                ));
-                                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
-                            }
+                                    break;
+                                }
+                            case SObject { Edibility: < 0 } when random.NextBool():
+                            case not SObject when random.NextBool():
+                                {
+                                    if (this.quest.target.Value == Emily)
+                                    {
+                                        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13473, 13476), this.item));
+                                    }
+                                    else
+                                    {
+                                        this.quest.parts.Add(new DescriptionElement(
+                                            GetPathString("I", 13464),
+                                            this.item,
+                                            new DescriptionElement(GetPathString("I", 13465, 13466, 13467, 13468, 13469))
+                                        ));
+                                        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
+                                    }
 
-                            break;
-                        }
-                        default:
-                        {
-                            this.HandlerDefaultQuest();
+                                    break;
+                                }
+                            default:
+                                {
+                                    this.HandlerDefaultQuest();
 
-                            break;
+                                    break;
+                                }
                         }
                     }
-                }
 
-                break;
-            }
+                    break;
+                }
         }
 
-        this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.Quest.moneyReward.Value));
-        this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13608, 13610, 13612), this.targetNPC));
+        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.quest.moneyReward.Value));
+        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13608, 13610, 13612), this.targetNPC));
     }
 
     protected override void SetQuestDialogue()
     {
         var random = ModEntry.Random;
-        this.Quest.dialogueparts.Clear();
+        this.quest.dialogueparts.Clear();
 
-        switch (this.Quest.target.Value)
+        switch (this.quest.target.Value)
         {
             case Wizard:
-            {
-                this.Quest.dialogueparts.Add(GetPathString("I", 13555));
+                {
+                    this.quest.dialogueparts.Add(GetPathString("I", 13555));
 
-                break;
-            }
+                    break;
+                }
             case Haley:
-            {
-                this.Quest.dialogueparts.Add(GetPathString("I", 13566));
+                {
+                    this.quest.dialogueparts.Add(GetPathString("I", 13566));
 
-                break;
-            }
+                    break;
+                }
             case Sam:
-            {
-                this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", 13577)));
+                {
+                    this.quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", 13577)));
 
-                break;
-            }
+                    break;
+                }
             case Maru:
-            {
-                this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Maru ? 13585 : 13587)));
+                {
+                    this.quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Maru ? 13585 : 13587)));
 
-                break;
-            }
+                    break;
+                }
             case Abigail:
-            {
-                this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Abigail ? 13597 : 13599)));
+                {
+                    this.quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", this.randomBool_Abigail ? 13597 : 13599)));
 
-                break;
-            }
+                    break;
+                }
             case Sebastian:
-            {
-                this.Quest.dialogueparts.Add(GetPathString("I", 13602));
+                {
+                    this.quest.dialogueparts.Add(GetPathString("I", 13602));
 
-                break;
-            }
+                    break;
+                }
             case Elliott:
-            {
-                this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", 13604), this.item));
+                {
+                    this.quest.dialogueparts.Add(new DescriptionElement(GetPathString("I", 13604), this.item));
 
-                break;
-            }
+                    break;
+                }
             default:
-            {
-                this.Quest.dialogueparts.Add(random.NextBool(0.3) || this.Quest.target.Value == Evelyn
-                    ? new DescriptionElement(GetPathString("I", 13526))
-                    : new DescriptionElement(GetPathString("I", 13527, 13528)));
-                this.Quest.dialogueparts.Add(random.NextBool(0.3)
-                    ? new DescriptionElement(GetPathString("I", 13530), this.item)
-                    : random.NextBool()
-                        ? new DescriptionElement(GetPathString("I", 13532))
-                        : new DescriptionElement(GetPathString("I", 13534, 13535, 13536)));
-                this.Quest.dialogueparts.Add(GetPathString("I", 13538, 13539, 13540));
-                this.Quest.dialogueparts.Add(GetPathString("I", 13542, 13543, 13544));
+                {
+                    this.quest.dialogueparts.Add(random.NextBool(0.3) || this.quest.target.Value == Evelyn
+                        ? new DescriptionElement(GetPathString("I", 13526))
+                        : new DescriptionElement(GetPathString("I", 13527, 13528)));
+                    this.quest.dialogueparts.Add(random.NextBool(0.3)
+                        ? new DescriptionElement(GetPathString("I", 13530), this.item)
+                        : random.NextBool()
+                            ? new DescriptionElement(GetPathString("I", 13532))
+                            : new DescriptionElement(GetPathString("I", 13534, 13535, 13536)));
+                    this.quest.dialogueparts.Add(GetPathString("I", 13538, 13539, 13540));
+                    this.quest.dialogueparts.Add(GetPathString("I", 13542, 13543, 13544));
 
-                break;
-            }
+                    break;
+                }
         }
     }
 
     protected override void SetQuestObjective()
     {
-        this.Quest.objective.Value = new DescriptionElement(
+        this.quest.objective.Value = new DescriptionElement(
             GetPathString("I", 13614),
             this.targetNPC,
             this.item
@@ -344,14 +344,14 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                 },
                 new(GetPathString("I", 13357))
             };
-            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13333, 13334), this.item, random.ChooseFrom(questStrings)));
-            this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
+            this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13333, 13334), this.item, random.ChooseFrom(questStrings)));
+            this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
         }
         else
         {
-            if (this.Quest.target.Value == Sebastian)
+            if (this.quest.target.Value == Sebastian)
             {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13378, 13381), this.item));
+                this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13378, 13381), this.item));
             }
             else
             {
@@ -390,9 +390,9 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
                     new("")
                 };
                 var randomInt = random.Next(questDescriptions1.Length);
-                this.Quest.parts.Add(questDescriptions1[randomInt]);
-                this.Quest.parts.Add(questDescriptions2[randomInt]);
-                this.Quest.parts.Add(questDescriptions3[randomInt]);
+                this.quest.parts.Add(questDescriptions1[randomInt]);
+                this.quest.parts.Add(questDescriptions2[randomInt]);
+                this.quest.parts.Add(questDescriptions3[randomInt]);
             }
         }
     }
@@ -401,96 +401,96 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
     {
         var random = ModEntry.Random;
 
-        switch (this.Quest.target.Value)
+        switch (this.quest.target.Value)
         {
             case Demetrius:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13311, 13314), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13311, 13314), this.item));
 
-                break;
-            }
+                    break;
+                }
             case Marnie:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13317, 13320), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13317, 13320), this.item));
 
-                break;
-            }
+                    break;
+                }
             case Harvey:
-            {
-                this.Quest.parts.Add(new DescriptionElement(
-                    GetPathString("I", 13446),
-                    this.item,
-                    new DescriptionElement(GetPathString("I", 13448, 13449, 13450, 13451, 13452, 13453, 13454, 13455, 13456, 13457, 13458, 13459))
-                ));
+                {
+                    this.quest.parts.Add(new DescriptionElement(
+                        GetPathString("I", 13446),
+                        this.item,
+                        new DescriptionElement(GetPathString("I", 13448, 13449, 13450, 13451, 13452, 13453, 13454, 13455, 13456, 13457, 13458, 13459))
+                    ));
 
-                break;
-            }
+                    break;
+                }
             case Gus when random.NextDouble() < 0.6:
-            {
-                this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13462), this.item));
+                {
+                    this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13462), this.item));
 
-                break;
-            }
+                    break;
+                }
             default:
-            {
-                if (random.NextDouble() < 0.33)
                 {
-                    var questStrings = new[]
+                    if (random.NextDouble() < 0.33)
                     {
-                        new(GetPathString("I", 13336)),
-                        new(GetPathString("I", 13337)),
-                        new(GetPathString("I", 13338)),
-                        new(GetPathString("I", 13339)),
-                        new(GetPathString("I", 13340)),
-                        new(GetPathString("I", 13341)),
-                        Game1.samBandName != Game1.content.LoadString(GetPathString("G", 2156))
-                            ? new DescriptionElement(GetPathString("I", 13347), new DescriptionElement(GetPathString("G", 2156)))
-                            : Game1.elliottBookName != Game1.content.LoadString(GetPathString("G", 2157))
-                                ? new DescriptionElement(GetPathString("I", 13342), new DescriptionElement(GetPathString("G", 2157)))
-                                : new DescriptionElement(GetPathString("I", 13346)),
-                        new(GetPathString("I", 13420)),
-                        new(GetPathString("I", 13421)),
-                        new(GetPathString("I", 13422)),
-                        Game1.season switch
+                        var questStrings = new[]
                         {
-                            Season.Winter => new DescriptionElement(GetPathString("I", 13424)),
-                            Season.Summer => new DescriptionElement(GetPathString("I", 13426)),
-                            _ => new DescriptionElement(GetPathString("I", 13427))
-                        },
-                        new(GetPathString("I", 13357))
-                    };
-                    this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13333, 13334), this.item, random.ChooseFrom(questStrings)));
-                    this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
-                }
-                else
-                {
-                    var questDescriptions1 = new DescriptionElement[]
+                            new(GetPathString("I", 13336)),
+                            new(GetPathString("I", 13337)),
+                            new(GetPathString("I", 13338)),
+                            new(GetPathString("I", 13339)),
+                            new(GetPathString("I", 13340)),
+                            new(GetPathString("I", 13341)),
+                            Game1.samBandName != Game1.content.LoadString(GetPathString("G", 2156))
+                                ? new DescriptionElement(GetPathString("I", 13347), new DescriptionElement(GetPathString("G", 2156)))
+                                : Game1.elliottBookName != Game1.content.LoadString(GetPathString("G", 2157))
+                                    ? new DescriptionElement(GetPathString("I", 13342), new DescriptionElement(GetPathString("G", 2157)))
+                                    : new DescriptionElement(GetPathString("I", 13346)),
+                            new(GetPathString("I", 13420)),
+                            new(GetPathString("I", 13421)),
+                            new(GetPathString("I", 13422)),
+                            Game1.season switch
+                            {
+                                Season.Winter => new DescriptionElement(GetPathString("I", 13424)),
+                                Season.Summer => new DescriptionElement(GetPathString("I", 13426)),
+                                _ => new DescriptionElement(GetPathString("I", 13427))
+                            },
+                            new(GetPathString("I", 13357))
+                        };
+                        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13333, 13334), this.item, random.ChooseFrom(questStrings)));
+                        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13620), this.targetNPC));
+                    }
+                    else
                     {
-                        new(
-                            GetPathString("I", 13383),
-                            this.item,
-                            new DescriptionElement(GetPathString("I", 13385, 13386, 13387, 13388, 13389, 13390, 13391, 13392, 13393, 13394, 13395, 13396)),
-                            new DescriptionElement(GetPathString("I", 13400), this.item)
-                        )
-                    };
-                    var questDescriptions2 = new DescriptionElement[]
-                    {
-                        new(random.Choose("", GetPathString("I", 13398))),
-                        new(random.Choose("", GetPathString("I", 13402)))
-                    };
-                    var questDescriptions3 = new DescriptionElement[]
-                    {
-                        new(GetPathString("I", 13620), this.targetNPC),
-                        new(GetPathString("I", 13620), this.targetNPC)
-                    };
-                    var index = random.Next(questDescriptions1.Length);
-                    this.Quest.parts.Add(questDescriptions1[index]);
-                    this.Quest.parts.Add(questDescriptions2[index]);
-                    this.Quest.parts.Add(questDescriptions3[index]);
-                }
+                        var questDescriptions1 = new DescriptionElement[]
+                        {
+                            new(
+                                GetPathString("I", 13383),
+                                this.item,
+                                new DescriptionElement(GetPathString("I", 13385, 13386, 13387, 13388, 13389, 13390, 13391, 13392, 13393, 13394, 13395, 13396)),
+                                new DescriptionElement(GetPathString("I", 13400), this.item)
+                            )
+                        };
+                        var questDescriptions2 = new DescriptionElement[]
+                        {
+                            new(random.Choose("", GetPathString("I", 13398))),
+                            new(random.Choose("", GetPathString("I", 13402)))
+                        };
+                        var questDescriptions3 = new DescriptionElement[]
+                        {
+                            new(GetPathString("I", 13620), this.targetNPC),
+                            new(GetPathString("I", 13620), this.targetNPC)
+                        };
+                        var index = random.Next(questDescriptions1.Length);
+                        this.quest.parts.Add(questDescriptions1[index]);
+                        this.quest.parts.Add(questDescriptions2[index]);
+                        this.quest.parts.Add(questDescriptions3[index]);
+                    }
 
-                break;
-            }
+                    break;
+                }
         }
     }
 
@@ -548,8 +548,8 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
             new("")
         };
         var index = random.Next(questDescriptions1.Length);
-        this.Quest.parts.Add(questDescriptions1[index]);
-        this.Quest.parts.Add(questDescriptions2[index]);
-        this.Quest.parts.Add(questDescriptions3[index]);
+        this.quest.parts.Add(questDescriptions1[index]);
+        this.quest.parts.Add(questDescriptions2[index]);
+        this.quest.parts.Add(questDescriptions3[index]);
     }
 }

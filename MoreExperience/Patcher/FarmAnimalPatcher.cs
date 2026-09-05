@@ -22,7 +22,8 @@ internal class FarmAnimalPatcher : BasePatcher
     {
         var codes = instructions.ToList();
 
-        var index = codes.FindIndex(code => code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience))));
+        var index = codes.FindIndex(code =>
+            code.opcode == OpCodes.Callvirt && code.operand.Equals(AccessTools.Method(typeof(Farmer), nameof(Farmer.gainExperience))));
         codes[index - 1] = new CodeInstruction(OpCodes.Ldc_I4, 50);
 
         return codes.AsEnumerable();

@@ -27,6 +27,9 @@ internal class ModEntry : Mod
             new CheckModInfoHandler(this.Helper)
         };
 
-        foreach (var handler in handlers) handler.Apply();
+        foreach (var handler in handlers)
+        {
+            handler.Apply();
+        }
     }
 }

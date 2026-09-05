@@ -12,29 +12,40 @@ internal class ClearWeedsHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoClearWeeds.FindToolFromInventory);
-        if (scythe is null) return;
+        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.config.AutoClearWeeds.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoClearWeeds.Range, tile =>
+        if (scythe is null)
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoClearWeeds.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
+
             if (obj != null && obj.IsWeeds() && obj.QualifiedItemId is not ("(O)319" or "(O)320" or "(O)321"))
             {
                 obj.performToolAction(scythe);
                 location.removeObject(tile, false);
+
                 return true;
             }
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile)))
+                {
+                    continue;
+                }
 
-                if (this.Config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
+                if (this.config.ClearLargeWeeds && clump.parentSheetIndex.Value is 44 or 46)
                 {
                     scythe.swingTicker++;
+
                     if (clump.performToolAction(scythe, 1, tile))
                     {
                         location.resourceClumps.Remove(clump);
+
                         break;
                     }
                 }

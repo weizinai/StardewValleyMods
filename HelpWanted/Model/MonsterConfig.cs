@@ -1,4 +1,4 @@
-﻿namespace weizinai.StardewValleyMod.HelpWanted.Model;
+namespace weizinai.StardewValleyMod.HelpWanted.Model;
 
 public class MonsterConfig
 {
@@ -17,9 +17,15 @@ public class MonsterConfig
         this.mod = mod;
     }
 
-    public string GetTarget() => this.target;
+    public string GetTarget()
+    {
+        return this.target;
+    }
 
-    public int GetReward() => this.reward;
+    public int GetReward()
+    {
+        return this.reward;
+    }
 
     public int GetRandomNumber()
     {

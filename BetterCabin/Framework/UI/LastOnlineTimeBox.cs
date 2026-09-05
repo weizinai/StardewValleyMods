@@ -8,9 +8,9 @@ namespace weizinai.StardewValleyMod.BetterCabin.Framework.UI;
 
 internal class LastOnlineTimeBox : Box
 {
-    protected override Color TextColor => this.Config.LastOnlineTime.TextColor;
-    protected override string Text => Utility.getDateString(-((int)Game1.stats.DaysPlayed - this.Cabin.owner.disconnectDay.Value));
-    protected override Point Offset => new(this.Config.LastOnlineTime.XOffset, this.Config.LastOnlineTime.YOffset);
+    protected override Color textColor => this.config.LastOnlineTime.TextColor;
+    protected override string text => Utility.getDateString(-((int)Game1.stats.DaysPlayed - this.cabin.owner.disconnectDay.Value));
+    protected override Point offset => new(this.config.LastOnlineTime.XOffset, this.config.LastOnlineTime.YOffset);
 
     public LastOnlineTimeBox(Building building, Cabin cabin, ModConfig config)
         : base(building, cabin, config) { }

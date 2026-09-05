@@ -31,5 +31,8 @@ internal class MuseumMenuPatcher : BasePatcher
         return codes.AsEnumerable();
     }
 
-    private static void GetExperienceFromDonation() => Game1.player.gainExperience(Farmer.foragingSkill, 200);
+    private static void GetExperienceFromDonation()
+    {
+        Game1.player.gainExperience(Farmer.foragingSkill, 200);
+    }
 }

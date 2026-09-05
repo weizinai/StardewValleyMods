@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
@@ -31,7 +31,10 @@ internal class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (this.config.AutoBreakGeodeKeybind.JustPressed()) AutoBreakGeode = !AutoBreakGeode;
+        if (this.config.AutoBreakGeodeKeybind.JustPressed())
+        {
+            AutoBreakGeode = !AutoBreakGeode;
+        }
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -49,11 +52,18 @@ internal class ModEntry : Mod
                 else
                 {
                     if (!this.hasFastAnimation)
+                    {
                         for (var i = 0; i < this.config.BreakGeodeSpeed - 1; i++)
+                        {
                             geodeMenu.update(Game1.currentGameTime);
+                        }
+                    }
                 }
 
-                if (Game1.player.freeSpotsInInventory() == 1) AutoBreakGeode = false;
+                if (Game1.player.freeSpotsInInventory() == 1)
+                {
+                    AutoBreakGeode = false;
+                }
             }
             else
             {

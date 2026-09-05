@@ -8,9 +8,9 @@ namespace weizinai.StardewValleyMod.BetterCabin.Framework.UI;
 
 internal class TotalOnlineTimeBox : Box
 {
-    protected override Color TextColor => this.Config.TotalOnlineTime.TextColor;
-    protected override string Text => Utility.getHoursMinutesStringFromMilliseconds(this.Cabin.owner.millisecondsPlayed);
-    protected override Point Offset => new(this.Config.TotalOnlineTime.XOffset, this.Config.TotalOnlineTime.YOffset);
+    protected override Color textColor => this.config.TotalOnlineTime.TextColor;
+    protected override string text => Utility.getHoursMinutesStringFromMilliseconds(this.cabin.owner.millisecondsPlayed);
+    protected override Point offset => new(this.config.TotalOnlineTime.XOffset, this.config.TotalOnlineTime.YOffset);
 
     public TotalOnlineTimeBox(Building building, Cabin cabin, ModConfig config)
         : base(building, cabin, config) { }

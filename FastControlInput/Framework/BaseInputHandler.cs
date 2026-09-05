@@ -2,11 +2,11 @@ namespace weizinai.StardewValleyMod.FastControlInput.Framework;
 
 internal abstract class BaseInputHandler : IInputHandler
 {
-    protected readonly float Multiplier;
+    protected readonly float multiplier;
 
     protected BaseInputHandler(float multiplier)
     {
-        this.Multiplier = multiplier;
+        this.multiplier = multiplier;
     }
 
     public abstract bool IsEnable();

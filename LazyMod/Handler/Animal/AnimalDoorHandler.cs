@@ -23,16 +23,24 @@ internal class AnimalDoorHandler : BaseAutomationHandler, IAutomationHandlerWith
 
     private void ToggleAnimalDoor(bool isOpen)
     {
-        if (isOpen && (Game1.isRaining || Game1.IsWinter)) return;
+        if (isOpen && (Game1.isRaining || Game1.IsWinter))
+        {
+            return;
+        }
 
         var location = Game1.currentLocation;
         Utility.ForEachBuilding(building =>
         {
             if (building.animalDoor is not null && building.animalDoorOpen.Value != isOpen)
             {
-                foreach (var animal in location.Animals.Values.Where(animal => !animal.IsHome && animal.home == building)) animal.warpHome();
+                foreach (var animal in location.Animals.Values.Where(animal => !animal.IsHome && animal.home == building))
+                {
+                    animal.warpHome();
+                }
+
                 building.ToggleAnimalDoor(Game1.player);
             }
+
             return true;
         });
     }

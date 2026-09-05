@@ -13,14 +13,22 @@ internal class HarvestGingerHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var hoe = ToolHelper.GetTool<Hoe>(this.Config.AutoHarvestGinger.FindToolFromInventory);
-        if (hoe is null) return;
+        var hoe = ToolHelper.GetTool<Hoe>(this.config.AutoHarvestGinger.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoHarvestGinger.Range, tile =>
+        if (hoe is null)
         {
-            if (player.Stamina <= this.Config.AutoHarvestGinger.StopStamina) return false;
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoHarvestGinger.Range, tile =>
+        {
+            if (player.Stamina <= this.config.AutoHarvestGinger.StopStamina)
+            {
+                return false;
+            }
 
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+
             if (terrainFeature is HoeDirt { crop: not null } hoeDirt)
             {
                 if (hoeDirt.crop.hitWithHoe((int)tile.X, (int)tile.Y, location, hoeDirt))

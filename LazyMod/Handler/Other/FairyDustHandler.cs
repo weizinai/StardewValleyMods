@@ -12,10 +12,15 @@ internal class FairyDustHandler : BaseAutomationHandler
     {
         if (item?.QualifiedItemId == "(O)872")
         {
-            this.ForEachTile(this.Config.AutoUseFairyDust.Range, tile =>
+            this.ForEachTile(this.config.AutoUseFairyDust.Range, tile =>
             {
                 location.objects.TryGetValue(tile, out var obj);
-                if (obj.TryApplyFairyDust()) player.reduceActiveItemByOne();
+
+                if (obj.TryApplyFairyDust())
+                {
+                    player.reduceActiveItemByOne();
+                }
+
                 return true;
             });
         }

@@ -28,6 +28,7 @@ internal class FarmAnimalPatcher : BasePatcher
     private static bool DayUpdatePrefix(FarmAnimal __instance)
     {
         friendshipTowardFarmer = __instance.friendshipTowardFarmer.Value;
+
         return true;
     }
 
@@ -56,6 +57,7 @@ internal class FarmAnimalPatcher : BasePatcher
     private static int GetPetAnimalModifyForFriendship()
     {
         var petAnimalDecay = config.PetAnimalModifyForFriendship - friendshipTowardFarmer / 200;
+
         return petAnimalDecay < 0 ? petAnimalDecay : config.PetAnimalModifyForFriendship;
     }
 

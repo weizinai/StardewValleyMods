@@ -14,20 +14,38 @@ internal class CoolLavaHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (location is not VolcanoDungeon dungeon) return;
-
-        var wateringCan = ToolHelper.GetTool<WateringCan>(this.Config.AutoCoolLava.FindToolFromInventory);
-        if (wateringCan is null) return;
-
-        this.ForEachTile(this.Config.AutoCoolLava.Range, tile =>
+        if (location is not VolcanoDungeon dungeon)
         {
-            if (wateringCan.WaterLeft <= 0) return false;
-            if (player.Stamina <= this.Config.AutoCoolLava.StopStamina) return false;
+            return;
+        }
+
+        var wateringCan = ToolHelper.GetTool<WateringCan>(this.config.AutoCoolLava.FindToolFromInventory);
+
+        if (wateringCan is null)
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoCoolLava.Range, tile =>
+        {
+            if (wateringCan.WaterLeft <= 0)
+            {
+                return false;
+            }
+
+            if (player.Stamina <= this.config.AutoCoolLava.StopStamina)
+            {
+                return false;
+            }
 
             if (this.CanCoolLave(dungeon, tile))
             {
                 this.UseToolOnTile(location, player, wateringCan, tile);
-                if (player.ShouldHandleAnimationSound()) player.playNearbySoundLocal("wateringCan");
+
+                if (player.ShouldHandleAnimationSound())
+                {
+                    player.playNearbySoundLocal("wateringCan");
+                }
             }
 
             return true;
@@ -38,6 +56,7 @@ internal class CoolLavaHandler : BaseAutomationHandler
     {
         var x = (int)tile.X;
         var y = (int)tile.Y;
+
         return !dungeon.CanRefillWateringCanOnTile(x, y) &&
                dungeon.isTileOnMap(tile) &&
                dungeon.waterTiles[x, y] &&

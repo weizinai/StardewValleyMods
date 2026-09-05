@@ -14,17 +14,20 @@ internal class CabinMenuHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        this.helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
+        this.helper.Events.Input.ButtonsChanged -= this.OnButtonChanged;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
+        if (!Context.IsPlayerFree)
+        {
+            return;
+        }
 
         if (ModConfig.Instance.CabinMenuKeybind.JustPressed())
         {
@@ -39,6 +42,7 @@ internal class CabinMenuHandler : BaseHandler
                     if (building.IsCabin(out var cabin) && cabin.owner.Equals(Game1.player))
                     {
                         Game1.activeClickableMenu = new ClientCabinMenu(building);
+
                         return false;
                     }
 

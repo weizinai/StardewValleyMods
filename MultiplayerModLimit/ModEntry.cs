@@ -73,11 +73,14 @@ internal class ModEntry : Mod
         };
 
         var id = args[0];
+
         if (targetModList.Contains(id))
         {
             Logger<ModEntry>.Info(I18n.UI_AddMod_Exist());
+
             return;
         }
+
         targetModList.Add(id);
         this.Helper.WriteConfig(ModConfig.Instance);
         Logger<ModEntry>.Info(I18n.UI_AddMod_Success());
@@ -94,11 +97,14 @@ internal class ModEntry : Mod
         };
 
         var id = args[0];
+
         if (!targetModList.Contains(id))
         {
             Logger<ModEntry>.Info(I18n.UI_DelMod_Fail());
+
             return;
         }
+
         targetModList.Remove(id);
         this.Helper.WriteConfig(ModConfig.Instance);
         Logger<ModEntry>.Info(I18n.UI_DelMod_Success());
@@ -115,11 +121,15 @@ internal class ModEntry : Mod
         };
 
         Logger<ModEntry>.Alert(I18n.UI_ListMod_Tooltip());
-        foreach (var id in targetModList) Logger<ModEntry>.Info(id);
+
+        foreach (var id in targetModList)
+        {
+            Logger<ModEntry>.Info(id);
+        }
     }
 
     /// <summary>
-    /// 获取主机玩家安装的所有模组
+    ///     获取主机玩家安装的所有模组
     /// </summary>
     private List<string> GetAllMods()
     {

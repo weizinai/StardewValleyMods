@@ -1,4 +1,4 @@
-﻿/*
+/*
 代码来源：Pathoschild
 原始出处：https://github.com/Pathoschild/StardewMods
 授权协议：MIT License
@@ -60,7 +60,10 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     {
         this.AssertLoaded();
 
-        if (enable) this.ModApi.AddSectionTitle(this.consumerManifest, text, tooltip);
+        if (enable)
+        {
+            this.ModApi.AddSectionTitle(this.consumerManifest, text, tooltip);
+        }
 
         return this;
     }
@@ -72,7 +75,10 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     {
         this.AssertLoaded();
 
-        if (enable) this.ModApi.AddParagraph(this.consumerManifest, text);
+        if (enable)
+        {
+            this.ModApi.AddParagraph(this.consumerManifest, text);
+        }
 
         return this;
     }
@@ -225,7 +231,10 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <summary>Start a new page in the mod's config UI, or switch to that page if it already exists. All options registered after this will be part of that page.</summary>
     /// <param name="pageId">The unique page ID.</param>
     /// <param name="pageTitle">The page title shown in its UI, or <c>null</c> to show the <paramref name="pageId" /> value.</param>
-    /// <remarks>You must also call <see cref="AddPageLink" /> to make the page accessible. This is only needed to set up a multi-page config UI. If you don't call this method, all options will be part of the mod's main config UI instead.</remarks>
+    /// <remarks>
+    ///     You must also call <see cref="AddPageLink" /> to make the page accessible. This is only needed to set up a multi-page config UI. If you don't call
+    ///     this method, all options will be part of the mod's main config UI instead.
+    /// </remarks>
     public GenericModConfigMenuIntegration<TConfig> AddPage(string pageId, Func<string>? pageTitle = null)
     {
         this.AssertLoaded();
@@ -244,7 +253,10 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     {
         this.AssertLoaded();
 
-        if (enable) this.ModApi.AddPageLink(this.consumerManifest, pageId, text, tooltip);
+        if (enable)
+        {
+            this.ModApi.AddPageLink(this.consumerManifest, pageId, text, tooltip);
+        }
 
         return this;
     }
@@ -291,6 +303,7 @@ public static class GenericModConfigMenuIntegration
         if (api.IsLoaded)
         {
             configMenu.Register(api);
+
             return api;
         }
 

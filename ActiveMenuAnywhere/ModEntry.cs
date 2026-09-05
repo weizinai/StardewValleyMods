@@ -39,14 +39,21 @@ internal class ModEntry : Mod
     {
         var config = ModConfig.Instance;
 
-        if (config.OpenMenuByTelephone) return;
+        if (config.OpenMenuByTelephone)
+        {
+            return;
+        }
 
         if (config.MenuKey.JustPressed())
         {
             if (Game1.activeClickableMenu is AMAMenu)
+            {
                 Game1.exitActiveMenu();
+            }
             else if (Context.IsPlayerFree)
+            {
                 Game1.activeClickableMenu = new AMAMenu(config.DefaultMenuTabId, this.Helper);
+            }
         }
     }
 }

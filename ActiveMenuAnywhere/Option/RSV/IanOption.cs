@@ -1,4 +1,4 @@
-﻿using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 

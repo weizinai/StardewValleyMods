@@ -36,6 +36,7 @@ internal class FarmHousePatcher : BasePatcher
         }
 
         __instance.Objects.TryGetValue(tile, out var obj);
+
         if (obj is Chest chest)
         {
             chest.Items.AddRange(new List<Item>

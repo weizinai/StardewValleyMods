@@ -19,10 +19,18 @@ internal class GrabTreasureItemHandler : BaseAutomationHandler
         if (Game1.activeClickableMenu is ItemGrabMenu { source: ItemGrabMenu.source_fishingChest } menu)
         {
             var items = menu.ItemsToGrabMenu.actualInventory;
+
             for (var i = 0; i < items.Count; i++)
             {
-                if (items[i] is null) continue;
-                if (!player.couldInventoryAcceptThisItem(items[i])) break;
+                if (items[i] is null)
+                {
+                    continue;
+                }
+
+                if (!player.couldInventoryAcceptThisItem(items[i]))
+                {
+                    break;
+                }
 
                 var center = menu.ItemsToGrabMenu.inventory[i].bounds.Center;
                 menu.receiveLeftClick(center.X, center.Y);

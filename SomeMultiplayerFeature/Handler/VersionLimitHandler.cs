@@ -11,7 +11,7 @@ namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 internal class VersionLimitHandler : BaseHandler
 {
     private const string VersionLimitKey = ModEntry.ModDataPrefix + "VersionLimit";
-    private static string TargetVersion => "0.20.0" + "_" + Game1.dayOfMonth;
+    private static string targetVersion => "0.20.0" + "_" + Game1.dayOfMonth;
 
     private readonly List<PlayerToKickData> datas = new();
 
@@ -20,26 +20,32 @@ internal class VersionLimitHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
-        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
+        this.helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
+        this.helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnOneSecondUpdateTicked;
-        this.Helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
+        this.helper.Events.GameLoop.SaveLoaded -= this.OnSaveLoaded;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnOneSecondUpdateTicked;
+        this.helper.Events.Multiplayer.PeerConnected -= this.OnPeerConnected;
     }
 
     private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
     {
-        if (Game1.IsClient) Game1.player.modData[VersionLimitKey] = TargetVersion;
+        if (Game1.IsClient)
+        {
+            Game1.player.modData[VersionLimitKey] = targetVersion;
+        }
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
     {
-        if (!this.IsVersionLimitEnable()) return;
+        if (!this.IsVersionLimitEnable())
+        {
+            return;
+        }
 
         foreach (var data in this.datas)
         {
@@ -52,13 +58,15 @@ internal class VersionLimitHandler : BaseHandler
                 if (farmer == null)
                 {
                     Game1.chatBox.addInfoMessage($"无法获取Id为{data.Id}的玩家，该玩家可能已经退出。");
+
                     return;
                 }
 
-                if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != TargetVersion)
+                if (!farmer.modData.ContainsKey(VersionLimitKey) || farmer.modData[VersionLimitKey] != targetVersion)
                 {
                     var message = this.GetKickMessage(farmer);
                     Game1.chatBox.addInfoMessage(message);
+
                     try
                     {
                         Game1.server.kick(farmer.UniqueMultiplayerID);
@@ -77,7 +85,10 @@ internal class VersionLimitHandler : BaseHandler
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
-        if (!this.IsVersionLimitEnable()) return;
+        if (!this.IsVersionLimitEnable())
+        {
+            return;
+        }
 
         this.datas.Add(new PlayerToKickData(e.Peer.PlayerID, ModConfig.Instance.KickPlayerDelayTime));
     }
@@ -86,7 +97,7 @@ internal class VersionLimitHandler : BaseHandler
     {
         return !farmer.modData.ContainsKey(VersionLimitKey)
             ? $"{farmer.Name}未安装<SomeMultiplayerFeature>模组，将被踢出。"
-            : $"{farmer.Name}的<SomeMultiplayerFeature>模组为<{farmer.modData[VersionLimitKey]}>版本，要求的版本为<{TargetVersion}>，不满足要求，将被踢出。";
+            : $"{farmer.Name}的<SomeMultiplayerFeature>模组为<{farmer.modData[VersionLimitKey]}>版本，要求的版本为<{targetVersion}>，不满足要求，将被踢出。";
     }
 
     private bool IsVersionLimitEnable()

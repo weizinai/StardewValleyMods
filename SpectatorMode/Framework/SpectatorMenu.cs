@@ -15,7 +15,7 @@ namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 internal class SpectatorMenu : IClickableMenu
 {
-    private ModConfig Config => ModConfig.Instance;
+    private ModConfig config => ModConfig.Instance;
 
     private bool followPlayer;
     private bool randomSpectate;
@@ -64,7 +64,8 @@ internal class SpectatorMenu : IClickableMenu
         if (this.RandomSpectate)
         {
             this.intervalTimer++;
-            if (this.intervalTimer > this.Config.RandomSpectateInterval * 60)
+
+            if (this.intervalTimer > this.config.RandomSpectateInterval * 60)
             {
                 if (this.targetFarmer != Game1.player)
                 {
@@ -79,6 +80,7 @@ internal class SpectatorMenu : IClickableMenu
                     );
                     this.targetLocation = newLocation;
                 }
+
                 this.BeginSpectate();
                 this.intervalTimer = 0;
             }
@@ -94,10 +96,11 @@ internal class SpectatorMenu : IClickableMenu
 
             Game1.viewport.Location = this.GetViewportFromFarmer();
             Game1.panScreen(0, 0);
+
             return;
         }
 
-        PanScreenHelper.PanScreen(this.Config.MoveSpeed, this.Config.MoveThreshold);
+        PanScreenHelper.PanScreen(this.config.MoveSpeed, this.config.MoveThreshold);
     }
 
     public override void draw(SpriteBatch b)
@@ -110,19 +113,25 @@ internal class SpectatorMenu : IClickableMenu
             SpriteText.drawStringWithScrollCenteredAt(b, title, Game1.uiViewport.Width / 2, 64);
         }
 
-        if (this.Config.ShowRandomSpectateTooltip && this.RandomSpectate)
+        if (this.config.ShowRandomSpectateTooltip && this.RandomSpectate)
         {
             SpriteText.drawStringWithScrollCenteredAt(
                 b,
-                I18n.UI_RandomSpectate_Title(this.intervalTimer / 60, this.Config.RandomSpectateInterval),
+                I18n.UI_RandomSpectate_Title(this.intervalTimer / 60, this.config.RandomSpectateInterval),
                 Game1.uiViewport.Width / 2,
                 144
             );
         }
 
-        if (this.Config.ShowTimeAndMoney) Game1.dayTimeMoneyBox.draw(b);
+        if (this.config.ShowTimeAndMoney)
+        {
+            Game1.dayTimeMoneyBox.draw(b);
+        }
 
-        if (this.Config.ShowToolbar) this.DrawToolBar(b);
+        if (this.config.ShowToolbar)
+        {
+            this.DrawToolBar(b);
+        }
 
         this.drawMouse(b);
     }
@@ -131,9 +140,15 @@ internal class SpectatorMenu : IClickableMenu
     {
         base.receiveKeyPress(key);
 
-        if (this.Config.ToggleStateKey.JustPressed()) this.followPlayer = !this.followPlayer;
+        if (this.config.ToggleStateKey.JustPressed())
+        {
+            this.followPlayer = !this.followPlayer;
+        }
 
-        if (this.Config.RandomSpectateKey.JustPressed()) this.RandomSpectate = !this.RandomSpectate;
+        if (this.config.RandomSpectateKey.JustPressed())
+        {
+            this.RandomSpectate = !this.RandomSpectate;
+        }
     }
 
     protected override void cleanupBeforeExit()
@@ -164,7 +179,10 @@ internal class SpectatorMenu : IClickableMenu
 
     private Location GetInitialViewport()
     {
-        if (this.followPlayer) return this.GetViewportFromFarmer();
+        if (this.followPlayer)
+        {
+            return this.GetViewportFromFarmer();
+        }
 
         var layer = this.targetLocation.Map.Layers[0];
 
@@ -178,6 +196,7 @@ internal class SpectatorMenu : IClickableMenu
     {
         var x = (int)this.targetFarmer.Position.X - Game1.viewport.Width / 2;
         var y = (int)this.targetFarmer.Position.Y - Game1.viewport.Height / 2;
+
         return new Location(x, y);
     }
 

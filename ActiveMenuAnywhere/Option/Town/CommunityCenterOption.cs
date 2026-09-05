@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -34,6 +34,7 @@ internal class CommunityCenterOption : BaseOption
     {
         var communityCenter = Game1.RequireLocation<CommunityCenter>("CommunityCenter");
         var options = new List<Response>();
+
         for (var i = 0; i < 6; i++)
         {
             if (communityCenter.shouldNoteAppearInArea(i))

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
@@ -26,21 +26,24 @@ internal class BillboardOption : BaseOption
         switch (whichAnswer)
         {
             case "Calendar":
-            {
-                Game1.activeClickableMenu = new Billboard();
-                break;
-            }
+                {
+                    Game1.activeClickableMenu = new Billboard();
+
+                    break;
+                }
             case "DailyQuest":
-            {
-                Game1.activeClickableMenu = new Billboard(true);
-                break;
-            }
+                {
+                    Game1.activeClickableMenu = new Billboard(true);
+
+                    break;
+                }
             case "Leave":
-            {
-                Game1.exitActiveMenu();
-                Game1.player.forceCanMove();
-                break;
-            }
+                {
+                    Game1.exitActiveMenu();
+                    Game1.player.forceCanMove();
+
+                    break;
+                }
         }
     }
 }

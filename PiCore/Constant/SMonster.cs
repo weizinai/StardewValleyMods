@@ -1,4 +1,4 @@
-﻿namespace weizinai.StardewValleyMod.PiCore.Constant;
+namespace weizinai.StardewValleyMod.PiCore.Constant;
 
 public static class SMonster
 {

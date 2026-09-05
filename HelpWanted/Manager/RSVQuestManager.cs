@@ -10,18 +10,21 @@ namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
 public class RSVQuestManager : QuestManager<RSVQuestManager>
 {
-    private RSVModConfig RSVConfig => ModConfig.Instance.RSVConfig;
+    private RSVModConfig rsvConfig => ModConfig.Instance.RSVConfig;
 
     public void InitRSVQuestList()
     {
-        if (!this.CheckDayAvailable()) return;
+        if (!this.CheckDayAvailable())
+        {
+            return;
+        }
 
         if (ModConfig.Instance.ShowQuestGenerationTooltip)
         {
             HudLogger.NoIconHUDMessage(I18n.UI_GenerateRSVQuest_Tooltip());
         }
 
-        var maxQuests = this.RSVConfig.MaxQuests;
+        var maxQuests = this.rsvConfig.MaxQuests;
         var quest = this.GenerateRSVQuest();
         int tries = 0, i = 0;
         var questIds = new HashSet<string>();
@@ -59,7 +62,10 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
                 Logger<ModEntry>.Debug($"RSV quest #{this.QuestList.Count} generated: {this.GetQuestType(quest)} - {npc.Name}");
             }
 
-            if (i < maxQuests) quest = this.GenerateRSVQuest();
+            if (i < maxQuests)
+            {
+                quest = this.GenerateRSVQuest();
+            }
         }
     }
 
@@ -67,7 +73,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
     {
         var showTooltip = ModConfig.Instance.ShowQuestGenerationTooltip;
 
-        if (Game1.stats.DaysPlayed <= 1 && !this.RSVConfig.QuestFirstDay)
+        if (Game1.stats.DaysPlayed <= 1 && !this.rsvConfig.QuestFirstDay)
         {
             if (showTooltip)
             {
@@ -77,7 +83,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             return false;
         }
 
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.RSVConfig.QuestFestival)
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.rsvConfig.QuestFestival)
         {
             if (showTooltip)
             {
@@ -87,7 +93,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             return false;
         }
 
-        if (ModEntry.Random.NextDouble() >= this.RSVConfig.DailyQuestChance)
+        if (ModEntry.Random.NextDouble() >= this.rsvConfig.DailyQuestChance)
         {
             if (showTooltip)
             {
@@ -104,18 +110,18 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
     {
         var questTypes = new List<(float weight, Func<Quest> createQuest)>
         {
-            (this.RSVConfig.ItemDeliveryQuestConfig.Weight, () => new ItemDeliveryQuest()),
-            (this.RSVConfig.FishingQuestConfig.Weight, () => new FishingQuest()),
-            (this.RSVConfig.SlayMonsterQuestConfig.Weight, () => new SlayMonsterQuest()),
-            (this.RSVConfig.LostItemQuestConfig.Weight, () => new LostItemQuest())
+            (this.rsvConfig.ItemDeliveryQuestConfig.Weight, () => new ItemDeliveryQuest()),
+            (this.rsvConfig.FishingQuestConfig.Weight, () => new FishingQuest()),
+            (this.rsvConfig.SlayMonsterQuestConfig.Weight, () => new SlayMonsterQuest()),
+            (this.rsvConfig.LostItemQuestConfig.Weight, () => new LostItemQuest())
         };
 
         var randomDouble = ModEntry.Random.NextDouble();
         var currentWeight = 0f;
-        var totalWeight = this.RSVConfig.ItemDeliveryQuestConfig.Weight
-                          + this.RSVConfig.FishingQuestConfig.Weight
-                          + this.RSVConfig.SlayMonsterQuestConfig.Weight
-                          + this.RSVConfig.LostItemQuestConfig.Weight;
+        var totalWeight = this.rsvConfig.ItemDeliveryQuestConfig.Weight
+                          + this.rsvConfig.FishingQuestConfig.Weight
+                          + this.rsvConfig.SlayMonsterQuestConfig.Weight
+                          + this.rsvConfig.LostItemQuestConfig.Weight;
 
         foreach (var (weight, createQuest) in questTypes)
         {
@@ -128,33 +134,33 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
                 switch (quest)
                 {
                     case ItemDeliveryQuest itemDeliveryQuest:
-                    {
-                        var builder = new RSVItemDeliveryQuestBuilder(itemDeliveryQuest);
-                        builder.BuildQuest();
+                        {
+                            var builder = new RSVItemDeliveryQuestBuilder(itemDeliveryQuest);
+                            builder.BuildQuest();
 
-                        break;
-                    }
+                            break;
+                        }
                     case FishingQuest fishingQuest:
-                    {
-                        var builder = new RSVFishingQuestBuilder(fishingQuest);
-                        builder.BuildQuest();
+                        {
+                            var builder = new RSVFishingQuestBuilder(fishingQuest);
+                            builder.BuildQuest();
 
-                        break;
-                    }
+                            break;
+                        }
                     case SlayMonsterQuest slayMonsterQuest:
-                    {
-                        var builder = new RSVSlayMonsterQuestBuilder(slayMonsterQuest);
-                        builder.BuildQuest();
+                        {
+                            var builder = new RSVSlayMonsterQuestBuilder(slayMonsterQuest);
+                            builder.BuildQuest();
 
-                        break;
-                    }
+                            break;
+                        }
                     case LostItemQuest lostItemQuest:
-                    {
-                        var builder = new RSVLostItemQuestBuilder(lostItemQuest);
-                        builder.BuildQuest();
+                        {
+                            var builder = new RSVLostItemQuestBuilder(lostItemQuest);
+                            builder.BuildQuest();
 
-                        break;
-                    }
+                            break;
+                        }
                 }
 
                 quest.canBeCancelled.Value = true;

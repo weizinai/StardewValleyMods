@@ -17,17 +17,19 @@ internal class TipHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.Display.RenderedHud += this.OnRenderedHud;
+        this.helper.Events.Display.RenderedHud += this.OnRenderedHud;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.Display.RenderedHud -= this.OnRenderedHud;
+        this.helper.Events.Display.RenderedHud -= this.OnRenderedHud;
     }
 
     private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
     {
         if (ModConfig.Instance.ShowTip && Context.IsMultiplayer)
+        {
             this.tipTextBox.Draw(e.SpriteBatch);
+        }
     }
 }

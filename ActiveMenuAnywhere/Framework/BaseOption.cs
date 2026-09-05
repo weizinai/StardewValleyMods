@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
@@ -48,6 +48,7 @@ internal abstract class BaseOption
     {
         var i = index % 3;
         var j = index / 3;
+
         return new Rectangle(i * 200, j * 200, 200, 200);
     }
 }

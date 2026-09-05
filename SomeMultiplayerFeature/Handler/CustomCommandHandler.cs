@@ -17,43 +17,47 @@ internal class CustomCommandHandler : BaseHandler
     public CustomCommandHandler(IModHelper helper) : base(helper)
     {
         this.bannedPlayers = helper.Data.ReadJsonFile<Dictionary<long, string>>(BannedPlayerPath);
+
         if (this.bannedPlayers is null)
         {
             this.bannedPlayers = new Dictionary<long, string>();
-            this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
+            this.helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
         }
     }
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        this.helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
+        this.helper.Events.GameLoop.GameLaunched -= this.OnGameLaunched;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        this.Helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
+        this.helper.Events.Multiplayer.PeerConnected += this.OnPeerConnected;
 
-        this.Helper.ConsoleCommands.Add("ban", "", this.BanPlayer);
-        this.Helper.ConsoleCommands.Add("unban", "", this.UnbanPlayer);
-        this.Helper.ConsoleCommands.Add("ping", "", this.PingPlayer);
-        this.Helper.ConsoleCommands.Add("list", "", this.ListPlayer);
-        this.Helper.ConsoleCommands.Add("kick", "", this.KickPlayer);
-        this.Helper.ConsoleCommands.Add("kickall", "", this.KickAllPlayer);
+        this.helper.ConsoleCommands.Add("ban", "", this.BanPlayer);
+        this.helper.ConsoleCommands.Add("unban", "", this.UnbanPlayer);
+        this.helper.ConsoleCommands.Add("ping", "", this.PingPlayer);
+        this.helper.ConsoleCommands.Add("list", "", this.ListPlayer);
+        this.helper.ConsoleCommands.Add("kick", "", this.KickPlayer);
+        this.helper.ConsoleCommands.Add("kickall", "", this.KickAllPlayer);
 
-        this.Helper.ConsoleCommands.Add("inventory", "", this.AccessInventory);
+        this.helper.ConsoleCommands.Add("inventory", "", this.AccessInventory);
 
-        this.Helper.ConsoleCommands.Add("server_mode", "", this.SetServerMode);
+        this.helper.ConsoleCommands.Add("server_mode", "", this.SetServerMode);
     }
 
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
-        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var id = e.Peer.PlayerID;
         var player = Game1.GetPlayer(id);
@@ -61,6 +65,7 @@ internal class CustomCommandHandler : BaseHandler
         if (player is null)
         {
             Logger<ModEntry>.Warn($"无法获取id为{id}的玩家");
+
             return;
         }
 
@@ -74,13 +79,17 @@ internal class CustomCommandHandler : BaseHandler
     private void BanPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var target = Game1.getAllFarmhands().Where(x => x.Name == args[0]).ToArray();
 
         if (!target.Any())
         {
             Logger<ModEntry>.Error($"不存在名字为{args[0]}的玩家");
+
             return;
         }
 
@@ -101,13 +110,16 @@ internal class CustomCommandHandler : BaseHandler
             }
         }
 
-        this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
+        this.helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
     }
 
     private void UnbanPlayer(string command, string[] args)
     {
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
-        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var target = this.bannedPlayers!.Where(x => x.Value == args[0]).ToList();
 
@@ -122,13 +134,16 @@ internal class CustomCommandHandler : BaseHandler
             Logger<ModEntry>.Info($"{name}被移出黑名单。");
         }
 
-        this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
+        this.helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
     }
 
     private void PingPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var farmersData = new ConsoleTable("名字", "IP", "延迟");
 
@@ -150,7 +165,10 @@ internal class CustomCommandHandler : BaseHandler
     private void ListPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var farmersData = new ConsoleTable("名字", "状态", "地点", "IP", "总在线时间", "上次在线时间");
 
@@ -177,7 +195,10 @@ internal class CustomCommandHandler : BaseHandler
     private void KickPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var target = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
 
@@ -196,7 +217,10 @@ internal class CustomCommandHandler : BaseHandler
     private void KickAllPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         foreach (var (id, farmer) in Game1.otherFarmers)
         {
@@ -208,9 +232,13 @@ internal class CustomCommandHandler : BaseHandler
     private void AccessInventory(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
+        {
+            return;
+        }
 
         var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
+
         if (farmer is null)
         {
             Logger<ModEntry>.Info($"{args[0]}不存在，无法访问该玩家的背包。");
@@ -221,7 +249,11 @@ internal class CustomCommandHandler : BaseHandler
 
             foreach (var item in farmer.Items.OrderByDescending(item => item?.Stack))
             {
-                if (item is null) continue;
+                if (item is null)
+                {
+                    continue;
+                }
+
                 inventoryData.AddRow(
                     item.DisplayName,
                     item.Stack
@@ -234,20 +266,27 @@ internal class CustomCommandHandler : BaseHandler
 
     private void SetServerMode(string command, string[] args)
     {
-        if (Game1.IsClient) return;
+        if (Game1.IsClient)
+        {
+            return;
+        }
 
         if (args.Length < 1)
         {
             Logger<ModEntry>.Error("该命令需要参数，可选的参数为：<offline>、<friends>和<invite>。");
+
             return;
         }
 
         var mode = args[0];
+
         if (!new HashSet<string> { "offline", "friends", "invite" }.Contains(mode))
         {
             Logger<ModEntry>.Error("模式输入错误，可用的模式为：<offline>、<friends>和<invite>。");
+
             return;
         }
+
         Game1.options.setServerMode(mode);
     }
 }

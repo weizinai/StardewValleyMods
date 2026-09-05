@@ -13,12 +13,14 @@ internal class ForageHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        this.ForEachTile(this.Config.AutoForage.Range, tile =>
+        this.ForEachTile(this.config.AutoForage.Range, tile =>
         {
             location.objects.TryGetValue(tile, out var obj);
+
             if (obj?.IsSpawnedObject == true)
             {
                 this.CollectSpawnedObject(location, player, tile, obj);
+
                 return true;
             }
 
@@ -27,6 +29,7 @@ internal class ForageHandler : BaseAutomationHandler
                 if (terrainFeature is Bush bush && this.CanForageBerry(tile, bush))
                 {
                     bush.performUseAction(tile);
+
                     return true;
                 }
             }
@@ -39,6 +42,7 @@ internal class ForageHandler : BaseAutomationHandler
     {
         var oldQuality = obj.Quality;
         var random = Utility.CreateDaySaveRandom(tile.X, tile.Y * 777f);
+
         // 物品质量逻辑
         if (player.professions.Contains(16) && obj.isForage())
         {
@@ -57,7 +61,10 @@ internal class ForageHandler : BaseAutomationHandler
         }
 
         // 任务物品逻辑
-        if (obj.questItem.Value && obj.questId.Value != null && obj.questId.Value != "0" && !player.hasQuest(obj.questId.Value)) return;
+        if (obj.questItem.Value && obj.questId.Value != null && obj.questId.Value != "0" && !player.hasQuest(obj.questId.Value))
+        {
+            return;
+        }
 
         if (player.couldInventoryAcceptThisItem(obj))
         {
@@ -68,6 +75,7 @@ internal class ForageHandler : BaseAutomationHandler
             }
 
             player.animateOnce(279 + player.FacingDirection);
+
             if (!location.isFarmBuildingInterior())
             {
                 if (obj.isForage())
@@ -102,6 +110,7 @@ internal class ForageHandler : BaseAutomationHandler
 
             player.addItemToInventoryBool(obj.getOne());
             Game1.stats.ItemsForaged++;
+
             if (player.professions.Contains(13) && random.NextDouble() < 0.2 && !obj.questItem.Value && player.couldInventoryAcceptThisItem(obj) &&
                 !location.isFarmBuildingInterior())
             {
@@ -110,6 +119,7 @@ internal class ForageHandler : BaseAutomationHandler
             }
 
             location.objects.Remove(tile);
+
             return;
         }
 

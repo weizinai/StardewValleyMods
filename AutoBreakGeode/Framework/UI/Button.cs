@@ -40,9 +40,10 @@ public class Button : Element
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        IClickableMenu.drawTextureBox(spriteBatch, this.texture, this.sourceRectangle, (int)this.Position.X, (int)this.Position.Y, this.Width, this.Height, this.TextureColor, 1f,
+        IClickableMenu.drawTextureBox(spriteBatch, this.texture, this.sourceRectangle, (int)this.position.X, (int)this.position.Y, this.Width, this.Height,
+            this.TextureColor, 1f,
             false);
-        spriteBatch.DrawString(this.font, this.text, this.Position + new Vector2(this.ContentPadding, this.ContentPadding), this.textColor,
+        spriteBatch.DrawString(this.font, this.text, this.position + new Vector2(this.ContentPadding, this.ContentPadding), this.textColor,
             0f, Vector2.Zero, this.scale, SpriteEffects.None, 0f);
     }
 

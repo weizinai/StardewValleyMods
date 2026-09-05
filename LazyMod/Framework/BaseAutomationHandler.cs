@@ -13,11 +13,11 @@ namespace weizinai.StardewValleyMod.LazyMod.Framework;
 
 internal abstract class BaseAutomationHandler : IAutomationHandler
 {
-    protected readonly ModConfig Config;
+    protected readonly ModConfig config;
 
     protected BaseAutomationHandler(ModConfig config)
     {
-        this.Config = config;
+        this.config = config;
     }
 
     public virtual bool IsEnable()
@@ -30,14 +30,20 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected void ForEachTile(int range, Func<Vector2, bool> action)
     {
         var grid = TileHelper.GetTileGrid(range);
+
         foreach (var tile in grid)
+        {
             if (!action(tile))
+            {
                 break;
+            }
+        }
     }
 
     protected Rectangle GetTileBoundingBox(Vector2 tile)
     {
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile);
+
         return new Rectangle((int)position.X, (int)position.Y, Game1.tileSize, Game1.tileSize);
     }
 
@@ -51,8 +57,11 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected FarmAnimal? GetBestHarvestableFarmAnimal(Tool tool, Vector2 tile, IEnumerable<FarmAnimal> animals)
     {
         var animal = Utility.GetBestHarvestableFarmAnimal(animals, tool, this.GetTileBoundingBox(tile));
+
         if (animal?.currentProduce.Value is null || animal.isBaby() || !animal.CanGetProduceWithTool(tool))
+        {
             return null;
+        }
 
         return animal;
     }
@@ -60,7 +69,11 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected void ConsumeItem(Farmer player, Item item)
     {
         item.Stack--;
-        if (item.Stack <= 0) player.removeItemFromInventory(item);
+
+        if (item.Stack <= 0)
+        {
+            player.removeItemFromInventory(item);
+        }
     }
 
     protected void CheckTileAction(GameLocation location, Farmer player, Vector2 tile)
@@ -71,7 +84,10 @@ internal abstract class BaseAutomationHandler : IAutomationHandler
     protected void PlaceObjectAction(SObject obj, Vector2 tile, Farmer player, GameLocation location)
     {
         var position = PositionHelper.GetAbsolutePositionFromTilePosition(tile, true);
+
         if (obj.placementAction(location, (int)position.X, (int)position.Y, player))
+        {
             player.reduceActiveItemByOne();
+        }
     }
 }

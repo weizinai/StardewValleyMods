@@ -25,7 +25,10 @@ internal class Game1Patcher : BasePatcher
 
     private static bool ShowTelephoneMenuPrefix()
     {
-        if (!ModConfig.Instance.OpenMenuByTelephone) return true;
+        if (!ModConfig.Instance.OpenMenuByTelephone)
+        {
+            return true;
+        }
 
         Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMenuTabId, helper);
 

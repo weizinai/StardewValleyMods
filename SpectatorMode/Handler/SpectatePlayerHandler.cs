@@ -18,13 +18,16 @@ internal class SpectatePlayerHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        this.helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree) return;
+        if (!Context.IsPlayerFree)
+        {
+            return;
+        }
 
         if (ModConfig.Instance.SpectatePlayerKey.JustPressed())
         {
@@ -45,7 +48,10 @@ internal class SpectatePlayerHandler : BaseHandler
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (Game1.getOnlineFarmers().Count == 1) return;
+        if (Game1.getOnlineFarmers().Count == 1)
+        {
+            return;
+        }
 
         if (!this.autoSpectatePlayer && ModConfig.Instance.AutoSpectatePlayer && Game1.timeOfDay == ModConfig.Instance.AutoSpectatePlayerTime)
         {
@@ -63,6 +69,7 @@ internal class SpectatePlayerHandler : BaseHandler
             {
                 this.autoSpectatePlayer = false;
                 HudLogger.NoIconHUDMessage(I18n.UI_SpectatePlayer_Offline());
+
                 return;
             }
 

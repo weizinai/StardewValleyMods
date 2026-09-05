@@ -11,7 +11,7 @@ using HarmonyLib;
 
 namespace weizinai.StardewValleyMod.PiCore.Patcher;
 
-/// <summary>Provides base implementation logic for <see cref="IPatcher"/> instances.</summary>
+/// <summary>Provides base implementation logic for <see cref="IPatcher" /> instances.</summary>
 public abstract class BasePatcher : IPatcher
 {
     /// <inheritdoc />

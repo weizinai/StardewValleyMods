@@ -1,4 +1,4 @@
-﻿namespace weizinai.StardewValleyMod.AutoRefreshMineShaft.Framework;
+namespace weizinai.StardewValleyMod.AutoRefreshMineShaft.Framework;
 
 internal class ModConfig
 {

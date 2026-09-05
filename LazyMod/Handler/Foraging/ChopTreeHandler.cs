@@ -20,32 +20,43 @@ internal class ChopTreeHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var axe = ToolHelper.GetTool<Axe>(this.Config.AutoChopTree.FindToolFromInventory);
-        if (axe is null) return;
+        var axe = ToolHelper.GetTool<Axe>(this.config.AutoChopTree.FindToolFromInventory);
+
+        if (axe is null)
+        {
+            return;
+        }
 
         var treeType = new Dictionary<string, Dictionary<int, bool>>
         {
-            { Tree.bushyTree, this.Config.ChopOakTree },
-            { Tree.leafyTree, this.Config.ChopMapleTree },
-            { Tree.pineTree, this.Config.ChopPineTree },
-            { Tree.mahoganyTree, this.Config.ChopMahoganyTree },
-            { Tree.palmTree, this.Config.ChopPalmTree },
-            { Tree.palmTree2, this.Config.ChopPalmTree },
-            { Tree.mushroomTree, this.Config.ChopMushroomTree },
-            { Tree.greenRainTreeBushy, this.Config.ChopGreenRainTree },
-            { Tree.greenRainTreeLeafy, this.Config.ChopGreenRainTree },
-            { Tree.greenRainTreeFern, this.Config.ChopGreenRainTree },
-            { Tree.mysticTree, this.Config.ChopMysticTree }
+            { Tree.bushyTree, this.config.ChopOakTree },
+            { Tree.leafyTree, this.config.ChopMapleTree },
+            { Tree.pineTree, this.config.ChopPineTree },
+            { Tree.mahoganyTree, this.config.ChopMahoganyTree },
+            { Tree.palmTree, this.config.ChopPalmTree },
+            { Tree.palmTree2, this.config.ChopPalmTree },
+            { Tree.mushroomTree, this.config.ChopMushroomTree },
+            { Tree.greenRainTreeBushy, this.config.ChopGreenRainTree },
+            { Tree.greenRainTreeLeafy, this.config.ChopGreenRainTree },
+            { Tree.greenRainTreeFern, this.config.ChopGreenRainTree },
+            { Tree.mysticTree, this.config.ChopMysticTree }
         };
 
-        this.ForEachTile(this.Config.AutoChopTree.Range, tile =>
+        this.ForEachTile(this.config.AutoChopTree.Range, tile =>
         {
-            if (player.Stamina <= this.Config.AutoChopTree.StopStamina) return false;
+            if (player.Stamina <= this.config.AutoChopTree.StopStamina)
+            {
+                return false;
+            }
 
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+
             if (terrainFeature is Tree tree)
             {
-                if (tree.tapped.Value || tree.stopGrowingMoss.Value) return true;
+                if (tree.tapped.Value || tree.stopGrowingMoss.Value)
+                {
+                    return true;
+                }
 
                 foreach (var (key, value) in treeType)
                 {
@@ -58,6 +69,7 @@ internal class ChopTreeHandler : BaseAutomationHandler
                                 tree.stump.Value && value[-1])
                             {
                                 this.UseToolOnTile(location, player, axe, tile);
+
                                 break;
                             }
                         }

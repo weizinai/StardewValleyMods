@@ -11,10 +11,12 @@ public static class BuildingExtension
         if (building.GetIndoors() is Cabin tempCabin)
         {
             cabin = tempCabin;
+
             return true;
         }
 
         cabin = null;
+
         return false;
     }
 
@@ -23,10 +25,12 @@ public static class BuildingExtension
         if (building.IsCabin(out var value))
         {
             cabin = value;
+
             return !value.owner.isUnclaimedFarmhand;
         }
 
         cabin = null;
+
         return false;
     }
 }

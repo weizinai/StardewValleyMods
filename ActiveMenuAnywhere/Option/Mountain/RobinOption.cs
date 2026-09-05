@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;

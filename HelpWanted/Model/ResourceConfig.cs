@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using StardewValley;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Model;
@@ -18,9 +18,9 @@ public class ResourceConfig
     private readonly float multiplier;
     private readonly int mod;
 
-    private int HighestLevel => this.skill == MiningSkill ? this.HighestMiningLevel : this.HighestForagingLevel;
-    private int HighestMiningLevel => Game1.getAllFarmers().Select(farmer => farmer.MiningLevel).Max();
-    private int HighestForagingLevel => Game1.getAllFarmers().Select(farmer => farmer.ForagingLevel).Max();
+    private int highestLevel => this.skill == MiningSkill ? this.highestMiningLevel : this.highestForagingLevel;
+    private int highestMiningLevel => Game1.getAllFarmers().Select(farmer => farmer.MiningLevel).Max();
+    private int highestForagingLevel => Game1.getAllFarmers().Select(farmer => farmer.ForagingLevel).Max();
 
     public ResourceConfig(int reward, int baseValue, int skill, float factor, int minRandom, int maxRandom, float multiplier, int mod)
     {
@@ -38,7 +38,7 @@ public class ResourceConfig
     {
         var randomInt = ModEntry.Random.Next(this.minRandom, this.maxRandom);
 
-        var number = this.baseValue + (int)(this.HighestLevel * this.factor) + randomInt * 2;
+        var number = this.baseValue + (int)(this.highestLevel * this.factor) + randomInt * 2;
         number = (int)(number * this.multiplier);
         number -= number % this.mod;
 

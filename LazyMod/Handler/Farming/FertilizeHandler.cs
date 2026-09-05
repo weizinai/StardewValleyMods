@@ -13,11 +13,15 @@ internal class FertilizeHandler : BaseAutomationHandler
     {
         if (item?.Category == SObject.fertilizerCategory)
         {
-            this.ForEachTile(this.Config.AutoFertilize.Range, tile =>
+            this.ForEachTile(this.config.AutoFertilize.Range, tile =>
             {
-                if (item.Stack <= 0) return false;
+                if (item.Stack <= 0)
+                {
+                    return false;
+                }
 
                 location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
+
                 switch (item.QualifiedItemId)
                 {
                     // 树肥逻辑
@@ -29,6 +33,7 @@ internal class FertilizeHandler : BaseAutomationHandler
                                 player.reduceActiveItemByOne();
                             }
                         }
+
                         break;
                     // 其他肥料逻辑
                     default:
@@ -39,6 +44,7 @@ internal class FertilizeHandler : BaseAutomationHandler
                                 player.reduceActiveItemByOne();
                             }
                         }
+
                         break;
                 }
 

@@ -49,7 +49,10 @@ internal class ShopMenuPatcher : BasePatcher
 
     private static void TryToPurchaseItemPostfix(ISalable item, int stockToBuy, bool __state)
     {
-        if (__state) Broadcaster<ModEntry>.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
+        if (__state)
+        {
+            Broadcaster<ModEntry>.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
+        }
     }
 
     private static bool CanBuyItem(ShopMenu menu, ISalable item)
@@ -63,9 +66,11 @@ internal class ShopMenuPatcher : BasePatcher
     {
         tradeItem = null;
         tradeItemCount = 5;
+
         if (stockInfo.TradeItem != null)
         {
             tradeItem = stockInfo.TradeItem;
+
             if (stockInfo.TradeItemCount.HasValue)
             {
                 tradeItemCount = stockInfo.TradeItemCount.Value;

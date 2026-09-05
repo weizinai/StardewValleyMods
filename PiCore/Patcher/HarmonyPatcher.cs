@@ -11,7 +11,7 @@ using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.PiCore.Patcher;
 
-/// <summary>Simplifies applying <see cref="IPatcher"/> instances to the game.</summary>
+/// <summary>Simplifies applying <see cref="IPatcher" /> instances to the game.</summary>
 public static class HarmonyPatcher
 {
     /// <summary>Apply the given Harmony patchers.</summary>
@@ -30,7 +30,7 @@ public static class HarmonyPatcher
             catch (Exception e)
             {
                 // 按模组唯一ID路由到所属模组 monitor；未注册时回退到兜底 monitor（PiCore）
-                var monitor = HudLogger.GetMonitor(uniqueId) ?? HudLogger.FallbackMonitor;
+                var monitor = HudLogger.GetMonitor(uniqueId) ?? HudLogger.fallbackMonitor;
                 monitor?.Log($"Failed to apply '{patcher.GetType().FullName}' patcher. Technical details:\n{e}", LogLevel.Error);
             }
         }

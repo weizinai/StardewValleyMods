@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 using xTile.Dimensions;
@@ -26,21 +26,24 @@ internal class PierreOption : BaseOption
         switch (whichAnswer)
         {
             case "SeedShop":
-            {
-                Utility.TryOpenShopMenu("SeedShop", "Pierre");
-                break;
-            }
+                {
+                    Utility.TryOpenShopMenu("SeedShop", "Pierre");
+
+                    break;
+                }
             case "BuyBackpack":
-            {
-                Game1.currentLocation.performAction("BuyBackpack", Game1.player, new Location());
-                break;
-            }
+                {
+                    Game1.currentLocation.performAction("BuyBackpack", Game1.player, new Location());
+
+                    break;
+                }
             case "Leave":
-            {
-                Game1.exitActiveMenu();
-                Game1.player.forceCanMove();
-                break;
-            }
+                {
+                    Game1.exitActiveMenu();
+                    Game1.player.forceCanMove();
+
+                    break;
+                }
         }
     }
 }

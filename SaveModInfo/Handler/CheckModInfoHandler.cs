@@ -17,7 +17,7 @@ internal class CheckModInfoHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
+        this.helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
     }
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -26,22 +26,24 @@ internal class CheckModInfoHandler : BaseHandler
 
         if (Directory.Exists(savesPath))
         {
-            var currentModInfo = this.Helper.ModRegistry.GetAll()
+            var currentModInfo = this.helper.ModRegistry.GetAll()
                 .Select(mod => mod.Manifest.UniqueID)
                 .ToHashSet();
 
             foreach (var directory in Directory.EnumerateDirectories(savesPath))
             {
                 var saveName = directory.Split(Path.DirectorySeparatorChar).Last();
-                var lastModInfo = this.Helper.Data.ReadJsonFile<Dictionary<string, string>>($"data/{saveName}.json");
+                var lastModInfo = this.helper.Data.ReadJsonFile<Dictionary<string, string>>($"data/{saveName}.json");
 
                 if (lastModInfo == null)
                 {
                     CheckResult.Add(saveName, I18n.UI_CheckModInfo_NoInfo());
+
                     continue;
                 }
 
                 var message = new StringBuilder();
+
                 foreach (var (id, name) in lastModInfo)
                 {
                     if (!currentModInfo.Contains(id))
@@ -49,7 +51,12 @@ internal class CheckModInfoHandler : BaseHandler
                         message.AppendLine(I18n.UI_CheckModInfo_RemovedMod(name));
                     }
                 }
-                if (message.Length > 0) message.Length--;
+
+                if (message.Length > 0)
+                {
+                    message.Length--;
+                }
+
                 CheckResult.Add(saveName, message.ToString());
             }
         }

@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{2A4F5145-C
 		Directory.Build.props = Directory.Build.props
 		LICENSE = LICENSE
 		StardewValleyMods.sln.DotSettings = StardewValleyMods.sln.DotSettings
+		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "无我2004", "无我2004", "{B9F21691-F0C5-43BD-93AB-6BAE87F11702}"

@@ -1,10 +1,10 @@
-﻿namespace weizinai.StardewValleyMod.PiCore.Constant;
+namespace weizinai.StardewValleyMod.PiCore.Constant;
 
 public static class SNPC
 {
     /// <summary>阿比盖尔</summary>
     public const string Abigail = "Abigail";
-    
+
     /// <summary>克林特</summary>
     public const string Clint = "Clint";
 
@@ -22,7 +22,7 @@ public static class SNPC
 
     /// <summary>格斯</summary>
     public const string Gus = "Gus";
-    
+
     /// <summary>海莉</summary>
     public const string Haley = "Haley";
 
@@ -43,9 +43,9 @@ public static class SNPC
 
     /// <summary>玛鲁</summary>
     public const string Maru = "Maru";
-    
+
     /// <summary>罗宾</summary>
-    public const string Robin  = "Robin";
+    public const string Robin = "Robin";
 
     /// <summary>山姆</summary>
     public const string Sam = "Sam";
@@ -55,7 +55,7 @@ public static class SNPC
 
     /// <summary>塞巴斯蒂安</summary>
     public const string Sebastian = "Sebastian";
-    
+
     /// <summary>威利</summary>
     public const string Willy = "Willy";
 

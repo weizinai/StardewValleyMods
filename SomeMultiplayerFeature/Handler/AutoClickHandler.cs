@@ -16,14 +16,14 @@ internal class AutoClickHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
-        this.Helper.Events.Display.MenuChanged += this.OnMenuChanged;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked += this.OnOneSecondUpdateTicked;
+        this.helper.Events.Display.MenuChanged += this.OnMenuChanged;
     }
 
     public override void Clear()
     {
-        this.Helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnOneSecondUpdateTicked;
-        this.Helper.Events.Display.MenuChanged -= this.OnMenuChanged;
+        this.helper.Events.GameLoop.OneSecondUpdateTicked -= this.OnOneSecondUpdateTicked;
+        this.helper.Events.Display.MenuChanged -= this.OnMenuChanged;
     }
 
     private void OnOneSecondUpdateTicked(object? sender, OneSecondUpdateTickedEventArgs e)
@@ -31,11 +31,12 @@ internal class AutoClickHandler : BaseHandler
         if (Game1.activeClickableMenu is LevelUpMenu levelUpMenu)
         {
             this.cooldown++;
+
             if (this.cooldown > 20)
             {
                 if (levelUpMenu.isProfessionChooser)
                 {
-                    var professionToChoose = this.Helper.Reflection.GetField<List<int>>(levelUpMenu, "professionsToChoose").GetValue()[0];
+                    var professionToChoose = this.helper.Reflection.GetField<List<int>>(levelUpMenu, "professionsToChoose").GetValue()[0];
                     Game1.player.professions.Add(professionToChoose);
                     levelUpMenu.getImmediateProfessionPerk(professionToChoose);
                     levelUpMenu.isActive = false;
@@ -55,6 +56,9 @@ internal class AutoClickHandler : BaseHandler
 
     private void OnMenuChanged(object? sender, MenuChangedEventArgs e)
     {
-        if (e.NewMenu is LevelUpMenu) this.cooldown = 0;
+        if (e.NewMenu is LevelUpMenu)
+        {
+            this.cooldown = 0;
+        }
     }
 }

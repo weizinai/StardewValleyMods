@@ -15,13 +15,14 @@ internal class AnimalCrackerHandler : BaseAutomationHandler
         {
             var animals = location.animals.Values;
 
-            this.ForEachTile(this.Config.AutoFeedAnimalCracker.Range, tile =>
+            this.ForEachTile(this.config.AutoFeedAnimalCracker.Range, tile =>
             {
                 foreach (var animal in animals)
                 {
                     if (this.CanFeedAnimalCracker(tile, animal))
                     {
                         this.FeedAnimalCracker(player, animal);
+
                         return true;
                     }
                 }

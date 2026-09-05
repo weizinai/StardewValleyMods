@@ -13,34 +13,46 @@ internal class ClearWoodHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var axe = ToolHelper.GetTool<Axe>(this.Config.AutoClearWood.FindToolFromInventory);
-        if (axe is null) return;
+        var axe = ToolHelper.GetTool<Axe>(this.config.AutoClearWood.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoClearWood.Range, tile =>
+        if (axe is null)
         {
-            if (player.Stamina <= this.Config.AutoClearWood.StopStamina) return false;
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoClearWood.Range, tile =>
+        {
+            if (player.Stamina <= this.config.AutoClearWood.StopStamina)
+            {
+                return false;
+            }
 
             location.objects.TryGetValue(tile, out var obj);
+
             if (obj?.IsTwig() == true)
             {
                 this.UseToolOnTile(location, player, axe, tile);
+
                 return true;
             }
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile)))
+                {
+                    continue;
+                }
 
                 var clear = false;
                 var requiredUpgradeLevel = Tool.stone;
 
-                if (this.Config.ClearStump && clump.parentSheetIndex.Value == ResourceClump.stumpIndex)
+                if (this.config.ClearStump && clump.parentSheetIndex.Value == ResourceClump.stumpIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.copper;
                 }
 
-                if (this.Config.ClearHollowLog && clump.parentSheetIndex.Value == ResourceClump.hollowLogIndex)
+                if (this.config.ClearHollowLog && clump.parentSheetIndex.Value == ResourceClump.hollowLogIndex)
                 {
                     clear = true;
                     requiredUpgradeLevel = Tool.steel;
@@ -49,6 +61,7 @@ internal class ClearWoodHandler : BaseAutomationHandler
                 if (clear && axe.UpgradeLevel >= requiredUpgradeLevel)
                 {
                     this.UseToolOnTile(location, player, axe, tile);
+
                     break;
                 }
             }

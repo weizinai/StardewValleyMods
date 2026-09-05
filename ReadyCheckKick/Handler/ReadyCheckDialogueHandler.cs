@@ -34,10 +34,10 @@ internal class ReadyCheckDialogueHandler : BaseHandler
 
     public override void Apply()
     {
-        this.Helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
-        this.Helper.Events.Display.RenderedActiveMenu += this.OnRenderedActiveMenu;
+        this.helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
+        this.helper.Events.Display.RenderedActiveMenu += this.OnRenderedActiveMenu;
 
-        this.Helper.ConsoleCommands.Add("kup", "", this.KickUnreadyFarmersCommand);
+        this.helper.ConsoleCommands.Add("kup", "", this.KickUnreadyFarmersCommand);
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -48,11 +48,20 @@ internal class ReadyCheckDialogueHandler : BaseHandler
 
     private void OnRenderedActiveMenu(object? sender, RenderedActiveMenuEventArgs e)
     {
-        if (!ModConfig.Instance.ShowInfoInReadyCheckDialogue) return;
+        if (!ModConfig.Instance.ShowInfoInReadyCheckDialogue)
+        {
+            return;
+        }
 
-        if (!this.IsServerReady(out _)) return;
+        if (!this.IsServerReady(out _))
+        {
+            return;
+        }
 
-        if (!this.unreadyFarmers.Any()) return;
+        if (!this.unreadyFarmers.Any())
+        {
+            return;
+        }
 
         // 文字绘制逻辑
         var text = string.Join("\n", this.unreadyFarmers.Values);
@@ -62,22 +71,32 @@ internal class ReadyCheckDialogueHandler : BaseHandler
 
     private void UpdateUnreadyFarmers()
     {
-        if (!this.IsServerReady(out var menu)) return;
+        if (!this.IsServerReady(out var menu))
+        {
+            return;
+        }
 
         var serverReadyCheck = this.getIfExistsMethod.Invoke(Game1.netReady, new object?[] { menu.checkName });
         var rawReadyStates = (IDictionary)this.readyStatesField.GetValue(serverReadyCheck)!;
 
         this.unreadyFarmers.Clear();
+
         foreach (DictionaryEntry entry in rawReadyStates)
         {
             var id = (long)entry.Key;
+
             if (entry.Value!.ToString() == "NotReady")
             {
                 var farmer = Game1.GetPlayer(id);
+
                 if (farmer is not null)
+                {
                     this.unreadyFarmers.Add(id, farmer.displayName);
+                }
                 else
+                {
                     Logger<ModEntry>.Error($"Players with {id} id could not be found");
+                }
             }
         }
     }
@@ -86,45 +105,56 @@ internal class ReadyCheckDialogueHandler : BaseHandler
     {
         var config = ModConfig.Instance;
 
-        if (!config.AutoKickUnreadyFarmers) return;
+        if (!config.AutoKickUnreadyFarmers)
+        {
+            return;
+        }
 
-        if (!this.IsServerReady(out var menu)) return;
+        if (!this.IsServerReady(out var menu))
+        {
+            return;
+        }
 
         switch (menu.checkName)
         {
             case "festivalStart" when ModConfig.Instance.SpecialTreatForFestival:
-            {
-                var festivalId = $"{Game1.currentSeason}{Game1.dayOfMonth}";
-                if (Event.tryToLoadFestivalData(festivalId, out _, out _, out _, out _, out var endTime))
                 {
-                    if (Game1.timeOfDay == endTime - 50)
-                    {
-                        Logger<ModEntry>.Info(I18n.UI_AutoKickUnreadyFarmers_FestivalTooltip());
-                        this.KickUnreadyFarmers();
-                    }
-                }
-                break;
-            }
-            default:
-            {
-                var readyPlayerRatio = (float)Game1.netReady.GetNumberReady(menu.checkName)
-                                       / Game1.netReady.GetNumberRequired(menu.checkName);
+                    var festivalId = $"{Game1.currentSeason}{Game1.dayOfMonth}";
 
-                if (readyPlayerRatio > config.AutoKickUnreadyFarmersRatio && !this.isAutoKickUnreadyFarmers)
-                {
-                    this.isAutoKickUnreadyFarmers = true;
-                    Logger<ModEntry>.Info(I18n.UI_AutoKickUnreadyFarmers_DefaultTooltip(config.AutoKickUnreadyFarmersRatio, config.AutoKickUnreadyFarmersDelay));
-                    DelayedAction.functionAfterDelay(() =>
+                    if (Event.tryToLoadFestivalData(festivalId, out _, out _, out _, out _, out var endTime))
                     {
-                        if (Game1.activeClickableMenu is ReadyCheckDialog)
+                        if (Game1.timeOfDay == endTime - 50)
                         {
+                            Logger<ModEntry>.Info(I18n.UI_AutoKickUnreadyFarmers_FestivalTooltip());
                             this.KickUnreadyFarmers();
                         }
-                        this.isAutoKickUnreadyFarmers = false;
-                    }, config.AutoKickUnreadyFarmersDelay * 1000);
+                    }
+
+                    break;
                 }
-                break;
-            }
+            default:
+                {
+                    var readyPlayerRatio = (float)Game1.netReady.GetNumberReady(menu.checkName)
+                                           / Game1.netReady.GetNumberRequired(menu.checkName);
+
+                    if (readyPlayerRatio > config.AutoKickUnreadyFarmersRatio && !this.isAutoKickUnreadyFarmers)
+                    {
+                        this.isAutoKickUnreadyFarmers = true;
+                        Logger<ModEntry>.Info(
+                            I18n.UI_AutoKickUnreadyFarmers_DefaultTooltip(config.AutoKickUnreadyFarmersRatio, config.AutoKickUnreadyFarmersDelay));
+                        DelayedAction.functionAfterDelay(() =>
+                        {
+                            if (Game1.activeClickableMenu is ReadyCheckDialog)
+                            {
+                                this.KickUnreadyFarmers();
+                            }
+
+                            this.isAutoKickUnreadyFarmers = false;
+                        }, config.AutoKickUnreadyFarmersDelay * 1000);
+                    }
+
+                    break;
+                }
         }
     }
 
@@ -133,6 +163,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
         if (!this.IsServerReady(out _))
         {
             Logger<ModEntry>.Error("This command can only be used on the host and when the current active menu is a 'ReadyCheckDialog' menu");
+
             return;
         }
 
@@ -146,6 +177,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
             Logger<ModEntry>.Info(I18n.UI_KickUnreadyFarmer_Tooltip(name));
             Game1.server.kick(id);
         }
+
         this.unreadyFarmers.Clear();
     }
 
@@ -154,10 +186,12 @@ internal class ReadyCheckDialogueHandler : BaseHandler
         if (Game1.IsServer && Game1.activeClickableMenu is ReadyCheckDialog dialog)
         {
             menu = dialog;
+
             return true;
         }
 
         menu = null;
+
         return false;
     }
 }

@@ -1,4 +1,4 @@
-﻿using StardewModdingAPI;
+using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
 namespace weizinai.StardewValleyMod.AutoBreakGeode.Framework;

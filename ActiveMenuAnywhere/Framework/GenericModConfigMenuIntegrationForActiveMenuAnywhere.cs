@@ -42,6 +42,7 @@ internal class GenericModConfigMenuIntegrationForActiveMenuAnywhere : IGenericMo
                         "SVE" => I18n.UI_Tab_SVE(),
                         _ => ""
                     };
+
                     return formatValue;
                 }
             )

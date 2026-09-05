@@ -13,13 +13,22 @@ internal class HarvestMossHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.Config.AutoHarvestMoss.FindToolFromInventory);
-        if (scythe is null) return;
+        var scythe = ToolHelper.GetTool<MeleeWeapon>(this.config.AutoHarvestMoss.FindToolFromInventory);
 
-        this.ForEachTile(this.Config.AutoHarvestMoss.Range, tile =>
+        if (scythe is null)
+        {
+            return;
+        }
+
+        this.ForEachTile(this.config.AutoHarvestMoss.Range, tile =>
         {
             location.terrainFeatures.TryGetValue(tile, out var terrainFeature);
-            if (terrainFeature is Tree tree && tree.hasMoss.Value) tree.performToolAction(scythe, 0, tile);
+
+            if (terrainFeature is Tree tree && tree.hasMoss.Value)
+            {
+                tree.performToolAction(scythe, 0, tile);
+            }
+
             return true;
         });
     }

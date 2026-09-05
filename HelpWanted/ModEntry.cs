@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -6,6 +6,7 @@ using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Menu;
 using weizinai.StardewValleyMod.HelpWanted.Patcher;
+using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
@@ -65,9 +66,9 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.AddGenericModConfigMenu(
-            new GenericModConfigMenuIntegrationForHelpWanted(),
             () => ModConfig.Instance,
-            value => ModConfig.Instance = value
+            value => ModConfig.Instance = value,
+            configMenu => configMenu.AddHelpWantedConfig()
         );
     }
 

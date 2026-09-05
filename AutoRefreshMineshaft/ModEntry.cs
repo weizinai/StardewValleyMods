@@ -3,6 +3,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.AutoRefreshMineShaft.Framework;
+using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
 namespace weizinai.StardewValleyMod.AutoRefreshMineShaft;
@@ -25,9 +26,13 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.AddGenericModConfigMenu(
-            new GenericModConfigMenuIntegrationForAutoRefreshMineShaft(),
             () => this.config,
-            value => this.config = value
+            value => this.config = value,
+            configMenu => configMenu.AddBoolOption(
+                config => config.EnableMod,
+                (config, value) => config.EnableMod = value,
+                I18n.Config_EnableMod_Name
+            )
         );
     }
 

@@ -3,6 +3,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.FreeLock.Framework;
 using weizinai.StardewValleyMod.PiCore;
+using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
@@ -61,9 +62,26 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.AddGenericModConfigMenu(
-            new GenericModConfigMenuIntegrationForFreeLock(),
             () => this.config,
-            value => this.config = value
+            value => this.config = value,
+            configMenu => configMenu
+                .AddKeybindList(
+                    config => config.FreeLockKeybind,
+                    (config, value) => config.FreeLockKeybind = value,
+                    I18n.Config_FreeLockKeybind_Name
+                )
+                .AddNumberOption(
+                    config => config.MoveSpeed,
+                    (config, value) => config.MoveSpeed = value,
+                    I18n.Config_MoveSpeed_Name,
+                    I18n.Config_MoveSpeed_Tooltip
+                )
+                .AddNumberOption(
+                    config => config.MoveThreshold,
+                    (config, value) => config.MoveThreshold = value,
+                    I18n.Config_MoveThreshold_Name,
+                    I18n.Config_MoveThreshold_Tooltip
+                )
         );
     }
 }

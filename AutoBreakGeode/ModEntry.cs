@@ -4,6 +4,7 @@ using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.AutoBreakGeode.Framework;
 using weizinai.StardewValleyMod.AutoBreakGeode.Patcher;
+using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
@@ -79,9 +80,25 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.AddGenericModConfigMenu(
-            new GenericModConfigMenuIntegrationForAutoBreakGeode(),
             () => this.config,
-            _config => this.config = _config
+            value => this.config = value,
+            configMenu => configMenu
+                .AddKeybindList(
+                    config => config.AutoBreakGeodeKeybind,
+                    (config, value) => config.AutoBreakGeodeKeybind = value,
+                    I18n.Config_AutoBreakGeodeKeybind_Name
+                )
+                .AddBoolOption(
+                    config => config.DrawBeginButton,
+                    (config, value) => config.DrawBeginButton = value,
+                    I18n.Config_DrawBeginButton_Name,
+                    I18n.Config_DrawBeginButton_Tooltip
+                )
+                .AddNumberOption(
+                    config => config.BreakGeodeSpeed,
+                    (config, value) => config.BreakGeodeSpeed = value,
+                    I18n.Config_BreakGeodeSpeed_Name
+                )
         );
     }
 }

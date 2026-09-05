@@ -5,6 +5,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.FastControlInput.Framework;
 using weizinai.StardewValleyMod.FastControlInput.Handler;
+using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
 namespace weizinai.StardewValleyMod.FastControlInput;
@@ -28,9 +29,27 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.AddGenericModConfigMenu(
-            new GenericModConfigMenuIntegrationForFastControlInput(),
             () => this.config,
             value => this.config = value,
+            configMenu => configMenu
+                .AddNumberOption(
+                    config => config.ActionButton,
+                    (config, value) => config.ActionButton = value,
+                    I18n.Config_ActionButton_Name,
+                    I18n.Config_ActionButton_Tooltip,
+                    1f,
+                    10f,
+                    0.25f
+                )
+                .AddNumberOption(
+                    config => config.UseToolButton,
+                    (config, value) => config.UseToolButton = value,
+                    I18n.Config_UseToolButton_Name,
+                    I18n.Config_UseToolButton_Tooltip,
+                    1f,
+                    10f,
+                    0.25f
+                ),
             this.UpdateConfig,
             this.UpdateConfig
         );

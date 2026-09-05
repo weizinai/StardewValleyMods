@@ -5,8 +5,11 @@
 */
 
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using StardewValley;
 
 namespace weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
@@ -28,12 +31,13 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
 
     /// <summary>Construct an instance.</summary>
     /// <param name="modRegistry">An API for fetching metadata about loaded mods.</param>
+    /// <param name="monitor">An API for logging messages to the SMAPI console, attributed to the consuming mod.</param>
     /// <param name="manifest">The manifest for the mod consuming the API.</param>
     /// <param name="getConfig">Get the current config model.</param>
     /// <param name="reset">Reset the mod's config to its default values.</param>
     /// <param name="save">Save the mod's current config to the <c>config.json</c> file.</param>
-    public GenericModConfigMenuIntegration(IModRegistry modRegistry, IManifest manifest, Func<TConfig> getConfig, Action reset, Action save)
-        : base("Generic Mod Config Menu", "spacechase0.GenericModConfigMenu", "1.9.6", modRegistry)
+    public GenericModConfigMenuIntegration(IModRegistry modRegistry, IMonitor monitor, IManifest manifest, Func<TConfig> getConfig, Action reset, Action save)
+        : base("Generic Mod Config Menu", "spacechase0.GenericModConfigMenu", "1.16.0", modRegistry, monitor)
     {
         this.consumerManifest = manifest;
         this.getConfig = getConfig;
@@ -68,6 +72,21 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
         return this;
     }
 
+    /// <summary>Add a subheader at the current position in the form.</summary>
+    /// <param name="text">The title text shown in the form.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddSubHeader(Func<string> text, bool enable = true)
+    {
+        this.AssertLoaded();
+
+        if (enable)
+        {
+            this.ModApi.AddSubHeader(this.consumerManifest, text);
+        }
+
+        return this;
+    }
+
     /// <summary>Add a paragraph of text at the current position in the form.</summary>
     /// <param name="text">The paragraph text to display.</param>
     /// <param name="enable">Whether the option is enabled.</param>
@@ -83,14 +102,33 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
         return this;
     }
 
+    /// <summary>Add an image at the current position in the form.</summary>
+    /// <param name="texture">The image texture to display.</param>
+    /// <param name="texturePixelArea">The pixel area within the texture to display, or <c>null</c> to show the entire image.</param>
+    /// <param name="scale">The zoom factor to apply to the image.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddImage(Func<Texture2D> texture, Rectangle? texturePixelArea = null, int scale = Game1.pixelZoom,
+        bool enable = true)
+    {
+        this.AssertLoaded();
+
+        if (enable)
+        {
+            this.ModApi.AddImage(this.consumerManifest, texture, texturePixelArea, scale);
+        }
+
+        return this;
+    }
+
     /// <summary>Add a boolean option at the current position in the form.</summary>
     /// <param name="get"></param>
     /// <param name="set"></param>
     /// <param name="name">The label text to show in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
     /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     public GenericModConfigMenuIntegration<TConfig> AddBoolOption(Func<TConfig, bool> get, Action<TConfig, bool> set, Func<string> name,
-        Func<string>? tooltip = null, bool enable = true)
+        Func<string>? tooltip = null, bool enable = true, string? fieldId = null)
     {
         this.AssertLoaded();
 
@@ -101,7 +139,8 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
                 () => get(this.getConfig()),
                 value => set(this.getConfig(), value),
                 name,
-                tooltip
+                tooltip,
+                fieldId
             );
         }
 
@@ -118,8 +157,10 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <param name="interval">The interval of values that can be selected.</param>
     /// <param name="formatValue">Get the display text to show for a value, or <c>null</c> to show the number as-is.</param>
     /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     public GenericModConfigMenuIntegration<TConfig> AddNumberOption(Func<TConfig, int> get, Action<TConfig, int> set, Func<string> name,
-        Func<string>? tooltip = null, int? min = null, int? max = null, int? interval = null, Func<int, string>? formatValue = null, bool enable = true)
+        Func<string>? tooltip = null, int? min = null, int? max = null, int? interval = null, Func<int, string>? formatValue = null, bool enable = true,
+        string? fieldId = null)
     {
         this.AssertLoaded();
 
@@ -134,7 +175,8 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
                 min,
                 max,
                 interval,
-                formatValue
+                formatValue,
+                fieldId
             );
         }
 
@@ -151,14 +193,16 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <param name="interval">The interval of values that can be selected.</param>
     /// <param name="formatValue">Get the display text to show for a value, or <c>null</c> to show the number as-is.</param>
     /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     public GenericModConfigMenuIntegration<TConfig> AddNumberOption(Func<TConfig, float> get, Action<TConfig, float> set, Func<string> name,
-        Func<string>? tooltip = null, float? min = null, float? max = null, float? interval = null, Func<float, string>? formatValue = null, bool enable = true)
+        Func<string>? tooltip = null, float? min = null, float? max = null, float? interval = null, Func<float, string>? formatValue = null,
+        bool enable = true, string? fieldId = null)
     {
         this.AssertLoaded();
 
         if (enable)
         {
-            this.ModApi?.AddNumberOption(
+            this.ModApi.AddNumberOption(
                 this.consumerManifest,
                 () => get(this.getConfig()),
                 value => set(this.getConfig(), value),
@@ -167,7 +211,8 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
                 min,
                 max,
                 interval,
-                formatValue
+                formatValue,
+                fieldId
             );
         }
 
@@ -182,8 +227,10 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <param name="allowedValues">The values that can be selected, or <c>null</c> to allow any.</param>
     /// <param name="formatAllowedValue">Get the display text to show for a value from <paramref name="allowedValues" />, or <c>null</c> to show the values as-is. </param>
     /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     public GenericModConfigMenuIntegration<TConfig> AddTextOption(Func<TConfig, string> get, Action<TConfig, string> set, Func<string> name,
-        Func<string>? tooltip = null, string[]? allowedValues = null, Func<string, string>? formatAllowedValue = null, bool enable = true)
+        Func<string>? tooltip = null, string[]? allowedValues = null, Func<string, string>? formatAllowedValue = null, bool enable = true,
+        string? fieldId = null)
     {
         this.AssertLoaded();
 
@@ -196,7 +243,35 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
                 name,
                 tooltip,
                 allowedValues,
-                formatAllowedValue
+                formatAllowedValue,
+                fieldId
+            );
+        }
+
+        return this;
+    }
+
+    /// <summary>Add a key binding at the current position in the form.</summary>
+    /// <param name="get"></param>
+    /// <param name="set"></param>
+    /// <param name="name">The label text to show in the form.</param>
+    /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddKeybind(Func<TConfig, SButton> get, Action<TConfig, SButton> set, Func<string> name,
+        Func<string>? tooltip = null, bool enable = true, string? fieldId = null)
+    {
+        this.AssertLoaded();
+
+        if (enable)
+        {
+            this.ModApi.AddKeybind(
+                this.consumerManifest,
+                () => get(this.getConfig()),
+                value => set(this.getConfig(), value),
+                name,
+                tooltip,
+                fieldId
             );
         }
 
@@ -209,8 +284,9 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <param name="name">The label text to show in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
     /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     public GenericModConfigMenuIntegration<TConfig> AddKeybindList(Func<TConfig, KeybindList> get, Action<TConfig, KeybindList> set, Func<string> name,
-        Func<string>? tooltip = null, bool enable = true)
+        Func<string>? tooltip = null, bool enable = true, string? fieldId = null)
     {
         this.AssertLoaded();
 
@@ -221,7 +297,8 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
                 () => get(this.getConfig()),
                 value => set(this.getConfig(), value),
                 name,
-                tooltip
+                tooltip,
+                fieldId
             );
         }
 
@@ -261,6 +338,65 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
         return this;
     }
 
+    /// <summary>Add an option at the current position in the form using custom rendering logic.</summary>
+    /// <param name="name">The label text to show in the form.</param>
+    /// <param name="draw">Draw the option in the config UI. This is called with the sprite batch being rendered and the pixel position at which to start drawing.</param>
+    /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
+    /// <param name="beforeMenuOpened">A callback raised just before the menu containing this option is opened.</param>
+    /// <param name="beforeSave">A callback raised before the form's current values are saved to the config (i.e. before the <c>save</c> callback passed to <see cref="Register" />).</param>
+    /// <param name="afterSave">A callback raised after the form's current values are saved to the config (i.e. after the <c>save</c> callback passed to <see cref="Register" />).</param>
+    /// <param name="beforeReset">A callback raised before the form is reset to its default values (i.e. before the <c>reset</c> callback passed to <see cref="Register" />).</param>
+    /// <param name="afterReset">A callback raised after the form is reset to its default values (i.e. after the <c>reset</c> callback passed to <see cref="Register" />).</param>
+    /// <param name="beforeMenuClosed">A callback raised just before the menu containing this option is closed.</param>
+    /// <param name="height">The pixel height to allocate for the option in the form, or <c>null</c> for a standard input-sized option.</param>
+    /// <param name="enable">Whether the option is enabled.</param>
+    /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
+    public GenericModConfigMenuIntegration<TConfig> AddComplexOption(Func<string> name, Action<SpriteBatch, Vector2> draw,
+        Func<string>? tooltip = null, Action? beforeMenuOpened = null, Action? beforeSave = null, Action? afterSave = null, Action? beforeReset = null,
+        Action? afterReset = null, Action? beforeMenuClosed = null, Func<int>? height = null, bool enable = true, string? fieldId = null)
+    {
+        this.AssertLoaded();
+
+        if (enable)
+        {
+            this.ModApi.AddComplexOption(
+                this.consumerManifest,
+                name,
+                draw,
+                tooltip,
+                beforeMenuOpened,
+                beforeSave,
+                afterSave,
+                beforeReset,
+                afterReset,
+                beforeMenuClosed,
+                height,
+                fieldId
+            );
+        }
+
+        return this;
+    }
+
+    /// <summary>Set whether the options registered after this point can only be edited from the title screen.</summary>
+    /// <param name="titleScreenOnly">Whether the options can only be edited from the title screen.</param>
+    /// <remarks>This lets you have different values per-field. Most mods should just set it once in <see cref="Register" />.</remarks>
+    public void SetTitleScreenOnlyForNextOptions(bool titleScreenOnly)
+    {
+        this.AssertLoaded();
+
+        this.ModApi.SetTitleScreenOnlyForNextOptions(this.consumerManifest, titleScreenOnly);
+    }
+
+    /// <summary>Register a method to notify when any option registered by this mod is edited through the config UI.</summary>
+    /// <param name="onChange">The method to call with the option's unique field ID and new value.</param>
+    public void OnFieldChanged(Action<string, object> onChange)
+    {
+        this.AssertLoaded();
+
+        this.ModApi.OnFieldChanged(this.consumerManifest, onChange);
+    }
+
     /// <summary>Open the config UI for a specific mod.</summary>
     public void OpenModMenu()
     {
@@ -269,57 +405,30 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
         this.ModApi.OpenModMenu(this.consumerManifest);
     }
 
+    /// <summary>Open the config UI for a specific mod, as a child menu if there is an existing menu.</summary>
+    public void OpenModMenuAsChildMenu()
+    {
+        this.AssertLoaded();
+
+        this.ModApi.OpenModMenuAsChildMenu(this.consumerManifest);
+    }
+
+    /// <summary>Get the currently-displayed mod config menu, if any.</summary>
+    /// <param name="mod">The manifest of the mod whose config menu is being shown, or <c>null</c> if not applicable.</param>
+    /// <param name="page">The page ID being shown for the current config menu, or <c>null</c> if not applicable.</param>
+    /// <returns>Returns whether a mod config menu is being shown.</returns>
+    public bool TryGetCurrentMenu(out IManifest? mod, out string? page)
+    {
+        this.AssertLoaded();
+
+        return this.ModApi.TryGetCurrentMenu(out mod, out page);
+    }
+
     /// <summary>Remove a mod from the config UI and delete all its options and pages.</summary>
     public void Unregister()
     {
         this.AssertLoaded();
 
         this.ModApi.Unregister(this.consumerManifest);
-    }
-}
-
-/// <summary>Provides utility methods for registering a config menu.</summary>
-public static class GenericModConfigMenuIntegration
-{
-    /// <summary>Register the config UI for this mod.</summary>
-    /// <typeparam name="TConfig">The config model type.</typeparam>
-    /// <param name="mod">The mod for which to register a config UI.</param>
-    /// <param name="configMenu">The config UI to register.</param>
-    /// <param name="get">Get the current config model.</param>
-    /// <param name="set">Overwrite the current config model.</param>
-    /// <param name="onReset">Apply the config changes after they've been reset.</param>
-    /// <param name="onSave">Apply the config changes after they've been saved.</param>
-    public static GenericModConfigMenuIntegration<TConfig>? AddGenericModConfigMenu<TConfig>(
-        this IMod mod,
-        IGenericModConfigMenuIntegrationFor<TConfig> configMenu,
-        Func<TConfig> get,
-        Action<TConfig> set,
-        Action? onReset = null,
-        Action? onSave = null
-    ) where TConfig : class, new()
-    {
-        var api = new GenericModConfigMenuIntegration<TConfig>(mod.Helper.ModRegistry, mod.ModManifest, get, Reset, Save);
-
-        if (api.IsLoaded)
-        {
-            configMenu.Register(api);
-
-            return api;
-        }
-
-        return null;
-
-        void Reset()
-        {
-            set(new TConfig());
-            onReset?.Invoke();
-            mod.Helper.WriteConfig(get());
-        }
-
-        void Save()
-        {
-            onSave?.Invoke();
-            mod.Helper.WriteConfig(get());
-        }
     }
 }

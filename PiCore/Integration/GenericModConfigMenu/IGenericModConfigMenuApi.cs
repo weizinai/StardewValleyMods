@@ -7,6 +7,7 @@ using StardewValley;
 
 namespace weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 
+/// <summary>The API which lets other mods add a config UI through Generic Mod Config Menu.</summary>
 public interface IGenericModConfigMenuApi
 {
     /// <summary>Register a mod whose config can be edited through the UI.</summary>
@@ -22,6 +23,12 @@ public interface IGenericModConfigMenuApi
     /// <param name="text">The title text shown in the form.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the title, or <c>null</c> to disable the tooltip.</param>
     public void AddSectionTitle(IManifest mod, Func<string> text, Func<string>? tooltip = null);
+
+    /// <summary>Add a subheader at the current position in the form.</summary>
+    /// <remarks>Larger than paragraph, smaller than title.</remarks>
+    /// <param name="mod">The mod's manifest.</param>
+    /// <param name="text">The title text shown in the form.</param>
+    public void AddSubHeader(IManifest mod, Func<string> text);
 
     /// <summary>Add a paragraph of text at the current position in the form.</summary>
     /// <param name="mod">The mod's manifest.</param>
@@ -85,7 +92,7 @@ public interface IGenericModConfigMenuApi
     public void AddTextOption(IManifest mod, Func<string> getValue, Action<string> setValue, Func<string> name, Func<string>? tooltip = null,
         string[]? allowedValues = null, Func<string, string>? formatAllowedValue = null, string? fieldId = null);
 
-    /// <summary>Add a key binding at the current position in the form.</summary>
+    /// <summary>Add a keybind at the current position in the form.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="getValue">Get the current value from the mod config.</param>
     /// <param name="setValue">Set a new value in the mod config.</param>
@@ -95,7 +102,7 @@ public interface IGenericModConfigMenuApi
     public void AddKeybind(IManifest mod, Func<SButton> getValue, Action<SButton> setValue, Func<string> name, Func<string>? tooltip = null,
         string? fieldId = null);
 
-    /// <summary>Add a key binding list at the current position in the form.</summary>
+    /// <summary>Add a keybind list at the current position in the form.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="getValue">Get the current value from the mod config.</param>
     /// <param name="setValue">Set a new value in the mod config.</param>
@@ -105,13 +112,16 @@ public interface IGenericModConfigMenuApi
     public void AddKeybindList(IManifest mod, Func<KeybindList> getValue, Action<KeybindList> setValue, Func<string> name, Func<string>? tooltip = null,
         string? fieldId = null);
 
+    /****
+     ** Multi-page management
+     ****/
     /// <summary>Start a new page in the mod's config UI, or switch to that page if it already exists. All options registered after this will be part of that page.</summary>
     /// <param name="mod">The mod's manifest.</param>
     /// <param name="pageId">The unique page ID.</param>
     /// <param name="pageTitle">The page title shown in its UI, or <c>null</c> to show the <paramref name="pageId" /> value.</param>
     /// <remarks>
-    ///     You must also call <see cref="AddPageLink" /> to make the page accessible. This is only needed to set up a multi-page config UI. If you don't call
-    ///     this method, all options will be part of the mod's main config UI instead.
+    /// You must also call <see cref="AddPageLink" /> to make the page accessible. This is only needed to set up a multi-page config UI. If you don't call
+    /// this method, all options will be part of the mod's main config UI instead.
     /// </remarks>
     public void AddPage(IManifest mod, string pageId, Func<string>? pageTitle = null);
 
@@ -129,30 +139,30 @@ public interface IGenericModConfigMenuApi
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
     /// <param name="beforeMenuOpened">A callback raised just before the menu containing this option is opened.</param>
     /// <param name="beforeSave">
-    ///     A callback raised before the form's current values are saved to the config (i.e. before the <c>save</c> callback passed to
-    ///     <see cref="Register" />).
+    /// A callback raised before the form's current values are saved to the config (i.e. before the <c>save</c> callback passed to
+    /// <see cref="Register" />).
     /// </param>
     /// <param name="afterSave">
-    ///     A callback raised after the form's current values are saved to the config (i.e. after the <c>save</c> callback passed to
-    ///     <see cref="Register" />).
+    /// A callback raised after the form's current values are saved to the config (i.e. after the <c>save</c> callback passed to
+    /// <see cref="Register" />).
     /// </param>
     /// <param name="beforeReset">
-    ///     A callback raised before the form is reset to its default values (i.e. before the <c>reset</c> callback passed to
-    ///     <see cref="Register" />).
+    /// A callback raised before the form is reset to its default values (i.e. before the <c>reset</c> callback passed to
+    /// <see cref="Register" />).
     /// </param>
     /// <param name="afterReset">
-    ///     A callback raised after the form is reset to its default values (i.e. after the <c>reset</c> callback passed to
-    ///     <see cref="Register" />).
+    /// A callback raised after the form is reset to its default values (i.e. after the <c>reset</c> callback passed to
+    /// <see cref="Register" />).
     /// </param>
     /// <param name="beforeMenuClosed">A callback raised just before the menu containing this option is closed.</param>
     /// <param name="height">
-    ///     The pixel height to allocate for the option in the form, or <c>null</c> for a standard input-sized option. This is called and cached each
-    ///     time the form is opened.
+    /// The pixel height to allocate for the option in the form, or <c>null</c> for a standard input-sized option. This is called and cached each
+    /// time the form is opened.
     /// </param>
     /// <param name="fieldId">The unique field ID for use with <see cref="OnFieldChanged" />, or <c>null</c> to auto-generate a randomized ID.</param>
     /// <remarks>
-    ///     The custom logic represented by the callback parameters is responsible for managing its own state if needed. For example, you can store state in a
-    ///     static field or use closures to use a state variable.
+    /// The custom logic represented by the callback parameters is responsible for managing its own state if needed. For example, you can store state in a
+    /// static field or use closures to use a state variable.
     /// </remarks>
     public void AddComplexOption(IManifest mod, Func<string> name, Action<SpriteBatch, Vector2> draw, Func<string>? tooltip = null,
         Action? beforeMenuOpened = null, Action? beforeSave = null, Action? afterSave = null, Action? beforeReset = null, Action? afterReset = null,
@@ -174,14 +184,18 @@ public interface IGenericModConfigMenuApi
     /// <param name="mod">The mod's manifest.</param>
     public void OpenModMenu(IManifest mod);
 
+    /// <summary>Open the config UI for a specific mod, as a child menu if there is an existing menu.</summary>
+    /// <param name="mod">The mod's manifest.</param>
+    public void OpenModMenuAsChildMenu(IManifest mod);
+
     /// <summary>Get the currently-displayed mod config menu, if any.</summary>
     /// <param name="mod">The manifest of the mod whose config menu is being shown, or <c>null</c> if not applicable.</param>
     /// <param name="page">
-    ///     The page ID being shown for the current config menu, or <c>null</c> if not applicable. This may be <c>null</c> even if a mod config menu is
-    ///     shown (e.g. because the mod doesn't have pages).
+    /// The page ID being shown for the current config menu, or <c>null</c> if not applicable. This may be <c>null</c> even if a mod config menu is
+    /// shown (e.g. because the mod doesn't have pages).
     /// </param>
     /// <returns>Returns whether a mod config menu is being shown.</returns>
-    public bool TryGetCurrentMenu(out IManifest mod, out string page);
+    public bool TryGetCurrentMenu(out IManifest? mod, out string? page);
 
     /// <summary>Remove a mod from the config UI and delete all its options and pages.</summary>
     /// <param name="mod">The mod's manifest.</param>

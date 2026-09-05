@@ -9,6 +9,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
+using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
@@ -59,9 +60,9 @@ internal class ModEntry : Mod
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
         this.configMenu = this.AddGenericModConfigMenu(
-            new GenericModConfigMenuIntegrationForLazyMod(),
             () => this.config,
             value => this.config = value,
+            configMenu => configMenu.AddLazyModConfig(),
             this.UpdateConfig,
             this.UpdateConfig
         );

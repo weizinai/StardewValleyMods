@@ -7,7 +7,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using StardewModdingAPI;
-using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.PiCore.Integration;
 
@@ -23,6 +22,9 @@ public abstract class BaseIntegration : IModIntegration
     /// <summary>An API for fetching metadata about loaded mods.</summary>
     private readonly IModRegistry modRegistry;
 
+    /// <summary>An API for logging messages to the SMAPI console, attributed to the consuming mod.</summary>
+    private readonly IMonitor monitor;
+
     /// <inheritdoc />
     public virtual bool IsLoaded { get; }
 
@@ -31,12 +33,14 @@ public abstract class BaseIntegration : IModIntegration
     /// <param name="modId">The mod's unique ID.</param>
     /// <param name="minVersion">The minimum version of the mod that's supported.</param>
     /// <param name="modRegistry">An API for fetching metadata about loaded mods.</param>
-    protected BaseIntegration(string label, string modId, string minVersion, IModRegistry modRegistry)
+    /// <param name="monitor">An API for logging messages to the SMAPI console.</param>
+    protected BaseIntegration(string label, string modId, string minVersion, IModRegistry modRegistry, IMonitor monitor)
     {
         // Init
         this.label = label;
         this.modId = modId;
         this.modRegistry = modRegistry;
+        this.monitor = monitor;
 
         // Validate mod
         var manifest = modRegistry.Get(modId)?.Manifest;
@@ -48,7 +52,7 @@ public abstract class BaseIntegration : IModIntegration
 
         if (manifest.Version.IsOlderThan(minVersion))
         {
-            Logger<ModEntry>.Warn($"Detected {label} {manifest.Version}, but need {minVersion} or later. Disabled integration with this mod.");
+            this.monitor.Log($"Detected {label} {manifest.Version}, but need {minVersion} or later. Disabled integration with this mod.", LogLevel.Warn);
 
             return;
         }
@@ -64,7 +68,7 @@ public abstract class BaseIntegration : IModIntegration
 
         if (api is null)
         {
-            Logger<ModEntry>.Warn($"Detected {this.label}, but couldn't fetch its API. Disabled integration with this mod.");
+            this.monitor.Log($"Detected {this.label}, but couldn't fetch its API. Disabled integration with this mod.", LogLevel.Warn);
         }
 
         return api;
@@ -92,11 +96,17 @@ public class BaseIntegration<TApi> : BaseIntegration where TApi : class
     [MemberNotNullWhen(true, nameof(ModApi))]
     public override bool IsLoaded => this.ModApi is not null;
 
-    /// <inheritdoc />
-    protected BaseIntegration(string label, string modId, string minVersion, IModRegistry modRegistry)
-        : base(label, modId, minVersion, modRegistry)
+    /// <summary>Construct an instance.</summary>
+    /// <param name="label">A human-readable name for the mod.</param>
+    /// <param name="modId">The mod's unique ID.</param>
+    /// <param name="minVersion">The minimum version of the mod that's supported.</param>
+    /// <param name="modRegistry">An API for fetching metadata about loaded mods.</param>
+    /// <param name="monitor">An API for logging messages to the SMAPI console.</param>
+    protected BaseIntegration(string label, string modId, string minVersion, IModRegistry modRegistry, IMonitor monitor)
+        : base(label, modId, minVersion, modRegistry, monitor)
     {
-        if (!this.IsLoaded)
+        // 只在基类判定加载（minVersion 门槛通过）后才拉取 API，避免绕过版本门槛
+        if (base.IsLoaded)
         {
             this.ModApi = this.GetValidateApi<TApi>();
         }

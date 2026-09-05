@@ -1,3 +1,7 @@
+# StardewValleyMods
+
+weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个顶层目录是一个独立模组，共享 `Common`（共享项目）与 `PiCore`（核心库模组，其余模组的运行时依赖）。模组清单、构建步骤、目录结构约定见根 [README.md](README.md)。改动通常只落在一个模组里；动共享层时，要审视所有受影响模组。
+
 ## Conventions
 
 **基于证据做决定，不靠猜测。** 遇到不确定的事实，先到可信来源查证再行动：本地优先（游戏/SMAPI 源码树、本仓库文档），然后是官方文档、官方仓库。带确切路径与查阅指引的引用地图见 `docs/agents/modding-references.md`。
@@ -5,6 +9,14 @@
 **C# 代码风格。** 编写或审查 C# 代码、修改 `.editorconfig` 时，加载 `cs-code-style` 技能并遵循其约定。
 
 **Git 提交。** 执行 git 提交时使用 `git-commit` 技能，提交信息用中文。
+
+**按需构建（构建 = 部署）。** 只构建改动的模组：`dotnet build <改动模组的目录>`（如 `dotnet build AutoBreakGeode`）会把该模组装进游戏 `Mods` 目录，改完直接进游戏验证；引用的共享库（如 PiCore）随引用自动构建。发布 zip 落 `_releases/`。
+
+**版本号唯一来源。** 各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位），改版本只改 csproj。
+
+**复用基建优先。** 写代码先复用 PiCore 的 `Patcher`/`Handler`/`Integration`/`Extension`/`Constant`，再自己写；PiCore 是运行时依赖，`ProjectReference` 用 `Private="false"`，manifest `Dependencies` 声明 `weizinai.PiCore` 必装。
+
+**翻译键位置。** 键定义在 `i18n/default.json`（英文基文案），`zh.json` 是译文；先 `I18n.Init` 再用。
 
 ## Agent skills
 

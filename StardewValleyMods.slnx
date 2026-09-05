@@ -1,0 +1,32 @@
+<Solution>
+    <Folder Name="/root/">
+        <File Path=".editorconfig"/>
+        <File Path=".gitignore"/>
+        <File Path="AGENTS.md"/>
+        <File Path="Directory.Build.props"/>
+        <File Path="LICENSE"/>
+        <File Path="README.md"/>
+        <File Path="StardewValleyMods.slnx"/>
+    </Folder>
+    <Folder Name="/无我2004/">
+        <Project Path="MoreExperience/MoreExperience.csproj"/>
+        <Project Path="SomeMultiplayerFeature/SomeMultiplayerFeature.csproj"/>
+    </Folder>
+    <Project Path="ActiveMenuAnywhere/ActiveMenuAnywhere.csproj"/>
+    <Project Path="AutoBreakGeode/AutoBreakGeode.csproj"/>
+    <Project Path="AutoRefreshMineShaft/AutoRefreshMineShaft.csproj"/>
+    <Project Path="BetterCabin/BetterCabin.csproj"/>
+    <Project Path="CustomCabinFix/CustomCabinFix.csproj"/>
+    <Project Path="FastControlInput/FastControlInput.csproj"/>
+    <Project Path="FreeLock/FreeLock.csproj"/>
+    <Project Path="FriendshipDecayModify/FriendshipDecayModify.csproj"/>
+    <Project Path="HelpWanted/HelpWanted.csproj"/>
+    <Project Path="LazyMod/LazyMod.csproj"/>
+    <Project Path="MultiHost/MultiHost.csproj"/>
+    <Project Path="MultiplayerModLimit/MultiplayerModLimit.csproj"/>
+    <Project Path="PiCore/PiCore.csproj"/>
+    <Project Path="ReadyCheckKick/ReadyCheckKick.csproj"/>
+    <Project Path="SaveModInfo/SaveModInfo.csproj"/>
+    <Project Path="SpectatorMode/SpectatorMode.csproj"/>
+    <Project Path="TestMod/TestMod.csproj"/>
+</Solution>

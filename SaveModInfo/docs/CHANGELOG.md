@@ -1,7 +1,5 @@
-# [待定] 0.2.1
+# Changelog
 
-- 日志系统迁移至 PiCore（移除 Common 共享项目），控制台日志仍显示各模组名
+# [Unreleased] 0.2.1
 
-# 0.2.0
-
-- 添加`PiCore`前置
+- Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name

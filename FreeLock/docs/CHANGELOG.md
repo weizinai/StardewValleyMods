@@ -1,13 +1,5 @@
-# [待定] 0.2.2
+# Changelog
 
-- Migrated logging to PiCore (removed the Common shared project)
+# [Unreleased] 0.2.2
 
-## [0.2.1] - 2025-05-07
-
-### Changed
-
-- The viewport now automatically locks when players enter a new location.
-
-### Fixed
-
-- Fixed an issue where the viewport could be moved unintentionally during cutscenes.
+- Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name

@@ -1,7 +1,3 @@
-# 1.4.1
+# Changelog
 
-- 更新以适配`PiCore`的更新
-
-# 1.4.0
-
-- 添加`PiCore`前置
+No unreleased changes.

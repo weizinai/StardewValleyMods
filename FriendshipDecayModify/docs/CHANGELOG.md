@@ -1,10 +1,5 @@
-# [待定] 1.1.1
+# Changelog
 
-- 日志系统迁移至 PiCore（移除 Common 共享项目），控制台日志仍显示各模组名
+# [Unreleased] 1.1.1
 
-# 1.1.0
-
-- 添加`PiCore`前置
-- 修复`动物好感度修改`标题显示问题
-- 修复`动物心情修改`标题显示问题
-- 移除`OpenConfigMenuKey`选项
+- Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name

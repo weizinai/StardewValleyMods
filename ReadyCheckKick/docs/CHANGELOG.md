@@ -1,9 +1,5 @@
-# [待定] 0.6.3
+# Changelog
 
-- Migrated logging to PiCore (removed the Common shared project)
+# [Unreleased] 0.6.3
 
-## [0.6.2] - 2025-05-07
-
-### Fixed
-
-- Fixed an issue with duplicate log entries in SMAPI console during festival preparation phase
+- Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name

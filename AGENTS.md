@@ -1,6 +1,6 @@
 # StardewValleyMods
 
-weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个顶层目录是一个独立模组，共享 `Common`（共享项目）与 `PiCore`（核心库模组，其余模组的运行时依赖）。模组清单、构建步骤、目录结构约定见根 [README.md](README.md)。改动通常只落在一个模组里；动共享层时，要审视所有受影响模组。
+weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个顶层目录是一个独立模组，依赖 `PiCore`（核心库模组，其余模组的运行时依赖）。模组清单、构建步骤、目录结构约定见根 [README.md](README.md)。改动通常只落在一个模组里；动共享层时，要审视所有受影响模组。
 
 ## Conventions
 
@@ -12,7 +12,7 @@ weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个�
 
 **按需构建（构建 = 部署）。** 只构建改动的模组：`dotnet build <改动模组的目录>`（如 `dotnet build AutoBreakGeode`）会把该模组装进游戏 `Mods` 目录，改完直接进游戏验证；引用的共享库（如 PiCore）随引用自动构建。发布 zip 落 `_releases/`。
 
-**版本号与更新日志。** 版本号唯一来源是各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位）；模组改动状态由该模组 `docs/CHANGELOG.md` 判定。工作流：功能改动完成后，在 changelog 顶部写下一条 `# [待定] x.y.z`（含改动列表），并在 csproj `<Version>` 写入同一版本号——此即**待定**状态；确认发布 N 网后，把 changelog 该条目改为 `# x.y.z <日期>`，版本号方为**定稿**。动工前先读 changelog 顶部判定状态：已有待定条目时，新改动并入该条目且版本号不变；没有时另起新条目，版本号按改动幅度递增（功能改动升中段，修复升末段）。
+**版本号与更新日志。** 版本号唯一来源是各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位）；模组改动状态由该模组 `docs/CHANGELOG.md`（英文）与 `docs/CHANGELOG.zh.md`（中文）顶部条目判定，两份日志内容始终一致，且只保留未发布的待定条目（历史条目不保留，git 历史即归档；`TestMod` 测试模组与 `[CP] More Size Cabin` 等内容包不维护 changelog）。工作流：功能改动完成后，在两份 changelog 顶部各写一条待定条目 `# [Unreleased] x.y.z`（英文）/ `# [待定] x.y.z`（中文）（含改动列表），并在 csproj `<Version>` 写入同一版本号——此即**待定**状态；确认发布 N 网后，把两份 changelog 该条目改为 `# x.y.z <日期>`，版本号方为**定稿**。动工前先读 changelog 顶部判定状态：已有待定条目时，新改动并入该条目且版本号不变；没有时另起新条目，版本号按改动幅度递增（功能改动升中段，修复升末段）。
 
 **复用基建优先。** 写代码先复用 PiCore 的 `Patcher`/`Handler`/`Integration`/`Extension`/`Constant`，再自己写；PiCore 是运行时依赖，`ProjectReference` 用 `Private="false"`，manifest `Dependencies` 声明 `weizinai.PiCore` 必装。
 

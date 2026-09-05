@@ -1,9 +1,5 @@
-# [待定] 0.10.3
+# Changelog
 
-- Migrated logging to PiCore (removed the Common shared project)
+# [Unreleased] 0.10.3
 
-## [0.10.2] - 2025-05-06
-
-### Fixed
-
-- Fixed an issue with repeating lower-left HUD messages when Auto-Spectate mode is enabled
+- Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name

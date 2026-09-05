@@ -9,10 +9,10 @@ using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Model;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Menu;
 
@@ -264,7 +264,7 @@ public abstract class BaseQuestBoard : IClickableMenu
 
             if (bounds is null)
             {
-                Logger.Debug($"Quest menu capacity reached: {this.CurrentQuestNotes.Count} quests placed, unable to accommodate remaining {questList.Count}");
+                Logger<ModEntry>.Debug($"Quest menu capacity reached: {this.CurrentQuestNotes.Count} quests placed, unable to accommodate remaining {questList.Count}");
 
                 break;
             }
@@ -282,7 +282,7 @@ public abstract class BaseQuestBoard : IClickableMenu
     {
         if (_width >= this.boardRect.Width || _height >= this.boardRect.Height)
         {
-            Logger.Error("Note dimensions exceed quest menu boundaries.");
+            Logger<ModEntry>.Error("Note dimensions exceed quest menu boundaries.");
 
             return null;
         }

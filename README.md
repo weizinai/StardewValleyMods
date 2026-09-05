@@ -35,7 +35,7 @@ weizinai 的 Stardew Valley（SMAPI）模组合集，面向 SDV 1.6（`net6.0`�
 
 ## 仓库结构
 
-- 每个模组一个顶层目录，且遵循统一的[开发约定](#模组开发约定)；`PiCore/` 是核心库模组；`Common/` 是共享项目（经 `Common.projitems` 引入）。
+- 每个模组一个顶层目录，且遵循统一的[开发约定](#模组开发约定)；`PiCore/` 是核心库模组（其余模组的运行时依赖），日志与通用代码均由 PiCore 承担。
 - `docs/` 是仓库级文档：`docs/vendor/` 存放各参考文档的离线镜像，`docs/agents/` 存放 agent 工作文档（供自动化协作者使用）。
 
 ## 构建与部署

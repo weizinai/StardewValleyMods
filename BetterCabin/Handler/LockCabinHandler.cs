@@ -6,8 +6,8 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
@@ -48,7 +48,7 @@ internal class LockCabinHandler : BaseHandler
         {
             if (!CheckLockCabinEnable())
             {
-                Logger.ErrorHUDMessage(I18n.UI_LockCabin_Disable());
+                HudLogger.ErrorHUDMessage(I18n.UI_LockCabin_Disable());
                 return;
             }
 
@@ -56,12 +56,12 @@ internal class LockCabinHandler : BaseHandler
             if (CheckCabinLock(cabin!))
             {
                 cabin!.modData.Remove(LockCabinKey);
-                Logger.NoIconHUDMessage(I18n.UI_LockCabin_Unlock());
+                HudLogger.NoIconHUDMessage(I18n.UI_LockCabin_Unlock());
             }
             else
             {
                 cabin!.modData[LockCabinKey] = "true";
-                Logger.NoIconHUDMessage(I18n.UI_LockCabin_Lock());
+                HudLogger.NoIconHUDMessage(I18n.UI_LockCabin_Lock());
             }
             return;
         }
@@ -80,12 +80,12 @@ internal class LockCabinHandler : BaseHandler
                 if (whiteList.Contains(value))
                 {
                     whiteList.Remove(value);
-                    Logger.NoIconHUDMessage(I18n.UI_WhiteList_Remove(value));
+                    HudLogger.NoIconHUDMessage(I18n.UI_WhiteList_Remove(value));
                 }
                 else
                 {
                     whiteList.Add(value);
-                    Logger.NoIconHUDMessage(I18n.UI_WhiteList_Add(value));
+                    HudLogger.NoIconHUDMessage(I18n.UI_WhiteList_Add(value));
                 }
 
                 cabin!.modData[WhiteListKey] = JsonSerializer.Serialize(whiteList);

@@ -1,9 +1,9 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.FriendshipDecayModify;
@@ -16,7 +16,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using StardewValley;
 using StardewValley.GameData.Crops;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Helper;
 
@@ -32,12 +32,12 @@ internal static class CropChecker
 
         if (crop.Seasons.Contains(Game1.season))
         {
-            Logger.Trace($"{itemId} is a crop for the current season.");
+            Logger<ModEntry>.Trace($"{itemId} is a crop for the current season.");
 
             return true;
         }
 
-        Logger.Trace($"{itemId} isn't a crop for the current season.");
+        Logger<ModEntry>.Trace($"{itemId} isn't a crop for the current season.");
 
         return false;
     }

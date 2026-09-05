@@ -2,8 +2,8 @@
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
@@ -52,7 +52,7 @@ public class RSVItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
         var originalReward = this.Quest.moneyReward.Value;
         this.Quest.moneyReward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.ItemDeliveryQuestConfig.RewardMultiplier);
-        Logger.Trace($"The RSV item delivery quest reward has been adjusted from [{originalReward}] to [{this.Quest.moneyReward.Value}].");
+        Logger<ModEntry>.Trace($"The RSV item delivery quest reward has been adjusted from [{originalReward}] to [{this.Quest.moneyReward.Value}].");
     }
 
     protected override void SetQuestDescription()

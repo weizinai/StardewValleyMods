@@ -4,8 +4,8 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
@@ -62,7 +62,7 @@ internal class SpectatePlayerHandler : BaseHandler
             if (randomPlayer == null)
             {
                 this.autoSpectatePlayer = false;
-                Logger.NoIconHUDMessage(I18n.UI_SpectatePlayer_Offline());
+                HudLogger.NoIconHUDMessage(I18n.UI_SpectatePlayer_Offline());
                 return;
             }
 
@@ -72,7 +72,7 @@ internal class SpectatePlayerHandler : BaseHandler
                 menu.exitFunction += () =>
                 {
                     this.autoSpectatePlayer = false;
-                    Logger.NoIconHUDMessage(I18n.UI_AutoSpectatePlayer_Disable());
+                    HudLogger.NoIconHUDMessage(I18n.UI_AutoSpectatePlayer_Disable());
                 };
             }
         }
@@ -81,6 +81,6 @@ internal class SpectatePlayerHandler : BaseHandler
     private void EnableAutoSpectatePlayer()
     {
         this.autoSpectatePlayer = true;
-        Logger.NoIconHUDMessage(I18n.UI_AutoSpectatePlayer_Enable());
+        HudLogger.NoIconHUDMessage(I18n.UI_AutoSpectatePlayer_Enable());
     }
 }

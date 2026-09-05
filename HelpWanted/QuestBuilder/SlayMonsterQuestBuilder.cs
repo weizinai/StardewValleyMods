@@ -4,11 +4,11 @@ using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Monsters;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Model;
 using weizinai.StardewValleyMod.PiCore.Constant;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
 
@@ -91,7 +91,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
         var originalReward = this.Quest.reward.Value;
         this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.SlayMonsterQuestConfig.RewardMultiplier);
-        Logger.Trace($"The vanilla slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        Logger<ModEntry>.Trace($"The vanilla slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()
@@ -287,8 +287,8 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
     {
         if (this.Quest.target.Value != null && this.Quest.monsterName.Value != null)
         {
-            Logger.Trace($"Target for the current slay monster quest has been set to {this.Quest.target.Value}.");
-            Logger.Trace($"Monster for the current slay monster quest has been set to {this.Quest.monsterName.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current slay monster quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Monster for the current slay monster quest has been set to {this.Quest.monsterName.Value}.");
 
             return;
         }

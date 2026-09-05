@@ -2,7 +2,7 @@ using HarmonyLib;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Handler;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Patcher;
@@ -29,7 +29,7 @@ internal class Game1Patcher : BasePatcher
 
             if (LockCabinHandler.CheckCabinLock(cabin))
             {
-                Logger.ErrorHUDMessage(I18n.UI_LockCabin_VisitLockedCabin());
+                HudLogger.ErrorHUDMessage(I18n.UI_LockCabin_VisitLockedCabin());
                 return false;
             }
         }

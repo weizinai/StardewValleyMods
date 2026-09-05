@@ -1,4 +1,8 @@
-﻿## [0.2.1] - 2025-05-07
+# [待定] 0.2.2
+
+- Migrated logging to PiCore (removed the Common shared project)
+
+## [0.2.1] - 2025-05-07
 
 ### Changed
 

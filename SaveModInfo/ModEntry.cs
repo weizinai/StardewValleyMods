@@ -1,6 +1,6 @@
 ﻿using StardewModdingAPI;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 using weizinai.StardewValleyMod.SaveModInfo.Handler;
 using weizinai.StardewValleyMod.SaveModInfo.Patcher;
@@ -13,7 +13,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         this.InitHandler();
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this.ModManifest.UniqueID, new LoadGameMenuPatcher(), new SaveFileSlotPatcher());

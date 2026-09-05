@@ -4,8 +4,8 @@ using ConsoleTables;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
@@ -60,14 +60,14 @@ internal class CustomCommandHandler : BaseHandler
 
         if (player is null)
         {
-            Logger.Warn($"无法获取id为{id}的玩家");
+            Logger<ModEntry>.Warn($"无法获取id为{id}的玩家");
             return;
         }
 
         if (this.bannedPlayers!.ContainsKey(id))
         {
             Game1.server.kick(id);
-            Logger.Alert($"{player.Name}在黑名单中，已被踢出。");
+            Logger<ModEntry>.Alert($"{player.Name}在黑名单中，已被踢出。");
         }
     }
 
@@ -80,7 +80,7 @@ internal class CustomCommandHandler : BaseHandler
 
         if (!target.Any())
         {
-            Logger.Error($"不存在名字为{args[0]}的玩家");
+            Logger<ModEntry>.Error($"不存在名字为{args[0]}的玩家");
             return;
         }
 
@@ -91,13 +91,13 @@ internal class CustomCommandHandler : BaseHandler
 
             if (this.bannedPlayers!.ContainsKey(id))
             {
-                Logger.Info($"{name}已经在黑名单中。");
+                Logger<ModEntry>.Info($"{name}已经在黑名单中。");
             }
             else
             {
                 this.bannedPlayers.Add(id, name);
                 Game1.server.kick(id);
-                Logger.Info($"{name}被加入黑名单。");
+                Logger<ModEntry>.Info($"{name}被加入黑名单。");
             }
         }
 
@@ -113,13 +113,13 @@ internal class CustomCommandHandler : BaseHandler
 
         if (!target.Any())
         {
-            Logger.Info($"{args[0]}不在黑名单中。");
+            Logger<ModEntry>.Info($"{args[0]}不在黑名单中。");
         }
 
         foreach (var (id, name) in target)
         {
             this.bannedPlayers!.Remove(id);
-            Logger.Info($"{name}被移出黑名单。");
+            Logger<ModEntry>.Info($"{name}被移出黑名单。");
         }
 
         this.Helper.Data.WriteJsonFile(BannedPlayerPath, this.bannedPlayers);
@@ -144,7 +144,7 @@ internal class CustomCommandHandler : BaseHandler
             );
         }
 
-        Logger.Info($"\n{farmersData.ToMarkDownString()}");
+        Logger<ModEntry>.Info($"\n{farmersData.ToMarkDownString()}");
     }
 
     private void ListPlayer(string command, string[] args)
@@ -171,7 +171,7 @@ internal class CustomCommandHandler : BaseHandler
             );
         }
 
-        Logger.Info($"总人数：{farmersData.Rows.Count}\n{farmersData.ToMarkDownString()}");
+        Logger<ModEntry>.Info($"总人数：{farmersData.Rows.Count}\n{farmersData.ToMarkDownString()}");
     }
 
     private void KickPlayer(string command, string[] args)
@@ -183,13 +183,13 @@ internal class CustomCommandHandler : BaseHandler
 
         if (target is null)
         {
-            Logger.Info($"{args[0]}不存在。");
+            Logger<ModEntry>.Info($"{args[0]}不存在。");
         }
         else
         {
             Game1.server.kick(target.UniqueMultiplayerID);
             Game1.otherFarmers.Remove(target.UniqueMultiplayerID);
-            Logger.Info($"{target.Name}已被踢出。");
+            Logger<ModEntry>.Info($"{target.Name}已被踢出。");
         }
     }
 
@@ -201,7 +201,7 @@ internal class CustomCommandHandler : BaseHandler
         foreach (var (id, farmer) in Game1.otherFarmers)
         {
             Game1.server.kick(id);
-            Logger.Info($"{farmer.Name}已被踢出。");
+            Logger<ModEntry>.Info($"{farmer.Name}已被踢出。");
         }
     }
 
@@ -213,7 +213,7 @@ internal class CustomCommandHandler : BaseHandler
         var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
         if (farmer is null)
         {
-            Logger.Info($"{args[0]}不存在，无法访问该玩家的背包。");
+            Logger<ModEntry>.Info($"{args[0]}不存在，无法访问该玩家的背包。");
         }
         else
         {
@@ -228,7 +228,7 @@ internal class CustomCommandHandler : BaseHandler
                 );
             }
 
-            Logger.Info($"{farmer.Name}的背包有：\n{inventoryData.ToMarkDownString()}");
+            Logger<ModEntry>.Info($"{farmer.Name}的背包有：\n{inventoryData.ToMarkDownString()}");
         }
     }
 
@@ -238,14 +238,14 @@ internal class CustomCommandHandler : BaseHandler
 
         if (args.Length < 1)
         {
-            Logger.Error("该命令需要参数，可选的参数为：<offline>、<friends>和<invite>。");
+            Logger<ModEntry>.Error("该命令需要参数，可选的参数为：<offline>、<friends>和<invite>。");
             return;
         }
 
         var mode = args[0];
         if (!new HashSet<string> { "offline", "friends", "invite" }.Contains(mode))
         {
-            Logger.Error("模式输入错误，可用的模式为：<offline>、<friends>和<invite>。");
+            Logger<ModEntry>.Error("模式输入错误，可用的模式为：<offline>、<friends>和<invite>。");
             return;
         }
         Game1.options.setServerMode(mode);

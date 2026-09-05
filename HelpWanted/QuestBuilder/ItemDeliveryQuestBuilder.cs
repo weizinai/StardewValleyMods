@@ -1,9 +1,9 @@
 ﻿using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
 
@@ -31,7 +31,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
     {
         if (this.Quest.target.Value != null)
         {
-            Logger.Trace($"Target for the current item delivery quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current item delivery quest has been set to {this.Quest.target.Value}.");
 
             return false;
         }
@@ -40,7 +40,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
         if (Game1.player.friendshipData is not { Length: > 0 } || validTargets.Count <= 0)
         {
-            Logger.Error("No NPC is assigned as the item delivery target in step 1.");
+            Logger<ModEntry>.Error("No NPC is assigned as the item delivery target in step 1.");
 
             return false;
         }
@@ -49,7 +49,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
         if (this.targetNPC == null)
         {
-            Logger.Error("No NPC is assigned as the item delivery target in step 2.");
+            Logger<ModEntry>.Error("No NPC is assigned as the item delivery target in step 2.");
 
             return false;
         }
@@ -105,7 +105,7 @@ public class ItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
         {
             var reward = this.Quest.GetGoldRewardPerItem(this.item);
             this.Quest.moneyReward.Value = (int)(reward * ModConfig.Instance.VanillaConfig.ItemDeliveryQuestConfig.RewardMultiplier);
-            Logger.Trace($"The vanilla item delivery quest reward has been adjusted from [{reward}] to [{this.Quest.moneyReward.Value}].");
+            Logger<ModEntry>.Trace($"The vanilla item delivery quest reward has been adjusted from [{reward}] to [{this.Quest.moneyReward.Value}].");
         }
     }
 

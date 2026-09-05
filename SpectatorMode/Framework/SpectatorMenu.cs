@@ -6,8 +6,8 @@ using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Extensions;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
@@ -27,7 +27,7 @@ internal class SpectatorMenu : IClickableMenu
         {
             this.intervalTimer = 0;
             this.randomSpectate = value;
-            Logger.NoIconHUDMessage(value ? I18n.UI_RandomSpectate_Begin() : I18n.UI_RandomSpectate_End());
+            HudLogger.NoIconHUDMessage(value ? I18n.UI_RandomSpectate_Begin() : I18n.UI_RandomSpectate_End());
         }
     }
 

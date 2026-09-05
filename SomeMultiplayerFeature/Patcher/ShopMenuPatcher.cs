@@ -1,7 +1,7 @@
 using HarmonyLib;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
@@ -49,7 +49,7 @@ internal class ShopMenuPatcher : BasePatcher
 
     private static void TryToPurchaseItemPostfix(ISalable item, int stockToBuy, bool __state)
     {
-        if (__state) Broadcaster.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
+        if (__state) Broadcaster<ModEntry>.NoIconHUDMessage($"{Game1.player.Name}购买了 {stockToBuy} 个{item.DisplayName}", 500);
     }
 
     private static bool CanBuyItem(ShopMenu menu, ISalable item)

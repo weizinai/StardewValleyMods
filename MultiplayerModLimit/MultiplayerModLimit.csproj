@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>0.6.0</Version>
+        <Version>0.6.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,7 +12,5 @@
     <ItemGroup>
         <ProjectReference Include="..\PiCore\PiCore.csproj" Private="false"/>
     </ItemGroup>
-
-    <Import Project="..\Common\Common.projitems" Label="Shared"/>
 
 </Project>

@@ -12,7 +12,7 @@ weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个�
 
 **按需构建（构建 = 部署）。** 只构建改动的模组：`dotnet build <改动模组的目录>`（如 `dotnet build AutoBreakGeode`）会把该模组装进游戏 `Mods` 目录，改完直接进游戏验证；引用的共享库（如 PiCore）随引用自动构建。发布 zip 落 `_releases/`。
 
-**版本号唯一来源。** 各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位），改版本只改 csproj。
+**版本号与更新日志。** 版本号唯一来源是各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位）；模组改动状态由该模组 `docs/CHANGELOG.md` 判定。工作流：功能改动完成后，在 changelog 顶部写下一条 `# [待定] x.y.z`（含改动列表），并在 csproj `<Version>` 写入同一版本号——此即**待定**状态；确认发布 N 网后，把 changelog 该条目改为 `# x.y.z <日期>`，版本号方为**定稿**。动工前先读 changelog 顶部判定状态：已有待定条目时，新改动并入该条目且版本号不变；没有时另起新条目，版本号按改动幅度递增（功能改动升中段，修复升末段）。
 
 **复用基建优先。** 写代码先复用 PiCore 的 `Patcher`/`Handler`/`Integration`/`Extension`/`Constant`，再自己写；PiCore 是运行时依赖，`ProjectReference` 用 `Private="false"`，manifest `Dependencies` 声明 `weizinai.PiCore` 必装。
 

@@ -6,7 +6,8 @@
 
 using System;
 using HarmonyLib;
-using weizinai.StardewValleyMod.Common;
+using StardewModdingAPI;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.PiCore.Patcher;
 
@@ -28,7 +29,9 @@ public static class HarmonyPatcher
             }
             catch (Exception e)
             {
-                Logger.Error($"Failed to apply '{patcher.GetType().FullName}' patcher. Technical details:\n{e}");
+                // 按模组唯一ID路由到所属模组 monitor；未注册时回退到兜底 monitor（PiCore）
+                var monitor = HudLogger.GetMonitor(uniqueId) ?? HudLogger.FallbackMonitor;
+                monitor?.Log($"Failed to apply '{patcher.GetType().FullName}' patcher. Technical details:\n{e}", LogLevel.Error);
             }
         }
     }

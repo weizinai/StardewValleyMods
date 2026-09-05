@@ -9,8 +9,8 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Network.NetReady;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.ReadyCheckKick.Framework;
 
 namespace weizinai.StardewValleyMod.ReadyCheckKick.Handler;
@@ -77,7 +77,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
                 if (farmer is not null)
                     this.unreadyFarmers.Add(id, farmer.displayName);
                 else
-                    Logger.Error($"Players with {id} id could not be found");
+                    Logger<ModEntry>.Error($"Players with {id} id could not be found");
             }
         }
     }
@@ -99,7 +99,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
                 {
                     if (Game1.timeOfDay == endTime - 50)
                     {
-                        Logger.Info(I18n.UI_AutoKickUnreadyFarmers_FestivalTooltip());
+                        Logger<ModEntry>.Info(I18n.UI_AutoKickUnreadyFarmers_FestivalTooltip());
                         this.KickUnreadyFarmers();
                     }
                 }
@@ -113,7 +113,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
                 if (readyPlayerRatio > config.AutoKickUnreadyFarmersRatio && !this.isAutoKickUnreadyFarmers)
                 {
                     this.isAutoKickUnreadyFarmers = true;
-                    Logger.Info(I18n.UI_AutoKickUnreadyFarmers_DefaultTooltip(config.AutoKickUnreadyFarmersRatio, config.AutoKickUnreadyFarmersDelay));
+                    Logger<ModEntry>.Info(I18n.UI_AutoKickUnreadyFarmers_DefaultTooltip(config.AutoKickUnreadyFarmersRatio, config.AutoKickUnreadyFarmersDelay));
                     DelayedAction.functionAfterDelay(() =>
                     {
                         if (Game1.activeClickableMenu is ReadyCheckDialog)
@@ -132,7 +132,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
     {
         if (!this.IsServerReady(out _))
         {
-            Logger.Error("This command can only be used on the host and when the current active menu is a 'ReadyCheckDialog' menu");
+            Logger<ModEntry>.Error("This command can only be used on the host and when the current active menu is a 'ReadyCheckDialog' menu");
             return;
         }
 
@@ -143,7 +143,7 @@ internal class ReadyCheckDialogueHandler : BaseHandler
     {
         foreach (var (id, name) in this.unreadyFarmers)
         {
-            Logger.Info(I18n.UI_KickUnreadyFarmer_Tooltip(name));
+            Logger<ModEntry>.Info(I18n.UI_KickUnreadyFarmer_Tooltip(name));
             Game1.server.kick(id);
         }
         this.unreadyFarmers.Clear();

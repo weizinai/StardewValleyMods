@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
@@ -18,7 +18,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
 
         if (ModConfig.Instance.ShowQuestGenerationTooltip)
         {
-            Logger.NoIconHUDMessage(I18n.UI_GenerateRSVQuest_Tooltip());
+            HudLogger.NoIconHUDMessage(I18n.UI_GenerateRSVQuest_Tooltip());
         }
 
         var maxQuests = this.RSVConfig.MaxQuests;
@@ -32,7 +32,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
 
             if (npc == null)
             {
-                Logger.Error("Failed to retrieve NPC information for the quest; RSV quest generation has been terminated.");
+                Logger<ModEntry>.Error("Failed to retrieve NPC information for the quest; RSV quest generation has been terminated.");
 
                 break;
             }
@@ -48,7 +48,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
                     tries = 0;
                 }
 
-                Logger.Trace($"Duplicate RSV quest detected: ID {quest.id.Value} already exists. Regenerating new RSV quest.");
+                Logger<ModEntry>.Trace($"Duplicate RSV quest detected: ID {quest.id.Value} already exists. Regenerating new RSV quest.");
             }
             else
             {
@@ -56,7 +56,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
                 tries = 0;
                 questIds.Add(quest.id.Value);
                 this.QuestList.Add(this.GetQuestData(npc, quest));
-                Logger.Debug($"RSV quest #{this.QuestList.Count} generated: {this.GetQuestType(quest)} - {npc.Name}");
+                Logger<ModEntry>.Debug($"RSV quest #{this.QuestList.Count} generated: {this.GetQuestType(quest)} - {npc.Name}");
             }
 
             if (i < maxQuests) quest = this.GenerateRSVQuest();
@@ -71,7 +71,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
         {
             if (showTooltip)
             {
-                Logger.NoIconHUDMessage(I18n.UI_RSVQuestFirstDay_Tooltip());
+                HudLogger.NoIconHUDMessage(I18n.UI_RSVQuestFirstDay_Tooltip());
             }
 
             return false;
@@ -81,7 +81,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
         {
             if (showTooltip)
             {
-                Logger.NoIconHUDMessage(I18n.UI_RSVQuestFestival_Tooltip());
+                HudLogger.NoIconHUDMessage(I18n.UI_RSVQuestFestival_Tooltip());
             }
 
             return false;
@@ -91,7 +91,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
         {
             if (showTooltip)
             {
-                Logger.NoIconHUDMessage(I18n.UI_RSVDailyQuest_Tooltip());
+                HudLogger.NoIconHUDMessage(I18n.UI_RSVDailyQuest_Tooltip());
             }
 
             return false;
@@ -163,7 +163,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             }
         }
 
-        Logger.Error("RSV quest generation failed.");
+        Logger<ModEntry>.Error("RSV quest generation failed.");
 
         return null;
     }

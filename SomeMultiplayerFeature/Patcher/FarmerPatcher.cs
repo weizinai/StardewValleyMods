@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
@@ -17,7 +17,7 @@ internal class FarmerPatcher : BasePatcher
             transpiler: this.GetHarmonyMethod(nameof(UpdateTranspiler))
         );
 
-        Logger.Info("修改体力再生速度为原来的5倍");
+        Logger<ModEntry>.Info("修改体力再生速度为原来的5倍");
     }
 
     private static IEnumerable<CodeInstruction> UpdateTranspiler(IEnumerable<CodeInstruction> instructions)

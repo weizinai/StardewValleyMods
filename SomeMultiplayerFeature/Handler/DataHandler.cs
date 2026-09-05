@@ -4,8 +4,8 @@ using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.GameData.Shops;
 using StardewValley.GameData.WildTrees;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using xTile.Dimensions;
 using xTile.ObjectModel;
 
@@ -29,11 +29,11 @@ internal class DataHandler : BaseHandler
 
     private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
     {
-        Logger.Info("移除商店中的炸弹、超级炸弹和爆炸弹丸");
-        Logger.Info("修改树木生长的概率为50%、掉落种子的概率为0%");
-        Logger.Info("添加砍树桩掉落炸弹功能");
-        Logger.Info("\n修改炸弹配方：\n2 树液 + 1 铱矿 = 1 樱桃炸弹\n4 树液 + 2 铱矿 = 1 炸弹\n8 树液 + 4 铱矿 = 1 超级炸弹\n10 树液 + 10 铱矿 = 5 爆炸弹丸");
-        Logger.Info("修改克林特的营业时间为6:00 - 2:00");
+        Logger<ModEntry>.Info("移除商店中的炸弹、超级炸弹和爆炸弹丸");
+        Logger<ModEntry>.Info("修改树木生长的概率为50%、掉落种子的概率为0%");
+        Logger<ModEntry>.Info("添加砍树桩掉落炸弹功能");
+        Logger<ModEntry>.Info("\n修改炸弹配方：\n2 树液 + 1 铱矿 = 1 樱桃炸弹\n4 树液 + 2 铱矿 = 1 炸弹\n8 树液 + 4 铱矿 = 1 超级炸弹\n10 树液 + 10 铱矿 = 5 爆炸弹丸");
+        Logger<ModEntry>.Info("修改克林特的营业时间为6:00 - 2:00");
     }
 
     private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)

@@ -4,7 +4,7 @@ using HarmonyLib;
 using Lidgren.Network;
 using StardewValley;
 using StardewValley.Network;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.MultiHost.Patcher;
@@ -35,7 +35,7 @@ public class LidgrenServerPatcher : BasePatcher
     {
         if (IsPortOccupied(Config.Port))
         {
-            Logger.Info($"{Config.Port}已被占用，将使用{24643}作为新的端口");
+            Logger<ModEntry>.Info($"{Config.Port}已被占用，将使用{24643}作为新的端口");
             Config.Port = 24643;
         }
 

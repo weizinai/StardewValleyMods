@@ -2,9 +2,9 @@
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Model;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 using static weizinai.StardewValleyMod.PiCore.Constant.SItem;
 using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
@@ -59,7 +59,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
     {
         if (this.Quest.target.Value != null || Game1.gameMode == 6)
         {
-            Logger.Trace($"Target for the current resource collection quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current resource collection quest has been set to {this.Quest.target.Value}.");
 
             return false;
         }
@@ -117,7 +117,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
 
         var originalReward = this.Quest.reward.Value;
         this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.ResourceCollectionQuestConfig.RewardMultiplier);
-        Logger.Trace($"The vanilla resource collection quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        Logger<ModEntry>.Trace($"The vanilla resource collection quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()

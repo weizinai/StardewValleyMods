@@ -2,9 +2,9 @@
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
@@ -41,7 +41,7 @@ internal class ItemDeliveryQuestPatcher : BasePatcher
 
         if (!codeMatcher.IsValid)
         {
-            Logger.Error("Target instruction not found [Opcode: Ldc_I4, Operand: 150]");
+            Logger<ModEntry>.Error("Target instruction not found [Opcode: Ldc_I4, Operand: 150]");
 
             return codeMatcher.Instructions();
         }

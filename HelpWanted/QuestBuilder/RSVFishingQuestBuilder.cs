@@ -2,8 +2,8 @@
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
@@ -86,7 +86,7 @@ public class RSVFishingQuestBuilder : QuestBuilder<FishingQuest>
 
         var originalReward = this.Quest.reward.Value;
         this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.FishingQuestConfig.RewardMultiplier);
-        Logger.Trace($"The RSV fishing quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        Logger<ModEntry>.Trace($"The RSV fishing quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()

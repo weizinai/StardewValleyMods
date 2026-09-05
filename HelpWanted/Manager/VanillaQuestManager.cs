@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
@@ -18,7 +18,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 
         if (ModConfig.Instance.ShowQuestGenerationTooltip)
         {
-            Logger.NoIconHUDMessage(I18n.UI_GenerateVanillaQuest_Tooltip());
+            HudLogger.NoIconHUDMessage(I18n.UI_GenerateVanillaQuest_Tooltip());
         }
 
         var maxQuests = this.VanillaConfig.MaxQuests;
@@ -32,7 +32,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 
             if (npc == null)
             {
-                Logger.Error("Failed to retrieve NPC information for the quest; vanilla quest generation has been terminated.");
+                Logger<ModEntry>.Error("Failed to retrieve NPC information for the quest; vanilla quest generation has been terminated.");
 
                 break;
             }
@@ -51,7 +51,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
                 tries = 0;
                 npcNames.Add(npc.Name);
                 this.QuestList.Add(this.GetQuestData(npc, quest));
-                Logger.Debug($"Vanilla quest #{this.QuestList.Count} generated: {this.GetQuestType(quest)} - {npc.Name}");
+                Logger<ModEntry>.Debug($"Vanilla quest #{this.QuestList.Count} generated: {this.GetQuestType(quest)} - {npc.Name}");
             }
 
             if (i < maxQuests) quest = this.GenerateVanillaQuest();
@@ -66,7 +66,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         {
             if (showTooltip)
             {
-                Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
+                HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
             }
 
             return false;
@@ -76,7 +76,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         {
             if (showTooltip)
             {
-                Logger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
+                HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
             }
 
             return false;
@@ -86,7 +86,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         {
             if (showTooltip)
             {
-                Logger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
+                HudLogger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
             }
 
             return false;
@@ -112,7 +112,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
             if (oneQuestPerVillager) reasons.Add("Existing");
             if (excludeMaxHeartsNPC) reasons.Add("Maximum Hearts");
             if (excludeNPCList) reasons.Add("Excluded");
-            Logger.Trace($"{npcName} cannot be assigned as a quest target due to: {string.Join(";", reasons)}");
+            Logger<ModEntry>.Trace($"{npcName} cannot be assigned as a quest target due to: {string.Join(";", reasons)}");
         }
 
         return available;
@@ -153,7 +153,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
             }
         }
 
-        Logger.Error("Vanilla quest generation failed.");
+        Logger<ModEntry>.Error("Vanilla quest generation failed.");
 
         return null;
     }

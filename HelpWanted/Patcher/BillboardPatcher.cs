@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Menu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
@@ -23,7 +23,7 @@ internal class BillboardPatcher : BasePatcher
     {
         if (!___dailyQuestBoard) return true;
 
-        Logger.Trace("Detected activation of the vanilla daily quest menu. It has been replaced with the custom menu.");
+        Logger<ModEntry>.Trace("Detected activation of the vanilla daily quest menu. It has been replaced with the custom menu.");
 
         Game1.activeClickableMenu.exitThisMenuNoSound();
         Game1.activeClickableMenu = new VanillaQuestBoard();

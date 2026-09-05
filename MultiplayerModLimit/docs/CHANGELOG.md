@@ -1,3 +1,8 @@
+# [待定] 0.6.1
+
+- 日志系统迁移至 PiCore（移除 Common 共享项目），控制台日志仍显示各模组名
+- 多人提示消息（Broadcaster）迁移至 PiCore，对端仍按发送方模组名显示
+
 # 0.6.0
 
 - 添加`del_allow`、`del_require`和`del_ban`命令，使玩家能方便的从当前模组列表删除模组

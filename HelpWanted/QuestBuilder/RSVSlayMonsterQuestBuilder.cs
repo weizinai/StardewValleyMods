@@ -3,8 +3,8 @@ using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Monsters;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
@@ -51,7 +51,7 @@ public class RSVSlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
         var originalReward = this.Quest.reward.Value;
         this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.RewardMultiplier);
-        Logger.Trace($"The RSV slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        Logger<ModEntry>.Trace($"The RSV slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()

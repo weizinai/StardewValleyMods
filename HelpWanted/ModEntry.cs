@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Menu;
 using weizinai.StardewValleyMod.HelpWanted.Patcher;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.HelpWanted;
@@ -21,7 +21,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         TextureManager.Instance.Init(helper);
         ModConfig.Init(helper);
 

@@ -1,10 +1,10 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.FreeLock.Framework;
 using weizinai.StardewValleyMod.PiCore;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.FreeLock;
 
@@ -16,7 +16,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         this.config = helper.ReadConfig<ModConfig>();
         // 注册事件
         helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
@@ -39,7 +39,7 @@ internal class ModEntry : Mod
         if (this.config.FreeLockKeybind.JustPressed())
         {
             Game1.viewportFreeze = !Game1.viewportFreeze;
-            Logger.NoIconHUDMessage(Game1.viewportFreeze ? I18n.UI_ViewportUnlocked_Tooltip() : I18n.UI_ViewportLocked_Tooltip(), 1000f);
+            HudLogger.NoIconHUDMessage(Game1.viewportFreeze ? I18n.UI_ViewportUnlocked_Tooltip() : I18n.UI_ViewportLocked_Tooltip(), 1000f);
         }
     }
 
@@ -48,7 +48,7 @@ internal class ModEntry : Mod
         if (Game1.viewportFreeze)
         {
             Game1.viewportFreeze = false;
-            Logger.NoIconHUDMessage(I18n.UI_ViewportLocked_Tooltip(), 1000f);
+            HudLogger.NoIconHUDMessage(I18n.UI_ViewportLocked_Tooltip(), 1000f);
         }
     }
 

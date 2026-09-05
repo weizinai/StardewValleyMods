@@ -1,7 +1,7 @@
 using HarmonyLib;
 using Microsoft.Xna.Framework.Input;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
@@ -15,7 +15,7 @@ internal class Game1Patcher : BasePatcher
             prefix: this.GetHarmonyMethod(nameof(CheckForEscapeKeysPrefix))
         );
 
-        Logger.Info("添加禁止取消后摇功能");
+        Logger<ModEntry>.Info("添加禁止取消后摇功能");
     }
 
     // 禁止取消后摇
@@ -26,7 +26,7 @@ internal class Game1Patcher : BasePatcher
         if ((Game1.player.UsingTool || Game1.freezeControls) &&
             keyboardState.IsKeyDown(Keys.RightShift) && keyboardState.IsKeyDown(Keys.R) && keyboardState.IsKeyDown(Keys.Delete))
         {
-            Logger.NoIconHUDMessage("取消后摇功能已被禁用");
+            HudLogger.NoIconHUDMessage("取消后摇功能已被禁用");
             return false;
         }
 

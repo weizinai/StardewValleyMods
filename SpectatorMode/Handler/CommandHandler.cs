@@ -1,6 +1,6 @@
 using StardewModdingAPI;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
@@ -20,7 +20,7 @@ internal class CommandHandler : BaseHandler
     {
         var locationName = args[0];
 
-        Logger.Info(SpectatorHelper.TrySpectateLocation(locationName)
+        Logger<ModEntry>.Info(SpectatorHelper.TrySpectateLocation(locationName)
             ? I18n.UI_SpectateLocation_Success(locationName)
             : I18n.UI_SpectateLocation_Fail(locationName));
     }
@@ -30,7 +30,7 @@ internal class CommandHandler : BaseHandler
     {
         var playerName = args[0];
 
-        Logger.Info(SpectatorHelper.TrySpectateFarmer(playerName, out _)
+        Logger<ModEntry>.Info(SpectatorHelper.TrySpectateFarmer(playerName, out _)
             ? I18n.UI_SpectatePlayer_Success(playerName)
             : I18n.UI_SpectatePlayer_Fail(playerName));
     }

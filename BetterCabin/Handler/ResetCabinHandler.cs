@@ -5,9 +5,9 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
@@ -36,14 +36,14 @@ internal class ResetCabinHandler : BaseHandler
             {
                 if (cabin.owner.IsOnline())
                 {
-                    Logger.NoIconHUDMessage(I18n.UI_ResetCabin_Online());
+                    HudLogger.NoIconHUDMessage(I18n.UI_ResetCabin_Online());
                     return;
                 }
 
                 if (!cabin.owner.isUnclaimedFarmhand)
                     this.ResetCabin(cabin);
                 else
-                    Logger.NoIconHUDMessage(I18n.UI_ResetCabin_NoOwner());
+                    HudLogger.NoIconHUDMessage(I18n.UI_ResetCabin_NoOwner());
             }
             else
             {
@@ -67,7 +67,7 @@ internal class ResetCabinHandler : BaseHandler
 
     private void ResetCabin(Cabin cabin)
     {
-        Logger.NoIconHUDMessage(I18n.UI_ResetCabin_Success(cabin.owner.Name));
+        HudLogger.NoIconHUDMessage(I18n.UI_ResetCabin_Success(cabin.owner.Name));
         cabin.DeleteFarmhand();
         cabin.CreateFarmhand();
     }

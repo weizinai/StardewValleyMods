@@ -2,9 +2,9 @@
 using System.Linq;
 using StardewValley;
 using StardewValley.Extensions;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
 using weizinai.StardewValleyMod.HelpWanted.Helper;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
@@ -30,7 +30,7 @@ public class QuestItemManager
             return ModEntry.Random.ChooseFrom(this.possibleItems[npcName]);
         }
 
-        Logger.Info($"No qualifying items found in {npcName}'s gift taste. Generating a random item through vanilla logic.");
+        Logger<ModEntry>.Info($"No qualifying items found in {npcName}'s gift taste. Generating a random item through vanilla logic.");
 
         return Utility.getRandomItemFromSeason(Game1.season, true, ModEntry.Random);
     }
@@ -47,7 +47,7 @@ public class QuestItemManager
             return ModEntry.Random.ChooseFrom(this.possibleCrops[npcName]);
         }
 
-        Logger.Info($"No qualifying crops found in {npcName}'s gift taste. Generating a random crop through vanilla logic.");
+        Logger<ModEntry>.Info($"No qualifying crops found in {npcName}'s gift taste. Generating a random crop through vanilla logic.");
 
         return ModEntry.Random.ChooseFrom(Utility.possibleCropsAtThisTime(Game1.season, Game1.dayOfMonth <= 7));
     }
@@ -151,7 +151,7 @@ public class QuestItemManager
 
         if (!Game1.NPCGiftTastes.TryGetValue(npcName, out var rawData))
         {
-            Logger.Error($"Failed to retrieve the gift taste for {npcName} in step 1.");
+            Logger<ModEntry>.Error($"Failed to retrieve the gift taste for {npcName} in step 1.");
 
             return new List<string>();
         }
@@ -160,7 +160,7 @@ public class QuestItemManager
 
         if (data.Length < 10)
         {
-            Logger.Error($"Failed to retrieve the gift taste for {npcName} in step 2.");
+            Logger<ModEntry>.Error($"Failed to retrieve the gift taste for {npcName} in step 2.");
 
             return new List<string>();
         }

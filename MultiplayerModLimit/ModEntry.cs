@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
 using weizinai.StardewValleyMod.MultiplayerModLimit.Handler;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit;
 
@@ -18,8 +18,8 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
-        Broadcaster.Init(this);
+        Logger<ModEntry>.Init(this);
+        Broadcaster<ModEntry>.Init(this);
         ModConfig.Init(helper);
 
         new KickPlayerHandler(helper).Apply();
@@ -59,7 +59,7 @@ internal class ModEntry : Mod
         targetModList[args[0]] = this.GetAllMods();
         this.Helper.WriteConfig(ModConfig.Instance);
         this.ReloadConfigMenu();
-        Logger.Info(I18n.UI_GenerateModList());
+        Logger<ModEntry>.Info(I18n.UI_GenerateModList());
     }
 
     private void AddModToCurrentListCommand(string command, string[] args)
@@ -75,12 +75,12 @@ internal class ModEntry : Mod
         var id = args[0];
         if (targetModList.Contains(id))
         {
-            Logger.Info(I18n.UI_AddMod_Exist());
+            Logger<ModEntry>.Info(I18n.UI_AddMod_Exist());
             return;
         }
         targetModList.Add(id);
         this.Helper.WriteConfig(ModConfig.Instance);
-        Logger.Info(I18n.UI_AddMod_Success());
+        Logger<ModEntry>.Info(I18n.UI_AddMod_Success());
     }
 
     private void DelModInCurrentListCommand(string command, string[] args)
@@ -96,12 +96,12 @@ internal class ModEntry : Mod
         var id = args[0];
         if (!targetModList.Contains(id))
         {
-            Logger.Info(I18n.UI_DelMod_Fail());
+            Logger<ModEntry>.Info(I18n.UI_DelMod_Fail());
             return;
         }
         targetModList.Remove(id);
         this.Helper.WriteConfig(ModConfig.Instance);
-        Logger.Info(I18n.UI_DelMod_Success());
+        Logger<ModEntry>.Info(I18n.UI_DelMod_Success());
     }
 
     private void ListCurrentListCommand(string command, string[] args)
@@ -114,8 +114,8 @@ internal class ModEntry : Mod
             _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
         };
 
-        Logger.Alert(I18n.UI_ListMod_Tooltip());
-        foreach (var id in targetModList) Logger.Info(id);
+        Logger<ModEntry>.Alert(I18n.UI_ListMod_Tooltip());
+        foreach (var id in targetModList) Logger<ModEntry>.Info(id);
     }
 
     /// <summary>

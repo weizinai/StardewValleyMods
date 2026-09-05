@@ -3,9 +3,9 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 
@@ -49,7 +49,7 @@ internal class VisitCabinInfoHandler : BaseHandler
                 }
             }
 
-            Logger.NoIconHUDMessage(messageContent.ToString());
+            HudLogger.NoIconHUDMessage(messageContent.ToString());
         }
     }
 }

@@ -3,8 +3,8 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
@@ -15,7 +15,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         ModConfig.Init(helper);
         OptionFactory.Init(helper);
         TextureManager.Instance.LoadTexture(helper);

@@ -4,13 +4,13 @@ using System.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.LazyMod.Framework;
 using weizinai.StardewValleyMod.LazyMod.Framework.Config;
 using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using weizinai.StardewValleyMod.LazyMod.Framework.Integration;
 using weizinai.StardewValleyMod.LazyMod.Handler;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
@@ -29,7 +29,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         try
         {
             this.config = helper.ReadConfig<ModConfig>();
@@ -38,7 +38,7 @@ internal class ModEntry : Mod
         {
             helper.WriteConfig(new ModConfig());
             this.config = helper.ReadConfig<ModConfig>();
-            Logger.Info("Read config.json file failed and was automatically fixed. Please reset the features you want to turn on.");
+            Logger<ModEntry>.Info("Read config.json file failed and was automatically fixed. Please reset the features you want to turn on.");
         }
 
         this.UpdateConfig();
@@ -116,7 +116,7 @@ internal class ModEntry : Mod
         if (this.config.ToggleModStateKeybind.JustPressed())
         {
             this.modEnable = !this.modEnable;
-            Logger.NoIconHUDMessage(this.modEnable ? I18n.UI_ModState_Enable() : I18n.UI_ModState_Disable());
+            HudLogger.NoIconHUDMessage(this.modEnable ? I18n.UI_ModState_Enable() : I18n.UI_ModState_Disable());
         }
 
         if (this.config.OpenConfigMenuKeybind.JustPressed())

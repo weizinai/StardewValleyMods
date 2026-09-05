@@ -2,8 +2,8 @@
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
 using static weizinai.StardewValleyMod.PiCore.Constant.SNPC;
 
@@ -25,8 +25,8 @@ public class FishingQuestBuilder : QuestBuilder<FishingQuest>
     {
         if (this.Quest.target.Value != null && this.Quest.ItemId.Value != null)
         {
-            Logger.Trace($"Target for the current fishing quest has been set to {this.Quest.target.Value}.");
-            Logger.Trace($"ItemId for the current fishing quest has been set to {this.Quest.ItemId.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current fishing quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"ItemId for the current fishing quest has been set to {this.Quest.ItemId.Value}.");
 
             return false;
         }
@@ -78,7 +78,7 @@ public class FishingQuestBuilder : QuestBuilder<FishingQuest>
 
         var originalReward = this.Quest.reward.Value;
         this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.FishingQuestConfig.RewardMultiplier);
-        Logger.Trace($"The vanilla fishing quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
+        Logger<ModEntry>.Trace($"The vanilla fishing quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()

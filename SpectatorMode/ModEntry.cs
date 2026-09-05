@@ -1,8 +1,8 @@
 ﻿using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 using weizinai.StardewValleyMod.SpectatorMode.Handler;
 
@@ -14,7 +14,7 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger.Init(this.Monitor);
+        Logger<ModEntry>.Init(this);
         ModConfig.Init(helper);
         this.InitHandler();
         // 注册事件

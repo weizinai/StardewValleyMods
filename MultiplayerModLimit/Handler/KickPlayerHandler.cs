@@ -4,9 +4,9 @@ using System.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit.Handler;
 
@@ -150,15 +150,15 @@ internal class KickPlayerHandler : BaseHandler
     {
         if (!ModConfig.Instance.ShowMismatchedModInfo) return;
 
-        Logger.Alert(I18n.UI_KickPlayer_ServerTooltip(name));
+        Logger<ModEntry>.Alert(I18n.UI_KickPlayer_ServerTooltip(name));
         foreach (var id in unAllowedMods["Required"])
         {
-            Logger.Info(I18n.UI_ModLimit_Required(id));
+            Logger<ModEntry>.Info(I18n.UI_ModLimit_Required(id));
         }
-        Logger.Info("----------");
+        Logger<ModEntry>.Info("----------");
         foreach (var id in unAllowedMods["Banned"])
         {
-            Logger.Info(I18n.UI_ModLimit_Banned(id));
+            Logger<ModEntry>.Info(I18n.UI_ModLimit_Banned(id));
         }
     }
 
@@ -170,14 +170,14 @@ internal class KickPlayerHandler : BaseHandler
         if (!ModConfig.Instance.SendSMAPIInfo) return;
 
         var target = new[] { playerId };
-        Broadcaster.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
+        Broadcaster<ModEntry>.Alert(I18n.UI_KickPlayer_ClientTooltip(), target);
         foreach (var id in unAllowedMods["Required"])
         {
-            Broadcaster.Info(I18n.UI_ModLimit_Required(id), target);
+            Broadcaster<ModEntry>.Info(I18n.UI_ModLimit_Required(id), target);
         }
         foreach (var id in unAllowedMods["Banned"])
         {
-            Broadcaster.Info(I18n.UI_ModLimit_Banned(id), target);
+            Broadcaster<ModEntry>.Info(I18n.UI_ModLimit_Banned(id), target);
         }
     }
 }

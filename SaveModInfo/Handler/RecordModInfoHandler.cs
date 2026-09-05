@@ -2,8 +2,8 @@ using System.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.SaveModInfo.Handler;
 
@@ -37,6 +37,6 @@ internal class RecordModInfoHandler : BaseHandler
 
         this.Helper.Data.WriteJsonFile($"data/{Constants.SaveFolderName}.json", modInfo);
 
-        Logger.Info(I18n.UI_RecordModInfo_Tooltip());
+        Logger<ModEntry>.Info(I18n.UI_RecordModInfo_Tooltip());
     }
 }

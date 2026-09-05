@@ -1,9 +1,9 @@
 ﻿using System;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
@@ -22,8 +22,8 @@ public class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         // 初始化
-        Logger.Init(this.Monitor);
-        Broadcaster.Init(this);
+        Logger<ModEntry>.Init(this);
+        Broadcaster<ModEntry>.Init(this);
         ModConfig.Init(helper);
         this.UpdateConfig();
         // 注册事件

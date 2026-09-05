@@ -3,8 +3,8 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
@@ -42,12 +42,12 @@ internal class AutoClickHandler : BaseHandler
                     levelUpMenu.informationUp = false;
                     levelUpMenu.isProfessionChooser = false;
                     levelUpMenu.RemoveLevelFromLevelList();
-                    Logger.Info("你长时间没有选择职业，已自动为你选择左侧职业。");
+                    Logger<ModEntry>.Info("你长时间没有选择职业，已自动为你选择左侧职业。");
                 }
                 else
                 {
                     levelUpMenu.okButtonClicked();
-                    Logger.Info("你长时间没有确认，已自动点击确认按钮。");
+                    Logger<ModEntry>.Info("你长时间没有确认，已自动点击确认按钮。");
                 }
             }
         }

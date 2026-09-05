@@ -7,7 +7,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.BellsAndWhistles;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
 
@@ -63,18 +63,18 @@ internal class AMAMenu : IClickableMenu
                     if (this.currentMenuTabId == MenuTabId.Favorite)
                     {
                         this.config.FavoriteMenus.Remove(option.Id);
-                        Logger.NoIconHUDMessage(I18n.UI_Favorite_Remove(), 1000);
+                        HudLogger.NoIconHUDMessage(I18n.UI_Favorite_Remove(), 1000);
                     }
                     else
                     {
                         if (!this.config.FavoriteMenus.Contains(option.Id))
                         {
                             this.config.FavoriteMenus.Add(option.Id);
-                            Logger.NoIconHUDMessage(I18n.UI_Favorite_Add(), 1000);
+                            HudLogger.NoIconHUDMessage(I18n.UI_Favorite_Add(), 1000);
                         }
                         else
                         {
-                            Logger.NoIconHUDMessage(I18n.UI_Favorite_Exist(), 1000);
+                            HudLogger.NoIconHUDMessage(I18n.UI_Favorite_Exist(), 1000);
                         }
                     }
                 }

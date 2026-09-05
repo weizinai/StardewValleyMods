@@ -1,6 +1,10 @@
-﻿# CHANGELOG
+# CHANGELOG
 
 The English version of the changelog is machine-translated. I apologize for any linguistic inaccuracies in the translation.
+
+# [待定] 2.0.5
+
+- Migrated logging to PiCore (removed the Common shared project)
 
 ## [2.0.4] - 2025-08-14
 

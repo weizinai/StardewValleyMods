@@ -2,8 +2,8 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 
@@ -35,7 +35,7 @@ internal class PerfectFishingHandler : BaseHandler
                 this.perfectCount++;
                 if (this.perfectCount >= RequiredPerfectCount)
                 {
-                    Broadcaster.NoIconHUDMessage($"{Game1.player.Name}连续3次完美钓鱼");
+                    Broadcaster<ModEntry>.NoIconHUDMessage($"{Game1.player.Name}连续3次完美钓鱼");
                     this.perfectCount = 0;
                 }
             }

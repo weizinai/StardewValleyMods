@@ -3,8 +3,8 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;
@@ -68,7 +68,7 @@ internal class AutoSleepHandler : BaseHandler
         if (e.NewMenu is ShippingMenu menu)
         {
             this.Helper.Reflection.GetMethod(menu, "okClicked").Invoke();
-            Logger.Info(I18n.UI_SkipShippingMenu_Tooltip());
+            Logger<ModEntry>.Info(I18n.UI_SkipShippingMenu_Tooltip());
         }
     }
 }

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.SaveModInfo.Handler;
 
@@ -55,7 +55,7 @@ internal class CheckModInfoHandler : BaseHandler
         }
         else
         {
-            Logger.Error("The saves directory does not exist.");
+            Logger<ModEntry>.Error("The saves directory does not exist.");
         }
     }
 }

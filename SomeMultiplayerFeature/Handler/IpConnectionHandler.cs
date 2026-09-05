@@ -1,8 +1,8 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.Common;
 using weizinai.StardewValleyMod.PiCore.Handler;
+using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
@@ -47,7 +47,7 @@ internal class IpConnectionHandler : BaseHandler
         }
         else if (Game1.timeOfDay == ModConfig.Instance.DisableTime * 100)
         {
-            Logger.NoIconHUDMessage("Ip连接已关闭");
+            HudLogger.NoIconHUDMessage("Ip连接已关闭");
             Game1.options.ipConnectionsEnabled = false;
         }
     }
@@ -56,10 +56,10 @@ internal class IpConnectionHandler : BaseHandler
     {
         if (Game1.isFestival())
         {
-            Logger.NoIconHUDMessage("今天是节日，不打开Ip连接。");
+            HudLogger.NoIconHUDMessage("今天是节日，不打开Ip连接。");
             return;
         }
-        Logger.NoIconHUDMessage("Ip连接已打开");
+        HudLogger.NoIconHUDMessage("Ip连接已打开");
         Game1.options.ipConnectionsEnabled = true;
     }
 }

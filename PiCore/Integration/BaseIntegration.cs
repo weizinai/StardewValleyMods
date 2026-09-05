@@ -1,4 +1,4 @@
-﻿/*
+/*
 代码来源：Pathoschild
 原始出处：https://github.com/Pathoschild/StardewMods
 授权协议：MIT License
@@ -7,7 +7,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using StardewModdingAPI;
-using weizinai.StardewValleyMod.Common;
+using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.PiCore.Integration;
 
@@ -48,7 +48,7 @@ public abstract class BaseIntegration : IModIntegration
 
         if (manifest.Version.IsOlderThan(minVersion))
         {
-            Logger.Warn($"Detected {label} {manifest.Version}, but need {minVersion} or later. Disabled integration with this mod.");
+            Logger<ModEntry>.Warn($"Detected {label} {manifest.Version}, but need {minVersion} or later. Disabled integration with this mod.");
             return;
         }
 
@@ -63,7 +63,7 @@ public abstract class BaseIntegration : IModIntegration
 
         if (api is null)
         {
-            Logger.Warn($"Detected {this.Label}, but couldn't fetch its API. Disabled integration with this mod.");
+            Logger<ModEntry>.Warn($"Detected {this.Label}, but couldn't fetch its API. Disabled integration with this mod.");
         }
 
         return api;

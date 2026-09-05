@@ -1,0 +1,124 @@
+﻿Introduction
+Toggle navigation
+Show / Hide Table of Contents
+Introduction
+Harmony - a library for patching, replacing and decorating .NET methods during runtime.
+Prerequisites
+Harmony works with all languages that compile to  CIL , Microsofts intermediate byte code language. This is foremost the  .NET Framework  and of course  Mono  - used by the game engine Unity.
+The exception is probably  Unity .NET Standard profile , which does not provide the functionality to fully create methods on the fly at runtime.
+Bootstrapping and Injection
+Harmony does not provide you with a way to run your own code within an application that is not designed to execute foreign code. You need a way to inject at least the few lines that start the Harmony patching and this is usually done with a loader. Here are some common examples of loaders (incomplete):
+Unity Doorstop
+BepInEx
+UnityAssemblyInjector
+MonoJunkie
+MInjector
+net-core-injector
+and more...
+You need to find your own injection method or choose a game that supports user dll loading (usually called Mods) like for example RimWorld ( Wiki ).
+Dependencies
+It has no other dependencies and will most likely work in other environments too. Harmony was tested on PC, Mac and Linux and support 32- and 64-bit. For a typical Unity target, simply set your project to .Net 3.5 or Mono 2.x and include the Harmony dll.
+Altering functionality (Patching)
+In general, if you want to change how an exising C# application like a game works and you don't have the source code for that application, you have basically two principles to do that:
+Alter dll files on disk
+Re-point method implementations (hooking)
+Depending on the needs and situation, altering dll files is not always a desirable solution. For example
+it has legal implications
+it might be blocked by an anti-cheat system
+it does not coordinate nicely with multiple concurrent changes
+it has to be done before and outside the original application
+Harmony uses a variation of hooking and focuses only on runtime changes that don't affect files on disk:
+less conflicts with multiple mods
+supports existing mod loaders
+changes can be made dynamically/conditionally
+the patch order can be flexible
+other mods can be patched too
+less legal issues
+How Harmony works
+Where other patch libraries simply allow you to replace the original method, Harmony goes one step further and gives you:
+A way to keep the original method intact
+Execute your code before and/or after the original method
+Modify the original with IL code processors
+Multiple Harmony patches co-exist and don't conflict with each other
+Limits of runtime patching
+Harmony can't do everything. Make sure you understand the following:
+With Harmony, you only manipulate  methods . This includes constructors and getters/setters.
+You can only work with methods that have an actual IL code body, which means that they appear in a dissassembler like  dnSpy .
+Methods that are too small might get  inlined  and your patches will not run.
+You cannot add fields to classes and you cannot extend enums (they get compiled into ints).
+Patching generic methods or methods in generic classes is tricky and might not work as expected.
+Hello World Example
+Original game code:
+public class SomeGameClass
+{
+public bool isRunning;
+public int counter;
+private int DoSomething()
+{
+if (isRunning)
+{
+counter++;
+}
+return counter * 10;
+}
+}
+Patching with Harmony annotations:
+// your code, most likely in your own dll
+using HarmonyLib;
+using Intro_SomeGame;
+public class MyPatcher
+{
+// make sure DoPatching() is called at start either by
+// the mod loader or by your injector
+public static void DoPatching()
+{
+var harmony = new Harmony("com.example.patch");
+harmony.PatchAll();
+}
+}
+[HarmonyPatch(typeof(SomeGameClass))]
+[HarmonyPatch("DoSomething")] // if possible use nameof() here
+class Patch01
+{
+static AccessTools.FieldRef<SomeGameClass, bool> isRunningRef =
+AccessTools.FieldRefAccess<SomeGameClass, bool>("isRunning");
+static bool Prefix(SomeGameClass __instance, ref int ___counter)
+{
+isRunningRef(__instance) = true;
+if (___counter > 100)
+return false;
+___counter = 0;
+return true;
+}
+static void Postfix(ref int __result) => __result *= 2;
+}
+Alternatively, manual patching with reflection:
+// your code, most likely in your own dll
+using HarmonyLib;
+using Intro_SomeGame;
+public class MyPatcher
+{
+// make sure DoPatching() is called at start either by
+// the mod loader or by your injector
+public static void DoPatching()
+{
+var harmony = new Harmony("com.example.patch");
+var mOriginal = AccessTools.Method(typeof(SomeGameClass), "DoSomething"); // if possible use nameof() here
+var mPrefix = SymbolExtensions.GetMethodInfo(() => MyPrefix());
+var mPostfix = SymbolExtensions.GetMethodInfo(() => MyPostfix());
+// in general, add null checks here (new HarmonyMethod() does it for you too)
+harmony.Patch(mOriginal, new HarmonyMethod(mPrefix), new HarmonyMethod(mPostfix));
+}
+public static void MyPrefix()
+{
+// ...
+}
+public static void MyPostfix()
+{
+// ...
+}
+}
+Edit this page
+In this article
+Back to top
+Generated by  DocFX

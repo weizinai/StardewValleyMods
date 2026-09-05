@@ -1,0 +1,192 @@
+﻿Modding:Index - Stardew Valley Wiki
+Modding:Index
+From Stardew Valley Wiki
+Jump to navigation
+Jump to search
+Mods  are packages of files which change Stardew Valley in some way. Mods can add features (like showing NPCs on the map), change game mechanics (like making fences decay more slowly), make cosmetic changes (like making your house look like a hobbit home), and much more.
+Contents
+1   Using mods
+2   Creating mods
+2.1   Specific topics
+2.2   Migration guides
+2.3   See also
+Using mods
+Using mods    How to install SMAPI, use mods, and troubleshoot them. Includes the compatibility list.
+Get help or ask question
+Join the community
+Using XNB mods  (not recommended)
+Creating mods
+Making mods can be broadly divided into two categories: C# mods and content packs (formatted text files that rely on a framework C# mod). Content packs can make new NPCs, edit maps, add new items, add shops, and more, while C# mods can change fundamental game mechanics. Usually it’s easiest to start with making content packs, since you don't need to learn how to program in C#.
+Creating content mods with JSON    How to create content packs for frameworks like Content Patcher.
+Creating SMAPI mods with C#    How to create SMAPI mods, with tutorials and documentation. This includes the full SMAPI API + event reference.
+Translating mods    How to contribute mod translations for any language supported by the game. (And for modders, how to enable and request translations.)
+Looking for something specific? Try  searching the  Modding  namespace .
+Get help or ask question
+Join the community
+Open source
+Specific topics
+SMAPI API reference   (also on the sidebar in the "Creating SMAPI mods" guide above)
+Modding tutorials wiki
+Common tasks (SMAPI mods)
+Editing XNB files
+IDE reference
+Game:
+Game fundamentals
+Achievements
+Audio
+Custom languages
+Console commands
+Chat commands
+World map
+Game state queries
+Stats
+Trigger actions
+Tokenizable strings
+NPCs:
+Overview
+Custom wedding events
+Dialogue
+Events
+Gift tastes
+Quests
+Schedules
+Item data:
+Items   param($mm) [char][int]$mm.Groups[1].Value ( Big craftables  •  Boots  •  Furniture  •  Hats  •  Mannequins  •  Objects  •  Pants  •  Shirts  •  Tools  •  Trinkets  •  Wallpaper & Flooring  •  Weapons )
+Crops
+Fruit trees
+Giant crops
+Item queries
+Machines
+Recipes
+Wild trees
+Locations and maps:
+Maps
+Farm data
+Festivals
+Fish
+Location contexts
+Locations
+Movie theater
+Museum data
+Passive festivals
+Weather
+Other content:
+Buffs
+Buildings
+Bundles
+Farmer sprite
+Fences
+Floors and paths
+Fish ponds
+Garbage cans
+Jukebox tracks
+Lost items shop
+Mail
+Minecarts
+Monster eradication goals
+Phone calls
+Shops
+Special Items and Powers
+Special orders
+Tailoring
+Other entities:
+Animals
+Monsters
+Pets
+Specialized (normally linked from other pages):
+Common data field types
+Migration guides
+release
+date released
+SMAPI 2.0
+October 2017
+Stardew Valley 1.3
+May 2018
+Stardew Valley 1.3 (XNB changes)
+May 2018
+Stardew Valley 1.3.36
+March 2019
+Stardew Valley 1.4
+November 2019
+SMAPI 3.0
+November 2019
+Stardew Valley 1.5
+December 2020
+Harmony 2.0
+July 2021
+Stardew Valley 1.5.5
+November 2021
+SMAPI 4.0
+March 2024
+Stardew Valley 1.6
+March 2024
+Stardew Valley 1.6.9
+November 2024
+Stardew Valley 1.6.16
+upcoming
+Stardew Valley 1.7
+upcoming
+See also
+Pixel art resources:
+Stardew Valley art style guide
+Pixel art tutorial on Pixel Joint
+Pixel art guide on Medium
+Content pack resources:
+The great ID spreadsheet
+Custom NPC festival tile positions
+Useful tools:
+SMAPI mod compatibility list
+SMAPI log parser
+JSON validator
+Kdau's notes on Android SMAPI modding
+Dem1se's getting started guide on mod UIs
+Retrieved from " https://stardewvalleywiki.com/mediawiki/index.php?title=Modding:Index&oldid=189642 "
+Category :    Modding
+Navigation menu
+Personal tools
+Create account
+Log in
+Namespaces
+Modding
+Discussion
+Variants
+Views
+Read
+View source
+View history
+More
+Search
+Navigation
+Main page
+Recent changes
+Admin noticeboard
+Help Editing
+Random page
+Links
+Official Site
+Official Forums
+Official Merchandise
+Social Media
+Tools
+What links here
+Related changes
+Upload file
+Special pages
+Printable version
+Permanent link
+Page information
+Page values
+In other languages
+Deutsch
+Español
+Français
+Português
+Русский
+Türkçe
+中文
+This page was last edited on 15 November 2025, at 03:45.
+Content is available under  Creative Commons Attribution-NonCommercial-ShareAlike  unless otherwise noted.
+Privacy policy
+About Stardew Valley Wiki
+Disclaimers
+Mobile view

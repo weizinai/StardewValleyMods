@@ -1,0 +1,88 @@
+{
+    "Config.VanillaConfigPage.Name": "Configuration (Pélican Ville)",
+    "Config.RSVConfigPage.Name": "Configuration (RSV)",
+
+    // General Setting
+    "Config.GeneralSettingsTitle.Name": "Paramètres généraux",
+    "Config.ShowQuestGenerationTooltip.Name": "Afficher l'infobulle\nde la génération de la quête",
+    "Config.QuestFirstDay.Name": "Quête dès le premier jour ?",
+    "Config.QuestFirstDay.Tooltip": "Lorsque cette option est désactivée, le jeu ne générera pas de quêtes le premier jour, comme dans le jeu de base.",
+    "Config.QuestFestival.Name": "Quête en festival ?",
+    "Config.QuestFestival.Tooltip": "Lorsque cette option est désactivée, si le jeu a un festival aujourd'hui ou demain, la quête ne sera pas générée, comme dans le jeu de base.",
+    "Config.DailyQuestChance.Name": "Chances de quête quotidienne",
+    "Config.MaxQuests.Name": "Maximum de quêtes",
+
+    // Quest Setting
+    "Config.ItemDeliveryQuestTitle.Name": "Quête de livraison d’objet",
+    "Config.ResourceCollectionQuestTitle.Name": "Quête de collecte de ressources",
+    "Config.FishingQuestTitle.Name": "Quête de pêche",
+    "Config.SlayMonstersQuestTitle.Name": "Quête d’extermination de monstre",
+    "Config.LostItemQuestTitle.Name": "Quête d’objet perdu",
+
+    "Config.QuestWeight.Name": "Probabilité de la quête",
+    "Config.QuestRewardMultiplier.Name": "Multiplicateur de récompense",
+    "Config.QuestDays.Name": "Nb de jours de quêtes",
+    "Config.QuestDays.Tooltip": "Limite le nombre de jours de quête : 0 indique des jours illimités.",
+
+    // Vanilla
+    // General Settings
+    "Config.OneQuestPerVillager.Name": "Une quête par villageois",
+    "Config.ExcludeMaxHeartsNPC.Name": "Exclure les PNJ à l’amitié max.",
+    "Config.ExcludeNPCList.Name": "Liste d’exclusion des PNJ",
+    "Config.ExcludeNPCList.Tooltip": "Liste des PNJ exclus. Chaque nom de PNJ est séparé par une virgule. (par exemple, \"Lewis, Marnie\")",
+
+    // Item Delivery
+    "Config.ItemDeliveryFriendshipGain.Name": "Gain d'amitié\n(lors de la livraison d'objets)",
+    "Config.RewriteQuestItem.Name": "Réécrire les quêtes d’objet",
+    "Config.RewriteQuestItem.Tooltip": "Lorsque cette option est activée, les objets de quête seront sélectionnés parmi les cadeaux des villageois répondant à la configuration ci-dessous. Lorsqu'elle est désactivée, les objets reviendront aux paramètres du jeu original et ne seront pas affectés par les options ci-dessous.",
+    "Config.ItemGiftTasteRequirement.Name": "Pré-requis de goût",
+    "Config.AllowArtisanGoods.Name": "Autoriser les produits artisanaux",
+    "Config.AllowArtisanGoods.Tooltip": "Si l'objet de la quête de livraison d'objet peut être ou non un produit artisanal.",
+    "Config.MaxPrice.Name": "Prix maximum",
+    "Config.MaxPrice.Tooltip": "Le prix maximum d'un objet de quête. Si -1, il n'y a pas de limite.",
+
+    "Config.ItemGiftTasteRequirement.Love": "Adore",
+    "Config.ItemGiftTasteRequirement.Like": "Aime",
+    "Config.ItemGiftTasteRequirement.Neutral": "Neutre",
+    "Config.ItemGiftTasteRequirement.Dislike": "N’aime pas",
+    "Config.ItemGiftTasteRequirement.Hate": "Déteste",
+
+    // Resource Collection
+    "Config.MoreResourceCollectionQuest.Name": "Encore plus de quêtes\nde collecte de ressources !",
+
+    // Slay Monsters
+    "Config.MoreSlayMonsterQuests.Name": "Encore plus de quêtes\nd’extermination de monstres !",
+
+    // UI
+    "UI.GenerateVanillaQuest.Tooltip": "Génération des quêtes quotidiennes de Pélican Ville",
+    "UI.VanillaQuestFirstDay.Tooltip": "Génération de quêtes journalières désactivée : \nPremier jour du cycle de jeu.",
+    "UI.VanillaQuestFestival.Tooltip": "La génération des quêtes quotidiennes de Pélican Ville est suspendue : \nFestival prévu aujourd'hui ou demain.",
+    "UI.VanillaDailyQuest.Tooltip": "La génération des quêtes quotidiennes de Pélican Ville est désactivée pour aujourd'hui",
+
+    // RSV
+    "Config.EnableRSVQuestBoard.Name": "Activer le tableau de quête RSV",
+    "Config.AllowSameQuest.Name": "Autoriser la même quête",
+
+    // UI
+    "UI.GenerateRSVQuest.Tooltip": "Lancement de la génération de quête quotidienne de RSV d'aujourd'hui",
+    "UI.RSVQuestFirstDay.Tooltip": "La génération des quêtes quotidiennes de RSV est désactivée :\nPremier jour du cycle de jeu",
+    "UI.RSVQuestFestival.Tooltip": "La génération de la quête quotidienne de RSV est suspendue :\nFestival prévu aujourd'hui ou demain",
+    "UI.RSVDailyQuest.Tooltip": "La génération de la quête quotidienne de la VRS est désactivée pour aujourd'hui",
+
+    // Appearance
+    "Config.AppearancePage.Name": "Apparence",
+    "Config.NoteAppearanceTitle.Name": "Apparence des remarques",
+    "Config.NoteScale.Name": "Échelle de notes",
+    "Config.XOverlapBoundary.Name": "Limite de chevauchement X",
+    "Config.XOverlapBoundary.Tooltip": "Taux de chevauchement horizontal des notes de quête. Si vous le définissez sur 1, vous ne pouvez pas se chevaucher du tout, si vous le définissez sur 0,5, vous pouvez le chevaucher de moitié, et si vous le définissez sur 0, vous pouvez le chevaucher complètement.",
+    "Config.YOverlapBoundary.Name": "Limite de chevauchement Y",
+    "Config.YOverlapBoundary.Tooltip": "Taux de chevauchement vertical des notes de quête. Si vous le définissez sur 1, vous ne pouvez pas se chevaucher du tout, si vous le définissez sur 0,5, vous pouvez le chevaucher de moitié, et si vous le définissez sur 0, vous pouvez le chevaucher complètement.",
+    "Config.RandomColorMin.Name": "Couleur aléatoire minimum",
+    "Config.RandomColorMax.Name": "Couleur aléatoire maximum",
+    "Config.PortraitAppearanceTitle.Name": "Apparence en portrait",
+    "Config.PortraitScale.Name": "Échelle de portrait",
+    "Config.PortraitTintR.Name": "Teinte portrait R",
+    "Config.PortraitTintG.Name": "Teinte Portrait V",
+    "Config.PortraitTintB.Name": "Teinte portrait B",
+    "Config.PortraitTintA.Name": "Teinte portrait A"
+}

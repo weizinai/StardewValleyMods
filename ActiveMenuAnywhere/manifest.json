@@ -1,0 +1,19 @@
+﻿{
+    "Name": "Active Menu Anywhere",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "Active menu anywhere.",
+    "UniqueID": "weizinai.ActiveMenuAnywhere",
+    "EntryDll": "ActiveMenuAnywhere.dll",
+    "UpdateKeys": ["Nexus: 21093"],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

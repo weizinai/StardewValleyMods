@@ -1,0 +1,87 @@
+{
+    "Changes": [
+        {
+            "Action": "Load",
+            "Target": "Mods/{{ModId}}/MediumFloatingCabin_Fish, Mods/{{ModId}}/MediumFloatingCabin_Flower, Mods/{{ModId}}/MediumTrailerCabin, Mods/{{ModId}}/MediumWinterGarden",
+            "FromFile": "assets/MediumCabin/{{TargetWithoutPath}}.png"
+        },
+        {
+            "Action": "EditData",
+            "Target": "Data/Buildings",
+            "Entries": {
+                "{{ModId}}_MediumCabin_NoShadow": {
+                    // Required fields
+                    "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                    "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                    "Texture": "Mods/{{ModId}}/MediumTrailerCabin",
+                    // Construction
+                    "Builder": "Robin",
+                    "BuildCondition": "CAN_BUILD_CABIN",
+                    // Exterior behavior
+                    "Size": {
+                        "X": 3,
+                        "Y": 2
+                    },
+                    "HumanDoor": {
+                        "X": 1,
+                        "Y": 1
+                    },
+                    // Exterior appearance
+                    "DrawShadow": false,
+                    "Skins": [
+                        {
+                            "Id": "MediumFloatingCabin_Fish",
+                            "Name": "{{i18n:Buildings.MediumFloatingCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumFloatingCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumFloatingCabin_Fish"
+                        },
+                        {
+                            "Id": "MediumFloatingCabin_Flower",
+                            "Name": "{{i18n:Buildings.MediumFloatingCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumFloatingCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumFloatingCabin_Flower"
+                        },
+                        {
+                            "Id": "MediumWinterGarden",
+                            "Name": "{{i18n:Buildings.MediumWinterGarden.Name}}",
+                            "Description": "{{i18n:Buildings.MediumWinterGarden.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumWinterGarden"
+                        }
+                    ],
+                    // Interior
+                    "IndoorMap": "FarmHouse",
+                    "IndoorMapType": "StardewValley.Locations.Cabin",
+                    // Tile interactions
+                    "ActionTiles": [
+                        {
+                            "Id": "Default_OpenMailbox",
+                            "Tile": {
+                                "X": 1,
+                                "Y": 2
+                            },
+                            "Action": "Mailbox"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
+
+//assets\MediumBeachCabin.png
+// assets\MediumClassicCabin_BlueGrass.png
+// assets\MediumClassicCabin_Default.png
+// assets\MediumClassicCabin_Rosace.png
+// assets\MediumClassicCabin_WhiteBirch.png
+// assets\MediumClassicCabin_WitheredGrass.png
+// assets\MediumClassicCabin_Wreath.png
+// assets\MediumFloatingCabin_Fish.png
+// assets\MediumFloatingCabin_Flower.png
+// assets\MediumLogCabin.png
+// assets\MediumNeighborCabin.png
+// assets\MediumPlankCabin.png
+// assets\MediumRusticCabin.png
+// assets\MediumStoneCabin.png
+// assets\MediumTowerOfSorcery.png
+// assets\MediumTrailerCabin.png
+// assets\MediumWinterGarden.png

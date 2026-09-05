@@ -1,0 +1,20 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Authors>weizinai</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/weizinai/StardewValleyMods</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <RootNamespace>weizinai.StardewValleyMod.$(MSBuildProjectName)</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ModZipPath>$(SolutionDir)\_releases</ModZipPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Using Alias="SObject" Include="StardewValley.Object"/>
+    </ItemGroup>
+</Project>

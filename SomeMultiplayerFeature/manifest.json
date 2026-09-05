@@ -1,0 +1,18 @@
+﻿{
+    "Name": "Some Multiplayer Feature",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "Some Multiplayer Feature",
+    "UniqueID": "weizinai.SomeMultiplayerFeature",
+    "EntryDll": "SomeMultiplayerFeature.dll",
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

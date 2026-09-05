@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>0.2.0</Version>
+        <RootNamespace>weizinai.StardewValleyMod.MoreExperience</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableHarmony>true</EnableHarmony>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ContentPacks Include="[CP] More Experience" Version="$(Version)"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\PiCore\PiCore.csproj" Private="false"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+﻿{
+    "Name": "Friendship Decay Modify",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod allows you to change the value of the friendship decay.",
+    "UniqueID": "weizinai.FriendshipDecayModify",
+    "EntryDll": "FriendshipDecayModify.dll",
+    "UpdateKeys": ["Nexus: 23862"],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

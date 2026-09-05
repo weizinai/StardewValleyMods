@@ -1,0 +1,19 @@
+{
+    "Name": "Better Cabin",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod gives the cabin more features.",
+    "UniqueID": "weizinai.BetterCabin",
+    "EntryDll": "BetterCabin.dll",
+    "UpdateKeys": ["Nexus: 25368"],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        },
+        {
+            "UniqueID": "spacechase0.GenericModConfigMenu",
+            "IsRequired": false
+        }
+    ]
+}

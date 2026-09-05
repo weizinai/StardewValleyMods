@@ -1,0 +1,110 @@
+{
+    "Changes": [
+        {
+            "Action": "Load",
+            "Target": "Mods/{{ModId}}/MediumBeachCabin, Mods/{{ModId}}/MediumClassicCabin_BlueGrass, Mods/{{ModId}}/MediumClassicCabin_Default, Mods/{{ModId}}/MediumClassicCabin_Rosace, Mods/{{ModId}}/MediumClassicCabin_WhiteBirch, Mods/{{ModId}}/MediumClassicCabin_WitheredGrass, Mods/{{ModId}}/MediumClassicCabin_Wreath, Mods/{{ModId}}/MediumNeighborCabin, Mods/{{ModId}}/MediumRusticCabin, Mods/{{ModId}}/MediumStoneCabin, Mods/{{ModId}}/MediumTowerOfSorcery",
+            "FromFile": "assets/MediumCabin/{{TargetWithoutPath}}.png"
+        },
+        {
+            "Action": "EditData",
+            "Target": "Data/Buildings",
+            "Entries": {
+                "{{ModId}}_MediumCabin_Shadow": {
+                    // Required fields
+                    "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                    "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                    "Texture": "Mods/{{ModId}}/MediumStoneCabin",
+                    // Construction
+                    "Builder": "Robin",
+                    "BuildCondition": "CAN_BUILD_CABIN",
+                    // Exterior behavior
+                    "Size": {
+                        "X": 3,
+                        "Y": 2
+                    },
+                    "HumanDoor": {
+                        "X": 1,
+                        "Y": 1
+                    },
+                    // Exterior appearance
+                    "Skins": [
+                        {
+                            "Id": "MediumBeachCabin",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumBeachCabin"
+                        },
+                        {
+                            "Id": "MediumClassicCabin_BlueGrass",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumClassicCabin_BlueGrass"
+                        },
+                        {
+                            "Id": "MediumClassicCabin_Default",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumClassicCabin_Default"
+                        },
+                        {
+                            "Id": "MediumClassicCabin_Rosace",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumClassicCabin_Rosace"
+                        },
+                        {
+                            "Id": "MediumClassicCabin_WhiteBirch",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumClassicCabin_WhiteBirch"
+                        },
+                        {
+                            "Id": "MediumClassicCabin_WitheredGrass",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumClassicCabin_WitheredGrass"
+                        },
+                        {
+                            "Id": "MediumClassicCabin_Wreath",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumClassicCabin_Wreath"
+                        },
+                        {
+                            "Id": "MediumNeighborCabin",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumNeighborCabin"
+                        },
+                        {
+                            "Id": "MediumRusticCabin",
+                            "Name": "{{i18n:Buildings.MediumCabin.Name}}",
+                            "Description": "{{i18n:Buildings.MediumCabin.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumRusticCabin"
+                        },
+                        {
+                            "Id": "MediumTowerOfSorcery",
+                            "Name": "{{i18n:Buildings.MediumTowerOfSorcery.Name}}",
+                            "Description": "{{i18n:Buildings.MediumTowerOfSorcery.Description}}",
+                            "Texture": "Mods/{{ModId}}/MediumTowerOfSorcery"
+                        }
+                    ],
+                    // Interior
+                    "IndoorMap": "FarmHouse",
+                    "IndoorMapType": "StardewValley.Locations.Cabin",
+                    // Tile interactions
+                    "ActionTiles": [
+                        {
+                            "Id": "Default_OpenMailbox",
+                            "Tile": {
+                                "X": 1,
+                                "Y": 2
+                            },
+                            "Action": "Mailbox"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+﻿{
+    "Name": "[CP] More Experience",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod adds more ways to earn experience to the game.",
+    "UniqueID": "weizinai.MoreExperience.CP",
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher"
+    },
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.MoreExperience",
+            "IsRequired": true
+        }
+    ]
+}

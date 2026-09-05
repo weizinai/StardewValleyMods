@@ -1,0 +1,11 @@
+{
+    "Name": "Pi Core",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod used as a core library for some of weizinai's mods.",
+    "UniqueID": "weizinai.PiCore",
+    "EntryDll": "PiCore.dll",
+    "UpdateKeys": [
+        "Nexus: 33525"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "Format": "2.0.0",
+    "Changes": [
+        {
+            "Action": "Include",
+            "FromFile": "Buildings/SmallCabin.json, Buildings/MediumCabin_Shadow.json, Buildings/MediumCabin_NoShadow.json"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>0.20.0</Version>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableHarmony>true</EnableHarmony>
+        <BundleExtraAssemblies>ThirdParty</BundleExtraAssemblies>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ConsoleTables" Version="2.6.2"/>
+        <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.4.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\PiCore\PiCore.csproj" Private="false"/>
+    </ItemGroup>
+
+    <Import Project="..\Common\Common.projitems" Label="Shared"/>
+
+</Project>

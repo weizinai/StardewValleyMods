@@ -1,0 +1,16 @@
+{
+    "Name": "Custom Cabin Fix",
+    "Author": "weizinai",
+    "Version": "%ProjectVersion%",
+    "Description": "This mod fixes some issues that would occur when adding custom cabins.",
+    "UniqueID": "weizinai.CustomCabinFix",
+    "EntryDll": "CustomCabinFix.dll",
+    "UpdateKeys": ["Nexus: 26979"],
+    "Dependencies": [
+        {
+            "UniqueID": "weizinai.PiCore",
+            "IsRequired": true
+        }
+
+    ]
+}

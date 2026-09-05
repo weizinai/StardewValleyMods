@@ -1,0 +1,43 @@
+﻿{
+    "Format": "2.5.0",
+    "Changes": [
+        {
+            "Action": "EditData",
+            "Target": "Data/Machines",
+            "Fields": {
+                // 小桶
+                "(BC)12": {
+                    "ExperienceGainOnHarvest": "farming 10"
+                },
+                // 熔炉
+                "(BC)13": {
+                    "ExperienceGainOnHarvest": "mining 4"
+                },
+                // 回收机
+                "(BC)20": {
+                    "ExperienceGainOnHarvest": "fishing 1"
+                },
+                // 种子生成器
+                "(BC)25": {
+                    "ExperienceGainOnHarvest": "farming 2"
+                },
+                // 树液采集器
+                "(BC)105": {
+                    "ExperienceGainOnHarvest": "foraging 2"
+                },
+                // 煤炭窑
+                "(BC)114": {
+                    "ExperienceGainOnHarvest": "foraging 2"
+                },
+                // 熏鱼机
+                "(BC)FishSmoker": {
+                    "ExperienceGainOnHarvest": "fishing 1"
+                },
+                // 重型熔炉
+                "(BC)HeavyFurnace": {
+                    "ExperienceGainOnHarvest": "mining 18"
+                }
+            }
+        }
+    ]
+}

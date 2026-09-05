@@ -1,7 +1,13 @@
-﻿/.idea
-/.vs
+# IDE / editor
+.idea/
 
-/*/bin
-/*/obj
+# Build output
+bin/
+obj/
 
-/_releases
+# Release output
+/_releases/
+
+# Local agent / issue-tracker state
+/.scratch/
+/.dsh/

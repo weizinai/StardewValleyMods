@@ -5,6 +5,8 @@ namespace weizinai.StardewValleyMod.AutoBreakGeode.Framework;
 
 internal class ModConfig
 {
+    public static ModConfig Instance { get; set; } = null!;
+
     public KeybindList AutoBreakGeodeKeybind { get; set; } = new(SButton.F);
     public bool DrawBeginButton { get; set; } = true;
     public int BreakGeodeSpeed { get; set; } = 20;

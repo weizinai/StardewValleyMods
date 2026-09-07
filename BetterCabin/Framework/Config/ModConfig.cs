@@ -8,11 +8,6 @@ internal class ModConfig
 {
     public static ModConfig Instance { get; set; } = null!;
 
-    public static void Init(IModHelper helper)
-    {
-        Instance = helper.ReadConfig<ModConfig>();
-    }
-
     // 拜访小屋信息
     public bool VisitCabinInfo { get; set; } = true;
 

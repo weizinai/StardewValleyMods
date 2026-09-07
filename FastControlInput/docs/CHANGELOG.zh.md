@@ -2,4 +2,4 @@
 
 # [待定] 0.4.1
 
-- 配置菜单注册迁移至 PiCore `AddGenericModConfigMenu` builder API（移除模组注册类），游戏行为不变
+- 配置菜单迁移至 PiCore `ConfigService`/描述器配置模块（静态 `ModConfig.Instance`），游戏行为不变

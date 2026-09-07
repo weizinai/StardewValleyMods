@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -10,20 +9,6 @@ namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 internal class NPCPatcher : BasePatcher
 {
-    private static NPCPatcher instance = null!;
-    private readonly ModConfig config;
-
-    public NPCPatcher(ModConfig config)
-    {
-        if (instance != null)
-        {
-            throw new InvalidOperationException($"{nameof(NPCPatcher)} already initialized.");
-        }
-
-        this.config = config;
-        instance = this;
-    }
-
     public override void Apply(Harmony harmony)
     {
         this.Patch<NPC>(harmony, nameof(NPC.receiveGift), PatchKind.Transpiler, nameof(ReceiveGiftTranspiler));
@@ -44,11 +29,11 @@ internal class NPCPatcher : BasePatcher
 
     private static float GetHateGiftModify()
     {
-        return -instance.config.HateGiftModify;
+        return -ModConfig.Instance.HateGiftModify;
     }
 
     private static float GetDislikeGiftModify()
     {
-        return -instance.config.DislikeGiftModify;
+        return -ModConfig.Instance.DislikeGiftModify;
     }
 }

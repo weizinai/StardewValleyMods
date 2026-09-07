@@ -6,6 +6,8 @@ namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
 internal class ModConfig
 {
+    public static ModConfig Instance { get; set; } = null!;
+
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.R);
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);
     public int Cooldown { get; set; } = 10;
@@ -158,10 +160,10 @@ internal class ModConfig
     #region 钓鱼
 
     // 自动抓取宝箱物品
-    public bool AutoGrabTreasureItem;
+    public bool AutoGrabTreasureItem { get; set; } = false;
 
     // 自动关闭宝箱菜单
-    public bool AutoExitTreasureMenu;
+    public bool AutoExitTreasureMenu { get; set; } = false;
 
     // 自动放置蟹笼
     public BaseAutomationConfig AutoPlaceCarbPot { get; set; } = new(1);

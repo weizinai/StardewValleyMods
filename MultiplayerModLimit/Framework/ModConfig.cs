@@ -1,16 +1,10 @@
 using System.Collections.Generic;
-using StardewModdingAPI;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
 
 internal class ModConfig
 {
     public static ModConfig Instance { get; set; } = null!;
-
-    public static void Init(IModHelper helper)
-    {
-        Instance = helper.ReadConfig<ModConfig>();
-    }
 
     // 一般设置
     public bool EnableMod { get; set; } = true;

@@ -1,15 +1,8 @@
-using StardewModdingAPI;
-
 namespace weizinai.StardewValleyMod.ReadyCheckKick.Framework;
 
 internal class ModConfig
 {
     public static ModConfig Instance { get; set; } = null!;
-
-    public static void Init(IModHelper helper)
-    {
-        Instance = helper.ReadConfig<ModConfig>();
-    }
 
     public bool ShowInfoInReadyCheckDialogue { get; set; } = true;
     public bool ShowInfoInSaveGameMenu { get; set; } = true;

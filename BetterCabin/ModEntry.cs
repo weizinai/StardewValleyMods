@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using StardewModdingAPI;
-using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.BetterCabin.Framework;
 using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 using weizinai.StardewValleyMod.BetterCabin.Handler;
 using weizinai.StardewValleyMod.BetterCabin.Patcher;
-using weizinai.StardewValleyMod.PiCore.Extension;
+using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
@@ -24,10 +22,16 @@ internal class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         Logger<ModEntry>.Init(this);
-        ModConfig.Init(helper);
+        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；保存或重置后重建处理器
+        var configService = new ConfigService<ModConfig>(
+            this,
+            () => ModConfig.Instance,
+            value => ModConfig.Instance = value,
+            this.UpdateConfig
+        );
+        configService.RegisterMenu(this.BuildConfigMenu);
+        // 按初始配置构建处理器
         this.UpdateConfig();
-        // 注册事件
-        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this,
             new BuildingPatcher(),
@@ -38,152 +42,63 @@ internal class ModEntry : Mod
         );
     }
 
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
+    /// <summary>用声明式描述器声明本模组的 GMCM 配置菜单，由配置模块渲染。</summary>
+    /// <param name="menu">配置菜单描述器。</param>
+    private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
     {
-        this.AddGenericModConfigMenu(
-            () => ModConfig.Instance,
-            config => ModConfig.Instance = config,
-            this.AddConfigMenu,
-            this.UpdateConfig,
-            this.UpdateConfig
-        );
-    }
-
-    private void AddConfigMenu(GenericModConfigMenuIntegration<ModConfig> configMenu)
-    {
-        configMenu
+        menu
             // 拜访小屋信息
-            .AddSectionTitle(I18n.Config_VisitCabinInfo_Name)
-            .AddBoolOption(
-                config => config.VisitCabinInfo,
-                (config, value) => config.VisitCabinInfo = value,
-                I18n.Config_VisitCabinInfo_Name,
-                I18n.Config_VisitCabinInfo_Tooltip
-            )
+            .AddBoolSection(config => config.VisitCabinInfo, I18n.Config_VisitCabinInfo_Name, I18n.Config_VisitCabinInfo_Tooltip)
             // 小屋主人名字标签
-            .AddSectionTitle(I18n.Config_CabinOwnerNameTag_Name)
-            .AddBoolOption(
-                config => config.CabinOwnerNameTag,
-                (config, value) => config.CabinOwnerNameTag = value,
-                I18n.Config_CabinOwnerNameTag_Name,
-                I18n.Config_CabinOwnerNameTag_Tooltip
-            )
-            .AddNumberOption(
-                config => config.NameTagXOffset,
-                (config, value) => config.NameTagXOffset = value,
-                I18n.Config_XOffset_Name
-            )
-            .AddNumberOption(
-                config => config.NameTagYOffset,
-                (config, value) => config.NameTagYOffset = value,
-                I18n.Config_YOffset_Name
-            )
+            .AddBoolSection(config => config.CabinOwnerNameTag, I18n.Config_CabinOwnerNameTag_Name, I18n.Config_CabinOwnerNameTag_Tooltip)
+            .AddNumberOption(config => config.NameTagXOffset, I18n.Config_XOffset_Name)
+            .AddNumberOption(config => config.NameTagYOffset, I18n.Config_YOffset_Name)
             // 总在线时间标签
-            .AddSectionTitle(I18n.Config_TotalOnlineTimeTag_Name)
-            .AddBoolOption(
-                config => config.TotalOnlineTime.Enable,
-                (config, value) => config.TotalOnlineTime.Enable = value,
+            .AddSection(
+                config => config.TotalOnlineTime,
                 I18n.Config_TotalOnlineTimeTag_Name,
-                I18n.Config_TotalOnlineTimeTag_Tooltip
-            )
-            .AddNumberOption(
-                config => config.TotalOnlineTime.XOffset,
-                (config, value) => config.TotalOnlineTime.XOffset = value,
-                I18n.Config_XOffset_Name
-            )
-            .AddNumberOption(
-                config => config.TotalOnlineTime.YOffset,
-                (config, value) => config.TotalOnlineTime.YOffset = value,
-                I18n.Config_YOffset_Name
+                section => ConfigureOnlineTimeSection(section, I18n.Config_TotalOnlineTimeTag_Name, I18n.Config_TotalOnlineTimeTag_Tooltip)
             )
             // 上次在线时间标签
-            .AddSectionTitle(I18n.Config_LastOnlineTimeTag_Name)
-            .AddBoolOption(
-                config => config.LastOnlineTime.Enable,
-                (config, value) => config.LastOnlineTime.Enable = value,
+            .AddSection(
+                config => config.LastOnlineTime,
                 I18n.Config_LastOnlineTimeTag_Name,
-                I18n.Config_LastOnlineTimeTag_Tooltip
-            )
-            .AddNumberOption(
-                config => config.LastOnlineTime.XOffset,
-                (config, value) => config.LastOnlineTime.XOffset = value,
-                I18n.Config_XOffset_Name
-            )
-            .AddNumberOption(
-                config => config.LastOnlineTime.YOffset,
-                (config, value) => config.LastOnlineTime.YOffset = value,
-                I18n.Config_YOffset_Name
+                section => ConfigureOnlineTimeSection(section, I18n.Config_LastOnlineTimeTag_Name, I18n.Config_LastOnlineTimeTag_Tooltip)
             )
             // 小屋面板
-            .AddSectionTitle(I18n.Config_CabinMenu_Name)
-            .AddBoolOption(
-                config => config.CabinMenu,
-                (config, value) => config.CabinMenu = value,
-                I18n.Config_CabinMenu_Name,
-                I18n.Config_CabinMenu_Tooltip
-            )
-            .AddKeybindList(
-                config => config.CabinMenuKeybind,
-                (config, value) => config.CabinMenuKeybind = value,
-                I18n.Config_CabinMenuKeybind_Name
-            )
-            .AddBoolOption(
-                config => config.BuildCabinContinually,
-                (config, value) => config.BuildCabinContinually = value,
-                I18n.Config_BuildCabinContinually_Name
-            )
+            .AddBoolSection(config => config.CabinMenu, I18n.Config_CabinMenu_Name, I18n.Config_CabinMenu_Tooltip)
+            .AddKeybindListOption(config => config.CabinMenuKeybind, I18n.Config_CabinMenuKeybind_Name)
+            .AddBoolOption(config => config.BuildCabinContinually, I18n.Config_BuildCabinContinually_Name)
             // 上锁小屋
-            .AddSectionTitle(I18n.Config_LockCabin_Name)
-            .AddBoolOption(
-                config => config.LockCabin,
-                (config, value) => config.LockCabin = value,
-                I18n.Config_LockCabin_Name,
-                I18n.Config_LockCabin_Tooltip
-            )
-            .AddKeybindList(
-                config => config.LockCabinKeybind,
-                (config, value) => config.LockCabinKeybind = value,
-                I18n.Config_LockCabinKeybind_Name
-            )
-            .AddKeybindList(
-                config => config.SetWhiteListKey,
-                (config, value) => config.SetWhiteListKey = value,
-                I18n.Config_SetWhiteListKey_Name
-            )
+            .AddBoolSection(config => config.LockCabin, I18n.Config_LockCabin_Name, I18n.Config_LockCabin_Tooltip)
+            .AddKeybindListOption(config => config.LockCabinKeybind, I18n.Config_LockCabinKeybind_Name)
+            .AddKeybindListOption(config => config.SetWhiteListKey, I18n.Config_SetWhiteListKey_Name)
             // 删除小屋主人
-            .AddSectionTitle(I18n.Config_ResetCabin_Name)
-            .AddBoolOption(
-                config => config.ResetCabinPlayer,
-                (config, value) => config.ResetCabinPlayer = value,
-                I18n.Config_ResetCabin_Name,
-                I18n.Config_ResetCabin_Tooltip
-            )
-            .AddKeybindList(
-                config => config.ResetCabinPlayerKeybind,
-                (config, value) => config.ResetCabinPlayerKeybind = value,
-                I18n.Config_ResetCabinKeybind_Name
-            )
+            .AddBoolSection(config => config.ResetCabinPlayer, I18n.Config_ResetCabin_Name, I18n.Config_ResetCabin_Tooltip)
+            .AddKeybindListOption(config => config.ResetCabinPlayerKeybind, I18n.Config_ResetCabinKeybind_Name)
             // 小屋花费
             .AddSectionTitle(I18n.Config_CabinCost_Name)
-            .AddNumberOption(
-                config => config.CabinCost,
-                (config, value) => config.CabinCost = value,
-                I18n.Config_CabinCost_Name
-            )
+            .AddNumberOption(config => config.CabinCost, I18n.Config_CabinCost_Name)
             // 可穿过的邮箱
-            .AddSectionTitle(I18n.Config_PassableMailbox_Name)
-            .AddBoolOption(
-                config => config.PassableMailbox,
-                (config, value) => config.PassableMailbox = value,
-                I18n.Config_PassableMailbox_Name
-            )
+            .AddBoolSection(config => config.PassableMailbox, I18n.Config_PassableMailbox_Name)
             // 强制建造小屋
-            .AddSectionTitle(I18n.Config_ForceBuildCabin_Name)
-            .AddBoolOption(
-                config => config.ForceBuildCabin,
-                (config, value) => config.ForceBuildCabin = value,
-                I18n.Config_ForceBuildCabin_Name
-            );
+            .AddBoolSection(config => config.ForceBuildCabin, I18n.Config_ForceBuildCabin_Name);
+    }
+
+    /// <summary>把“在线时间”子配置渲染成一个分区：开关 + 横/纵偏移三个选项（两个在线时间标签共用同一形状）。</summary>
+    /// <param name="section">该子配置的分区构建器。</param>
+    /// <param name="name">开关标签（同时是分区标题文本）。</param>
+    /// <param name="tooltip">开关悬停提示。</param>
+    private static void ConfigureOnlineTimeSection(
+        ConfigMenuSection<ModConfig, OnlineTimeConfig> section,
+        Func<string> name,
+        Func<string> tooltip
+    )
+    {
+        section
+            .AddBoolOption(tag => tag.Enable, name, tooltip)
+            .AddNumberOption(tag => tag.XOffset, I18n.Config_XOffset_Name)
+            .AddNumberOption(tag => tag.YOffset, I18n.Config_YOffset_Name);
     }
 
     private void UpdateConfig()

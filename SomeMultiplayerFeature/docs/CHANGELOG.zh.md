@@ -5,4 +5,5 @@
 - 日志系统迁移至 PiCore（移除 Common 共享项目），控制台日志仍显示各模组名
 - 多人提示消息（Broadcaster）迁移至 PiCore，对端仍按发送方模组名显示
 - Harmony 补丁迁移至 PiCore `Patcher` API（单行 `Patch<T>` 绑定），游戏行为不变
-- 配置菜单注册迁移至 PiCore `AddGenericModConfigMenu` builder API（移除模组注册类），游戏行为不变
+- 配置菜单迁移至 PiCore `ConfigService`/描述器配置模块（静态 `ModConfig.Instance`，损坏配置自愈，声明式菜单沿用原硬编码中文文案——本模组无 i18n，热键打开菜单经模块菜单句柄保留），游戏行为不变
+- 移除被注释的花钱限制死代码（配置/菜单/补丁/重建逻辑各处），并移除孤立的“踢出未准备玩家”选项及其快捷键（对应处理逻辑已不存在）；该选项存储值重置，GMCM 菜单中对应分区随之消失

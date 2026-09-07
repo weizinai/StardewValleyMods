@@ -4,10 +4,10 @@ namespace weizinai.StardewValleyMod.BetterCabin.Framework.Config;
 
 internal class OnlineTimeConfig
 {
-    public bool Enable;
-    public int XOffset;
-    public int YOffset;
-    public Color TextColor;
+    public bool Enable { get; set; }
+    public int XOffset { get; set; }
+    public int YOffset { get; set; }
+    public Color TextColor { get; set; }
 
     public OnlineTimeConfig(bool enable, int xOffset, int yOffset, Color textColor)
     {

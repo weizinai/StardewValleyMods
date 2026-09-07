@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.PiCore.Extension;
+using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
@@ -12,11 +11,11 @@ using weizinai.StardewValleyMod.SomeMultiplayerFeature.Patcher;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature;
 
-public class ModEntry : Mod
+internal class ModEntry : Mod
 {
     public const string ModDataPrefix = "weizinai.SMF.";
 
-    private GenericModConfigMenuIntegration<ModConfig>? configMenu;
+    private ConfigService<ModConfig> configService = null!;
 
     private IHandler[] handlers = Array.Empty<IHandler>();
 
@@ -25,133 +24,52 @@ public class ModEntry : Mod
         // 初始化
         Logger<ModEntry>.Init(this);
         Broadcaster<ModEntry>.Init(this);
-        ModConfig.Init(helper);
-        this.UpdateConfig();
-        // 注册事件
-        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        // 注册GenericModConfigMenu
-        this.configMenu = this.AddGenericModConfigMenu(
+        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；热键打开菜单需要服务句柄，保存/重置后经回调重建处理器
+        this.configService = new ConfigService<ModConfig>(
+            this,
             () => ModConfig.Instance,
             value => ModConfig.Instance = value,
-            this.AddConfigMenu,
-            this.UpdateConfig,
             this.UpdateConfig
         );
-
+        this.configService.RegisterMenu(this.BuildConfigMenu);
+        // 注册事件
+        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
+        // 按初始配置构建处理器
+        this.UpdateConfig();
         // 注册Harmony补丁
         HarmonyPatcher.Apply(
             this,
             new FarmerPatcher(),
             new FarmHousePatcher(),
-            new Game1Patcher(),
-            new GameLocationPatcher()
-            // new ShopMenuPatcher()
+            new Game1Patcher()
         );
     }
 
-    private void AddConfigMenu(GenericModConfigMenuIntegration<ModConfig> configMenu)
+    /// <summary>用声明式描述器声明本模组的 GMCM 配置菜单，由配置模块渲染。本模组无 i18n，标签沿用原硬编码中文文案。</summary>
+    /// <param name="menu">配置菜单描述器。</param>
+    private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
     {
-        configMenu
-            .AddKeybindList(
-                config => config.OpenConfigMenuKey,
-                (config, value) => config.OpenConfigMenuKey = value,
-                () => "打开配置菜单快捷键"
-            )
-            // 花钱限制
-            // .AddSectionTitle(() => "花钱限制")
-            // .AddBoolOption(
-            //     config => config.SpendLimit,
-            //     (config, value) => config.SpendLimit = value,
-            //     () => "花钱限制"
-            // )
-            // .AddNumberOption(
-            //     config => config.DefaultSpendLimit,
-            //     (config, value) => config.DefaultSpendLimit = value,
-            //     () => "默认花钱额度"
-            // )
-            // .AddKeybindList(
-            //     config => config.SpendLimitManagerMenuKey,
-            //     (config, value) => config.SpendLimitManagerMenuKey = value,
-            //     () => "花钱限制管理快捷键"
-            // )
+        menu
+            .AddKeybindListOption(config => config.OpenConfigMenuKey, () => "打开配置菜单快捷键")
             // 自动设置Ip连接
-            .AddSectionTitle(() => "自动设置Ip连接")
-            .AddBoolOption(
-                config => config.AutoSetIpConnection,
-                (config, value) => config.AutoSetIpConnection = value,
-                () => "自动设置Ip连接"
-            )
-            .AddNumberOption(
-                config => config.EnableTime,
-                (config, value) => config.EnableTime = value,
-                () => "启用时间",
-                null,
-                6,
-                26
-            )
-            .AddNumberOption(
-                config => config.DisableTime,
-                (config, value) => config.DisableTime = value,
-                () => "禁用时间",
-                null,
-                6,
-                26
-            )
+            .AddBoolSection(config => config.AutoSetIpConnection, () => "自动设置Ip连接")
+            .AddNumberOption(config => config.EnableTime, () => "启用时间", null, 6, 26)
+            .AddNumberOption(config => config.DisableTime, () => "禁用时间", null, 6, 26)
             // 显示玩家数量
-            .AddSectionTitle(() => "显示玩家数量")
-            .AddBoolOption(
-                config => config.ShowPlayerCount,
-                (config, value) => config.ShowPlayerCount = value,
-                () => "显示玩家数量"
-            )
+            .AddBoolSection(config => config.ShowPlayerCount, () => "显示玩家数量")
             // 显示提示
-            .AddSectionTitle(() => "显示提示")
-            .AddBoolOption(
-                config => config.ShowTip,
-                (config, value) => config.ShowTip = value,
-                () => "显示提示"
-            )
-            .AddTextOption(
-                config => config.TipText,
-                (config, value) => config.TipText = value,
-                () => "提示内容"
-            )
-            // 踢出未准备玩家
-            .AddSectionTitle(() => "踢出未准备玩家")
-            .AddBoolOption(
-                config => config.KickUnreadyPlayer,
-                (config, value) => config.KickUnreadyPlayer = value,
-                () => "踢出未准备玩家"
-            )
-            .AddKeybindList(
-                config => config.KickUnreadyPlayerKey,
-                (config, value) => config.KickUnreadyPlayerKey = value,
-                () => "踢出未准备玩家快捷键"
-            )
+            .AddBoolSection(config => config.ShowTip, () => "显示提示")
+            .AddTextOption(config => config.TipText, () => "提示内容")
             // 版本限制
-            .AddSectionTitle(() => "版本限制")
-            .AddBoolOption(
-                config => config.VersionLimit,
-                (config, value) => config.VersionLimit = value,
-                () => "版本限制"
-            )
-            .AddNumberOption(
-                config => config.KickPlayerDelayTime,
-                (config, value) => config.KickPlayerDelayTime = value,
-                () => "踢出玩家延迟时间"
-            );
+            .AddBoolSection(config => config.VersionLimit, () => "版本限制")
+            .AddNumberOption(config => config.KickPlayerDelayTime, () => "踢出玩家延迟时间");
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
         if (ModConfig.Instance.OpenConfigMenuKey.JustPressed())
         {
-            this.configMenu?.OpenModMenu();
+            this.configService.OpenMenu();
         }
     }
 
@@ -170,7 +88,6 @@ public class ModEntry : Mod
             new IpConnectionHandler(this.Helper),
             new PerfectFishingHandler(this.Helper),
             new PlayerCountHandler(this.Helper),
-            // new SpendLimitHandler(this.Helper, this.config),
             new TipHandler(this.Helper),
             new VersionLimitHandler(this.Helper)
         };

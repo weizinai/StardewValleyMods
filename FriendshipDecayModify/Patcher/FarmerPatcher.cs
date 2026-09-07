@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -10,20 +9,6 @@ namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 internal class FarmerPatcher : BasePatcher
 {
-    private static FarmerPatcher instance = null!;
-    private readonly ModConfig config;
-
-    public FarmerPatcher(ModConfig config)
-    {
-        if (instance != null)
-        {
-            throw new InvalidOperationException($"{nameof(FarmerPatcher)} already initialized.");
-        }
-
-        this.config = config;
-        instance = this;
-    }
-
     public override void Apply(Harmony harmony)
     {
         this.Patch<Farmer>(harmony, nameof(Farmer.resetFriendshipsForNewDay), PatchKind.Transpiler, nameof(ResetFriendshipsForNewDayTranspiler));
@@ -50,16 +35,16 @@ internal class FarmerPatcher : BasePatcher
 
     private static int GetDailyGreetingModifyForVillager()
     {
-        return -instance.config.DailyGreetingModifyForVillager;
+        return -ModConfig.Instance.DailyGreetingModifyForVillager;
     }
 
     private static int GetDailyGreetingModifyForDatingVillager()
     {
-        return -instance.config.DailyGreetingModifyForDatingVillager;
+        return -ModConfig.Instance.DailyGreetingModifyForDatingVillager;
     }
 
     private static int GetDailyGreetingModifyForSpouse()
     {
-        return -instance.config.DailyGreetingModifyForSpouse;
+        return -ModConfig.Instance.DailyGreetingModifyForSpouse;
     }
 }

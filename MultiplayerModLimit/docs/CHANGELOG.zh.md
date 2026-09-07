@@ -4,4 +4,4 @@
 
 - 日志系统迁移至 PiCore（移除 Common 共享项目），控制台日志仍显示各模组名
 - 多人提示消息（Broadcaster）迁移至 PiCore，对端仍按发送方模组名显示
-- 配置菜单注册迁移至 PiCore `AddGenericModConfigMenu` builder API（移除模组注册类），游戏行为不变
+- 配置菜单迁移至 PiCore `ConfigService`/描述器配置模块（损坏配置自愈；以字典键为可选值的模组列表下拉与控制台命令驱动的菜单重载经模块逃生舱与生命周期服务），游戏行为不变

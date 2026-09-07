@@ -2,4 +2,4 @@
 
 # [Unreleased] 0.4.1
 
-- Migrated the config menu registration to the PiCore `AddGenericModConfigMenu` builder API (removed the per-mod registration class); no gameplay change
+- Migrated the config menu to the PiCore `ConfigService`/descriptor config module (static `ModConfig.Instance`); no gameplay change

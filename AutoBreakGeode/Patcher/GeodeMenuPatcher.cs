@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -15,20 +14,7 @@ namespace weizinai.StardewValleyMod.AutoBreakGeode.Patcher;
 
 internal class GeodeMenuPatcher : BasePatcher
 {
-    private static GeodeMenuPatcher instance = null!;
-    private readonly ModConfig config;
     private static RootElement? ui;
-
-    public GeodeMenuPatcher(ModConfig config)
-    {
-        if (instance != null)
-        {
-            throw new InvalidOperationException($"{nameof(GeodeMenuPatcher)} already initialized.");
-        }
-
-        this.config = config;
-        instance = this;
-    }
 
     public override void Apply(Harmony harmony)
     {
@@ -39,7 +25,7 @@ internal class GeodeMenuPatcher : BasePatcher
 
     private static void GeodeMenuPostfix(ClickableComponent ___geodeSpot)
     {
-        if (!instance.config.DrawBeginButton)
+        if (!ModConfig.Instance.DrawBeginButton)
         {
             return;
         }

@@ -2,6 +2,8 @@ namespace weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 
 internal class ModConfig
 {
+    public static ModConfig Instance { get; set; } = null!;
+
     // 每日对话修改
     public int DailyGreetingModifyForVillager { get; set; } = 2;
     public int DailyGreetingModifyForDatingVillager { get; set; } = 8;

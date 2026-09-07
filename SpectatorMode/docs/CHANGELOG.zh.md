@@ -3,4 +3,4 @@
 # [待定] 0.10.3
 
 - 日志系统迁移至 PiCore（移除 Common 共享项目），控制台日志仍显示各模组名
-- 配置菜单注册迁移至 PiCore `AddGenericModConfigMenu` builder API（移除模组注册类），游戏行为不变
+- 配置菜单迁移至 PiCore `ConfigService`/描述器配置模块（损坏配置自愈，经描述器以声明式菜单绑定公共自动属性配置成员），游戏行为不变

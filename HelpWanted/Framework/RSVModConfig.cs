@@ -3,12 +3,12 @@ namespace weizinai.StardewValleyMod.HelpWanted.Framework;
 public class RSVModConfig
 {
     // General Setting
-    public bool EnableRSVQuestBoard = true;
-    public bool QuestFirstDay;
-    public bool QuestFestival;
-    public float DailyQuestChance = 0.8f;
-    public int MaxQuests = 10;
-    public bool AllowSameQuest;
+    public bool EnableRSVQuestBoard { get; set; } = true;
+    public bool QuestFirstDay { get; set; }
+    public bool QuestFestival { get; set; }
+    public float DailyQuestChance { get; set; } = 0.8f;
+    public int MaxQuests { get; set; } = 10;
+    public bool AllowSameQuest { get; set; }
 
     // Item Delivery Quest
     public BaseQuestConfig ItemDeliveryQuestConfig { get; set; } = new(0.27f, 1f, 0);

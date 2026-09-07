@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -10,20 +9,7 @@ namespace weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 
 internal class FarmAnimalPatcher : BasePatcher
 {
-    private static FarmAnimalPatcher instance = null!;
-    private readonly ModConfig config;
     private static int friendshipTowardFarmer;
-
-    public FarmAnimalPatcher(ModConfig config)
-    {
-        if (instance != null)
-        {
-            throw new InvalidOperationException($"{nameof(FarmAnimalPatcher)} already initialized.");
-        }
-
-        this.config = config;
-        instance = this;
-    }
 
     public override void Apply(Harmony harmony)
     {
@@ -62,26 +48,26 @@ internal class FarmAnimalPatcher : BasePatcher
     // 抚摸动物友谊修改
     private static int GetPetAnimalModifyForFriendship()
     {
-        var petAnimalDecay = instance.config.PetAnimalModifyForFriendship - friendshipTowardFarmer / 200;
+        var petAnimalDecay = ModConfig.Instance.PetAnimalModifyForFriendship - friendshipTowardFarmer / 200;
 
-        return petAnimalDecay < 0 ? petAnimalDecay : instance.config.PetAnimalModifyForFriendship;
+        return petAnimalDecay < 0 ? petAnimalDecay : ModConfig.Instance.PetAnimalModifyForFriendship;
     }
 
     // 抚摸动物心情修改
     private static int GetPetAnimalModifyForHappiness()
     {
-        return instance.config.PetAnimalModifyForHappiness;
+        return ModConfig.Instance.PetAnimalModifyForHappiness;
     }
 
     // 喂食动物友谊修改
     private static int GetFeedAnimalModifyForFriendship()
     {
-        return instance.config.FeedAnimalModifyForFriendship;
+        return ModConfig.Instance.FeedAnimalModifyForFriendship;
     }
 
     // 喂食动物心情修改
     private static int GetFeedAnimalModifyForHappiness()
     {
-        return instance.config.FeedAnimalModifyForHappiness;
+        return ModConfig.Instance.FeedAnimalModifyForHappiness;
     }
 }

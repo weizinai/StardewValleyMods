@@ -5,54 +5,30 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.FastControlInput.Framework;
 using weizinai.StardewValleyMod.FastControlInput.Handler;
-using weizinai.StardewValleyMod.PiCore.Extension;
-using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.FastControlInput;
 
 internal class ModEntry : Mod
 {
-    private ModConfig config = null!;
     private IInputHandler[] handlers = Array.Empty<IInputHandler>();
 
     public override void Entry(IModHelper helper)
     {
         // 初始化
         I18n.Init(helper.Translation);
-        this.config = helper.ReadConfig<ModConfig>();
-        this.UpdateConfig();
-        // 注册事件
-        helper.Events.GameLoop.GameLaunched += this.OnGameLaunched;
-        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
-    }
-
-    private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
-    {
-        this.AddGenericModConfigMenu(
-            () => this.config,
-            value => this.config = value,
-            configMenu => configMenu
-                .AddNumberOption(
-                    config => config.ActionButton,
-                    (config, value) => config.ActionButton = value,
-                    I18n.Config_ActionButton_Name,
-                    I18n.Config_ActionButton_Tooltip,
-                    1f,
-                    10f,
-                    0.25f
-                )
-                .AddNumberOption(
-                    config => config.UseToolButton,
-                    (config, value) => config.UseToolButton = value,
-                    I18n.Config_UseToolButton_Name,
-                    I18n.Config_UseToolButton_Tooltip,
-                    1f,
-                    10f,
-                    0.25f
-                ),
-            this.UpdateConfig,
+        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；保存或重置后重建输入处理器
+        var configService = new ConfigService<ModConfig>(
+            this,
+            () => ModConfig.Instance,
+            value => ModConfig.Instance = value,
             this.UpdateConfig
         );
+        configService.RegisterMenu(this.BuildConfigMenu);
+        // 按初始配置构建输入处理器
+        this.UpdateConfig();
+        // 注册事件
+        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
     }
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
@@ -66,6 +42,29 @@ internal class ModEntry : Mod
         }
     }
 
+    /// <summary>用声明式描述器声明本模组的 GMCM 配置菜单，由配置模块渲染。</summary>
+    /// <param name="menu">配置菜单描述器。</param>
+    private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
+    {
+        menu
+            .AddNumberOption(
+                config => config.ActionButton,
+                I18n.Config_ActionButton_Name,
+                I18n.Config_ActionButton_Tooltip,
+                1f,
+                10f,
+                0.25f
+            )
+            .AddNumberOption(
+                config => config.UseToolButton,
+                I18n.Config_UseToolButton_Name,
+                I18n.Config_UseToolButton_Tooltip,
+                1f,
+                10f,
+                0.25f
+            );
+    }
+
     private void UpdateConfig()
     {
         this.handlers = this.GetHandlers().ToArray();
@@ -73,14 +72,14 @@ internal class ModEntry : Mod
 
     private IEnumerable<IInputHandler> GetHandlers()
     {
-        if (this.config.ActionButton > 1)
+        if (ModConfig.Instance.ActionButton > 1)
         {
-            yield return new ActionButtonHandler(this.config.ActionButton);
+            yield return new ActionButtonHandler(ModConfig.Instance.ActionButton);
         }
 
-        if (this.config.UseToolButton > 1)
+        if (ModConfig.Instance.UseToolButton > 1)
         {
-            yield return new UseToolButtonHandler(this.config.UseToolButton);
+            yield return new UseToolButtonHandler(ModConfig.Instance.UseToolButton);
         }
     }
 }

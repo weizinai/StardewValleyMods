@@ -10,10 +10,7 @@ internal class CabinCostHandler : BaseHandler
 {
     public CabinCostHandler(IModHelper helper) : base(helper)
     {
-        if (Context.IsWorldReady)
-        {
-            this.SetCabinCost();
-        }
+        if (Context.IsWorldReady) this.SetCabinCost();
     }
 
     public override void Apply()
@@ -33,10 +30,7 @@ internal class CabinCostHandler : BaseHandler
 
     private void SetCabinCost()
     {
-        if (!Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.IsMainPlayer) return;
 
         Game1.buildingData["Cabin"].BuildCost = ModConfig.Instance.CabinCost;
     }

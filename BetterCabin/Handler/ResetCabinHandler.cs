@@ -27,10 +27,7 @@ internal class ResetCabinHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (Game1.IsClient || !Context.IsPlayerFree)
-        {
-            return;
-        }
+        if (Game1.IsClient || !Context.IsPlayerFree) return;
 
         if (ModConfig.Instance.ResetCabinPlayerKeybind.JustPressed())
         {
@@ -46,13 +43,9 @@ internal class ResetCabinHandler : BaseHandler
                 }
 
                 if (!cabin.owner.isUnclaimedFarmhand)
-                {
                     this.ResetCabin(cabin);
-                }
                 else
-                {
                     HudLogger.NoIconHUDMessage(I18n.UI_ResetCabin_NoOwner());
-                }
             }
             else
             {
@@ -65,15 +58,9 @@ internal class ResetCabinHandler : BaseHandler
                     var id = long.Parse(value);
                     var farmer = Game1.GetPlayer(id);
 
-                    if (farmer is null)
-                    {
-                        return;
-                    }
+                    if (farmer is null) return;
 
-                    if (farmer.IsOnline())
-                    {
-                        Game1.server.kick(id);
-                    }
+                    if (farmer.IsOnline()) Game1.server.kick(id);
 
                     this.ResetCabin((Utility.getHomeOfFarmer(farmer) as Cabin)!);
                 });

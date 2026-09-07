@@ -16,10 +16,7 @@ internal class FairyDustHandler : BaseAutomationHandler
             {
                 location.objects.TryGetValue(tile, out var obj);
 
-                if (obj.TryApplyFairyDust())
-                {
-                    player.reduceActiveItemByOne();
-                }
+                if (obj.TryApplyFairyDust()) player.reduceActiveItemByOne();
 
                 return true;
             });

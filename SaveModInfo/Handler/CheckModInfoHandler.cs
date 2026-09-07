@@ -45,24 +45,14 @@ internal class CheckModInfoHandler : BaseHandler
                 var message = new StringBuilder();
 
                 foreach (var (id, name) in lastModInfo)
-                {
-                    if (!currentModInfo.Contains(id))
-                    {
-                        message.AppendLine(I18n.UI_CheckModInfo_RemovedMod(name));
-                    }
-                }
+                    if (!currentModInfo.Contains(id)) message.AppendLine(I18n.UI_CheckModInfo_RemovedMod(name));
 
-                if (message.Length > 0)
-                {
-                    message.Length--;
-                }
+                if (message.Length > 0) message.Length--;
 
                 CheckResult.Add(saveName, message.ToString());
             }
         }
         else
-        {
             Logger<ModEntry>.Error("The saves directory does not exist.");
-        }
     }
 }

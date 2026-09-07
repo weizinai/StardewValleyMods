@@ -31,9 +31,7 @@ internal class VisitCabinInfoHandler : BaseHandler
             var messageContent = new StringBuilder();
 
             if (owner.isUnclaimedFarmhand)
-            {
                 messageContent.Append(I18n.UI_VisitCabin_NoOwner());
-            }
             else
             {
                 var isOnline = owner.IsOnline();

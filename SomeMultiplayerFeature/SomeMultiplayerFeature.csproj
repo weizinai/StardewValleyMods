@@ -2,9 +2,6 @@
 
     <PropertyGroup>
         <Version>0.20.1</Version>
-    </PropertyGroup>
-
-    <PropertyGroup>
         <EnableHarmony>true</EnableHarmony>
         <BundleExtraAssemblies>ThirdParty</BundleExtraAssemblies>
     </PropertyGroup>

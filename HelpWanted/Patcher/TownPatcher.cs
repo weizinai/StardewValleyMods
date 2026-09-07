@@ -23,10 +23,7 @@ internal class TownPatcher : BasePatcher
     // 代码来源：Town.draw(SpriteBatch spriteBatch)
     private static void DrawPostfix(SpriteBatch spriteBatch)
     {
-        if (!VanillaQuestManager.Instance.QuestList.Any() && !BaseQuestBoard.AllQuestNotes[BoardType.Vanilla].Any())
-        {
-            return;
-        }
+        if (!VanillaQuestManager.Instance.QuestList.Any() && !BaseQuestBoard.AllQuestNotes[BoardType.Vanilla].Any()) return;
 
         var yOffset = 4f * (float)Math.Round(Math.Sin(Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 250.0), 2);
         spriteBatch.Draw(

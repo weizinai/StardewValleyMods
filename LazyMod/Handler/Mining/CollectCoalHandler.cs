@@ -19,9 +19,7 @@ internal class CollectCoalHandler : BaseAutomationHandler
         this.ForEachTile(this.config.AutoCollectCoal.Range, tile =>
         {
             if (location.getTileIndexAt((int)tile.X, (int)tile.Y, "Buildings") == 194)
-            {
-                this.CheckTileAction(location, player, tile);
-            }
+            this.CheckTileAction(location, player, tile);
 
             return true;
         });

@@ -32,12 +32,12 @@ csharp_prefer_simple_using_statement = true:suggestion
 # 命名空间与目录结构一致（建议）
 # dotnet_style_namespace_match_folder = true:suggestion
 
-# Allman；单语句也加花括号
+# Allman；单语句可加花括号也可不加（加了则 Allman 换行）
 csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
-csharp_prefer_braces = true:warning
+csharp_prefer_braces = true:none
 
 # 空白：控制流关键字后一空格；方法名紧贴括号；括号内侧无空格
 csharp_space_after_keywords_in_control_flow_statements = true
@@ -57,7 +57,7 @@ csharp_indent_braces = false
 csharp_indent_case_contents = true
 csharp_indent_case_contents_when_block = true
 csharp_indent_switch_labels = true
-csharp_preserve_single_line_statements = false
+csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
 
 # 方法一律块体；单行只读属性可用表达式体

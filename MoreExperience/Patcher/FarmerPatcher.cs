@@ -23,10 +23,7 @@ internal class FarmerPatcher : BasePatcher
     private static void GainExperiencePrefix(int which, ref int howMuch)
     {
         // 钓鱼经验×1.5
-        if (which == Farmer.fishingSkill)
-        {
-            howMuch = (int)(howMuch * 1.5);
-        }
+        if (which == Farmer.fishingSkill) howMuch = (int)(howMuch * 1.5);
     }
 
     // 添加晕倒扣除100点五种经验
@@ -42,10 +39,7 @@ internal class FarmerPatcher : BasePatcher
 
     private static GameLocation SleepLocationHandler(GameLocation location)
     {
-        if (location is FarmHouse or IslandFarmHouse or Cellar)
-        {
-            return location;
-        }
+        if (location is FarmHouse or IslandFarmHouse or Cellar) return location;
 
         var player = Game1.player;
 

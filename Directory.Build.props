@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
     <PropertyGroup>
         <Authors>weizinai</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -7,12 +7,11 @@
 
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <RootNamespace>weizinai.StardewValleyMod.$(MSBuildProjectName)</RootNamespace>
-    </PropertyGroup>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-    <PropertyGroup>
-        <ModZipPath>$(SolutionDir)\_releases</ModZipPath>
+        <GameModsPath>$(GamePath)/Mods/weizinai</GameModsPath>
+        <ModZipPath>$(MSBuildThisFileDirectory).releases</ModZipPath>
     </PropertyGroup>
 
     <ItemGroup>

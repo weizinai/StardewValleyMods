@@ -2,10 +2,6 @@
 
     <PropertyGroup>
         <Version>0.2.1</Version>
-        <RootNamespace>weizinai.StardewValleyMod.MoreExperience</RootNamespace>
-    </PropertyGroup>
-
-    <PropertyGroup>
         <EnableHarmony>true</EnableHarmony>
     </PropertyGroup>
 

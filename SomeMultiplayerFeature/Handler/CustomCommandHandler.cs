@@ -54,10 +54,7 @@ internal class CustomCommandHandler : BaseHandler
     private void OnPeerConnected(object? sender, PeerConnectedEventArgs e)
     {
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
-        if (!Context.IsMultiplayer || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var id = e.Peer.PlayerID;
         var player = Game1.GetPlayer(id);
@@ -79,10 +76,7 @@ internal class CustomCommandHandler : BaseHandler
     private void BanPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         var target = Game1.getAllFarmhands().Where(x => x.Name == args[0]).ToArray();
 
@@ -99,9 +93,7 @@ internal class CustomCommandHandler : BaseHandler
             var name = farmer.Name;
 
             if (this.bannedPlayers!.ContainsKey(id))
-            {
                 Logger<ModEntry>.Info($"{name}已经在黑名单中。");
-            }
             else
             {
                 this.bannedPlayers.Add(id, name);
@@ -116,17 +108,11 @@ internal class CustomCommandHandler : BaseHandler
     private void UnbanPlayer(string command, string[] args)
     {
         // 如果当前不是联机模式或者当前玩家不是主机端，则返回
-        if (!Context.IsMultiplayer || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var target = this.bannedPlayers!.Where(x => x.Value == args[0]).ToList();
 
-        if (!target.Any())
-        {
-            Logger<ModEntry>.Info($"{args[0]}不在黑名单中。");
-        }
+        if (!target.Any()) Logger<ModEntry>.Info($"{args[0]}不在黑名单中。");
 
         foreach (var (id, name) in target)
         {
@@ -140,10 +126,7 @@ internal class CustomCommandHandler : BaseHandler
     private void PingPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         var farmersData = new ConsoleTable("名字", "IP", "延迟");
 
@@ -165,10 +148,7 @@ internal class CustomCommandHandler : BaseHandler
     private void ListPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.IsMultiplayer || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.IsMultiplayer || !Context.IsMainPlayer) return;
 
         var farmersData = new ConsoleTable("名字", "状态", "地点", "IP", "总在线时间", "上次在线时间");
 
@@ -195,17 +175,12 @@ internal class CustomCommandHandler : BaseHandler
     private void KickPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         var target = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
 
         if (target is null)
-        {
             Logger<ModEntry>.Info($"{args[0]}不存在。");
-        }
         else
         {
             Game1.server.kick(target.UniqueMultiplayerID);
@@ -217,10 +192,7 @@ internal class CustomCommandHandler : BaseHandler
     private void KickAllPlayer(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         foreach (var (id, farmer) in Game1.otherFarmers)
         {
@@ -232,27 +204,19 @@ internal class CustomCommandHandler : BaseHandler
     private void AccessInventory(string command, string[] args)
     {
         // 如果当前没有玩家在线或者当前玩家不是主机端，则返回
-        if (!Context.HasRemotePlayers || !Context.IsMainPlayer)
-        {
-            return;
-        }
+        if (!Context.HasRemotePlayers || !Context.IsMainPlayer) return;
 
         var farmer = Game1.getOnlineFarmers().FirstOrDefault(x => x.Name == args[0]);
 
         if (farmer is null)
-        {
             Logger<ModEntry>.Info($"{args[0]}不存在，无法访问该玩家的背包。");
-        }
         else
         {
             var inventoryData = new ConsoleTable("物品", "数量");
 
             foreach (var item in farmer.Items.OrderByDescending(item => item?.Stack))
             {
-                if (item is null)
-                {
-                    continue;
-                }
+                if (item is null) continue;
 
                 inventoryData.AddRow(
                     item.DisplayName,
@@ -266,10 +230,7 @@ internal class CustomCommandHandler : BaseHandler
 
     private void SetServerMode(string command, string[] args)
     {
-        if (Game1.IsClient)
-        {
-            return;
-        }
+        if (Game1.IsClient) return;
 
         if (args.Length < 1)
         {

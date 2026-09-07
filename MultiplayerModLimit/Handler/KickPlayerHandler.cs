@@ -99,7 +99,7 @@ internal class KickPlayerHandler : BaseHandler
     }
 
     /// <summary>
-    ///     踢出未安装SMAPI的客机玩家
+    /// 踢出未安装SMAPI的客机玩家
     /// </summary>
     private void KickPlayerWithoutSMAPI(string playerName, long playerId)
     {
@@ -113,7 +113,7 @@ internal class KickPlayerHandler : BaseHandler
     }
 
     /// <summary>
-    ///     获取客机玩家不满足要求的模组
+    /// 获取客机玩家不满足要求的模组
     /// </summary>
     private Dictionary<string, List<string>> GetUnAllowedMods(IMultiplayerPeer peer)
     {
@@ -162,7 +162,7 @@ internal class KickPlayerHandler : BaseHandler
     }
 
     /// <summary>
-    ///     在主机玩家的SMAPI控制台显示客机玩家不匹配的模组信息
+    /// 在主机玩家的SMAPI控制台显示客机玩家不匹配的模组信息
     /// </summary>
     private void ShowMismatchedModInfo(Dictionary<string, List<string>> unAllowedMods, string name)
     {
@@ -187,7 +187,7 @@ internal class KickPlayerHandler : BaseHandler
     }
 
     /// <summary>
-    ///     向不满足模组要求的客机玩家的SMAPI控制台发送不满足的模组的信息
+    /// 向不满足模组要求的客机玩家的SMAPI控制台发送不满足的模组的信息
     /// </summary>
     private void SendModRequirementInfo(Dictionary<string, List<string>> unAllowedMods, long playerId)
     {

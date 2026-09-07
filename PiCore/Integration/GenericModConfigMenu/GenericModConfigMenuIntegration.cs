@@ -309,8 +309,8 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <param name="pageId">The unique page ID.</param>
     /// <param name="pageTitle">The page title shown in its UI, or <c>null</c> to show the <paramref name="pageId" /> value.</param>
     /// <remarks>
-    ///     You must also call <see cref="AddPageLink" /> to make the page accessible. This is only needed to set up a multi-page config UI. If you don't call
-    ///     this method, all options will be part of the mod's main config UI instead.
+    /// You must also call <see cref="AddPageLink" /> to make the page accessible. This is only needed to set up a multi-page config UI. If you don't call
+    /// this method, all options will be part of the mod's main config UI instead.
     /// </remarks>
     public GenericModConfigMenuIntegration<TConfig> AddPage(string pageId, Func<string>? pageTitle = null)
     {
@@ -343,10 +343,22 @@ public class GenericModConfigMenuIntegration<TConfig> : BaseIntegration<IGeneric
     /// <param name="draw">Draw the option in the config UI. This is called with the sprite batch being rendered and the pixel position at which to start drawing.</param>
     /// <param name="tooltip">The tooltip text shown when the cursor hovers on the field, or <c>null</c> to disable the tooltip.</param>
     /// <param name="beforeMenuOpened">A callback raised just before the menu containing this option is opened.</param>
-    /// <param name="beforeSave">A callback raised before the form's current values are saved to the config (i.e. before the <c>save</c> callback passed to <see cref="Register" />).</param>
-    /// <param name="afterSave">A callback raised after the form's current values are saved to the config (i.e. after the <c>save</c> callback passed to <see cref="Register" />).</param>
-    /// <param name="beforeReset">A callback raised before the form is reset to its default values (i.e. before the <c>reset</c> callback passed to <see cref="Register" />).</param>
-    /// <param name="afterReset">A callback raised after the form is reset to its default values (i.e. after the <c>reset</c> callback passed to <see cref="Register" />).</param>
+    /// <param name="beforeSave">
+    /// A callback raised before the form's current values are saved to the config (i.e. before the <c>save</c> callback passed to
+    /// <see cref="Register" />).
+    /// </param>
+    /// <param name="afterSave">
+    /// A callback raised after the form's current values are saved to the config (i.e. after the <c>save</c> callback passed to
+    /// <see cref="Register" />).
+    /// </param>
+    /// <param name="beforeReset">
+    /// A callback raised before the form is reset to its default values (i.e. before the <c>reset</c> callback passed to
+    /// <see cref="Register" />).
+    /// </param>
+    /// <param name="afterReset">
+    /// A callback raised after the form is reset to its default values (i.e. after the <c>reset</c> callback passed to
+    /// <see cref="Register" />).
+    /// </param>
     /// <param name="beforeMenuClosed">A callback raised just before the menu containing this option is closed.</param>
     /// <param name="height">The pixel height to allocate for the option in the form, or <c>null</c> for a standard input-sized option.</param>
     /// <param name="enable">Whether the option is enabled.</param>

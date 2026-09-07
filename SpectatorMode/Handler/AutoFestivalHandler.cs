@@ -27,15 +27,9 @@ internal class AutoFestivalHandler : BaseHandler
     {
         if (ModConfig.Instance.AutoParticipateFestival && Game1.whereIsTodaysFest is not null)
         {
-            if (Game1.activeClickableMenu is SpectatorMenu menu)
-            {
-                menu.exitThisMenu();
-            }
+            if (Game1.activeClickableMenu is SpectatorMenu menu) menu.exitThisMenu();
 
-            if (Game1.isWarping)
-            {
-                return;
-            }
+            if (Game1.isWarping) return;
 
             if (!this.warpingFestival && Game1.timeOfDay >= Utility.getStartTimeOfFestival())
             {

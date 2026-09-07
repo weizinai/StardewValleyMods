@@ -24,17 +24,12 @@ internal class CabinMenuHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree)
-        {
-            return;
-        }
+        if (!Context.IsPlayerFree) return;
 
         if (ModConfig.Instance.CabinMenuKeybind.JustPressed())
         {
             if (Context.IsMainPlayer)
-            {
                 Game1.activeClickableMenu = new ServerCabinMenu();
-            }
             else
             {
                 Utility.ForEachBuilding(building =>

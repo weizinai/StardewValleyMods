@@ -14,10 +14,7 @@ internal class RefillWateringCanHandler : BaseAutomationHandler
     {
         var wateringCan = ToolHelper.GetTool<WateringCan>(this.config.AutoRefillWateringCan.FindToolFromInventory);
 
-        if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax)
-        {
-            return;
-        }
+        if (wateringCan is null || wateringCan.WaterLeft == wateringCan.waterCanMax) return;
 
         this.ForEachTile(this.config.AutoRefillWateringCan.Range, tile =>
         {

@@ -48,12 +48,7 @@ public static class HarmonyPatcher
         }
 
         if (failed.Count > 0)
-        {
             monitor?.Log($"Applied {applied.Count} of {patchers.Length} patcher(s), {failed.Count} failed: [{string.Join(", ", failed)}].", LogLevel.Error);
-        }
-        else if (applied.Count > 0)
-        {
-            monitor?.Log($"Applied {applied.Count} patcher(s): [{string.Join(", ", applied)}].");
-        }
+        else if (applied.Count > 0) monitor?.Log($"Applied {applied.Count} patcher(s): [{string.Join(", ", applied)}].");
     }
 }

@@ -74,9 +74,6 @@ internal class ModEntry : Mod
             new SpectatePlayerHandler(this.Helper)
         };
 
-        foreach (var handler in handlers)
-        {
-            handler.Apply();
-        }
+        foreach (var handler in handlers) handler.Apply();
     }
 }

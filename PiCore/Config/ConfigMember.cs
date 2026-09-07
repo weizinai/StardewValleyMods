@@ -41,16 +41,10 @@ internal static class ConfigMember
         Expression<Func<TConfig, TValue>> member
     )
     {
-        if (member.Body is not MemberExpression)
-        {
-            throw new ArgumentException("配置选项成员必须是一段可赋值的公共属性链，复杂读写请使用 AddCustomSection 逃生舱。", nameof(member));
-        }
+        if (member.Body is not MemberExpression) throw new ArgumentException("配置选项成员必须是一段可赋值的公共属性链，复杂读写请使用 AddCustomSection 逃生舱。", nameof(member));
 
         // 配置类成员形态约定为公共自动属性：成员链中任一环节是公共字段即拒绝，避免绑定层与重置层行为不一致
-        if (ContainsPublicField(member.Body))
-        {
-            throw new ArgumentException("配置成员必须是公共自动属性，不支持公共字段（配置模块成员契约仅限可写公共属性）。", nameof(member));
-        }
+        if (ContainsPublicField(member.Body)) throw new ArgumentException("配置成员必须是公共自动属性，不支持公共字段（配置模块成员契约仅限可写公共属性）。", nameof(member));
 
         var get = member.Compile();
         var valueParameter = Expression.Parameter(typeof(TValue), "value");
@@ -67,8 +61,8 @@ internal static class ConfigMember
         switch (body)
         {
             case MemberExpression memberExpression:
-                return ((memberExpression.Member is FieldInfo field) && field.IsPublic)
-                    || (memberExpression.Expression is not null && ContainsPublicField(memberExpression.Expression));
+                return memberExpression.Member is FieldInfo field && field.IsPublic
+                       || memberExpression.Expression is not null && ContainsPublicField(memberExpression.Expression);
             default:
                 return false;
         }

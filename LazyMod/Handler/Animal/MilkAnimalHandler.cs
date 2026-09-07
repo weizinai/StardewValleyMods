@@ -15,29 +15,17 @@ internal class MilkAnimalHandler : BaseAutomationHandler
     {
         var milkPail = ToolHelper.GetTool<MilkPail>(this.config.AutoMilkAnimal.FindToolFromInventory);
 
-        if (milkPail is null)
-        {
-            return;
-        }
+        if (milkPail is null) return;
 
         var animals = location.animals.Values;
 
-        if (!animals.Any())
-        {
-            return;
-        }
+        if (!animals.Any()) return;
 
         this.ForEachTile(this.config.AutoMilkAnimal.Range, tile =>
         {
-            if (player.freeSpotsInInventory() == 0)
-            {
-                return false;
-            }
+            if (player.freeSpotsInInventory() == 0) return false;
 
-            if (player.Stamina <= this.config.AutoMilkAnimal.StopStamina)
-            {
-                return false;
-            }
+            if (player.Stamina <= this.config.AutoMilkAnimal.StopStamina) return false;
 
             var animal = this.GetBestHarvestableFarmAnimal(milkPail, tile, animals);
 

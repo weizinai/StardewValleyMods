@@ -24,10 +24,7 @@ internal class SpectatePlayerHandler : BaseHandler
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree)
-        {
-            return;
-        }
+        if (!Context.IsPlayerFree) return;
 
         if (ModConfig.Instance.SpectatePlayerKey.JustPressed())
         {
@@ -48,15 +45,9 @@ internal class SpectatePlayerHandler : BaseHandler
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (Game1.getOnlineFarmers().Count == 1)
-        {
-            return;
-        }
+        if (Game1.getOnlineFarmers().Count == 1) return;
 
-        if (!this.autoSpectatePlayer && ModConfig.Instance.AutoSpectatePlayer && Game1.timeOfDay == ModConfig.Instance.AutoSpectatePlayerTime)
-        {
-            this.EnableAutoSpectatePlayer();
-        }
+        if (!this.autoSpectatePlayer && ModConfig.Instance.AutoSpectatePlayer && Game1.timeOfDay == ModConfig.Instance.AutoSpectatePlayerTime) this.EnableAutoSpectatePlayer();
 
         if (this.autoSpectatePlayer && Game1.activeClickableMenu is not SpectatorMenu)
         {

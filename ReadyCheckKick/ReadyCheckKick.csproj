@@ -2,9 +2,6 @@
 
     <PropertyGroup>
         <Version>0.6.3</Version>
-    </PropertyGroup>
-
-    <PropertyGroup>
         <EnableHarmony>true</EnableHarmony>
     </PropertyGroup>
 

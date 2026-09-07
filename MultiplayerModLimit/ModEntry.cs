@@ -128,7 +128,7 @@ internal class ModEntry : Mod
     }
 
     /// <summary>
-    ///     获取主机玩家安装的所有模组
+    /// 获取主机玩家安装的所有模组
     /// </summary>
     private List<string> GetAllMods()
     {

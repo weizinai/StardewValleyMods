@@ -19,10 +19,7 @@ internal class SaveGameMenuPatcher : BasePatcher
 
     public SaveGameMenuPatcher(IReflectionHelper helper)
     {
-        if (instance != null)
-        {
-            throw new InvalidOperationException($"{nameof(SaveGameMenuPatcher)} already initialized.");
-        }
+        if (instance != null) throw new InvalidOperationException($"{nameof(SaveGameMenuPatcher)} already initialized.");
 
         this.helper = helper;
         instance = this;
@@ -35,10 +32,7 @@ internal class SaveGameMenuPatcher : BasePatcher
 
     private static void DrawPostfix(SpriteBatch b)
     {
-        if (!ModConfig.Instance.ShowInfoInSaveGameMenu)
-        {
-            return;
-        }
+        if (!ModConfig.Instance.ShowInfoInSaveGameMenu) return;
 
         var endOfNightStatus = Game1.player.team.endOfNightStatus;
         var formattedStatusList = instance.helper.GetField<Dictionary<long, string>>(endOfNightStatus, "_formattedStatusList").GetValue();
@@ -47,17 +41,9 @@ internal class SaveGameMenuPatcher : BasePatcher
         var unreadyFarmers = new List<string>();
 
         foreach (var farmer in Game1.getOnlineFarmers())
-        {
-            if (formattedStatusList.TryGetValue(farmer.UniqueMultiplayerID, out var status) && status != "ready")
-            {
-                unreadyFarmers.Add(farmer.Name);
-            }
-        }
+            if (formattedStatusList.TryGetValue(farmer.UniqueMultiplayerID, out var status) && status != "ready") unreadyFarmers.Add(farmer.Name);
 
-        if (!unreadyFarmers.Any())
-        {
-            return;
-        }
+        if (!unreadyFarmers.Any()) return;
 
         // 文字绘制逻辑
         var text = string.Join("\n", unreadyFarmers);

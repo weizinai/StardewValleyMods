@@ -57,8 +57,8 @@ public class ModEntry : Mod
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (this.testKey1.JustPressed()) { }
+        if (this.testKey1.JustPressed()) return;
 
-        if (this.testKey2.JustPressed()) { }
+        if (this.testKey2.JustPressed()) return;
     }
 }

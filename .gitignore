@@ -6,7 +6,7 @@ bin/
 obj/
 
 # Release output
-/_releases/
+/.releases/
 
 # Local agent / issue-tracker state
 /.scratch/

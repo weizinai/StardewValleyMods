@@ -14,15 +14,9 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 
     public void InitVanillaQuestList()
     {
-        if (!this.CheckDayAvailable())
-        {
-            return;
-        }
+        if (!this.CheckDayAvailable()) return;
 
-        if (ModConfig.Instance.ShowQuestGenerationTooltip)
-        {
-            HudLogger.NoIconHUDMessage(I18n.UI_GenerateVanillaQuest_Tooltip());
-        }
+        if (ModConfig.Instance.ShowQuestGenerationTooltip) HudLogger.NoIconHUDMessage(I18n.UI_GenerateVanillaQuest_Tooltip());
 
         var maxQuests = this.vanillaConfig.MaxQuests;
         var quest = this.GenerateVanillaQuest();
@@ -57,10 +51,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
                 Logger<ModEntry>.Debug($"Vanilla quest #{this.QuestList.Count} generated: {this.GetQuestType(quest)} - {npc.Name}");
             }
 
-            if (i < maxQuests)
-            {
-                quest = this.GenerateVanillaQuest();
-            }
+            if (i < maxQuests) quest = this.GenerateVanillaQuest();
         }
     }
 
@@ -70,30 +61,21 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 
         if (Game1.stats.DaysPlayed <= 1 && !this.vanillaConfig.QuestFirstDay)
         {
-            if (showTooltip)
-            {
-                HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
-            }
+            if (showTooltip) HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
 
             return false;
         }
 
         if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.vanillaConfig.QuestFestival)
         {
-            if (showTooltip)
-            {
-                HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
-            }
+            if (showTooltip) HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
 
             return false;
         }
 
         if (ModEntry.Random.NextDouble() >= this.vanillaConfig.DailyQuestChance)
         {
-            if (showTooltip)
-            {
-                HudLogger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
-            }
+            if (showTooltip) HudLogger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
 
             return false;
         }
@@ -116,20 +98,11 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         {
             var reasons = new List<string>();
 
-            if (oneQuestPerVillager)
-            {
-                reasons.Add("Existing");
-            }
+            if (oneQuestPerVillager) reasons.Add("Existing");
 
-            if (excludeMaxHeartsNPC)
-            {
-                reasons.Add("Maximum Hearts");
-            }
+            if (excludeMaxHeartsNPC) reasons.Add("Maximum Hearts");
 
-            if (excludeNPCList)
-            {
-                reasons.Add("Excluded");
-            }
+            if (excludeNPCList) reasons.Add("Excluded");
 
             Logger<ModEntry>.Trace($"{npcName} cannot be assigned as a quest target due to: {string.Join(";", reasons)}");
         }

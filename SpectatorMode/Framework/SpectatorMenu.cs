@@ -123,15 +123,9 @@ internal class SpectatorMenu : IClickableMenu
             );
         }
 
-        if (this.config.ShowTimeAndMoney)
-        {
-            Game1.dayTimeMoneyBox.draw(b);
-        }
+        if (this.config.ShowTimeAndMoney) Game1.dayTimeMoneyBox.draw(b);
 
-        if (this.config.ShowToolbar)
-        {
-            this.DrawToolBar(b);
-        }
+        if (this.config.ShowToolbar) this.DrawToolBar(b);
 
         this.drawMouse(b);
     }
@@ -140,15 +134,9 @@ internal class SpectatorMenu : IClickableMenu
     {
         base.receiveKeyPress(key);
 
-        if (this.config.ToggleStateKey.JustPressed())
-        {
-            this.followPlayer = !this.followPlayer;
-        }
+        if (this.config.ToggleStateKey.JustPressed()) this.followPlayer = !this.followPlayer;
 
-        if (this.config.RandomSpectateKey.JustPressed())
-        {
-            this.RandomSpectate = !this.RandomSpectate;
-        }
+        if (this.config.RandomSpectateKey.JustPressed()) this.RandomSpectate = !this.RandomSpectate;
     }
 
     protected override void cleanupBeforeExit()
@@ -179,10 +167,7 @@ internal class SpectatorMenu : IClickableMenu
 
     private Location GetInitialViewport()
     {
-        if (this.followPlayer)
-        {
-            return this.GetViewportFromFarmer();
-        }
+        if (this.followPlayer) return this.GetViewportFromFarmer();
 
         var layer = this.targetLocation.Map.Layers[0];
 

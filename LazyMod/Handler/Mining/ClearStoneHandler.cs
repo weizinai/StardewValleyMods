@@ -46,22 +46,13 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (!this.config.ClearStoneOnMineShaft && location is MineShaft)
-        {
-            return;
-        }
+        if (!this.config.ClearStoneOnMineShaft && location is MineShaft) return;
 
-        if (!this.config.ClearStoneOnVolcano && location is VolcanoDungeon)
-        {
-            return;
-        }
+        if (!this.config.ClearStoneOnVolcano && location is VolcanoDungeon) return;
 
         var pickaxe = ToolHelper.GetTool<Pickaxe>(this.config.AutoClearStone.FindToolFromInventory);
 
-        if (pickaxe is null)
-        {
-            return;
-        }
+        if (pickaxe is null) return;
 
         var stoneTypes = new Dictionary<HashSet<string>, bool>
         {
@@ -76,10 +67,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
         this.ForEachTile(this.config.AutoClearStone.Range, tile =>
         {
-            if (player.Stamina <= this.config.AutoClearStone.StopStamina)
-            {
-                return false;
-            }
+            if (player.Stamina <= this.config.AutoClearStone.StopStamina) return false;
 
             location.objects.TryGetValue(tile, out var obj);
 
@@ -98,10 +86,7 @@ internal class ClearStoneHandler : BaseAutomationHandler
 
             foreach (var clump in location.resourceClumps)
             {
-                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile)))
-                {
-                    continue;
-                }
+                if (!clump.getBoundingBox().Intersects(this.GetTileBoundingBox(tile))) continue;
 
                 var clear = false;
                 var requiredUpgradeLevel = Tool.stone;

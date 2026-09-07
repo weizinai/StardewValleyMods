@@ -16,9 +16,6 @@ internal class HoeDirtPatcher : BasePatcher
     // 添加浇水获得5点耕种经验
     private static void PerformToolActionPrefix(Tool t, HoeDirt __instance)
     {
-        if (t is WateringCan && __instance.state.Value == HoeDirt.dry && __instance.crop != null)
-        {
-            t.getLastFarmerToUse().gainExperience(Farmer.farmingSkill, 5);
-        }
+        if (t is WateringCan && __instance.state.Value == HoeDirt.dry && __instance.crop != null) t.getLastFarmerToUse().gainExperience(Farmer.farmingSkill, 5);
     }
 }

@@ -4,4 +4,5 @@
 
 - Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name
 - Migrated multiplayer hint messages (Broadcaster) to PiCore; peers still see them attributed to the sender mod
-- Migrated the config menu to the PiCore `ConfigService`/descriptor config module (corrupt-config self-heal; the dictionary-key-driven mod-list dropdowns and the console-command menu reload go through the module's escape hatch and lifecycle service); no gameplay change
+- Migrated the config menu to the PiCore `ConfigService`/descriptor config module (corrupt-config self-heal; the dictionary-key-driven mod-list dropdowns and
+  the console-command menu reload go through the module's escape hatch and lifecycle service); no gameplay change

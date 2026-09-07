@@ -65,10 +65,7 @@ public sealed class ConfigService<TConfig> where TConfig : class, new()
         this.buildMenu = buildMenu;
         this.titleScreenOnly = titleScreenOnly;
 
-        if (this.launched)
-        {
-            this.RegisterMenuNow();
-        }
+        if (this.launched) this.RegisterMenuNow();
     }
 
     /// <summary>
@@ -88,10 +85,7 @@ public sealed class ConfigService<TConfig> where TConfig : class, new()
         this.configMenu?.Unregister();
         this.configMenu = null;
 
-        if (this.launched && this.buildMenu is not null)
-        {
-            this.RegisterMenuNow();
-        }
+        if (this.launched && this.buildMenu is not null) this.RegisterMenuNow();
     }
 
     /// <summary>保存当前配置到 config.json 并触发 <see cref="onConfigChanged" />。</summary>
@@ -139,10 +133,7 @@ public sealed class ConfigService<TConfig> where TConfig : class, new()
     {
         this.launched = true;
 
-        if (this.buildMenu is not null)
-        {
-            this.RegisterMenuNow();
-        }
+        if (this.buildMenu is not null) this.RegisterMenuNow();
     }
 
     /// <summary>构建描述器并把渲染动作逐个映射到 GMCM 集成对象；GMCM 未安装时静默跳过。</summary>
@@ -165,17 +156,11 @@ public sealed class ConfigService<TConfig> where TConfig : class, new()
         );
 
         // GMCM 未安装或版本过低时不注册，配置的读写/自愈/重置仍照常工作
-        if (!integration.IsLoaded)
-        {
-            return;
-        }
+        if (!integration.IsLoaded) return;
 
         integration.Register(this.titleScreenOnly);
 
-        foreach (var action in descriptor.Actions)
-        {
-            action(integration);
-        }
+        foreach (var action in descriptor.Actions) action(integration);
 
         this.configMenu = integration;
     }
@@ -188,11 +173,6 @@ public sealed class ConfigService<TConfig> where TConfig : class, new()
         var type = typeof(TConfig);
 
         foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
-        {
-            if (property.SetMethod?.IsPublic == true)
-            {
-                property.SetValue(target, property.GetValue(source));
-            }
-        }
+            if (property.SetMethod?.IsPublic == true) property.SetValue(target, property.GetValue(source));
     }
 }

@@ -12,10 +12,7 @@ internal class GarbageCanHandler : BaseAutomationHandler
 
     public override void Apply(Item? item, Farmer player, GameLocation location)
     {
-        if (this.CheckNPCNearTile(location, player) && this.config.StopGarbageCanNearVillager)
-        {
-            return;
-        }
+        if (this.CheckNPCNearTile(location, player) && this.config.StopGarbageCanNearVillager) return;
 
         this.ForEachTile(this.config.AutoGarbageCan.Range, tile =>
         {
@@ -23,10 +20,7 @@ internal class GarbageCanHandler : BaseAutomationHandler
             {
                 var action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
 
-                if (action?.StartsWith("Garbage") == true)
-                {
-                    this.CheckTileAction(location, player, tile);
-                }
+                if (action?.StartsWith("Garbage") == true) this.CheckTileAction(location, player, tile);
             }
 
             return true;
@@ -34,7 +28,7 @@ internal class GarbageCanHandler : BaseAutomationHandler
     }
 
     /// <summary>
-    ///     检测周围是否有NPC
+    /// 检测周围是否有NPC
     /// </summary>
     /// <returns>如果有,则返回true,否则返回false</returns>
     private bool CheckNPCNearTile(GameLocation location, Farmer player)
@@ -42,10 +36,7 @@ internal class GarbageCanHandler : BaseAutomationHandler
         var tile = player.Tile;
         var npcs = Utility.GetNpcsWithinDistance(tile, 7, location).ToList();
 
-        if (!npcs.Any())
-        {
-            return false;
-        }
+        if (!npcs.Any()) return false;
 
         var horse = npcs.FirstOrDefault(npc => npc is Horse);
 

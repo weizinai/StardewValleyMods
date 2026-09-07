@@ -30,20 +30,14 @@ internal class ModEntry : Mod
 
     private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
     {
-        if (!Context.IsWorldReady || !Game1.viewportFreeze)
-        {
-            return;
-        }
+        if (!Context.IsWorldReady || !Game1.viewportFreeze) return;
 
         PanScreenHelper.PanScreenByMouse(ModConfig.Instance.MoveSpeed, ModConfig.Instance.MoveThreshold);
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
     {
-        if (!Context.IsPlayerFree)
-        {
-            return;
-        }
+        if (!Context.IsPlayerFree) return;
 
         if (ModConfig.Instance.FreeLockKeybind.JustPressed())
         {

@@ -52,10 +52,7 @@ internal class TextureManager
         {
             var variantTextures = this.GetTextureVariants(path);
 
-            if (variantTextures.Count > 0)
-            {
-                return Game1.random.ChooseFrom(variantTextures);
-            }
+            if (variantTextures.Count > 0) return Game1.random.ChooseFrom(variantTextures);
 
             try
             {

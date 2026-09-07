@@ -67,10 +67,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
     {
         this.quest.target.Value = ItemConfig.TryGetValue(this.quest.monsterName.Value, out var config) ? config.GetTarget() : Marlon;
 
-        if (this.quest.target.Value == Wizard && !this.IsWizardAvailable())
-        {
-            this.quest.target.Value = Lewis;
-        }
+        if (this.quest.target.Value == Wizard && !this.IsWizardAvailable()) this.quest.target.Value = Lewis;
 
         return true;
     }
@@ -166,9 +163,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                         ));
                     }
                     else
-                    {
                         this.AddDefaultDescription();
-                    }
 
                     break;
                 }
@@ -220,9 +215,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                         ));
                     }
                     else
-                    {
                         this.quest.dialogueparts.Add(GetPathString("S", 13744));
-                    }
 
                     break;
                 }
@@ -250,13 +243,9 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.MetalHead:
                 {
                     if (this.IsWizardAvailable())
-                    {
                         this.quest.dialogueparts.Add(GetPathString("S", 13760));
-                    }
                     else
-                    {
                         this.AddDefaultDialogue();
-                    }
 
                     break;
                 }

@@ -41,9 +41,7 @@ internal class PerfectFishingHandler : BaseHandler
                 }
             }
             else
-            {
                 this.perfectCount = 0;
-            }
         }
     }
 }

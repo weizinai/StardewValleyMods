@@ -35,6 +35,7 @@ public static class PositionHelper
     public static Vector2 GetTilePositionFromScreenPosition(Vector2 screenPosition)
     {
         var viewport = GetViewportPosition();
+
         return new Vector2((int)((screenPosition.X + viewport.X) / TileSize), (int)((screenPosition.Y + viewport.Y) / TileSize));
     }
 

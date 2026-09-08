@@ -115,18 +115,21 @@ dotnet_naming_symbols.async_methods.required_modifiers = async
 dotnet_naming_style.async_suffix.capitalization = pascal_case
 dotnet_naming_style.async_suffix.required_suffix = Async
 
-dotnet_naming_rule.public_properties_should_be_pascal_case.severity = warning
-dotnet_naming_rule.public_properties_should_be_pascal_case.symbols = public_properties
-dotnet_naming_rule.public_properties_should_be_pascal_case.style = pascal_case
-dotnet_naming_symbols.public_properties.applicable_kinds = property
-dotnet_naming_symbols.public_properties.applicable_accessibilities = public
+# 属性：一律大驼峰（任意可见性，含自动属性 / 表达式体 / get-only / 内部 set）
+dotnet_naming_rule.properties_should_be_pascal_case.severity = warning
+dotnet_naming_rule.properties_should_be_pascal_case.symbols = properties
+dotnet_naming_rule.properties_should_be_pascal_case.style = pascal_case
+dotnet_naming_symbols.properties.applicable_kinds = property
+dotnet_naming_symbols.properties.applicable_accessibilities = *
 
+# 字段：public 大驼峰
 dotnet_naming_rule.public_fields_should_be_pascal_case.severity = warning
 dotnet_naming_rule.public_fields_should_be_pascal_case.symbols = public_fields
 dotnet_naming_rule.public_fields_should_be_pascal_case.style = pascal_case
 dotnet_naming_symbols.public_fields.applicable_kinds = field
 dotnet_naming_symbols.public_fields.applicable_accessibilities = public
 
+# 字段：const 一律大驼峰（含 private；带 const 修饰符，比可见性规则更具体）
 dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = warning
 dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols = constant_fields
 dotnet_naming_rule.constant_fields_should_be_pascal_case.style = pascal_case
@@ -134,13 +137,7 @@ dotnet_naming_symbols.constant_fields.applicable_kinds = field
 dotnet_naming_symbols.constant_fields.applicable_accessibilities = *
 dotnet_naming_symbols.constant_fields.required_modifiers = const
 
-dotnet_naming_rule.non_public_constant_fields_should_be_pascal_case.severity = warning
-dotnet_naming_rule.non_public_constant_fields_should_be_pascal_case.symbols = non_public_constant_fields
-dotnet_naming_rule.non_public_constant_fields_should_be_pascal_case.style = pascal_case
-dotnet_naming_symbols.non_public_constant_fields.applicable_kinds = field
-dotnet_naming_symbols.non_public_constant_fields.applicable_accessibilities = private, protected, internal, protected_internal, private_protected
-dotnet_naming_symbols.non_public_constant_fields.required_modifiers = const
-
+# 字段：static readonly 一律大驼峰（含 private；带 static, readonly 修饰符，比可见性规则更具体）
 dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.severity = warning
 dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.symbols = static_readonly_fields
 dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.style = pascal_case
@@ -148,18 +145,27 @@ dotnet_naming_symbols.static_readonly_fields.applicable_kinds = field
 dotnet_naming_symbols.static_readonly_fields.applicable_accessibilities = *
 dotnet_naming_symbols.static_readonly_fields.required_modifiers = static, readonly
 
-dotnet_naming_rule.non_public_static_readonly_fields_should_be_pascal_case.severity = warning
-dotnet_naming_rule.non_public_static_readonly_fields_should_be_pascal_case.symbols = non_public_static_readonly_fields
-dotnet_naming_rule.non_public_static_readonly_fields_should_be_pascal_case.style = pascal_case
-dotnet_naming_symbols.non_public_static_readonly_fields.applicable_kinds = field
-dotnet_naming_symbols.non_public_static_readonly_fields.applicable_accessibilities = private, protected, internal, protected_internal, private_protected
-dotnet_naming_symbols.non_public_static_readonly_fields.required_modifiers = static, readonly
+# 字段：非私有（protected/internal 等）默认大驼峰（含 static，再由下一条 static 规则拉回小驼峰）
+dotnet_naming_rule.non_private_fields_should_be_pascal_case.severity = warning
+dotnet_naming_rule.non_private_fields_should_be_pascal_case.symbols = non_private_fields
+dotnet_naming_rule.non_private_fields_should_be_pascal_case.style = pascal_case
+dotnet_naming_symbols.non_private_fields.applicable_kinds = field
+dotnet_naming_symbols.non_private_fields.applicable_accessibilities = protected, internal, protected_internal, private_protected
 
-dotnet_naming_rule.non_public_fields_and_properties_should_be_camel_case.severity = warning
-dotnet_naming_rule.non_public_fields_and_properties_should_be_camel_case.symbols = non_public_fields_and_properties
-dotnet_naming_rule.non_public_fields_and_properties_should_be_camel_case.style = camel_case
-dotnet_naming_symbols.non_public_fields_and_properties.applicable_kinds = field, property
-dotnet_naming_symbols.non_public_fields_and_properties.applicable_accessibilities = private, protected, internal, protected_internal, private_protected
+# 字段：非私有 static（非 readonly 非 const）拉回小驼峰
+dotnet_naming_rule.non_private_static_fields_should_be_camel_case.severity = warning
+dotnet_naming_rule.non_private_static_fields_should_be_camel_case.symbols = non_private_static_fields
+dotnet_naming_rule.non_private_static_fields_should_be_camel_case.style = camel_case
+dotnet_naming_symbols.non_private_static_fields.applicable_kinds = field
+dotnet_naming_symbols.non_private_static_fields.applicable_accessibilities = protected, internal, protected_internal, private_protected
+dotnet_naming_symbols.non_private_static_fields.required_modifiers = static
+
+# 字段：私有（private，非 const / static readonly）小驼峰
+dotnet_naming_rule.private_fields_should_be_camel_case.severity = warning
+dotnet_naming_rule.private_fields_should_be_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_camel_case.style = camel_case
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 
 dotnet_naming_rule.locals_and_parameters_should_be_camel_case.severity = warning
 dotnet_naming_rule.locals_and_parameters_should_be_camel_case.symbols = locals_and_parameters

@@ -10,7 +10,8 @@
         <RootNamespace>weizinai.StardewValleyMod.$(MSBuildProjectName)</RootNamespace>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-        <GameModsPath>$(GamePath)/Mods/weizinai</GameModsPath>
+        <GamePath>C:\Applications\Steam\steamapps\common\Stardew Valley</GamePath>
+        <GameModsPath>$(GamePath)\Mods\weizinai</GameModsPath>
         <ModZipPath>$(MSBuildThisFileDirectory).releases</ModZipPath>
     </PropertyGroup>
 

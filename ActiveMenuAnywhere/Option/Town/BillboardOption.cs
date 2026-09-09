@@ -1,22 +1,19 @@
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BillboardOption : BaseOption
 {
-    public BillboardOption()
-        : base(I18n.UI_Option_Billboard(), TextureManager.Instance.TownTexture, GetSourceRectangle(0), OptionId.Billboard) { }
-
     public override void Apply()
     {
         var options = new List<Response>
         {
-            new("Calendar", I18n.UI_BillboardOption_Calendar()),
-            new("DailyQuest", I18n.UI_BillboardOption_DailyQuest()),
-            new("Leave", I18n.UI_BaseOption_Leave())
+            new("Calendar", I18n.UI_Option_Billboard_Calendar()),
+            new("DailyQuest", I18n.UI_Option_Billboard_DailyQuest()),
+            new("Leave", I18n.UI_Common_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
     }

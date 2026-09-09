@@ -1,8 +1,11 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Config;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Helper;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.UI;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
@@ -23,12 +26,12 @@ internal class ModEntry : Mod
             value => ModConfig.Instance = value
         );
         configService.RegisterMenu(this.BuildConfigMenu);
-        OptionFactory.Init(helper);
+        OptionCatalog.Init(helper);
         TextureManager.Instance.LoadTexture(helper);
         // 注册事件
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
         // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new Game1Patcher(helper));
+        HarmonyPatcher.Apply(this, new Game1Patcher());
     }
 
     private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
@@ -39,9 +42,9 @@ internal class ModEntry : Mod
 
         if (config.MenuKey.JustPressed())
         {
-            if (AMAMenu.IsOpen())
+            if (MenuLauncher.IsOpen())
                 Game1.exitActiveMenu();
-            else if (Context.IsPlayerFree) AMAMenu.Open(config.DefaultMenuTabId, this.Helper);
+            else if (Context.IsPlayerFree) MenuLauncher.Open(config.DefaultMenuTabId);
         }
     }
 
@@ -50,44 +53,19 @@ internal class ModEntry : Mod
     private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
     {
         menu
-            .AddKeybindListOption(config => config.MenuKey, I18n.Config_MenuKeyName)
+            .AddKeybindListOption(config => config.MenuKey, I18n.Config_MenuKey)
             .AddBoolOption(
                 config => config.OpenMenuByTelephone,
-                I18n.Config_OpenMenuByTelephone_Name,
+                I18n.Config_OpenMenuByTelephone,
                 I18n.Config_OpenMenuByTelephone_Tooltip
             )
-            .AddEnumOption(
+            .AddTextOption(
                 config => config.DefaultMenuTabId,
-                I18n.Config_DefaultMenuTabID,
-                allowedValues: new[]
-                {
-                    MenuTabId.Favorite,
-                    MenuTabId.Farm,
-                    MenuTabId.Town,
-                    MenuTabId.Mountain,
-                    MenuTabId.Forest,
-                    MenuTabId.Beach,
-                    MenuTabId.Desert,
-                    MenuTabId.GingerIsland,
-                    MenuTabId.RSV,
-                    MenuTabId.SVE
-                },
-                formatValue: value => value switch
-                {
-                    MenuTabId.Favorite => I18n.UI_Tab_Favorites(),
-                    MenuTabId.Farm => I18n.UI_Tab_Farm(),
-                    MenuTabId.Town => I18n.UI_Tab_Town(),
-                    MenuTabId.Mountain => I18n.UI_Tab_Mountain(),
-                    MenuTabId.Forest => I18n.UI_Tab_Forest(),
-                    MenuTabId.Beach => I18n.UI_Tab_Beach(),
-                    MenuTabId.Desert => I18n.UI_Tab_Desert(),
-                    MenuTabId.GingerIsland => I18n.UI_Tab_GingerIsland(),
-                    MenuTabId.RSV => I18n.UI_Tab_RSV(),
-                    MenuTabId.SVE => I18n.UI_Tab_SVE(),
-                    _ => ""
-                }
+                I18n.Config_DefaultMenuTab,
+                allowedValues: OptionCatalog.GetAllTabIds,
+                formatAllowedValue: OptionCatalog.GetTabTitle
             )
-            .AddBoolOption(config => config.ProgressMode, I18n.Config_ProgressMode_Name)
-            .AddKeybindListOption(config => config.FavoriteKey, I18n.Config_FavoriteKey_Name);
+            .AddBoolOption(config => config.ProgressMode, I18n.Config_ProgressMode)
+            .AddKeybindListOption(config => config.FavoriteKey, I18n.Config_FavoriteKey);
     }
 }

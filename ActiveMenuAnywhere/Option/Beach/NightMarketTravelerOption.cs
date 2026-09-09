@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
-internal class NightMarketTraveler : BaseOption
+internal class NightMarketTravelerOption : BaseOption
 {
-    public NightMarketTraveler()
-        : base(I18n.UI_Option_NightMarketTraveler(), TextureManager.Instance.BeachTexture, GetSourceRectangle(2), OptionId.NightMarketTraveler) { }
-
     public override bool IsEnable()
     {
         return Utility.IsPassiveFestivalDay("NightMarket");

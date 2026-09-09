@@ -1,14 +1,11 @@
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class SpecialOrderOption : BaseOption
 {
-    public SpecialOrderOption()
-        : base(I18n.UI_Option_SpecialOrder(), TextureManager.Instance.TownTexture, GetSourceRectangle(1), OptionId.SpecialOrder) { }
-
     public override bool IsEnable()
     {
         return Game1.MasterPlayer.eventsSeen.Contains("15389722");

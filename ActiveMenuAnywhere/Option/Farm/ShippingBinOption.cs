@@ -2,7 +2,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 using Object = StardewValley.Object;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
@@ -12,7 +12,6 @@ internal class ShippingBinOption : BaseOption
     private readonly IModHelper helper;
 
     public ShippingBinOption(IModHelper helper)
-        : base(I18n.UI_Option_ShippingBin(), TextureManager.Instance.FarmTexture, GetSourceRectangle(1), OptionId.ShippingBin)
     {
         this.helper = helper;
     }

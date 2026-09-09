@@ -1,14 +1,12 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Helper;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class RSVQuestBoardOption : BaseOption
 {
-    public RSVQuestBoardOption()
-        : base(I18n.UI_Option_RSVQuestBoard(), TextureManager.Instance.RSVTexture, GetSourceRectangle(0), OptionId.RSVQuestBoard) { }
-
     public override void Apply()
     {
         var method = RSVReflection.GetRSVPrivateStaticMethod("RidgesideVillage.Questing.QuestController", "OpenQuestBoard");

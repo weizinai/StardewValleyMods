@@ -3,7 +3,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 using xTile.Dimensions;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
@@ -16,7 +16,6 @@ internal class MarnieOption : BaseOption
     private Location originViewport;
 
     public MarnieOption(IModHelper helper)
-        : base(I18n.UI_Option_Marnie(), TextureManager.Instance.ForestTexture, GetSourceRectangle(0), OptionId.Marnie)
     {
         this.helper = helper;
     }

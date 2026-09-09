@@ -1,64 +1,26 @@
-using System.Collections.Generic;
 using StardewValley;
-using StardewValley.Locations;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using StardewValley.Menus;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class CommunityCenterOption : BaseOption
 {
-    private readonly List<string> keys;
-    private readonly List<string> texts;
-
-    public CommunityCenterOption()
-        : base(I18n.UI_Option_CommunityCenter(), TextureManager.Instance.TownTexture, GetSourceRectangle(2), OptionId.CommunityCenter)
-    {
-        this.keys = new List<string> { "Pantry", "CraftsRoom", "FishTank", "BoilerRoom", "Vault", "Bulletin" };
-        this.texts = new List<string>
-        {
-            Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_Pantry"),
-            Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_CraftsRoom"),
-            Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_FishTank"),
-            Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_BoilerRoom"),
-            Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_Vault"),
-            Game1.content.LoadString("Strings\\Locations:CommunityCenter_AreaName_BulletinBoard")
-        };
-    }
-
     public override bool IsEnable()
     {
+        // 保留 Joja 路线与森林视野剧情的双重进度门控
         return !Game1.player.mailReceived.Contains("JojaMember") && Game1.player.mailReceived.Contains("canReadJunimoText");
     }
 
     public override void Apply()
     {
-        var communityCenter = Game1.RequireLocation<CommunityCenter>("CommunityCenter");
-        var options = new List<Response>();
-
-        for (var i = 0; i < 6; i++)
-        {
-            if (communityCenter.shouldNoteAppearInArea(i))
-            {
-                options.Add(new Response(this.keys[i], this.texts[i]));
-            }
-        }
-
-        options.Add(new Response("Leave", I18n.UI_BaseOption_Leave()));
-
-        Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterDialogueBehavior);
-    }
-
-    private void AfterDialogueBehavior(Farmer who, string whichAnswer)
-    {
-        if (whichAnswer == "Leave")
-        {
-            Game1.exitActiveMenu();
-            Game1.player.forceCanMove();
-        }
-        else
-        {
-            var communityCenter = Game1.RequireLocation<CommunityCenter>("CommunityCenter");
-            communityCenter.checkBundle(this.keys.IndexOf(whichAnswer));
-        }
+        // 走原版「背包页社区中心图标」同款入口（JunimoNoteMenu(fromGameMenu: true)）从任意地点打开：
+        // 构造时自动选中首个仍有可完成束的房间并带房间切换箭头；setUpMenu 会登记
+        // seenJunimoNote/wizardJunimoNote 邮件——与真的走进社区中心读到告示的登记一致。
+        // 该入口与背包页图标同为只读（构造器把各 bundle 的 depositsAllowed 置 false），远程完成束不在本入口
+        // 语义内；弃用旧对话框管线与 CommunityCenter.checkBundle（后者走 bundleMutexes[area].RequestLock，
+        // 是「站在告示板前按动作键」的路径；fromGameMenu 变体在 SkillsPage/InventoryPage 原版路径同为无
+        // mutex 直开，故不套多人锁）。
+        Game1.activeClickableMenu = new JunimoNoteMenu(fromGameMenu: true);
     }
 }

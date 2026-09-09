@@ -1,14 +1,11 @@
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class QiGemShopOption : BaseOption
 {
-    public QiGemShopOption()
-        : base(I18n.UI_Option_QiGemShop(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(1), OptionId.QiGemShop) { }
-
     public override bool IsEnable()
     {
         return IslandWest.IsQiWalnutRoomDoorUnlocked(out _);

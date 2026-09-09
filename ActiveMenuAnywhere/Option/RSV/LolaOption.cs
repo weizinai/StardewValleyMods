@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class LolaOption : BaseOption
 {
-    public LolaOption()
-        : base(I18n.UI_Option_Lola(), TextureManager.Instance.RSVTexture, GetSourceRectangle(8), OptionId.Lola) { }
-
     public override bool IsEnable()
     {
         return Game1.player.eventsSeen.Contains("75160093");

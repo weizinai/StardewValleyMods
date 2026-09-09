@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
-namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Config;
 
 internal class ModConfig
 {
@@ -10,8 +11,8 @@ internal class ModConfig
 
     public KeybindList MenuKey { get; set; } = new(SButton.L);
     public bool OpenMenuByTelephone { get; set; }
-    public MenuTabId DefaultMenuTabId { get; set; } = MenuTabId.Town;
+    public string DefaultMenuTabId { get; set; } = OptionCatalog.TownTabId;
     public bool ProgressMode { get; set; } = true;
     public KeybindList FavoriteKey { get; set; } = new(SButton.LeftAlt);
-    public List<OptionId> FavoriteMenus { get; set; } = new();
+    public List<string> FavoriteMenus { get; set; } = new();
 }

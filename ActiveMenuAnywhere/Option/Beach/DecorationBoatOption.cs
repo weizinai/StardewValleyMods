@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class DecorationBoatOption : BaseOption
 {
-    public DecorationBoatOption()
-        : base(I18n.UI_Option_DecorationBoat(), TextureManager.Instance.BeachTexture, GetSourceRectangle(3), OptionId.DecorationBoat) { }
-
     public override bool IsEnable()
     {
         return Utility.IsPassiveFestivalDay("NightMarket");

@@ -1,22 +1,19 @@
 using System.Collections.Generic;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 using xTile.Dimensions;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class PierreOption : BaseOption
 {
-    public PierreOption()
-        : base(I18n.UI_Option_Pierre(), TextureManager.Instance.TownTexture, GetSourceRectangle(3), OptionId.Pierre) { }
-
     public override void Apply()
     {
         var options = new List<Response>
         {
-            new("SeedShop", I18n.UI_PierreOption_SeedShop()),
-            new("BuyBackpack", I18n.UI_PierreOption_BuyBackpack()),
-            new("Leave", I18n.UI_BaseOption_Leave())
+            new("SeedShop", I18n.UI_Option_Pierre_SeedShop()),
+            new("BuyBackpack", I18n.UI_Option_Pierre_BuyBackpack()),
+            new("Leave", I18n.UI_Common_Leave())
         };
         Game1.currentLocation.createQuestionDialogue("", options.ToArray(), this.AfterQuestionBehavior);
     }

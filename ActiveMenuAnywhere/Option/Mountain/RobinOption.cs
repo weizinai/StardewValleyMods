@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class RobinOption : BaseOption
 {
-    public RobinOption()
-        : base(I18n.UI_Option_Robin(), TextureManager.Instance.MountainTexture, GetSourceRectangle(0), OptionId.Robin) { }
-
     public override void Apply()
     {
         if (Game1.player.daysUntilHouseUpgrade.Value < 0 && !Game1.IsThereABuildingUnderConstruction())

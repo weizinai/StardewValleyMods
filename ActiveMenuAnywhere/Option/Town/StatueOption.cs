@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class StatueOption : BaseOption
 {
-    public StatueOption()
-        : base(I18n.UI_Option_Statue(), TextureManager.Instance.TownTexture, GetSourceRectangle(10), OptionId.Statue) { }
-
     public override bool IsEnable()
     {
         return Game1.player.hasRustyKey;

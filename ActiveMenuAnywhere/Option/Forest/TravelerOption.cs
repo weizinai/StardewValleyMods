@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class TravelerOption : BaseOption
 {
-    public TravelerOption()
-        : base(I18n.UI_Option_Traveler(), TextureManager.Instance.ForestTexture, GetSourceRectangle(1), OptionId.Traveler) { }
-
     public override bool IsEnable()
     {
         return Game1.dayOfMonth % 7 % 5 == 0;

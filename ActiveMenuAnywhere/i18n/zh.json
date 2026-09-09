@@ -1,11 +1,11 @@
 {
     // Config
-    "Config.MenuKey_Name": "菜单快捷键",
-    "Config.OpenMenuByTelephone.Name": "通过电话打开菜单",
+    "Config.MenuKey": "菜单快捷键",
+    "Config.OpenMenuByTelephone": "通过电话打开菜单",
     "Config.OpenMenuByTelephone.Tooltip": "当该选项启用后，你将只能通过电话打开菜单。",
-    "Config.DefaultMenuTabID": "默认菜单标签",
-    "Config.ProgressMode.Name": "进度模式",
-    "Config.FavoriteKey.Name": "收藏快捷键",
+    "Config.DefaultMenuTab": "默认菜单标签",
+    "Config.ProgressMode": "进度模式",
+    "Config.FavoriteKey": "收藏快捷键",
     "Config.FavoriteKey.Tooltip": "当你按住该快捷键时，鼠标左键点击菜单可以收藏菜单。",
 
     "UI.Favorite.Add": "已将该菜单添加到收藏。",
@@ -46,18 +46,13 @@
     // Farm
     "UI.Option.ShippingBin": "出货箱",
     "UI.Option.TV": "电视机",
-    // "UI.Option.Category":"目录",
-    // "UI.Option.FurnitureCatalogue":"家具目录",
-    // "UI.Option.JojaCatalogue":"Joja家具目录",
-    // "UI.Option.JunimoCatalogue":"祝尼魔目录",
-    // "UI.Option.RetroCatalogue":"复古目录",
-    // "UI.Option.TrashCatalogue":"垃圾目录",
-    // "UI.Option.WizardCatalogue":"法师目录",
 
     // Forest
     "UI.Option.HatMouse": "帽子商店",
     "UI.Option.Marnie": "玛妮",
     "UI.Option.Raccoon": "小碗熊",
+    "UI.Option.Raccoon.RaccoonBundle": "小碗熊收集包",
+    "UI.Option.Raccoon.RaccoonShop": "小碗熊商店",
     "UI.Option.Traveler": "旅游商人",
     "UI.Option.Wizard": "魔法建筑",
 
@@ -83,12 +78,14 @@
     "UI.Option.Kimpoi": "Kimpoi",
     "UI.Option.Lola": "Lola",
     "UI.Option.Lorenzo": "Lorenzo",
-    "UI.Option.MysticFall1": "神秘瀑布1",
-    "UI.Option.MysticFall2": "神秘瀑布2",
-    "UI.Option.MysticFall3": "神秘瀑布3",
+    "UI.Option.MysticFalls1": "神秘瀑布1",
+    "UI.Option.MysticFalls2": "神秘瀑布2",
+    "UI.Option.MysticFalls3": "神秘瀑布3",
     "UI.Option.NinjaBoard": "Ninja Board",
-    "UI.Option.Pika": "Pika",
     "UI.Option.Paula": "Paula",
+    "UI.Option.Pika": "Pika",
+    "UI.Option.Pika.Shop": "食物商店",
+    "UI.Option.Pika.RecipeShop": "食谱商店",
     "UI.Option.RSVQuestBoard": "RSV每日任务",
     "UI.Option.RSVSpecialOrder": "RSV特别订单",
 
@@ -98,8 +95,12 @@
     // Town
     "UI.Option.AbandonedJojaMart": "废弃Joja超市",
     "UI.Option.Billboard": "日历和任务",
+    "UI.Option.Billboard.Calendar": "日历",
+    "UI.Option.Billboard.DailyQuest": "每日任务",
     "UI.Option.Bookseller": "书商",
     "UI.Option.Clint": "克林顿",
+    "UI.Option.Clint.Receive": "取回工具",
+    "UI.Option.Clint.Unfinished": "工具还未升级完成",
     "UI.Option.CommunityCenter": "社区中心",
     "UI.Option.Dye": "染色",
     "UI.Option.Gus": "格斯",
@@ -108,6 +109,8 @@
     "UI.Option.JojaShop": "Joja超市",
     "UI.Option.Krobus": "科罗布斯",
     "UI.Option.Pierre": "皮埃尔",
+    "UI.Option.Pierre.SeedShop": "种子商店",
+    "UI.Option.Pierre.BuyBackpack": "购买背包",
     "UI.Option.PrizeTicket": "抽奖机",
     "UI.Option.SpecialOrder": "特别订单",
     "UI.Option.Statue": "怪异雕像",
@@ -117,25 +120,5 @@
     "UI.Tip.Unavailable": "目前还不能访问",
 
     // BaseOption
-    "UI.BaseOption.Leave": "离开",
-
-    // BillboardMenu
-    "UI.BillboardOption.Calendar": "日历",
-    "UI.BillboardOption.DailyQuest": "每日任务",
-
-    // ClintMenu
-    "UI.ClintOption.Receive": "取回工具",
-    "UI.ClintOption.Unfinished": "工具还未升级完成",
-
-    // PierreOption
-    "UI.PierreOption.SeedShop": "种子商店",
-    "UI.PierreOption.BuyBackpack": "购买背包",
-
-    // RaccoonOption
-    "UI.RaccoonOption.RaccoonBundle": "小碗熊收集包",
-    "UI.RaccoonOption.RaccoonShop": "小碗熊商店",
-
-    // RSVPikaOption
-    "UI.PikaOption.Shop": "食物商店",
-    "UI.PikaOption.RecipeShop": "食谱商店"
+    "UI.Common.Leave": "离开"
 }

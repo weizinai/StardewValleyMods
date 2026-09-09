@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class KimpoiOption : BaseOption
 {
-    public KimpoiOption()
-        : base(I18n.UI_Option_Kimpoi(), TextureManager.Instance.RSVTexture, GetSourceRectangle(6), OptionId.Kimpoi) { }
-
     public override bool IsEnable()
     {
         return Game1.MasterPlayer.eventsSeen.Contains("75160252");

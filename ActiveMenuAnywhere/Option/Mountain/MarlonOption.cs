@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class MarlonOption : BaseOption
 {
-    public MarlonOption()
-        : base(I18n.UI_Option_Marlon(), TextureManager.Instance.MountainTexture, GetSourceRectangle(3), OptionId.Marlon) { }
-
     public override bool IsEnable()
     {
         return Game1.player.mailReceived.Contains("guildMember");

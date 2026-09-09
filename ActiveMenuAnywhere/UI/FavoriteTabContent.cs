@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Config;
 using weizinai.StardewValleyMod.PiCore.UI.Layout;
 using weizinai.StardewValleyMod.PiCore.UI.Widget;
 
-namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.UI;
 
 /// <summary>
 /// 收藏页签内容：每次被选中（<see cref="TabControl" /> 激活本内容）时依据当前的
@@ -28,12 +30,9 @@ internal class FavoriteTabContent : Element, IResettable
     /// <summary>依据当前收藏选项重建分页内容。</summary>
     private void Rebuild()
     {
-        if (this.pager is not null)
-        {
-            this.Remove(this.pager);
-        }
+        this.Remove(this.pager);
 
-        this.pager = PagerBuilder.Build(OptionFactory.CreateFavoriteOptions(), isFavoriteTab: true);
+        this.pager = PagerBuilder.Build(OptionCatalog.CreateFavoriteOptions(), isFavoriteTab: true);
         this.Add(this.pager);
     }
 

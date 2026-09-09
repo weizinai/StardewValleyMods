@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Helper;
 
 internal static class RSVReflection
 {
@@ -9,12 +9,7 @@ internal static class RSVReflection
     {
         var type = Type.GetType($"{typeName}, RidgesideVillage");
 
-        if (type is null)
-        {
-            throw new ArgumentException($"Could not find type {typeName} in RidgesideVillage assembly.");
-        }
-
-        return type;
+        return type ?? throw new ArgumentException($"Could not find type {typeName} in RidgesideVillage assembly.");
     }
 
     public static MethodInfo GetRSVPrivateStaticMethod(string typeName, string methodName)
@@ -22,11 +17,6 @@ internal static class RSVReflection
         var type = GetRSVType(typeName);
         var method = type.GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Static);
 
-        if (method is null)
-        {
-            throw new ArgumentException($"Could not find method {methodName} in type {typeName}.");
-        }
-
-        return method;
+        return method ?? throw new ArgumentException($"Could not find method {methodName} in type {typeName}.");
     }
 }

@@ -3,15 +3,12 @@ using System.Linq;
 using StardewValley;
 using StardewValley.Menus;
 using StardewValley.Tools;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ClintOption : BaseOption
 {
-    public ClintOption()
-        : base(I18n.UI_Option_Clint(), TextureManager.Instance.TownTexture, GetSourceRectangle(4), OptionId.Clint) { }
-
     public override void Apply()
     {
         var options = new List<Response>
@@ -21,7 +18,7 @@ internal class ClintOption : BaseOption
             // 工具升级
             Game1.player.toolBeingUpgraded.Value == null
                 ? new Response("Upgrade", Game1.content.LoadString("Strings\\Locations:Blacksmith_Clint_Upgrade"))
-                : new Response("Receive", I18n.UI_ClintOption_Receive())
+                : new Response("Receive", I18n.UI_Option_Clint_Receive())
         };
 
         // 砸开晶球
@@ -77,7 +74,7 @@ internal class ClintOption : BaseOption
                     }
                     else
                     {
-                        Game1.drawObjectDialogue(I18n.UI_ClintOption_Unfinished());
+                        Game1.drawObjectDialogue(I18n.UI_Option_Clint_Unfinished());
                     }
 
                     break;

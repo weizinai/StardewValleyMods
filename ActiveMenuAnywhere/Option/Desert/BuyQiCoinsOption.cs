@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class BuyQiCoinsOption : BaseOption
 {
-    public BuyQiCoinsOption()
-        : base(I18n.UI_Option_BuyQiCoins(), TextureManager.Instance.DesertTexture, GetSourceRectangle(4), OptionId.BuyQiCoins) { }
-
     public override bool IsEnable()
     {
         return Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard;

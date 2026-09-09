@@ -1,28 +1,13 @@
-using System;
 using HarmonyLib;
-using StardewModdingAPI;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Config;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.UI;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
 
 internal class Game1Patcher : BasePatcher
 {
-    private static Game1Patcher instance = null!;
-    private readonly IModHelper helper;
-
-    public Game1Patcher(IModHelper helper)
-    {
-        if (instance != null)
-        {
-            throw new InvalidOperationException($"{nameof(Game1Patcher)} already initialized.");
-        }
-
-        this.helper = helper;
-        instance = this;
-    }
-
     public override void Apply(Harmony harmony)
     {
         this.Patch<Game1>(harmony, nameof(Game1.ShowTelephoneMenu), PatchKind.Prefix, nameof(ShowTelephoneMenuPrefix));
@@ -35,7 +20,7 @@ internal class Game1Patcher : BasePatcher
             return true;
         }
 
-        AMAMenu.Open(ModConfig.Instance.DefaultMenuTabId, instance.helper);
+        MenuLauncher.Open(ModConfig.Instance.DefaultMenuTabId);
 
         return false;
     }

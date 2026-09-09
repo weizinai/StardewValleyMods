@@ -1,13 +1,10 @@
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class VolcanoShopOption : BaseOption
 {
-    public VolcanoShopOption()
-        : base(I18n.UI_Option_VolcanoShop(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(5), OptionId.VolcanoShop) { }
-
     public override bool IsEnable()
     {
         return Game1.player.mailReceived.Contains("willyHours") && Game1.player.canUnderstandDwarves;

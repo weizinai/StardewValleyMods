@@ -1,14 +1,12 @@
 using Microsoft.Xna.Framework;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Helper;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class RSVSpecialOrderOption : BaseOption
 {
-    public RSVSpecialOrderOption()
-        : base(I18n.UI_Option_RSVSpecialOrder(), TextureManager.Instance.RSVTexture, GetSourceRectangle(1), OptionId.RSVSpecialOrder) { }
-
     public override bool IsEnable()
     {
         return Game1.MasterPlayer.eventsSeen.Contains("75160207");

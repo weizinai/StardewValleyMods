@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using StardewValley;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
 internal class ClubSellerOption : BaseOption
 {
-    public ClubSellerOption()
-        : base(I18n.UI_Option_ClubSeller(), TextureManager.Instance.DesertTexture, GetSourceRectangle(5), OptionId.ClubSeller) { }
-
     public override bool IsEnable()
     {
         return Game1.player.mailReceived.Contains("ccVault") && Game1.player.hasClubCard;

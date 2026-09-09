@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
@@ -10,7 +10,6 @@ internal class MonsterOption : BaseOption
     private readonly IModHelper helper;
 
     public MonsterOption(IModHelper helper)
-        : base(I18n.UI_Option_Monster(), TextureManager.Instance.MountainTexture, GetSourceRectangle(2), OptionId.Monster)
     {
         this.helper = helper;
     }

@@ -3,7 +3,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Characters;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
@@ -12,7 +12,6 @@ internal class RaccoonOption : BaseOption
     private readonly IModHelper helper;
 
     public RaccoonOption(IModHelper helper)
-        : base(I18n.UI_Option_Raccoon(), TextureManager.Instance.ForestTexture, GetSourceRectangle(4), OptionId.Raccoon)
     {
         this.helper = helper;
     }

@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.ActiveMenuAnywhere.Framework;
+using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Option;
 
@@ -10,7 +10,6 @@ internal class QiCatOption : BaseOption
     private readonly IModHelper helper;
 
     public QiCatOption(IModHelper helper)
-        : base(I18n.UI_Option_QiCat(), TextureManager.Instance.GingerIslandTexture, GetSourceRectangle(2), OptionId.QiCat)
     {
         this.helper = helper;
     }

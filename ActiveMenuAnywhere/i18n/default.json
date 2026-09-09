@@ -1,4 +1,4 @@
-﻿{
+{
     // Config
     "Config.MenuKey_Name": "Menu Key",
     "Config.OpenMenuByTelephone.Name": "Open Menu By Telephone",
@@ -11,6 +11,10 @@
     "UI.Favorite.Add": "The menu has been added to the favorites.",
     "UI.Favorite.Remove": "The menu has been removed from the favorites.",
     "UI.Favorite.Exist": "The menu already exists in the favorites.",
+
+    // Page
+    "UI.Page.Previous": "Previous",
+    "UI.Page.Next": "Next",
 
     // Tab
     "UI.Tab.Favorites": "Favorites",

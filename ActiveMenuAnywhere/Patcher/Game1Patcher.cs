@@ -35,7 +35,7 @@ internal class Game1Patcher : BasePatcher
             return true;
         }
 
-        Game1.activeClickableMenu = new AMAMenu(ModConfig.Instance.DefaultMenuTabId, instance.helper);
+        AMAMenu.Open(ModConfig.Instance.DefaultMenuTabId, instance.helper);
 
         return false;
     }

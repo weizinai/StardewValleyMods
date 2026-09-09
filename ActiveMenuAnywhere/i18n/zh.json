@@ -1,4 +1,4 @@
-﻿{
+{
     // Config
     "Config.MenuKey_Name": "菜单快捷键",
     "Config.OpenMenuByTelephone.Name": "通过电话打开菜单",
@@ -11,6 +11,10 @@
     "UI.Favorite.Add": "已将该菜单添加到收藏。",
     "UI.Favorite.Remove": "已将该菜单从收藏中移除。",
     "UI.Favorite.Exist": "该菜单在收藏中已存在。",
+
+    // Page
+    "UI.Page.Previous": "上一页",
+    "UI.Page.Next": "下一页",
 
     // Tab
     "UI.Tab.Favorites": "收藏",

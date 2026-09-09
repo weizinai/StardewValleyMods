@@ -39,9 +39,9 @@ internal class ModEntry : Mod
 
         if (config.MenuKey.JustPressed())
         {
-            if (Game1.activeClickableMenu is AMAMenu)
+            if (AMAMenu.IsOpen())
                 Game1.exitActiveMenu();
-            else if (Context.IsPlayerFree) Game1.activeClickableMenu = new AMAMenu(config.DefaultMenuTabId, this.Helper);
+            else if (Context.IsPlayerFree) AMAMenu.Open(config.DefaultMenuTabId, this.Helper);
         }
     }
 

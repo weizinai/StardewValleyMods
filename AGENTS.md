@@ -10,8 +10,6 @@ weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个�
 
 **C# 代码风格。** 编写或审查 C# 代码、修改 `.editorconfig` 时，加载 `cs-code-style` 技能并遵循其约定。
 
-**Git 提交。** 执行 git 提交时使用 `git-commit` 技能，提交信息用中文。
-
 **按需构建（构建 = 部署）。** 只构建改动的模组：`dotnet build <改动模组的目录>`（如 `dotnet build AutoBreakGeode`）会把该模组装进游戏 `Mods` 目录，改完直接进游戏验证；引用的共享库（如
 PiCore）随引用自动构建。发布 zip 落 `.releases/`。
 
@@ -26,13 +24,14 @@ API）不算变化，不得写入，也不得引用此后已不存在的 API 名
 API 均无感知）同样不算净变化。
 
 **复用基建优先。** 写代码先复用 PiCore 的 `Patcher`/`Handler`/`Integration`/`Extension`/`Constant`，再自己写；PiCore 是运行时依赖，`ProjectReference` 用
-`Private="false"`，manifest `Dependencies` 声明 `weizinai.PiCore` 必装。
+`Private="false"`，manifest `Dependencies` 声明 `weizinai.PiCore` 必装。搭游戏内界面（菜单 / 叠层 / HUD / 世界锚定）复用 PiCore.UI，使用约定见
+[PiCore UI 框架使用说明](PiCore/docs/frameworks/ui-framework.md)；改动 `PiCore/UI` 的公共 API 时同步更新该文档与其速查表。
 
 **翻译键位置。** 键定义在 `i18n/default.json`（英文基文案），`zh.json` 是译文；先 `I18n.Init` 再用。
 
 **配置类成员形态。** 会序列化进模组 `config.json` 的类，其成员一律用公共自动属性 `{ get; set; }`（需要默认值时写显式初始化器），不用公共字段；配置菜单经 PiCore
-配置模块接入。规则与端到端接入指南见
-[PiCore 配置模块使用约定](PiCore/docs/config-module.md)。
+配置框架接入。规则与端到端接入指南见
+[PiCore 配置框架使用约定](PiCore/docs/frameworks/config-framework.md)。
 
 ## Agent skills
 

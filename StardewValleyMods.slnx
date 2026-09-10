@@ -14,9 +14,9 @@
     </Folder>
     <Project Path="ActiveMenuAnywhere/ActiveMenuAnywhere.csproj"/>
     <Project Path="AutoBreakGeode/AutoBreakGeode.csproj"/>
-    <Project Path="AutoRefreshMineShaft/AutoRefreshMineShaft.csproj"/>
     <Project Path="BetterCabin/BetterCabin.csproj"/>
     <Project Path="CustomCabinFix/CustomCabinFix.csproj"/>
+    <Project Path="CustomMineRefresh/CustomMineRefresh.csproj"/>
     <Project Path="FastControlInput/FastControlInput.csproj"/>
     <Project Path="FreeLock/FreeLock.csproj"/>
     <Project Path="FriendshipDecayModify/FriendshipDecayModify.csproj"/>

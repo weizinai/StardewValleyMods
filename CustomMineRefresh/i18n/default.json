@@ -1,0 +1,12 @@
+{
+    "Config.MineRefresh.Name": "Mine Refresh",
+    "Config.MineRefresh.Tooltip": "When on, mine floors with no players in them are refreshed.",
+    "Config.MineRefreshInterval.Name": "Mine Refresh Interval",
+    "Config.MineRefreshInterval.Tooltip": "In game minutes (10 game minutes ≈ 7 seconds). 0 = immediately, checked every second.",
+    "Config.VolcanoRefresh.Name": "Volcano Refresh",
+    "Config.VolcanoRefresh.Tooltip": "When on, volcano dungeon floors with no players in them are refreshed.",
+    "Config.VolcanoRefreshInterval.Name": "Volcano Refresh Interval",
+    "Config.VolcanoRefreshInterval.Tooltip": "In game minutes (10 game minutes ≈ 7 seconds). 0 = immediately, checked every second.",
+    "Config.IntervalValue.Minutes": "{{minutes}} min",
+    "Config.IntervalValue.Immediate": "Immediately"
+}

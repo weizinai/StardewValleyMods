@@ -1,0 +1,12 @@
+{
+    "Config.MineRefresh.Name": "矿井刷新",
+    "Config.MineRefresh.Tooltip": "开启后，没有玩家的矿井楼层会被刷新。",
+    "Config.MineRefreshInterval.Name": "矿井刷新节拍",
+    "Config.MineRefreshInterval.Tooltip": "单位为游戏分钟（10 游戏分钟 ≈ 7 秒）。0 = 即时，每秒检查一次。",
+    "Config.VolcanoRefresh.Name": "火山刷新",
+    "Config.VolcanoRefresh.Tooltip": "开启后，没有玩家的火山地牢楼层会被刷新。",
+    "Config.VolcanoRefreshInterval.Name": "火山刷新节拍",
+    "Config.VolcanoRefreshInterval.Tooltip": "单位为游戏分钟（10 游戏分钟 ≈ 7 秒）。0 = 即时，每秒检查一次。",
+    "Config.IntervalValue.Minutes": "{{minutes}} 分钟",
+    "Config.IntervalValue.Immediate": "即时"
+}

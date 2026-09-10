@@ -10,9 +10,9 @@ weizinai 的 Stardew Valley（SMAPI）模组合集，面向 SDV 1.6（`net6.0`�
 |---------------------------------------------------|---------------------------------|-------------------------------------------------------------|----------------------------------------------|
 | [ActiveMenuAnywhere](ActiveMenuAnywhere/)         | 任意地点激活各类菜单            | [21093](https://www.nexusmods.com/stardewvalley/mods/21093) | [docs](ActiveMenuAnywhere/docs/README.md)    |
 | [AutoBreakGeode](AutoBreakGeode/)                 | 自动砸晶球                      | [20685](https://www.nexusmods.com/stardewvalley/mods/20685) | [docs](AutoBreakGeode/docs/README.md)        |
-| [AutoRefreshMineshaft](AutoRefreshMineshaft/)     | 修复联机时矿井不刷新的问题      | [33451](https://www.nexusmods.com/stardewvalley/mods/33451) | [docs](AutoRefreshMineshaft/docs/README.md)  |
 | [BetterCabin](BetterCabin/)                       | 让小屋拥有更多功能              | [25368](https://www.nexusmods.com/stardewvalley/mods/25368) | [docs](BetterCabin/docs/README.md)           |
 | [CustomCabinFix](CustomCabinFix/)                 | 修复添加自定义小屋时出现的问题  | [26979](https://www.nexusmods.com/stardewvalley/mods/26979) | [docs](CustomCabinFix/docs/README.md)        |
+| [CustomMineRefresh](CustomMineRefresh/)           | 按配置刷新无人的矿井与火山楼层  | [33451](https://www.nexusmods.com/stardewvalley/mods/33451) | [docs](CustomMineRefresh/docs/README.md)     |
 | [FastControlInput](FastControlInput/)             | 加快游戏对玩家输入的反应        | [24324](https://www.nexusmods.com/stardewvalley/mods/24324) | [docs](FastControlInput/docs/README.md)      |
 | [FreeLock](FreeLock/)                             | 自由移动视角                    | [25329](https://www.nexusmods.com/stardewvalley/mods/25329) | [docs](FreeLock/docs/README.md)              |
 | [FriendshipDecayModify](FriendshipDecayModify/)   | 调整好感度衰减值                | [23862](https://www.nexusmods.com/stardewvalley/mods/23862) | [docs](FriendshipDecayModify/docs/README.md) |

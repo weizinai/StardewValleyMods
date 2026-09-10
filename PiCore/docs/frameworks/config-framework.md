@@ -12,7 +12,7 @@
 | --- | --- |
 | ✅ 已验证 | `ConfigService<TConfig>` · `ConfigMenuDescriptor<TConfig>` · `ConfigMenuSection<TConfig, TSection>` · `ConfigMember`（internal） |
 
-实战消费模组：`AutoBreakGeode` · `LazyMod` · `BetterCabin` · `HelpWanted` · `ReadyCheckKick` · `FreeLock` · `FastControlInput` · `FriendshipDecayModify` · `ActiveMenuAnywhere` · `SpectatorMode` · `MultiplayerModLimit` · `AutoRefreshMineshaft` · `SomeMultiplayerFeature` · `TestMod`。
+实战消费模组：`AutoBreakGeode` · `LazyMod` · `BetterCabin` · `HelpWanted` · `ReadyCheckKick` · `FreeLock` · `FastControlInput` · `FriendshipDecayModify` · `ActiveMenuAnywhere` · `SpectatorMode` · `MultiplayerModLimit` · `CustomMineRefresh` · `SomeMultiplayerFeature` · `TestMod`。
 
 ---
 

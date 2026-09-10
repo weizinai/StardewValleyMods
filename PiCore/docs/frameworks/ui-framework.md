@@ -6,12 +6,12 @@
 
 ## 验证状态说明
 
-「已验证」= **ActiveMenuAnywhere (AMA)** 实战使用过，路径经过真实玩家与真实模组检验；「未验证」= 已实现、API 形状以代码为准，但尚无模组实际挂载（部分类型虽被宿主内部引用，独立能力未露出）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
+「已验证」= 已被实战模组接入且通过游戏内验收（**ActiveMenuAnywhere (AMA)** 之于菜单宿主，**AutoBreakGeode** 之于叠层宿主——后者的游戏内验收与 AutoBreakGeode 自身的验收清单同一次进行）；「未验证」= 已实现、API 形状以代码为准，但尚无模组实际挂载（部分类型虽被宿主内部引用，独立能力未露出）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
 
 | 状态 | 类型 |
 | --- | --- |
-| ✅ 已验证 | `MenuHost` · `Element` · `Stack` · `Grid` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` |
-| ⚠️ 未验证 | `DrawableHost` · `WorldAnchorHost` · `TilePanel` · `IAnchoredContent` · `Scrollable` · `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
+| ✅ 已验证 | `MenuHost` · `DrawableHost` · `Element` · `Stack` · `Grid` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` |
+| ⚠️ 未验证 | `WorldAnchorHost` · `TilePanel` · `IAnchoredContent` · `Scrollable` · `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
 
 每章开头会标注该章主要类型的验证状态。
 
@@ -291,7 +291,7 @@ internal class MyResettableContent : Element, IResettable
 
 # 3. 宿主层（Host）
 
-> 本章：`MenuHost` ✅ 已验证；`DrawableHost` / `WorldAnchorHost` ⚠️ 未验证（已实现，尚无模组挂载）。
+> 本章：`MenuHost` / `DrawableHost` ✅ 已验证（分别经 AMA / AutoBreakGeode）；`WorldAnchorHost` ⚠️ 未验证（已实现，尚无模组挂载）。
 
 ## 3.1 MenuHost —— 交互式菜单（✅ 已验证）
 
@@ -321,7 +321,7 @@ menu.ContentRect; // 内容区 = 外框内缩 24px
 
 **pad-vs-mouse 消歧**：手柄驱动（摇杆在动/方向键按下/光标非鼠标驱动）时压制鼠标悬停、提示框锚定到获焦项；鼠标一动即交还。
 
-## 3.2 DrawableHost —— 叠层宿主（⚠️ 未验证）
+## 3.2 DrawableHost —— 叠层宿主（✅ 已验证）
 
 `DrawableHost` 把同一个 retained 根视图作为**叠层**挂到一条 SMAPI Display 事件（HUD / 活动菜单之后 / 指定渲染步），每帧在 UI 坐标冲刷脏布局后绘制。**默认只读**：宿主自身不订阅任何输入事件（输入所有权留模组侧），鼠标交互由消费方**显式调用**下面两个方法开启——不调用时行为与只读版逐帧一致。
 
@@ -750,7 +750,7 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 | 类型 | 状态 | 一句话 |
 | --- | --- | --- |
 | `MenuHost` | ✅ | 交互式菜单宿主，一行 `OpenMenu(root)` 打开，处理全部鼠标/滚轮/手柄/Esc |
-| `DrawableHost` | ⚠️ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` 才开鼠标悬停与左键消费 |
+| `DrawableHost` | ✅ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` 才开鼠标悬停与左键消费 |
 | `WorldAnchorHost` | ⚠️ | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
 | `Element` | ✅ | 抽象基类：两趟布局节点，子类实现 Measure/Arrange/Draw |
 | `LayoutRunner` | ✅ | 布局冲刷入口：读 Bounds 前先 `UpdateIfDirty` |

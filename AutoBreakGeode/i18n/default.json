@@ -1,9 +1,8 @@
 ﻿{
     // Config
-    "Config.AutoBreakGeodeKeybind.Name": "Auto Break Geode Keybind",
-    "Config.DrawBeginButton.Name": "Draw Begin Button",
-    "Config.DrawBeginButton.Tooltip": "When this option is enabled, a button will be drawn on the GeodeMenu, and when you hold the Geode and click on the button, it will start breaking the Geode automatically.",
-    "Config.BreakGeodeSpeed.Name": "Break Geode Speed",
+    "Config.ToggleAutoBreakKeybind": "Toggle Auto Break Keybind",
+    "Config.GeodeAnimationSpeed": "Geode Animation Speed",
     // UI
-    "UI.BeginButton.Name": "Begin"
+    "UI.BeginButton": "Begin",
+    "UI.StopButton": "Stop"
 }

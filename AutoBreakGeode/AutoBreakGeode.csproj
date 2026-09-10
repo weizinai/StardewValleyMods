@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <Version>1.4.2</Version>
-        <EnableHarmony>true</EnableHarmony>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\PiCore\PiCore.csproj"/>
+        <ProjectReference Include="..\PiCore\PiCore.csproj" Private="false"/>
     </ItemGroup>
 
 </Project>

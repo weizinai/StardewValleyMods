@@ -1,9 +1,8 @@
 ﻿{
     // Config
-    "Config.AutoBreakGeodeKeybind.Name": "自动砸晶球快捷键",
-    "Config.DrawBeginButton.Name": "绘制开始按钮",
-    "Config.DrawBeginButton.Tooltip": "当该选项启用时,会在晶球面板绘制一个按钮.当你持有晶球,然后点击按钮,就会开始自动砸晶球.",
-    "Config.BreakGeodeSpeed.Name": "砸晶球速度",
+    "Config.ToggleAutoBreakKeybind": "自动砸晶球快捷键",
+    "Config.GeodeAnimationSpeed": "晶球动画速度",
     // UI
-    "UI.BeginButton.Name": "开始"
+    "UI.BeginButton": "开始",
+    "UI.StopButton": "停止"
 }

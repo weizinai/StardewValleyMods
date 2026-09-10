@@ -1,92 +1,49 @@
 using StardewModdingAPI;
-using StardewModdingAPI.Events;
-using StardewValley;
-using StardewValley.Menus;
-using weizinai.StardewValleyMod.AutoBreakGeode.Framework;
-using weizinai.StardewValleyMod.AutoBreakGeode.Patcher;
+using weizinai.StardewValleyMod.AutoBreakGeode.Config;
+using weizinai.StardewValleyMod.AutoBreakGeode.Handler;
 using weizinai.StardewValleyMod.PiCore.Config;
-using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.AutoBreakGeode;
 
 internal class ModEntry : Mod
 {
-    public static bool AutoBreakGeode;
-    private bool hasFastAnimation;
+    private AutoBreakHandler autoBreakHandler = null!;
 
+    /// <inheritdoc />
     public override void Entry(IModHelper helper)
     {
-        // 初始化
-        this.hasFastAnimation = helper.ModRegistry.IsLoaded("Pathoschild.FastAnimations");
         I18n.Init(helper.Translation);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置，读到的实例写入静态 ModConfig.Instance 供补丁程序读取
-        var configService = new ConfigService<ModConfig>(
+        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置，读到的实例写入静态 ModConfig.Instance 供处理器读取
+        // 这里只登记构建委托，菜单构建延后到 GameLaunched（见 PiCore 的 ConfigService.RegisterMenu）：
+        // 故下面声明选项时处理器已建好，取得到它探明的「装了没装快速动画模组」
+        new ConfigService<ModConfig>(
             this,
             () => ModConfig.Instance,
             value => ModConfig.Instance = value
-        );
-        configService.RegisterMenu(this.BuildConfigMenu);
-        // 注册事件
-        helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
-        helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-        // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new GeodeMenuPatcher());
-    }
-
-    private void OnButtonChanged(object? sender, ButtonsChangedEventArgs e)
-    {
-        if (ModConfig.Instance.AutoBreakGeodeKeybind.JustPressed())
-        {
-            AutoBreakGeode = !AutoBreakGeode;
-        }
-    }
-
-    private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
-    {
-        if (Game1.activeClickableMenu is GeodeMenu geodeMenu && AutoBreakGeode)
-        {
-            if (Utility.IsGeode(geodeMenu.heldItem))
-            {
-                if (geodeMenu.geodeAnimationTimer <= 0)
-                {
-                    var x = geodeMenu.geodeSpot.bounds.Center.X;
-                    var y = geodeMenu.geodeSpot.bounds.Center.Y;
-                    geodeMenu.receiveLeftClick(x, y);
-                }
-                else
-                {
-                    if (!this.hasFastAnimation)
-                    {
-                        for (var i = 0; i < ModConfig.Instance.BreakGeodeSpeed - 1; i++)
-                        {
-                            geodeMenu.update(Game1.currentGameTime);
-                        }
-                    }
-                }
-
-                if (Game1.player.freeSpotsInInventory() == 1)
-                {
-                    AutoBreakGeode = false;
-                }
-            }
-            else
-            {
-                AutoBreakGeode = false;
-            }
-        }
-        else
-        {
-            AutoBreakGeode = false;
-        }
+        ).RegisterMenu(this.BuildConfigMenu);
+        // 注册事件（本模组不打任何 Harmony 补丁，交互全部走 SMAPI 事件）
+        // 只 Apply 一次、不进配置变更重建流程：理由见 AutoBreakHandler 的类注释
+        this.autoBreakHandler = new AutoBreakHandler(helper);
+        this.autoBreakHandler.Apply();
     }
 
     /// <summary>用声明式描述器声明本模组的 GMCM 配置菜单，由配置模块渲染。</summary>
     /// <param name="menu">配置菜单描述器。</param>
     private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
     {
+        // 速度上限照抄 Fast Animations 自己的界面范围（1..20，见其 Framework/ModConfig.cs 与 GMCM 集成）：
+        // min 与 max 同时给出才会渲染成有边界的滑条，否则 GMCM 退化成无边界文本框，玩家能填 0、负数或 100000
+        // （0 与负数等于关掉补帧，巨大值等于每帧巨量重调 update），且原样写进 config.json。
+        // 装了 Fast Animations 时本模组的补帧整个不生效（原因见 AutoBreakHandler.IsFastAnimationsLoaded），故索性不注册这个选项：
+        // enable 在注册菜单时求值，即 GameLaunched 之后，那时处理器已探明「装了没装」。
+        // 上限与「装了没装」都从处理器取：它们是同一条判断的两处用法，留一处定义免得滑条与循环边界漂移
         menu
-            .AddKeybindListOption(config => config.AutoBreakGeodeKeybind, I18n.Config_AutoBreakGeodeKeybind_Name)
-            .AddBoolOption(config => config.DrawBeginButton, I18n.Config_DrawBeginButton_Name, I18n.Config_DrawBeginButton_Tooltip)
-            .AddNumberOption(config => config.BreakGeodeSpeed, I18n.Config_BreakGeodeSpeed_Name);
+            .AddKeybindListOption(config => config.ToggleAutoBreakKeybind, I18n.Config_ToggleAutoBreakKeybind)
+            .AddNumberOption(
+                config => config.BreakGeodeSpeed,
+                I18n.Config_GeodeAnimationSpeed,
+                min: 1, max: AutoBreakHandler.MaxGeodeSpeed, interval: 1,
+                enable: !this.autoBreakHandler.IsFastAnimationsLoaded
+            );
     }
 }

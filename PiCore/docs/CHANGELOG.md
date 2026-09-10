@@ -55,9 +55,12 @@
   content cleanly (the focus graph rebuilds and keeps the current chip), content implementing `IResettable` (e.g. a `Pager`) resets on switch, and the selected
   chip reads as a translucent box. `Pager` flips between page content elements with Previous/Next buttons and an auto-updating page label (hidden at the
   first/last page). `MenuHost` flushes pending layout at the start of draw, so content swapped inside a handler lands cleanly the same frame
-- **Read-only hosts — overlay & world-anchored:** `DrawableHost` draws the same retained root as read-only content on RenderedHud, RenderedActiveMenu or a
-  single render step (`CreateDrawable(root, display, RenderSlot, position)` / `CreateDrawableOnStep`); `WorldAnchorHost.Create(display, worldAnchor, content,
-  placement, offset)` anchors content to an absolute world position (e.g. the player) on RenderedWorld, tracking the live viewport and culling fully
-  off-screen boxes; `TilePanel` is the anchored flat title/body panel (DialogueFont title, SmallFont body lines). Both hosts subscribe on creation, lay the
-  root out by its content size, and `Disable()`/`Enable()` cleanly (no ghost draw); they are read-only in v1 (no input, no hit-test), and overlays on an
-  active menu redraw the mouse cursor on top
+- **Overlay & world-anchored hosts:** `DrawableHost` draws the same retained root on RenderedHud, RenderedActiveMenu or a single render step
+  (`CreateDrawable(root, display, RenderSlot, position)` / `CreateDrawableOnStep`), read-only by default; hover routing and left-click hit-testing are opt-in —
+  the consumer calls `PerformHoverAction(x, y)` (puts the topmost visible `Button` in hover state and plays the hover sound) and `HandleLeftClick(x, y)` (fires
+  its `OnClick` with the accept sound and returns `true` on a hit, so the consumer can swallow that click before the vanilla menu handles it — an overlay button
+  and the clickable area underneath it no longer both fire);
+  `WorldAnchorHost.Create(display, worldAnchor, content, placement, offset)` anchors content to an absolute world position (e.g. the player) on RenderedWorld,
+  tracking the live viewport and culling fully off-screen boxes; `TilePanel` is the anchored flat title/body panel (DialogueFont title, SmallFont body lines).
+  Both hosts subscribe on creation, lay the root out by its content size, and `Disable()`/`Enable()` cleanly (no ghost draw); overlays on an active menu redraw
+  the mouse cursor on top

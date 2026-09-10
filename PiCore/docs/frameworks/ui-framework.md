@@ -47,7 +47,7 @@ PiCore.UI 是一个 **retained 组合式 UI 框架**：你声明一棵**元素�
 2. 挂宿主     —— 交给 MenuHost / DrawableHost / WorldAnchorHost（创建即开始工作）
 3. 布局(每帧) —— 宿主在绘制/更新开头调用 LayoutRunner 冲刷挂起的脏布局（Measure→Arrange）
 4. 绘制(每帧) —— 宿主调 root.Draw：自绘 + 可见子级递归绘制
-5. 交互(每帧) —— MenuHost 路由鼠标/滚轮/手柄（焦点图）
+5. 交互(每帧) —— MenuHost 路由鼠标/滚轮/手柄（焦点图）；DrawableHost 默认不路由，消费方显式调用时路由鼠标（悬停/左键）
 6. 变更       —— 内容变化调 MarkDirty（或 Add/Remove/改 Text 已自动标脏）→ 下一帧重排
 ```
 
@@ -321,9 +321,9 @@ menu.ContentRect; // 内容区 = 外框内缩 24px
 
 **pad-vs-mouse 消歧**：手柄驱动（摇杆在动/方向键按下/光标非鼠标驱动）时压制鼠标悬停、提示框锚定到获焦项；鼠标一动即交还。
 
-## 3.2 DrawableHost —— 只读叠层（⚠️ 未验证）
+## 3.2 DrawableHost —— 叠层宿主（⚠️ 未验证）
 
-`DrawableHost` 把同一个 retained 根视图作为**只读绘制层**挂到一条 SMAPI Display 事件（HUD / 活动菜单之后 / 指定渲染步），每帧在 UI 坐标冲刷脏布局后绘制。**只读**：不订阅任何输入事件（v1 输入所有权留模组侧）。
+`DrawableHost` 把同一个 retained 根视图作为**叠层**挂到一条 SMAPI Display 事件（HUD / 活动菜单之后 / 指定渲染步），每帧在 UI 坐标冲刷脏布局后绘制。**默认只读**：宿主自身不订阅任何输入事件（输入所有权留模组侧），鼠标交互由消费方**显式调用**下面两个方法开启——不调用时行为与只读版逐帧一致。
 
 ```csharp
 using StardewModdingAPI;
@@ -339,6 +339,10 @@ host.Position = new Vector2(32f, 32f);   // 改位置即标脏，下一帧重排
 host.Enable();   // 恢复订阅
 host.Disable();  // 退订，干净移除（幂等）
 host.IsEnabled;  // 当前是否在绘制
+
+// 鼠标交互（可选，消费方显式调用才生效）
+host.PerformHoverAction(x, y);                 // 悬停路由：置/复位最上层按钮的悬停态 + 悬停音
+var consumed = host.HandleLeftClick(x, y);     // 左键命中：触发 OnClick + 确认音；true = 这一击已归叠层
 ```
 
 要点：
@@ -346,6 +350,9 @@ host.IsEnabled;  // 当前是否在绘制
 - `RenderSlot`：`Hud`（RenderedHud 之后）、`ActiveMenu`（RenderedActiveMenu 之后）、`RenderStep`（须给 `CreateDrawableOnStep` 指定步）。
 - 放置：内容自适应，向右向下生长；视口边缘夹紧不画出屏幕。
 - 叠在活动菜单上（ActiveMenu / RenderStep=Menu）时宿主自动把鼠标光标补画到最上层。
+- **交互仅含鼠标**：无焦点图、无手柄导航、无提示框（手柄与键盘路径由消费模组自己的快捷键承担）。何时调用这两个方法由消费方决定——典型接线是把原版每帧的悬停回调转给 `PerformHoverAction`、把左键回调前置给 `HandleLeftClick`。
+- `HandleLeftClick` **命中即消费**：返回 true 表示该击属于叠层，消费方应把它吞掉、不再下发给其下的原版菜单（否则叠层按钮与其下重叠的原版点击区会双触发）；未命中返回 false，照常下发。命中但 `OnClick` 为空时不播音，仍算已消费。
+- 两个方法都在命中前自动冲刷挂起布局（消费方无需自己调 `LayoutRunner`，首帧绘制之前调用也拿到真实 `Bounds`），且只在启用（`IsEnabled`）时生效：`Disable()` 后不命中、不消费，并复位残留悬停态。
 
 ## 3.3 WorldAnchorHost —— 世界锚定叠层（⚠️ 未验证）
 
@@ -443,7 +450,7 @@ LayoutRunner.Force(root, availableSize, placeFunc);
 ```
 
 - `UpdateIfDirty`：根未标脏则什么都不做（绘制稳定不抖）。
-- 宿主（MenuHost/DrawableHost/WorldAnchorHost）每帧自动冲刷——**作为消费方你通常不需要直接调**，除非你在事件处理器里改动树后要立即读 `Bounds`。
+- 宿主（MenuHost/DrawableHost/WorldAnchorHost）每帧自动冲刷，`DrawableHost` 的鼠标输入方法（`PerformHoverAction`/`HandleLeftClick`）在命中前也自行冲刷——**作为消费方你通常不需要直接调**，除非你在事件处理器里改动树后要立即读 `Bounds`。
 
 ## 4.3 Stack —— 顺序堆叠容器（✅ 已验证）
 
@@ -743,7 +750,7 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 | 类型 | 状态 | 一句话 |
 | --- | --- | --- |
 | `MenuHost` | ✅ | 交互式菜单宿主，一行 `OpenMenu(root)` 打开，处理全部鼠标/滚轮/手柄/Esc |
-| `DrawableHost` | ⚠️ | 只读叠层：retained 根视图挂到 HUD/菜单后/渲染步，无输入 |
+| `DrawableHost` | ⚠️ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` 才开鼠标悬停与左键消费 |
 | `WorldAnchorHost` | ⚠️ | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
 | `Element` | ✅ | 抽象基类：两趟布局节点，子类实现 Measure/Arrange/Draw |
 | `LayoutRunner` | ✅ | 布局冲刷入口：读 Bounds 前先 `UpdateIfDirty` |

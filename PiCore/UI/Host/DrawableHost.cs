@@ -5,15 +5,20 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Mods;
 using weizinai.StardewValleyMod.PiCore.UI.Layout;
+using weizinai.StardewValleyMod.PiCore.UI.Widget;
 
 namespace weizinai.StardewValleyMod.PiCore.UI.Host;
 
 /// <summary>
-/// 只读 drawable 宿主（票 08）：把同一个 retained 根视图当作**只读绘制层**挂到一条 SMAPI Display
+/// Drawable 叠层宿主（票 08）：把同一个 retained 根视图当作**叠层**挂到一条 SMAPI Display
 /// 事件（RenderedHud / RenderedActiveMenu / RenderedStep）上，每帧在 UI 坐标冲刷脏布局后绘制。
-/// 只读：不订阅任何输入事件（无命中、无输入捕获，v1 输入所有权留模组侧），消费方把 <see cref="Element" />
-/// 根视图（如 <see cref="Widget.PanelFrame" /> 包一段 <see cref="Widget.Label" /> 文本）交进来即可复用
-/// 菜单同款组件与扁平 <see cref="Theme" /> 绘制助手。
+/// 默认为**只读绘制层**：宿主自身不订阅任何输入事件、不做输入捕获（输入所有权留模组侧），消费方把
+/// <see cref="Element" /> 根视图（如 <see cref="Widget.PanelFrame" /> 包一段 <see cref="Widget.Label" />
+/// 文本）交进来即可复用菜单同款组件与扁平 <see cref="Theme" /> 绘制助手。
+/// 鼠标交互**按消费方显式调用开启**：调 <see cref="PerformHoverAction" /> 得悬停路由（置/复位
+/// <see cref="Button.Hovered" /> + 悬停音效），调 <see cref="HandleLeftClick" /> 得左键命中并消费；不调用这两个
+/// 方法时行为与只读版逐帧一致（零回归）。交互仅含鼠标——无焦点图/手柄导航/提示框（手柄与键盘路径由消费
+/// 模组自身的快捷键承担），且仅在启用（<see cref="IsEnabled" />）时生效：禁用即无绘制，也不参与命中与消费。
 /// 放置：根视图在 UI 坐标的固定左上角 <see cref="Position" /> 按**内容尺寸**排布（内容自适应，向右向下
 /// 生长，镜像 SMF 固定位置文本盒惯例）；内容变化标脏后下一帧同帧重排，未变化时不重排（绘制稳定不抖）。
 /// 视口边缘内容超界时夹紧进视口，不画出屏幕。
@@ -47,8 +52,11 @@ public sealed class DrawableHost
     private readonly RenderSteps? stepFilter;
     private bool enabled;
 
-    /// <summary>构造只读 drawable 宿主并订阅对应 Display 事件（创建即开始绘制）。</summary>
-    /// <param name="root">只读绘制层的根视图。</param>
+    /// <summary>当前悬停的按钮（由 <see cref="PerformHoverAction" /> 路由维护，用于复位旧悬停态）。</summary>
+    private Button? hoveredButton;
+
+    /// <summary>构造 drawable 叠层宿主并订阅对应 Display 事件（创建即开始绘制）。</summary>
+    /// <param name="root">叠层的根视图。</param>
     /// <param name="display">消费模组的 Display 事件（<c>helper.Events.Display</c>）。</param>
     /// <param name="slot">挂接的渲染事件。</param>
     /// <param name="position">根视图内容盒在 UI 坐标的固定左上角。</param>
@@ -92,8 +100,8 @@ public sealed class DrawableHost
     /// <summary>当前是否已订阅事件（启用中）：true = 每帧事件触发时绘制；false = 已退订、无任何绘制。</summary>
     public bool IsEnabled => this.enabled;
 
-    /// <summary>创建只读 drawable 宿主并开始绘制（镜像 MenuHost.OpenMenu 的一行宿主调用）。</summary>
-    /// <param name="root">只读绘制层的根视图。</param>
+    /// <summary>创建 drawable 叠层宿主并开始绘制（镜像 MenuHost.OpenMenu 的一行宿主调用）。</summary>
+    /// <param name="root">叠层的根视图。</param>
     /// <param name="display">消费模组的 Display 事件（<c>helper.Events.Display</c>）。</param>
     /// <param name="slot">挂接的渲染事件。</param>
     /// <param name="position">根视图内容盒在 UI 坐标的固定左上角。</param>
@@ -107,8 +115,8 @@ public sealed class DrawableHost
         return new DrawableHost(root, display, slot, position, stepFilter: null);
     }
 
-    /// <summary>创建挂到指定渲染步的只读 drawable 宿主（RenderedStep 每步触发，必须过滤到具体步）。</summary>
-    /// <param name="root">只读绘制层的根视图。</param>
+    /// <summary>创建挂到指定渲染步的 drawable 叠层宿主（RenderedStep 每步触发，必须过滤到具体步）。</summary>
+    /// <param name="root">叠层的根视图。</param>
     /// <param name="display">消费模组的 Display 事件（<c>helper.Events.Display</c>）。</param>
     /// <param name="step">只在该渲染步完成后绘制的步。</param>
     /// <param name="position">根视图内容盒在 UI 坐标的固定左上角。</param>
@@ -125,10 +133,146 @@ public sealed class DrawableHost
         this.SetSubscribed(true);
     }
 
-    /// <summary>退订事件并停止绘制（干净移除，无残留绘制；幂等：已禁用则无操作）。</summary>
+    /// <summary>
+    /// 退订事件并停止绘制（干净移除，无残留绘制；幂等：已禁用则无操作），并复位残留悬停态——禁用后不再有悬停
+    /// 路由，不复位按钮会一直停在悬停视觉上。
+    /// </summary>
     public void Disable()
     {
         this.SetSubscribed(false);
+        this.SetHovered(null);
+    }
+
+    /// <summary>
+    /// 悬停路由（消费方显式调用才生效）：把光标下最上层的可见 <see cref="Button" /> 置为悬停态并播放悬停
+    /// 音效；悬停空处或换到另一按钮时先复位旧按钮。路由只含鼠标（无手柄消歧——叠层交互仅鼠标，何时调用由
+    /// 消费方决定）。宿主禁用时叠层未绘制，故不参与命中，仅复位残留悬停态。
+    /// </summary>
+    /// <param name="x">鼠标 X（UI 坐标）。</param>
+    /// <param name="y">鼠标 Y（UI 坐标）。</param>
+    public void PerformHoverAction(int x, int y)
+    {
+        if (!this.enabled)
+        {
+            this.SetHovered(null);
+
+            return;
+        }
+
+        this.EnsureLayout();
+        this.SetHovered(this.HitTestTopButton(x, y));
+    }
+
+    /// <summary>
+    /// 左键路由（消费方显式调用才生效）：命中光标下最上层的可见 <see cref="Button" /> 即触发其
+    /// <see cref="Button.OnClick" />（非空时播确认音，一次调用触发恰一次），并返回 true 表示这一击已由叠层
+    /// **独占消费**——消费方据此把该击吞掉、不再下发给原版菜单，避免叠层按钮与其下重叠的原版点击区双触发。
+    /// 未命中返回 false（点击未被消费，消费方照常下发给原版菜单）；宿主禁用时一律返回 false。
+    /// </summary>
+    /// <param name="x">鼠标 X（UI 坐标）。</param>
+    /// <param name="y">鼠标 Y（UI 坐标）。</param>
+    /// <returns>本次点击是否已被叠层消费。</returns>
+    public bool HandleLeftClick(int x, int y)
+    {
+        if (!this.enabled)
+        {
+            return false;
+        }
+
+        this.EnsureLayout();
+        var hit = this.HitTestTopButton(x, y);
+
+        if (hit is null)
+        {
+            return false;
+        }
+
+        if (hit.OnClick is not null)
+        {
+            Theme.PlaySound(Theme.AcceptSound);
+            hit.OnClick();
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 冲刷挂起的脏布局（内容变化同帧落地）：绘制与命中测试共用同一处排布入口。命中前必须冲刷——消费方
+    /// 可能在首帧绘制之前就调用输入方法，不冲刷会读到未排布的 Bounds（整树零矩形，悬停/点击永不命中）。
+    /// </summary>
+    private void EnsureLayout()
+    {
+        Rectangle viewport = new(0, 0, Game1.uiViewport.Width, Game1.uiViewport.Height);
+        Vector2 available = new(viewport.Width, viewport.Height);
+
+        LayoutRunner.UpdateIfDirty(this.root, available, desired => this.Place(desired, viewport));
+    }
+
+    // 下面三个鼠标路由助手与 MenuHost 的鼠标部分形状相同（悬停置/复位 + 最上层命中），但刻意在本宿主内自持一份：
+    // 本票的硬契约是「MenuHost 一行不改」（其路由与焦点图/手柄/提示框/关闭按钮纠缠，经 ActiveMenuAnywhere 实战验证），
+    // 抽公共助手必然要改动它。两处形状也已分化——本宿主判根节点自身（叠层最小用法 = 直接挂一个 Button 当根视图）、
+    // 无焦点同步、无 pad-vs-mouse 消歧、无关闭按钮前置检查；将来若要合并，按分化后的语义重新收敛，而不是复制粘贴。
+
+    /// <summary>切换悬停目标：先复位旧按钮的 <see cref="Button.Hovered" />，再置新按钮并播放悬停音效（进入新按钮时）。</summary>
+    /// <param name="button">新悬停按钮（null = 离开按钮悬停空处）。</param>
+    private void SetHovered(Button? button)
+    {
+        if (ReferenceEquals(button, this.hoveredButton))
+        {
+            return;
+        }
+
+        if (this.hoveredButton is not null)
+        {
+            this.hoveredButton.Hovered = false;
+        }
+
+        this.hoveredButton = button;
+
+        if (button is not null)
+        {
+            button.Hovered = true;
+            Theme.PlaySound(Theme.HoverSound);
+        }
+    }
+
+    /// <summary>命中测试：返回光标下最上层的可见按钮（按绘制顺序最后命中的那个 = 视觉最上层），无则 null。</summary>
+    /// <param name="x">鼠标 X（UI 坐标）。</param>
+    /// <param name="y">鼠标 Y（UI 坐标）。</param>
+    /// <returns>命中的按钮。</returns>
+    private Button? HitTestTopButton(int x, int y)
+    {
+        var point = new Point(x, y);
+        Button? best = null;
+        this.FindTopButton(this.root, point, ref best);
+
+        return best;
+    }
+
+    /// <summary>
+    /// 深度优先收集命中点最上层按钮：先本节点、再子级先后，与绘制顺序一致（后绘制的兄弟/后代覆盖先前的
+    /// 命中），故取到的是视觉最上层者。本节点自身也参与命中——叠层的最小用法就是把一个 <see cref="Button" />
+    /// 直接当根视图交给宿主，不判自身则永远命中不到。
+    /// </summary>
+    /// <param name="node">当前布局节点。</param>
+    /// <param name="point">命中点。</param>
+    /// <param name="best">目前命中的按钮（引用传参，整棵树遍历后为最上层者）。</param>
+    private void FindTopButton(Element node, Point point, ref Button? best)
+    {
+        if (node is Button button && button.ContainsPoint(point))
+        {
+            best = button;
+        }
+
+        foreach (var child in node.Children)
+        {
+            if (!child.Visible)
+            {
+                continue;
+            }
+
+            this.FindTopButton(child, point, ref best);
+        }
     }
 
     /// <summary>
@@ -219,11 +363,8 @@ public sealed class DrawableHost
     /// <param name="batch">精灵批（事件触发时已 open，UI 坐标）。</param>
     private void Draw(SpriteBatch batch)
     {
-        Rectangle viewport = new(0, 0, Game1.uiViewport.Width, Game1.uiViewport.Height);
-        Vector2 available = new(viewport.Width, viewport.Height);
-
         // 首帧/内容变化后按内容尺寸排布到固定左上角；未变化时不重排（稳定不抖，事件每帧都触发绘制）
-        LayoutRunner.UpdateIfDirty(this.root, available, desired => this.Place(desired, viewport));
+        this.EnsureLayout();
         this.root.Draw(batch);
 
         // 有活动菜单时游戏不代画光标（Game1.drawMouseCursor 仅 activeClickableMenu == null 时画），光标由活动菜单在

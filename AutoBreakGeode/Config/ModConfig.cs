@@ -12,8 +12,8 @@ internal class ModConfig
     public KeybindList ToggleAutoBreakKeybind { get; set; } = new(SButton.F);
 
     /// <summary>
-    /// 晶球动画的加速倍率（1 = 原版速度，默认取满）：语义与生效条件见 AutoBreakHandler.SpeedUpAnimation，
-    /// 滑条上界取 AutoBreakHandler.MaxGeodeSpeed。
+    /// 晶球动画的加速倍率（1 = 原版速度，默认取满）：语义与生效条件见 GeodeSpeedPolicy，
+    /// 滑条上界取 GeodeSpeedPolicy.MaxSpeed。
     /// </summary>
     public int BreakGeodeSpeed { get; set; } = 20;
 }

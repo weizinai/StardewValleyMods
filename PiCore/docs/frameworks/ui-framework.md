@@ -2,7 +2,7 @@
 
 > 面向**框架使用者**（含 AI 协作 agent）：本文档自包含，教你用 `PiCore.UI` 搭出游戏内界面。API 签名以代码为准，本文档是对框架的导航与使用约定；两者不一致时以代码为准并请修正本文档。
 >
-> 适用版本：PiCore **0.5.0**（待定，未发布）。命名空间 `weizinai.StardewValleyMod.PiCore.UI*`（下文简称 `PiCore.UI`）。同目录另见 [配置框架使用约定](config-framework.md)。
+> 适用版本：PiCore **待定（未发布）**——版本号在发布时才定，以 `docs/CHANGELOG.md` 顶部为准。命名空间 `weizinai.StardewValleyMod.PiCore.UI*`（下文简称 `PiCore.UI`）。同目录另见 [配置框架使用约定](config-framework.md)。
 
 ## 验证状态说明
 

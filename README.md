@@ -44,7 +44,7 @@ weizinai 的 Stardew Valley（SMAPI）模组合集，面向 SDV 1.6（`net6.0`�
 - 前置：.NET SDK（`net6.0`）+ 装有 SMAPI 的 Stardew Valley；ModBuildConfig 会自动探测游戏路径。
 - 按需构建：`dotnet build <模组目录>`（如 `dotnet build AutoBreakGeode`）只构建改动的模组并自动部署进游戏 `Mods` 目录，不必每次构建整个解决方案；项目引用的共享库（如
   PiCore）会随之自动构建。发布 zip 输出到仓库根 `.releases/`（隐藏目录）。
-- 版本号唯一来源是各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位）；改版本只改 csproj。
+- 版本号唯一来源是各 csproj 的 `<Version>`（manifest 用 `%ProjectVersion%` 占位）；改版本只改 csproj，且**只在发布时改**（约定见 [AGENTS.md](AGENTS.md) 的「版本号与更新日志」）。
 - 每个模组的详细介绍、更新日志（英文 `CHANGELOG.md` 与中文 `CHANGELOG.zh.md`）、截图放在各自 `docs/` 目录。
 
 ## 模组开发约定

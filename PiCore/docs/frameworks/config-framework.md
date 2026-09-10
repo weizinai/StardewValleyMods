@@ -2,7 +2,7 @@
 
 > 面向**框架使用者**（模组作者与 AI 协作 agent）：本文档自包含，教你用 `PiCore.Config` 把「声明配置 → 读取 → 菜单渲染 → 保存/重置」全部跑通。API 签名以代码为准，本文档是对框架的导航与使用约定；两者不一致时以代码为准并请修正本文档。
 >
-> 适用版本：PiCore **0.5.0**（待定，未发布）。命名空间 `weizinai.StardewValleyMod.PiCore.Config`（下文简称 `PiCore.Config`）。同目录另见 [UI 框架使用说明](ui-framework.md)。
+> 适用版本：PiCore **待定（未发布）**——版本号在发布时才定，以 `docs/CHANGELOG.md` 顶部为准。命名空间 `weizinai.StardewValleyMod.PiCore.Config`（下文简称 `PiCore.Config`）。同目录另见 [UI 框架使用说明](ui-framework.md)。
 
 ## 验证状态说明
 

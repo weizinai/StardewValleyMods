@@ -1,6 +1,8 @@
 # Changelog
 
-# [Unreleased] 0.6.1
+# [Unreleased]
+
+## Changed
 
 - Migrated logging to PiCore (removed the Common shared project); console logs still show each mod's own name
 - Migrated multiplayer hint messages (Broadcaster) to PiCore; peers still see them attributed to the sender mod

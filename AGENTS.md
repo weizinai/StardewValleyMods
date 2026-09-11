@@ -1,12 +1,16 @@
 # StardewValleyMods
 
 weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个顶层目录是一个独立模组，依赖 `PiCore`
-（核心库模组，其余模组的运行时依赖）。模组清单、构建步骤、目录结构约定见根 [README.md](README.md)。改动通常只落在一个模组里；动共享层时，要审视所有受影响模组。
+（核心库模组，其余模组的运行时依赖）。模组的目录骨架见下文「仓库骨架」。改动通常只落在一个模组里；动共享层时，要审视所有受影响模组。
 
 ## Conventions
 
 **基于证据做决定，不靠猜测。** 遇到不确定的事实，先到可信来源查证再行动：本地优先（游戏/SMAPI 源码树、本仓库文档），然后是官方文档、官方仓库。带确切路径与查阅指引的引用地图见
 `docs/agents/modding-references.md`。
+
+**仓库骨架。** 每个顶层目录是独立模组，新建或修改时遵循统一骨架：`ModEntry.cs`（`Entry` 里 `I18n.Init`、注册事件、调用 `HarmonyPatcher.Apply`）+
+`Config/`（ModConfig，经 PiCore 配置框架接入）+ `Patcher/`（Harmony patch）+ `Handler/`（功能实现）+ 按职责自定的目录（如 `UI/`、`Session/`、`Vanilla/`）+
+`i18n/` + `docs/`（README.md、CHANGELOG.md、CHANGELOG.zh.md、screenshots/）+ `manifest.json`；目录一律按职责划分，不套一层 `Framework/`。任意现有模组目录都是一份范例。
 
 **C# 代码风格。** 编写或审查 C# 代码、修改 `.editorconfig` 时，加载 `cs-code-style` 技能并遵循其约定。
 
@@ -31,6 +35,10 @@ PiCore）随引用自动构建。发布 zip 落 `.releases/`。
 **配置类成员形态。** 会序列化进模组 `config.json` 的类，其成员一律用公共自动属性 `{ get; set; }`（需要默认值时写显式初始化器），不用公共字段；配置菜单经 PiCore
 配置框架接入。规则与端到端接入指南见
 [PiCore 配置框架使用约定](PiCore/docs/frameworks/config-framework.md)。
+
+## 模组知识沉淀
+
+完成一个模组任务闭环后，检查本次是否产生了**通用**的 SMAPI/SDV 知识（与自建框架无关）。有则提议用 `/stardew-modding-capture` 沉淀进 `stardew-modding` 技能。
 
 ## Agent skills
 

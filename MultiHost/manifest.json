@@ -2,12 +2,9 @@
     "Name": "Multi Host",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "This mod allows player to host multiple farms at the same time",
+    "Description": "Host multiple farms at the same time.",
     "UniqueID": "weizinai.MultiHost",
     "EntryDll": "MultiHost.dll",
-    "UpdateKeys": [
-        "Nexus: "
-    ],
     "Dependencies": [
         {
             "UniqueID": "weizinai.PiCore",

@@ -5,9 +5,6 @@
     "Description": "",
     "UniqueID": "weizinai.TestMod",
     "EntryDll": "TestMod.dll",
-    "UpdateKeys": [
-        "Nexus:"
-    ],
     "Dependencies": [
         {
             "UniqueID": "weizinai.PiCore",

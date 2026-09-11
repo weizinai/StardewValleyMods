@@ -2,7 +2,7 @@
     "Name": "Custom Mine Refresh",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "This mod refreshes mine and volcano dungeon floors that have no players in them, each on its own switch and cadence (the `Custom` part is the refresh strategy you configure). Only the host or a single-player game needs it.",
+    "Description": "Refreshes mine and volcano dungeon floors with no players in them on a schedule you configure; only the host needs it.",
     "UniqueID": "weizinai.CustomMineRefresh",
     "EntryDll": "CustomMineRefresh.dll",
     "UpdateKeys": [

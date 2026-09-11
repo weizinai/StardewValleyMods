@@ -2,7 +2,7 @@
     "Name": "Free Lock",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "The mod allows you to move the viewpoint.",
+    "Description": "Lets you move the camera freely.",
     "UniqueID": "weizinai.FreeLock",
     "EntryDll": "FreeLock.dll",
     "UpdateKeys": ["Nexus: 25329"],

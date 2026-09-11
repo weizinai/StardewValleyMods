@@ -2,7 +2,7 @@
     "Name": "Pi Core",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "This mod used as a core library for some of weizinai's mods.",
+    "Description": "Core library shared by weizinai's other mods; does nothing on its own.",
     "UniqueID": "weizinai.PiCore",
     "EntryDll": "PiCore.dll",
     "UpdateKeys": [

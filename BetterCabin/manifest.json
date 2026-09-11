@@ -2,7 +2,7 @@
     "Name": "Better Cabin",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "This mod gives the cabin more features.",
+    "Description": "Gives cabins more features.",
     "UniqueID": "weizinai.BetterCabin",
     "EntryDll": "BetterCabin.dll",
     "UpdateKeys": ["Nexus: 25368"],

@@ -1,8 +1,8 @@
-﻿{
+{
     "Name": "Active Menu Anywhere",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "Active menu anywhere.",
+    "Description": "Open any in-game menu from anywhere.",
     "UniqueID": "weizinai.ActiveMenuAnywhere",
     "EntryDll": "ActiveMenuAnywhere.dll",
     "UpdateKeys": ["Nexus: 21093"],

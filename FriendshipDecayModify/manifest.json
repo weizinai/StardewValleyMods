@@ -1,8 +1,8 @@
-﻿{
+{
     "Name": "Friendship Decay Modify",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "This mod allows you to change the value of the friendship decay.",
+    "Description": "Changes the friendship decay value.",
     "UniqueID": "weizinai.FriendshipDecayModify",
     "EntryDll": "FriendshipDecayModify.dll",
     "UpdateKeys": ["Nexus: 23862"],

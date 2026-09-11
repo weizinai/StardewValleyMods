@@ -4,7 +4,7 @@ using StardewValley.Menus;
 using weizinai.StardewValleyMod.PiCore;
 using weizinai.StardewValleyMod.PiCore.Extension;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Framework.Menu;
+namespace weizinai.StardewValleyMod.BetterCabin.UI;
 
 internal class ServerCabinMenu : CarpenterMenu
 {

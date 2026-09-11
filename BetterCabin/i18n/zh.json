@@ -1,4 +1,7 @@
 {
+    // 配置选项
+    "Config.Enable.Name": "启用",
+
     // 拜访小屋信息
     "Config.VisitCabinInfo.Name": "拜访小屋信息",
     "Config.VisitCabinInfo.Tooltip": "当你拜访一个小屋时，会显示一条小屋主人的信息。",
@@ -30,7 +33,7 @@
     "Config.ResetCabinKeybind.Name": "重置小屋快捷键",
     "UI.ResetCabin.Success": "{{name}}的小屋已重置，现在小屋可以新建玩家。",
     "UI.ResetCabin.NoOwner": "当前小屋是初始状态，无法发起重置。",
-    "UI.ResetCabin.ChooseFarmhand": "请选择你要重置的小屋：",
+    "UI.ResetCabin.ChooseFarmhand": "请选择你要重置小屋的玩家：",
     "UI.ResetCabin.Online": "当前小屋的主人在线，无法发起重置。",
 
     // 上锁小屋
@@ -53,6 +56,11 @@
     "Config.CabinMenuKeybind.Name": "小屋面板快捷键",
     "Config.BuildCabinContinually.Name": "连续建造小屋",
     "UI.ClientCabinMenu.ChooseSkin": "请选择小屋的外观",
+    "UI.ClientCabinMenu.PreviousSkin": "上一种外观",
+    "UI.ClientCabinMenu.NextSkin": "下一种外观",
+    "UI.ClientCabinMenu.SkinCount": "{{current}} / {{total}}",
+    "UI.ClientCabinMenu.MoveCabin": "移动小屋",
+    "UI.ClientCabinMenu.Close": "关闭",
 
     // 小屋花费
     "Config.CabinCost.Name": "小屋花费",

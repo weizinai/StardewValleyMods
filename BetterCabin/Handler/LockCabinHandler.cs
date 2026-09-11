@@ -5,7 +5,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
-using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Config;
 using weizinai.StardewValleyMod.PiCore.Handler;
 using weizinai.StardewValleyMod.PiCore.Logging;
 

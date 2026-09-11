@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.GameData.Buildings;
-using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Config;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 using xTile.Dimensions;
 

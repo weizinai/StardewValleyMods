@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+namespace weizinai.StardewValleyMod.BetterCabin.Config;
 
 internal class ModConfig
 {
@@ -16,7 +16,7 @@ internal class ModConfig
     public int NameTagXOffset { get; set; }
     public int NameTagYOffset { get; set; }
     public Color OnlineFarmerColor { get; set; } = Color.Black;
-    public Color OfflineFarmerColor { get; set; } = Color.White;
+    public Color OfflineFarmerColor { get; set; } = Color.Gray;
     public Color OwnerColor { get; set; } = Color.Red;
 
     // 总在线时间

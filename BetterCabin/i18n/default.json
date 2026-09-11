@@ -1,4 +1,7 @@
 {
+    // Config
+    "Config.Enable.Name": "Enable",
+
     // Visit Cabin Info
     "Config.VisitCabinInfo.Name": "Visit Cabin Info",
     "Config.VisitCabinInfo.Tooltip": "When you visit a cabin, a message about the owner of the cabin is displayed.",
@@ -28,9 +31,9 @@
     "Config.ResetCabin.Name": "Reset Cabin",
     "Config.ResetCabin.Tooltip": "When you're inside a cabin, pressing the keybind will reset the information about the cabin's owner, allowing the cabin to create new players.",
     "Config.ResetCabinKeybind.Name": "Reset Cabin Keybind",
-    "UI.ResetCabin.Success": "The {{name}}'s cabin has been reset, and new players can now be created in the cabin.",
+    "UI.ResetCabin.Success": "{{name}}'s cabin has been reset, and new players can now be created in the cabin.",
     "UI.ResetCabin.NoOwner": "The current cabin is the initial state and cannot be reset.",
-    "UI.ResetCabin.ChooseFarmhand": "Please choose the cabin you want to reset:",
+    "UI.ResetCabin.ChooseFarmhand": "Please select the players whose cabins you want to reset:",
     "UI.ResetCabin.Online": "The owner of the current cabin is online and cannot be reset.",
 
     // Lock Cabin
@@ -44,7 +47,7 @@
     "UI.LockCabin.Unlock": "Your cabin is unlocked.",
     "UI.LockCabin.VisitLockedCabin": "The cabin is locked by the owner and you can't visit it.",
     "UI.WhiteList.ChooseFarmer": "Please select the players you want to add to or remove from the whitelist:",
-    "UI.WhiteList.Add": "{{name}} is added to the white list，now he can access you cabin.",
+    "UI.WhiteList.Add": "{{name}} is added to the white list, now he can access your cabin.",
     "UI.WhiteList.Remove": "{{name}} is removed from the white list, now he can't access your cabin.",
 
     // Cabin Menu
@@ -53,6 +56,11 @@
     "Config.CabinMenuKeybind.Name": "Cabin Menu Keybind",
     "Config.BuildCabinContinually.Name": "Build Cabin Continually",
     "UI.ClientCabinMenu.ChooseSkin": "Please select the appearance of the cabin",
+    "UI.ClientCabinMenu.PreviousSkin": "Previous Appearance",
+    "UI.ClientCabinMenu.NextSkin": "Next Appearance",
+    "UI.ClientCabinMenu.SkinCount": "{{current}} / {{total}}",
+    "UI.ClientCabinMenu.MoveCabin": "Move Cabin",
+    "UI.ClientCabinMenu.Close": "Close",
 
     // Cabin Cost
     "Config.CabinCost.Name": "Cabin Cost",

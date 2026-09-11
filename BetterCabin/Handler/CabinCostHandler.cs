@@ -1,7 +1,7 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Config;
 using weizinai.StardewValleyMod.PiCore.Handler;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;

@@ -1,6 +1,6 @@
 using HarmonyLib;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Config;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Patcher;

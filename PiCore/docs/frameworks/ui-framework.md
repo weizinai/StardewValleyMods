@@ -6,12 +6,12 @@
 
 ## 验证状态说明
 
-「已验证」= 已被实战模组接入且通过游戏内验收（**ActiveMenuAnywhere (AMA)** 之于菜单宿主，**AutoBreakGeode** 之于叠层宿主——后者的游戏内验收与 AutoBreakGeode 自身的验收清单同一次进行）；「未验证」= 已实现、API 形状以代码为准，但尚无模组实际挂载（部分类型虽被宿主内部引用，独立能力未露出）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
+「已验证」= 已被实战模组接入且通过游戏内验收（**ActiveMenuAnywhere (AMA)** 之于菜单宿主，**AutoBreakGeode** 之于叠层宿主，**BetterCabin** 之于世界锚定宿主——三者的游戏内验收都与各自模组的验收清单同一次进行）；「未验证」= 已实现、API 形状以代码为准，但尚无模组实际挂载（部分类型虽被宿主内部引用，独立能力未露出）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
 
 | 状态 | 类型 |
 | --- | --- |
-| ✅ 已验证 | `MenuHost` · `DrawableHost` · `Element` · `Stack` · `Grid` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` |
-| ⚠️ 未验证 | `WorldAnchorHost` · `TilePanel` · `IAnchoredContent` · `Scrollable` · `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
+| ✅ 已验证 | `MenuHost` · `DrawableHost` · `WorldAnchorHost` · `Element` · `Stack` · `Grid` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` · `IAnchoredContent` · `TilePanel` |
+| ⚠️ 未验证 | `Scrollable` · `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
 
 每章开头会标注该章主要类型的验证状态。
 
@@ -291,7 +291,7 @@ internal class MyResettableContent : Element, IResettable
 
 # 3. 宿主层（Host）
 
-> 本章：`MenuHost` / `DrawableHost` ✅ 已验证（分别经 AMA / AutoBreakGeode）；`WorldAnchorHost` ⚠️ 未验证（已实现，尚无模组挂载）。
+> 本章：`MenuHost` / `DrawableHost` / `WorldAnchorHost` ✅ 已验证（分别经 AMA / AutoBreakGeode / BetterCabin）。
 
 ## 3.1 MenuHost —— 交互式菜单（✅ 已验证）
 
@@ -354,7 +354,7 @@ var consumed = host.HandleLeftClick(x, y);     // 左键命中：触发 OnClick 
 - `HandleLeftClick` **命中即消费**：返回 true 表示该击属于叠层，消费方应把它吞掉、不再下发给其下的原版菜单（否则叠层按钮与其下重叠的原版点击区会双触发）；未命中返回 false，照常下发。命中但 `OnClick` 为空时不播音，仍算已消费。
 - 两个方法都在命中前自动冲刷挂起布局（消费方无需自己调 `LayoutRunner`，首帧绘制之前调用也拿到真实 `Bounds`），且只在启用（`IsEnabled`）时生效：`Disable()` 后不命中、不消费，并复位残留悬停态。
 
-## 3.3 WorldAnchorHost —— 世界锚定叠层（⚠️ 未验证）
+## 3.3 WorldAnchorHost —— 世界锚定叠层（✅ 已验证）
 
 `WorldAnchorHost` 把**只读 immediate 内容**（`IAnchoredContent`）锚定到世界绝对坐标（如玩家），画在 RenderedWorld（世界批坐标空间），垫在 HUD/菜单之下，不参与 retained 布局。
 
@@ -659,9 +659,9 @@ focus.RequestRebuild();               // 结构变化时重建（保留当前焦
 
 # 7. 世界锚定（World）
 
-> 本章 ⚠️ 未验证：`IAnchoredContent` / `TilePanel` 尚无模组挂载。
+> 本章 ✅ 已验证（经 BetterCabin）：`IAnchoredContent` / `TilePanel`。
 
-## 7.1 IAnchoredContent（⚠️ 未验证）
+## 7.1 IAnchoredContent（✅ 已验证）
 
 世界锚定只读内容契约：`Measure()` 量尺寸、`Draw(batch, bounds)` 在给定屏幕矩形内绘制。只读 immediate：无 retained 布局、无焦点、无输入。消费方也可在任意 RenderedWorld 处理器里直接 `Measure` + `Draw` 自绘。
 
@@ -673,7 +673,9 @@ public interface IAnchoredContent
 }
 ```
 
-## 7.2 TilePanel（⚠️ 未验证）
+要点（BetterCabin 实战验证）：宿主用 `Centered` 摆放时，`bounds.Center` 恒等于世界锚点的屏幕位置，因此内容可在盒内相对 `bounds.Center`（= 锚点）自行排布多个子盒——比如 BetterCabin 用一个 `IAnchoredContent` 承载三个 `TilePanel`（名字 / 总在线 / 上次在线），各盒中心 = 锚点 + 各自偏移。两点使用约定：`Measure` 每帧都会被调用，稳态下应返回缓存好的尺寸、避免重复测量文本；返回的尺寸应当是**对锚点对称**的覆盖尺寸（单边最大外扩 × 2），因为宿主是把该尺寸居中摆到锚点上再做整盒视口求交的——不对称的偏移会连带把裁剪框挪偏，边上的子盒就会在真正离开视口前提前消失。
+
+## 7.2 TilePanel（✅ 已验证）
 
 小号世界锚定「面板 + 文本行」盒：标题用 `DialogueFont`、正文用 `SmallFont`，可逐行配色，画成扁平九宫格 + 扁平文字。只负责内容，变换与裁剪由宿主承担。
 
@@ -751,7 +753,7 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 | --- | --- | --- |
 | `MenuHost` | ✅ | 交互式菜单宿主，一行 `OpenMenu(root)` 打开，处理全部鼠标/滚轮/手柄/Esc |
 | `DrawableHost` | ✅ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` 才开鼠标悬停与左键消费 |
-| `WorldAnchorHost` | ⚠️ | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
+| `WorldAnchorHost` | ✅ | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
 | `Element` | ✅ | 抽象基类：两趟布局节点，子类实现 Measure/Arrange/Draw |
 | `LayoutRunner` | ✅ | 布局冲刷入口：读 Bounds 前先 `UpdateIfDirty` |
 | `Stack` | ✅ | 垂直/水平顺序堆叠，内容自适应 |
@@ -768,7 +770,7 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 | `IResettable` | ✅ | 重置缝：切页签自动 Reset（需保留状态者勿实现） |
 | `FocusManager` | ⚠️ | 几何焦点图（MenuHost 内部使用，通常不用直接碰） |
 | `FocusDirection` | ⚠️ | 焦点方向枚举 |
-| `IAnchoredContent` | ⚠️ | 世界锚定内容契约（Measure + Draw） |
-| `TilePanel` | ⚠️ | 世界锚定「面板 + 文本行」盒 |
+| `IAnchoredContent` | ✅ | 世界锚定内容契约（Measure + Draw） |
+| `TilePanel` | ✅ | 世界锚定「面板 + 文本行」盒 |
 | `Theme` | ✅ | 扁平 SDV 观感 + 绘制助手/音效 |
 | `PositionHelper` | ✅ | 世界↔屏幕坐标换算（位于 `...PiCore`，非 UI 命名空间） |

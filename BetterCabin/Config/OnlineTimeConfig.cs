@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+namespace weizinai.StardewValleyMod.BetterCabin.Config;
 
 internal class OnlineTimeConfig
 {

@@ -70,10 +70,10 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 
 ## 2.1 声明配置类
 
-`Framework/ModConfig.cs`：
+`Config/ModConfig.cs`：
 
 ```csharp
-namespace weizinai.StardewValleyMod.SomeMod.Framework;
+namespace weizinai.StardewValleyMod.SomeMod.Config;
 
 internal class ModConfig
 {
@@ -172,6 +172,7 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 布尔开关           | `AddBoolOption(config => config.X, name)`                                                                                                                                                        |
 | 布尔领头的分区     | `AddBoolSection(config => config.X, name)`（标签兼作分区标题）                                                                                                                                   |
+| 标题 + 开关分离    | 先 `AddSectionTitle(name)` 再 `AddBoolOption(config => config.X, I18n.Config_Enable_Name, tooltip)`：分区标题保留功能名，开关统一用共享的「启用」标签（见 #5）                                    |
 | 整数数值           | `AddNumberOption(config => config.N, name, tooltip, min, max, interval)`                                                                                                                         |
 | 浮点数值           | `AddNumberOption(config => config.F, name, tooltip, min, max, interval)`                                                                                                                         |
 | 文本 / 下拉        | `AddTextOption(config => config.S, name, tooltip, allowedValues, formatAllowedValue)`                                                                                                            |
@@ -199,6 +200,11 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 - **枚举渲染按成员名走。** `AddEnumOption` 以文本选项呈现，值用成员名映射、可经 `formatValue` 本地化、可经 `allowedValues` 决定可选顺序与子集。枚举成员本身仍是强类型枚举，不落成字符串键。
 - **字典成员不能走成员绑定。** 字典下标读写编成 `get_Item`/`set_Item` 方法调用，不是可赋值的公共属性链，`ConfigMember.CreateAccessor` 不接受。要渲染字典（如 LazyMod 按成长阶段存开关的 `Dictionary<int,bool>`）必须用 `AddCustomSection` 逃生舱按原始 GMCM API 逐个注册（LazyMod 的 `AddTreeSettingsPage` 即此用法）。
 - **`KeybindList` 用专用选项。** 按键绑定列表只能经 `AddKeybindListOption`（底层 `AddKeybindList`），不要试图按文本/枚举处理。
+- **分区标题与开关标签是两处独立文本。** `AddBoolSection` 把同一个 `name` 同时填给 `AddSectionTitle` 与 `AddBoolOption`，GMCM 会把
+  这句话渲染两遍——分区标题一行、紧随其后的开关标签一行。分区标题本就要写明功能名时，改用 `AddSectionTitle(name)` 后接
+  `AddBoolOption(member, I18n.Config_Enable_Name, tooltip)`：本仓库约定分区标题写明功能名、开关统一用共享的「启用」标签（键名
+  `Config.Enable.Name`，如 BetterCabin、LazyMod），tooltip 仍留在开关上；
+  `AddBoolSection` 仍是有效的紧凑写法，适合标签与标题同文的单开关分区。
 
 ---
 

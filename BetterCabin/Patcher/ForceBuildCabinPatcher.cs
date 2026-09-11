@@ -4,7 +4,7 @@ using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.GameData.Buildings;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.BetterCabin.Framework.Config;
+using weizinai.StardewValleyMod.BetterCabin.Config;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Patcher;

@@ -17,14 +17,7 @@ internal class ModEntry : Mod
         // 速度策略在装配期建好：它探明的「动画速度归谁」既是配置菜单的适用性判据、也是处理器补帧的前提，
         // 两个消费者共用这一个实例，菜单由此不必反向读运行时处理器
         var speedPolicy = new GeodeSpeedPolicy(helper);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置，读到的实例写入静态 ModConfig.Instance 供各处现读
-        // （处理器读快捷键，速度策略读倍率）
-        // 这里只登记构建委托，菜单构建延后到 GameLaunched（见 PiCore 的 ConfigService.RegisterMenu）
-        new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value
-        ).RegisterMenu(menu => this.BuildConfigMenu(menu, speedPolicy));
+        new ConfigService<ModConfig>(this).RegisterMenu(menu => this.BuildConfigMenu(menu, speedPolicy));
         // 注册事件（本模组不打任何 Harmony 补丁，交互全部走 SMAPI 事件）
         // 只 Apply 一次、不进配置变更重建流程：理由见 AutoBreakHandler 的类注释
         this.autoBreakHandler = new AutoBreakHandler(helper, speedPolicy);

@@ -1,12 +1,11 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.FreeLock.Framework;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public KeybindList FreeLockKeybind { get; set; } = new(SButton.V);
 
     public int MoveSpeed { get; set; } = 32;

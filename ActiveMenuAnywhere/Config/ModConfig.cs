@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public KeybindList MenuKey { get; set; } = new(SButton.L);
     public bool OpenMenuByTelephone { get; set; }
     public string DefaultMenuTabId { get; set; } = OptionCatalog.TownTabId;

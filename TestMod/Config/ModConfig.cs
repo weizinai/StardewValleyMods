@@ -1,9 +1,9 @@
+using weizinai.StardewValleyMod.PiCore.Config;
+
 namespace weizinai.StardewValleyMod.TestMod.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     // 齐瓜牌概率
     public ToggleValueConfig<float> CardChance { get; set; } = new(true, 0.005f);
 

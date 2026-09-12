@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.LazyMod.Framework.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public KeybindList OpenConfigMenuKeybind { get; set; } = new(SButton.R);
     public KeybindList ToggleModStateKeybind { get; set; } = new(SButton.G);
     public int Cooldown { get; set; } = 10;

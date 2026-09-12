@@ -1,13 +1,12 @@
 using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     // 拜访小屋信息
     public bool VisitCabinInfo { get; set; } = true;
 

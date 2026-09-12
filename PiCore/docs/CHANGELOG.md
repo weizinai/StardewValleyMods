@@ -8,10 +8,12 @@
 - Added `Name` and `IsEnabled` to `IPatcher` (with `BasePatcher` defaults); `HarmonyPatcher` skips disabled patchers
 - Added single-line `Patch<T>` / `PatchConstructor<T>` binding helpers and a `PatchKind` enum; `GetHarmonyMethod` now fails fast with a clear error when a patch
   method is missing or non-static
-- Added the config module under `PiCore/Config/` (namespace `weizinai.StardewValleyMod.PiCore.Config`): `ConfigService<TConfig>` owns config read (with
-  corrupt-config self-heal reset), GMCM register-on-launch on `GameLaunched`, write-on-save, and fires a single `onConfigChanged` callback after save and reset;
-  reset writes `new TConfig()` defaults into the current instance in place, so captured config references (e.g. patchers in AutoBreakGeode /
-  FriendshipDecayModify) see the reset without a restart. A companion member-bound declarative descriptor `ConfigMenuDescriptor<TConfig>` (`ConfigMenuSection`
+- Added the config module under `PiCore/Config/` (namespace `weizinai.StardewValleyMod.PiCore.Config`): each mod's root config class derives from
+  `SingletonConfig<TConfig>`, which holds the static `Instance` slot every handler reads; `ConfigService<TConfig>` (constructed as
+  `new ConfigService<ModConfig>(this, onConfigChanged)`) reads config into that slot (with corrupt-config self-heal reset), registers GMCM on `GameLaunched`,
+  writes on save, and fires a single `onConfigChanged` callback after save and reset; reset writes `new TConfig()` defaults into the current instance in place,
+  so captured config references (e.g. patchers in AutoBreakGeode / FriendshipDecayModify) see the reset
+  without a restart. A companion member-bound declarative descriptor `ConfigMenuDescriptor<TConfig>` (`ConfigMenuSection`
   for nested sub-config sections) binds bool / int / float / text / enum (localized value labels) / keybind-list options, with section titles (a heading bool
   option's label doubles as its section title), pages, page links and paragraphs, and `AddCustomSection` as an escape hatch receiving the raw
   `GenericModConfigMenuIntegration<TConfig>`

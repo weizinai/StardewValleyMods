@@ -12,12 +12,7 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         I18n.Init(helper.Translation);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置，读到的实例写入静态 ModConfig.Instance 供处理器现读
-        new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value
-        ).RegisterMenu(this.BuildConfigMenu);
+        new ConfigService<ModConfig>(this).RegisterMenu(this.BuildConfigMenu);
         // 只有房主权威端（单人下也是）做判定，其他玩家什么都不用做、也不参与通信，故处理器按初始配置挂一次事件即可
         new RefreshHandler(helper).Apply();
     }

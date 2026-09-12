@@ -1,12 +1,11 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Framework;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     // 一般设置
     public bool ShowSpectateTooltip { get; set; } = true;
     public bool ShowTimeAndMoney { get; set; } = true;

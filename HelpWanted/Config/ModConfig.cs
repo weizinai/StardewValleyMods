@@ -1,9 +1,9 @@
+using weizinai.StardewValleyMod.PiCore.Config;
+
 namespace weizinai.StardewValleyMod.HelpWanted.Config;
 
-public class ModConfig
+public class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public VanillaModConfig VanillaConfig { get; set; } = new();
     public RSVModConfig RSVConfig { get; set; } = new();
 

@@ -4,14 +4,10 @@ using System.Reflection;
 
 namespace weizinai.StardewValleyMod.PiCore.Config;
 
-/// <summary>
-/// 将配置成员访问表达式编译为 get/set 委托，或在根配置与嵌套配置之间拼接成员路径。
-/// </summary>
+/// <summary>将配置成员访问表达式编译为 get/set 委托，或在根配置与嵌套配置之间拼接成员路径。</summary>
 internal static class ConfigMember
 {
-    /// <summary>
-    /// 将表达式树中指定参数替换为另一表达式，用于拼接成员访问链。
-    /// </summary>
+    // 将表达式树中指定参数替换为另一表达式，用于拼接成员访问链。
     private sealed class ReplaceParameterVisitor : ExpressionVisitor
     {
         private readonly ParameterExpression from;
@@ -29,14 +25,10 @@ internal static class ConfigMember
         }
     }
 
-    /// <summary>
-    /// 根据成员访问表达式创建读取与写入委托。仅支持可写的公共属性成员链（配置类成员为公共自动属性），
-    /// 不接受公共字段；复杂读写请走逃生舱。
-    /// </summary>
+    /// <summary>根据成员访问表达式创建读取与写入委托。仅支持可写的公共属性成员链（配置类成员为公共自动属性），不接受公共字段；复杂读写请走逃生舱。</summary>
     /// <typeparam name="TConfig">配置类型。</typeparam>
     /// <typeparam name="TValue">成员值类型。</typeparam>
     /// <param name="member">成员访问表达式，如 <c>config =&gt; config.Foo</c>。</param>
-    /// <returns>读取与写入委托。</returns>
     internal static (Func<TConfig, TValue> get, Action<TConfig, TValue> set) CreateAccessor<TConfig, TValue>(
         Expression<Func<TConfig, TValue>> member
     )
@@ -54,8 +46,7 @@ internal static class ConfigMember
         return (get, set);
     }
 
-    /// <summary>判断成员访问链中是否含公共字段（成员链的读取表达式或任一被访问成员是公共 <see cref="FieldInfo" />）。</summary>
-    /// <param name="body">成员访问表达式的体。</param>
+    // 判断成员访问链中是否含公共字段（成员链的读取表达式或任一被访问成员是公共 FieldInfo）。
     private static bool ContainsPublicField(Expression body)
     {
         switch (body)
@@ -68,15 +59,12 @@ internal static class ConfigMember
         }
     }
 
-    /// <summary>
-    /// 将根配置到子配置的选择器与子配置自身的成员访问表达式拼接为根配置上的成员访问表达式。
-    /// </summary>
+    /// <summary>将根配置到子配置的选择器与子配置自身的成员访问表达式拼接为根配置上的成员访问表达式。</summary>
     /// <typeparam name="TRoot">根配置类型。</typeparam>
     /// <typeparam name="TSection">子配置类型。</typeparam>
     /// <typeparam name="TValue">成员值类型。</typeparam>
     /// <param name="selector">根到子配置的选择器，如 <c>config =&gt; config.Quest</c>。</param>
     /// <param name="member">子配置上的成员访问表达式，如 <c>quest =&gt; quest.Weight</c>。</param>
-    /// <returns>拼接到根配置上的成员访问表达式。</returns>
     internal static Expression<Func<TRoot, TValue>> Compose<TRoot, TSection, TValue>(
         Expression<Func<TRoot, TSection>> selector,
         Expression<Func<TSection, TValue>> member

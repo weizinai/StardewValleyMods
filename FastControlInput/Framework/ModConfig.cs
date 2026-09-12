@@ -1,9 +1,9 @@
+using weizinai.StardewValleyMod.PiCore.Config;
+
 namespace weizinai.StardewValleyMod.FastControlInput.Framework;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public float ActionButton { get; set; } = 1.25f;
     public float UseToolButton { get; set; } = 1.25f;
 }

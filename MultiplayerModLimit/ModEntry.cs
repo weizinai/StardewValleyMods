@@ -20,12 +20,8 @@ internal class ModEntry : Mod
         I18n.Init(helper.Translation);
         Logger<ModEntry>.Init(this);
         Broadcaster<ModEntry>.Init(this);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；控制台命令写配置后经同一服务保存并重载菜单，故保留字段引用
-        this.configService = new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value
-        );
+        // 控制台命令写配置后经同一服务保存并重载菜单，故保留字段引用
+        this.configService = new ConfigService<ModConfig>(this);
         this.configService.RegisterMenu(this.BuildConfigMenu);
 
         new KickPlayerHandler(helper).Apply();

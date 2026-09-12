@@ -1,9 +1,9 @@
+using weizinai.StardewValleyMod.PiCore.Config;
+
 namespace weizinai.StardewValleyMod.CustomMineRefresh.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     /// <summary>是否刷新矿井里没有玩家的楼层。</summary>
     public bool EnableMineRefresh { get; set; } = true;
 

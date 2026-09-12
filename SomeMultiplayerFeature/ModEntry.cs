@@ -24,17 +24,11 @@ internal class ModEntry : Mod
         // 初始化
         Logger<ModEntry>.Init(this);
         Broadcaster<ModEntry>.Init(this);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；热键打开菜单需要服务句柄，保存/重置后经回调重建处理器
-        this.configService = new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value,
-            this.UpdateConfig
-        );
+        // 热键打开菜单需要服务句柄，保存/重置后经回调重建处理器
+        this.configService = new ConfigService<ModConfig>(this, this.UpdateConfig);
         this.configService.RegisterMenu(this.BuildConfigMenu);
         // 注册事件
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
-        // 按初始配置构建处理器
         this.UpdateConfig();
         // 注册Harmony补丁
         HarmonyPatcher.Apply(

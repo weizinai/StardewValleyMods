@@ -22,15 +22,8 @@ internal class ModEntry : Mod
         // 初始化
         I18n.Init(helper.Translation);
         Logger<ModEntry>.Init(this);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；保存或重置后重建处理器
-        var configService = new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value,
-            this.UpdateConfig
-        );
+        var configService = new ConfigService<ModConfig>(this, this.UpdateConfig);
         configService.RegisterMenu(this.BuildConfigMenu);
-        // 按初始配置构建处理器
         this.UpdateConfig();
         // 注册Harmony补丁
         HarmonyPatcher.Apply(this,

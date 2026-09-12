@@ -13,12 +13,7 @@ internal class ModEntry : Mod
         // 初始化
         I18n.Init(this.Helper.Translation);
         Logger<ModEntry>.Init(this);
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置，读到的实例写入静态 ModConfig.Instance 供事件处理器读取
-        var configService = new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value
-        );
+        var configService = new ConfigService<ModConfig>(this);
         configService.RegisterMenu(this.BuildConfigMenu);
         // 注册事件处理器（处理器在 Apply 内部订阅事件）；本模组没有 Harmony 补丁
         new SaveGameMenuHandler(helper).Apply();

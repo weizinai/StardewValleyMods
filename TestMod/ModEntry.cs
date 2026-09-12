@@ -12,12 +12,7 @@ internal class ModEntry : Mod
     public override void Entry(IModHelper helper)
     {
         I18n.Init(this.Helper.Translation);
-        // 配置模块接管读取与 GMCM 生命周期，实例写入静态 ModConfig.Instance 供补丁读取
-        var configService = new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value
-        );
+        var configService = new ConfigService<ModConfig>(this);
         configService.RegisterMenu(this.BuildConfigMenu);
         HarmonyPatcher.Apply(
             this,

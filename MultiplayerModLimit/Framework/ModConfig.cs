@@ -1,11 +1,10 @@
 using System.Collections.Generic;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit.Framework;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     // 一般设置
     public bool EnableMod { get; set; } = true;
     public bool ShowMismatchedModInfo { get; set; }

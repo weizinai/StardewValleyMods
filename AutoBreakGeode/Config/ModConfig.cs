@@ -1,13 +1,11 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.AutoBreakGeode.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    /// <summary>配置模块读到的配置实例（模组不持有副本）：处理器每帧/每次按键经它现读，故配置改动即时可见。</summary>
-    public static ModConfig Instance { get; set; } = null!;
-
     /// <summary>切换自动砸晶球的快捷键；只在晶球菜单内生效，未手持晶球时按它不翻转开关。</summary>
     public KeybindList ToggleAutoBreakKeybind { get; set; } = new(SButton.F);
 

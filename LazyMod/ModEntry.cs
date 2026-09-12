@@ -30,13 +30,7 @@ internal class ModEntry : Mod
         I18n.Init(helper.Translation);
         Logger<ModEntry>.Init(this);
 
-        // 配置模块接管读取（损坏自愈）、GMCM 生命周期与保存/重置；读到的实例写入静态 ModConfig.Instance 供处理器读取
-        this.configService = new ConfigService<ModConfig>(
-            this,
-            () => ModConfig.Instance,
-            value => ModConfig.Instance = value,
-            this.UpdateConfig
-        );
+        this.configService = new ConfigService<ModConfig>(this, this.UpdateConfig);
         this.configService.RegisterMenu(this.BuildConfigMenu);
 
         // 注册事件
@@ -49,7 +43,6 @@ internal class ModEntry : Mod
 
         helper.Events.Input.ButtonsChanged += this.OnButtonChanged;
 
-        // 按初始配置构建处理器
         this.UpdateConfig();
     }
 

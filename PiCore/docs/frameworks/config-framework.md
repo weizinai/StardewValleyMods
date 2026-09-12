@@ -6,13 +6,14 @@
 
 ## 验证状态说明
 
-「已验证」= 本仓库十余个模组实战使用过，路径经过真实玩家与真实模组检验。与 UI 框架不同，配置框架的四个公开类型全部有真实消费方，**无「未验证」类型**，无需回退提示。
+「已验证」= 本仓库十余个模组实战使用过，路径经过真实玩家与真实模组检验；「未验证」= 已实现且有消费方，但还没进游戏做验收。用未验证类型时默认它们可用，如遇异常以源码行为为准回退（与 [UI 框架](ui-framework.md) 同一条判据）。
 
 | 状态 | 类型 |
 | --- | --- |
 | ✅ 已验证 | `ConfigService<TConfig>` · `ConfigMenuDescriptor<TConfig>` · `ConfigMenuSection<TConfig, TSection>` · `ConfigMember`（internal） |
+| ⚠️ 未验证 | `SingletonConfig<TConfig>`（14 个模组已改用它并通过编译，尚未进游戏验收；`ConfigService<TConfig>` 的构造签名同批改动，一并待验收） |
 
-实战消费模组：`AutoBreakGeode` · `LazyMod` · `BetterCabin` · `HelpWanted` · `ReadyCheckKick` · `FreeLock` · `FastControlInput` · `FriendshipDecayModify` · `ActiveMenuAnywhere` · `SpectatorMode` · `MultiplayerModLimit` · `CustomMineRefresh` · `SomeMultiplayerFeature` · `TestMod`。
+实战消费模组（全部经 `SingletonConfig<TConfig>` 接入）：`AutoBreakGeode` · `LazyMod` · `BetterCabin` · `HelpWanted` · `ReadyCheckKick` · `FreeLock` · `FastControlInput` · `FriendshipDecayModify` · `ActiveMenuAnywhere` · `SpectatorMode` · `MultiplayerModLimit` · `CustomMineRefresh` · `SomeMultiplayerFeature` · `TestMod`。
 
 ---
 
@@ -30,6 +31,7 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 
 | 类型 | 命名空间 | 职责 |
 | --- | --- | --- |
+| `SingletonConfig<TConfig>` | `...Config` | 配置根的单例槽位：模组根配置类继承它，框架读写的 `Instance` 落在这里 |
 | `ConfigService<TConfig>` | `...Config` | 生命周期：读取（自愈）/ 注册 / 保存 / 重置 / 回调 |
 | `ConfigMenuDescriptor<TConfig>` | `...Config` | 声明式菜单描述器（链式 `Add*`） |
 | `ConfigMenuSection<TConfig, TSection>` | `...Config` | 嵌套子配置作分区的构建器 |
@@ -39,7 +41,7 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 
 ```
 1. 声明配置类   —— 公共自动属性 + 显式初始化器（见 #3）
-2. 交给 ConfigService —— Entry 里构造：立即读取 config.json（损坏自愈），写入模组持有的位置
+2. 交给 ConfigService —— Entry 里构造：立即读取 config.json（损坏自愈），写入 SingletonConfig<TConfig>.Instance
 3. 登记菜单     —— RegisterMenu(buildMenu) 只保存构建委托
 4. 注册(启动)   —— GameLaunched 触发时执行构建委托，映射到 GMCM；未装 GMCM 则静默跳过
 5. 保存/重置    —— 玩家在菜单操作或代码调用 Save()/Reset()，各触发 onConfigChanged 一次
@@ -52,7 +54,8 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 
 | 中文 | 英文 | 含义 |
 | --- | --- | --- |
-| 配置类 | `TConfig` / `ModConfig` | 序列化进 `config.json` 的类，`class, new()` |
+| 配置类 | `TConfig` / `ModConfig` | 序列化进 `config.json` 的根配置类：继承 `SingletonConfig<TConfig>`，`new()` |
+| 单例槽 | singleton slot | `SingletonConfig<TConfig>.Instance`：框架读写的配置实例位置 |
 | 成员 | `member` | 配置类上的公共自动属性 |
 | 绑定 | binding | 把成员访问表达式编译成读写委托 |
 | 描述器 | `ConfigMenuDescriptor` | 声明菜单的链式对象 |
@@ -64,7 +67,7 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 
 # 2. 快速上手（教程）
 
-> 本章为 ✅ 已验证路径（以本仓库模组的真实用法为蓝本，重写为最小自包含示例）。跟着走完能得到一个完整可读/写/重制的配置 + GMCM 菜单。
+> 本章以本仓库模组的真实用法为蓝本，重写为最小自包含示例；四步走完能得到一个完整可读/写/重制的配置 + GMCM 菜单。其中新增的 `SingletonConfig<TConfig>` 基类仍是 ⚠️（见文首「验证状态说明」），其余类型均已 ✅。
 
 以模组 `SomeMod` 为例。四步即可让「声明配置 → 读取（损坏自愈）→ 菜单渲染 → 保存/重置」全部跑通。
 
@@ -73,21 +76,21 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 `Config/ModConfig.cs`：
 
 ```csharp
+using weizinai.StardewValleyMod.PiCore.Config;
+
 namespace weizinai.StardewValleyMod.SomeMod.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public bool SomeToggle { get; set; } = true;
     public KeybindList OpenMenuKey { get; set; } = new(SButton.F5);
 
-    // 嵌套配置：自动属性 + new() 初始化器
+    // 嵌套配置：自动属性 + new() 初始化器（嵌套配置不继承 SingletonConfig，见 #3）
     public SomeNestedConfig Nested { get; set; } = new();
 }
 ```
 
-要点：根 `ModConfig` 保留隐式无参构造（框架受 `class, new()` 约束）；被序列化成员一律是公共自动属性，需要默认值时写显式初始化器（无初始化器 = 采用 CLR 默认值）；`Instance` 是静态单例入口，处理器（Handler）都从它读当前配置。
+要点：根 `ModConfig` 继承 `SingletonConfig<ModConfig>`，由此得到静态 `Instance` 入口；保留隐式无参构造（框架受 `new()` 约束）；被序列化成员一律是公共自动属性，需要默认值时写显式初始化器（无初始化器 = 采用 CLR 默认值）；处理器（Handler）都从 `ModConfig.Instance` 现读当前配置。
 
 ## 2.2 在 `Entry` 交给 `ConfigService`
 
@@ -98,20 +101,15 @@ public override void Entry(IModHelper helper)
 {
     I18n.Init(helper.Translation);
 
-    // 构造即读取 config.json；读取失败（损坏/玩家手写错误）会自动写回默认配置并重读，模组不会崩
-    var configService = new ConfigService<ModConfig>(
-        this,
-        () => ModConfig.Instance,
-        value => ModConfig.Instance = value,
-        this.UpdateConfig   // 可选：保存或重置后重建处理器
-    );
+    // 构造即读取 config.json 并写入 ModConfig.Instance；读取失败（损坏/玩家手写错误）会自动写回默认配置并重读，模组不会崩
+    var configService = new ConfigService<ModConfig>(this, this.UpdateConfig);   // 第二个参数可选：保存或重置后重建处理器
     configService.RegisterMenu(this.BuildConfigMenu);
 
     this.UpdateConfig();    // 按初始配置构建处理器（需在 Entry 里显式调用一次）
 }
 ```
 
-`ConfigService` 构造参数：消费模组入口 `IMod`、取当前配置的 `getConfig`、写入（初始读到的）配置的 `setConfig`、可选的 `onConfigChanged` 回调——保存与重置都会触发它一次，模组在其中重建/刷新依赖配置的处理器（本仓库各模组的 `UpdateConfig` 模式）。`onConfigChanged` 在「保存」与「重置」两个动作后统一触发，模组不需要分别挂两处逻辑。
+`ConfigService` 构造参数只有两处：消费模组的入口 `IMod`、可选的 `onConfigChanged` 回调。配置实例的读取与写入由框架自己完成（读盘后写进 `SingletonConfig<TConfig>.Instance`，模组不再提供取值/写入委托）。`onConfigChanged` 在「保存」与「重置」两个动作后统一触发，模组在其中重建/刷新依赖配置的处理器（本仓库各模组的 `UpdateConfig` 模式），不需要分别挂两处逻辑。
 
 ## 2.3 声明一次菜单
 
@@ -146,13 +144,15 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 
 # 3. 配置类成员形态规则
 
-> 本章为 ✅ 已验证（本仓库所有带配置的模组共用同一规则）。
+> 本章为 ✅ 已验证（本仓库所有带配置的模组共用同一规则）。末段新增的「只有根配置继承 `SingletonConfig<TConfig>`」随该类型一同为 ⚠️。
 
 ## 3.1 成员形态约定
 
 > **必须：** 每个序列化进模组 `config.json` 的类，其被序列化的成员一律是 **公共自动属性** `{ get; set; }`，需要默认值时写 **显式初始化器**； **不使用公共字段**。整条规则的例外只有「不写初始化器 = 意图采用 CLR 默认值」，除此之外不承认任何例外（如「只读属性」「内部 setter」都不属于配置类成员）。
 
 适用对象不只是根 `ModConfig`：凡经根配置属性链引用、随根配置一起被 SMAPI 序列化的嵌套配置类（如 BetterCabin 的 `OnlineTimeConfig`、HelpWanted 的 `BaseQuestConfig`）同样适用。纯内存模型类（不落盘、只做运行时数据）不在本规则约束内，可按需自定形态。
+
+**继承 `SingletonConfig<TConfig>` 的只有根配置。** 只有需要 `ConfigService<TConfig>` 的类才需要一个单例入口，而它每个模组只有一个；嵌套配置继承后会得到一份与根配置实例无关的独立 `Instance`，两边数据静默脱钩（见 #5）。
 
 ## 3.2 为什么是自动属性
 
@@ -189,12 +189,13 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 
 # 5. 坑
 
-> 本章教训 ✅ 已验证（均为真实踩过并修复的坑）。
+> 本章教训 ✅ 已验证（均为真实踩过并修复的坑）；末段新增的「嵌套配置不得继承 `SingletonConfig<TConfig>`」由类型语义推得，随该类型一同为 ⚠️。
 
 - **绑定目标必须是公共可写属性。** 公共**字段**（含常量）会在 `ConfigMember.CreateAccessor` 抛
   `ArgumentException`（「配置选项成员必须是一段可赋值的公共属性链…」／「配置成员必须是公共自动属性，不支持公共字段…」）。get-only 或带非公共 setter 的属性能绑上，但会
   **绕过可见性写入**（表达式编译的委托在全信任下可直接调私有 setter）且不会被 `Reset` 复制——静默违背 #3 的成员形态规则。所以绑定成员与嵌套配置都必须是带公共 setter 的自动属性。
 - **重置只复制「公共 setter 属性」。** `ConfigService.Reset` 的 `CopyMemberValues` 逐属性遍历，仅当属性 `SetMethod` 是公共的才写回；非公共 setter 的属性在重置后保持原值。公共字段不在复制范围——框架的成员契约仅限公共可写属性。
+- **嵌套配置不得继承 `SingletonConfig<TConfig>`。** 静态槽是按配置类型各自一份的：嵌套配置继承后，`NestedConfig.Instance` 会是与根配置实例里的那份嵌套对象无关的独立数据，改动哪边都不会同步到另一边。只有模组的根配置需要 `Instance`，且它的写权归框架（`internal set`），模组只能读、只能改成员。
 - **重置会**按引用 **替换嵌套配置对象。** 重置把当前根实例的嵌套属性重新赋值为 `new TConfig()` 里新建的默认子对象（根实例引用保持不变，嵌套子对象的引用被替换）。因此在重置前捕获了嵌套子对象引用的代码会读到旧对象——应通过根配置（`ModConfig.Instance`）读取，或在 `onConfigChanged` 里重建依赖。
 - **标签/提示是 `Func<string>`。** 来自 ModTranslationClassBuilder 生成的强类型 `I18n` 访问器（键漏写会在编译期报错）。渲染期每次取值，故语言切换即时生效。需要具体字符串时调用它（`I18n.Config_X_Name()`），需要传给选项方法时直接传访问器。
 - **枚举渲染按成员名走。** `AddEnumOption` 以文本选项呈现，值用成员名映射、可经 `formatValue` 本地化、可经 `allowedValues` 决定可选顺序与子集。枚举成员本身仍是强类型枚举，不落成字符串键。
@@ -214,7 +215,7 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 
 - **新增/改名/删除** `PiCore.Config` 下任何公共类型或成员 → 同步更新对应章节与文末速查表。
 - **行为契约变化**（如成员绑定规则、重置语义）→ 就地修订相关描述，禁止打补丁式追加。
-- 验证状态随实际使用更新（当前无未验证类型；若新增类型先标 ⚠️，有消费方后移 ✅，同步改文首「验证状态说明」表与文末速查表）。
+- 验证状态随实际使用更新（若新增类型先标 ⚠️，有消费方后移 ✅——⚠️ 到 ✅ 的判据见文首「验证状态说明」；同步改该处的表与文末速查表）。
 - changelog（`CHANGELOG.md` / `CHANGELOG.zh.md`）只记用户可见净变化，本文档记使用约定——两条线内容一致但不重复。
 
 ---
@@ -223,6 +224,7 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 
 | 类型 | 状态 | 一句话 |
 | --- | --- | --- |
+| `SingletonConfig<TConfig>` | ⚠️ | 配置根的单例槽位（只有根配置可继承，写权归框架） |
 | `ConfigService<TConfig>` | ✅ | 生命周期：读取（自愈）/ 注册 / 保存 / 重置 / `onConfigChanged` 回调 |
 | `ConfigMenuDescriptor<TConfig>` | ✅ | 声明式菜单：链式 `Add*` 描述，渲染映射到 GMCM |
 | `ConfigMenuSection<TConfig, TSection>` | ✅ | 嵌套子配置作分区的构建器（选项方法对描述器一一对应） |

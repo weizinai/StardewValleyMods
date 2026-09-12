@@ -6,20 +6,18 @@ using StardewModdingAPI.Utilities;
 namespace weizinai.StardewValleyMod.PiCore.Config;
 
 /// <summary>
-/// 用于声明某个嵌套子配置菜单的分区构建器。选项按子配置 <typeparamref name="TSection" /> 的成员绑定，
-/// 渲染时自动与“根配置到该子配置”的选择器拼接成对根配置的读写，供分区标题以外的选项复用。
+/// 用于声明某个嵌套子配置菜单的分区构建器。选项按子配置 <typeparamref name="TSection" /> 的成员绑定，渲染时自动与“根配置到该子配置”的选择器拼接成对根配置的读写，供分区标题以外的选项复用。
 /// 若同一个子配置类型在多处渲染，可把构建逻辑抽成接收本类型参数的共用方法。
-/// 本类型与 <see cref="ConfigMenuDescriptor{TConfig}" /> 的选项方法一一对应（仅按子配置成员类型绑定），
-/// 新增选项种类时需在两个类型上同步补方法。
+/// 本类型与 <see cref="ConfigMenuDescriptor{TConfig}" /> 的选项方法一一对应（仅按子配置成员类型绑定），新增选项种类时需在两个类型上同步补方法。
 /// </summary>
 /// <typeparam name="TConfig">模组配置（根）类型。</typeparam>
 /// <typeparam name="TSection">嵌套的子配置类型。</typeparam>
 public sealed class ConfigMenuSection<TConfig, TSection> where TConfig : class, new()
 {
-    /// <summary>所属菜单描述器，负责存放最终渲染动作。</summary>
+    // 所属菜单描述器，负责存放最终渲染动作。
     private readonly ConfigMenuDescriptor<TConfig> menu;
 
-    /// <summary>根配置到子配置的选择器表达式。</summary>
+    // 根配置到子配置的选择器表达式。
     private readonly Expression<Func<TConfig, TSection>> selector;
 
     /// <summary>构造一个绑定到指定根菜单与选择器的子配置分区构建器。</summary>

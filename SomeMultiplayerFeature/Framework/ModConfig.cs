@@ -1,12 +1,11 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using weizinai.StardewValleyMod.PiCore.Config;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
-public class ModConfig
+public class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     // 打开设置菜单
     public KeybindList OpenConfigMenuKey { get; set; } = new(SButton.R);
 

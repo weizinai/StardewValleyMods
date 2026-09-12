@@ -1,9 +1,9 @@
+using weizinai.StardewValleyMod.PiCore.Config;
+
 namespace weizinai.StardewValleyMod.ReadyCheckKick.Config;
 
-internal class ModConfig
+internal class ModConfig : SingletonConfig<ModConfig>
 {
-    public static ModConfig Instance { get; set; } = null!;
-
     public bool ShowInfoInReadyCheckDialogue { get; set; } = true;
     public bool ShowInfoInSaveGameMenu { get; set; } = true;
 

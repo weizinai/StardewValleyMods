@@ -7,8 +7,9 @@
 - 新增按模组泛型隔离的日志工具（`Logger<T>` / `Broadcaster<T>`），SMAPI 控制台日志保持显示各模组名
 - `IPatcher` 新增 `Name` 与 `IsEnabled`（`BasePatcher` 提供默认实现），`HarmonyPatcher` 跳过被禁用的补丁
 - 新增单行绑定助手法 `Patch<T>` / `PatchConstructor<T>` 与 `PatchKind` 枚举；`GetHarmonyMethod` 对缺失或非静态补丁方法启动即报错
-- 新增配置模块（`PiCore/Config/`，命名空间 `weizinai.StardewValleyMod.PiCore.Config`）：`ConfigService<TConfig>` 统一负责配置读取（含损坏自愈重置）、GameLaunched 时的
-  GMCM 注册、保存时写盘，并在保存与重置后各触发一次 `onConfigChanged` 回调；重置把 `new TConfig()` 默认值就地写回当前实例，因此构造期捕获了配置引用的消费者（如
+- 新增配置模块（`PiCore/Config/`，命名空间 `weizinai.StardewValleyMod.PiCore.Config`）：每个模组的根配置类继承 `SingletonConfig<TConfig>`，得到所有处理器现读的静态
+  `Instance` 槽位；`ConfigService<TConfig>`（写作 `new ConfigService<ModConfig>(this, onConfigChanged)`）把读到的配置写进该槽位（含损坏自愈重置）、GameLaunched 时注册
+  GMCM、保存时写盘，并在保存与重置后各触发一次 `onConfigChanged` 回调；重置把 `new TConfig()` 默认值就地写回当前实例，因此构造期捕获了配置引用的消费者（如
   AutoBreakGeode / FriendshipDecayModify 的补丁）无需重启即可看到重置结果。配套声明式菜单描述器 `ConfigMenuDescriptor<TConfig>`（`ConfigMenuSection`
   支持嵌套子配置分区），按成员绑定覆盖 bool / int / float / text / enum（带本地化取值显示）/ 按键绑定列表等选项，分区标题（分区开头布尔选项的标签兼作其分区标题）、页面、页内跳转链接与段落，并提供接收原始
   `GenericModConfigMenuIntegration<TConfig>` 的 `AddCustomSection` 逃生舱

@@ -1,6 +1,22 @@
 {
-    "UI.RecordModInfo.Tooltip": "成功记录当前游戏存档已加载的模组信息",
+    // 记录日志
+    "UI.Record.Log": "成功记录当前游戏存档已加载的模组信息",
 
-    "UI.CheckModInfo.NoInfo": "该存档没有记录过模组信息",
-    "UI.CheckModInfo.RemovedMod": "模组{{name}}已被移除"
+    // 悬停概览：三类变化各有多少条，以及怎么看明细
+    "UI.ModInfo.RemovedCount": "已移除：{{count}}",
+    "UI.ModInfo.AddedCount": "新增：{{count}}",
+    "UI.ModInfo.UpdatedCount": "已更新：{{count}}",
+    "UI.ModInfo.DetailsHint": "点击图标查看详情",
+
+    // 窗口
+    "UI.ModInfo.WindowTitle": "模组变化",
+    "UI.ModInfo.MetaLine": "记录时间 {{time}}（游戏版本 {{gameVersion}}） | 模组数 {{recordedCount}} -> {{currentCount}}",
+    "UI.ModInfo.RemovedSection": "已移除（{{count}}）",
+    "UI.ModInfo.AddedSection": "新增（{{count}}）",
+    "UI.ModInfo.UpdatedSection": "已更新（{{count}}）",
+    "UI.ModInfo.UpdatedMod": "{{name}}（{{oldVersion}} -> {{newVersion}}）",
+    "UI.ModInfo.CloseButton": "关闭",
+
+    // 无记录：悬停概览与模态窗口共用
+    "UI.ModInfo.NoRecord": "该存档没有记录过模组信息，载入并保存一次即可开始记录"
 }

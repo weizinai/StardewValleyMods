@@ -1,6 +1,22 @@
 {
-    "UI.RecordModInfo.Tooltip": "Enregistrement réussi des informations de mod chargées dans la sauvegarde de jeu actuelle.",
+    // Journal d'enregistrement
+    "UI.Record.Log": "Les informations de mods chargées dans la sauvegarde actuelle ont été enregistrées avec succès.",
 
-    "UI.CheckModInfo.NoInfo": "Cete sauvegarde n’a enregistré aucune information sur les mods utilisés.",
-    "UI.CheckModInfo.RemovedMod": "Mod {{name}} a été retiré."
+    // Aperçu au survol : combien de mods dans chacun des trois types de changement, et comment voir le détail
+    "UI.ModInfo.RemovedCount": "Retirés : {{count}}",
+    "UI.ModInfo.AddedCount": "Ajoutés : {{count}}",
+    "UI.ModInfo.UpdatedCount": "Mis à jour : {{count}}",
+    "UI.ModInfo.DetailsHint": "Cliquez sur l'icône pour voir le détail.",
+
+    // Fenêtre
+    "UI.ModInfo.WindowTitle": "Changements de mods",
+    "UI.ModInfo.MetaLine": "Enregistré le {{time}} (version du jeu {{gameVersion}}) | Mods {{recordedCount}} -> {{currentCount}}",
+    "UI.ModInfo.RemovedSection": "Retirés ({{count}})",
+    "UI.ModInfo.AddedSection": "Ajoutés ({{count}})",
+    "UI.ModInfo.UpdatedSection": "Mis à jour ({{count}})",
+    "UI.ModInfo.UpdatedMod": "{{name}} ({{oldVersion}} -> {{newVersion}})",
+    "UI.ModInfo.CloseButton": "Fermer",
+
+    // Aucun enregistrement : partagé par l'aperçu au survol et la fenêtre modale
+    "UI.ModInfo.NoRecord": "Cette sauvegarde n'a enregistré aucune information sur les mods. Chargez-la et sauvegardez une fois pour commencer l'enregistrement."
 }

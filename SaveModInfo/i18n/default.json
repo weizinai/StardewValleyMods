@@ -1,6 +1,22 @@
 {
-    "UI.RecordModInfo.Tooltip": "Successfully recorded the mod information that has been loaded in the current game save.",
+    // Record log
+    "UI.Record.Log": "Successfully recorded the mod information that has been loaded in the current game save.",
 
-    "UI.CheckModInfo.NoInfo": "This game save doesn't record any mod information.",
-    "UI.CheckModInfo.RemovedMod": "Mod {{name}} has been removed."
+    // Hover summary: how many mods fall into each of the three change types, plus how to see the details
+    "UI.ModInfo.RemovedCount": "Removed: {{count}}",
+    "UI.ModInfo.AddedCount": "Added: {{count}}",
+    "UI.ModInfo.UpdatedCount": "Updated: {{count}}",
+    "UI.ModInfo.DetailsHint": "Click the icon for details.",
+
+    // Window
+    "UI.ModInfo.WindowTitle": "Mod changes",
+    "UI.ModInfo.MetaLine": "Recorded {{time}} (game version {{gameVersion}}) | Mods {{recordedCount}} -> {{currentCount}}",
+    "UI.ModInfo.RemovedSection": "Removed ({{count}})",
+    "UI.ModInfo.AddedSection": "Added ({{count}})",
+    "UI.ModInfo.UpdatedSection": "Updated ({{count}})",
+    "UI.ModInfo.UpdatedMod": "{{name}} ({{oldVersion}} -> {{newVersion}})",
+    "UI.ModInfo.CloseButton": "Close",
+
+    // No record, shared by the hover summary and the modal window
+    "UI.ModInfo.NoRecord": "This game save has no mod information recorded. Load it and save once to start recording."
 }

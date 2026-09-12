@@ -1,9 +1,7 @@
 using StardewModdingAPI;
-using weizinai.StardewValleyMod.PiCore.Handler;
 using weizinai.StardewValleyMod.PiCore.Logging;
-using weizinai.StardewValleyMod.PiCore.Patcher;
 using weizinai.StardewValleyMod.SaveModInfo.Handler;
-using weizinai.StardewValleyMod.SaveModInfo.Patcher;
+using weizinai.StardewValleyMod.SaveModInfo.Record;
 
 namespace weizinai.StardewValleyMod.SaveModInfo;
 
@@ -15,21 +13,14 @@ internal class ModEntry : Mod
         I18n.Init(helper.Translation);
         Logger<ModEntry>.Init(this);
         this.InitHandler();
-        // 注册Harmony补丁
-        HarmonyPatcher.Apply(this, new LoadGameMenuPatcher(), new SaveFileSlotPatcher());
     }
 
     private void InitHandler()
     {
-        var handlers = new IHandler[]
-        {
-            new RecordModInfoHandler(this.Helper),
-            new CheckModInfoHandler(this.Helper)
-        };
+        // 记录与差异的存取边界由两个处理器共用：写入新记录要能作废叠层那边的缓存
+        var store = new RecordStore(this.Helper);
 
-        foreach (var handler in handlers)
-        {
-            handler.Apply();
-        }
+        new RecordModInfoHandler(this.Helper, store).Apply();
+        new LoadGameOverlayHandler(this.Helper, store).Apply();
     }
 }

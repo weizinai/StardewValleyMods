@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using StardewValley;
 using StardewValley.Extensions;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.HelpWanted.Helper;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
@@ -12,7 +12,7 @@ public class QuestItemManager
 {
     public static QuestItemManager Instance { get; } = new();
 
-    private VanillaModConfig config => ModConfig.Instance.VanillaConfig;
+    private VanillaModConfig VanillaConfig => ModConfig.Instance.VanillaConfig;
 
     private readonly List<string> universalGiftTaste = new();
     private readonly Dictionary<string, List<string>> possibleItems = new();
@@ -85,8 +85,8 @@ public class QuestItemManager
         {
             var obj = new SObject(itemId, 1);
 
-            return this.config.MaxPrice >= 0 && obj.Price >= this.config.MaxPrice
-                   || !this.config.AllowArtisanGoods && obj.Category == SObject.artisanGoodsCategory;
+            return this.VanillaConfig.MaxPrice >= 0 && obj.Price >= this.VanillaConfig.MaxPrice
+                   || !this.VanillaConfig.AllowArtisanGoods && obj.Category == SObject.artisanGoodsCategory;
         });
 
         return;
@@ -123,7 +123,7 @@ public class QuestItemManager
         {
             var obj = new SObject(itemId, 1);
 
-            return this.config.MaxPrice >= 0 && obj.Price >= this.config.MaxPrice;
+            return this.VanillaConfig.MaxPrice >= 0 && obj.Price >= this.VanillaConfig.MaxPrice;
         });
 
         return;
@@ -143,22 +143,22 @@ public class QuestItemManager
 
         this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Love"]));
 
-        if (this.config.QuestItemRequirement > 0)
+        if (this.VanillaConfig.QuestItemRequirement > 0)
         {
             this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Like"]));
         }
 
-        if (this.config.QuestItemRequirement > 1)
+        if (this.VanillaConfig.QuestItemRequirement > 1)
         {
             this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Neutral"]));
         }
 
-        if (this.config.QuestItemRequirement > 2)
+        if (this.VanillaConfig.QuestItemRequirement > 2)
         {
             this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Dislike"]));
         }
 
-        if (this.config.QuestItemRequirement > 3)
+        if (this.VanillaConfig.QuestItemRequirement > 3)
         {
             this.universalGiftTaste.AddRange(ArgUtility.SplitBySpace(Game1.NPCGiftTastes["Universal_Hate"]));
         }
@@ -186,22 +186,22 @@ public class QuestItemManager
 
         giftTaste.AddRange(ArgUtility.SplitBySpace(data[1]));
 
-        if (this.config.QuestItemRequirement > 0)
+        if (this.VanillaConfig.QuestItemRequirement > 0)
         {
             giftTaste.AddRange(ArgUtility.SplitBySpace(data[3]));
         }
 
-        if (this.config.QuestItemRequirement > 1)
+        if (this.VanillaConfig.QuestItemRequirement > 1)
         {
             giftTaste.AddRange(ArgUtility.SplitBySpace(data[5]));
         }
 
-        if (this.config.QuestItemRequirement > 2)
+        if (this.VanillaConfig.QuestItemRequirement > 2)
         {
             giftTaste.AddRange(ArgUtility.SplitBySpace(data[7]));
         }
 
-        if (this.config.QuestItemRequirement > 3)
+        if (this.VanillaConfig.QuestItemRequirement > 3)
         {
             giftTaste.AddRange(ArgUtility.SplitBySpace(data[9]));
         }

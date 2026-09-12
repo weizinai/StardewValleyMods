@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Monsters;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
 using weizinai.StardewValleyMod.HelpWanted.Model;
 using weizinai.StardewValleyMod.PiCore.Constant;
@@ -65,46 +65,46 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
     protected override bool TrySetQuestTarget()
     {
-        this.quest.target.Value = ItemConfig.TryGetValue(this.quest.monsterName.Value, out var config) ? config.GetTarget() : Marlon;
+        this.Quest.target.Value = ItemConfig.TryGetValue(this.Quest.monsterName.Value, out var config) ? config.GetTarget() : Marlon;
 
-        if (this.quest.target.Value == Wizard && !this.IsWizardAvailable()) this.quest.target.Value = Lewis;
+        if (this.Quest.target.Value == Wizard && !this.IsWizardAvailable()) this.Quest.target.Value = Lewis;
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.quest.questTitle = Game1.content.LoadString(GetPathString("S", 13696));
+        this.Quest.questTitle = Game1.content.LoadString(GetPathString("S", 13696));
     }
 
     protected override void SetQuestItemId()
     {
-        this.quest.monsterName.Value = QuestMonsterManager.Instance.GetRandomMonster();
-        this.quest.monster.Value = new Monster(this.quest.monsterName.Value, Vector2.Zero);
-        this.quest.numberToKill.Value = ItemConfig.TryGetValue(this.quest.monsterName.Value, out var config) ? config.GetRandomNumber() : 1;
+        this.Quest.monsterName.Value = QuestMonsterManager.Instance.GetRandomMonster();
+        this.Quest.monster.Value = new Monster(this.Quest.monsterName.Value, Vector2.Zero);
+        this.Quest.numberToKill.Value = ItemConfig.TryGetValue(this.Quest.monsterName.Value, out var config) ? config.GetRandomNumber() : 1;
     }
 
     protected override void SetQuestMoneyReward()
     {
-        var reward = ItemConfig.TryGetValue(this.quest.monsterName.Value, out var config) ? config.GetReward() : 0;
-        this.quest.reward.Value = this.quest.numberToKill.Value * reward;
+        var reward = ItemConfig.TryGetValue(this.Quest.monsterName.Value, out var config) ? config.GetReward() : 0;
+        this.Quest.reward.Value = this.Quest.numberToKill.Value * reward;
 
-        var originalReward = this.quest.reward.Value;
-        this.quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.SlayMonsterQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The vanilla slay monster quest reward has been adjusted from [{originalReward}] to [{this.quest.reward.Value}].");
+        var originalReward = this.Quest.reward.Value;
+        this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.SlayMonsterQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The vanilla slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.quest.parts.Clear();
+        this.Quest.parts.Clear();
 
-        switch (this.quest.monsterName.Value)
+        switch (this.Quest.monsterName.Value)
         {
             case SMonster.GreenSlime:
                 {
-                    this.quest.parts.Add(new DescriptionElement(
+                    this.Quest.parts.Add(new DescriptionElement(
                         GetPathString("S", 13723),
-                        this.quest.numberToKill.Value,
+                        this.Quest.numberToKill.Value,
                         new DescriptionElement(GetPathString("S", 13728))
                     ));
 
@@ -113,15 +113,15 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.Duggy:
             case SMonster.MagmaDuggy:
                 {
-                    this.quest.parts.Add(new DescriptionElement(GetPathString("S", 13711), this.quest.numberToKill.Value));
+                    this.Quest.parts.Add(new DescriptionElement(GetPathString("S", 13711), this.Quest.numberToKill.Value));
 
                     break;
                 }
             case SMonster.FrostJelly:
                 {
-                    this.quest.parts.Add(new DescriptionElement(
+                    this.Quest.parts.Add(new DescriptionElement(
                         GetPathString("S", 13723),
-                        this.quest.numberToKill.Value,
+                        this.Quest.numberToKill.Value,
                         new DescriptionElement(GetPathString("S", 13725))
                     ));
 
@@ -129,9 +129,9 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 }
             case SMonster.Sludge:
                 {
-                    this.quest.parts.Add(new DescriptionElement(
+                    this.Quest.parts.Add(new DescriptionElement(
                         GetPathString("S", 13723),
-                        this.quest.numberToKill.Value,
+                        this.Quest.numberToKill.Value,
                         new DescriptionElement(GetPathString("S", 13727))
                     ));
 
@@ -140,7 +140,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.RockCrab:
             case SMonster.LavaCrab:
                 {
-                    this.quest.parts.Add(new DescriptionElement(GetPathString("S", 13747), this.quest.numberToKill.Value));
+                    this.Quest.parts.Add(new DescriptionElement(GetPathString("S", 13747), this.Quest.numberToKill.Value));
 
                     break;
                 }
@@ -155,10 +155,10 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 {
                     if (this.IsWizardAvailable())
                     {
-                        this.quest.parts.Add(new DescriptionElement(
+                        this.Quest.parts.Add(new DescriptionElement(
                             GetPathString("S", 13752),
-                            this.quest.monster.Value,
-                            this.quest.numberToKill.Value,
+                            this.Quest.monster.Value,
+                            this.Quest.numberToKill.Value,
                             new DescriptionElement(GetPathString("S", 13755, 13756, 13757))
                         ));
                     }
@@ -170,10 +170,10 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.Mummy:
             case SMonster.CarbonGhost:
                 {
-                    this.quest.parts.Add(new DescriptionElement(
+                    this.Quest.parts.Add(new DescriptionElement(
                         GetPathString("S", 13752),
-                        this.quest.monster.Value,
-                        this.quest.numberToKill.Value,
+                        this.Quest.monster.Value,
+                        this.Quest.numberToKill.Value,
                         new DescriptionElement(GetPathString("S", 13755, 13756, 13757))
                     ));
 
@@ -187,27 +187,27 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                 }
         }
 
-        this.quest.parts.Add(new DescriptionElement(GetPathString("F", 13274), this.quest.reward.Value));
+        this.Quest.parts.Add(new DescriptionElement(GetPathString("F", 13274), this.Quest.reward.Value));
     }
 
     protected override void SetQuestDialogue()
     {
         var random = ModEntry.Random;
-        this.quest.dialogueparts.Clear();
+        this.Quest.dialogueparts.Clear();
 
-        switch (this.quest.monsterName.Value)
+        switch (this.Quest.monsterName.Value)
         {
             case SMonster.GreenSlime:
             case SMonster.FrostJelly:
             case SMonster.Sludge:
                 {
-                    this.quest.dialogueparts.Add(GetPathString("S", 13730));
+                    this.Quest.dialogueparts.Add(GetPathString("S", 13730));
 
                     if (random.NextBool())
                     {
-                        this.quest.dialogueparts.Add(GetPathString("S", 13731));
-                        this.quest.dialogueparts.Add(GetPathString("S", 13731, 13733));
-                        this.quest.dialogueparts.Add(new DescriptionElement(
+                        this.Quest.dialogueparts.Add(GetPathString("S", 13731));
+                        this.Quest.dialogueparts.Add(GetPathString("S", 13731, 13733));
+                        this.Quest.dialogueparts.Add(new DescriptionElement(
                             GetPathString("S", 13734),
                             new DescriptionElement(GetPathString("S", 13735, 13736)),
                             new DescriptionElement(GetPathString("D", 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 810)),
@@ -215,21 +215,21 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
                         ));
                     }
                     else
-                        this.quest.dialogueparts.Add(GetPathString("S", 13744));
+                        this.Quest.dialogueparts.Add(GetPathString("S", 13744));
 
                     break;
                 }
             case SMonster.RockCrab:
             case SMonster.LavaCrab:
                 {
-                    this.quest.dialogueparts.Add(new DescriptionElement(GetPathString("S", 13750), this.quest.monster.Value));
+                    this.Quest.dialogueparts.Add(new DescriptionElement(GetPathString("S", 13750), this.Quest.monster.Value));
 
                     break;
                 }
             case SMonster.Duggy:
             case SMonster.MagmaDuggy:
                 {
-                    this.quest.dialogueparts.Add(GetPathString("S", 13760));
+                    this.Quest.dialogueparts.Add(GetPathString("S", 13760));
 
                     break;
                 }
@@ -243,7 +243,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.MetalHead:
                 {
                     if (this.IsWizardAvailable())
-                        this.quest.dialogueparts.Add(GetPathString("S", 13760));
+                        this.Quest.dialogueparts.Add(GetPathString("S", 13760));
                     else
                         this.AddDefaultDialogue();
 
@@ -252,7 +252,7 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
             case SMonster.Mummy:
             case SMonster.CarbonGhost:
                 {
-                    this.quest.dialogueparts.Add(GetPathString("S", 13760));
+                    this.Quest.dialogueparts.Add(GetPathString("S", 13760));
 
                     break;
                 }
@@ -267,20 +267,20 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
     protected override void SetQuestObjective()
     {
-        this.quest.objective.Value = new DescriptionElement(
+        this.Quest.objective.Value = new DescriptionElement(
             GetPathString("S", 13770),
             "0",
-            this.quest.numberToKill.Value,
-            this.quest.monster.Value
+            this.Quest.numberToKill.Value,
+            this.Quest.monster.Value
         );
     }
 
     public override void BuildQuest()
     {
-        if (this.quest.target.Value != null && this.quest.monsterName.Value != null)
+        if (this.Quest.target.Value != null && this.Quest.monsterName.Value != null)
         {
-            Logger<ModEntry>.Trace($"Target for the current slay monster quest has been set to {this.quest.target.Value}.");
-            Logger<ModEntry>.Trace($"Monster for the current slay monster quest has been set to {this.quest.monsterName.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current slay monster quest has been set to {this.Quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Monster for the current slay monster quest has been set to {this.Quest.monsterName.Value}.");
 
             return;
         }
@@ -296,16 +296,16 @@ public class SlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
     private void AddDefaultDescription()
     {
-        this.quest.parts.Add(new DescriptionElement(
+        this.Quest.parts.Add(new DescriptionElement(
             GetPathString("S", 13764),
-            this.quest.numberToKill.Value,
-            this.quest.monster.Value
+            this.Quest.numberToKill.Value,
+            this.Quest.monster.Value
         ));
     }
 
     private void AddDefaultDialogue()
     {
-        this.quest.dialogueparts.Add(GetPathString("S", 13767));
+        this.Quest.dialogueparts.Add(GetPathString("S", 13767));
     }
 
     private bool IsWizardAvailable()

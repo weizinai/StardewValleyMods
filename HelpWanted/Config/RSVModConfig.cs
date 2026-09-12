@@ -1,4 +1,4 @@
-namespace weizinai.StardewValleyMod.HelpWanted.Framework;
+namespace weizinai.StardewValleyMod.HelpWanted.Config;
 
 public class RSVModConfig
 {

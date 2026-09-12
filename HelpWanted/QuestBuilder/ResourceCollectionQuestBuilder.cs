@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.HelpWanted.Model;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using static weizinai.StardewValleyMod.HelpWanted.Helper.PathStringHelper;
@@ -57,21 +57,21 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
 
     protected override bool TrySetQuestTarget()
     {
-        if (this.quest.target.Value != null || Game1.gameMode == 6)
+        if (this.Quest.target.Value != null || Game1.gameMode == 6)
         {
-            Logger<ModEntry>.Trace($"Target for the current resource collection quest has been set to {this.quest.target.Value}.");
+            Logger<ModEntry>.Trace($"Target for the current resource collection quest has been set to {this.Quest.target.Value}.");
 
             return false;
         }
 
-        this.quest.target.Value = ModEntry.Random.NextBool() ? Clint : Robin;
+        this.Quest.target.Value = ModEntry.Random.NextBool() ? Clint : Robin;
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.quest.questTitle = Game1.content.LoadString(GetPathString("R", 13640));
+        this.Quest.questTitle = Game1.content.LoadString(GetPathString("R", 13640));
     }
 
     protected override void SetQuestItemId()
@@ -80,7 +80,7 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
         var moreQuest = ModConfig.Instance.VanillaConfig.MoreResourceCollectionQuest;
         var possibleItems = new List<string>(4);
 
-        switch (this.quest.target.Value)
+        switch (this.Quest.target.Value)
         {
             case Clint:
                 {
@@ -126,87 +126,87 @@ public class ResourceCollectionQuestBuilder : QuestBuilder<ResourceCollectionQue
                 }
         }
 
-        this.quest.ItemId.Value = random.ChooseFrom(possibleItems);
-        this.quest.number.Value = ItemConfig.TryGetValue(this.quest.ItemId.Value, out var config) ? config.GetRandomNumber() : 1;
-        this.item = ItemRegistry.Create(this.quest.ItemId.Value);
+        this.Quest.ItemId.Value = random.ChooseFrom(possibleItems);
+        this.Quest.number.Value = ItemConfig.TryGetValue(this.Quest.ItemId.Value, out var config) ? config.GetRandomNumber() : 1;
+        this.item = ItemRegistry.Create(this.Quest.ItemId.Value);
     }
 
     protected override void SetQuestMoneyReward()
     {
-        this.quest.reward.Value = this.quest.number.Value * (ItemConfig.TryGetValue(this.quest.ItemId.Value, out var config) ? config.GetReward() : 0);
+        this.Quest.reward.Value = this.Quest.number.Value * (ItemConfig.TryGetValue(this.Quest.ItemId.Value, out var config) ? config.GetReward() : 0);
 
-        var originalReward = this.quest.reward.Value;
-        this.quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.ResourceCollectionQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The vanilla resource collection quest reward has been adjusted from [{originalReward}] to [{this.quest.reward.Value}].");
+        var originalReward = this.Quest.reward.Value;
+        this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.VanillaConfig.ResourceCollectionQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The vanilla resource collection quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.quest.parts.Clear();
+        this.Quest.parts.Clear();
 
-        if (this.quest.target.Value == Robin)
+        if (this.Quest.target.Value == Robin)
         {
-            this.quest.parts.Add(new DescriptionElement(
+            this.Quest.parts.Add(new DescriptionElement(
                 GetPathString("R", 13674),
-                this.quest.number.Value,
+                this.Quest.number.Value,
                 this.item
             ));
         }
         else
         {
-            this.quest.parts.Add(new DescriptionElement(
+            this.Quest.parts.Add(new DescriptionElement(
                 GetPathString("R", 13647),
-                this.quest.number.Value,
+                this.Quest.number.Value,
                 this.item,
                 new DescriptionElement(GetPathString("R", new[] { 13649, 13650, 13651, 13652 }[this.randomIndex]))
             ));
         }
 
-        this.quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.quest.reward.Value));
-        this.quest.parts.Add(this.quest.target.Value == Clint ? GetPathString("R", 13688) : "");
+        this.Quest.parts.Add(new DescriptionElement(GetPathString("I", 13607), this.Quest.reward.Value));
+        this.Quest.parts.Add(this.Quest.target.Value == Clint ? GetPathString("R", 13688) : "");
     }
 
     protected override void SetQuestDialogue()
     {
         var random = ModEntry.Random;
-        this.quest.dialogueparts.Clear();
+        this.Quest.dialogueparts.Clear();
 
-        if (this.quest.target.Value == Robin)
+        if (this.Quest.target.Value == Robin)
         {
-            this.quest.dialogueparts.Add(new DescriptionElement(
+            this.Quest.dialogueparts.Add(new DescriptionElement(
                 GetPathString("R", 13677),
-                this.quest.ItemId.Value == Wood
+                this.Quest.ItemId.Value == Wood
                     ? new DescriptionElement(GetPathString("R", 13678))
                     : new DescriptionElement(GetPathString("R", 13679))
             ));
-            this.quest.dialogueparts.Add(GetPathString("R", 13681, 13682, 13683));
+            this.Quest.dialogueparts.Add(GetPathString("R", 13681, 13682, 13683));
         }
         else
         {
             if (this.randomIndex == 3)
             {
-                this.quest.dialogueparts.Add(GetPathString("R", 13655));
-                this.quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
-                this.quest.dialogueparts.Add(GetPathString("R", 13659));
+                this.Quest.dialogueparts.Add(GetPathString("R", 13655));
+                this.Quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
+                this.Quest.dialogueparts.Add(GetPathString("R", 13659));
             }
             else
             {
-                this.quest.dialogueparts.Add(GetPathString("R", 13662));
-                this.quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
-                this.quest.dialogueparts.Add(random.NextBool()
+                this.Quest.dialogueparts.Add(GetPathString("R", 13662));
+                this.Quest.dialogueparts.Add(GetPathString("R", 13656, 13657, 13658));
+                this.Quest.dialogueparts.Add(random.NextBool()
                     ? new DescriptionElement(GetPathString("R", 13667), new DescriptionElement(GetPathString("R", 13668, 13669, 13670)))
                     : new DescriptionElement(GetPathString("R", 13672)));
-                this.quest.dialogueparts.Add(GetPathString("R", 13673));
+                this.Quest.dialogueparts.Add(GetPathString("R", 13673));
             }
         }
     }
 
     protected override void SetQuestObjective()
     {
-        this.quest.objective.Value = new DescriptionElement(
+        this.Quest.objective.Value = new DescriptionElement(
             GetPathString("R", 13691),
             "0",
-            this.quest.number.Value,
+            this.Quest.number.Value,
             this.item
         );
     }

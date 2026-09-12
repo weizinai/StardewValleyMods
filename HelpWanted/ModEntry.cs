@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
-using weizinai.StardewValleyMod.HelpWanted.Menu;
 using weizinai.StardewValleyMod.HelpWanted.Patcher;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
@@ -38,7 +36,7 @@ internal class ModEntry : Mod
         helper.Events.GameLoop.DayStarted += this.OnDayStarted;
 
         // 注册Harmony补丁
-        var patches = new List<IPatcher>
+        HarmonyPatcher.Apply(this, new IPatcher[]
         {
             new BillboardPatcher(),
             new QuestPatcher(),
@@ -47,13 +45,10 @@ internal class ModEntry : Mod
             new ResourceCollectionQuestPatcher(),
             new FishingQuestPatcher(),
             new Game1Patcher(),
-            new TownPatcher()
-        };
-
-        // RSV 未加载时由 RSVQuestBoardPatcher.IsEnabled 跳过，不在此处做条件注册
-        patches.Add(new RSVQuestBoardPatcher());
-
-        HarmonyPatcher.Apply(this, patches.ToArray());
+            new TownPatcher(),
+            // RSV 未加载时由 RSVQuestBoardPatcher.IsEnabled 跳过，不在此处做条件注册
+            new RSVQuestBoardPatcher()
+        });
     }
 
     /// <summary>用声明式描述器声明本模组的 GMCM 配置菜单，由配置模块渲染。</summary>
@@ -179,6 +174,5 @@ internal class ModEntry : Mod
         QuestMonsterManager.Instance.ClearCache();
         VanillaQuestManager.Instance.ClearCache();
         RSVQuestManager.Instance.ClearCache();
-        BaseQuestBoard.ClearCache();
     }
 }

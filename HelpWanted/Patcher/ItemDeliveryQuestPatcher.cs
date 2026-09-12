@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;

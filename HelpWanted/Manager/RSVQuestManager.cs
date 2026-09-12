@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
@@ -10,7 +10,7 @@ namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
 public class RSVQuestManager : QuestManager<RSVQuestManager>
 {
-    private RSVModConfig rsvConfig => ModConfig.Instance.RSVConfig;
+    private RSVModConfig RSVConfig => ModConfig.Instance.RSVConfig;
 
     public void InitRSVQuestList()
     {
@@ -24,7 +24,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             HudLogger.NoIconHUDMessage(I18n.UI_GenerateRSVQuest_Tooltip());
         }
 
-        var maxQuests = this.rsvConfig.MaxQuests;
+        var maxQuests = this.RSVConfig.MaxQuests;
         var quest = this.GenerateRSVQuest();
         int tries = 0, i = 0;
         var questIds = new HashSet<string>();
@@ -73,7 +73,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
     {
         var showTooltip = ModConfig.Instance.ShowQuestGenerationTooltip;
 
-        if (Game1.stats.DaysPlayed <= 1 && !this.rsvConfig.QuestFirstDay)
+        if (Game1.stats.DaysPlayed <= 1 && !this.RSVConfig.QuestFirstDay)
         {
             if (showTooltip)
             {
@@ -83,7 +83,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             return false;
         }
 
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.rsvConfig.QuestFestival)
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.RSVConfig.QuestFestival)
         {
             if (showTooltip)
             {
@@ -93,7 +93,7 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
             return false;
         }
 
-        if (ModEntry.Random.NextDouble() >= this.rsvConfig.DailyQuestChance)
+        if (ModEntry.Random.NextDouble() >= this.RSVConfig.DailyQuestChance)
         {
             if (showTooltip)
             {
@@ -110,18 +110,18 @@ public class RSVQuestManager : QuestManager<RSVQuestManager>
     {
         var questTypes = new List<(float weight, Func<Quest> createQuest)>
         {
-            (this.rsvConfig.ItemDeliveryQuestConfig.Weight, () => new ItemDeliveryQuest()),
-            (this.rsvConfig.FishingQuestConfig.Weight, () => new FishingQuest()),
-            (this.rsvConfig.SlayMonsterQuestConfig.Weight, () => new SlayMonsterQuest()),
-            (this.rsvConfig.LostItemQuestConfig.Weight, () => new LostItemQuest())
+            (this.RSVConfig.ItemDeliveryQuestConfig.Weight, () => new ItemDeliveryQuest()),
+            (this.RSVConfig.FishingQuestConfig.Weight, () => new FishingQuest()),
+            (this.RSVConfig.SlayMonsterQuestConfig.Weight, () => new SlayMonsterQuest()),
+            (this.RSVConfig.LostItemQuestConfig.Weight, () => new LostItemQuest())
         };
 
         var randomDouble = ModEntry.Random.NextDouble();
         var currentWeight = 0f;
-        var totalWeight = this.rsvConfig.ItemDeliveryQuestConfig.Weight
-                          + this.rsvConfig.FishingQuestConfig.Weight
-                          + this.rsvConfig.SlayMonsterQuestConfig.Weight
-                          + this.rsvConfig.LostItemQuestConfig.Weight;
+        var totalWeight = this.RSVConfig.ItemDeliveryQuestConfig.Weight
+                          + this.RSVConfig.FishingQuestConfig.Weight
+                          + this.RSVConfig.SlayMonsterQuestConfig.Weight
+                          + this.RSVConfig.LostItemQuestConfig.Weight;
 
         foreach (var (weight, createQuest) in questTypes)
         {

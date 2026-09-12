@@ -1,13 +1,10 @@
 using System;
-using System.Linq;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.HelpWanted.Manager;
-using weizinai.StardewValleyMod.HelpWanted.Menu;
-using weizinai.StardewValleyMod.HelpWanted.Model;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Patcher;
@@ -23,7 +20,8 @@ internal class TownPatcher : BasePatcher
     // 代码来源：Town.draw(SpriteBatch spriteBatch)
     private static void DrawPostfix(SpriteBatch spriteBatch)
     {
-        if (!VanillaQuestManager.Instance.QuestList.Any() && !BaseQuestBoard.AllQuestNotes[BoardType.Vanilla].Any()) return;
+        // 只管「当天还有没有没接下的任务」：已上板但还没被接下的便签同样算，只看 QuestList 会让开过一次板子后的感叹号熄灭
+        if (!VanillaQuestManager.Instance.HasPendingQuests) return;
 
         var yOffset = 4f * (float)Math.Round(Math.Sin(Game1.currentGameTime.TotalGameTime.TotalMilliseconds / 250.0), 2);
         spriteBatch.Draw(

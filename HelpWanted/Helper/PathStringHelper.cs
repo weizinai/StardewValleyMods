@@ -3,7 +3,7 @@ using StardewValley.Extensions;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Helper;
 
-public class PathStringHelper
+public static class PathStringHelper
 {
     private const string BasePath = "Strings\\StringsFromCSFiles:";
 

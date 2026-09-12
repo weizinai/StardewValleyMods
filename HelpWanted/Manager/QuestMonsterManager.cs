@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Extensions;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.PiCore.Constant;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;

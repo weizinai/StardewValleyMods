@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
@@ -15,23 +15,23 @@ public class RSVLostItemQuestBuilder : QuestBuilder<LostItemQuest>
 
     public RSVLostItemQuestBuilder(LostItemQuest quest) : base(quest)
     {
-        this.quest.daysLeft.Value = ModConfig.Instance.RSVConfig.FishingQuestConfig.Days;
+        this.Quest.daysLeft.Value = ModConfig.Instance.RSVConfig.FishingQuestConfig.Days;
 
         var randomId = ModEntry.Random.ChooseFrom(QuestLibrary);
-        this.rawQuest = Quest.GetRawQuestFields(randomId);
-        this.quest.id.Value = randomId;
+        this.rawQuest = StardewValley.Quests.Quest.GetRawQuestFields(randomId);
+        this.Quest.id.Value = randomId;
     }
 
     protected override bool TrySetQuestTarget()
     {
-        this.quest.npcName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0);
+        this.Quest.npcName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0);
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.quest.questTitle = this.rawQuest[1];
+        this.Quest.questTitle = this.rawQuest[1];
     }
 
     protected override void SetQuestItemId()
@@ -39,24 +39,24 @@ public class RSVLostItemQuestBuilder : QuestBuilder<LostItemQuest>
         var rawField = ArgUtility.SplitBySpace(this.rawQuest[4]);
 
         var itemId = rawField[1];
-        this.quest.ItemId.Value = ItemRegistry.QualifyItemId(itemId);
-        this.quest.locationOfItem.Value = rawField[2];
-        this.quest.tileX.Value = int.Parse(rawField[3]);
-        this.quest.tileY.Value = int.Parse(rawField[4]);
+        this.Quest.ItemId.Value = ItemRegistry.QualifyItemId(itemId);
+        this.Quest.locationOfItem.Value = rawField[2];
+        this.Quest.tileX.Value = int.Parse(rawField[3]);
+        this.Quest.tileY.Value = int.Parse(rawField[4]);
     }
 
     protected override void SetQuestMoneyReward()
     {
-        this.quest.moneyReward.Value = int.Parse(this.rawQuest[6]);
+        this.Quest.moneyReward.Value = int.Parse(this.rawQuest[6]);
 
-        var originalReward = this.quest.moneyReward.Value;
-        this.quest.moneyReward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.LostItemQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The RSV lost item quest reward has been adjusted from [{originalReward}] to [{this.quest.moneyReward.Value}].");
+        var originalReward = this.Quest.moneyReward.Value;
+        this.Quest.moneyReward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.LostItemQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The RSV lost item quest reward has been adjusted from [{originalReward}] to [{this.Quest.moneyReward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.quest.questDescription = this.rawQuest[2];
+        this.Quest.questDescription = this.rawQuest[2];
     }
 
     protected override void SetQuestDialogue()
@@ -66,6 +66,6 @@ public class RSVLostItemQuestBuilder : QuestBuilder<LostItemQuest>
 
     protected override void SetQuestObjective()
     {
-        this.quest.currentObjective = this.rawQuest[3];
+        this.Quest.currentObjective = this.rawQuest[3];
     }
 }

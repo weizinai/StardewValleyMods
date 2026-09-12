@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;
 
 public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 {
-    private VanillaModConfig vanillaConfig => ModConfig.Instance.VanillaConfig;
+    private VanillaModConfig VanillaConfig => ModConfig.Instance.VanillaConfig;
 
     public void InitVanillaQuestList()
     {
@@ -18,7 +18,7 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
 
         if (ModConfig.Instance.ShowQuestGenerationTooltip) HudLogger.NoIconHUDMessage(I18n.UI_GenerateVanillaQuest_Tooltip());
 
-        var maxQuests = this.vanillaConfig.MaxQuests;
+        var maxQuests = this.VanillaConfig.MaxQuests;
         var quest = this.GenerateVanillaQuest();
         int tries = 0, i = 0;
         var npcNames = new HashSet<string>(maxQuests);
@@ -59,21 +59,21 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
     {
         var showTooltip = ModConfig.Instance.ShowQuestGenerationTooltip;
 
-        if (Game1.stats.DaysPlayed <= 1 && !this.vanillaConfig.QuestFirstDay)
+        if (Game1.stats.DaysPlayed <= 1 && !this.VanillaConfig.QuestFirstDay)
         {
             if (showTooltip) HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFirstDay_Tooltip());
 
             return false;
         }
 
-        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.vanillaConfig.QuestFestival)
+        if ((Utility.isFestivalDay() || Utility.isFestivalDay(Game1.dayOfMonth + 1, Game1.season)) && !this.VanillaConfig.QuestFestival)
         {
             if (showTooltip) HudLogger.NoIconHUDMessage(I18n.UI_VanillaQuestFestival_Tooltip());
 
             return false;
         }
 
-        if (ModEntry.Random.NextDouble() >= this.vanillaConfig.DailyQuestChance)
+        if (ModEntry.Random.NextDouble() >= this.VanillaConfig.DailyQuestChance)
         {
             if (showTooltip) HudLogger.NoIconHUDMessage(I18n.UI_VanillaDailyQuest_Tooltip());
 
@@ -87,10 +87,10 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
     {
         var npcName = npc.Name;
 
-        var oneQuestPerVillager = this.vanillaConfig.OneQuestPerVillager && npcNames.Contains(npcName);
-        var excludeMaxHeartsNPC = this.vanillaConfig.ExcludeMaxHeartsNPC
+        var oneQuestPerVillager = this.VanillaConfig.OneQuestPerVillager && npcNames.Contains(npcName);
+        var excludeMaxHeartsNPC = this.VanillaConfig.ExcludeMaxHeartsNPC
                                   && Game1.player.tryGetFriendshipLevelForNPC(npcName) >= Utility.GetMaximumHeartsForCharacter(npc) * 250;
-        var excludeNPCList = this.vanillaConfig.ExcludeNPCList.Contains(npc.displayName);
+        var excludeNPCList = this.VanillaConfig.ExcludeNPCList.Contains(npc.displayName);
 
         var available = !oneQuestPerVillager && !excludeMaxHeartsNPC && !excludeNPCList;
 
@@ -116,17 +116,17 @@ public class VanillaQuestManager : QuestManager<VanillaQuestManager>
         var slayMonsterQuest = MineShaft.lowestLevelReached > 0 && Game1.stats.DaysPlayed > 5U;
         var questTypes = new List<(float weight, Func<Quest> createQuest)>
         {
-            (this.vanillaConfig.ResourceCollectionQuestConfig.Weight, () => new ResourceCollectionQuest()),
-            (slayMonsterQuest ? this.vanillaConfig.SlayMonsterQuestConfig.Weight : 0, () => new SlayMonsterQuest()),
-            (this.vanillaConfig.FishingQuestConfig.Weight, () => new FishingQuest()),
-            (this.vanillaConfig.ItemDeliveryQuestConfig.Weight, () => new ItemDeliveryQuest())
+            (this.VanillaConfig.ResourceCollectionQuestConfig.Weight, () => new ResourceCollectionQuest()),
+            (slayMonsterQuest ? this.VanillaConfig.SlayMonsterQuestConfig.Weight : 0, () => new SlayMonsterQuest()),
+            (this.VanillaConfig.FishingQuestConfig.Weight, () => new FishingQuest()),
+            (this.VanillaConfig.ItemDeliveryQuestConfig.Weight, () => new ItemDeliveryQuest())
         };
 
         var currentWeight = 0f;
-        var totalWeight = this.vanillaConfig.ResourceCollectionQuestConfig.Weight
-                          + (slayMonsterQuest ? this.vanillaConfig.SlayMonsterQuestConfig.Weight : 0)
-                          + this.vanillaConfig.FishingQuestConfig.Weight
-                          + this.vanillaConfig.ItemDeliveryQuestConfig.Weight;
+        var totalWeight = this.VanillaConfig.ResourceCollectionQuestConfig.Weight
+                          + (slayMonsterQuest ? this.VanillaConfig.SlayMonsterQuestConfig.Weight : 0)
+                          + this.VanillaConfig.FishingQuestConfig.Weight
+                          + this.VanillaConfig.ItemDeliveryQuestConfig.Weight;
 
         foreach (var (weight, createQuest) in questTypes)
         {

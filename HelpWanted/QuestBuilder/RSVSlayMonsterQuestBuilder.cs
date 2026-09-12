@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Monsters;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
@@ -16,56 +16,56 @@ public class RSVSlayMonsterQuestBuilder : QuestBuilder<SlayMonsterQuest>
 
     public RSVSlayMonsterQuestBuilder(SlayMonsterQuest quest) : base(quest)
     {
-        this.quest.daysLeft.Value = ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.Days;
+        this.Quest.daysLeft.Value = ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.Days;
 
         var randomId = ModEntry.Random.ChooseFrom(QuestLibrary);
-        this.rawQuest = Quest.GetRawQuestFields(randomId);
-        this.quest.id.Value = randomId;
+        this.rawQuest = StardewValley.Quests.Quest.GetRawQuestFields(randomId);
+        this.Quest.id.Value = randomId;
     }
 
     protected override bool TrySetQuestTarget()
     {
-        this.quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2);
+        this.Quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2);
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.quest.questTitle = this.rawQuest[1];
+        this.Quest.questTitle = this.rawQuest[1];
     }
 
     protected override void SetQuestItemId()
     {
-        this.quest.monsterName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0).Replace("_", " ");
-        this.quest.monster.Value = new Monster
+        this.Quest.monsterName.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0).Replace("_", " ");
+        this.Quest.monster.Value = new Monster
         {
-            Name = this.quest.monsterName.Value
+            Name = this.Quest.monsterName.Value
         };
-        this.quest.numberToKill.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1));
+        this.Quest.numberToKill.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1));
     }
 
     protected override void SetQuestMoneyReward()
     {
-        this.quest.reward.Value = int.Parse(this.rawQuest[6]);
+        this.Quest.reward.Value = int.Parse(this.rawQuest[6]);
 
-        var originalReward = this.quest.reward.Value;
-        this.quest.reward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The RSV slay monster quest reward has been adjusted from [{originalReward}] to [{this.quest.reward.Value}].");
+        var originalReward = this.Quest.reward.Value;
+        this.Quest.reward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.SlayMonsterQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The RSV slay monster quest reward has been adjusted from [{originalReward}] to [{this.Quest.reward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.quest.questDescription = this.rawQuest[2];
+        this.Quest.questDescription = this.rawQuest[2];
     }
 
     protected override void SetQuestDialogue()
     {
-        this.quest.targetMessage = this.rawQuest[9];
+        this.Quest.targetMessage = this.rawQuest[9];
     }
 
     protected override void SetQuestObjective()
     {
-        this.quest.currentObjective = this.rawQuest[3];
+        this.Quest.currentObjective = this.rawQuest[3];
     }
 }

@@ -2,7 +2,7 @@ using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using StardewValley.Menus;
-using weizinai.StardewValleyMod.HelpWanted.Menu;
+using weizinai.StardewValleyMod.HelpWanted.UI;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 

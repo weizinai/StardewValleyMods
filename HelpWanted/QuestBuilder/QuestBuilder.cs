@@ -4,7 +4,7 @@ namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
 
 public abstract class QuestBuilder<T> where T : Quest
 {
-    protected readonly T quest;
+    protected readonly T Quest;
 
     protected abstract bool TrySetQuestTarget();
 
@@ -22,7 +22,7 @@ public abstract class QuestBuilder<T> where T : Quest
 
     protected QuestBuilder(T quest)
     {
-        this.quest = quest;
+        this.Quest = quest;
     }
 
     public virtual void BuildQuest()

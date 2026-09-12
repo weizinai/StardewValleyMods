@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using StardewValley;
 using StardewValley.Extensions;
 using StardewValley.Quests;
-using weizinai.StardewValleyMod.HelpWanted.Framework;
+using weizinai.StardewValleyMod.HelpWanted.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.QuestBuilder;
@@ -20,53 +20,53 @@ public class RSVItemDeliveryQuestBuilder : QuestBuilder<ItemDeliveryQuest>
 
     public RSVItemDeliveryQuestBuilder(ItemDeliveryQuest quest) : base(quest)
     {
-        this.quest.daysLeft.Value = ModConfig.Instance.RSVConfig.ItemDeliveryQuestConfig.Days;
+        this.Quest.daysLeft.Value = ModConfig.Instance.RSVConfig.ItemDeliveryQuestConfig.Days;
 
         var randomId = ModEntry.Random.ChooseFrom(QuestLibrary);
-        this.rawQuest = Quest.GetRawQuestFields(randomId);
-        this.quest.id.Value = randomId;
+        this.rawQuest = StardewValley.Quests.Quest.GetRawQuestFields(randomId);
+        this.Quest.id.Value = randomId;
     }
 
     protected override bool TrySetQuestTarget()
     {
-        this.quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0);
+        this.Quest.target.Value = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 0);
 
         return true;
     }
 
     protected override void SetQuestTitle()
     {
-        this.quest.questTitle = this.rawQuest[1];
+        this.Quest.questTitle = this.rawQuest[1];
     }
 
     protected override void SetQuestItemId()
     {
         var itemId = ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 1);
-        this.quest.ItemId.Value = ItemRegistry.QualifyItemId(itemId) ?? itemId;
-        this.quest.number.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2, "1"));
+        this.Quest.ItemId.Value = ItemRegistry.QualifyItemId(itemId) ?? itemId;
+        this.Quest.number.Value = int.Parse(ArgUtility.SplitBySpaceAndGet(this.rawQuest[4], 2, "1"));
     }
 
     protected override void SetQuestMoneyReward()
     {
-        this.quest.moneyReward.Value = int.Parse(this.rawQuest[6]);
+        this.Quest.moneyReward.Value = int.Parse(this.rawQuest[6]);
 
-        var originalReward = this.quest.moneyReward.Value;
-        this.quest.moneyReward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.ItemDeliveryQuestConfig.RewardMultiplier);
-        Logger<ModEntry>.Trace($"The RSV item delivery quest reward has been adjusted from [{originalReward}] to [{this.quest.moneyReward.Value}].");
+        var originalReward = this.Quest.moneyReward.Value;
+        this.Quest.moneyReward.Value = (int)(originalReward * ModConfig.Instance.RSVConfig.ItemDeliveryQuestConfig.RewardMultiplier);
+        Logger<ModEntry>.Trace($"The RSV item delivery quest reward has been adjusted from [{originalReward}] to [{this.Quest.moneyReward.Value}].");
     }
 
     protected override void SetQuestDescription()
     {
-        this.quest.questDescription = this.rawQuest[2];
+        this.Quest.questDescription = this.rawQuest[2];
     }
 
     protected override void SetQuestDialogue()
     {
-        this.quest.targetMessage = this.rawQuest[9];
+        this.Quest.targetMessage = this.rawQuest[9];
     }
 
     protected override void SetQuestObjective()
     {
-        this.quest.currentObjective = this.rawQuest[3];
+        this.Quest.currentObjective = this.rawQuest[3];
     }
 }

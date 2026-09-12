@@ -1,7 +1,8 @@
-﻿{
+{
     // Show unready farmers
     "Config.ShowUnreadyFarmersTitle.Name": "显示未准备玩家",
     "Config.ShowInfoInReadyCheckDialogue.Name": "在准备时显示信息",
+    "Config.ShowInfoInReadyCheckDialogue.Tooltip": "关闭后面板与「踢出」按钮都不显示，无法再手动踢出未准备玩家；自动踢出不受影响",
     "Config.ShowInfoInSaveGameMenu.Name": "在过夜时显示信息",
 
     // Kick unready farmers
@@ -11,6 +12,9 @@
     "Config.AutoKickUnreadyFarmersRatio.Name": "自动踢出未准备玩家比例",
     "Config.SpecialTreatForFestival.Name": "节日特殊处理",
 
+    "UI.UnreadyFarmersPanel.Title": "未准备玩家",
+    "UI.KickButton": "踢出",
+    "UI.KickAllButton": "全部踢出",
     "UI.KickUnreadyFarmer.Tooltip": "{{farmerName}}未准备，将被踢出",
     "UI.AutoKickUnreadyFarmers.DefaultTooltip": "当前准备玩家已超过{{ratio}}，将在{{delay}}秒后踢出未准备的玩家",
     "UI.AutoKickUnreadyFarmers.FestivalTooltip": "节日即将开始，开始踢出未准备玩家"

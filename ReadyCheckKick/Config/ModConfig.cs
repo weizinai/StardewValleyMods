@@ -1,4 +1,4 @@
-namespace weizinai.StardewValleyMod.ReadyCheckKick.Framework;
+namespace weizinai.StardewValleyMod.ReadyCheckKick.Config;
 
 internal class ModConfig
 {

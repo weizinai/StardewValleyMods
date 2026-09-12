@@ -6,12 +6,12 @@
 
 ## 验证状态说明
 
-「已验证」= 已被实战模组接入且通过游戏内验收（**ActiveMenuAnywhere (AMA)** 之于菜单宿主，**AutoBreakGeode** 之于叠层宿主，**BetterCabin** 之于世界锚定宿主——三者的游戏内验收都与各自模组的验收清单同一次进行）；「未验证」= 已实现、API 形状以代码为准，但尚无模组实际挂载（部分类型虽被宿主内部引用，独立能力未露出）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
+「已验证」= 已被实战模组接入**且**通过游戏内验收（**ActiveMenuAnywhere (AMA)** 之于菜单宿主，**AutoBreakGeode** 之于叠层宿主，**BetterCabin** 之于世界锚定宿主，**ReadyCheckKick** 之于滚动列表——四者的游戏内验收都与各自模组的验收清单同一次进行）；「未验证」= 已实现、API 形状以代码为准，但上面两个条件还没同时满足——尚无模组挂载，或已挂载但还没做游戏内验收（后者见下表与对应章节的注记）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
 
 | 状态 | 类型 |
 | --- | --- |
-| ✅ 已验证 | `MenuHost` · `DrawableHost` · `WorldAnchorHost` · `Element` · `Stack` · `Grid` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` · `IAnchoredContent` · `TilePanel` |
-| ⚠️ 未验证 | `Scrollable` · `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
+| ✅ 已验证 | `MenuHost` · `DrawableHost` · `WorldAnchorHost` · `Element` · `Stack` · `Grid` · `Scrollable` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` · `IAnchoredContent` · `TilePanel` |
+| ⚠️ 未验证 | `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
 
 每章开头会标注该章主要类型的验证状态。
 
@@ -47,7 +47,7 @@ PiCore.UI 是一个 **retained 组合式 UI 框架**：你声明一棵**元素�
 2. 挂宿主     —— 交给 MenuHost / DrawableHost / WorldAnchorHost（创建即开始工作）
 3. 布局(每帧) —— 宿主在绘制/更新开头调用 LayoutRunner 冲刷挂起的脏布局（Measure→Arrange）
 4. 绘制(每帧) —— 宿主调 root.Draw：自绘 + 可见子级递归绘制
-5. 交互(每帧) —— MenuHost 路由鼠标/滚轮/手柄（焦点图）；DrawableHost 默认不路由，消费方显式调用时路由鼠标（悬停/左键）
+5. 交互(每帧) —— MenuHost 路由鼠标/滚轮/手柄（焦点图）；DrawableHost 默认不路由，消费方显式调用时路由鼠标（悬停/左键/滚轮）
 6. 变更       —— 内容变化调 MarkDirty（或 Add/Remove/改 Text 已自动标脏）→ 下一帧重排
 ```
 
@@ -323,7 +323,7 @@ menu.ContentRect; // 内容区 = 外框内缩 24px
 
 ## 3.2 DrawableHost —— 叠层宿主（✅ 已验证）
 
-`DrawableHost` 把同一个 retained 根视图作为**叠层**挂到一条 SMAPI Display 事件（HUD / 活动菜单之后 / 指定渲染步），每帧在 UI 坐标冲刷脏布局后绘制。**默认只读**：宿主自身不订阅任何输入事件（输入所有权留模组侧），鼠标交互由消费方**显式调用**下面两个方法开启——不调用时行为与只读版逐帧一致。
+`DrawableHost` 把同一个 retained 根视图作为**叠层**挂到一条 SMAPI Display 事件（HUD / 活动菜单之后 / 指定渲染步），每帧在 UI 坐标冲刷脏布局后绘制。**默认只读**：宿主自身不订阅任何输入事件（输入所有权留模组侧），鼠标交互由消费方**显式调用**下面几个方法开启——不调用时行为与只读版逐帧一致。
 
 ```csharp
 using StardewModdingAPI;
@@ -343,6 +343,7 @@ host.IsEnabled;  // 当前是否在绘制
 // 鼠标交互（可选，消费方显式调用才生效）
 host.PerformHoverAction(x, y);                 // 悬停路由：置/复位最上层按钮的悬停态 + 悬停音
 var consumed = host.HandleLeftClick(x, y);     // 左键命中：触发 OnClick + 确认音；true = 这一击已归叠层
+host.PerformScrollAction(e.Delta);             // 滚轮路由：滚光标下最上层的列表；坐标由宿主自取，不用传
 ```
 
 要点：
@@ -350,9 +351,10 @@ var consumed = host.HandleLeftClick(x, y);     // 左键命中：触发 OnClick 
 - `RenderSlot`：`Hud`（RenderedHud 之后）、`ActiveMenu`（RenderedActiveMenu 之后）、`RenderStep`（须给 `CreateDrawableOnStep` 指定步）。
 - 放置：内容自适应，向右向下生长；视口边缘夹紧不画出屏幕。
 - 叠在活动菜单上（ActiveMenu / RenderStep=Menu）时宿主自动把鼠标光标补画到最上层。
-- **交互仅含鼠标**：无焦点图、无手柄导航、无提示框（手柄与键盘路径由消费模组自己的快捷键承担）。何时调用这两个方法由消费方决定——典型接线是把原版每帧的悬停回调转给 `PerformHoverAction`、把左键回调前置给 `HandleLeftClick`。
+- **交互只有鼠标三个入口**：悬停、左键、滚轮；无键盘、焦点图、手柄导航、提示框（键盘与手柄路径由消费模组自己的快捷键承担）。何时调用这些方法由消费方决定——典型接线是把原版每帧的悬停回调转给 `PerformHoverAction`、把左键回调前置给 `HandleLeftClick`、把 SMAPI `Input.MouseWheelScrolled` 的 `e.Delta` 转给 `PerformScrollAction`。
 - `HandleLeftClick` **命中即消费**：返回 true 表示该击属于叠层，消费方应把它吞掉、不再下发给其下的原版菜单（否则叠层按钮与其下重叠的原版点击区会双触发）；未命中返回 false，照常下发。命中但 `OnClick` 为空时不播音，仍算已消费。
-- 两个方法都在命中前自动冲刷挂起布局（消费方无需自己调 `LayoutRunner`，首帧绘制之前调用也拿到真实 `Bounds`），且只在启用（`IsEnabled`）时生效：`Disable()` 后不命中、不消费，并复位残留悬停态。
+- 三个方法都在命中前自动冲刷挂起布局（消费方无需自己调 `LayoutRunner`，首帧绘制之前调用也拿到真实 `Bounds`），且只在启用（`IsEnabled`）时生效：`Disable()` 后不命中、不消费、不滚动，并复位残留悬停态。
+- `PerformScrollAction(direction)` **滚轮契约**（与 `MenuHost` 的滚轮逐条一致）：`direction == 0` 直接返回（原事件的 `Delta` 可以原样转进来，不必自己判空）；按**宿主自取**的光标（`Game1.getMouseX()` / `getMouseY()`）命中最上层可见 `Scrollable`——消费方拿不到坐标参数，也就不可能把 SMAPI 的屏幕像素当成 UI 坐标传进来；增量按「格」折算（`|增量| / 120`，至少 1 格），每格滚动 48 像素；方向沿用 vanilla 符号（增量 > 0 = 向上滚 = 内容下移 = 偏移减小）。光标不在任何滚动容器上时什么也不做；返回 void——SMAPI 的 `MouseWheelScrolled` 不可 Suppress，滚轮没有「这一格归谁」的语义。
 
 ## 3.3 WorldAnchorHost —— 世界锚定叠层（✅ 已验证）
 
@@ -387,7 +389,7 @@ host.Enable();   // 恢复
 
 # 4. 布局模型（Layout）
 
-> 本章：`Element` / `Stack` / `Grid` ✅ 已验证（经 AMA）；`Canvas` / `Scrollable` ⚠️ 未验证。
+> 本章：`Element` / `Stack` / `Grid` / `Scrollable` ✅ 已验证（前三个经 AMA，`Scrollable` 经 ReadyCheckKick）；`Canvas` ⚠️ 未验证。
 
 ## 4.1 Element —— 布局树节点（✅ 已验证）
 
@@ -450,7 +452,7 @@ LayoutRunner.Force(root, availableSize, placeFunc);
 ```
 
 - `UpdateIfDirty`：根未标脏则什么都不做（绘制稳定不抖）。
-- 宿主（MenuHost/DrawableHost/WorldAnchorHost）每帧自动冲刷，`DrawableHost` 的鼠标输入方法（`PerformHoverAction`/`HandleLeftClick`）在命中前也自行冲刷——**作为消费方你通常不需要直接调**，除非你在事件处理器里改动树后要立即读 `Bounds`。
+- 宿主（MenuHost/DrawableHost/WorldAnchorHost）每帧自动冲刷，`DrawableHost` 的鼠标输入方法（`PerformHoverAction`/`HandleLeftClick`/`PerformScrollAction`）在命中前也自行冲刷——**作为消费方你通常不需要直接调**，除非你在事件处理器里改动树后要立即读 `Bounds`。
 
 ## 4.3 Stack —— 顺序堆叠容器（✅ 已验证）
 
@@ -490,7 +492,7 @@ canvas.Add(child);
 - 覆写了 `Remove`/`Clear` 同步清理偏移表。
 - 期望尺寸 = 所有子级「偏移 + 尺寸」的外包矩形。
 
-## 4.6 Scrollable —— 可滚动视口（⚠️ 未验证）
+## 4.6 Scrollable —— 可滚动视口（✅ 已验证）
 
 固定尺寸的剪裁视口，纵向堆叠子级；滚动偏移在 `Arrange` 时折入子级 `Bounds`（子级得到真实屏幕坐标），绘制时用 scissor 裁在内容区内不溢出。
 
@@ -509,7 +511,7 @@ list.MaxScrollOffset;            // 最大偏移（内容不满时为 0）
 
 - `width` 传 0 = 不约束、填满可用宽度；非 0 是期望宽度。
 - 内容相对九宫格边框内缩 24px（`InnerViewport`），文字/按钮不压边框；绘制与命中测试都裁到内容区，滚出视口的项既不绘制也不可点（不会挡住其上方元素）。
-- `MenuHost` 自动把鼠标滚轮 / 手柄右摇杆路由到它；焦点图把获焦项自动滚入视野。
+- `MenuHost` 自动把鼠标滚轮 / 手柄右摇杆路由到它，叠层的 `DrawableHost.PerformScrollAction` 也把滚轮路由到光标下最上层者；焦点图把获焦项自动滚入视野。
 
 ---
 
@@ -742,7 +744,7 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 
 - **新增/改名/删除** `PiCore.UI` 下任何公共类型或成员 → 同步更新对应章节与文末速查表。
 - **行为契约变化**（如布局语义、焦点规则、键盘契约）→ 就地修订相关描述，禁止打补丁式追加。
-- 验证状态随实际使用更新：新模组开始使用某类型后，把该类型从 ⚠️ 移到 ✅（同步改文首「验证状态说明」表与文末速查表）。
+- 验证状态随实战更新：**接入与游戏内验收两件事都完成后**才把某类型从 ⚠️ 移到 ✅（同步改文首「验证状态说明」表、对应章节开头与文末速查表）。只接入、还没做游戏内验收的，保持在 ⚠️ 并注明是哪次交付接入的。
 - changelog（`CHANGELOG.md` / `CHANGELOG.zh.md`）只记用户可见净变化，本文档记使用约定——两条线内容一致但不重复。
 
 ---
@@ -752,14 +754,14 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 | 类型 | 状态 | 一句话 |
 | --- | --- | --- |
 | `MenuHost` | ✅ | 交互式菜单宿主，一行 `OpenMenu(root)` 打开，处理全部鼠标/滚轮/手柄/Esc |
-| `DrawableHost` | ✅ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` 才开鼠标悬停与左键消费 |
+| `DrawableHost` | ✅ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` / `PerformScrollAction` 才开鼠标悬停、左键消费与滚轮路由 |
 | `WorldAnchorHost` | ✅ | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
 | `Element` | ✅ | 抽象基类：两趟布局节点，子类实现 Measure/Arrange/Draw |
 | `LayoutRunner` | ✅ | 布局冲刷入口：读 Bounds 前先 `UpdateIfDirty` |
 | `Stack` | ✅ | 垂直/水平顺序堆叠，内容自适应 |
 | `Grid` | ✅ | 固定等大网格，整块居中 |
 | `Canvas` | ⚠️ | 绝对定位容器（子级带偏移） |
-| `Scrollable` | ⚠️ | 固定尺寸滚动视口（scissor 裁剪，滚出即不画不可点） |
+| `Scrollable` | ✅ | 固定尺寸滚动视口（scissor 裁剪，滚出即不画不可点） |
 | `Button` | ✅ | 九宫格按钮：悬停/点击/获焦环，A == 点击 |
 | `Label` | ✅ | 文本标签：可折行（CJK 逐字/拉丁按词） |
 | `PanelFrame` | ⚠️ | 九宫格 chrome，承载单一内容（`SetContent`） |

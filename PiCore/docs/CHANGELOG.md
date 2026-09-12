@@ -44,10 +44,11 @@
   chip reads as a translucent box. `Pager` flips between page content elements with Previous/Next buttons and an auto-updating page label (hidden at the
   first/last page). `MenuHost` flushes pending layout at the start of draw, so content swapped inside a handler lands cleanly the same frame
 - **Overlay & world-anchored hosts:** `DrawableHost` draws the same retained root on RenderedHud, RenderedActiveMenu or a single render step
-  (`CreateDrawable(root, display, RenderSlot, position)` / `CreateDrawableOnStep`), read-only by default; hover routing and left-click hit-testing are opt-in —
-  the consumer calls `PerformHoverAction(x, y)` (puts the topmost visible `Button` in hover state and plays the hover sound) and `HandleLeftClick(x, y)` (fires
-  its `OnClick` with the accept sound and returns `true` on a hit, so the consumer can swallow that click before the vanilla menu handles it — an overlay button
-  and the clickable area underneath it no longer both fire);
+  (`CreateDrawable(root, display, RenderSlot, position)` / `CreateDrawableOnStep`), read-only by default; hover, left-click and wheel routing are opt-in — the
+  consumer calls `PerformHoverAction(x, y)` (puts the topmost visible `Button` in hover state and plays the hover sound), `HandleLeftClick(x, y)` (fires its
+  `OnClick` with the accept sound and returns `true` on a hit, so the consumer can swallow that click before the vanilla menu handles it — an overlay button and
+  the clickable area underneath it no longer both fire) and `PerformScrollAction(direction)` (scrolls the topmost visible `Scrollable` under the cursor by whole
+  notches of 48px with the vanilla sign convention; the host reads the cursor position itself, so a consumer cannot pass screen pixels off as UI coordinates);
   `WorldAnchorHost.Create(display, worldAnchor, content, placement, offset)` anchors content to an absolute world position (e.g. the player) on RenderedWorld,
   tracking the live viewport and culling fully off-screen boxes; `TilePanel` is the anchored flat title/body panel (DialogueFont title, SmallFont body lines).
   Both hosts subscribe on creation, lay the root out by its content size, and `Disable()`/`Enable()` cleanly (no ghost draw); overlays on an active menu redraw

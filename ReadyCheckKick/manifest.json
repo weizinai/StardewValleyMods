@@ -2,7 +2,7 @@
     "Name": "Ready Check Kick",
     "Author": "weizinai",
     "Version": "%ProjectVersion%",
-    "Description": "Shows unready players in the top-right corner when you stay overnight.",
+    "Description": "Shows unready players during ready checks and overnight saves, and lets the host kick them.",
     "UniqueID": "weizinai.ReadyCheckKick",
     "EntryDll": "ReadyCheckKick.dll",
     "UpdateKeys": [

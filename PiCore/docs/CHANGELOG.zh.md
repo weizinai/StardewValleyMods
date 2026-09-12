@@ -33,9 +33,10 @@
   `IResettable` 的内容（如 `Pager`）切换时重置，选中芯片以半透明盒标示。`Pager` 用上页/下页按钮 + 自动更新页码（首/末页自动隐藏）在页面内容间翻页。`MenuHost`
   在 draw 开头冲刷挂起布局，处理器内换挂的内容同帧干净落地
 - **叠层与世界锚定宿主：** `DrawableHost` 把同一套 retained 根视图挂到 RenderedHud、RenderedActiveMenu 或单个渲染步
-  （`CreateDrawable(root, display, RenderSlot, position)` / `CreateDrawableOnStep`），默认只读；悬停路由与左键命中为可选项——消费方调用
-  `PerformHoverAction(x, y)`（把最上层可见 `Button` 置为悬停态并播悬停音）与 `HandleLeftClick(x, y)`（触发其 `OnClick` 并播确认音，命中即返回 `true`，
-  消费方据此把这一击吞掉、不再下发给原版菜单，叠层按钮与其下重叠的原版点击区不再双触发）；
+  （`CreateDrawable(root, display, RenderSlot, position)` / `CreateDrawableOnStep`），默认只读；悬停、左键与滚轮路由为可选项——消费方调用
+  `PerformHoverAction(x, y)`（把最上层可见 `Button` 置为悬停态并播悬停音）、`HandleLeftClick(x, y)`（触发其 `OnClick` 并播确认音，命中即返回 `true`，
+  消费方据此把这一击吞掉、不再下发给原版菜单，叠层按钮与其下重叠的原版点击区不再双触发）与 `PerformScrollAction(direction)`（把光标下最上层可见
+  `Scrollable` 按整格滚动，每格 48 像素、方向沿用 vanilla 符号；光标位置由宿主自取，消费方不可能把屏幕像素当作 UI 坐标传进来）；
   `WorldAnchorHost.Create(display, worldAnchor, content, placement, offset)` 把内容锚定到世界绝对坐标（如玩家）绘到 RenderedWorld，随实时视口追踪并裁剪
   完全滚出视口的盒子；`TilePanel` 即锚定扁平标题/正文面板（DialogueFont 标题、SmallFont 正文行）。两宿主创建即订阅、按内容尺寸排布根视图、
   `Disable()`/`Enable()` 干净退订/恢复（无残留绘制）；叠在活动菜单上时补画鼠标光标到最上层

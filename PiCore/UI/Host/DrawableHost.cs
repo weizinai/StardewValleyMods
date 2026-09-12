@@ -16,9 +16,11 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Host;
 /// <see cref="Element" /> 根视图（如 <see cref="Widget.PanelFrame" /> 包一段 <see cref="Widget.Label" />
 /// 文本）交进来即可复用菜单同款组件与扁平 <see cref="Theme" /> 绘制助手。
 /// 鼠标交互**按消费方显式调用开启**：调 <see cref="PerformHoverAction" /> 得悬停路由（置/复位
-/// <see cref="Button.Hovered" /> + 悬停音效），调 <see cref="HandleLeftClick" /> 得左键命中并消费；不调用这两个
-/// 方法时行为与只读版逐帧一致（零回归）。交互仅含鼠标——无焦点图/手柄导航/提示框（手柄与键盘路径由消费
-/// 模组自身的快捷键承担），且仅在启用（<see cref="IsEnabled" />）时生效：禁用即无绘制，也不参与命中与消费。
+/// <see cref="Button.Hovered" /> + 悬停音效），调 <see cref="HandleLeftClick" /> 得左键命中并消费，调
+/// <see cref="PerformScrollAction" /> 得滚轮路由（滚光标下最上层的滚动列表）；不调用这些方法时行为与只读版
+/// 逐帧一致（零回归）。交互只有鼠标这三个入口——悬停 / 左键 / 滚轮，无键盘 / 焦点图 / 手柄导航 / 提示框
+/// （键盘与手柄路径由消费模组自身的快捷键承担），且仅在启用（<see cref="IsEnabled" />）时生效：禁用即无绘制，
+/// 也不参与命中与消费。
 /// 放置：根视图在 UI 坐标的固定左上角 <see cref="Position" /> 按**内容尺寸**排布（内容自适应，向右向下
 /// 生长，镜像 SMF 固定位置文本盒惯例）；内容变化标脏后下一帧同帧重排，未变化时不重排（绘制稳定不抖）。
 /// 视口边缘内容超界时夹紧进视口，不画出屏幕。
@@ -45,6 +47,16 @@ public sealed class DrawableHost
         /// </summary>
         RenderStep
     }
+
+    /// <summary>滚轮一格对应的 vanilla 增量值（一格 = 120；增量按此折算成「格」）。</summary>
+    private const int WheelDeltaPerNotch = 120;
+
+    /// <summary>
+    /// 滚轮一格滚动步进的像素量。与 <see cref="MenuHost" /> 同值且语义一致，但刻意在本宿主内自持一份：
+    /// 本票的硬契约是「MenuHost 一行不改」，本宿主的路由本就是一份独立副本（立场见下方鼠标路由助手处的
+    /// 注释），共用步长常量会让两处的滚动手感只能同进同退。
+    /// </summary>
+    private const float ScrollStep = 48f;
 
     private readonly Element root;
     private readonly IDisplayEvents display;
@@ -197,8 +209,37 @@ public sealed class DrawableHost
     }
 
     /// <summary>
+    /// 滚轮路由（消费方显式调用才生效）：滚动光标下最上层的可见 <see cref="Scrollable" />。语义与
+    /// <see cref="MenuHost" /> 的滚轮路由逐条一致——增量为 0 直接返回；按光标命中最上层可见滚动容器；增量按
+    /// 「格」折算（|增量| / 120，至少 1 格）；每格滚动 <see cref="ScrollStep" /> 像素；方向沿用 vanilla 符号
+    /// （增量 &gt; 0 = 向上滚 = 内容下移 = 偏移减小）。坐标由本宿主自取（<c>Game1.getMouseX</c> /
+    /// <c>Game1.getMouseY</c>，即 UI 坐标），消费方无从把屏幕像素误当 UI 坐标传进来。宿主禁用时一律不动；
+    /// 没有可命中的滚动容器时什么也不做。滚轮没有「消费这一格」的语义（SMAPI 的滚轮事件不可 Suppress），
+    /// 故无返回值。
+    /// </summary>
+    /// <param name="direction">滚轮增量（相对上一次，vanilla 符号约定）。</param>
+    public void PerformScrollAction(int direction)
+    {
+        if (!this.enabled || direction == 0)
+        {
+            return;
+        }
+
+        this.EnsureLayout();
+        var scrollable = this.HitTestTopScrollable(Game1.getMouseX(), Game1.getMouseY());
+
+        if (scrollable is null)
+        {
+            return;
+        }
+
+        var notches = Math.Max(1, Math.Abs(direction) / WheelDeltaPerNotch);
+        scrollable.ScrollBy(-Math.Sign(direction) * notches * ScrollStep);
+    }
+
+    /// <summary>
     /// 冲刷挂起的脏布局（内容变化同帧落地）：绘制与命中测试共用同一处排布入口。命中前必须冲刷——消费方
-    /// 可能在首帧绘制之前就调用输入方法，不冲刷会读到未排布的 Bounds（整树零矩形，悬停/点击永不命中）。
+    /// 可能在首帧绘制之前就调用输入方法，不冲刷会读到未排布的 Bounds（整树零矩形，悬停/点击/滚轮永不命中）。
     /// </summary>
     private void EnsureLayout()
     {
@@ -208,10 +249,12 @@ public sealed class DrawableHost
         LayoutRunner.UpdateIfDirty(this.root, available, desired => this.Place(desired, viewport));
     }
 
-    // 下面三个鼠标路由助手与 MenuHost 的鼠标部分形状相同（悬停置/复位 + 最上层命中），但刻意在本宿主内自持一份：
-    // 本票的硬契约是「MenuHost 一行不改」（其路由与焦点图/手柄/提示框/关闭按钮纠缠，经 ActiveMenuAnywhere 实战验证），
-    // 抽公共助手必然要改动它。两处形状也已分化——本宿主判根节点自身（叠层最小用法 = 直接挂一个 Button 当根视图）、
-    // 无焦点同步、无 pad-vs-mouse 消歧、无关闭按钮前置检查；将来若要合并，按分化后的语义重新收敛，而不是复制粘贴。
+    // 下面的鼠标路由助手（悬停置/复位、最上层按钮命中、最上层滚动容器命中）与 MenuHost 的鼠标部分形状相同，
+    // 但刻意在本宿主内自持一份：本票的硬契约是「MenuHost 一行不改」（其路由与焦点图/手柄/提示框/关闭按钮纠缠，
+    // 经 ActiveMenuAnywhere 实战验证），抽公共助手必然要改动它。两处形状也已分化——本宿主判根节点自身（叠层的
+    // 最小用法 = 直接挂一个 Button / Scrollable 当根视图）、无焦点同步、无 pad-vs-mouse 消歧、无关闭按钮前置检查；
+    // 滚轮语义（格折算 + 步长）同样按该契约在本宿主内另立一份，将来若要合并，按分化后的语义重新收敛，
+    // 而不是复制粘贴。
 
     /// <summary>切换悬停目标：先复位旧按钮的 <see cref="Button.Hovered" />，再置新按钮并播放悬停音效（进入新按钮时）。</summary>
     /// <param name="button">新悬停按钮（null = 离开按钮悬停空处）。</param>
@@ -272,6 +315,45 @@ public sealed class DrawableHost
             }
 
             this.FindTopButton(child, point, ref best);
+        }
+    }
+
+    /// <summary>命中测试：返回光标下最上层的可见 <see cref="Scrollable" />（按绘制顺序最后命中的那个 = 视觉最上层），无则 null。</summary>
+    /// <param name="x">鼠标 X（UI 坐标）。</param>
+    /// <param name="y">鼠标 Y（UI 坐标）。</param>
+    /// <returns>命中的滚动容器。</returns>
+    private Scrollable? HitTestTopScrollable(int x, int y)
+    {
+        var point = new Point(x, y);
+        Scrollable? best = null;
+        this.FindTopScrollable(this.root, point, ref best);
+
+        return best;
+    }
+
+    /// <summary>
+    /// 深度优先收集命中点最上层滚动容器：先本节点、再子级先后，与绘制顺序一致（后绘制的兄弟/后代覆盖先前的
+    /// 命中），故取到的是视觉最上层者——有嵌套滚动容器时内层（更深、更后绘制）胜出。本节点自身也参与命中，
+    /// 理由同 <see cref="FindTopButton" />：叠层的最小用法就是把一个 <see cref="Scrollable" /> 直接当根视图交给宿主。
+    /// </summary>
+    /// <param name="node">当前布局节点。</param>
+    /// <param name="point">命中点。</param>
+    /// <param name="best">目前命中的滚动容器（引用传参，整棵树遍历后为最上层者）。</param>
+    private void FindTopScrollable(Element node, Point point, ref Scrollable? best)
+    {
+        if (node is Scrollable scrollable && scrollable.ContainsPoint(point))
+        {
+            best = scrollable;
+        }
+
+        foreach (var child in node.Children)
+        {
+            if (!child.Visible)
+            {
+                continue;
+            }
+
+            this.FindTopScrollable(child, point, ref best);
         }
     }
 

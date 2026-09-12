@@ -1,10 +1,8 @@
 using StardewModdingAPI;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Logging;
-using weizinai.StardewValleyMod.PiCore.Patcher;
-using weizinai.StardewValleyMod.ReadyCheckKick.Framework;
+using weizinai.StardewValleyMod.ReadyCheckKick.Config;
 using weizinai.StardewValleyMod.ReadyCheckKick.Handler;
-using weizinai.StardewValleyMod.ReadyCheckKick.Patcher;
 
 namespace weizinai.StardewValleyMod.ReadyCheckKick;
 
@@ -22,8 +20,8 @@ internal class ModEntry : Mod
             value => ModConfig.Instance = value
         );
         configService.RegisterMenu(this.BuildConfigMenu);
-        // 注册Harmony补丁与事件处理器（处理器在 Apply 内部订阅事件）
-        HarmonyPatcher.Apply(this, new SaveGameMenuPatcher(helper.Reflection));
+        // 注册事件处理器（处理器在 Apply 内部订阅事件）；本模组没有 Harmony 补丁
+        new SaveGameMenuHandler(helper).Apply();
         new ReadyCheckDialogueHandler(helper).Apply();
     }
 
@@ -34,7 +32,11 @@ internal class ModEntry : Mod
         menu
             // Show unready farmers
             .AddSectionTitle(I18n.Config_ShowUnreadyFarmersTitle_Name)
-            .AddBoolOption(config => config.ShowInfoInReadyCheckDialogue, I18n.Config_ShowInfoInReadyCheckDialogue_Name)
+            .AddBoolOption(
+                config => config.ShowInfoInReadyCheckDialogue,
+                I18n.Config_ShowInfoInReadyCheckDialogue_Name,
+                I18n.Config_ShowInfoInReadyCheckDialogue_Tooltip
+            )
             .AddBoolOption(config => config.ShowInfoInSaveGameMenu, I18n.Config_ShowInfoInSaveGameMenu_Name)
             // Kick unready farmers
             .AddSectionTitle(I18n.Config_KickUnreadyFarmersTitle_Name)
@@ -46,6 +48,7 @@ internal class ModEntry : Mod
                 max: 1f,
                 interval: 0.05f
             )
-            .AddNumberOption(config => config.AutoKickUnreadyFarmersDelay, I18n.Config_AutoKickUnreadyFarmersDelay_Name);
+            .AddNumberOption(config => config.AutoKickUnreadyFarmersDelay, I18n.Config_AutoKickUnreadyFarmersDelay_Name)
+            .AddBoolOption(config => config.SpecialTreatForFestival, I18n.Config_SpecialTreatForFestival_Name);
     }
 }

@@ -7,6 +7,8 @@ root = true
 
 [*]
 charset = utf-8
+# 行尾 LF：与 git 存储一致（仓库未设 .gitattributes），也避免 dotnet format 在 Windows 上按 CRLF 重写
+end_of_line = lf
 indent_style = space
 indent_size = 4
 tab_width = 4

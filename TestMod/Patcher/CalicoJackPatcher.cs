@@ -3,12 +3,13 @@ using System.Reflection.Emit;
 using HarmonyLib;
 using StardewValley.Minigames;
 using weizinai.StardewValleyMod.PiCore.Patcher;
-using weizinai.StardewValleyMod.TestMod.Framework;
+using weizinai.StardewValleyMod.TestMod.Config;
 
 namespace weizinai.StardewValleyMod.TestMod.Patcher;
 
 internal class CalicoJackPatcher : BasePatcher
 {
+    /// <inheritdoc />
     public override void Apply(Harmony harmony)
     {
         this.Patch<CalicoJack>(harmony, nameof(CalicoJack.tick), PatchKind.Transpiler, nameof(TickTranspiler));

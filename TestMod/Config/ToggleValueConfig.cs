@@ -1,11 +1,11 @@
-namespace weizinai.StardewValleyMod.TestMod.Framework;
+namespace weizinai.StardewValleyMod.TestMod.Config;
 
-internal class SingleValueConfig<T>
+internal class ToggleValueConfig<T>
 {
     public bool IsEnabled { get; set; }
     public T Value { get; set; }
 
-    public SingleValueConfig(bool isEnabled, T value)
+    public ToggleValueConfig(bool isEnabled, T value)
     {
         this.IsEnabled = isEnabled;
         this.Value = value;

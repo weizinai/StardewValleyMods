@@ -1,10 +1,9 @@
 {
-    "Config.IsEnabled.Name": "Is Enabled",
-    "Config.Value.Name": "Value",
+    "Config.IsEnabled": "Is Enabled",
+    "Config.Value": "Value",
 
-    // 齐瓜牌概率
-    "Config.CardChance.Name": "Card Chance",
-    // 轮盘旋转速度
-    "Config.WheelSpinSpeed.Name": "Wheel Spin Speed",
-    "Config.ExtraSpeed.Name": "Extra Speed"
+    "Config.CardChance": "Card Chance",
+
+    "Config.WheelSpinSpeed": "Wheel Spin Speed",
+    "Config.ExtraSpeed": "Extra Speed"
 }

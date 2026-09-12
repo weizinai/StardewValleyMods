@@ -5,8 +5,7 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Layout;
 
 /// <summary>
 /// 把子级排成固定行/列、格子等大的容器（如 AMAMenu 的 3×3 九宫格）。
-/// 整块（cols×cellW × rows×cellH）在分配区内居中（HITL 调整：整块居中，避免“左右不居中”）。
-/// 本文件为已验证原型（UiFrameworkProto）的移植，未改动其布局语义。
+/// 整块（cols×cellW × rows×cellH）在分配区内居中，避免“左右不居中”。
 /// </summary>
 public class Grid : Element
 {
@@ -42,7 +41,7 @@ public class Grid : Element
     /// <inheritdoc />
     protected override void ArrangeOverride(Rectangle final)
     {
-        // HITL 调整：网格块（整块 cols*cellW x rows*cellH）在分配区内居中，避免“左右不居中”。
+        // 网格块（整块 cols*cellW x rows*cellH）在分配区内居中，避免“左右不居中”。
         var blockWidth = this.columns * this.cellWidth;
         var blockHeight = this.rows * this.cellHeight;
         var startX = final.X + Math.Max(0f, (final.Width - blockWidth) / 2f);

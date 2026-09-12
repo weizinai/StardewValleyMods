@@ -8,7 +8,7 @@ using weizinai.StardewValleyMod.PiCore.UI.World;
 namespace weizinai.StardewValleyMod.PiCore.UI.Host;
 
 /// <summary>
-/// 世界锚定只读宿主（票 09，form C）：把只读 immediate 内容（如 <see cref="TilePanel" />）挂到 RenderedWorld 上，
+/// 世界锚定只读宿主：把只读 immediate 内容（如 <see cref="TilePanel" />）挂到 RenderedWorld 上，
 /// 每帧读取世界锚点 → 经 <see cref="PositionHelper" /> 世界→屏幕变换（每次读取当前视口，随视口滚动而追踪）→
 /// 显式视口裁剪 → 绘制。与 <see cref="DrawableHost" /> 的 UI 坐标宿主不同：本宿主在世界批坐标空间
 /// （世界像素 − 视口）绘制，内容画在世界之上、垫在 HUD/菜单之下，不参与 retained 布局。

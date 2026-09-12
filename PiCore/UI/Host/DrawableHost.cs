@@ -10,7 +10,7 @@ using weizinai.StardewValleyMod.PiCore.UI.Widget;
 namespace weizinai.StardewValleyMod.PiCore.UI.Host;
 
 /// <summary>
-/// Drawable 叠层宿主（票 08）：把同一个 retained 根视图当作**叠层**挂到一条 SMAPI Display
+/// Drawable 叠层宿主：把同一个 retained 根视图当作**叠层**挂到一条 SMAPI Display
 /// 事件（RenderedHud / RenderedActiveMenu / RenderedStep）上，每帧在 UI 坐标冲刷脏布局后绘制。
 /// 默认为**只读绘制层**：宿主自身不订阅任何输入事件、不做输入捕获（输入所有权留模组侧），消费方把
 /// <see cref="Element" /> 根视图（如 <see cref="Widget.PanelFrame" /> 包一段 <see cref="Widget.Label" />
@@ -250,8 +250,8 @@ public sealed class DrawableHost
     }
 
     // 下面的鼠标路由助手（悬停置/复位、最上层按钮命中、最上层滚动容器命中）与 MenuHost 的鼠标部分形状相同，
-    // 但刻意在本宿主内自持一份：本票的硬契约是「MenuHost 一行不改」（其路由与焦点图/手柄/提示框/关闭按钮纠缠，
-    // 经 ActiveMenuAnywhere 实战验证），抽公共助手必然要改动它。两处形状也已分化——本宿主判根节点自身（叠层的
+    // 但刻意在本宿主内自持一份：硬契约是「MenuHost 一行不改」（其路由与焦点图/手柄/提示框/关闭按钮纠缠），
+    // 抽公共助手必然要改动它。两处形状也已分化——本宿主判根节点自身（叠层的
     // 最小用法 = 直接挂一个 Button / Scrollable 当根视图）、无焦点同步、无 pad-vs-mouse 消歧、无关闭按钮前置检查；
     // 滚轮语义（格折算 + 步长）同样按该契约在本宿主内另立一份，将来若要合并，按分化后的语义重新收敛，
     // 而不是复制粘贴。

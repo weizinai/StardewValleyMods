@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace weizinai.StardewValleyMod.PiCore.UI.World;
 
 /// <summary>
-/// 小号世界锚定「面板 + 文本行」盒（form C 逃生口，镜像 BetterCabin Box / 验证原型 WorldPanelDemo）：
+/// 小号世界锚定「面板 + 文本行」盒（镜像 BetterCabin 的 Box）：
 /// 承载若干文本行（标题用 <see cref="Theme.DialogueFont" />、正文用 <see cref="Theme.SmallFont" />，可逐行配色），
 /// 用游戏语言 SpriteFont 测量（测得宽 = 绘制宽，中文无豆腐块依赖中文游戏语言），画成扁平九宫格面板 +
 /// 扁平文字。本类只负责「内容」：测量自身尺寸并在给定屏幕矩形内绘制；世界→屏幕变换与视口裁剪由

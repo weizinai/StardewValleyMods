@@ -6,10 +6,9 @@ using weizinai.StardewValleyMod.PiCore.UI.Layout;
 namespace weizinai.StardewValleyMod.PiCore.UI.Widget;
 
 /// <summary>
-/// 九宫格外框容器（票 08 随只读 drawable 引入的 chrome 容器）：用 <see cref="Theme.DrawPanel" /> 画
+/// 九宫格外框容器：用 <see cref="Theme.DrawPanel" /> 画
 /// 一块标准菜单盒九宫格外框，内容在其内侧按构造时的 padding 内缩排布。默认观感为 SDV 原生形状 +
-/// 扁平（无投影），替代消费模组手写的 drawTextureBox 外框 + 手算内偏移。本文件为已验证原型
-/// （UiFrameworkProto）PanelFrame 的移植，布局语义未改动。
+/// 扁平（无投影），替代消费模组手写的 drawTextureBox 外框 + 手算内偏移。
 /// 面板承载**单一内容**：内容应经 <see cref="SetContent" /> 挂入（先清空再加）。请勿直接向面板多次
 /// <see cref="Element.Add" /> 子级——measure 取最后可见子级的尺寸、arrange 把所有子级排进同一内缩矩形，
 /// 多个子级会彼此重叠。

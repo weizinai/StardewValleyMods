@@ -6,8 +6,7 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Layout;
 
 /// <summary>
 /// 绝对定位容器：子级自带位置偏移，按“子级左上角 + 容器左上角”放置。逃逸自动布局的出口。
-/// 本文件为已验证原型（UiFrameworkProto）的移植；相对原型额外在 <see cref="Remove" /> / <see cref="Clear" />
-/// 时同步清理偏移表（基类移除子级时不会通知容器）。
+/// 在 <see cref="Remove" /> / <see cref="Clear" /> 时同步清理偏移表（基类移除子级时不会通知容器）。
 /// </summary>
 public class Canvas : Element
 {

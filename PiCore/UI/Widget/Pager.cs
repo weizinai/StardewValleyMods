@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.PiCore.UI.Layout;
 namespace weizinai.StardewValleyMod.PiCore.UI.Widget;
 
 /// <summary>
-/// 分页容器（Pager，票 06 高阶控件，蒸馏自 Demo A 手搓的「内容 + 上页/下页 + 页码」样板）：
+/// 分页容器（Pager）：
 /// 内容区在同一块区域内**只挂当前页**（一页一个 <see cref="Element" />，通常是容纳一页网格内容的
 /// <see cref="Grid" />），底部居中翻页条（<see cref="PreviousButton" /> + <see cref="PageLabel" /> +
 /// <see cref="NextButton" />）逐页切换，页码文本随翻页自动更新；首/末页把对应的翻页按钮隐藏

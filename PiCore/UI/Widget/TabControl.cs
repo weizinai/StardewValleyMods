@@ -6,7 +6,7 @@ using weizinai.StardewValleyMod.PiCore.UI.Layout;
 namespace weizinai.StardewValleyMod.PiCore.UI.Widget;
 
 /// <summary>
-/// 页签容器（TabControl，票 06 高阶控件，蒸馏自 Demo A 的「页签栏 + 内容切换」样板）：
+/// 页签容器（TabControl）：
 /// 顶部一横排页签芯片（可获焦、鼠标/手柄可激活），下方是**当前选中页签的内容区**。每次选择把
 /// 上一个页签的内容从树中移除、把新页签的内容挂入（Add/Remove 触发结构版本变化 → 宿主自动重建
 /// 焦点图，保留仍存在的焦点），内容区不留残影/错位；若新内容实现 <see cref="IResettable" />（如

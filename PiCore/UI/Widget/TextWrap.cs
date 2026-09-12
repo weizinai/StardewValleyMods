@@ -6,8 +6,7 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Widget;
 
 /// <summary>
 /// 文本折行：把字符串按给定 <see cref="SpriteFont" /> 与最大像素宽折成多行，供 <see cref="Label" />
-/// （MaxWidth 折行）与 <see cref="Tooltip" />（正文折行）共用同一契约。断行规则为票 02 原型在真实 SDV
-/// 中验证过的规则（HITL 通过，spec 布局章直接引用）：
+/// （MaxWidth 折行）与 <see cref="Tooltip" />（正文折行）共用同一契约。断行规则对齐真实 SDV 的文本渲染：
 /// 中文/CJK 逐字断行、拉丁按空格断词、zh+en 混合在词界退让；收尾标点（。，、；等）粘到上一行，
 /// 行首不出现这些标点；显式换行符 \n 是硬断点。每个候选行都用 <see cref="SpriteFont.MeasureString(string)" />
 /// 实测（测量路径与绘制同源），因此测得宽 = 绘制宽。

@@ -6,9 +6,9 @@ using weizinai.StardewValleyMod.PiCore.UI.Layout;
 namespace weizinai.StardewValleyMod.PiCore.UI.Focus;
 
 /// <summary>
-/// 自建焦点图：从 retained 视图树收集可获焦元素，按验证过的几何规则在元素间移动焦点，
+/// 自建焦点图：从 retained 视图树收集可获焦元素，按几何规则在元素间移动焦点，
 /// 取代 vanilla 邻居 ID snap（邻居 ID 不可变、元素移动须手工同步，与组合式视图树不兼容）。
-/// 导航规则（HITL 验证，见设计 spec「Focus = self-built focus graph」）：
+/// 导航规则：
 /// 按请求轴向的半平面内选目标，距离一律用**中心点**（非左上角）度量；左右走同排（Y 区间重叠）优先，
 /// 同排无候选再回退全图最近者；等距时交叉轴偏移最小（向下走同列、向上回同列）。上/下在滚动列表容器
 /// （<see cref="Scrollable" />）内先走本列表自己的项（自动滚入视口），仅当位于首/末项（该方向已无列表内候选）
@@ -246,7 +246,7 @@ public class FocusManager
 
     /// <summary>
     /// 把获焦项滚入其所在**最近**滚动容器的视口内（上/下两个方向都处理；无滚动祖先时无操作）。
-    /// 嵌套滚动容器的多层自动滚入不在票 04 范围（单列表容器已验证），只处理焦点真正所在的列表。
+    /// 嵌套滚动容器的多层自动滚入不在支持范围，只处理焦点真正所在的列表。
     /// </summary>
     /// <param name="item">获焦元素。</param>
     private void EnsureVisibleInScrollables(Element item)

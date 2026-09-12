@@ -48,7 +48,7 @@ public static class Theme
     /// <summary>默认文字颜色。</summary>
     public static Color TextColor => Game1.textColor;
 
-    /// <summary>用标准菜单九宫格绘制扁平面板（无投影，HITL 扁平化决议）。</summary>
+    /// <summary>用标准菜单九宫格绘制扁平面板（无投影，扁平化决议）。</summary>
     /// <param name="batch">精灵批。</param>
     /// <param name="x">面板左上角 X。</param>
     /// <param name="y">面板左上角 Y。</param>

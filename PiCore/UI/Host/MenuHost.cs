@@ -19,7 +19,7 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Host;
 /// 显示悬停态，进入新按钮时播放 <see cref="Theme.HoverSound" />，离开即复位）；<see cref="receiveLeftClick" />
 /// 把左键命中路由到最上层按钮并触发其 <see cref="Button.OnClick" /> 恰一次（右上角 X 关闭后不再触发根视图内按钮，
 /// 防叠层双触发），点击后把焦点同步到该按钮（手柄续接从点击处开始）。
-/// 手柄路由（自建焦点图，票 03/04）：<see cref="update" /> 直接轮询原始手柄状态（<see cref="Game1.input" />，
+/// 手柄路由（自建焦点图）：<see cref="update" /> 直接轮询原始手柄状态（<see cref="Game1.input" />，
 /// 不依赖 <c>options.gamepadControls</c>，任意手柄可用）——左摇杆/方向键按焦点图几何规则移动焦点
 /// （初发立刻 + 按住重复），成功移动时播导航音并让游戏光标一步落到新获焦项；焦点移出/移入滚动列表视口时
 /// 自动滚动把获焦项滚入视野（上/下在列表内优先走本列表的项，首/末项才离开列表）；右摇杆上下滚动焦点所在
@@ -29,7 +29,7 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Host;
 /// 鼠标一动（<see cref="Game1.lastCursorMotionWasMouse" /> 恢复）即交还鼠标，互不抢。
 /// 滚轮路由：<see cref="receiveScrollWheelAction" /> 滚动光标下最上层的 <see cref="Scrollable" />（vanilla
 /// 符号：direction&gt;0 向上滚 → 内容下移 → 偏移减小）。
-/// 提示框路由（票 05）：元素（<see cref="Element.TooltipText" />）悬停/获焦时显示扁平提示框，模式按
+/// 提示框路由：元素（<see cref="Element.TooltipText" />）悬停/获焦时显示扁平提示框，模式按
 /// pad-vs-mouse 消歧拆分——鼠标驱动时提示框跟随光标、鼠标离开即消失（不残留钉住），且不盖住焦点环；
 /// 手柄驱动时提示框锚定到获焦项旁边（绝不压住获焦项）并跟随焦点移动。提示框是本宿主持有的浮层
 /// （<see cref="Widget.Tooltip" />），不加入布局树，绘制在内容与关闭按钮之上、光标之下。
@@ -227,7 +227,7 @@ public class MenuHost : IClickableMenu
     /// <summary>
     /// 鼠标悬停路由：把悬停状态路由到光标下最上层的可见按钮。进入新按钮时置其 <see cref="Button.Hovered" />
     /// 并播放悬停音效；离开（悬停空处或换到另一按钮）先复位旧按钮再置新按钮。
-    /// pad-vs-mouse 消歧（票 03）：手柄驱动（摇杆在动/方向键按下/光标非鼠标驱动——光标被焦点 snap 移动后
+    /// pad-vs-mouse 消歧：手柄驱动（摇杆在动/方向键按下/光标非鼠标驱动——光标被焦点 snap 移动后
     /// <see cref="Game1.lastCursorMotionWasMouse" /> 为 false）时不当作鼠标悬停，避免手柄驱动时把光标停在哪
     /// 就误认成“鼠标悬停”；鼠标真正一动才交还悬停。
     /// </summary>
@@ -258,7 +258,7 @@ public class MenuHost : IClickableMenu
     }
 
     /// <summary>
-    /// 绘制提示框（票 05）：取当前“带提示文本的悬停/获焦元素”为来源——鼠标驱动时取光标下最上层的带提示
+    /// 绘制提示框：取当前“带提示文本的悬停/获焦元素”为来源——鼠标驱动时取光标下最上层的带提示
     /// 文本元素（离开即无来源 → 不绘制，不残留钉住）；手柄驱动时取当前获焦项。来源为空或提示文本为空则不绘制。
     /// 两种模式分别摆放：鼠标驱动把提示框放在光标旁（视口边缘自动换侧，且避让获焦项的金色焦点环）；
     /// 手柄驱动把提示框锚定在获焦项旁边（绝不压住获焦项，跟随焦点移动）。提示框绘制于内容与关闭按钮之上、
@@ -335,7 +335,7 @@ public class MenuHost : IClickableMenu
     /// <summary>
     /// 鼠标驱动的提示框摆放：以光标为锚点（vanilla drawHoverText 同款换侧——右侧放不下换左侧、下方放不下
     /// 换上方），首选完整落在视口内且不盖住当前获焦项金色焦点环的候选；没有完整落点再夹紧进视口。
-    /// 无论光标停在不是获焦项还是停在获焦项自身，都避让获焦项的金色焦点环（票 05 验收：“提示框绝不盖住
+    /// 无论光标停在不是获焦项还是停在获焦项自身，都避让获焦项的金色焦点环（“提示框绝不盖住
     /// 获焦项/焦点环”）——光标在获焦项上时提示框自动换到光标另一侧，而不是压住自己的焦点环。
     /// </summary>
     /// <param name="viewport">UI 视口（屏幕边界）。</param>
@@ -618,7 +618,7 @@ public class MenuHost : IClickableMenu
 
     /// <summary>
     /// 本菜单自管手柄输入（A 激活/摇杆移焦/B 关闭），SDV 不得把 A 再合成一次左键，
-    /// 避免“手柄 A 触发一次 + SDV 合成点击再触发一次”的双触发（原型验证过的根因）。
+    /// 避免“手柄 A 触发一次 + SDV 合成点击再触发一次”的双触发。
     /// </summary>
     public override bool areGamePadControlsImplemented()
     {

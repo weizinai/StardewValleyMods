@@ -4,16 +4,6 @@
 >
 > 适用版本：PiCore **待定（未发布）**——版本号在发布时才定，以 `docs/CHANGELOG.md` 顶部为准。命名空间 `weizinai.StardewValleyMod.PiCore.Logging`（下称 `PiCore.Logging`）、`...PiCore.Hud`（`PiCore.Hud`）、`...PiCore.Multiplayer`（`PiCore.Multiplayer`）。同目录另见 [配置框架使用约定](config-framework.md) 与 [UI 框架使用说明](ui-framework.md)。
 
-## 验证状态说明
-
-「已验证」= 被实战模组接入**且**通过游戏内验收；「未验证」= 已实现且有消费方，但还没做游戏内验收。用未验证类型时默认它们可用，如遇异常以源码行为为准回退（与 [配置框架](config-framework.md)、[UI 框架](ui-framework.md) 同一条判据）。
-
-| 状态 | 类型 |
-| --- | --- |
-| ✅ 已验证 | `Logger<T>`（7 个模组接入）、`HudLogger`（7 个模组接入） |
-| ⚠️ 未验证 | `Broadcaster<T>` · `LogReceiver` · `HudReceiver`——联机两态（客机看到广播日志 / 客机看到广播提示）尚未验收，需要两台客户端 |
-| ⚠️ 未验证 | 「未初始化即丢弃」这条语义本身——只有静态论证：改动前全仓 13 处 `Init` 覆盖了全部调用点，未初始化分支不可达；本次不做运行时验证 |
-
 ---
 
 # 1. 概述
@@ -186,22 +176,21 @@ Broadcaster<ModEntry>.Info(I18n.UI_ModLimit_Required(id), target);
 - **新增/改名/删除**三个命名空间下任何公共类型或成员 → 同步更新对应章节与文末速查表。
 - **行为契约变化**（如初始化要求、丢弃/门禁语义、`playerIDs` 语义）→ 就地修订相关描述，禁止打补丁式追加。
 - **线协议变化**（消息类型名、载荷属性名）→ 必须在本节记一条，并说明它对"新旧版本混装"的影响。
-- 验证状态随实际使用更新（⚠️ → ✅ 的判据见文首「验证状态说明」；同步改该处的表与文末速查表）。
 - changelog（`CHANGELOG.md` / `CHANGELOG.zh.md`）只记用户可见净变化，本文档记使用约定——两条线内容一致但不重复。
 
 ---
 
 # 附录：类型速查表
 
-| 类型 | 状态 | 一句话 |
-| --- | --- | --- |
-| `Logger<T>` | ✅ | 本机控制台日志，六等级；使用前必须 `Init`，未初始化即丢弃 |
-| `Logger<T>.Init(mod)` | ✅ | 绑定本模组 monitor + 登记进注册表；每个要打日志的模组在 `Entry` 里调一次 |
-| `HudLogger` | ✅ | 本机 HUD：`NoIconHUDMessage` / `ErrorHUDMessage`，无需初始化 |
-| `Broadcaster<T>` | ⚠️ | 远端发送门面：`Info` / `Alert` / `NoIconHUDMessage`；使用前必须 `Init` |
-| `Broadcaster<T>.Init(mod)` | ⚠️ | 绑定本模组 helper；要广播的模组在 `Entry` 里调一次 |
-| `MessageTypes` | ⚠️ | internal：三个消息类型字符串的唯一定义 |
-| `LogMessageData` / `HudMessageData` | ⚠️ | 线协议载荷（`Content` / `TimeLeft` 即网络字段名） |
-| `LogReceiver` | ⚠️ | internal：收日志广播 → 按发送方 monitor 输出，查不到即丢弃 |
-| `HudReceiver` | ⚠️ | internal：收 HUD 广播 → 直接显示 |
-| `MonitorRegistry` | ⚠️ | internal：模组 ID → monitor，供接收侧路由 |
+| 类型 | 一句话 |
+| --- | --- |
+| `Logger<T>` | 本机控制台日志，六等级；使用前必须 `Init`，未初始化即丢弃 |
+| `Logger<T>.Init(mod)` | 绑定本模组 monitor + 登记进注册表；每个要打日志的模组在 `Entry` 里调一次 |
+| `HudLogger` | 本机 HUD：`NoIconHUDMessage` / `ErrorHUDMessage`，无需初始化 |
+| `Broadcaster<T>` | 远端发送门面：`Info` / `Alert` / `NoIconHUDMessage`；使用前必须 `Init` |
+| `Broadcaster<T>.Init(mod)` | 绑定本模组 helper；要广播的模组在 `Entry` 里调一次 |
+| `MessageTypes` | internal：三个消息类型字符串的唯一定义 |
+| `LogMessageData` / `HudMessageData` | 线协议载荷（`Content` / `TimeLeft` 即网络字段名） |
+| `LogReceiver` | internal：收日志广播 → 按发送方 monitor 输出，查不到即丢弃 |
+| `HudReceiver` | internal：收 HUD 广播 → 直接显示 |
+| `MonitorRegistry` | internal：模组 ID → monitor，供接收侧路由 |

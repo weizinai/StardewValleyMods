@@ -11,7 +11,7 @@ namespace weizinai.StardewValleyMod.HelpWanted.UI;
 /// 板面上一张钉着的便签：位置由任务管理器摆放好（<see cref="PlacedBounds" />），外观是“纸底 → 图钉 → 头像”三层贴图，
 /// 顺序不能反（头像要盖在纸底上）。
 /// 交互（悬停 / 左键 / 手柄 A / 金色焦点环）由内嵌的全格透明 <see cref="Button" /> 承担——AMA <c>OptionTile</c>
-/// 的已验证姿势；绘制顺序也是先子级（环）再自身美术，于是焦点环只在便签边缘露出一圈，不遮住便签本体。
+/// 的姿势；绘制顺序也是先子级（环）再自身美术，于是焦点环只在便签边缘露出一圈，不遮住便签本体。
 /// </summary>
 public class QuestNote : Element
 {

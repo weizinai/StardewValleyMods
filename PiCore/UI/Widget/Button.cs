@@ -9,7 +9,6 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Widget;
 /// 按钮：九宫格底 + 单行文本，可悬停（宿主鼠标路由控制 <see cref="Hovered" />）并可点击（<see cref="OnClick" />）。
 /// 同时是焦点图的可获焦项：<see cref="Element.Focusable" /> 为 true，<see cref="Element.ActivateAction" /> 兼作
 /// 手柄 A 的激活（与鼠标左键同一动作，一次按下只触发一次）。获焦时绘制金色描边环（控制器导航指示）。
-/// 本文件为已验证原型（UiFrameworkProto）Button 的移植（含悬停视觉 + 获焦视觉）。
 /// </summary>
 public class Button : Element
 {

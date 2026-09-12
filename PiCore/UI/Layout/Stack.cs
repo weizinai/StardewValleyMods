@@ -5,7 +5,6 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Layout;
 
 /// <summary>
 /// 沿主轴顺序排布子级的容器（垂直或水平，内容自适应）。交叉轴默认撑满，主轴取子级期望尺寸之和。
-/// 本文件为已验证原型（UiFrameworkProto）的移植，未改动其布局语义。
 /// </summary>
 public class Stack : Element
 {

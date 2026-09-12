@@ -8,8 +8,8 @@ namespace weizinai.StardewValleyMod.PiCore.UI.Widget;
 
 /// <summary>
 /// 文本标签：测量与绘制用同一游戏语言 SpriteFont（默认 <see cref="Theme.SmallFont" />），保证测得宽 = 绘制宽
-/// （无文字阴影，扁平观感）。支持折行（票 07 能力，<see cref="MaxWidth" />）：文本自然宽不超有效折行宽时
-/// 按自然宽单行测量绘制；超出时按 <see cref="TextWrap" /> 的验证规则折成多行（CJK 逐字、拉丁按词、混合词界退让、
+/// （无文字阴影，扁平观感）。支持折行（<see cref="MaxWidth" />）：文本自然宽不超有效折行宽时
+/// 按自然宽单行测量绘制；超出时按 <see cref="TextWrap" /> 的折行规则折成多行（CJK 逐字、拉丁按词、混合词界退让、
 /// 收尾标点粘行、显式 \n 硬断点），多行高 = 行数 × 行高，后续元素被推到文本之下、不重叠。
 /// 有效折行宽 = <see cref="MaxWidth" />（显式设置）或布局给到的可用宽（未设置时），因此放在窄容器里的标签
 /// 也会自动折行而不是溢出。注意：中文无豆腐块的前提是游戏运行在中文语言（字体是游戏语言绑定的），
@@ -99,7 +99,7 @@ public class Label : Element
             return new Vector2(naturalWidth, this.lineHeight);
         }
 
-        // 多行：按 TextWrap 验证规则折行，期望宽 = 有效折行宽，高 = 行数 × 行高（后续元素被推到下方、不重叠）
+        // 多行：按 TextWrap 折行规则折行，期望宽 = 有效折行宽，高 = 行数 × 行高（后续元素被推到下方、不重叠）
         this.wrappedLines = TextWrap.Wrap(font, this.text, effective);
 
         return new Vector2(effective, this.wrappedLines.Count * this.lineHeight);

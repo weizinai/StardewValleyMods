@@ -4,17 +4,6 @@
 >
 > 适用版本：PiCore **待定（未发布）**——版本号在发布时才定，以 `docs/CHANGELOG.md` 顶部为准。命名空间 `weizinai.StardewValleyMod.PiCore.UI*`（下文简称 `PiCore.UI`）。同目录另见 [配置框架使用约定](config-framework.md)。
 
-## 验证状态说明
-
-「已验证」= 已被实战模组接入**且**通过游戏内验收（**ActiveMenuAnywhere (AMA)** 之于菜单宿主，**AutoBreakGeode** 之于叠层宿主，**BetterCabin** 之于世界锚定宿主，**ReadyCheckKick** 之于滚动列表——四者的游戏内验收都与各自模组的验收清单同一次进行）；「未验证」= 已实现、API 形状以代码为准，但上面两个条件还没同时满足——尚无模组挂载，或已挂载但还没做游戏内验收（后者见下表与对应章节的注记）。用未验证类型时，默认它们可用，但如遇布局/交互异常请以源码行为为准回退。
-
-| 状态 | 类型 |
-| --- | --- |
-| ✅ 已验证 | `MenuHost` · `DrawableHost` · `WorldAnchorHost` · `Element` · `Stack` · `Grid` · `Scrollable` · `Button` · `Label` · `TabControl` · `Pager` · `IResettable` · `Theme` · `IAnchoredContent` · `TilePanel` |
-| ⚠️ 未验证 | `Canvas` · `PanelFrame` · `Tooltip` · `FocusManager` · `FocusDirection` · `TextWrap` |
-
-每章开头会标注该章主要类型的验证状态。
-
 ---
 
 # 1. 概述
@@ -92,7 +81,7 @@ MenuHost (根宿主, 直接持有根视图)
 
 # 2. 快速上手（教程）
 
-> 本章主体为 ✅ 已验证路径（以 AMA 的真实用法为蓝本，重写为最小自包含示例）。跟着走完能得到一个带页签 + 分页的可用菜单。
+> 本章是最小自包含示例，跟着走完能得到一个带页签 + 分页的可用菜单。
 
 ## 2.1 打开一个菜单
 
@@ -291,9 +280,7 @@ internal class MyResettableContent : Element, IResettable
 
 # 3. 宿主层（Host）
 
-> 本章：`MenuHost` / `DrawableHost` / `WorldAnchorHost` ✅ 已验证（分别经 AMA / AutoBreakGeode / BetterCabin）。
-
-## 3.1 MenuHost —— 交互式菜单（✅ 已验证）
+## 3.1 MenuHost —— 交互式菜单
 
 `MenuHost : IClickableMenu`。把 retained 根视图装进原生菜单管线，处理全部交互。**大多数情况你用这一个。**
 
@@ -321,7 +308,7 @@ menu.ContentRect; // 内容区 = 外框内缩 24px
 
 **pad-vs-mouse 消歧**：手柄驱动（摇杆在动/方向键按下/光标非鼠标驱动）时压制鼠标悬停、提示框锚定到获焦项；鼠标一动即交还。
 
-## 3.2 DrawableHost —— 叠层宿主（✅ 已验证）
+## 3.2 DrawableHost —— 叠层宿主
 
 `DrawableHost` 把同一个 retained 根视图作为**叠层**挂到一条 SMAPI Display 事件（HUD / 活动菜单之后 / 指定渲染步），每帧在 UI 坐标冲刷脏布局后绘制。**默认只读**：宿主自身不订阅任何输入事件（输入所有权留模组侧），鼠标交互由消费方**显式调用**下面几个方法开启——不调用时行为与只读版逐帧一致。
 
@@ -356,7 +343,7 @@ host.PerformScrollAction(e.Delta);             // 滚轮路由：滚光标下最
 - 三个方法都在命中前自动冲刷挂起布局（消费方无需自己调 `LayoutRunner`，首帧绘制之前调用也拿到真实 `Bounds`），且只在启用（`IsEnabled`）时生效：`Disable()` 后不命中、不消费、不滚动，并复位残留悬停态。
 - `PerformScrollAction(direction)` **滚轮契约**（与 `MenuHost` 的滚轮逐条一致）：`direction == 0` 直接返回（原事件的 `Delta` 可以原样转进来，不必自己判空）；按**宿主自取**的光标（`Game1.getMouseX()` / `getMouseY()`）命中最上层可见 `Scrollable`——消费方拿不到坐标参数，也就不可能把 SMAPI 的屏幕像素当成 UI 坐标传进来；增量按「格」折算（`|增量| / 120`，至少 1 格），每格滚动 48 像素；方向沿用 vanilla 符号（增量 > 0 = 向上滚 = 内容下移 = 偏移减小）。光标不在任何滚动容器上时什么也不做；返回 void——SMAPI 的 `MouseWheelScrolled` 不可 Suppress，滚轮没有「这一格归谁」的语义。
 
-## 3.3 WorldAnchorHost —— 世界锚定叠层（✅ 已验证）
+## 3.3 WorldAnchorHost —— 世界锚定叠层
 
 `WorldAnchorHost` 把**只读 immediate 内容**（`IAnchoredContent`）锚定到世界绝对坐标（如玩家），画在 RenderedWorld（世界批坐标空间），垫在 HUD/菜单之下，不参与 retained 布局。
 
@@ -389,9 +376,7 @@ host.Enable();   // 恢复
 
 # 4. 布局模型（Layout）
 
-> 本章：`Element` / `Stack` / `Grid` / `Scrollable` ✅ 已验证（前三个经 AMA，`Scrollable` 经 ReadyCheckKick）；`Canvas` ⚠️ 未验证。
-
-## 4.1 Element —— 布局树节点（✅ 已验证）
+## 4.1 Element —— 布局树节点
 
 `Element` 是**抽象基类**：retained 内核的根视图类型。所有容器与控件都派生自它。
 
@@ -435,7 +420,7 @@ public abstract class Element
 
 内容变化（改 `Text`、`Add`/`Remove`、改尺寸）都会自动 `MarkDirty` 沿父链标脏到根，由宿主每帧统一冲刷。**你一般不需要手动标脏**，除了「改了自己绘制但框架不知道的尺寸/位置」的场景。
 
-## 4.2 LayoutRunner —— 布局冲刷入口（✅ 已验证）
+## 4.2 LayoutRunner —— 布局冲刷入口
 
 静态类。任何读取 `Bounds` 做屏幕定位的代码，**先冲刷再读**。
 
@@ -454,7 +439,7 @@ LayoutRunner.Force(root, availableSize, placeFunc);
 - `UpdateIfDirty`：根未标脏则什么都不做（绘制稳定不抖）。
 - 宿主（MenuHost/DrawableHost/WorldAnchorHost）每帧自动冲刷，`DrawableHost` 的鼠标输入方法（`PerformHoverAction`/`HandleLeftClick`/`PerformScrollAction`）在命中前也自行冲刷——**作为消费方你通常不需要直接调**，除非你在事件处理器里改动树后要立即读 `Bounds`。
 
-## 4.3 Stack —— 顺序堆叠容器（✅ 已验证）
+## 4.3 Stack —— 顺序堆叠容器
 
 沿主轴顺序排布子级（垂直/水平），内容自适应；交叉轴默认撑满，主轴取子级期望尺寸之和。
 
@@ -466,7 +451,7 @@ new Stack(Stack.Direction.Horizontal, spacing: 12f);
 - 子级取自然期望尺寸；容器最终期望尺寸按主轴可用空间封顶，超出部分交给上层裁剪/溢出。
 - AMA 的根视图就是 `Stack(Vertical)`（标题 + TabControl）。
 
-## 4.4 Grid —— 固定等大网格（✅ 已验证）
+## 4.4 Grid —— 固定等大网格
 
 子级排成固定行/列、格子等大的网格（AMA 的 3×3 九宫格）。**整块**（cols×cellW × rows×cellH）在分配区内居中。
 
@@ -476,9 +461,9 @@ grid.Add(item0); grid.Add(item1); // ... 按行优先填格子
 ```
 
 - 格子等大、固定；子级在各自格子内测量/布置。
-- 整块居中：分配区比块大时自动水平/垂直居中（HITL 调整）。
+- 整块居中：分配区比块大时自动水平/垂直居中。
 
-## 4.5 Canvas —— 绝对定位容器（⚠️ 未验证）
+## 4.5 Canvas —— 绝对定位容器
 
 子级自带位置偏移，按「子级左上角 + 容器左上角」放置。逃逸自动布局的出口。
 
@@ -492,7 +477,7 @@ canvas.Add(child);
 - 覆写了 `Remove`/`Clear` 同步清理偏移表。
 - 期望尺寸 = 所有子级「偏移 + 尺寸」的外包矩形。
 
-## 4.6 Scrollable —— 可滚动视口（✅ 已验证）
+## 4.6 Scrollable —— 可滚动视口
 
 固定尺寸的剪裁视口，纵向堆叠子级；滚动偏移在 `Arrange` 时折入子级 `Bounds`（子级得到真实屏幕坐标），绘制时用 scissor 裁在内容区内不溢出。
 
@@ -517,9 +502,7 @@ list.MaxScrollOffset;            // 最大偏移（内容不满时为 0）
 
 # 5. 控件库（Widget）
 
-> 本章：`Button` / `Label` / `TabControl` / `Pager` / `IResettable` ✅ 已验证；`PanelFrame` / `Tooltip` / `TextWrap` ⚠️ 未验证（TextWrap 为 Label/Tooltip 的内部契约，间接经已验证控件生效）。
-
-## 5.1 Label —— 文本标签（✅ 已验证）
+## 5.1 Label —— 文本标签
 
 单行/多行文本，用游戏语言 SpriteFont 测量与绘制（测得宽 = 绘制宽，扁平无阴影）。支持折行。
 
@@ -535,7 +518,7 @@ label.WrappedLines;                // 折出的各行（measure 后有效，单�
 
 **折行规则**（`TextWrap`，§5.7）：CJK 逐字、拉丁按词、收尾标点粘上一行（行首不出现）、`\n` 硬断点。中文无豆腐块的前提是游戏运行在中文语言（字体是语言绑定的）。
 
-## 5.2 Button —— 按钮（✅ 已验证）
+## 5.2 Button —— 按钮
 
 九宫格底 + 单行文本，可悬停（宿主控制 `Hovered`）、可点击（`OnClick`）。**可获焦**（`Focusable == true`），手柄 A 的激活 = 鼠标点击（`ActivateAction => OnClick`），一次按下只触发一次。获焦时画金色描边环。
 
@@ -552,7 +535,7 @@ button.Hovered;   // 可读（internal set，宿主置位/复位）
 - `protected virtual float BoxOpacity` —— 盒体透明度（0 = 透明，只留交互环；选中态半透明）。
 - `protected virtual Color TextColor` —— 文本颜色（随 BoxColor 可读性）。
 
-## 5.3 PanelFrame —— 九宫格 chrome 面板（⚠️ 未验证）
+## 5.3 PanelFrame —— 九宫格 chrome 面板
 
 画一块标准菜单盒九宫格外框，内容在其内侧按 padding 内缩排布。**承载单一内容**——用 `SetContent` 挂入（先清空再加），请勿多次 `Add`（会重叠）。
 
@@ -561,7 +544,7 @@ var frame = new PanelFrame(padding: 36f);
 frame.SetContent(new Label("面板内容"));
 ```
 
-## 5.4 TabControl —— 页签容器（✅ 已验证）
+## 5.4 TabControl —— 页签容器
 
 顶部横向页签芯片 + 下方内容区。每次选择把旧页签内容从树中移除、把新页签内容挂入（结构版本变化 → 宿主自动重建焦点图并保留仍存在的焦点）；新内容实现 `IResettable` 则挂入后自动 `Reset()`（切到分页内容回到第一页）。选中芯片以半透明盒标示。
 
@@ -575,7 +558,7 @@ tabs.TabCount;
 tabs.SelectedContent;           // 当前选中页签内容（未选中为 null）
 ```
 
-## 5.5 Pager —— 分页容器（✅ 已验证）
+## 5.5 Pager —— 分页容器
 
 内容区只挂**当前页**（一页一个 `Element`，通常是 `Grid`），底部居中翻页条（上一页/页码/下一页）逐页切换，页码文本自动更新；首末页隐藏对应按钮。实现 `IResettable`：`Reset()` = 回到第一页。
 
@@ -592,7 +575,7 @@ pager.ResetToFirstPage(); // 回到第一页
 pager.CurrentPage; pager.PageCount; pager.CurrentContent;
 ```
 
-## 5.6 Tooltip —— 提示框（⚠️ 未验证）
+## 5.6 Tooltip —— 提示框
 
 悬停在视图树之上的扁平小面板 + 文本，由宿主排版绘制，**不加入布局树**（宿主持有单个实例反复使用）。**你通常不直接构造 Tooltip**——给元素设 `TooltipText` 即可，宿主自动处理两种摆放：
 
@@ -606,7 +589,7 @@ var button = new Button("仓库");
 button.TooltipText = "打开仓库界面";   // 就这么简单
 ```
 
-## 5.7 TextWrap —— 文本折行契约（⚠️ 未验证，被已验证控件间接使用）
+## 5.7 TextWrap —— 文本折行契约
 
 共享折行实现，`Label` 与 `Tooltip` 用它，也可直接用：
 
@@ -614,7 +597,7 @@ button.TooltipText = "打开仓库界面";   // 就这么简单
 IReadOnlyList<string> lines = TextWrap.Wrap(font, text, maxWidth);
 ```
 
-## 5.8 IResettable —— 重置缝（✅ 已验证）
+## 5.8 IResettable —— 重置缝
 
 实现它的内容在「重新显示/激活」时回到初始状态。`TabControl` 切换页签时对实现它的新内容自动调 `Reset()`；`Pager` 实现它（重置 = 回到第一页）。**需要保留状态的内容不应实现它。**
 
@@ -629,15 +612,15 @@ public interface IResettable
 
 # 6. 焦点与手柄（Focus）
 
-> 本章 ⚠️ 未验证：`FocusManager` / `FocusDirection` 无模组直接消费（被 `MenuHost` 内部使用），手柄路径经 `MenuHost` 接通。大多数情况下你**不需要**直接碰它们——`Button`/`TabControl`/`Pager` 的获焦与 A 激活已由宿主自动处理。
+> `FocusManager` / `FocusDirection` 由 `MenuHost` 内部使用，手柄路径经 `MenuHost` 接通。大多数情况下你**不需要**直接碰它们——`Button`/`TabControl`/`Pager` 的获焦与 A 激活已由宿主自动处理。
 
-## 6.1 FocusDirection（⚠️ 未验证）
+## 6.1 FocusDirection
 
 ```csharp
 public enum FocusDirection { Up, Down, Left, Right }
 ```
 
-## 6.2 FocusManager（⚠️ 未验证）
+## 6.2 FocusManager
 
 自建焦点图：从 retained 视图树收集可获焦元素，按**几何规则**移动焦点，取代 vanilla 邻居 ID snap（邻居 ID 不可变，与组合式视图树不兼容）。
 
@@ -650,7 +633,7 @@ focus.Activate();                     // 执行当前获焦项的 ActivateAction
 focus.RequestRebuild();               // 结构变化时重建（保留当前焦点）
 ```
 
-**导航规则**（HITL 验证）：按轴向半平面内选目标，距离一律用中心点度量；左右走同排（Y 区间重叠）优先，同排无候选再回退全图；等距时交叉轴偏移最小（向下走同列、向上回同列）。上/下在 `Scrollable` 内先走列表自己的项（自动滚入视口），仅当位于首/末项才离开列表。
+**导航规则**：按轴向半平面内选目标，距离一律用中心点度量；左右走同排（Y 区间重叠）优先，同排无候选再回退全图；等距时交叉轴偏移最小（向下走同列、向上回同列）。上/下在 `Scrollable` 内先走列表自己的项（自动滚入视口），仅当位于首/末项才离开列表。
 
 ## 6.3 谁触发它
 
@@ -661,9 +644,7 @@ focus.RequestRebuild();               // 结构变化时重建（保留当前焦
 
 # 7. 世界锚定（World）
 
-> 本章 ✅ 已验证（经 BetterCabin）：`IAnchoredContent` / `TilePanel`。
-
-## 7.1 IAnchoredContent（✅ 已验证）
+## 7.1 IAnchoredContent
 
 世界锚定只读内容契约：`Measure()` 量尺寸、`Draw(batch, bounds)` 在给定屏幕矩形内绘制。只读 immediate：无 retained 布局、无焦点、无输入。消费方也可在任意 RenderedWorld 处理器里直接 `Measure` + `Draw` 自绘。
 
@@ -675,9 +656,9 @@ public interface IAnchoredContent
 }
 ```
 
-要点（BetterCabin 实战验证）：宿主用 `Centered` 摆放时，`bounds.Center` 恒等于世界锚点的屏幕位置，因此内容可在盒内相对 `bounds.Center`（= 锚点）自行排布多个子盒——比如 BetterCabin 用一个 `IAnchoredContent` 承载三个 `TilePanel`（名字 / 总在线 / 上次在线），各盒中心 = 锚点 + 各自偏移。两点使用约定：`Measure` 每帧都会被调用，稳态下应返回缓存好的尺寸、避免重复测量文本；返回的尺寸应当是**对锚点对称**的覆盖尺寸（单边最大外扩 × 2），因为宿主是把该尺寸居中摆到锚点上再做整盒视口求交的——不对称的偏移会连带把裁剪框挪偏，边上的子盒就会在真正离开视口前提前消失。
+要点：宿主用 `Centered` 摆放时，`bounds.Center` 恒等于世界锚点的屏幕位置，因此内容可在盒内相对 `bounds.Center`（= 锚点）自行排布多个子盒——比如 BetterCabin 用一个 `IAnchoredContent` 承载三个 `TilePanel`（名字 / 总在线 / 上次在线），各盒中心 = 锚点 + 各自偏移。两点使用约定：`Measure` 每帧都会被调用，稳态下应返回缓存好的尺寸、避免重复测量文本；返回的尺寸应当是**对锚点对称**的覆盖尺寸（单边最大外扩 × 2），因为宿主是把该尺寸居中摆到锚点上再做整盒视口求交的——不对称的偏移会连带把裁剪框挪偏，边上的子盒就会在真正离开视口前提前消失。
 
-## 7.2 TilePanel（✅ 已验证）
+## 7.2 TilePanel
 
 小号世界锚定「面板 + 文本行」盒：标题用 `DialogueFont`、正文用 `SmallFont`，可逐行配色，画成扁平九宫格 + 扁平文字。只负责内容，变换与裁剪由宿主承担。
 
@@ -706,8 +687,6 @@ PositionHelper.GetTilePositionFromScreenPosition(screenPos);
 ---
 
 # 8. 主题（Theme）
-
-> ✅ 已验证（AMA 使用其字体/绘制助手）。
 
 薄主题对象：把 SDV 默认观感（九宫格矩形、关闭按钮矩形、字体、配色、交互音效）与常用绘制助手收编到一处。默认观感 = SDV 原生形状 + 扁平（无投影）。
 
@@ -744,35 +723,34 @@ Theme.PlaySound(Theme.AcceptSound);  // 播游戏内音效
 
 - **新增/改名/删除** `PiCore.UI` 下任何公共类型或成员 → 同步更新对应章节与文末速查表。
 - **行为契约变化**（如布局语义、焦点规则、键盘契约）→ 就地修订相关描述，禁止打补丁式追加。
-- 验证状态随实战更新：**接入与游戏内验收两件事都完成后**才把某类型从 ⚠️ 移到 ✅（同步改文首「验证状态说明」表、对应章节开头与文末速查表）。只接入、还没做游戏内验收的，保持在 ⚠️ 并注明是哪次交付接入的。
 - changelog（`CHANGELOG.md` / `CHANGELOG.zh.md`）只记用户可见净变化，本文档记使用约定——两条线内容一致但不重复。
 
 ---
 
 # 附录：类型速查表
 
-| 类型 | 状态 | 一句话 |
-| --- | --- | --- |
-| `MenuHost` | ✅ | 交互式菜单宿主，一行 `OpenMenu(root)` 打开，处理全部鼠标/滚轮/手柄/Esc |
-| `DrawableHost` | ✅ | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` / `PerformScrollAction` 才开鼠标悬停、左键消费与滚轮路由 |
-| `WorldAnchorHost` | ✅ | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
-| `Element` | ✅ | 抽象基类：两趟布局节点，子类实现 Measure/Arrange/Draw |
-| `LayoutRunner` | ✅ | 布局冲刷入口：读 Bounds 前先 `UpdateIfDirty` |
-| `Stack` | ✅ | 垂直/水平顺序堆叠，内容自适应 |
-| `Grid` | ✅ | 固定等大网格，整块居中 |
-| `Canvas` | ⚠️ | 绝对定位容器（子级带偏移） |
-| `Scrollable` | ✅ | 固定尺寸滚动视口（scissor 裁剪，滚出即不画不可点） |
-| `Button` | ✅ | 九宫格按钮：悬停/点击/获焦环，A == 点击 |
-| `Label` | ✅ | 文本标签：可折行（CJK 逐字/拉丁按词） |
-| `PanelFrame` | ⚠️ | 九宫格 chrome，承载单一内容（`SetContent`） |
-| `TabControl` | ✅ | 页签容器：芯片栏 + 内容区，切页签重置 IResettable |
-| `Pager` | ✅ | 分页容器：只挂当前页，底部翻页条 |
-| `Tooltip` | ⚠️ | 提示框（宿主持有）：设 `TooltipText` 即可，不用自己建 |
-| `TextWrap` | ⚠️ | 共享折行契约（Label/Tooltip 用） |
-| `IResettable` | ✅ | 重置缝：切页签自动 Reset（需保留状态者勿实现） |
-| `FocusManager` | ⚠️ | 几何焦点图（MenuHost 内部使用，通常不用直接碰） |
-| `FocusDirection` | ⚠️ | 焦点方向枚举 |
-| `IAnchoredContent` | ✅ | 世界锚定内容契约（Measure + Draw） |
-| `TilePanel` | ✅ | 世界锚定「面板 + 文本行」盒 |
-| `Theme` | ✅ | 扁平 SDV 观感 + 绘制助手/音效 |
-| `PositionHelper` | ✅ | 世界↔屏幕坐标换算（位于 `...PiCore`，非 UI 命名空间） |
+| 类型 | 一句话 |
+| --- | --- |
+| `MenuHost` | 交互式菜单宿主，一行 `OpenMenu(root)` 打开，处理全部鼠标/滚轮/手柄/Esc |
+| `DrawableHost` | 叠层宿主：retained 根视图挂到 HUD/菜单后/渲染步，默认只读；显式调 `PerformHoverAction` / `HandleLeftClick` / `PerformScrollAction` 才开鼠标悬停、左键消费与滚轮路由 |
+| `WorldAnchorHost` | 只读世界锚定：`IAnchoredContent` 锚到世界坐标画在 RenderedWorld |
+| `Element` | 抽象基类：两趟布局节点，子类实现 Measure/Arrange/Draw |
+| `LayoutRunner` | 布局冲刷入口：读 Bounds 前先 `UpdateIfDirty` |
+| `Stack` | 垂直/水平顺序堆叠，内容自适应 |
+| `Grid` | 固定等大网格，整块居中 |
+| `Canvas` | 绝对定位容器（子级带偏移） |
+| `Scrollable` | 固定尺寸滚动视口（scissor 裁剪，滚出即不画不可点） |
+| `Button` | 九宫格按钮：悬停/点击/获焦环，A == 点击 |
+| `Label` | 文本标签：可折行（CJK 逐字/拉丁按词） |
+| `PanelFrame` | 九宫格 chrome，承载单一内容（`SetContent`） |
+| `TabControl` | 页签容器：芯片栏 + 内容区，切页签重置 IResettable |
+| `Pager` | 分页容器：只挂当前页，底部翻页条 |
+| `Tooltip` | 提示框（宿主持有）：设 `TooltipText` 即可，不用自己建 |
+| `TextWrap` | 共享折行契约（Label/Tooltip 用） |
+| `IResettable` | 重置缝：切页签自动 Reset（需保留状态者勿实现） |
+| `FocusManager` | 几何焦点图（MenuHost 内部使用，通常不用直接碰） |
+| `FocusDirection` | 焦点方向枚举 |
+| `IAnchoredContent` | 世界锚定内容契约（Measure + Draw） |
+| `TilePanel` | 世界锚定「面板 + 文本行」盒 |
+| `Theme` | 扁平 SDV 观感 + 绘制助手/音效 |
+| `PositionHelper` | 世界↔屏幕坐标换算（位于 `...PiCore`，非 UI 命名空间） |

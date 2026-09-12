@@ -4,17 +4,6 @@
 >
 > 适用版本：PiCore **待定（未发布）**——版本号在发布时才定，以 `docs/CHANGELOG.md` 顶部为准。命名空间 `weizinai.StardewValleyMod.PiCore.Config`（下文简称 `PiCore.Config`）。同目录另见 [UI 框架使用说明](ui-framework.md)。
 
-## 验证状态说明
-
-「已验证」= 本仓库十余个模组实战使用过，路径经过真实玩家与真实模组检验；「未验证」= 已实现且有消费方，但还没进游戏做验收。用未验证类型时默认它们可用，如遇异常以源码行为为准回退（与 [UI 框架](ui-framework.md) 同一条判据）。
-
-| 状态 | 类型 |
-| --- | --- |
-| ✅ 已验证 | `ConfigService<TConfig>` · `ConfigMenuDescriptor<TConfig>` · `ConfigMenuSection<TConfig, TSection>` · `ConfigMember`（internal） |
-| ⚠️ 未验证 | `SingletonConfig<TConfig>`（14 个模组已改用它并通过编译，尚未进游戏验收；`ConfigService<TConfig>` 的构造签名同批改动，一并待验收） |
-
-实战消费模组（全部经 `SingletonConfig<TConfig>` 接入）：`AutoBreakGeode` · `LazyMod` · `BetterCabin` · `HelpWanted` · `ReadyCheckKick` · `FreeLock` · `FastControlInput` · `FriendshipDecayModify` · `ActiveMenuAnywhere` · `SpectatorMode` · `MultiplayerModLimit` · `CustomMineRefresh` · `SomeMultiplayerFeature` · `TestMod`。
-
 ---
 
 # 1. 概述
@@ -67,7 +56,7 @@ PiCore 配置框架是一条**声明式配置管线**：你只写一个「配置
 
 # 2. 快速上手（教程）
 
-> 本章以本仓库模组的真实用法为蓝本，重写为最小自包含示例；四步走完能得到一个完整可读/写/重制的配置 + GMCM 菜单。其中新增的 `SingletonConfig<TConfig>` 基类仍是 ⚠️（见文首「验证状态说明」），其余类型均已 ✅。
+> 本章是最小自包含示例；四步走完能得到一个完整可读/写/重制的配置 + GMCM 菜单。
 
 以模组 `SomeMod` 为例。四步即可让「声明配置 → 读取（损坏自愈）→ 菜单渲染 → 保存/重置」全部跑通。
 
@@ -144,8 +133,6 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 
 # 3. 配置类成员形态规则
 
-> 本章为 ✅ 已验证（本仓库所有带配置的模组共用同一规则）。末段新增的「只有根配置继承 `SingletonConfig<TConfig>`」随该类型一同为 ⚠️。
-
 ## 3.1 成员形态约定
 
 > **必须：** 每个序列化进模组 `config.json` 的类，其被序列化的成员一律是 **公共自动属性** `{ get; set; }`，需要默认值时写 **显式初始化器**； **不使用公共字段**。整条规则的例外只有「不写初始化器 = 意图采用 CLR 默认值」，除此之外不承认任何例外（如「只读属性」「内部 setter」都不属于配置类成员）。
@@ -163,8 +150,6 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 ---
 
 # 4. 描述器成员绑定速查
-
-> 本章为 ✅ 已验证（每个选项方法都有真实调用方）。
 
 `ConfigMenuDescriptor<TConfig>`（链式；标签/提示均传 `Func<string>`）：
 
@@ -188,8 +173,6 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 ---
 
 # 5. 坑
-
-> 本章教训 ✅ 已验证（均为真实踩过并修复的坑）；末段新增的「嵌套配置不得继承 `SingletonConfig<TConfig>`」由类型语义推得，随该类型一同为 ⚠️。
 
 - **绑定目标必须是公共可写属性。** 公共**字段**（含常量）会在 `ConfigMember.CreateAccessor` 抛
   `ArgumentException`（「配置选项成员必须是一段可赋值的公共属性链…」／「配置成员必须是公共自动属性，不支持公共字段…」）。get-only 或带非公共 setter 的属性能绑上，但会
@@ -215,26 +198,25 @@ private void BuildConfigMenu(ConfigMenuDescriptor<ModConfig> menu)
 
 - **新增/改名/删除** `PiCore.Config` 下任何公共类型或成员 → 同步更新对应章节与文末速查表。
 - **行为契约变化**（如成员绑定规则、重置语义）→ 就地修订相关描述，禁止打补丁式追加。
-- 验证状态随实际使用更新（若新增类型先标 ⚠️，有消费方后移 ✅——⚠️ 到 ✅ 的判据见文首「验证状态说明」；同步改该处的表与文末速查表）。
 - changelog（`CHANGELOG.md` / `CHANGELOG.zh.md`）只记用户可见净变化，本文档记使用约定——两条线内容一致但不重复。
 
 ---
 
 # 附录：类型速查表
 
-| 类型 | 状态 | 一句话 |
-| --- | --- | --- |
-| `SingletonConfig<TConfig>` | ⚠️ | 配置根的单例槽位（只有根配置可继承，写权归框架） |
-| `ConfigService<TConfig>` | ✅ | 生命周期：读取（自愈）/ 注册 / 保存 / 重置 / `onConfigChanged` 回调 |
-| `ConfigMenuDescriptor<TConfig>` | ✅ | 声明式菜单：链式 `Add*` 描述，渲染映射到 GMCM |
-| `ConfigMenuSection<TConfig, TSection>` | ✅ | 嵌套子配置作分区的构建器（选项方法对描述器一一对应） |
-| `ConfigMember` | ✅ | internal：表达式树绑定 / 嵌套成员路径拼接 |
-| `AddBoolOption` / `AddBoolSection` | ✅ | 布尔开关 / 布尔领头的分区 |
-| `AddNumberOption` | ✅ | 整数或浮点数值（min/max/interval/formatValue） |
-| `AddTextOption` | ✅ | 文本或下拉（allowedValues/formatAllowedValue） |
-| `AddEnumOption` | ✅ | 枚举（文本选项呈现，可本地化） |
-| `AddKeybindListOption` | ✅ | 按键绑定列表 |
-| `AddSectionTitle` / `AddParagraph` | ✅ | 分区标题 / 段落 |
-| `AddPage` / `AddPageLink` | ✅ | 多页菜单 / 页间跳转链接 |
-| `AddSection` | ✅ | 嵌套配置作分区 |
-| `AddCustomSection` | ✅ | 逃生舱：原始 GMCM API |
+| 类型 | 一句话 |
+| --- | --- |
+| `SingletonConfig<TConfig>` | 配置根的单例槽位（只有根配置可继承，写权归框架） |
+| `ConfigService<TConfig>` | 生命周期：读取（自愈）/ 注册 / 保存 / 重置 / `onConfigChanged` 回调 |
+| `ConfigMenuDescriptor<TConfig>` | 声明式菜单：链式 `Add*` 描述，渲染映射到 GMCM |
+| `ConfigMenuSection<TConfig, TSection>` | 嵌套子配置作分区的构建器（选项方法对描述器一一对应） |
+| `ConfigMember` | internal：表达式树绑定 / 嵌套成员路径拼接 |
+| `AddBoolOption` / `AddBoolSection` | 布尔开关 / 布尔领头的分区 |
+| `AddNumberOption` | 整数或浮点数值（min/max/interval/formatValue） |
+| `AddTextOption` | 文本或下拉（allowedValues/formatAllowedValue） |
+| `AddEnumOption` | 枚举（文本选项呈现，可本地化） |
+| `AddKeybindListOption` | 按键绑定列表 |
+| `AddSectionTitle` / `AddParagraph` | 分区标题 / 段落 |
+| `AddPage` / `AddPageLink` | 多页菜单 / 页间跳转链接 |
+| `AddSection` | 嵌套配置作分区 |
+| `AddCustomSection` | 逃生舱：原始 GMCM API |

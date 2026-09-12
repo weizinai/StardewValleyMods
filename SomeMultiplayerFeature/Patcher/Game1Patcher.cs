@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Microsoft.Xna.Framework.Input;
 using StardewValley;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 

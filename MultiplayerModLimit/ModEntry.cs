@@ -7,6 +7,7 @@ using weizinai.StardewValleyMod.MultiplayerModLimit.Handler;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
 using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Multiplayer;
 
 namespace weizinai.StardewValleyMod.MultiplayerModLimit;
 

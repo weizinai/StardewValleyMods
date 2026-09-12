@@ -4,6 +4,7 @@ using StardewModdingAPI.Events;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Handler;
 using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Multiplayer;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;

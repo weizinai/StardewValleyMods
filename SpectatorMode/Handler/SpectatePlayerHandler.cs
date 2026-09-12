@@ -5,7 +5,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Extensions;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using weizinai.StardewValleyMod.SpectatorMode.Framework;
 
 namespace weizinai.StardewValleyMod.SpectatorMode.Handler;

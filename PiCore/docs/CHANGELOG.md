@@ -4,7 +4,13 @@
 
 ## Added
 
-- Added generic per-mod logging (`Logger<T>` / `Broadcaster<T>`), so SMAPI console logs keep each mod's own source name
+- Added per-mod logging and HUD helpers: `Logger<T>` (namespace `weizinai.StardewValleyMod.PiCore.Logging`) logs to the calling mod's own SMAPI console source, and
+  `HudLogger` (namespace `weizinai.StardewValleyMod.PiCore.Hud`) shows a hint on the local screen (`NoIconHUDMessage` / `ErrorHUDMessage`) without any logging
+  initialization; a mod must call `Logger<T>.Init(this)` in its `Entry` before logging — a log call made earlier is dropped
+- Added multiplayer broadcast helpers: `Broadcaster<T>` (namespace `weizinai.StardewValleyMod.PiCore.Multiplayer`) sends `Info` / `Alert` console messages and
+  `NoIconHUDMessage` hints to the other players' machines, where PiCore logs them to the sending mod's own console source or shows them as a HUD hint. A broadcast
+  with no explicit recipients goes to every other player who has PiCore and never back to the sender, whose own screen is served by `Logger<T>` / `HudLogger`;
+  nothing is sent or logged when nobody else is online
 - Added `Name` and `IsEnabled` to `IPatcher` (with `BasePatcher` defaults); `HarmonyPatcher` skips disabled patchers
 - Added single-line `Patch<T>` / `PatchConstructor<T>` binding helpers and a `PatchKind` enum; `GetHarmonyMethod` now fails fast with a clear error when a patch
   method is missing or non-static
@@ -60,8 +66,6 @@
 
 - The config module's member contract is public writable properties only: `ConfigService` reset and `ConfigMember` binding accept only members with a public
   setter (config classes must use public auto-properties and never declare indexers); public fields and indexer members are neither bound nor reset
-- Split HUD messages into their own `HudLogger` / `HudBroadcaster`; uninitialized log calls now fall back to PiCore instead of crashing
-- Centralized multiplayer message subscription in PiCore `ModEntry` (`MessageData` is now public)
 - Patch failure errors now show the owning mod's name
 - Integration warnings now use the consuming mod's own `IMonitor` instead of PiCore's logger
 - Aligned the GMCM layer with the official 1.16 API: `IGenericModConfigMenuApi` replaced with the full official interface (adds `AddSubHeader` and

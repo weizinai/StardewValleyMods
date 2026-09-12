@@ -2,7 +2,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using weizinai.StardewValleyMod.SomeMultiplayerFeature.Framework;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;

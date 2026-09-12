@@ -7,7 +7,6 @@ using weizinai.StardewValleyMod.ActiveMenuAnywhere.Helper;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Patcher;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.UI;
 using weizinai.StardewValleyMod.PiCore.Config;
-using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.ActiveMenuAnywhere;
@@ -18,7 +17,6 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger<ModEntry>.Init(this);
         var configService = new ConfigService<ModConfig>(this);
         configService.RegisterMenu(this.BuildConfigMenu);
         OptionCatalog.Init(helper);

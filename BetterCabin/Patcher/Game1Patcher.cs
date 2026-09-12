@@ -2,7 +2,7 @@ using HarmonyLib;
 using StardewValley;
 using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Handler;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Patcher;

@@ -7,7 +7,7 @@ using StardewValley.BellsAndWhistles;
 using StardewValley.Extensions;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.PiCore;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using xTile.Dimensions;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 

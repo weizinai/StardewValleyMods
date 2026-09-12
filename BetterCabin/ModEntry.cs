@@ -6,7 +6,6 @@ using weizinai.StardewValleyMod.BetterCabin.Handler;
 using weizinai.StardewValleyMod.BetterCabin.Patcher;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.BetterCabin;
@@ -21,7 +20,6 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger<ModEntry>.Init(this);
         var configService = new ConfigService<ModConfig>(this, this.UpdateConfig);
         configService.RegisterMenu(this.BuildConfigMenu);
         this.UpdateConfig();

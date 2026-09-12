@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Catalog;
 using weizinai.StardewValleyMod.ActiveMenuAnywhere.Config;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using weizinai.StardewValleyMod.PiCore.UI;
 using weizinai.StardewValleyMod.PiCore.UI.Layout;
 using weizinai.StardewValleyMod.PiCore.UI.Widget;

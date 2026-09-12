@@ -3,7 +3,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Multiplayer;
 
 namespace weizinai.StardewValleyMod.SomeMultiplayerFeature.Handler;
 

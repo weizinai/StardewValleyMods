@@ -10,7 +10,7 @@ using weizinai.StardewValleyMod.LazyMod.Framework.Helper;
 using weizinai.StardewValleyMod.LazyMod.Handler;
 using weizinai.StardewValleyMod.PiCore.Config;
 using weizinai.StardewValleyMod.PiCore.Integration.GenericModConfigMenu;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 
 namespace weizinai.StardewValleyMod.LazyMod;
 
@@ -28,7 +28,6 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger<ModEntry>.Init(this);
 
         this.configService = new ConfigService<ModConfig>(this, this.UpdateConfig);
         this.configService.RegisterMenu(this.BuildConfigMenu);

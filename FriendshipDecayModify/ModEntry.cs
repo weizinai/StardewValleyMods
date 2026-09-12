@@ -2,7 +2,6 @@ using StardewModdingAPI;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Framework;
 using weizinai.StardewValleyMod.FriendshipDecayModify.Patcher;
 using weizinai.StardewValleyMod.PiCore.Config;
-using weizinai.StardewValleyMod.PiCore.Logging;
 using weizinai.StardewValleyMod.PiCore.Patcher;
 
 namespace weizinai.StardewValleyMod.FriendshipDecayModify;
@@ -13,7 +12,6 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger<ModEntry>.Init(this);
         var configService = new ConfigService<ModConfig>(this);
         configService.RegisterMenu(this.BuildConfigMenu);
         // 注册Harmony补丁

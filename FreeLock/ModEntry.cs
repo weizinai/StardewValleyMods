@@ -4,7 +4,7 @@ using StardewValley;
 using weizinai.StardewValleyMod.FreeLock.Framework;
 using weizinai.StardewValleyMod.PiCore;
 using weizinai.StardewValleyMod.PiCore.Config;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 
 namespace weizinai.StardewValleyMod.FreeLock;
 
@@ -14,7 +14,6 @@ internal class ModEntry : Mod
     {
         // 初始化
         I18n.Init(helper.Translation);
-        Logger<ModEntry>.Init(this);
         var configService = new ConfigService<ModConfig>(this);
         configService.RegisterMenu(this.BuildConfigMenu);
         // 注册事件

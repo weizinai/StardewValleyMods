@@ -7,7 +7,7 @@ using StardewValley.Locations;
 using weizinai.StardewValleyMod.BetterCabin.Config;
 using weizinai.StardewValleyMod.PiCore.Extension;
 using weizinai.StardewValleyMod.PiCore.Handler;
-using weizinai.StardewValleyMod.PiCore.Logging;
+using weizinai.StardewValleyMod.PiCore.Hud;
 
 namespace weizinai.StardewValleyMod.BetterCabin.Handler;
 

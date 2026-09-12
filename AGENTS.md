@@ -8,7 +8,7 @@ weizinai 的 Stardew Valley 模组合集（SMAPI，SDV 1.6 / net6.0）：每个�
 **基于证据做决定，不靠猜测。** 遇到不确定的事实，先到可信来源查证再行动：本地优先（游戏/SMAPI 源码树、本仓库文档），然后是官方文档、官方仓库。带确切路径与查阅指引的引用地图见
 `docs/agents/modding-references.md`。
 
-**仓库骨架。** 每个顶层目录是独立模组，新建或修改时遵循统一骨架：`ModEntry.cs`（`Entry` 里 `I18n.Init`、注册事件、调用 `HarmonyPatcher.Apply`）+
+**仓库骨架。** 每个顶层目录是独立模组，新建或修改时遵循统一骨架：`ModEntry.cs`（`Entry` 里 `I18n.Init`、要打日志时 `Logger<ModEntry>.Init(this)`、注册事件、调用 `HarmonyPatcher.Apply`）+
 `Config/`（ModConfig，经 PiCore 配置框架接入）+ `Patcher/`（Harmony patch）+ `Handler/`（功能实现）+ 按职责自定的目录（如 `UI/`、`Session/`、`Vanilla/`）+
 `i18n/` + `docs/`（README.md、CHANGELOG.md、CHANGELOG.zh.md、screenshots/）+ `manifest.json`；目录一律按职责划分，不套一层 `Framework/`。任意现有模组目录都是一份范例。
 

@@ -4,7 +4,12 @@
 
 ## 新增
 
-- 新增按模组泛型隔离的日志工具（`Logger<T>` / `Broadcaster<T>`），SMAPI 控制台日志保持显示各模组名
+- 新增按模组隔离的日志与 HUD 工具：`Logger<T>`（命名空间 `weizinai.StardewValleyMod.PiCore.Logging`）把日志发到调用方模组自己的 SMAPI 控制台来源，`HudLogger`
+  （命名空间 `weizinai.StardewValleyMod.PiCore.Hud`）在本机屏幕显示提示（`NoIconHUDMessage` / `ErrorHUDMessage`）且不需要任何日志初始化；调用方模组必须先在
+  `Entry` 里调用 `Logger<T>.Init(this)` 再打日志——在那之前发出的日志调用会被丢弃
+- 新增多人广播工具：`Broadcaster<T>`（命名空间 `weizinai.StardewValleyMod.PiCore.Multiplayer`）把 `Info` / `Alert` 控制台消息与 `NoIconHUDMessage` 提示发到其他玩家的机器，
+  由 PiCore 输出到发送方模组自己的控制台来源，或直接显示为 HUD 提示。不指定目标玩家时，广播发给除发送者外所有装了 PiCore 的玩家、不会回显到发送者自己那台
+  （自己那台请用 `Logger<T>` / `HudLogger`）；没有其他玩家在线时不发送也不报错
 - `IPatcher` 新增 `Name` 与 `IsEnabled`（`BasePatcher` 提供默认实现），`HarmonyPatcher` 跳过被禁用的补丁
 - 新增单行绑定助手法 `Patch<T>` / `PatchConstructor<T>` 与 `PatchKind` 枚举；`GetHarmonyMethod` 对缺失或非静态补丁方法启动即报错
 - 新增配置模块（`PiCore/Config/`，命名空间 `weizinai.StardewValleyMod.PiCore.Config`）：每个模组的根配置类继承 `SingletonConfig<TConfig>`，得到所有处理器现读的静态
@@ -45,8 +50,6 @@
 ## 变更
 
 - 配置模块成员契约为仅公共可写属性：`ConfigService` 重置与 `ConfigMember` 绑定只接受公共 setter 自动属性（配置类必须使用公共自动属性，且永远不会声明索引器），公共字段与索引器成员不参与绑定与重置
-- HUD 消息日志独立为 `HudLogger` / `HudBroadcaster`；未初始化的日志调用回退到 PiCore 兜底，不再崩溃
-- 多人消息订阅统一由 PiCore `ModEntry` 处理（`MessageData` 置为 public）
 - 补丁失败报错按所属模组名显示
 - 集成层告警改用消费模组自己的 `IMonitor` 发出，不再走 PiCore 自身的日志器
 - GMCM 接口对齐官方 1.16：`IGenericModConfigMenuApi` 替换为官方完整接口（新增 `AddSubHeader` 与 `OpenModMenuAsChildMenu`，`TryGetCurrentMenu` 的 `mod`/`page`

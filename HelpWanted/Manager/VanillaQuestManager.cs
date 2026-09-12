@@ -4,6 +4,7 @@ using StardewValley;
 using StardewValley.Locations;
 using StardewValley.Quests;
 using weizinai.StardewValleyMod.HelpWanted.Config;
+using weizinai.StardewValleyMod.PiCore.Hud;
 using weizinai.StardewValleyMod.PiCore.Logging;
 
 namespace weizinai.StardewValleyMod.HelpWanted.Manager;
